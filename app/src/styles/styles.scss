@@ -1,0 +1,21 @@
+@import "./components/navbar";
+@import "./components/footer";
+@import "./views/Home";
+
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    overflow-x: hidden;
+
+}
+
