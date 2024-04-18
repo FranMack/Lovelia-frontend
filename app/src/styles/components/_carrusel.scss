@@ -1,0 +1,9 @@
+@import "../variables";
+
+.carrusel-container{
+    width: 100vw;
+    display: flex;
+    flex-wrap: nowrap;
+    column-gap: 1%;
+    overflow-x: scroll;
+}

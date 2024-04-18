@@ -1,19 +1,18 @@
-import { ArrowDown } from "../assets/images/icons/icons";
-import { HomeSection1 } from "../components/home/HomeSection1";
+import { HomeSection1 } from "../components/home-components/HomeSection1";
+import { HomeSection2 } from "../components/home-components/HomeSection2";
+import { HomeSection3 } from "../components/home-components/HomeSection3";
+import { HomeSection4 } from "../components/home-components/HomeSection4";
+import { HomeSection5 } from "../components/home-components/HomeSection5";
+import { Carrusel } from "../components/Carrusel";
 export function Home() {
   return (
-    <>
+    <main>
     <HomeSection1/>
-
-    <section className="">
-
-        <article>
-            <h2>¿Qué es un talismán?</h2>
-            <p>Un talisman es rememorar,tener presente, un indicio de nuestras<br/> intenciones e infinitas posibilidades, es un lugar seguro donde volver y<br/> enfocarte para logarar tu proposito.</p>
-            <p>Lovelia te propone abrirte a nuevas experiencias de conexión<br/> interior, transformando tu realizad, creando tu propia forma de andar,<br/> adquiriendo el poder de elegir, siendo protagonista tu vida que es única e<br/> irrepetible</p>
-        </article>
-
-    </section>
-    </>
+    <HomeSection2/>
+    <HomeSection3/>
+    <HomeSection4/>
+    <HomeSection5/>
+    <Carrusel/>
+    </main>
   );
 }

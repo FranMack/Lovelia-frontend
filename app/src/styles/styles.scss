@@ -1,6 +1,14 @@
 @import "./components/navbar";
 @import "./components/footer";
-@import "./views/Home";
+@import "./components/home-components/homeSection1";
+@import "./components/home-components/_homeSection2";
+@import "./components/home-components/_homeSection3";
+@import "./components/home-components/_homeSection4";
+@import "./components/home-components/_homeSection5";
+@import "./commons//button";
+@import "./commons/buttonArrowRight";
+@import "./components//carrusel";
+@import "./commons/carruselCard";
 
 
 *{

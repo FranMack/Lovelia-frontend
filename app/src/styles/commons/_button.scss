@@ -1,0 +1,10 @@
+@import "../variables";
+
+.purple-button{
+    background-color: $color_primary;
+    font-size: 1.8rem;
+    color:$color_text1;
+    padding: 2.5vh;
+    padding-inline: 5vh;
+    border-radius: 30px;
+}
