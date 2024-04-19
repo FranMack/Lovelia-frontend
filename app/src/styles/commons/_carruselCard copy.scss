@@ -1,0 +1,14 @@
+@import "../variables";
+
+.carruselCard-container{
+    width: 27%;
+    height: 80vh;
+    flex-shrink: 0;
+    img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+  
+}

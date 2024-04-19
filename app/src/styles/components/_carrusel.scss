@@ -6,4 +6,9 @@
     flex-wrap: nowrap;
     column-gap: 1%;
     overflow-x: scroll;
+
+    ::-webkit-scrollbar-thumb {
+        background-color: transparent;
+        border-radius: 5px; /* Radio de borde del dedo de la barra de desplazamiento */
+      }
 }

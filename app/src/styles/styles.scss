@@ -1,3 +1,4 @@
+@import "./variables";
 @import "./components/navbar";
 @import "./components/footer";
 @import "./components/home-components/homeSection1";
@@ -26,4 +27,26 @@ body{
     overflow-x: hidden;
 
 }
+
+
+::-webkit-scrollbar {
+    width: 12px; /* Ancho de la barra de desplazamiento */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: $color_primary;
+    border-radius: 5px; /* Radio de borde del dedo de la barra de desplazamiento */
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color:$color_background1;; /* Color de fondo de la pista de la barra de desplazamiento */
+    
+  }
+
+  ::-webkit-scrollbar-corner {
+    background-color: red;
+    width: 20px;
+    height: 20px;
+  }
+
 
