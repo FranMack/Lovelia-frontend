@@ -2,9 +2,18 @@
 
 .purple-button{
     background-color: $color_primary;
-    font-size: 1.8rem;
+    width: fit-content;
+    height: 52px;
+    padding: 16px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: normal;
     color:$color_text1;
-    padding: 2.5vh;
-    padding-inline: 5vh;
+   
     border-radius: 30px;
+
+
 }

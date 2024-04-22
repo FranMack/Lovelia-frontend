@@ -1,0 +1,119 @@
+@import "../../variables";
+
+.section8-container {
+  width: 100vw;
+  padding-bottom: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section8-title-container {
+  margin: 0 auto;
+  width: 80%;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 8vh;
+  h4 {
+    font-size: 4.8rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    color: $color_primary;
+    margin-bottom: 8px;
+  }
+  p {
+    font-family: "Marlin Geo";
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: $color_text2;
+  }
+}
+
+.section8-talleres-container {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20vh;
+}
+
+.section8-talleres-card {
+  width: 32%;
+  aspect-ratio: 1.13;
+  img {
+    width: 100%;
+
+    object-fit: cover;
+  }
+}
+
+.talleres-card-info-container {
+  height: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  h4 {
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 3%;
+  }
+  p {
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+
+.section8-button-container {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  h4 {
+    font-size: 4rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    color: $color_primary;
+    margin-bottom: 2vh;
+  }
+  h6 {
+    font-size: 1.8rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 1.2vh;
+  }
+  p {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 3vh;
+    color: $color_text2;
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.section8-button-image-container {
+  width: 35%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+}

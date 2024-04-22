@@ -6,17 +6,24 @@
 @import "./components/home-components/_homeSection3";
 @import "./components/home-components/_homeSection4";
 @import "./components/home-components/_homeSection5";
+@import "./components/home-components/_homeSection6";
+@import "./components/home-components/_homeSection7";
+@import "./components/home-components/_homeSection8";
+@import "./components/home-components/_homeSection9";
+
 @import "./commons//button";
 @import "./commons/buttonArrowRight";
 @import "./components//carrusel";
 @import "./commons/carruselCard";
+@import "./commons/musicCarruselCard";
+@import "./components/musicCarruseL";
 
 
 *{
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font-family: "Poppins", sans-serif;;
+    font-family: $font_titulos;
 }
 
 html{
@@ -28,6 +35,10 @@ body{
 
 }
 
+p{
+  font-family:'Nib Pro', sans-serif;
+}
+
 
 ::-webkit-scrollbar {
     width: 12px; /* Ancho de la barra de desplazamiento */
@@ -36,6 +47,7 @@ body{
   ::-webkit-scrollbar-thumb {
     background-color: $color_primary;
     border-radius: 5px; /* Radio de borde del dedo de la barra de desplazamiento */
+    height: 100px;
   }
 
   ::-webkit-scrollbar-track {

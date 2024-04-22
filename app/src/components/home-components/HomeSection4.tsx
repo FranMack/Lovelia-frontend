@@ -15,7 +15,9 @@ export function HomeSection4() {
         </div>
         <div className="section4-top-info-container">
             <h4>Talismán Analógico</h4>
-            <p>Tu talismán estará acompañado de un sonido especial, algo que podrás tocar<br/>siempre que lo necesites. Este sonido será tu compañero en momentos de<br/> meditación, para volver a tu centro, o para enfocar tus intenciones</p>
+            <p>Las piedras que empleamos son auténticas y están meticulosamente talladas a<br/> mano, lo que significa que cada talismán será verdaderamente único, igual que tu.<br/><br/>
+            Podrás configurar tu propio talismán seleccionando cada elemento: modelo,<br/>material, piedra, intención</p>
+            
             <Button text=" Comprar Analógico"/>
         </div>
 

@@ -1,0 +1,10 @@
+@import "../variables";
+
+.musicCarrusel-container{
+    width: 100vw;
+    padding: 4vh;
+    display: flex;
+    flex-wrap: nowrap;
+    column-gap: 1.5%;
+    overflow-x: scroll;
+}

@@ -1,40 +1,43 @@
 @import "../variables";
-.navbar-container{
-    position: fixed;
-    width: 100vw;
-    height: 15vh;
-    background-color: $color_background1;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.8rem;
-    padding-left: 2%;
-    padding-right: 2%;
-    
+.navbar-container {
+  position: fixed;
+  width: 100vw;
+  height: 15vh;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.8rem;
+  padding-left: 2%;
+  padding-right: 2%;
 }
 
-
-.navbar-logo-container{
-    height: 80%;
-    width: fit-content;
-    img{
-        height: 100%;
-        object-fit: cover;
-    }
+.navbar-logo-container {
+  height: 80%;
+  width: fit-content;
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
-.navbar-menu{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    list-style: none;
-    height: 50%;
-    width: 50%;
-    background-color:$color_background2;
-    border-radius: 30px;
+.navbar-menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  height: 50%;
+  width: 54%;
+  background-color: $color_background1;
+  border-radius: 30px;
+  li {
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
 }
 
-
-.navbar-menu-icon{
-    height: 55%;
+.navbar-menu-icon {
+  height: 55%;
 }

@@ -1,5 +1,7 @@
-import intensiones from "../../assets/images/intenciones-wallpaper.jpg"
+import intensiones from "../../assets/images/intenciones-wallpaper.png"
 import { ButtonArrowRight } from "../../commons/ButtonArrowRight"
+import { Carrusel } from "../Carrusel"
+import { MusicCarrusel } from "../MusicCarrusel"
 export function HomeSection5(){
     return (
         <section className="section5-container">
@@ -21,6 +23,17 @@ export function HomeSection5(){
                 </div>
                 <ButtonArrowRight text="Explorar todo" color="#6f3289"/>
             </div>
+
+            <Carrusel/>
+
+            <div className="section5-title-container">
+                <div className="section5-tittle-info-container">
+                    <h4>Meditaciones lovelia</h4>
+                    <p>Nuestras recomendaciones, contenido para tu día a día.</p>
+                </div>
+                <ButtonArrowRight text="Explora todos los sonidos" color="#6f3289"/>
+            </div>
+            <MusicCarrusel/>
 
         </section>
     )
