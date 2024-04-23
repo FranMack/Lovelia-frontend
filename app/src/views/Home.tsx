@@ -19,6 +19,7 @@ export function Home() {
     <HomeSection7/>
     <HomeSection8/>
     <HomeSection9/>
+  
 
 
     </main>

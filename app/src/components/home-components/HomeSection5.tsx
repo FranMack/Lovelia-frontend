@@ -1,7 +1,7 @@
 import intensiones from "../../assets/images/intenciones-wallpaper.png"
 import { ButtonArrowRight } from "../../commons/ButtonArrowRight"
 import { Carrusel } from "../Carrusel"
-import { MusicCarrusel } from "../MusicCarrusel"
+import { Slider } from "../Slider"
 export function HomeSection5(){
     return (
         <section className="section5-container">
@@ -33,7 +33,7 @@ export function HomeSection5(){
                 </div>
                 <ButtonArrowRight text="Explora todos los sonidos" color="#6f3289"/>
             </div>
-            <MusicCarrusel/>
+            <Slider/>
 
         </section>
     )

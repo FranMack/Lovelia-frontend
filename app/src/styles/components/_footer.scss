@@ -1,8 +1,9 @@
 @import "../variables";
 .footer{
     width: 100vw;
-    height: 50vh;
+    height: 60vh;
     background-color: $color_background1;
+    
 }
 
 .footer-top-container{
@@ -66,5 +67,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.8rem;
+    
+    p{
+        font-size: 1.8rem;
+        font-family: $font_titulos;
+    }
+   
 }

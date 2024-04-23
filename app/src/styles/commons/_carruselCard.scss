@@ -1,12 +1,55 @@
 @import "../variables";
 
-.carruselCard-container{
-    height: 70vh;
-    aspect-ratio: 0.7;
-    flex-shrink: 0;
-    img{
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-    }
+.carruselCard-container {
+  position: relative;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  height: 70vh;
+  aspect-ratio: 0.7;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, rgba(45, 156, 219, 0.00) 0%, rgba(20, 20, 20, 0.72) 100%);
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+}
+
+.carruselCard-info-container {
+  position: absolute;
+  max-width: 80%;
+  margin-bottom: 20%;
+  color: $color_text3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 10px;
+  h4 {
+    text-align: center;
+    font-size: 2.4rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+  }
+  p {
+    text-align: center;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px; /* 128.571% */
+  }
+
+  button {
+    color: $color_text3;
+    background-color: transparent;
+    font-size: 1.8rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border: none;
+    cursor: pointer;
+  }
 }
