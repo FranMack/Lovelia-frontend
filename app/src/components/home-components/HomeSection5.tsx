@@ -1,40 +1,44 @@
-import intensiones from "../../assets/images/intenciones-wallpaper.png"
-import { ButtonArrowRight } from "../../commons/ButtonArrowRight"
-import { Carrusel } from "../Carrusel"
-import { Slider } from "../Slider"
-export function HomeSection5(){
-    return (
-        <section className="section5-container">
+import intensiones from "../../assets/images/intenciones-wallpaper.png";
+import { ButtonArrowRight } from "../../commons/ButtonArrowRight";
+import { Carrusel } from "../Carrusel";
+import { Slider } from "../Slider";
+import { TitleComponent } from "../../commons/TitleComponent";
+import { WallpaperTipo1 } from "../WallpaperTipo1";
+import { Wallpaper1Options } from "../WallpaperTipo1";
 
-            <div className="section5-wallpaper-container">
-                <img src={intensiones} alt="Imagen playa" />
-                <div className="section5-wallpaper-info">
-                    <h5>El poder de la intención</h5>
-                    <h6>Descubre historias,pensamientos,sentimientos, y más</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque culpa sunt aspernatur dignissimos accusantium repellendus cumque exercitationem. Laborum ullam nisi inventore, obcaecati magni perspiciatis voluptatem voluptas cum quam itaque temporibus.</p>
-            <ButtonArrowRight text="Ver más" color="#ffffff"/>
-                </div>
-            </div>
+const titleIntensiones = {
+  title: "Intenciones lovelia",
+  description: "Música, videos y meditaciones guiadas.",
+  buttonText: "Explorar todo",
+};
+const titleMeditaciones = {
+  title: "Meditaciones lovelia",
+  description: "Nuestras recomendaciones, contenido para tu día a día.",
+  secundaryTitl:"Descubre historias,pensamientos,sentimientos, y más",
+  buttonText: "Explora todos los sonidos",
+};
 
-            <div className="section5-title-container">
-                <div className="section5-tittle-info-container">
-                    <h4>Intenciones lovelia</h4>
-                    <p>Música, videos y meditaciones guiadas.</p>
-                </div>
-                <ButtonArrowRight text="Explorar todo" color="#6f3289"/>
-            </div>
+const infoWallpaper:Wallpaper1Options = {
+    image:intensiones,
+  title: "El poder de la intención",
+  description: ["Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque culpa sunt aspernatur dignissimos accusantium repellendus cumque exercitationem. Laborum ullam nisi inventore, obcaecati magni perspiciatis voluptatem voluptas cum quam itaque temporibus."],
+  terciaryTitle: "Descubre historias,pensamientos,sentimientos, y más",
+  arrowRightButton:"Ver más",
+  backgroundStyle:"linear-gradient(119deg, rgba(0, 0, 0, 0.00) 41.93%, rgba(0, 0, 0, 0.50) 95.82%), linear-gradient(122deg, rgba(0, 0, 0, 0.00) -1.05%, rgba(0, 0, 0, 0.50) 95.35%)"
+};
 
-            <Carrusel/>
+export function HomeSection5() {
+  return (
+    <section className="section5-container">
+    
+      <WallpaperTipo1 {...infoWallpaper}/>
 
-            <div className="section5-title-container">
-                <div className="section5-tittle-info-container">
-                    <h4>Meditaciones lovelia</h4>
-                    <p>Nuestras recomendaciones, contenido para tu día a día.</p>
-                </div>
-                <ButtonArrowRight text="Explora todos los sonidos" color="#6f3289"/>
-            </div>
-            <Slider/>
+      <TitleComponent {...titleIntensiones} />
 
-        </section>
-    )
+      <Carrusel />
+      <TitleComponent {...titleMeditaciones} />
+
+      <Slider />
+    </section>
+  );
 }

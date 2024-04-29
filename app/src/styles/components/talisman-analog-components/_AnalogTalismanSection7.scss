@@ -1,0 +1,45 @@
+@import "../../variables";
+
+.analogTalisman-section7-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  color: $color_primary;
+}
+
+.analogTalisman-section7-top-conteiner {
+  width: 30%;
+  margin-bottom: 10vh;
+  aspect-ratio: 0.7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  h3 {
+    font-size: 3.2rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+  h4 {
+    font-size: 2.8rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 0.56px;
+  }
+}
+
+.analogTalisman-section7-image-top-conteiner {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+

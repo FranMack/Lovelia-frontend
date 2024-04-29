@@ -2,7 +2,9 @@
 
 .home-section3-container {
   width: 100vw;
-  background-color: $color_background2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   h2 {
     text-align: center;
     font-size: 4.8rem;
@@ -17,7 +19,7 @@
     font-size: 1.6rem;
     font-style: normal;
     font-weight: 400;
-    line-height: normal;;
+    line-height: normal;
     margin-top: 7vh;
     margin-bottom: 4vh;
   }
@@ -28,7 +30,6 @@
   display: flex;
   justify-content: space-between;
   width: 74%;
-
 
   .section3-interal-conteiner {
     display: flex;
@@ -73,23 +74,6 @@
     font-size: 2rem;
     margin-right: 5px;
     color: $color_primary;
- 
   }
 }
 
-.section3-button-container {
-  width: fit-content;
-  margin: 0 auto;
-}
-
-.section3-wallpaper-container {
-  width: 100vw;
-  aspect-ratio: 2.56;
-  margin-top: 10%;
-  margin-bottom: 10%;
-  img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-  }
-}

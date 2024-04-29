@@ -2,33 +2,39 @@ import wallpaper from "../../assets/images/Reencontrate-wallpaper.png"
 import caracol from "../../assets/images/imagen-caracol.png"
 import { ButtonArrowRight } from "../../commons/ButtonArrowRight"
 import videoTalisman from "../../assets/videos/videoFondo.mp4"
+import { PlacaTipo1 } from "../PlacaTipo1"
+import { WallpaperTipo1 } from "../WallpaperTipo1"
+import { Wallpaper1Options } from "../WallpaperTipo1"
+
+
+const infoPlacaTipo1 = {
+  image: caracol,
+  title: "Talismán digital",
+  secundaryTitle:"Descubre historias,pensamientos,sentimientos y más",
+  arrowRightButton: "¿Cómo co-crear tu realidad?",
+  description: [
+    " Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis repellat numquam, ea  omnis deserunt fuga velit repellendus voluptates reprehenderit, officia earum nulla  minus ut ex debitis ipsum dicta beatae quasi.",
+  ],
+};
+
+const infoWallpaper:Wallpaper1Options = {
+  image:wallpaper,
+title: "Reencuentrate",
+secundaryTitle: "Descubre historias, pensamientos, sentimientos, y más",
+direction:"left",
+backgroundStyle:"linear-gradient(276deg, rgba(0, 0, 0, 0.00) 52.84%, rgba(0, 0, 0, 0.50) 95.89%), linear-gradient(276deg, rgba(0, 0, 0, 0.00) 20.19%, rgba(0, 0, 0, 0.50) 98.87%)"
+};
+
 
 
 export function HomeSection7(){
 return(
     <section className="section7-container">
-        <div className="section7-wallpaper-container">
-                <img src={wallpaper} alt="Imagen playa" />
-                <div className="section7-wallpaper-info">
-                    <h5>Reencuentrate</h5>
-                    <p>Descubre historias, pensamiento,<br/>sentimientos y más.</p>
-                </div>
-            </div>
+      
+            <WallpaperTipo1 {...infoWallpaper}/>
 
-            <div className="section7-top-container">
-        <div className="section7-top-image-container">
-            <img src={caracol} alt="Tallisman-fisico" />
-        </div>
-        <div className="section7-top-info-container">
-            <h4>¿Cómo co-crear tu realidad?</h4>
-            <h6>Descubre historias,pensamientos,sentimientos y más</h6>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis<br/> repellat numquam, ea omnis deserunt fuga velit repellendus<br/>  voluptates reprehenderit, officia earum nulla  minus ut ex<br/> debitis ipsum dicta beatae quasi.</p>
-
-          <ButtonArrowRight text="Leer más" color="#6f3289"/>
         
-        </div>
-
-      </div>
+      <PlacaTipo1 {...infoPlacaTipo1}/>
 
       <div className="section7-video-container">
 

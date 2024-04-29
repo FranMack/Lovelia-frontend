@@ -1,9 +1,9 @@
 @import "../../variables";
 
 .home-front-page-container {
+  position: relative;
   width: 100vw;
   height: 100vh;
-  padding-top: 15vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,9 +12,18 @@
   background-image: url(../../../../public/images/fondo-home.png);
   background-size: cover;
   background-position: center;
+  video{
+    height: 100%;
+    width: 100%;
+    inset: 0;
+    object-fit:cover;
+    z-index: 0; /* Asegura que el video esté detrás del contenido */
+    opacity: 0.7;
+  }
 }
 
 .home-center-container {
+  position: absolute;
   width: 40%;
   height: fit-content;
   text-align: center;
@@ -39,23 +48,13 @@
   }
 }
 
-.home-bottom-container {
-  width: 50%;
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  h6 {
-    font-size: 1.6rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    margin-bottom: 5%;
-  }
-}
 
-.home-icon-container {
-  height: 18px;
-  width: 18px;
+
+.auxiliar-container{
+  position: absolute;
+  display: flex;
+  width: 20%;
+  justify-content: center;
+  text-align: center;
+  bottom: 5%;
 }

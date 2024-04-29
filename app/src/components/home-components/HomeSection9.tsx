@@ -1,18 +1,21 @@
 import { articulos } from "../../assets/images/articulos-destacados/infoArticulos"
 import { ButtonArrowRight } from "../../commons/ButtonArrowRight"
+import { TitleComponent } from "../../commons/TitleComponent"
+
+
 export function HomeSection9(){
+
+    const titleArticulosDestacados={
+        title:"Artículos destacados",
+        description:"Lectura para amplizar tu horizonte.",
+        buttonText:"Ver todos los articulos"
+    }
 
     return(
     
     <section className="section7-container">
 
-<div className="section9-title-container">
-                <div className="section9-tittle-info-container">
-                    <h4>Artículos destacados</h4>
-                    <p>Lectura para amplizar tu horizonte</p>
-                </div>
-                <ButtonArrowRight text="Ver todos los articulos" color="#6f3289"/>
-            </div>
+        <TitleComponent {...titleArticulosDestacados}/>
 
             <div className="section9-articulos-container">
              {articulos.map((articulo,i)=>{

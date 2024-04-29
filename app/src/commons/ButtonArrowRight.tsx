@@ -3,18 +3,19 @@ import { RightArrowIcon } from "../assets/images/icons/icons"
 
 interface ButtonArrowRightOptions{
     text:string,
-    color:string
+    color:string,
+    onClick?:()=>void
 }
-export function ButtonArrowRight({text,color}:ButtonArrowRightOptions){
+export function ButtonArrowRight({text,color,onClick}:ButtonArrowRightOptions){
 
     return(
-        <div className="arrowRight-button">
+        <div className="arrowRight-button" onClick={onClick}>
        
 
-        <div className="section3-bottom-container">
+      
                 <p style={{color:color}}>{text}</p>
                 <RightArrowIcon color={color}/>
-             </div>
+     
       </div>
     )
 }

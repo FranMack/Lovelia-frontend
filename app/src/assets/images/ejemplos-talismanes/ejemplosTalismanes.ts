@@ -1,15 +1,15 @@
 import talisman from "./talisman-digital.png";
 
 interface ejemploTalismanOptions{
-    name:string,
+    title:string,
     description:string,
     image:string
 }
 
 
 export const ejemploTalismanes:ejemploTalismanOptions[]=[
-    {name:"EJEMPLO A",description:"Descripción modelo",image:talisman},
-    {name:"EJEMPLO B",description:"Descripción modelo",image:talisman},
-    {name:"EJEMPLO C",description:"Descripción modelo",image:talisman},
-    {name:"EJEMPLO D",description:"Descripción modelo",image:talisman}
+    {title:"EJEMPLO A",description:"Descripción modelo",image:talisman},
+    {title:"EJEMPLO B",description:"Descripción modelo",image:talisman},
+    {title:"EJEMPLO C",description:"Descripción modelo",image:talisman},
+    {title:"EJEMPLO D",description:"Descripción modelo",image:talisman}
 ]

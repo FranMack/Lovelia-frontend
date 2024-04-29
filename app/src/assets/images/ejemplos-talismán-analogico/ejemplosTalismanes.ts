@@ -1,0 +1,18 @@
+import imagen1 from "./talisman-fisico.png";
+import imagen2 from "./talisman-fisico2.png";
+import imagen3 from "./talisman-fisico.png";
+import imagen4 from "./talisman-fisico2.png";
+
+export interface ejemploTalismanAnalogicosOptions{
+    title:string,
+    image:string,
+    description:string
+}
+
+
+export const ejemploTalismanesAnalogicos:ejemploTalismanAnalogicosOptions[]=[
+    {title:"EJEMPLO A",image:imagen1,description:"Descripción modelo",},
+    {title:"EJEMPLO B",image:imagen1,description:"Descripción modelo",},
+    {title:"EJEMPLO C",image:imagen2,description:"Descripción modelo"},
+    {title:"EJEMPLO D",image:imagen4,description:"Descripción modelo"}
+]

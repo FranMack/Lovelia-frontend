@@ -1,0 +1,59 @@
+@import "../../variables";
+
+
+.analogTalisman-section2-container{
+    width: 100vw;
+    color:$color_primary;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h3{
+        text-align: center;
+        font-size: 4.8rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin-bottom: 10vh;
+      }
+}
+
+
+  .analogTalisman-section2-center-container{
+    width: 86%;
+    margin-bottom: 8vh;
+    display: flex;
+    justify-content: space-evenly;
+
+  }
+
+  .analogTalisman-section2-center-container-card{
+    width: 30%;
+    aspect-ratio: 0.81;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    h4{
+      font-size: 2.8rem;
+      font-style: normal;
+      font-weight: 300;
+      line-height: normal;
+      letter-spacing: 0.56px;
+    }
+  }
+
+  .analogTalisman-card-image-container{
+display: flex;
+justify-content: center;
+align-items: center;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+  }

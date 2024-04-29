@@ -5,23 +5,29 @@
     width: fit-content;
     justify-content: space-between;
     align-items: center;
-    p{
+    margin: 0;
+    padding: 0;
+   
+      p{
         font-size: 2rem;
         font-size: 1.6rem;
         font-style: normal;
         font-family:$font_titulos;
         font-weight: 500;
-        line-height: normal;
+       
+        margin: 0;
         margin-right: 5px;
-        margin-bottom: 0%;
-        color: $color_text2;
+        padding-bottom: 0;
 
 
     }
     svg{
-      height: 2.5rem;
+      height: 2.4rem;
     }
     
+
+  
+   
  
     
 }

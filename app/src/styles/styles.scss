@@ -12,13 +12,29 @@
 @import "./components/home-components/_homeSection9";
 
 @import "./commons//button";
+@import "./commons//buttonArrowDown";
 @import "./commons/buttonArrowRight";
 @import "./components//carrusel";
 @import "./commons/carruselCard";
-@import "./commons/musicCarruselCard";
-@import "./components/musicCarruseL";
-@import "./components//slider";
-
+@import "./components/slider";
+@import "./components/intensiones-components/intensionesSection1";
+@import "./components/intensiones-components/intensionesSection2";
+@import "./components/intensiones-components/intensionesSection3";
+@import "./components//talisman-analog-components/AnalogTalismanSection1";
+@import "./components//talisman-analog-components/AnalogTalismanSection2";
+@import "./components//talisman-analog-components/AnalogTalismanSection3";
+@import "./components//talisman-analog-components/AnalogTalismanSection4";
+@import "./components//talisman-analog-components/AnalogTalismanSection5";
+@import "./components//talisman-analog-components/AnalogTalismanSection6";
+@import "./components//talisman-analog-components/AnalogTalismanSection7";
+@import "./components/articulosDestacados";
+@import "./commons/cardArticuloDestacado";
+@import "./commons/titleComponent";
+@import "./components/giiftComponent";
+@import "./components//carrusel3D";
+@import "./components/placaTipo1";
+@import "./components/placaTipo2";
+@import "./components/wallpaperTipo1";
 
 *{
     box-sizing: border-box;

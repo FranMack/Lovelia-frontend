@@ -1,0 +1,29 @@
+@import "../variables";
+
+
+.title-component {
+    margin: 0 auto;
+    width: 80%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 8vh;
+    h4 {
+      font-size: 4.8rem;
+      font-style: normal;
+      font-weight: 300;
+      line-height: normal;
+      color: $color_primary;
+      margin-bottom: 8px;
+    }
+    p {
+      font-family: "Marlin Geo";
+      font-size: 2rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      color: $color_text2;
+    }
+  }
+  

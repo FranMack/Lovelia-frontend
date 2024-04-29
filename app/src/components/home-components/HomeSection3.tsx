@@ -2,6 +2,12 @@ import talismanDigital from "../../assets/images/talisman-digital.png"
 import talismanFisico  from "../../assets/images/talisman-fisico.png"
 import wallpaper from "../../assets/images/imagen-colgante.png"
 import { ButtonArrowRight } from "../../commons/ButtonArrowRight"
+import { WallpaperTipo1 } from "../WallpaperTipo1";
+
+const infoWallpaper={
+    image:wallpaper,
+    
+}
 export function HomeSection3(){
 
     return(
@@ -24,13 +30,10 @@ export function HomeSection3(){
                 </div>
              </div>
              <h5>Descubre más sobre talismanes haciendo click en cada uno</h5>
-             <div className="section3-button-container">
+             
              <ButtonArrowRight text="Adquiere ahora el tuyo" color="#6f3289"/>
-             </div>
-
-             <div className="section3-wallpaper-container">
-                <img src={wallpaper} alt="Talisman fisico" />
-             </div>
+           
+             <WallpaperTipo1 {...infoWallpaper}/>
 
         </section>
     )
