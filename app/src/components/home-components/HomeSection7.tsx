@@ -1,6 +1,5 @@
 import wallpaper from "../../assets/images/Reencontrate-wallpaper.png"
 import caracol from "../../assets/images/imagen-caracol.png"
-import { ButtonArrowRight } from "../../commons/ButtonArrowRight"
 import videoTalisman from "../../assets/videos/videoFondo.mp4"
 import { PlacaTipo1 } from "../PlacaTipo1"
 import { WallpaperTipo1 } from "../WallpaperTipo1"

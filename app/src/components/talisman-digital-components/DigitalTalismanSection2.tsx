@@ -63,16 +63,15 @@ const infoWallpaper2:Wallpaper1Options={
 export function DigitalTalismanSection2() {
   return (
     <>
-      <section className="analogTalisman-section2-container">
+      <section className="digitalTalisman-section2-container">
         <h3>¿Qué hay dentro del talismán digital?</h3>
 
         <PlacaTipo2 {...infoPlacaTipo2}/>
         <WallpaperTipo1 {...infoWallpaper}/>
         <PlacaTipo2 {...infoPlacaTipo2b}/>
         <WallpaperTipo1 {...infoWallpaper2}/>
-
         <h3>Artículos destacados</h3>
-        <ArticulosDestacados talismanes={ejemploTalismanes} />
+        <ArticulosDestacados talismanes={ejemploTalismanes} button="Comprar talismán digital"/>
         <TitleComponent {...titleMeditaciones}/>
         <Slider/>
 

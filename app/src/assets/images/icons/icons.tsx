@@ -123,3 +123,9 @@ export function LeftArrowIcon({color}:ArrowIconOptions){
 </svg>
     )
 }
+
+export function PlayIcon(){
+    return(<svg xmlns="http://www.w3.org/2000/svg" width="38" height="47" viewBox="0 0 38 47" fill="none">
+    <path d="M0.5 0V47L37.6791 23.5L0.5 0Z" fill="#E0E0E0"/>
+    </svg>)
+}

@@ -1,11 +1,22 @@
 import { LoveliaIcon } from "../../assets/images/icons/icons"
 import { ButtonArrowDown } from "../../commons/ButtonArrowDown"
 import videoHome from "../../assets/videos/videoHome.mp4"
+import { useRef,useEffect } from "react";
+
 export function HomeSection1(){
+
+  const videoRef = useRef<HTMLVideoElement>(null); 
+
+  useEffect(() => {
+    if (videoRef.current) {
+
+      videoRef.current.playbackRate = 0.4; 
+    }
+  }, [videoRef]);
 
     return(
         <section className="home-front-page-container">
-          <video autoPlay muted loop>
+          <video autoPlay muted loop ref={videoRef}>
         <source src={videoHome} type="video/mp4" />
         Your browser does not support the video tag.
       </video>

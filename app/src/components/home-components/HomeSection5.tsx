@@ -1,5 +1,4 @@
 import intensiones from "../../assets/images/intenciones-wallpaper.png";
-import { ButtonArrowRight } from "../../commons/ButtonArrowRight";
 import { Carrusel } from "../Carrusel";
 import { Slider } from "../Slider";
 import { TitleComponent } from "../../commons/TitleComponent";
