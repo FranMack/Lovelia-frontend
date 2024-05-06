@@ -1,0 +1,43 @@
+@import "../variables";
+
+
+.destacadosBlog-container {
+  margin: 0 auto;
+  margin-bottom: 8vh;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .destacadosBlog-card {
+    width: 24%;
+    aspect-ratio: 0.64;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    img {
+      width: 100%;
+      aspect-ratio: 0.8;
+      object-fit: cover;
+    }
+    h6 {
+      font-size: 1.6rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+    h4 {
+      font-size: 2rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+    p {
+      font-family: "Marlin Geo","sans-serif";
+      font-size: 14px;
+      font-style: italic;
+      font-weight: 400;
+      line-height: normal;
+    }
+  }
+  

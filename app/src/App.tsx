@@ -9,6 +9,10 @@ import { Routes,Route } from 'react-router-dom'
 import { Tienda } from './views/Tienda'
 import { Login } from './views/Login'
 import { Register } from './views/Register'
+import { Contacto } from './views/Contacto'
+import { CustomTalisman } from './views/CustomTalisman'
+import { BuyDigitalTalisman } from './views/BuyDigitalTalisman'
+import { Blog } from './views/Blog'
 
 
 
@@ -27,11 +31,16 @@ function App() {
         <Route path="/tienda" element={<Tienda/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
+        <Route path="/contacto" element={<Contacto/>}/>
+        <Route path="/personalizar-talisman" element={<CustomTalisman/>}/>
+        <Route path="/comprar-talisman-digital" element={<BuyDigitalTalisman/>}/>
+        <Route path="/blog" element={<Blog/>}/>
+
 
       </Routes>
       
       <Footer/>
- 
+                          
     </>
   )
 }

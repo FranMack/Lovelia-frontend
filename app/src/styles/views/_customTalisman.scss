@@ -1,0 +1,196 @@
+@import "../variables";
+
+.custonTalisman-container {
+  width: 100vw;
+  display: flex;
+}
+
+.custonTalisman-internal-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  overflow: hidden;
+  > img {
+    position: absolute;
+
+    height: 80%;
+
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.custonTalisman-internal-bullet-container {
+  position: absolute;
+  left: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1vh;
+  width: 10%;
+
+  .bullet {
+    width: 80%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    opacity: 0.5;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.bullet-visible {
+  width: 80%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  opacity: 1;
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.custonTalisman-internal-arrow-container {
+  position: absolute;
+  right: 2%;
+  width: 5%;
+  aspect-ratio: 1;
+}
+
+.custonTalisman-talisman-info {
+  margin-left: 0%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  bottom: 5%;
+}
+
+.custonTalisman-internal-container.right {
+  padding-bottom: 4vh;
+  padding-top: 15vh;
+  flex-direction: column;
+  align-items: start;
+  background: rgb(170, 220, 217);
+  background: linear-gradient(
+    0deg,
+    rgba(170, 220, 217, 1) 0%,
+    rgba(179, 224, 221, 1) 32%,
+    rgba(205, 233, 230, 1) 72%,
+    rgba(234, 243, 245, 1) 100%
+  );
+
+  h6 {
+    margin-left: 13%;
+    margin-bottom: 1%;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 20px; /* 166.667% */
+  }
+  h5 {
+    margin-left: 14%;
+    margin-bottom: 1%;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  h3 {
+    margin-left: 14%;
+    margin-bottom: 1%;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    color: $color_primary;
+  }
+  > p {
+    font-family: $font_parrafos;
+    font-size: 16px;
+    margin-left: 14%;
+    margin-right: 14%;
+
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+  }
+  strong {
+    margin-left: 14%;
+    margin-bottom: 2%;
+
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+}
+
+.custonTalisman-auxiliar-container {
+  margin-left: 14%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2%;
+
+  .custonTalisman-icon-container {
+    height: 18px;
+    width: 18px;
+    svg {
+      margin-left: 10px;
+      path {
+        fill: $color_primary;
+      }
+    }
+  }
+  p {
+    font-family: $font_titulos;
+    color: $color_primary;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+}
+
+.buttons-container {
+  margin: 0 auto;
+  margin-top: 3vh;
+  width: 72%;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+
+  button {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  :last-child {
+    color: $color_primary;
+    font-size: 14px;
+    background-color: transparent;
+    border: solid 2px $color_primary;
+  }
+
+  .auxiliar-buttons-container{
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+    div{
+      border:none;
+      svg{
+        border:none;
+      }
+    }
+  }
+}
