@@ -22,18 +22,6 @@ export const historias:HistoriasOptions[]=[
     {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo4},
     {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo1},
     {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo2},
-    {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo1},
-    {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo2},
-    {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo3},
-    {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo4},
-    {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo1},
-    {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo2},
-    {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo3},
-    {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo4},
-    {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo1},
-    {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo2},
-    {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo3},
-    {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo2},
     
   
 ]

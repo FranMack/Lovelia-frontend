@@ -13,6 +13,8 @@ import { PlacaTipo2Options } from "../components/PlacaTipo2";
 import imagenMusica from "../assets/images/imagen-musica.png"
 import imagenCaracol from "../assets/images/imagen-caracol.png"
 import { historias } from "../assets/images/historias/infoHistorias";
+import videoHome from "../assets/videos/videoHome.mp4"
+import { useRef,useEffect } from "react";
 
 const infoPlaca: PlacaTipo1Options = {
   image: imagenBlog,
@@ -59,6 +61,11 @@ const titleHistorias: TitleComponentOptions = {
     description: "Lectura para ampliar tu horizonte.",
     buttonText: "Ver más",
   };
+  const titleOtrasHistorias: TitleComponentOptions = {
+    title: "Otras historias",
+    description: "Lectura para ampliar tu horizonte.",
+    buttonText: "Ver más",
+  };
 
 
 const infoWallpaper: Wallpaper1Options = {
@@ -85,16 +92,32 @@ const infoWallpaper2: Wallpaper1Options = {
 
 
 export function Blog() {
+    const videoRef = useRef<HTMLVideoElement>(null); 
+
+  useEffect(() => {
+    if (videoRef.current) {
+
+      videoRef.current.playbackRate = 0.4; 
+    }
+  }, [videoRef]);
   return (
-    <main>
-      <PlacaTipo1 {...infoPlaca} />
+    <main className="blog-container">
+       
+        <div className="portada-blog">
+        <video autoPlay muted loop ref={videoRef}>
+        <source src={videoHome} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div className="auxiliar-container">
+          <PlacaTipo1 {...infoPlaca} />
+          </div>
+        </div>
+      
       <TitleComponent {...titleArticulosDestacados} />
       <DestacadosBlog />
       <WallpaperTipo1 {...infoWallpaper} />
-      <TitleComponent {...titleHistorias} />
       <WallpaperTipo1 {...infoWallpaper2} />
-      <PlacaTipo2 {...infoPlaca2}/>
-      <PlacaTipo1 {...infoPlaca3}/>
+      <TitleComponent {...titleHistorias} />
 
       <div className="blog-historias-container">
       {historias.map((articulo,i)=>{
@@ -112,6 +135,27 @@ export function Blog() {
            )
         })}
       </div>
+      <PlacaTipo2 {...infoPlaca2}/>
+      <TitleComponent {...titleOtrasHistorias} />
+
+      <div className="blog-historias-container">
+      {historias.map((articulo,i)=>{
+           return(
+               <div className={`blog-historias-card card${i}`} key={i}>
+
+                   <img src={articulo.image} alt={articulo.tittle} />
+
+                   <h6>{articulo.author}</h6>
+                   <h4>{articulo.tittle}</h4>
+                   <p>{articulo.date}</p>
+
+
+               </div>
+           )
+        })}
+      </div>
+      <PlacaTipo1 {...infoPlaca3}/>
+      
       
     </main>
   );

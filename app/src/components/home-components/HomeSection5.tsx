@@ -1,9 +1,9 @@
 import intensiones from "../../assets/images/intenciones-wallpaper.png";
-import { Carrusel } from "../Carrusel";
 import { Slider } from "../Slider";
 import { TitleComponent } from "../../commons/TitleComponent";
 import { WallpaperTipo1 } from "../WallpaperTipo1";
 import { Wallpaper1Options } from "../WallpaperTipo1";
+import { CarruselIntensiones } from "../CarruselIntensiones";
 
 const titleIntensiones = {
   title: "Intenciones lovelia",
@@ -34,7 +34,7 @@ export function HomeSection5() {
 
       <TitleComponent {...titleIntensiones} />
 
-      <Carrusel />
+      <CarruselIntensiones/>
       <TitleComponent {...titleMeditaciones} />
 
       <Slider />

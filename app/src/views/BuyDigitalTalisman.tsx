@@ -5,6 +5,9 @@ import { RightNextIcon } from "../assets/images/icons/icons";
 import { ButtonArrowRight } from "../commons/ButtonArrowRight";
 import { Button } from "../commons/Button";
 import { ButtonArrowUp } from "../commons/ButtonArrowUp";
+import { DropDownInfo } from "../commons/DropdownInfo";
+import { DropdownInfoOptions } from "../commons/DropdownInfo";
+import { useOpenModal } from "../hooks/useOpenModal";
 
 const precio="0.000"
 
@@ -18,6 +21,26 @@ export function BuyDigitalTalisman() {
       setIndex(0);
     }
   };
+
+  const dropdownDevoluciones=useOpenModal();
+  const{openModal,handleOpenModal}=dropdownDevoluciones
+ 
+  const devolucionesDropDownInfo:DropdownInfoOptions={
+    name:"Devoluciones y envíos",
+    section:[
+           {title:"Política de cambios/devoluciones",description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "},
+      {title:"Nuestros envoltorios",description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "},
+      {title:"Formas de envíos",description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "},
+     
+      
+    ],
+    handleDropDown:handleOpenModal
+  }
+
+
+
+
+
 
   return (
     <section className="buyDigitalTalisman-container">
@@ -44,6 +67,7 @@ export function BuyDigitalTalisman() {
       </div>
 
       <div className="buyDigitalTalisman-internal-container right">
+        <div className="buyDigitalTalisman-internal-center-container">
         <h6>Inicio /Tienda /Talisman Digital</h6>
         <h5>$0.000</h5>
         <h3>Talisman Digital</h3>
@@ -68,15 +92,16 @@ export function BuyDigitalTalisman() {
       
       </div>
 
-       
-
+      {openModal && <DropDownInfo {...devolucionesDropDownInfo}/>}
+      </div>
       <div className="buttons-container">
         <Button text={`$${precio}  Ir a comprar`}/>
         <div className="auxiliar-buttons-container">
-        <ButtonArrowUp text="Devoluciones y envío" color="#6f3289"/>
+        {!openModal && <ButtonArrowUp onClick={handleOpenModal} text="Devoluciones y envío" color="#6f3289"/>}
     <Button text="Agregar al carrito de compras"/>
     </div>
     </div>
+      
       </div>
 
      

@@ -1,5 +1,4 @@
-import { ButtonArrowRight } from "../../commons/ButtonArrowRight";
-import { Carrusel } from "../Carrusel";
+import { CarruselIntensiones } from "../CarruselIntensiones";
 
 import wallpaper from "../../assets/images/intensiones-wallpaper2.png";
 import wallpaper2 from "../../assets/images/talisman-wallpaper.png";
@@ -43,7 +42,7 @@ export function IntensionesSection2() {
       <section className="intensiones-section2">
         <WallpaperTipo1 {...infoWallpaper1}/>
         <h3>Intenciones lovelia</h3>
-        <Carrusel />
+        <CarruselIntensiones />
         <PlacaTipo1 {...infoPlacaTipo1}/>
              <WallpaperTipo1 {...infoWallpaper2}/>
       </section>

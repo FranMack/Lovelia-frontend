@@ -4,154 +4,150 @@
   width: 100vw;
   height: 100vh;
 
-
   display: flex;
 }
 
-.buyDigitalTalisman-internal-container{
-    width: 50%;
+.buyDigitalTalisman-internal-container {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  img {
+    object-fit: cover;
+    width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    
-    img{
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-    }
+  }
 }
 
-.buyDigitalTalisman-internal-bullet-container{
-    position: absolute;
-    left: 2%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
- 
-    row-gap: 1vh;
-    width: 10%;
-  
-    .bullet {
-      width: 80%;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      overflow: hidden;
-      opacity: 0.5;
-      img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-      }
-    }
-}
+.buyDigitalTalisman-internal-bullet-container {
+  position: absolute;
+  left: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
+  row-gap: 1vh;
+  width: 10%;
 
-.buyDigitalTalisman-internal-arrow-container{
-    position: absolute;
-    right: 2%;
-    width: 5%;
+  .bullet {
+    width: 80%;
     aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    opacity: 0.5;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
 }
 
+.buyDigitalTalisman-internal-arrow-container {
+  position: absolute;
+  right: 2%;
+  width: 5%;
+  aspect-ratio: 1;
+}
 
+.buyDigitalTalisman-internal-container.right {
+  padding-top: 15vh;
 
-.buyDigitalTalisman-internal-container.right{
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
-    padding-top: 15vh;
+  align-items: start;
+  flex-direction: column;
+  align-items: center;
 
-    h6 {
-        margin-left: 13%;
-        margin-bottom: 1%;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 300;
-        line-height: 20px; /* 166.667% */
-      }
-      h5 {
-        margin-left: 14%;
-        margin-bottom: 1%;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-      }
-      h3 {
-        margin-left: 14%;
-        margin-bottom: 1%;
-        font-size: 36px;
-        font-style: normal;
-        font-weight: 300;
-        line-height: normal;
-        color: $color_primary;
-      }
-      > p {
-        font-family: $font_parrafos;
-        font-size: 16px;
-        margin-left: 14%;
-        margin-right: 14%;
-        margin-bottom: 1%;
-    
-        font-style: normal;
-        font-weight: 400;
-        line-height: 24px; /* 150% */
-      }
-      >strong {
-        margin-left: 14%;
-        margin-bottom: 2%;
-    
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: normal;
-      }
-      .buttons-arrows-container{
-        display: flex;
-        flex-direction: column;
-        row-gap: 5%;
-        margin-left: 13%;
-        margin-top: 2%;
-      }
+  .buttons-container {
+    margin: 0 auto;
+    margin-top: 3vh;
+    margin-bottom: 4vh;
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
 
-      .buttons-container {
-        margin: 0 auto;
-        margin-top: 3vh;
-        width: 72%;
-        display: flex;
-        justify-content: space-between;
-        align-items: end;
-      
-        button {
-          font-size: 16px;
-          font-style: normal;
-          font-weight: 700;
-          line-height: normal;
-        }
-        :last-child {
-          color: $color_primary;
-          font-size: 14px;
-          background-color: transparent;
-          border: solid 2px $color_primary;
-        }
+    button {
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+    :last-child {
+      color: $color_primary;
+      font-size: 14px;
+      background-color: transparent;
+      border: solid 2px $color_primary;
+    }
 
-        .auxiliar-buttons-container{
+    .auxiliar-buttons-container {
+      border: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 1rem;
+      div {
+        border: none;
+        svg {
           border: none;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          row-gap: 1rem;
-          div{
-            border:none;
-            svg{
-              border:none;
-            }
-          }
         }
       }
-      
-
+    }
+  }
 }
 
+.buyDigitalTalisman-internal-center-container {
+  width: 75%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  > h6 {
+    margin-bottom: 1%;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 20px; /* 166.667% */
+  }
+  > h5 {
+    margin-bottom: 1%;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  > h3 {
+    margin-bottom: 1%;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    color: $color_primary;
+  }
+  > p {
+    font-family: $font_parrafos;
+    font-size: 16px;
+
+    margin-bottom: 1%;
+
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+  }
+  > strong {
+    margin-bottom: 2%;
+
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .buttons-arrows-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5%;
+    margin-top: 2%;
+  }
+}

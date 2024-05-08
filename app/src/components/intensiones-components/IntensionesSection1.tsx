@@ -1,6 +1,16 @@
 import { ButtonArrowDown } from "../../commons/ButtonArrowDown"
 import videoWallpaper from "../../assets/videos/videoHome.mp4"
+import { useRef,useEffect } from "react";
 export function IntensionesSection1(){
+
+  const videoRef = useRef<HTMLVideoElement>(null); 
+
+  useEffect(() => {
+    if (videoRef.current) {
+
+      videoRef.current.playbackRate = 0.4; 
+    }
+  }, [videoRef]);
 
     return( <article className="intensiones-section1-container">
         <video autoPlay muted loop>

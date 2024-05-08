@@ -2,12 +2,13 @@ import { ArrowUp } from "../assets/images/icons/icons"
 
 interface ButtonArrowUpOptions{
     text:string,
-    color:string
+    color:string,
+    onClick?:()=>void
 }
 
-export function ButtonArrowUp({text,color}:ButtonArrowUpOptions){
+export function ButtonArrowUp({text,color,onClick}:ButtonArrowUpOptions){
 
-    return(<div className="buttonArrowUp-container">
+    return(<div onClick={onClick} className="buttonArrowUp-container">
     <p style={{color:`${color}`}}>{text}</p>
     <div className="buttonArrowUp-icon-container"><ArrowUp color={color}/></div>
     

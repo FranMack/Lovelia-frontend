@@ -12,6 +12,7 @@
   justify-content: center;
   width: 50%;
   overflow: hidden;
+  background-color: $color_background1;
   > img {
     position: absolute;
 
@@ -67,17 +68,33 @@
 
 .custonTalisman-talisman-info {
   margin-left: 0%;
+  
   position: absolute;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   bottom: 5%;
+  background: rgba(255, 255, 255, 0.30);
+
+  width: 80%;
+  height: 5%;
+  .icon-container{
+    margin-right: 2%;
+    position: static;
+    width: 15px;
+    aspect-ratio: 1;
+  }
+  p{
+    font-family: $font_titulos;
+    font-size: 14px;
+    margin-left: 2%;
+  }
 }
 
 .custonTalisman-internal-container.right {
   padding-bottom: 4vh;
   padding-top: 15vh;
-  flex-direction: column;
-  align-items: start;
+ 
   background: rgb(170, 220, 217);
   background: linear-gradient(
     0deg,
@@ -87,8 +104,15 @@
     rgba(234, 243, 245, 1) 100%
   );
 
+  
+}
+
+
+.custonTalisman-internal-center-container{
+  width: 75%;
+ 
   h6 {
-    margin-left: 13%;
+
     margin-bottom: 1%;
     font-size: 12px;
     font-style: normal;
@@ -96,7 +120,7 @@
     line-height: 20px; /* 166.667% */
   }
   h5 {
-    margin-left: 14%;
+   
     margin-bottom: 1%;
     font-size: 20px;
     font-style: normal;
@@ -104,7 +128,7 @@
     line-height: normal;
   }
   h3 {
-    margin-left: 14%;
+   
     margin-bottom: 1%;
     font-size: 36px;
     font-style: normal;
@@ -113,19 +137,16 @@
     color: $color_primary;
   }
   > p {
+    margin-bottom: 1%;
     font-family: $font_parrafos;
     font-size: 16px;
-    margin-left: 14%;
-    margin-right: 14%;
+  
 
     font-style: normal;
     font-weight: 400;
     line-height: 24px; /* 150% */
   }
   strong {
-    margin-left: 14%;
-    margin-bottom: 2%;
-
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -133,8 +154,14 @@
   }
 }
 
+
+
+
+
+
+
 .custonTalisman-auxiliar-container {
-  margin-left: 14%;
+ 
   display: flex;
   align-items: center;
   margin-bottom: 2%;
@@ -162,7 +189,7 @@
 .buttons-container {
   margin: 0 auto;
   margin-top: 3vh;
-  width: 72%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: end;

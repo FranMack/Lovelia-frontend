@@ -1,7 +1,7 @@
 import colgateWallpaper from "../../assets/images/imagen-colgante2.png";
 import talismanFisico from "../../assets/images/talisman-fisico.png";
 import { ButtonArrowRight } from "../../commons/ButtonArrowRight";
-import { Carrusel } from "../Carrusel";
+import { CarruselIntensiones } from "../CarruselIntensiones";
 import { TitleComponent } from "../../commons/TitleComponent";
 
 
@@ -44,7 +44,7 @@ export function AnalogTalismanSection5() {
 
       <TitleComponent {...titleEligeTuIntencion}/>
 
-      <Carrusel />
+      <CarruselIntensiones />
     </section>
   );
 }

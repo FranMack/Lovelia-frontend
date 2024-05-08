@@ -1,5 +1,3 @@
-import { useEffect,useRef } from "react"
-import videoHome from "../assets/videos/videoHome.mp4"
 import { PortadaTalisman } from "../components/PortadaTalisman";
 import { PortadaTalismanOptions } from "../components/PortadaTalisman";
 import talisman from "../assets/images/talisman-digital.png";
@@ -60,23 +58,12 @@ const infoPlaca2: PlacaTipo1Options = {
 
 export function LandingTalisman() {
 
-  const videoRef = useRef<HTMLVideoElement>(null); 
-
-    useEffect(() => {
-      if (videoRef.current) {
-  
-        videoRef.current.playbackRate = 0.4; 
-      }
-    }, [videoRef]);
-
+ 
  
   return (
     <main className="landingTalisman">
       
-       <video autoPlay muted loop ref={videoRef}>
-        <source src={videoHome} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+       
       <PortadaTalisman {...infoPortada} />
       <TalismanesComponent />
       <WallpaperTipo2 {...infoWallpaper1} />

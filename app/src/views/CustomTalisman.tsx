@@ -4,10 +4,15 @@ import { RightNextIcon } from "../assets/images/icons/icons";
 import { DropdownMenu } from "../commons/DropdownMenu";
 import { DropdownMenuOptions } from "../commons/DropdownMenu";
 import { ButtonArrowUp } from "../commons/ButtonArrowUp";
+import { ArrowUp } from "../assets/images/icons/icons";
 
 import { Button } from "../commons/Button";
+import { DropDownInfo } from "../commons/DropdownInfo";
+import { DropdownInfoOptions } from "../commons/DropdownInfo";
+import { useOpenModal } from "../hooks/useOpenModal";
+import { DropDownIntensiones } from "../commons/DropDownIntensiones";
 
-const precio="0.000"
+const precio = "0.000";
 
 export function CustomTalisman() {
   const [index, setIndex] = useState<number>(0);
@@ -19,6 +24,10 @@ export function CustomTalisman() {
       setIndex(0);
     }
   };
+
+  const dropdownDevoluciones = useOpenModal();
+  const dropdownInfoTalisman = useOpenModal();
+  const dropdownIntensiones=useOpenModal();
 
   const modelOptions: DropdownMenuOptions = {
     title: "Elige el modelo",
@@ -43,20 +52,77 @@ export function CustomTalisman() {
     ],
   };
 
-
   const intencionOptions: DropdownMenuOptions = {
     title: "Elige tu intención",
-    options: [ "Protección",
-    "Amor y relaciones",
-    "Buena suerte y éxito",
-    "Equilibrio y armonía",
-    "Salud y bienestar",
-    "Claridad mental y concentración",
-    "Fuerza y coraje",
-    "Espiritualidad y crecimiento personal"],
+    options: [
+      "Protección",
+      "Amor y relaciones",
+      "Buena suerte y éxito",
+      "Equilibrio y armonía",
+      "Salud y bienestar",
+      "Claridad mental y concentración",
+      "Fuerza y coraje",
+      "Espiritualidad y crecimiento personal",
+    ],
   };
 
+  const talismanDropDownInfo: DropdownInfoOptions = {
+    name: "Tu talisman",
+    section: [
+      {
+        title: "Medidas",
+        description: "Alto: 6cm / Ancho: 4cm / Circunferencia: 20cm",
+      },
+      {
+        title: "Medidas Grabado",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      },
+      {
+        title: "Descripción material",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      },
+      {
+        title: "Descripción piedra",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      },
+      {
+        title: "colgado",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      },
+      {
+        title: "Descripción intención",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      },
+    ],
+    handleDropDown: dropdownInfoTalisman.handleOpenModal,
+  };
 
+  const devolucionesDropDownInfo: DropdownInfoOptions = {
+    name: "Devoluciones y envíos",
+    section: [
+      {
+        title: "Política de cambios/devoluciones",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      },
+      {
+        title: "Nuestros envoltorios",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      },
+      {
+        title: "Formas de envíos",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      },
+    ],
+    handleDropDown: dropdownDevoluciones.handleOpenModal,
+  };
 
   return (
     <section className="custonTalisman-container">
@@ -82,45 +148,78 @@ export function CustomTalisman() {
           onClick={handleIndex}
           className="custonTalisman-internal-arrow-container"
         >
-          <RightNextIcon/>
+          <RightNextIcon />
         </div>
-        <div className="custonTalisman-talisman-info">
-        <ButtonArrowUp text="Tu talismán" color="#6f3289"/>
-            
-            
-        </div>
+
+        {dropdownInfoTalisman.openModal ? (
+          <DropDownInfo {...talismanDropDownInfo} />
+        ) : (
+          <div className="custonTalisman-talisman-info">
+            <p>Tu talisman</p>
+            <div
+              onClick={dropdownInfoTalisman.handleOpenModal}
+              className="icon-container"
+            >
+              <ArrowUp color="#222222" />
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="custonTalisman-internal-container right">
-        <h6>Inicio /Tienda /Talisman analógico</h6>
-        <h5>$0.000</h5>
-        <h3>Talisman Analógico</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.{" "}
-        </p>
-        <strong>Ver más</strong>
+        <div className="custonTalisman-internal-center-container">
+          <h6>Inicio /Tienda /Talisman analógico</h6>
+          <h5>$0.000</h5>
+          <h3>Talisman Analógico</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.{" "}
+          </p>
+          <p>
+            <strong>Ver más</strong>
+          </p>
+          <DropdownMenu {...modelOptions} />
+          <DropdownMenu {...materialOptions} />
+          <DropdownMenu {...piedraOptions} />
+          <DropdownMenu {...intencionOptions} />
 
-        <DropdownMenu {...modelOptions} />
-        <DropdownMenu {...materialOptions} />
-        <DropdownMenu {...piedraOptions} />
-        <DropdownMenu {...intencionOptions} />
-        <div className="custonTalisman-auxiliar-container">
-       
-            <ButtonArrowUp text="Descubre nuestras intenciones" color="#6f3289"/>
-            
-        </div>
+
+          {dropdownIntensiones.openModal && (
+            <DropDownIntensiones handleDropDown={dropdownIntensiones.handleOpenModal} />
+          )}
+
+{!dropdownIntensiones.openModal && (
+            <div className="custonTalisman-auxiliar-container">
+            <ButtonArrowUp 
+            onClick={dropdownIntensiones.handleOpenModal}
+              text="Descubre nuestras intenciones"
+              color="#6f3289"
+            />
+          </div>
+          )}
+          
 
         
-        <div className="buttons-container">
-        <Button text={`$${precio}  Ir a comprar`}/>
-        <div className="auxiliar-buttons-container">
-        <ButtonArrowUp text="Devoluciones y envío" color="#6f3289"/>
-    <Button text="Agregar al carrito de compras"/>
-    </div>
-    </div>
+          {dropdownDevoluciones.openModal && (
+            <DropDownInfo {...devolucionesDropDownInfo} />
+          )}
+          <div className="buttons-container">
+            <Button text={`$${precio}  Ir a comprar`} />
+            <div className="auxiliar-buttons-container">
+              {!dropdownDevoluciones.openModal && (
+                <ButtonArrowUp
+                  onClick={dropdownDevoluciones.handleOpenModal}
+                  text="Devoluciones y envío"
+                  color="#6f3289"
+                />
+              )}
+
+              <Button text="Agregar al carrito de compras" />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
