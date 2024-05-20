@@ -1,0 +1,77 @@
+@import "../variables";
+
+.profile-container{
+    padding-top:13vh ;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f5efe1;
+}
+
+.profile-top-container{
+    background-color: $color_background1;
+    width: 80%;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    margin-top: 2%;
+    
+    border-radius: 15px;
+    ul{
+        list-style: none;
+        display: flex;
+        column-gap: 5%;
+        width: 50%;
+        margin-left: 2%;
+    }
+    li{
+        color: #999999;
+        font-size: 1.6rem;
+        font-weight: 400;
+
+    }
+}
+
+
+.profile-botton-container{
+    width: 80%;
+    margin-top: 2%;
+    height: 60vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.profile-botton-internal-left-container{
+    width: 26%;
+    height: 100%;
+    background-color: $color_background1;
+}
+
+.profile-botton-internal-right-container{
+    width: 63%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    h4{
+        color:$color_primary;
+font-size: 2.4rem;
+font-weight: 300;
+
+    }
+    .auxiliar-button-container{
+        width: 100%;
+        display: flex;
+        justify-content: end;
+    }
+}
+
+.profile-botton-image-container{
+    height: 60%;
+    width: 100%;
+    background-color: $color_background1;
+}

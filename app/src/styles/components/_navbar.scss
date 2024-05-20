@@ -2,7 +2,7 @@
 .navbar-container {
   position: fixed;
   width: 100vw;
-  height: 15vh;
+  height: 13vh;
   background-color: transparent;
   display: flex;
   justify-content: space-between;
@@ -36,9 +36,18 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    a{
+      text-decoration: none;
+      color:$color_primary;
+   
+    }
   }
 }
 
 .navbar-menu-icon {
   height: 55%;
+}
+
+.navbar-move{
+ display: none;
 }

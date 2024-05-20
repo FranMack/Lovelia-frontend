@@ -10,6 +10,7 @@ import taslismanFisico from "../assets/images/talisman-fisico.png";
 import { PlacaTipo1 } from "../components/PlacaTipo1";
 import { PlacaTipo1Options } from "../components/PlacaTipo1";
 import { GiftComponent } from "../components/GiftComponent";
+import { useNavigate } from "react-router-dom";
 
 
 const infoPortada: PortadaTalismanOptions = {
@@ -28,10 +29,12 @@ const infoWallpaper1: Wallpaper2Options = {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   ],
   button: "Comprar",
+  height:"70vh"
 };
 
 const infoWallpaper2: Wallpaper2Options = {
   image: wallpaperColgante,
+  height:"70vh"
   
 };
 
@@ -57,6 +60,17 @@ const infoPlaca2: PlacaTipo1Options = {
 };
 
 export function LandingTalisman() {
+  window.scrollTo(0, 0);
+
+  const navigatge=useNavigate();
+
+  const linkToComprarTalismanDigital=()=>{
+navigatge("/comprar-talisman-digital")
+  }
+  const linkToComprarTalismanAnalogico=()=>{
+    navigatge("/comprar-talisman-analogico")
+      }
+
 
  
  
@@ -66,10 +80,10 @@ export function LandingTalisman() {
        
       <PortadaTalisman {...infoPortada} />
       <TalismanesComponent />
-      <WallpaperTipo2 {...infoWallpaper1} />
-      <PlacaTipo1 {...infoPlaca1} />
-      <WallpaperTipo2 {...infoWallpaper2} />
-      <PlacaTipo1 {...infoPlaca2} />
+      <WallpaperTipo2 {...infoWallpaper1} onClick={linkToComprarTalismanDigital} />
+      <PlacaTipo1 {...infoPlaca1} onClick={linkToComprarTalismanDigital}  />
+      <WallpaperTipo2 {...infoWallpaper2}  />
+      <PlacaTipo1 {...infoPlaca2} onClick={linkToComprarTalismanAnalogico}/>
       <GiftComponent />
     </main>
   );

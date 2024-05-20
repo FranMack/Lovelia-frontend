@@ -8,11 +8,12 @@ export interface PlacaTipo2Options{
     arrowRightButton?:string,
     button?:string,
     secundaryTitle?:string,
-    direction?:string
+    direction?:string,
+    onClick?:()=>void
 }
 
 
-export function PlacaTipo2({image,title,description,button,arrowRightButton,secundaryTitle,direction="left"}:PlacaTipo2Options){
+export function PlacaTipo2({image,title,description,button,arrowRightButton,secundaryTitle,direction="left",onClick}:PlacaTipo2Options){
 
     return (  <div className="placaTipo2-container" style={{flexDirection:direction==="right" ?"row-reverse":"row"}}>
     <div className="placaTipo2-image-container">
@@ -26,8 +27,8 @@ export function PlacaTipo2({image,title,description,button,arrowRightButton,secu
          return (<p key={i}>{item}</p>)
         })
       }
-        {button && <Button text={button}/>}
-        {arrowRightButton && <ButtonArrowRight text={arrowRightButton} color="#6f3289" />}
+        {button && <Button text={button} onClick={onClick}/>}
+        {arrowRightButton && <ButtonArrowRight text={arrowRightButton} color="#6f3289" onClick={onClick} />}
     </div>
 
   </div>)

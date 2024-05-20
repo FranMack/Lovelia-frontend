@@ -10,16 +10,16 @@ export function HomeSection1(){
   useEffect(() => {
     if (videoRef.current) {
 
-      videoRef.current.playbackRate = 0.4; 
+      videoRef.current.playbackRate = 0.10; 
     }
   }, [videoRef]);
 
     return(
         <section className="home-front-page-container">
-          <video autoPlay muted loop ref={videoRef}>
+          {/*<video autoPlay muted loop ref={videoRef}>
         <source src={videoHome} type="video/mp4" />
         Your browser does not support the video tag.
-      </video>
+    </video>*/}
         <div className="home-center-container">
          <LoveliaIcon/>
           <p>

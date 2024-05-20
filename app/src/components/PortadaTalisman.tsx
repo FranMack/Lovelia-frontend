@@ -9,11 +9,12 @@ export interface PortadaTalismanOptions{
     description:string[],
     image:string
     button?:string,
+    onClick?:()=>void
 }
 
 
 
-export function PortadaTalisman({title,description,button,image}:PortadaTalismanOptions){
+export function PortadaTalisman({title,description,button,image,onClick}:PortadaTalismanOptions){
 
     const videoRef = useRef<HTMLVideoElement>(null); 
 
@@ -39,7 +40,7 @@ export function PortadaTalisman({title,description,button,image}:PortadaTalisman
                 return(<p key={i}>{item}</p>)
             })}
             
-            {button && <Button text={button}/>}
+            {button && <Button text={button} onClick={onClick}/>}
         </div>
         <div className="portadaTalisman-center-image-container">
             <img src={image} alt="Tallisman-fisico" />

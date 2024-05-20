@@ -9,6 +9,7 @@ import { TitleComponentOptions } from "../../commons/TitleComponent";
 import { infoSonidos } from "../../assets/images/imagnes-sonidos/infoMusica";
 import { PlayIcon } from "../../assets/images/icons/icons";
 import { GiftComponent } from "../GiftComponent";
+import { useNavigate } from "react-router-dom";
 
 const infoWallpaper2: Wallpaper2Options = {
   image: wallpaper,
@@ -21,10 +22,12 @@ const infoWallpaper2: Wallpaper2Options = {
     "Ingresa en tu perfil de talisman, activalo y listo!",
   ],
   symbol: "✔",
+  height:"70vh"
 };
 
 const infoWallpaper2b: Wallpaper2Options = {
   image: wallpaperTalisman,
+  height:"70vh"
 };
 
 const bibliotecaSonidos: TitleComponentOptions = {
@@ -34,8 +37,14 @@ const bibliotecaSonidos: TitleComponentOptions = {
 };
 
 export function DigitalTalismanSection4() {
+
+  const navigatge=useNavigate();
+
+  const linkToComprarTalisman=()=>{
+navigatge("/comprar-talisman-digital")
+  }
   return (
-    <section className="analogTalisman-section2-container">
+    <section className="digitalTalisman-section4-container">
       <div className="digitalTalisman-top-container">
         <div className="digitalTalisman-top-internal-container left">
           <div>
@@ -50,8 +59,8 @@ export function DigitalTalismanSection4() {
           <img src={timerImage} alt="Timer" />
         </div>
       </div>
-
-      <Button text="Comprar talismán digital" />
+<div className="digitalTalisman-section4-auxiliar-container"><Button onClick={linkToComprarTalisman} text="Comprar talismán digital" /></div>
+      
       <WallpaperTipo2 {...infoWallpaper2} />
       <WallpaperTipo2 {...infoWallpaper2b} />
       <TitleComponent {...bibliotecaSonidos} />

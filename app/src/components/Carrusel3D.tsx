@@ -100,7 +100,6 @@ export function Carrusel3D() {
           </h4>
           <p>{infoPiedras[position].description}</p>
         </div>
-
         <div className="controlls-container">
      <ButtonArrowLeft text="Atras" color="#6f3289"  onClick={() => handleInfo("previous")} />
 

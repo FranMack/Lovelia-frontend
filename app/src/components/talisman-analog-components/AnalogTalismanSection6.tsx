@@ -27,7 +27,9 @@ const infoWallpaper2: Wallpaper2Options = {
     "Con la compra recibirás un código.",
     "Ingresa en tu perfil de talisman, ingresa el código y listo!",
   ],
-  symbol:"✔"
+  symbol:"✔",
+  height:"70vh"
+
 };
 
 export function AnalogTalismanSection6() {

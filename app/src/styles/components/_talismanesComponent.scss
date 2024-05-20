@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 8vh;
+    margin-bottom: 10vh;
     h2 {
       text-align: center;
       font-size: 4.8rem;
@@ -15,6 +15,7 @@
       line-height: normal;
       margin-top: 8vh;
       margin-bottom: 8vh;
+     
     }
     h5 {
       text-align: center;
@@ -24,6 +25,7 @@
       line-height: normal;
       margin-top: 7vh;
       margin-bottom: 4vh;
+      
     }
   }
   
@@ -31,7 +33,7 @@
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    width: 74%;
+    width: 70%;
   
     .talismanesComponent-interal-conteiner {
       display: flex;
@@ -48,6 +50,11 @@
       letter-spacing: 0.56px;
       color: $color_primary;
       margin-top: 5vh;
+      
+      
+    }
+    a{
+      text-decoration: none;
     }
   }
   

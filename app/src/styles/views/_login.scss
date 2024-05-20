@@ -25,12 +25,12 @@
   width: 35%;
   display: flex;
   flex-direction: column;
-  row-gap: 3vh;
   padding-bottom: 3vh;
   margin-top: 3vh;
   margin-bottom: 4vh;
   h3 {
     margin-top: 4vh;
+    margin-bottom: 3vh;
     margin-left: 7.5%;
     font-size: 4rem;
     font-style: normal;
@@ -40,6 +40,7 @@
   }
   h6 {
     margin-left: 7.5%;
+    margin-bottom: 3vh;
     font-size: 1.6rem;
     font-style: normal;
     font-weight: 400;
@@ -53,21 +54,28 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    strong{
+      cursor: pointer;
+    }
   }
   >input {
     margin: 0 auto;
+    margin-bottom: 3vh;
     padding-left: 2%;
     width: 85%;
     height: 7vh;
     font-size: 1.4rem;
     border: 1px solid rgba(187, 187, 187, 0.30);
     background:$color_background2;
+    cursor: pointer;
   }
   >.input-error{
     border:solid 2px red;
+    margin-bottom: 1vh;
 }
 textarea{
     margin: 0 auto;
+    margin-bottom: 3vh;
     padding-top: 2%;
     padding-left: 2%;
     width: 85%;
@@ -92,9 +100,13 @@ textarea{
     font-weight: 700;
     line-height: normal;
     color: $color_text1;
-
+    cursor: pointer;
     border-radius: 30px;
   }
+}
+
+.login-button-container{
+  margin-bottom: 3vh;
 }
 
 .login-recibir-info-container{
@@ -104,6 +116,7 @@ textarea{
     margin-left: 7.5%;
     >p{
         margin-left: 0;
+        margin-bottom: 3vh;
     }
     input{
         margin-right: 2%;
@@ -113,4 +126,18 @@ textarea{
     }
     
 }
+.input-helpers-error{
+  color:red;
+    margin-left: 7.5%;
+    margin-bottom: 1.5%;
+    font-family: $font_titulos;;
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
 
+.input-helpers-error.api-erros{
+  font-size: 1.6rem;
+  text-transform: uppercase;
+}

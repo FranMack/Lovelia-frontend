@@ -1,7 +1,16 @@
+import { useNavigate } from "react-router-dom";
 import talismanDigital from "../../assets/images/talisman-digital.png";
 import { ButtonArrowRight } from "../../commons/ButtonArrowRight";
 import { GiftComponent } from "../GiftComponent";
 export function AnalogTalismanSection7() {
+  const navigatge=useNavigate();
+
+  const linkToTalismanDigital=()=>{
+navigatge("/talisman-digital")
+  }
+
+  
+  
   return (
     <section className="analogTalisman-section7-container">
       <div className="analogTalisman-section7-top-conteiner">
@@ -14,6 +23,7 @@ export function AnalogTalismanSection7() {
       <ButtonArrowRight
         text="Descubre más sobre el talismán digital"
         color="#6f3289"
+        onClick={linkToTalismanDigital}
       />
 
       <GiftComponent/>

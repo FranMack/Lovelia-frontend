@@ -1,7 +1,7 @@
 @import "../variables";
 
 
-.analogTalisman-section6-wallpaper-container {
+.wallpeperTipo2-container {
   margin-bottom: 10vh;
   width: 100%;
   aspect-ratio: 2.75;
@@ -17,10 +17,10 @@
   }
 }
 
-.analogTalisman-section6-wallpaper-info {
+.wallpeperTipo2-info {
   margin-left: 5%;
   position: absolute;
-  width: 35%;
+  width: 40%;
   height: fit-content;
   color: $color_text1;
   margin-right: 3%;
@@ -49,5 +49,11 @@
   }
   span{
     margin-right:1.6rem ;
+  }
+  button{
+    border: 1px solid rgba(255, 255, 255, 0.50);
+    background: rgba(255, 255, 255, 0.30);
+    backdrop-filter: blur(13.133333206176758px);
+
   }
 }

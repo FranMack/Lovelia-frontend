@@ -15,6 +15,7 @@ import { DropDownIntensiones } from "../commons/DropDownIntensiones";
 const precio = "0.000";
 
 export function CustomTalisman() {
+  window.scrollTo(0, 0);
   const [index, setIndex] = useState<number>(0);
 
   const handleIndex = () => {

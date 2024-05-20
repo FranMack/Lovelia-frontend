@@ -77,7 +77,7 @@ export function DigitalTalismanSection3() {
               </div>
               <div className="item-container-right">
                 <div className="item-image-container">
-                  <img src={adnEnergeticoInfo.energyNatureImage} alt="" />
+                  <img src={adnEnergeticoInfo.energyNatureImage} alt="imagen adn energetico" />
                 </div>
               </div>
             </div>

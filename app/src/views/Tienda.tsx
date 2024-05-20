@@ -16,6 +16,7 @@ import { ejemploTalismanes } from "../assets/images/ejemplos-talismanes/ejemplos
 import { ejemploTalismanesAnalogicos } from "../assets/images/ejemplos-talismán-analogico/ejemplosTalismanes";
 import { GiftComponent } from "../components/GiftComponent";
 import videoTalisman from "../assets/videos/videoFondo.mp4";
+import { useNavigate } from "react-router-dom";
 
 const wallpaperInfo1: Wallpaper2Options = {
   image: wallpaperTalisman,
@@ -58,6 +59,17 @@ const infoPlaca2: PlacaTipo2Options = {
 };
 
 export function Tienda() {
+  window.scrollTo(0, 0);
+
+  const navigatge=useNavigate();
+
+  const linkToComprarTalismanAnalogico=()=>{
+navigatge("/comprar-talisman-analogico")
+  }
+
+  const linkToComprarTalismanDigital=()=>{
+    navigatge("/comprar-talisman-digital")
+      }
   return (
     <main className="tienda-container">
         
@@ -66,27 +78,28 @@ export function Tienda() {
           <img src={talismanFisico1} alt="Talisman fisico" />
           <div className="tienda-portada-internal-info-container">
             <h4>Talismán analógico</h4>
-            <Button text="Comprar ahora" />
+            <Button text="Comprar ahora" onClick={linkToComprarTalismanAnalogico} />
           </div>
         </div>
         <div className="tienda-portada-internal-container">
           <img src={talismanDigital} alt="Talisman digital" />
           <div className="tienda-portada-internal-info-container right">
             <h4>Talismán digital</h4>
-            <Button text="Comprar ahora" />
+            <Button text="Comprar ahora" onClick={linkToComprarTalismanDigital} />
           </div>
         </div>
       </div>
 
-      <WallpaperTipo2 {...wallpaperInfo1} />
-      <PlacaTipo1 {...infoPlaca} />
+      <WallpaperTipo2 {...wallpaperInfo1} onClick={linkToComprarTalismanDigital} />
+      <PlacaTipo1 {...infoPlaca} onClick={linkToComprarTalismanDigital} />
       <h3>Articulos destacados</h3>
       <ArticulosDestacados
         talismanes={ejemploTalismanes}
         button="Comprar talismán digital"
+        onClick={linkToComprarTalismanDigital}
       />
       <WallpaperTipo2 {...wallpaperInfo2} />
-      <PlacaTipo2 {...infoPlaca2} />
+      <PlacaTipo2 {...infoPlaca2} onClick={linkToComprarTalismanAnalogico} />
 
       <div className="tienda-talismanes-analogicos-container">
         <div className="tienda-talismanes-analogicos-image-container"><img src={talismanFisico1} alt="Talisman-vista1" /></div>
@@ -98,6 +111,7 @@ export function Tienda() {
       <ArticulosDestacados
         talismanes={ejemploTalismanesAnalogicos}
         button="Comprar talismán analógico"
+        onClick={linkToComprarTalismanAnalogico}
       />
       <video controls>
         <source src={videoTalisman} type="video/mp4" />

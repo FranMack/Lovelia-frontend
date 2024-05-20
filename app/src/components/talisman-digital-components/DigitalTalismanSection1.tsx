@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import talismanDigital from "../../assets/images/talisman-digital.png";
 
 import { PortadaTalisman } from "../PortadaTalisman";
@@ -14,10 +15,18 @@ const infoPortada: PortadaTalismanOptions = {
   button: "Comprar talismán digital",
 };
 
+
+
 export function DigitalTalismanSection1() {
+
+  const navigatge=useNavigate();
+
+  const linkToComprarTalisman=()=>{
+navigatge("/comprar-talisman-digital")
+  }
   return (
     <>
-      <PortadaTalisman {...infoPortada} />
+      <PortadaTalisman {...infoPortada} onClick={linkToComprarTalisman} />
     </>
   );
 }

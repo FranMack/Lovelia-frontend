@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import colganteWallpaper from "../../assets/images/imagen-colgante.png";
 import { talismanes } from "../../assets/images/talismanes-fisicos/infoTalismanesFisicos";
 import { Button } from "../../commons/Button";
@@ -7,9 +8,18 @@ import { Wallpaper1Options } from "../WallpaperTipo1";
 
 const infoWallpaper1: Wallpaper1Options = {
   image: colganteWallpaper,
+  height:"70vh"
 };
 
 export function AnalogTalismanSection2() {
+
+  const navigatge=useNavigate();
+
+  const linkToComprarTalisman=()=>{
+navigatge("/comprar-talisman-analogico")
+  }
+
+
   return (
     <section className="analogTalisman-section2-container">
     
@@ -28,7 +38,7 @@ export function AnalogTalismanSection2() {
           );
         })}
       </div>
-      <Button text="Comprar talismán analógico" />
+      <Button text="Comprar talismán analógico" onClick={linkToComprarTalisman} />
 
    
     </section>

@@ -12,6 +12,7 @@ import { PlacaTipo2Options } from "../PlacaTipo2";
 import { WallpaperTipo1 } from "../WallpaperTipo1";
 import { Wallpaper1Options } from "../WallpaperTipo1";
 import { Slider } from "../Slider";
+import { useNavigate } from "react-router-dom";
 
 
 const infoPlacaTipo2:PlacaTipo2Options = {
@@ -51,16 +52,24 @@ const infoWallpaper:Wallpaper1Options={
     "Puedes acceder a esta meditación en todos tus dispositivos digitales, lo que te permite disfrutar de sus beneficios en cualquier momento y lugar.",
     "Esperamos que esta experiencia te brinde calma y serenidad, y que encuentres en ella un recurso valioso para tu bienestar."
   ],
-  direction:"left"
+  direction:"left",
+  height:"70vh",
+  backgroundStyle:"linear-gradient(276deg, rgba(0, 0, 0, 0.00) 52.84%, rgba(0, 0, 0, 0.50) 95.89%), linear-gradient(276deg, rgba(0, 0, 0, 0.00) 20.19%, rgba(0, 0, 0, 0.50) 98.87%)"
 }
 
 const infoWallpaper2:Wallpaper1Options={
   image:wallpaperTalisman,
-  
+  height:"70vh"
 }
 
 
 export function DigitalTalismanSection2() {
+
+  const navigatge=useNavigate();
+
+  const linkToComprarTalisman=()=>{
+navigatge("/comprar-talisman-digital")
+  }
   return (
     <>
       <section className="digitalTalisman-section2-container">
@@ -71,7 +80,7 @@ export function DigitalTalismanSection2() {
         <PlacaTipo2 {...infoPlacaTipo2b}/>
         <WallpaperTipo1 {...infoWallpaper2}/>
         <h3>Artículos destacados</h3>
-        <ArticulosDestacados talismanes={ejemploTalismanes} button="Comprar talismán digital"/>
+        <ArticulosDestacados talismanes={ejemploTalismanes} button="Comprar talismán digital" onClick={linkToComprarTalisman}/>
         <TitleComponent {...titleMeditaciones}/>
         <Slider/>
 

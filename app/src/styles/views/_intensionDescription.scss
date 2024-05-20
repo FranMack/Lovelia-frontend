@@ -1,0 +1,115 @@
+@import "../variables";
+
+.intensionesDescription-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.intensionesDescription-info-container{
+    padding-top: 13vh;
+    width: 50%;
+    height: 100%;
+    padding-bottom: 4vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+/* Estilo para la barra de desplazamiento */
+::-webkit-scrollbar {
+    width: 10px; /* Ancho de la barra de desplazamiento */
+    
+  }
+  
+  /* Estilo para el thumb (el botón que puedes arrastrar) de la barra de desplazamiento */
+  ::-webkit-scrollbar-thumb {
+    background-color:$color_primary; /* Cambia "#color_primary" al color deseado */
+    border-radius: 5px; /* Radio de borde del dedo de la barra de desplazamiento */
+    height: 10px;
+  }
+  
+  /* Estilo para el riel de la barra de desplazamiento */
+  ::-webkit-scrollbar-track {
+    background-color: $color_background1; /* Cambia "#color_background1" al color deseado */
+  }
+  
+  /* Estilo para el rincón de la barra de desplazamiento */
+  ::-webkit-scrollbar-corner {
+    background-color: red; /* Cambia "red" al color deseado */
+    width: 20px;
+  }
+  
+
+    article{
+        margin: 0 auto;
+        width: 80%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 2vh;
+        overflow-y: scroll;
+
+
+        h3{
+            font-size: 3.6rem;
+    font-weight: 300;
+    color:$color_primary;
+    margin-top: 2vh;
+    margin-bottom: 1vh;
+    
+        }
+    
+        h6{
+            font-size: 2rem;
+    font-style: italic;
+    font-weight: 500;
+    
+        }
+        p{
+            font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+        }
+    }
+
+
+    .intensionesDescription-top-buttons-container{
+        margin: 0 auto;
+
+        margin-top: 4vh;
+        margin-bottom: 2vh;
+    
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .intensionesDescription-buttons-container{
+
+        width: 100%;
+       display: flex;
+       justify-content: space-around;
+       margin-top: 4vh;
+       :last-child{
+        background-color: transparent;
+        color:$color_primary;
+        border: solid 2px $color_primary;
+       }
+    
+      
+    }
+  
+}
+
+
+
+.intensionesDescription-image-container{
+    width: 50%;
+    height: 100%;
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+    }
+}

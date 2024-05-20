@@ -1,5 +1,5 @@
 import { CarruselCard } from "../commons/CarruselCard"
-import { infoCarrusel } from "../assets/images/carrusel-intenciones/infoCarrusel"
+import { infoCarrusel } from "../assets/images/intenciones/infoCarrusel"
 export function Carrusel(){
 
     return (

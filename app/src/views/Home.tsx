@@ -7,10 +7,13 @@ import { HomeSection6 } from "../components/home-components/HomeSection6";
 import { HomeSection7 } from "../components/home-components/HomeSection7";
 import { HomeSection8 } from "../components/home-components/HomeSection8";
 import { HomeSection9 } from "../components/home-components/HomeSection9";
+import { BackgroundVideo } from "../commons/BackgroundVideo";
 
 export function Home() {
+  window.scrollTo(0, 0);
   return (
     <main>
+      <BackgroundVideo/>
     <HomeSection1/>
     <HomeSection2/>
     <HomeSection3/>

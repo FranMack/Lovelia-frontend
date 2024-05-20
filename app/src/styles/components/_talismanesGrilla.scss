@@ -1,0 +1,46 @@
+@import "../variables";
+
+
+.talismanesGrilla-top-container{
+    margin: 0 auto;
+    width: 80.5%;
+    aspect-ratio: 2.22;
+    display: flex;
+    margin-bottom:1.5%;
+}
+.talismanesGrilla-top-image-container{
+    height: 100%;
+    width: 50%;
+   
+ 
+    img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+.talismanesGrilla-bottom-container{
+    margin: 0 auto;
+    margin-bottom: 7vh;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.talismanesGrilla-bottom-image-container{
+    width: 23%;
+    aspect-ratio: 1;
+    background-color: $color_background1;
+    img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+.talismanesGrilla-buttom-container{
+    width: fit-content;
+    margin: 0 auto;
+}

@@ -4,6 +4,7 @@ import { ejemploTalismanes } from "../../assets/images/ejemplos-talismanes/ejemp
 import { ArticulosDestacados } from "../ArticulosDestacados";
 import { PlacaTipo1 } from "../PlacaTipo1";
 import { Wallpaper2Options, WallpaperTipo2 } from "../WallpaperTipo2";
+import { useNavigate } from "react-router-dom";
 
 
 const infoPlacaTipo1 = {
@@ -25,14 +26,18 @@ const infoWallpaper:Wallpaper2Options={
 }
 
 export function HomeSection6() {
+  const navigate= useNavigate();
+  const linkToComprarTalisman=()=>{
+    navigate("/comprar-talisman-digital")
+  }
   return (
     <section className="section6-container">
      
-      <WallpaperTipo2 {...infoWallpaper}/>
+      <WallpaperTipo2 {...infoWallpaper} onClick={linkToComprarTalisman}/>
 
-      <PlacaTipo1 {...infoPlacaTipo1} />
+      <PlacaTipo1 {...infoPlacaTipo1} onClick={linkToComprarTalisman} />
 
-      <ArticulosDestacados talismanes={ejemploTalismanes} button="Comprar talismán digital"/>
+      <ArticulosDestacados talismanes={ejemploTalismanes} onClick={linkToComprarTalisman} button="Comprar talismán digital"/>
       
     </section>
   );

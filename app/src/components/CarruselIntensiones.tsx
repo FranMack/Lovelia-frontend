@@ -1,10 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import { infoCarrusel } from "../assets/images/carrusel-intenciones/infoCarrusel"
-import { ButtonArrowLeft } from "../commons/ButtonArrowLeft"
-import { ButtonArrowRight } from "../commons/ButtonArrowRight"
+import { infoCarrusel } from "../assets/images/intenciones/infoCarrusel"
 import { LeftArrowIcon, RightArrowIcon } from "../assets/images/icons/icons";
+import { useNavigate } from "react-router-dom";
 
 export function CarruselIntensiones(){
+  const nanvigate= useNavigate()
+  const linkToIntension=(id)=>{
+    nanvigate(`/intensiones/${id}`)
+
+  }
 
   const galleryContainer = useRef<HTMLDivElement>(null);
 
@@ -84,7 +88,7 @@ export function CarruselIntensiones(){
 
     return(
         <div
-              key={i}
+              key={item.id}
               className={`intensiones-gallery-item ${item.className}`}
               data-index={item.dataIndex}
             >
@@ -92,7 +96,7 @@ export function CarruselIntensiones(){
               <div className="carruselCard-info-container">
         <h4>{item.title}</h4>
         <p>{item.text}</p>
-        <button>Ver mas</button>
+        <button onClick={()=>linkToIntension(item.id)}>Ver mas</button>
         </div>
             </div>
     )

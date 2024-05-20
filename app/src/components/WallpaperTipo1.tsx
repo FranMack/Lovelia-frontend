@@ -11,12 +11,13 @@ export interface Wallpaper1Options{
     align?:string,
     height?:string
     backgroundStyle?:string
+    onClick?:()=>void
 }
 
 
 
 
-export function WallpaperTipo1({image,title,arrowRightButton,description,secundaryTitle,direction="right",height,backgroundStyle,terciaryTitle,align}:Wallpaper1Options){
+export function WallpaperTipo1({image,title,arrowRightButton,description,secundaryTitle,direction="right",height,backgroundStyle,terciaryTitle,align,onClick}:Wallpaper1Options){
 
     return( <div className="wallpeperTipo1-container" style={{height:height && `${height}`,justifyContent:direction==="right" ?"end":"start",alignItems:align &&`${align}`,background:backgroundStyle ?`${backgroundStyle}`:"none"}} >
     <img src={image} alt={"foto imagen"} />
@@ -29,7 +30,7 @@ export function WallpaperTipo1({image,title,arrowRightButton,description,secunda
         })
       }
 
-{arrowRightButton && <ButtonArrowRight text={arrowRightButton} color="#ffffff" />}
+{arrowRightButton && <ButtonArrowRight onClick={onClick} text={arrowRightButton} color="#ffffff" />}
     </div>
 </div>)
 }

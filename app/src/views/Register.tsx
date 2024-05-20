@@ -1,11 +1,19 @@
 import { useRef, useEffect, useState } from "react";
-import { useInput } from "../hooks/useInput";
 import videoHome from "../assets/videos/videoHome.mp4";
-import { UserValidations } from "../helpers/userValidations";
-import { UserValidationErrors } from "../helpers/userValidations";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "../hooks/useForm";
+import { RegisterValidation } from "../helpers/registerValidation";
 import axios from "axios";
 
 export function Register() {
+  window.scrollTo(0, 0);
+
+  const navigatge = useNavigate();
+
+  const linkToLogin = () => {
+    navigatge("/login");
+  };
+
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -14,50 +22,36 @@ export function Register() {
     }
   }, [videoRef]);
 
-  const name = useInput();
-  const lastname = useInput();
-  const email = useInput();
-  const password = useInput();
-  const confirmPassword = useInput();
+  const initialForm = {
+    name: "",
+    lastname: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
 
+  const { formState, onInputChange, onResetForm } = useForm(initialForm);
+  const { name, lastname, email, password, confirmPassword } = formState;
+
+  //validation errors
   const [nameErrors, setNameErrors] = useState<string[]>([]);
   const [lastNameErrors, setLastnameErrors] = useState<string[]>([]);
   const [emailErrors, setEmailErrors] = useState<string[]>([]);
   const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
+  const [confirmPasswordError, setConfirmPasswordError] =
+    useState<boolean>(false);
 
-  const handleBlurName = () => {
-    const [errors, dataValidation] = UserValidations.create({
-      name: name.value,
-      lastname: lastname.value,
-      email: email.value,
-      password: password.value,
-    });
-
-    if (errors) {
-      errors.map((error) => {
-        if (Object.keys(error).includes("name")) {
-          return setNameErrors((prevErrors) => [...prevErrors, error["name"]]);
-        }
-      });
-
-      !errors.find((error) => {
-        return Object.keys(error).includes("name");
-      }) && setNameErrors([]);
-
-      return;
-    }
-  };
-
-
+     //other errors
+  const [errorsFromAPI,setErrorsFromAPI]=useState<string>("")
 
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const [errors, dataValidation] = UserValidations.create({
-      name: name.value,
-      lastname: lastname.value,
-      email: email.value,
-      password: password.value,
+    const [errors, dataValidation] = RegisterValidation.create({
+      name: name,
+      lastname: lastname,
+      email: email,
+      password: password,
     });
 
     if (errors) {
@@ -98,34 +92,57 @@ export function Register() {
         return Object.keys(error).includes("password");
       }) && setPasswordErrors([]);
 
-      console.log(errors);
+      if (formState.password !== formState.confirmPassword) {
+        setConfirmPasswordError(true);
+      }
 
       return;
     }
+    
+    if (formState.password !== formState.confirmPassword) {
+      setConfirmPasswordError(true);
 
-    if (password.value !== confirmPassword.value) {
-      alert("Error en la confirmación de password");
-      return;
+      return
     }
-
     axios
       .post("http://localhost:3000/api/v1/user/register", {
-        name: name.value,
-        lastname: lastname.value,
-        email: email.value,
-        password: password.value,
+        name: name,
+        lastname: lastname,
+        email: email,
+        password: password,
       })
       .then((response) => {
-        console.log(response.data);
-        name.onChange(null);
-        lastname.onChange(null);
-        email.onChange(null);
-        password.onChange(null);
-        confirmPassword.onChange(null);
+        console.log(response);
+        onResetForm();
+        navigatge("/login")
       })
       .catch((error) => {
         console.log(error);
+        setErrorsFromAPI(error.response.data.error)
       });
+  };
+
+  const handleBlur = (field: string) => {
+    const [errors] = RegisterValidation.create(formState);
+    const fieldError = errors?.find((error) =>
+      Object.keys(error).includes(field)
+    );
+    switch (field) {
+      case "name":
+        setNameErrors(fieldError ? [fieldError[field]] : []);
+        break;
+      case "lastname":
+        setLastnameErrors(fieldError ? [fieldError[field]] : []);
+        break;
+      case "email":
+        setEmailErrors(fieldError ? [fieldError[field]] : []);
+        break;
+      case "password":
+        setPasswordErrors(fieldError ? [fieldError[field]] : []);
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -138,36 +155,67 @@ export function Register() {
         <h3>Crea tu cuenta</h3>
         <h6>Si ya estás registrado en lovelia, inicia sesión aquí:</h6>
         <input
-          onBlur={handleBlurName}
-          className={`${nameErrors.length > 0 && "input-error"}`}
-          {...name}
+          value={name}
+          onChange={onInputChange}
+          onBlur={() => handleBlur("name")}
+          name="name"
           type="text"
           placeholder="Nombre"
+          className={`${nameErrors.length > 0 || errorsFromAPI && "input-error"}`}
         />
+        {nameErrors.length > 0 && (
+          <span className="input-helpers-error">{nameErrors[0]}</span>
+        )}
         <input
-          className={`${lastNameErrors.length > 0 && "input-error"}`}
-          {...lastname}
+          value={lastname}
+          onChange={onInputChange}
+          onBlur={() => handleBlur("lastname")}
+          name="lastname"
           type="text"
           placeholder="Apellido"
+          className={`${lastNameErrors.length > 0 || errorsFromAPI && "input-error"}`}
         />
+        {lastNameErrors.length > 0 && (
+          <span className="input-helpers-error">{lastNameErrors[0]}</span>
+        )}
         <input
-          className={`${emailErrors.length > 0 && "input-error"}`}
-          {...email}
+          value={email}
+          onChange={onInputChange}
+          onBlur={() => handleBlur("email")}
+          name="email"
           type="email"
           placeholder="Dirección de correo electrónico"
+          className={`${emailErrors.length > 0 || errorsFromAPI && "input-error"}`}
         />
+        {emailErrors.length > 0 && (
+          <span className="input-helpers-error">{emailErrors[0]}</span>
+        )}
         <input
-          className={`${passwordErrors.length > 0 && "input-error"}`}
-          {...password}
+          value={password}
+          onChange={onInputChange}
+          onBlur={() => handleBlur("password")}
+          name="password"
           type="password"
           placeholder="Contraseña"
+          className={`${passwordErrors.length > 0 || errorsFromAPI && "input-error"}`}
         />
+        {passwordErrors.length > 0 && (
+          <span className="input-helpers-error">{passwordErrors[0]}</span>
+        )}
         <input
-          {...confirmPassword}
+          value={confirmPassword}
+          onChange={onInputChange}
+          name="confirmPassword"
           type="password"
           placeholder="Confirmar contraseña"
+          className={`${confirmPasswordError || errorsFromAPI && "input-error"}`}
         />
-        <div>
+        {confirmPasswordError && (
+          <span className="input-helpers-error">
+            {"Wrong confirm password"}
+          </span>
+        )}
+        <div className="login-button-container">
           <div className="login-recibir-info-container">
             <input type="checkbox" />
             <p>
@@ -177,8 +225,14 @@ export function Register() {
           </div>
 
           <p>
-            ¿Ya tienes una cuenta?, <strong>Haz click aquí.</strong>
+            ¿Ya tienes una cuenta?,{" "}
+            <strong onClick={linkToLogin}>Haz click aquí.</strong>
           </p>
+          {errorsFromAPI && (
+          <span className="input-helpers-error api-errors"
+          
+          >{errorsFromAPI}</span>
+        )}
         </div>
         <button type="submit">ACCEDER</button>
       </form>

@@ -92,6 +92,7 @@ const infoWallpaper2: Wallpaper1Options = {
 
 
 export function Blog() {
+  window.scrollTo(0, 0);
     const videoRef = useRef<HTMLVideoElement>(null); 
 
   useEffect(() => {

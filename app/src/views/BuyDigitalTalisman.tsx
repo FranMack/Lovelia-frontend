@@ -12,6 +12,7 @@ import { useOpenModal } from "../hooks/useOpenModal";
 const precio="0.000"
 
 export function BuyDigitalTalisman() {
+  window.scrollTo(0, 0);
   const [index, setIndex] = useState<number>(0);
 
   const handleIndex = () => {

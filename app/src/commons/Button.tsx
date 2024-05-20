@@ -1,11 +1,12 @@
 export interface OptionsButton{
-    text:string
+    text:string,
+    onClick?:()=>void
 }
 
-export function Button({text}:OptionsButton){
+export function Button({text,onClick}:OptionsButton){
 
     return(
-        <button className="purple-button">
+        <button onClick={onClick} className="purple-button">
             {text}
         </button>
     )

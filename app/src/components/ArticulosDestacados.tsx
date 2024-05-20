@@ -4,12 +4,13 @@ import { Button } from "../commons/Button"
 
 import { ejemploTalismanAnalogicosOptions } from "../assets/images/ejemplos-talismán-analogico/ejemplosTalismanes"
 
-interface TalismanExamplesOptions{
+interface ArticulosDestacadosOptions{
     talismanes:ejemploTalismanAnalogicosOptions[],
-    button?:string
+    button?:string,
+    onClick?:()=>void
 }
 
-export function ArticulosDestacados({talismanes,button}:TalismanExamplesOptions){
+export function ArticulosDestacados({talismanes,button,onClick}:ArticulosDestacadosOptions){
 
   return ( 
     <div className="articulosDestacados-container">
@@ -24,7 +25,7 @@ export function ArticulosDestacados({talismanes,button}:TalismanExamplesOptions)
         })}
 
       </div>
-     {button && <Button text={button}/>}
+     {button && <Button text={button} onClick={onClick}/>}
       </div>
       
       )

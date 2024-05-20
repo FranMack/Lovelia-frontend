@@ -13,7 +13,7 @@ export function IntensionesSection1(){
   }, [videoRef]);
 
     return( <article className="intensiones-section1-container">
-        <video autoPlay muted loop>
+        <video ref={videoRef} autoPlay muted loop>
         <source src={videoWallpaper} type="video/mp4" />
         Your browser does not support the video tag.
       </video>

@@ -6,6 +6,7 @@ import { AnalogTalismanSection5 } from "../components/talisman-analog-components
 import { AnalogTalismanSection6 } from "../components/talisman-analog-components/AnalogTalismanSection6"
 import { AnalogTalismanSection7 } from "../components/talisman-analog-components/AnalogTalismanSection7"
 export function AnalogTalisman(){
+    window.scrollTo(0, 0);
 
     return(
         <main>

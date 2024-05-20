@@ -4,7 +4,7 @@ export interface UserValidationErrors{
     [key: string]: string
 }
 
-export class UserValidations {
+export class RegisterValidation {
   private constructor(
     readonly name: string,
     readonly lastname: string,
@@ -12,7 +12,7 @@ export class UserValidations {
     readonly password: string
   ) {}
 
-  static create(object: { [key: string]: any }): [UserValidationErrors[]?, UserValidations?] {
+  static create(object: { [key: string]: any }): [UserValidationErrors[]?, RegisterValidation?] {
     const { name, email, password, lastname } = object;
 
     const errors: UserValidationErrors[] = [];
@@ -29,7 +29,7 @@ export class UserValidations {
     //lastname
     if (!lastname) {
       errors.push({
-        lastname: "Missing name",
+        lastname: "Missing lastname",
       });
     }
     if (!regularExpresions.only_letters.test(lastname)) {
@@ -76,6 +76,6 @@ export class UserValidations {
       return [errors, undefined];
     }
 
-    return [undefined, new UserValidations(name, lastname, email, password)];
+    return [undefined, new RegisterValidation(name, lastname, email, password)];
   }
 }

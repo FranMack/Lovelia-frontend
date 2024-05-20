@@ -8,6 +8,7 @@ import { PlacaTipo1 } from "../PlacaTipo1";
 import { PlacaTipo1Options } from "../PlacaTipo1";
 import { WallpaperTipo1 } from "../WallpaperTipo1";
 import { Wallpaper1Options } from "../WallpaperTipo1";
+import { useNavigate } from "react-router-dom";
 
 const titleMeditaciones = {
   title: "Meditaciones lovelia",
@@ -28,20 +29,28 @@ const infoPlacaTipo1: PlacaTipo1Options = {
 
 const infoWallpaper1: Wallpaper1Options = {
   image: colganteWallpaper,
+  height:"70vh"
 };
 
 const infoWallpaper2: Wallpaper1Options = {
   image: colganteWallpaper2,
+  height:"90vh"
 };
 
 export function IntencionesSection3() {
+
+  const navigatge=useNavigate();
+
+  const linkToComprarTalisman=()=>{
+navigatge("/comprar-talisman-analogico")
+  }
   return (
     <section className="intensiones-section3">
       <TitleComponent {...titleMeditaciones} />
 
       <Slider />
 
-      <PlacaTipo1 {...infoPlacaTipo1} />
+      <PlacaTipo1 {...infoPlacaTipo1} onClick={linkToComprarTalisman} />
 
       <WallpaperTipo1 {...infoWallpaper1} />
 

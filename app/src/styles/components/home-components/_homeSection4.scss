@@ -1,54 +1,8 @@
 @import "../../variables";
 
-.home-section4-container{
-    width: 100vw;
-    background-color: $color_background2;
-    padding-bottom: 20vh;
+.home-section4-container {
+  width: 100vw;
+
+  margin-bottom: 20vh;
 }
 
-
-
-.section4-middle-container{
-    margin: 0 auto;
-    width: 80.5%;
-    aspect-ratio: 2.22;
-    display: flex;
-    margin-bottom:1.5%;
-}
-.section4-middle-image-container{
-    height: 100%;
-    width: 50%;
-   
- 
-    img{
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-    }
-}
-
-.section4-bottom-container{
-    margin: 0 auto;
-    margin-bottom: 7vh;
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-
-}
-
-.section4-bottom-image-container{
-    width: 23%;
-    aspect-ratio: 1;
-    background-color: $color_background1;
-    img{
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-    }
-}
-
-.section4-buttom-container{
-    width: fit-content;
-    margin:0 auto;
-    margin-bottom: 8vh;
-}

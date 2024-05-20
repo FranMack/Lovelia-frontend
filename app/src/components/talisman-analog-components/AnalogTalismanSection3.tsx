@@ -1,11 +1,9 @@
 import talisman from "../../assets/images/talisman-fisico.png"
-import talisman2 from "../../assets/images/talisman-fisico2.png"
-import { ejemploTalismanesAnalogicos } from "../../assets/images/ejemplos-talismán-analogico/ejemplosTalismanes";
 import { Button } from "../../commons/Button";
-import { ButtonArrowRight } from "../../commons/ButtonArrowRight";
-import talismanFisico from "../../assets/images/talisman-fisico.png";
+import { TalismanesGrilla } from "../TalismanesGrilla";
 import { PlacaTipo1 } from "../PlacaTipo1";
 import { PlacaTipo1Options } from "../PlacaTipo1";
+import { useNavigate } from "react-router-dom";
 
 
 const infoPlacaTipo1:PlacaTipo1Options = {
@@ -20,25 +18,21 @@ const infoPlacaTipo1:PlacaTipo1Options = {
 };
 
 export function AnalogTalismanSection3() {
+  const navigatge=useNavigate();
+
+  const linkToComprarTalisman=()=>{
+navigatge("/comprar-talisman-analogico")
+  }
 
 
 
   return (
     <section className="analogTalisman-section3-container">
 
-      <PlacaTipo1 {...infoPlacaTipo1}/>
+      <PlacaTipo1 {...infoPlacaTipo1} onClick={linkToComprarTalisman}/>
 
-      <div className="analogTalisman-section3-top-container">
-        <div className="analogTalisman-section3-top-image-container"><img src={talisman} alt="Talisman-vista1" /></div>
-        <div className="analogTalisman-section3-top-image-container"><img src={talisman2} alt="Talisman-vista2" /></div>
-      </div>
-      <div className="analogTalisman-section3-bottom-container">
-    {ejemploTalismanesAnalogicos.map((talisman,i)=>{
-      return(<div className="section4-bottom-image-container" key={i}><img src={talisman.image} alt={talisman.title} /></div>)
-    })}
-      </div>
-  
-      <Button text="Comprar talismán analógico"/>
+      <TalismanesGrilla/>
+     
    
     </section>
   );

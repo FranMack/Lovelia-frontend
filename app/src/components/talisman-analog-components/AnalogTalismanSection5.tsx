@@ -3,6 +3,16 @@ import talismanFisico from "../../assets/images/talisman-fisico.png";
 import { ButtonArrowRight } from "../../commons/ButtonArrowRight";
 import { CarruselIntensiones } from "../CarruselIntensiones";
 import { TitleComponent } from "../../commons/TitleComponent";
+import { WallpaperTipo1 } from "../WallpaperTipo1";
+import { Wallpaper1Options } from "../WallpaperTipo1";
+import { useNavigate } from "react-router-dom";
+
+
+const infoWallpaper1: Wallpaper1Options = {
+  image: colgateWallpaper,
+  height:"90vh",
+ };
+
 
 
 const titleEligeTuIntencion={
@@ -12,14 +22,19 @@ const titleEligeTuIntencion={
 }
 
 export function AnalogTalismanSection5() {
+  const navigatge=useNavigate();
+
+  const linkToComprarTalisman=()=>{
+navigatge("/comprar-talisman-analogico")
+  }
+
+  const linkToIntensiones=()=>{
+    navigatge("/intensiones")
+      }
   return (
     <section className="analogTalisman-section5-container">
-      <div
-        className="analogTalisman-section5-wallpaper-container"
-        style={{ background: "none" }}
-      >
-        <img src={colgateWallpaper} alt="Talisman" />
-      </div>
+    
+      <WallpaperTipo1 {...infoWallpaper1}/>
 
       <div className="analogTalisman-section5-center-container">
         <div className="analogTalisman-section5-center-image-container">
@@ -38,11 +53,11 @@ export function AnalogTalismanSection5() {
             <br /> eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
 
-          <ButtonArrowRight text="Crea tu talismán ahora" color="#6f3289" />
+          <ButtonArrowRight onClick={linkToComprarTalisman} text="Crea tu talismán ahora" color="#6f3289" />
         </div>
       </div>
 
-      <TitleComponent {...titleEligeTuIntencion}/>
+      <TitleComponent {...titleEligeTuIntencion} onClick={linkToIntensiones}/>
 
       <CarruselIntensiones />
     </section>

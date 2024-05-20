@@ -3,6 +3,7 @@ import { DigitalTalismanSection2 } from "../components/talisman-digital-componen
 import { DigitalTalismanSection3 } from "../components/talisman-digital-components/DigitalTalismanSection3"
 import { DigitalTalismanSection4 } from "../components/talisman-digital-components/DigitalTalismanSection4"
 export function DigitalTalisman(){
+    window.scrollTo(0, 0);
 
     return(
         <main>

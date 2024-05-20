@@ -1,4 +1,3 @@
-import { OptionsButton } from "./Button"
 import { RightArrowIcon } from "../assets/images/icons/icons"
 
 interface ButtonArrowRightOptions{
