@@ -1,4 +1,4 @@
-import talisman from "../../assets/images/talisman-fisico.png"
+import talisman from "../../assets/images/talisman-fisico3.png"
 import { PlacaTipo2 } from "../PlacaTipo2";
 import { TalismanesGrilla } from "../TalismanesGrilla";
 import { useNavigate } from "react-router-dom";

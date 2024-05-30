@@ -1,0 +1,36 @@
+@import "../variables";
+
+
+.popUp-container{
+    position: absolute;
+    width: 35%;
+    aspect-ratio: 2;
+    background-color: $color_background1;
+    color:$color_primary;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    h4{
+        font-size: 4rem;
+
+font-weight: 300;
+
+    }
+    p{
+        font-family: $font_titulos;
+        font-size: 2rem;
+font-weight: 400;
+color:$color_text2;
+
+    }
+    .closeIcon-container{
+        width: 100%;
+        display: flex;
+        justify-content: end;
+    }
+    .button-auxiliar-container{
+        margin-bottom: 5%;
+    }
+}

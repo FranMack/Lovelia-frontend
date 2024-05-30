@@ -10,7 +10,10 @@
   font-size: 1.8rem;
   padding-left: 2%;
   padding-right: 2%;
-  z-index: 50;
+  z-index: 40;
+  a:active {
+    color: $color_primary; /* Cambia el color según tus necesidades */
+  }
 }
 
 .navbar-logo-container {
@@ -29,25 +32,114 @@
   list-style: none;
   height: 50%;
   width: 54%;
-  background-color: $color_background1;
+  background-color: $color_background2;
   border-radius: 30px;
+
+  .navbar-button-menu-container{
+    
+   
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+}
+.navbar-button-style {
+  transition: color 1s ease, background-color 1s ease-out;
+  border-radius: 20px;
+  padding: 10%;
+  color: $color_primary;
+  font-size: 1.6rem;
+  cursor: pointer;
   li {
     font-size: 1.6rem;
-    font-style: normal;
     font-weight: 400;
-    line-height: normal;
-    a{
-      text-decoration: none;
-      color:$color_primary;
-   
-    }
+    
+ 
   }
+ 
 }
 
 .navbar-menu-icon {
   height: 55%;
+  
+  color: $color_primary;
+  transition: color 1s ease, background-color 1s ease-out;
 }
 
-.navbar-move{
- display: none;
+.navbar-move {
+  display: none;
+}
+
+.navbar-button-focus-style {
+  transition: color 1s ease, background-color 1s ease-in;
+  cursor: pointer;
+  background-color: $color_primary;
+  border-radius: 20px;
+  padding: 10%;
+
+  color: $color_text1;
+}
+
+.navbar-svg-focus-style {
+  transition: color 1s ease, background-color 1s ease-in;
+  background-color: $color_primary;
+  border-radius: 20px;
+  color: $color_text1;
+  cursor: pointer;
+  .navbar-user-avatar{
+    background-color: $color_primary
+  }
+}
+
+.navbar-user-avatar{
+ 
+  border: 2px solid $color_primary;
+  height:80%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  
+  h5{
+    font-size: 1.7rem;
+    color: $color_primary;
+    padding: 0.3rem;
+  }
+}
+
+.navbar-user-avatar-focus-style{
+  background-color: $color_primary;
+  cursor: pointer;
+  h5{
+
+    color:$color_text1;
+  }
+}
+
+
+.shoping-icon{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  div{
+    top:-30%;
+    right: -35%;
+    position: absolute;
+    background-color: $color_primary;
+    width: 1.5rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  h2{
+  
+    font-size: 1.4rem;
+    color: $color_text1;
+    font-weight: 500;
+   
+  }
 }

@@ -28,6 +28,7 @@
   padding-bottom: 3vh;
   margin-top: 3vh;
   margin-bottom: 4vh;
+
   h3 {
     margin-top: 4vh;
     margin-bottom: 3vh;
@@ -140,4 +141,16 @@ textarea{
 .input-helpers-error.api-erros{
   font-size: 1.6rem;
   text-transform: uppercase;
+}
+
+
+.modalOpen-styles{
+  background-color: rgba($color: $color_text2, $alpha: 0.5);
+ 
+  video{
+    z-index: -50;
+  }
+   .login-form{
+    display: none;
+  }
 }

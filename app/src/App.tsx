@@ -15,21 +15,44 @@ import { BuyDigitalTalisman } from './views/BuyDigitalTalisman'
 import { Blog } from './views/Blog'
 import { IntensionDescription } from './views/IntensionDescription'
 import { Profile } from './views/Profile'
+import { ShopingCart } from './components/ShopingCart'
+import { useContext, useEffect } from 'react'
+import { ShopingCartContext } from './context/modalShopingCart'
+import { CheckOutAnalogic } from './views/CheckOutAnalogic'
+import { UserContext } from './context/userContext'
+import axios from 'axios'
 
 
 
 function App() {
 
+  const{menuOpen}=useContext(ShopingCartContext)
+  const{setEmail,setId,setName,setLastname}=useContext(UserContext)
+
+  useEffect(()=>{
+    axios.get("http://localhost:3000/api/v1/user/me",{ withCredentials: true })
+    .then(({data})=>{
+      setEmail(data.email)
+      setId(data.id)
+      setName(data.name)
+      setLastname(data.lastname)
+    })
+    .catch((error)=>{console.log(error)})
+  },[])
+
+
 
   return (
     <>
-    {<Navbar/>}
+    <Navbar/>
+    {menuOpen && <ShopingCart/>}
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/intensiones/:id" element={<IntensionDescription/>}/>
         <Route path="/intensiones" element={<Intensiones/>}/>
         <Route path="/talisman-analogico" element={<AnalogTalisman/>}/>
         <Route path="/talisman-digital" element={<DigitalTalisman/>}/>
+    
         <Route path="/talisman-landing" element={<LandingTalisman/>}/>
         <Route path="/tienda" element={<Tienda/>}/>
         <Route path="/talleres" element={<Blog/>}/>
@@ -40,12 +63,13 @@ function App() {
         <Route path="/comprar-talisman-digital" element={<BuyDigitalTalisman/>}/>
         <Route path="/blog" element={<Blog/>}/>
         <Route path="/profile" element={<Profile/>}/>
+        <Route path="/checkout/store" element={<CheckOutAnalogic/>}/>
 
 
 
       </Routes>
-      
       <Footer/>
+      
                           
     </>
   )

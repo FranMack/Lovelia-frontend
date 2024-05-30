@@ -62,9 +62,9 @@
 .analogTalisman-section5-center-container {
   width: 80%;
   margin: 0 auto;
-  padding-top: 18vh;
-  padding-bottom:4vh;
-  margin-bottom: 10vh;
+  background-color: $color_background2;
+  margin-top: 18vh;
+  margin-bottom: 14vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -75,6 +75,7 @@
 .analogTalisman-section5-center-image-container {
   width: 34%;
   aspect-ratio: 0.75;
+ 
   img {
     height: 100%;
     width: 100%;

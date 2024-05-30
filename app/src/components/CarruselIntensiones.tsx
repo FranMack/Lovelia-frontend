@@ -84,7 +84,7 @@ export function CarruselIntensiones(){
 
     <div ref={galleryContainer} className="intensiones-gallery-container">
 
-   {infoCarrusel.map((item,i)=>{
+   {infoCarrusel.map((item)=>{
 
     return(
         <div

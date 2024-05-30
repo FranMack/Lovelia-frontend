@@ -47,7 +47,7 @@ export function IntensionDescription(){
 
     return(
         <>
-        <section className="intensionesDescription-container">
+        <section className="intensionesDescription-container efectoReveal">
        
             
             <div className="intensionesDescription-info-container">

@@ -44,9 +44,9 @@ export function BuyDigitalTalisman() {
 
 
   return (
-    <section className="buyDigitalTalisman-container">
+    <section className="buyDigitalTalisman-container efectoReveal">
       <div className="buyDigitalTalisman-internal-container">
-        <img src={talismanDigital} alt="talisman digital" />
+        <img src={ejemploTalismanes[index].image} alt="talisman digital" />
         <div className="buyDigitalTalisman-internal-bullet-container left">
           {ejemploTalismanes.map((item, i) => {
             return (

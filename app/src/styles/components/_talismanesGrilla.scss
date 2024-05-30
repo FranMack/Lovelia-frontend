@@ -11,6 +11,8 @@
 .talismanesGrilla-top-image-container{
     height: 100%;
     width: 50%;
+    background-color: $color_background2;
+    
    
  
     img{
@@ -32,7 +34,7 @@
 .talismanesGrilla-bottom-image-container{
     width: 23%;
     aspect-ratio: 1;
-    background-color: $color_background1;
+    background-color: $color_background2;
     img{
         height: 100%;
         width: 100%;

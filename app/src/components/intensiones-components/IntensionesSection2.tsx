@@ -2,7 +2,7 @@ import { CarruselIntensiones } from "../CarruselIntensiones";
 
 import wallpaper from "../../assets/images/intensiones-wallpaper2.png";
 import wallpaper2 from "../../assets/images/talisman-wallpaper.png";
-import talisman from "../../assets/images/ejemplos-talismanes/talisman-digital.png";
+import talisman from "../../assets/images/talisman-digital.png"
 
 import { WallpaperTipo1 } from "../WallpaperTipo1";
 import { Wallpaper1Options } from "../WallpaperTipo1";

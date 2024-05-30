@@ -11,6 +11,9 @@ import { PlacaTipo1 } from "../components/PlacaTipo1";
 import { PlacaTipo1Options } from "../components/PlacaTipo1";
 import { GiftComponent } from "../components/GiftComponent";
 import { useNavigate } from "react-router-dom";
+import { BackgroundVideo } from "../commons/BackgroundVideo";
+import { useContext } from "react";
+import { ShopingCartContext } from "../context/modalShopingCart";
 
 
 const infoPortada: PortadaTalismanOptions = {
@@ -72,11 +75,12 @@ navigatge("/comprar-talisman-digital")
       }
 
 
- 
- 
-  return (
-    <main className="landingTalisman">
+      const{menuOpen}=useContext(ShopingCartContext)
       
+      return (
+        <main className={menuOpen ? "viewport-background":"" } >
+            <BackgroundVideo/>
+      <BackgroundVideo/>
        
       <PortadaTalisman {...infoPortada} />
       <TalismanesComponent />

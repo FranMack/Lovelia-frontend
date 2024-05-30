@@ -46,16 +46,9 @@ export class ContactValidation {
       errors.push({ email: "Email is not valid" });
     }
 
-    //subject
-    if (!message) {
-      errors.push({
-        message: "Missing subject",
-      });
-    }
-
+   
     //message
 
-    //name
     if (!message) {
       errors.push({
         message: "Missing message",

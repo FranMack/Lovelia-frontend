@@ -1,7 +1,7 @@
 @import "../variables";
 
 .video-container {
-  position: fixed;
+  position: absolute;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
   justify-content: space-evenly;
-  z-index: -10;
+  z-index: -20;
   video{
     height: 100%;
     width: 100%;
@@ -17,5 +17,6 @@
     object-fit:cover;
     z-index: -10; /* Asegura que el video esté detrás del contenido */
     opacity: 0.7;
+  
   }
 }

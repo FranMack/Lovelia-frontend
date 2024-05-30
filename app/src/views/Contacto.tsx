@@ -3,14 +3,29 @@ import videoHome from "../assets/videos/videoHome.mp4";
 import { ContactValidation } from "../helpers/contactValidation";
 import { useForm } from "../hooks/useForm";
 import axios from "axios";
+import { PopUp } from "../commons/PopUp";
+import { PopUpOptions } from "../commons/PopUp";
 export function Contacto() {
   window.scrollTo(0, 0);
+
+  const [openPopUp, setOpenPopUp] = useState<boolean>(false);
+  const handlePopUp=()=>{
+    setOpenPopUp(!openPopUp)
+  }
+
+  const popUpProps:PopUpOptions={
+    title:"¡Gracias por tu consulta!",
+    text:"Nos comunicaremos de regreso pronto!",
+    buttonText:"Continuar",
+    handlePopUp:handlePopUp
+
+  }
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 0.4;
+      videoRef.current.playbackRate = 0.1;
     }
   }, [videoRef]);
 
@@ -92,6 +107,7 @@ export function Contacto() {
       .then((response) => {
         console.log(response);
         onResetForm();
+        handlePopUp()
       })
       .catch((error) => {
         console.log(error);
@@ -121,10 +137,15 @@ export function Contacto() {
     }
   };
 
+
+  console.log("xxxxxxxxxxxx",messageErrors)
+
+
   
 
   return (
-    <section className="login-container">
+    <section className={openPopUp ? "login-container modalOpen-styles":"login-container efectoReveal"}>
+     {openPopUp && <PopUp {...popUpProps}/>}
       <video autoPlay muted loop ref={videoRef}>
         <source src={videoHome} type="video/mp4" />
         Your browser does not support the video tag.
@@ -182,12 +203,7 @@ export function Contacto() {
           <span className="input-helpers-error">{messageErrors[0]}</span>
         )}
 
-        <div className="login-button-container">
-          <p>¿Has olvidado tu contraseña?</p>
-          <p>
-            Si aún no tienes una cuenta, <strong>Haz click aquí.</strong>
-          </p>
-        </div>
+      
         <button>ENVIAR</button>
       </form>
     </section>

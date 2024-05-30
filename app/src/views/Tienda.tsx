@@ -17,6 +17,8 @@ import { ejemploTalismanesAnalogicos } from "../assets/images/ejemplos-talismán
 import { GiftComponent } from "../components/GiftComponent";
 import videoTalisman from "../assets/videos/videoFondo.mp4";
 import { useNavigate } from "react-router-dom";
+import { BackgroundVideo } from "../commons/BackgroundVideo";
+
 
 const wallpaperInfo1: Wallpaper2Options = {
   image: wallpaperTalisman,
@@ -61,6 +63,7 @@ const infoPlaca2: PlacaTipo2Options = {
 export function Tienda() {
   window.scrollTo(0, 0);
 
+
   const navigatge=useNavigate();
 
   const linkToComprarTalismanAnalogico=()=>{
@@ -71,9 +74,11 @@ navigatge("/comprar-talisman-analogico")
     navigatge("/comprar-talisman-digital")
       }
   return (
-    <main className="tienda-container">
-        
+    <main className="tienda-container efectoReveal">
+      
+      <BackgroundVideo/>
       <div className="tienda-portada-container">
+     
         <div className="tienda-portada-internal-container">
           <img src={talismanFisico1} alt="Talisman fisico" />
           <div className="tienda-portada-internal-info-container">
@@ -113,10 +118,10 @@ navigatge("/comprar-talisman-analogico")
         button="Comprar talismán analógico"
         onClick={linkToComprarTalismanAnalogico}
       />
-      <video controls>
+     <video className="video-informativo" controls>
         <source src={videoTalisman} type="video/mp4" />
         Your browser does not support the video tag.
-      </video>
+  </video>
       <GiftComponent />
     </main>
   );

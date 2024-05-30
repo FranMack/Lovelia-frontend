@@ -1,0 +1,29 @@
+@import "../variables";
+
+.dropDown-container{
+    position: absolute;
+    width: 12vw;
+    background-color: red;
+   bottom: -70%;
+    background-color: $color_background1;
+    
+    
+
+    li{
+        padding-top: 5%;
+        padding-bottom: 5%;
+        padding-left: 5%;
+        font-size: 1.6rem;
+    font-weight: 400;
+    list-style: none;
+    color:$color_primary;
+    cursor: pointer;
+
+    &:hover{
+        color:$color_text1;
+        background-color: $color_primary;
+    }
+
+    }
+
+}

@@ -14,7 +14,7 @@ export function LoveliaIcon(){
 export function LoginIcon(){
 
     return(
-        <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24">
+        <svg  className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24">
   <path stroke="currentColor" strokeWidth="2" d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
 </svg>
 
@@ -44,7 +44,7 @@ export function ArrowUp({color}:ArrowIconOptions){
 
 
 export function FacebookIcon(){
-    return (<svg width="100%" height="100%" viewBox="-5 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+    return (<svg style={{cursor:"pointer"}} width="100%" height="100%" viewBox="-5 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
     
     <title>facebook [#176]</title>
     <desc>Created with Sketch.</desc>
@@ -64,7 +64,7 @@ export function FacebookIcon(){
 }
 
 export function InstagramIcon(){
-   return( <svg width="100%" height="100%" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+   return( <svg style={{cursor:"pointer"}} width="100%" height="100%" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
     
     <title>instagram [#167]</title>
     <desc>Created with Sketch.</desc>
@@ -86,7 +86,7 @@ export function InstagramIcon(){
 
 export function TwitterIcon(){
     return(
-        <svg width="100%" height="100%" viewBox="0 -2 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+        <svg style={{cursor:"pointer"}} width="100%" height="100%" viewBox="0 -2 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
     
     <title>twitter [#154]</title>
     <desc>Created with Sketch.</desc>
@@ -130,7 +130,7 @@ export function LeftArrowIcon({color}:ArrowIconOptions){
 }
 
 export function PlayIcon(){
-    return(<svg xmlns="http://www.w3.org/2000/svg" width="38" height="47" viewBox="0 0 38 47" fill="none">
+    return(<svg style={{cursor:"pointer"}} xmlns="http://www.w3.org/2000/svg" width="38" height="47" viewBox="0 0 38 47" fill="none">
     <path d="M0.5 0V47L37.6791 23.5L0.5 0Z" fill="#E0E0E0"/>
     </svg>)
 }
@@ -141,4 +141,16 @@ export function RightNextIcon(){
     return(<svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" fill="#0F0F0F"/>
     </svg>)
+}
+
+interface CloseIconOptions{
+    onClick:()=>void
+}
+
+export function CloseIcon({onClick}:CloseIconOptions){
+
+    return(<>
+    <svg onClick={onClick} style={{cursor:"pointer"}} width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z" fill="#0F0F0F"/>
+</svg></>)
 }

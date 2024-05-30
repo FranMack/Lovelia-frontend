@@ -1,17 +1,20 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState,useContext } from "react";
 import videoHome from "../assets/videos/videoHome.mp4";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "../hooks/useForm";
 import { LoginValidations } from "../helpers/loginValidations";
 import axios from "axios";
+import { UserContext } from "../context/userContext";
 export function Login() {
   window.scrollTo(0, 0);
+
+  const {setEmail,setId,setName,setToken,setLastname}=useContext(UserContext)
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 0.4;
+      videoRef.current.playbackRate = 0.1;
     }
   }, [videoRef]);
 
@@ -91,8 +94,13 @@ export function Login() {
         email: email,
         password: password,
       },{withCredentials:true})
-      .then((response) => {
-        console.log(response);
+      .then(({data}) => {
+        console.log(data);
+        setEmail(data.email)
+        setId(data.id)
+        setToken(data.token)
+        setName(data.name)
+        setLastname(data.lastname)
         onResetForm();
         navigatge("/");
       })
@@ -103,7 +111,7 @@ export function Login() {
   };
 
   return (
-    <section className="login-container">
+    <section className="login-container efectoReveal">
       <video autoPlay muted loop ref={videoRef}>
         <source src={videoHome} type="video/mp4" />
         Your browser does not support the video tag.

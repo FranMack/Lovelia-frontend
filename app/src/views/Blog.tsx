@@ -14,7 +14,9 @@ import imagenMusica from "../assets/images/imagen-musica.png"
 import imagenCaracol from "../assets/images/imagen-caracol.png"
 import { historias } from "../assets/images/historias/infoHistorias";
 import videoHome from "../assets/videos/videoHome.mp4"
-import { useRef,useEffect } from "react";
+import { useRef,useEffect, useContext } from "react";
+import { ShopingCartContext } from "../context/modalShopingCart";
+import { BackgroundVideo } from "../commons/BackgroundVideo";
 
 const infoPlaca: PlacaTipo1Options = {
   image: imagenBlog,
@@ -101,15 +103,15 @@ export function Blog() {
       videoRef.current.playbackRate = 0.4; 
     }
   }, [videoRef]);
-  return (
-    <main className="blog-container">
-       
+  
+  const{menuOpen}=useContext(ShopingCartContext)
+      
+      return (
+        <main className={menuOpen ? "viewport-background":"" } >
+       <BackgroundVideo/>
         <div className="portada-blog">
-        <video autoPlay muted loop ref={videoRef}>
-        <source src={videoHome} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <div className="auxiliar-container">
+       
+      <div className="portada-blog-auxiliar-container">
           <PlacaTipo1 {...infoPlaca} />
           </div>
         </div>

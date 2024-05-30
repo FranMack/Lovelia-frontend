@@ -1,0 +1,19 @@
+@import "../variables";
+
+.button-wide {
+    margin: 0 auto;
+    background-color: $color_primary;
+    width: 100%;
+    height: 50px;
+    padding: 16px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    color: $color_text1;
+    cursor: pointer;
+    border-radius: 30px;
+  }

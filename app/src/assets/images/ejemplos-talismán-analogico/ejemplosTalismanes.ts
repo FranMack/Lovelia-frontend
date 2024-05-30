@@ -1,7 +1,7 @@
-import imagen1 from "./talisman-fisico.png";
-import imagen2 from "./talisman-fisico2.png";
-import imagen3 from "./talisman-fisico.png";
-import imagen4 from "./talisman-fisico2.png";
+import imagen1 from "../talisman-fisico.png";
+import imagen2 from "../talisman-fisico2.png";
+import imagen3 from "../talisman-fisico.png";
+import imagen4 from "../talisman-fisico2.png";
 
 export interface ejemploTalismanAnalogicosOptions{
     title:string,

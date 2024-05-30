@@ -13,7 +13,7 @@ export function BackgroundVideo(){
   }, [videoRef]);
 
     return(<>
- <section className="video-container">
+ <section className="video-container efectoReveal">
 <video autoPlay muted loop ref={videoRef}>
         <source src={videoHome} type="video/mp4" />
         Your browser does not support the video tag.

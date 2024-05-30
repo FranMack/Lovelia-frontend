@@ -18,7 +18,7 @@ export function Register() {
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 0.4;
+      videoRef.current.playbackRate = 0.1;
     }
   }, [videoRef]);
 
@@ -146,7 +146,7 @@ export function Register() {
   };
 
   return (
-    <section className="login-container">
+    <section className="login-container efectoReveal">
       <video autoPlay muted loop ref={videoRef}>
         <source src={videoHome} type="video/mp4" />
         Ingresa tus datos para registrarte en lovelia..
