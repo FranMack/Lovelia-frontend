@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export function CarruselIntensiones(){
   const nanvigate= useNavigate()
-  const linkToIntension=(id)=>{
+  const linkToIntension=(id:number)=>{
     nanvigate(`/intensiones/${id}`)
 
   }

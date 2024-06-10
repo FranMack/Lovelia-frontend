@@ -63,6 +63,7 @@
 @import "./commons//buttonWide";
 @import "./views/checkoutAnalogic";
 @import "./commons/navbarDropDown";
+@import "./views//siteTerms";
 
 *{
     box-sizing: border-box;
@@ -73,7 +74,7 @@
 
 html{
     font-size: 62.5%;
-    background-color:$color_background1;
+    background-color:$color_background2;
     
 }
 
@@ -98,7 +99,7 @@ p{
   }
 
   ::-webkit-scrollbar-track {
-    background-color:#c8d5c6; /* Color de fondo de la pista de la barra de desplazamiento */
+    background-color:transparent /* Color de fondo de la pista de la barra de desplazamiento */
     
   }
 

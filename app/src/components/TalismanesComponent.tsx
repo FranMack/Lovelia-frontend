@@ -1,4 +1,5 @@
 import talismanDigital from "../assets/images/talisman-digital.png"
+import talismanGif from "../assets/images/gif/talismanGif.gif"
 import talismanFisico  from "../assets/images/talisman-fisico.png"
 import { ButtonArrowRight } from "../commons/ButtonArrowRight"
 import { Link } from "react-router-dom"
@@ -18,7 +19,7 @@ return(<section className="talismanesComponent-container">
     <div className="talismanesComponent-center-container">
        <div className="talismanesComponent-interal-conteiner">
            <div className="talismanesComponent-image-conteiner">
-               <img src={talismanDigital} alt="Talisman digital" />
+               <img src={talismanGif} alt="Talisman digital" />
            </div>
            <Link to="/talisman-digital"><h4>Talismán digital</h4></Link>
 

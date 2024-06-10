@@ -4,6 +4,8 @@ import { Wallpaper2Options } from "../components/WallpaperTipo2";
 import wallpaperTalisman from "../assets/images/talisman-wallpaper.png";
 import wallpaperColgante from "../assets/images/imagen-colgante.png";
 import wallpaperColgante2 from "../assets/images/imagen-colgante2.png";
+import talismanGif from "../assets/images/gif/talismanGif.gif"
+
 import talismanFisico from "../assets/images/talisman-fisico2.png";
 import talismanFisico1 from "../assets/images/talisman-fisico.png";
 import talismanDigital from "../assets/images/talisman-digital.png";
@@ -78,7 +80,16 @@ navigatge("/comprar-talisman-analogico")
       
       <BackgroundVideo/>
       <div className="tienda-portada-container">
+      <div className="tienda-portada-center-container">
      
+       
+        <div className="tienda-portada-internal-container">
+          <img src={talismanGif} alt="Talisman digital" />
+          <div className="tienda-portada-internal-info-container right">
+            <h4>Talismán digital</h4>
+            <Button text="Comprar ahora" onClick={linkToComprarTalismanDigital} />
+          </div>
+        </div>
         <div className="tienda-portada-internal-container">
           <img src={talismanFisico1} alt="Talisman fisico" />
           <div className="tienda-portada-internal-info-container">
@@ -86,13 +97,7 @@ navigatge("/comprar-talisman-analogico")
             <Button text="Comprar ahora" onClick={linkToComprarTalismanAnalogico} />
           </div>
         </div>
-        <div className="tienda-portada-internal-container">
-          <img src={talismanDigital} alt="Talisman digital" />
-          <div className="tienda-portada-internal-info-container right">
-            <h4>Talismán digital</h4>
-            <Button text="Comprar ahora" onClick={linkToComprarTalismanDigital} />
-          </div>
-        </div>
+      </div>
       </div>
 
       <WallpaperTipo2 {...wallpaperInfo1} onClick={linkToComprarTalismanDigital} />

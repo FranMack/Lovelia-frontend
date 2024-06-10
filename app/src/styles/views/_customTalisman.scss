@@ -1,8 +1,10 @@
 @import "../variables";
 
 .custonTalisman-container {
+
   width: 100vw;
   display: flex;
+  justify-content: center;
 }
 
 .custonTalisman-internal-container {
@@ -15,9 +17,7 @@
   background-color: $color_background1;
   > img {
     position: absolute;
-
     height: 80%;
-
     object-fit: cover;
     object-position: center;
   }

@@ -1,9 +1,5 @@
 import { useEffect, useState, useContext } from "react";
 import { TalismanModelContext } from "../context/talismanModelContext";
-import { TalismanMaterialContext } from "../context/talismanMaterialContext";
-import { TalismanRockContext } from "../context/talismanModelRock";
-import { TalismanChainContext } from "../context/talismaChainContext";
-import { TalismanIntentionsContext } from "../context/talismanIntentionsContext";
 
 interface Options {
   option: string;
@@ -22,14 +18,36 @@ export function DropdownMenu({ title, options }: DropdownMenuOptions) {
     setSelectedOption(event.target.value);
   };
 
-  const { setPriceModel, setOptionModel } = useContext(TalismanModelContext);
-  const { setPriceMaterial, setOptionMaterial } = useContext(
-    TalismanMaterialContext
-  );
-  const { setPriceRock, setOptionRock } = useContext(TalismanRockContext);
-  const { setPriceChain, setOptioChain } = useContext(TalismanChainContext);
-  const { setOptionIntention } = useContext(TalismanIntentionsContext);
-  
+  const {
+    optionModel,
+    optionMaterial,
+    optionChain,
+    priceChain,
+    optionRock,
+    optionIntention,
+    setPriceModel,
+    setOptionModel,
+    setPriceMaterial,
+    setOptionMaterial,
+    setPriceRock,
+    setOptionRock,
+    setPriceChain,
+    setOptioChain,
+    setOptionIntention,
+  } = useContext(TalismanModelContext);
+
+  useEffect(() => {
+    if (
+      !optionModel &&
+      !optionMaterial &&
+      !optionChain &&
+      !priceChain &&
+      !optionRock &&
+      !optionIntention
+    ) {
+      setSelectedOption("");
+    }
+  }, [optionModel]);
 
   useEffect(() => {
     if (title === "Elige el modelo") {
@@ -87,10 +105,8 @@ export function DropdownMenu({ title, options }: DropdownMenuOptions) {
           return item.option === selectedOption;
         });
         setOptionIntention(optionContex?.option!);
-      
       } else {
         setOptionIntention("");
-      
       }
     }
   }, [selectedOption]);

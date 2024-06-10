@@ -4,15 +4,31 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "../hooks/useForm";
 import { RegisterValidation } from "../helpers/registerValidation";
 import axios from "axios";
+import { PopUp, PopUpOptions } from "../commons/PopUp";
 
 export function Register() {
   window.scrollTo(0, 0);
+
+  const [openPopUp, setOpenPopUp] = useState<boolean>(false);
+  const handlePopUp=()=>{
+    setOpenPopUp(!openPopUp)
+  }
+
+  const popUpProps:PopUpOptions={
+    title:"¡Tu cunta ha sido registrada!",
+    text:"Recivirás un email que te permetira activar tu cuenta",
+    buttonText:"Continuar",
+    handlePopUp:handlePopUp
+
+  }
 
   const navigatge = useNavigate();
 
   const linkToLogin = () => {
     navigatge("/login");
   };
+
+  
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -114,8 +130,10 @@ export function Register() {
       .then((response) => {
         console.log(response);
         onResetForm();
-        navigatge("/login")
+        handlePopUp()
+        //navigatge("/login")
       })
+      
       .catch((error) => {
         console.log(error);
         setErrorsFromAPI(error.response.data.error)
@@ -146,7 +164,8 @@ export function Register() {
   };
 
   return (
-    <section className="login-container efectoReveal">
+    <section className={openPopUp ? "login-container modalOpen-styles":"login-container efectoReveal"}>
+    {openPopUp && <PopUp {...popUpProps} handleNavigate={linkToLogin}/>}
       <video autoPlay muted loop ref={videoRef}>
         <source src={videoHome} type="video/mp4" />
         Ingresa tus datos para registrarte en lovelia..
@@ -154,42 +173,46 @@ export function Register() {
       <form onSubmit={handleSubmit} className="login-form" action="">
         <h3>Crea tu cuenta</h3>
         <h6>Si ya estás registrado en lovelia, inicia sesión aquí:</h6>
+        <label htmlFor="name">Nombre</label>
         <input
           value={name}
           onChange={onInputChange}
           onBlur={() => handleBlur("name")}
           name="name"
           type="text"
-          placeholder="Nombre"
-          className={`${nameErrors.length > 0 || errorsFromAPI && "input-error"}`}
+          placeholder="Ej. Jonh"
+          className={`${(nameErrors.length > 0 || errorsFromAPI) && "input-error"}`}
         />
         {nameErrors.length > 0 && (
           <span className="input-helpers-error">{nameErrors[0]}</span>
         )}
+        <label htmlFor="lastname">Apellido</label>
         <input
           value={lastname}
           onChange={onInputChange}
           onBlur={() => handleBlur("lastname")}
           name="lastname"
           type="text"
-          placeholder="Apellido"
-          className={`${lastNameErrors.length > 0 || errorsFromAPI && "input-error"}`}
+          placeholder="Ej. Doe"
+          className={`${(lastNameErrors.length > 0 || errorsFromAPI) && "input-error"}`}
         />
         {lastNameErrors.length > 0 && (
           <span className="input-helpers-error">{lastNameErrors[0]}</span>
         )}
+        <label htmlFor="email">Apellido</label>
         <input
           value={email}
           onChange={onInputChange}
           onBlur={() => handleBlur("email")}
           name="email"
           type="email"
-          placeholder="Dirección de correo electrónico"
-          className={`${emailErrors.length > 0 || errorsFromAPI && "input-error"}`}
+          placeholder="ejemplo@gmail.com"
+          className={`${(emailErrors.length > 0 || errorsFromAPI) && "input-error"}`}
         />
         {emailErrors.length > 0 && (
           <span className="input-helpers-error">{emailErrors[0]}</span>
         )}
+        <label htmlFor="password">Contraseña</label>
         <input
           value={password}
           onChange={onInputChange}
@@ -197,18 +220,19 @@ export function Register() {
           name="password"
           type="password"
           placeholder="Contraseña"
-          className={`${passwordErrors.length > 0 || errorsFromAPI && "input-error"}`}
+          className={`${(passwordErrors.length > 0 || errorsFromAPI) && "input-error"}`}
         />
         {passwordErrors.length > 0 && (
           <span className="input-helpers-error">{passwordErrors[0]}</span>
         )}
+        <label htmlFor="confirmPassword">Confirmar contraseña</label>
         <input
           value={confirmPassword}
           onChange={onInputChange}
           name="confirmPassword"
           type="password"
           placeholder="Confirmar contraseña"
-          className={`${confirmPasswordError || errorsFromAPI && "input-error"}`}
+          className={`${(confirmPasswordError || errorsFromAPI) && "input-error"}`}
         />
         {confirmPasswordError && (
           <span className="input-helpers-error">

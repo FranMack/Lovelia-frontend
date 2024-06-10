@@ -9,7 +9,7 @@ export function Footer(){
 
     const mapaDelSitio=[{title:"Inicio",path:"/"},{title:"Talismán",path:"talisman-landing"},{title:"Intenciones",path:"intensiones"},{title:"Tienda",path:"tienda"},{title:"Talleres",path:"talleres"},{title:"Blog",path:"blog"}];
    
-    const otros:string[]=["Perfil de usuario", "Carrito de compras","Historial de compras"];
+    const otros=[ {title:"Perfil de usuario",path:"profile"},{title:"Carrito de compras",path:"profile"} ,{title:"Historial de compras",path:"profile"}];
     const nosotros:string[]=["Acerca de nosotros","Terminos y condiciones","Políticas de devolución", "Preguntas frecuentes", "Contáctanos"];
 
 
@@ -39,7 +39,7 @@ const navigate=useNavigate();
                     <h4>Otros</h4>
                     <ul>
                     {otros.map((item,i)=>{
-                            return(<li key={i}>{item}</li>)
+                            return(<li onClick={()=>linkToSection(item.path)} key={i}>{item.title}</li>)
                         })}
                     </ul>
                 </div>

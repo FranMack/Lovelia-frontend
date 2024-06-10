@@ -1,39 +1,42 @@
 @import "../variables";
 
 .checkout-container {
+  position: relative;
   width: 100vw;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  video {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    inset: 0;
+    object-fit: cover;
+    z-index: -1; /* Asegura que el video esté detrás del contenido */
+    opacity: 0.7;
+  }
 
   ::-webkit-scrollbar {
     width: 10px; /* Ancho de la barra de desplazamiento */
-    
   }
-  
+
   /* Estilo para el thumb (el botón que puedes arrastrar) de la barra de desplazamiento */
   ::-webkit-scrollbar-thumb {
-       background-color:$color_primary; /* Cambia "#color_primary" al color deseado */
+    background-color: $color_primary; /* Cambia "#color_primary" al color deseado */
     border-radius: 5px; /* Radio de borde del dedo de la barra de desplazamiento */
     height: 10px;
   }
-  
+
   /* Estilo para el riel de la barra de desplazamiento */
   ::-webkit-scrollbar-track {
     background-color: $color_background1; /* Cambia "#color_background1" al color deseado */
   }
-  
+
   /* Estilo para el rincón de la barra de desplazamiento */
   ::-webkit-scrollbar-corner {
     background-color: red; /* Cambia "red" al color deseado */
     width: 20px;
   }
-
-
-
-
 }
 
 .checkout-top-container {
@@ -86,7 +89,7 @@
   background-color: $color_background1;
   padding-top: 3vh;
   padding-bottom: 3vh;
-  .checkout-title-container{
+  .checkout-title-container {
     width: 80%;
     margin: 0 auto;
     h3 {
@@ -99,8 +102,6 @@
       font-weight: 400;
     }
   }
-
- 
 }
 
 .checkout-botton-right-container {
@@ -117,7 +118,7 @@
 
   h3 {
     margin-top: 4vh;
- 
+
     margin-left: 7.5%;
     font-size: 4rem;
     font-style: normal;
@@ -133,7 +134,7 @@
     font-weight: 400;
     line-height: normal;
   }
-  p {
+  > p {
     margin-left: 7.5%;
     margin-bottom: 1.5%;
     font-family: $font_titulos;
@@ -145,6 +146,49 @@
       cursor: pointer;
     }
   }
+
+  .checkout-form-names-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 2vh;
+
+    .checkout-form-names-internal-container {
+      width: 47%;
+      >label{
+        width: 100%; 
+        margin: 0 auto;
+        font-size: 1.2rem;
+       font-weight: 400;
+      }
+
+      input {
+        margin-top: 0.3vh;
+        padding-left: 2%;
+        width: 100%;
+        height: 6vh;
+        font-size: 1.4rem;
+        border: 1px solid rgba(187, 187, 187, 0.3);
+        background: $color_background2;
+        cursor: pointer;
+      }
+      .input-error {
+        border: solid 2px red;
+        margin-bottom: 1vh;
+        font-size: 1.5rem;
+      }
+    
+    }
+  }
+
+  >label{
+    width: 100%; 
+    margin: 0 auto;
+    font-size: 1.2rem;
+   font-weight: 400;
+   margin-bottom: 0.3vh;
+  }
+
   > input {
     margin: 0 auto;
     margin-bottom: 2vh;
@@ -161,8 +205,35 @@
     margin-bottom: 1vh;
   }
 
+  .complementary-info-payment-container {
+    background-color: $color_background2;
+    text-align: start;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding: 2%;
+    border-radius: 10px;
+    p {
+      color: $color_primary;
+      font-family: $font_titulos;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+  }
+  .complementary-info-payment-container.error {
+    border: solid 2px red;
+    text-align: center;
+    margin-bottom: 0;
+    padding: 5%;
+    p {
+      color: red;
+    }
+  }
+
   button {
     margin: 0 auto;
+    margin-top: 2vh;
     background-color: $color_primary;
     width: 100%;
     height: 50px;
@@ -180,58 +251,56 @@
   }
 }
 
-.checkout-tipo-envio-container{
+.checkOut-helpers-error {
+  color: red;
+  margin-bottom: 1.5vh;
+  font-family: $font_titulos;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.checkout-tipo-envio-container {
   width: 100%;
   margin: 0 auto;
 
-  margin-bottom: 4vh;
- 
-
-  color:$color_primary;
-  h5{
+  color: $color_primary;
+  h5 {
     font-size: 1.8rem;
     font-weight: 400;
     margin-bottom: 3vh;
   }
-  p{
+  p {
     font-size: 1.4rem;
-  font-weight: 400;
-  font-family: $font_titulos;
-  color:$color_text2;
-
+    font-weight: 400;
+    font-family: $font_titulos;
+    color: $color_text2;
   }
-  
-  .tipo-envio{
- 
-      display: flex;
+
+  .tipo-envio {
+    display: flex;
     align-items: center;
     justify-content: start;
     column-gap: 10%;
     font-size: 1.6rem;
-  font-weight: 700;
-  .tipo-envio-auxiliar{
-    width: 50%;
-  }
+    font-weight: 700;
+    .tipo-envio-auxiliar {
+      width: 50%;
+    }
 
-
-    label{
+    label {
       display: flex;
       align-items: center;
-      
-      
-      input[type="radio"]
-        {margin-right: 12px;
-          height: 20px;
-          aspect-ratio: 1;
-        
-          
+
+      input[type="radio"] {
+        margin-right: 12px;
+        height: 20px;
+        aspect-ratio: 1;
       }
     }
   }
 }
-
-
-
 
 .checkout-botton-right-center-container {
   width: 85%;
@@ -252,28 +321,27 @@
   display: flex;
   background-color: $color_background2;
 
-  .card-image-container{
+  .card-image-container {
     width: 30%;
     aspect-ratio: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     img {
-        height: 80%;
-        aspect-ratio: 1;
-        background-color: $color_background1;
-      }
+      height: 80%;
+      aspect-ratio: 1;
+      background-color: $color_background1;
+    }
   }
- 
 
   p {
     font-size: 0.8rem;
     font-family: $font_titulos;
     font-weight: 300;
   }
- .precio-unitario-container{
+  .precio-unitario-container {
     margin-bottom: 5%;
- }
+  }
 }
 
 .checkout-card-info-container {
@@ -284,7 +352,6 @@
   flex-direction: column;
   align-items: start;
   justify-content: space-between;
- 
 
   table {
     width: 90%;
@@ -326,14 +393,14 @@
 }
 
 .checkout-price-container {
-    margin: 0 auto;
+  margin: 0 auto;
   width: 90%;
   .checkout-prince {
     margin: 0 auto;
     width: 85%;
     display: flex;
     justify-content: space-between;
-  margin-bottom: 2%;
+    margin-bottom: 2%;
     p {
       font-size: 1.6rem;
       font-weight: 400;

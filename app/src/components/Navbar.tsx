@@ -12,12 +12,12 @@ export function Navbar() {
   const { menuOpen, togleMenu } = useContext(ShopingCartContext);
   const { email, name, lastname } = useContext(UserContext);
 
-  const [shopingCartItems, setShopingCartItems] = useState<number>(0);
+ 
 
-  useEffect(() => {
+    //Guarda ver que si no es necesario agrgar algun estado para el manejo de localstorage
     const shopingCartJSON = localStorage.getItem('shopingCart') || "[]";
-    setShopingCartItems(JSON.parse(shopingCartJSON).length);
-  }, []);
+    const shopingCartItems=(JSON.parse(shopingCartJSON).length);
+
 
   const navigate = useNavigate();
 
@@ -66,7 +66,15 @@ export function Navbar() {
       title: "Intenciones",
       path: ["intensiones"],
       buttonOptions: [
-       
+        { buttonName: "Coraje", path: "intensiones/1" },
+        { buttonName: "Yo verdadero", path: "intensiones/2" },
+        { buttonName: "Abundancia", path: "intensiones/3" },
+        { buttonName: "Amor incondicional", path: "intensiones/4" },
+        { buttonName: "Aquí y ahora", path: "intensiones/5" },
+        { buttonName: "Gratitud", path: "intensiones/6" },
+        { buttonName: "Potencial infinito", path: "intensiones/7" },
+        { buttonName: "Sabiduría", path: "intensiones/8" },
+   
       ],
     },
     {
@@ -115,7 +123,7 @@ export function Navbar() {
   
 
   return (
-    <nav
+    <nav onMouseLeave={()=>handleMouseLeave()}
       className={`navbar-container ${scrollPosition > 10 && "navbar-move"} ${
         menuOpen ? "viewport-background" : ""
       }`}
@@ -123,10 +131,10 @@ export function Navbar() {
       <div onClick={linkToHome} className="navbar-logo-container">
         <img src={logo} alt="Logo-Lovelia" />
       </div>
-      <ul className="navbar-menu" >
+      <ul className="navbar-menu"  >
         {navbarButtons.map((button, i) => {
           return (
-            <div className="navbar-button-menu-container"  onMouseMove={()=>{handleMouseOver(button.path[0])}} >
+            <div className="navbar-button-menu-container"  onMouseEnter ={()=>{handleMouseOver(button.path[0])}}  >
               {button.path.includes(buttonFocusPosition) ? (
                 <>
                 <li 

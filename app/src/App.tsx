@@ -15,19 +15,21 @@ import { BuyDigitalTalisman } from './views/BuyDigitalTalisman'
 import { Blog } from './views/Blog'
 import { IntensionDescription } from './views/IntensionDescription'
 import { Profile } from './views/Profile'
+import { SiteTerms } from './views/SiteTerms'
 import { ShopingCart } from './components/ShopingCart'
 import { useContext, useEffect } from 'react'
 import { ShopingCartContext } from './context/modalShopingCart'
 import { CheckOutAnalogic } from './views/CheckOutAnalogic'
 import { UserContext } from './context/userContext'
 import axios from 'axios'
+import { ToastContainer } from "react-toastify";
 
 
 
 function App() {
 
   const{menuOpen}=useContext(ShopingCartContext)
-  const{setEmail,setId,setName,setLastname}=useContext(UserContext)
+  const{setEmail,setId,setName,setLastname,setSuscription}=useContext(UserContext)
 
   useEffect(()=>{
     axios.get("http://localhost:3000/api/v1/user/me",{ withCredentials: true })
@@ -36,6 +38,7 @@ function App() {
       setId(data.id)
       setName(data.name)
       setLastname(data.lastname)
+      setSuscription(data.payment)
     })
     .catch((error)=>{console.log(error)})
   },[])
@@ -44,6 +47,7 @@ function App() {
 
   return (
     <>
+    <ToastContainer/>
     <Navbar/>
     {menuOpen && <ShopingCart/>}
       <Routes>
@@ -64,6 +68,8 @@ function App() {
         <Route path="/blog" element={<Blog/>}/>
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/checkout/store" element={<CheckOutAnalogic/>}/>
+        <Route path="/terms" element={<SiteTerms/>}/>
+
 
 
 

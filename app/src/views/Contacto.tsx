@@ -138,7 +138,7 @@ export function Contacto() {
   };
 
 
-  console.log("xxxxxxxxxxxx",messageErrors)
+  
 
 
   
@@ -154,49 +154,53 @@ export function Contacto() {
         <h3>Habla con nosotros</h3>
         <h6>Completa el formulario para enviar tu consulta.</h6>
 
+      <label htmlFor="name">Nombre</label>
         <input
           value={name}
           onChange={onInputChange}
           onBlur={() => handleBlur("name")}
           name="name"
           type="text"
-          placeholder="Nombre"
+          placeholder="Ej. John Doe"
           className={`${nameErrors.length > 0 && "input-error"}`}
         />
         {nameErrors.length > 0 && (
           <span className="input-helpers-error">{nameErrors[0]}</span>
         )}
+        <label htmlFor="subject">Asunto</label>
         <input
           value={subject}
           onChange={onInputChange}
           onBlur={() => handleBlur("subject")}
           name="subject"
           type="text"
-          placeholder="Asunto"
+          placeholder="Ej. Consulta"
           className={`${subjectErrors.length > 0 && "input-error"}`}
         />
         {subjectErrors.length > 0 && (
           <span className="input-helpers-error">{subjectErrors[0]}</span>
         )}
+        <label htmlFor="email">Email</label>
         <input
           value={email}
           onChange={onInputChange}
           onBlur={() => handleBlur("email")}
           name="email"
           type="email"
-          placeholder="Dirección de correo electrónico"
+          placeholder="ejemplo@gmail.com"
           className={`${emailErrors.length > 0 && "input-error"}`}
         />
         {emailErrors.length > 0 && (
           <span className="input-helpers-error">{emailErrors[0]}</span>
         )}
 
+      <label htmlFor="message">Mensaje</label>
         <textarea
           value={message}
           onChange={onInputChange}
           onBlur={() => handleBlur("message")}
           name="message"
-          placeholder="Escribe tu mensaje acá"
+          placeholder="Escribe tu mensaje aqui"
           className={`${messageErrors.length > 0 && "input-error"}`}
         />
         {messageErrors.length > 0 && (

@@ -12,13 +12,72 @@ import { DropdownInfoOptions } from "../commons/DropdownInfo";
 import { useOpenModal } from "../hooks/useOpenModal";
 import { DropDownIntensiones } from "../commons/DropDownIntensiones";
 import { TalismanModelContext } from "../context/talismanModelContext";
-import { TalismanMaterialContext } from "../context/talismanMaterialContext";
-import { TalismanRockContext } from "../context/talismanModelRock";
-import { TalismanChainContext } from "../context/talismaChainContext";
-import { TalismanIntentionsContext } from "../context/talismanIntentionsContext";
+import { useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { toast} from "react-toastify";
+
+const modelOptions: DropdownMenuOptions = {
+  title: "Elige el modelo",
+  options: [
+    { option: "Aura", price: 300 },
+    { option: "Halo", price: 400 },
+    { option: "Bindu", price: 500 },
+  ],
+};
+const materialOptions: DropdownMenuOptions = {
+  title: "Elige el material del modelo",
+  options: [
+    { option: "Oro", price: 30 },
+    { option: "Plata", price: 20 },
+    { option: "Acero", price: 10 },
+  ],
+};
+
+const piedraOptions: DropdownMenuOptions = {
+  title: "Elige tu piedra",
+  options: [
+    { option: "Amatista", price: 15 },
+    { option: "Cuarzo rosa", price: 20 },
+    { option: "Ojo de tigre", price: 25 },
+    { option: "Lapislázuli", price: 30 },
+    { option: "Ágata", price: 45 },
+    { option: "Jaspe", price: 20 },
+    { option: "Ónix", price: 15 },
+  ],
+};
+
+const chainOptions: DropdownMenuOptions = {
+  title: "Elige el tipo de cadena",
+  options: [
+    { option: "Oro", price: 20 },
+    { option: "Plata", price: 15 },
+    { option: "Acero", price: 10 },
+    { option: "Tiento", price: 5 },
+  ],
+};
+
+const intencionOptions: DropdownMenuOptions = {
+  title: "Elige tu intención",
+  options: [
+    { option: "Abundancia", price: 0 },
+    { option: "Amor incondicional", price: 0 },
+    { option: "Aquí y ahora", price: 0 },
+    { option: "Coraje", price: 0 },
+    { option: "Gratitud", price: 0 },
+    { option: "Potencial infinito", price: 0 },
+    { option: "Sabiduría de la incertidumbre", price: 0 },
+    { option: "Yo verdadero", price: 0 },
+  ],
+};
 
 export function CustomTalisman() {
+
   window.scrollTo(0, 0);
+  const navigate=useNavigate()
+  const linkToCheckOut=()=>{
+    navigate("/checkout/store")
+  }
+
   const [index, setIndex] = useState<number>(0);
 
   const handleIndex = () => {
@@ -33,65 +92,28 @@ export function CustomTalisman() {
   const dropdownInfoTalisman = useOpenModal();
   const dropdownIntensiones = useOpenModal();
 
-  const { priceModel,optionModel } = useContext(TalismanModelContext);
-  const { priceMaterial,optionMaterial } = useContext(TalismanMaterialContext);
-  const { priceRock,optionRock } = useContext(TalismanRockContext);
-  const { priceChain,optionChain } = useContext(TalismanChainContext);
-  const { optionIntention} = useContext(TalismanIntentionsContext);
-
-  const modelOptions: DropdownMenuOptions = {
-    title: "Elige el modelo",
-    options: [
-      { option: "Aura", price: 300 },
-      { option: "Halo", price: 400 },
-      { option: "Bindu", price: 500 },
-    ],
-  };
-  const materialOptions: DropdownMenuOptions = {
-    title: "Elige el material del modelo",
-    options: [
-      { option: "Oro", price: 30 },
-      { option: "Plata", price: 20 },
-      { option: "Acero", price: 10 },
-    ],
-  };
-
-  const piedraOptions: DropdownMenuOptions = {
-    title: "Elige tu piedra",
-    options: [
-      { option: "Amatista", price: 15 },
-      { option: "Cuarzo rosa", price: 20 },
-      { option: "Ojo de tigre", price: 25 },
-      { option: "Lapislázuli", price: 30 },
-      { option: "Ágata", price: 45 },
-      { option: "Jaspe", price: 20 },
-      { option: "Ónix", price: 15 },
-    ],
-  };
-
-  const chainOptions: DropdownMenuOptions = {
-    title: "Elige el tipo de cadena",
-    options: [
-      { option: "Oro", price: 20 },
-      { option: "Plata", price: 15 },
-      { option: "Acero", price: 10 },
-      { option: "Tiento", price: 5 },
-    ],
-  };
-
-  const intencionOptions: DropdownMenuOptions = {
-    title: "Elige tu intención",
-    options: [
-      { option: "Abundancia", price: 0 },
-      { option: "Amor incondicional", price: 0 },
-      { option: "Aquí y ahora", price: 0 },
-      { option: "Coraje", price: 0 },
-      { option: "Gratitud", price: 0 },
-      { option: "Potencial infinito", price: 0 },
-      { option: "Sabiduría de la incertidumbre", price: 0 },
-      { option: "Yo verdadero", price: 0 },
-    ],
-  };
+  const {
+    priceModel,
+    optionModel,
+    priceMaterial,
+    optionMaterial,
+    priceRock,
+    optionRock,
+    priceChain,
+    optionChain,
+    optionIntention,
+    setOptionModel,
+    setPriceModel,
+    setOptionMaterial,
+    setPriceMaterial,
+    setOptioChain,
+    setPriceChain,
+    setOptionRock,
+    setPriceRock,
+    setOptionIntention,
+    setPriceIntention,
+    
+  } = useContext(TalismanModelContext);
 
   const talismanDropDownInfo: DropdownInfoOptions = {
     name: "Tu talisman",
@@ -151,29 +173,57 @@ export function CustomTalisman() {
     handleDropDown: dropdownDevoluciones.handleOpenModal,
   };
 
-
   const addToShopingCart = () => {
-    if (optionModel && optionMaterial && optionRock && optionChain && optionIntention) {
-      const shopingCartJSON = localStorage.getItem('shopingCart') || "[]";
+    if (
+      optionModel &&
+      optionMaterial &&
+      optionRock &&
+      optionChain &&
+      optionIntention
+    ) {
+      const shopingCartJSON = localStorage.getItem("shopingCart") || "[]";
       const shopingCart = JSON.parse(shopingCartJSON);
-      const shopingCartNewItem = {id:Math.round(Math.random()*10000),product:"Talisman analógico",model:optionModel, material:optionMaterial, rock:optionRock, chain:optionChain, intention:optionIntention, image:ejemploTalismanesAnalogicos[0].image,price:priceModel + priceMaterial + priceRock + priceChain,quantity:1};
-      const shopingCartUpdate = [shopingCartNewItem,...shopingCart];
-      localStorage.setItem('shopingCart', JSON.stringify(shopingCartUpdate));
-      //agregar un pop up
-      alert("Agregado al carrito de compras");
-      return
+      const shopingCartNewItem = {
+        id: Math.round(Math.random() * 10000),
+        product: "Talisman analógico",
+        model: optionModel,
+        material: optionMaterial,
+        rock: optionRock,
+        chain: optionChain,
+        intention: optionIntention,
+        image: ejemploTalismanesAnalogicos[0].image,
+        price: priceModel + priceMaterial + priceRock + priceChain,
+        quantity: 1,
+      };
+      const shopingCartUpdate = [shopingCartNewItem, ...shopingCart];
+      localStorage.setItem("shopingCart", JSON.stringify(shopingCartUpdate));
+
+      toast.success("AÑADIDO AL CARRITO");
+      setOptionModel("")
+      setPriceModel(0)
+      setOptionMaterial("")
+      setPriceMaterial(0)
+      setOptioChain("")
+      setPriceChain(0)
+      setOptionRock("")
+      setPriceRock(0)
+      setOptionIntention("")
+      setPriceIntention(0)
+
+      return;
     } else {
       //agregar un pop up
       alert("Debe completar todos los campos del talismán");
-      return
+      return;
     }
-  }
-  
+  };
 
+ 
 
 
   return (
     <section className="custonTalisman-container">
+  
       <div className="custonTalisman-internal-container left">
         <img
           src={ejemploTalismanesAnalogicos[index].image}
@@ -217,7 +267,9 @@ export function CustomTalisman() {
       <div className="custonTalisman-internal-container right">
         <div className="custonTalisman-internal-center-container">
           <h6>Inicio /Tienda /Talisman analógico</h6>
-          <h5>${priceModel + priceMaterial + priceRock + priceChain}</h5>
+          <h5>
+            ${(priceModel + priceMaterial + priceRock + priceChain).toFixed(2)}
+          </h5>
           <h3>Talisman Analógico</h3>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -254,7 +306,15 @@ export function CustomTalisman() {
             <DropDownInfo {...devolucionesDropDownInfo} />
           )}
           <div className="buttons-container">
-            <Button text={`$${priceModel + priceMaterial + priceRock + priceChain}  Ir a comprar`} />
+            <Button
+            onClick={linkToCheckOut}
+              text={`$${(
+                priceModel +
+                priceMaterial +
+                priceRock +
+                priceChain
+              ).toFixed(2)}  Ir a comprar`}
+            />
             <div className="auxiliar-buttons-container">
               {!dropdownDevoluciones.openModal && (
                 <ButtonArrowUp
@@ -264,7 +324,10 @@ export function CustomTalisman() {
                 />
               )}
 
-              <Button onClick={addToShopingCart} text="Agregar al carrito de compras" />
+              <Button
+                onClick={addToShopingCart}
+                text="Agregar al carrito de compras"
+              />
             </div>
           </div>
         </div>

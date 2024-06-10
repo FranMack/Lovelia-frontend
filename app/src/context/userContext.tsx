@@ -6,11 +6,13 @@ interface UserContextValue {
   token:string;
   name:string,
   lastname:string,
+  subscription:boolean
   setId: (id: string) => void;
   setEmail: (email: string) => void;
   setToken:(token: string) => void;
   setName:(name: string) => void;
   setLastname:(name: string) => void;
+  setSuscription:(subscription:boolean)=>void;
 }
 
 interface UserContextProviderProps {
@@ -23,11 +25,13 @@ const userContextDefaultValue: UserContextValue = {
   token:"",
   name:"",
   lastname:"",
+  subscription:false,
   setId: () => {},
   setEmail: () => {},
   setToken: () => {},
   setName: () => {},
   setLastname: () => {},
+  setSuscription: () => {},
 };
 
 export const UserContext = createContext<UserContextValue>(userContextDefaultValue);
@@ -38,6 +42,7 @@ const UserContextProvider = ({ children }: UserContextProviderProps) => {
   const [token, setToken] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [lastname, setLastname] = useState<string>("");
+  const [subscription, setSuscription] = useState<boolean>(false);
 
   const value: UserContextValue = {
     id,
@@ -45,11 +50,13 @@ const UserContextProvider = ({ children }: UserContextProviderProps) => {
     token,
     name,
     lastname,
+    subscription,
     setId,
     setEmail,
     setToken,
     setName,
-    setLastname
+    setLastname,
+    setSuscription
   };
 
   return (

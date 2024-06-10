@@ -11,5 +11,10 @@ export const regularExpresions = {
     contain_letter: /[a-z]/,
     //letra mayuscula
     contain_Capital_leter: /[A-Z]/,
+    //cotiene solo numeros
+      only_numbers:/^\d+$/,
+      //telefono 
+      phone :/^\+?\d[\d\s]*$/
+
   };
   

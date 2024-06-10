@@ -58,7 +58,7 @@ const linkToCheckOut=()=>{
         <div className="shoping-cart-conteiner shopingCartReveal">
             <div className="shoping-cart-top-container">
                 <div className="shoping-cart-title">
-                <h4>Carrito de compras</h4>
+                <h4>Carrito de compras{shopingCartItems.length>0 && ` (${shopingCartItems.length})`}</h4>
                 <CloseIcon onClick={togleMenu}/>
                 </div>
             </div>

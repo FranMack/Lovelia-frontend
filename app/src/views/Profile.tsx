@@ -1,8 +1,11 @@
 import { Button } from "../commons/Button"
 import { BackgroundVideo } from "../commons/BackgroundVideo"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import talismanAnalogico from "../assets/images/talisman-fisico.png"
 import { ShopingCartContext } from "../context/modalShopingCart"
+import { UserContext } from "../context/userContext"
+import talismanDigital from "../assets/images/talisman-wallpaper.png"
+import axios from "axios"
 
 interface DatosCompra{
     producto:string,
@@ -13,18 +16,35 @@ interface DatosCompra{
    
 
 }
-const sections=["Datos de la cuenta","Historial de compras","Carrito de compras"]
 
-const datosUsuarios={
-    usuario: "AmparoB",
-    nombre: "Amparo",
-    apellido: "Bernave",
-    email: "amparo@gmail.com",
-    direccion:"Argentina, CABA, Av. San José 345, piso 6, apto 65.",
-    telefono:"+54 01182492273",
-    codigoPostal:2365,
-    formaDePago:"Mercado Pago"
+interface ShopingHistoryItem{
+    id: string;
+    name: string;
+    model: string;
+    material: string;
+    rock: string;
+    chain: string;
+    price: number;
+    quantity: number;
+    date: string;
+    user_id: string;
+    order_id: string;
+    payment_method: string;
+    receiver: string;
+    address: string;
+    postalCode: string;
+    phone:string
 }
+
+type ShopingHistory= ShopingHistoryItem[]
+
+
+
+
+
+const sections=["Datos de la cuenta","Historial de compras"]
+
+
 
 
 const datosCompras:DatosCompra[]=[
@@ -45,6 +65,32 @@ export function Profile(){
 
 
     const{menuOpen}=useContext(ShopingCartContext)
+    const{name,lastname,email,subscription,id}=useContext(UserContext)
+
+
+
+    const [shopingHistory,setShopingHistory]=useState<ShopingHistory[]>([])
+    const [index,setIndex]=useState<number>(0)
+
+
+    const handleIndex=(index:number)=>{
+        setIndex(index)
+    }
+
+
+    useEffect (()=>{
+        if(email){
+        axios.get(`http://localhost:3000/api/v1/product/list/${email}`,{withCredentials:true})
+        .then((response)=>{setShopingHistory(response.data)})
+        .catch((error)=>{
+            console.log(error)
+        })
+    }
+    },[email])
+
+
+
+console.log("INDEX",index)
       
       return (
         <main className={menuOpen ? "viewport-background":"" } >
@@ -65,20 +111,20 @@ export function Profile(){
           <div className="profile-botton-container">
                 <div className="profile-botton-internal-left-container">
                 <div className="profile-item-info-container">
-                      <h5>Usuario</h5>
-                        <input type="text" value={datosUsuarios.usuario}/>
+                      <h5>Nombre</h5>
+                        <input type="text" value={name}/>
                         </div>
                         <div className="profile-item-info-container">
-                      <h5>Nombre y apellido</h5>
-                        <input type="text" value={`${datosUsuarios.nombre} ${datosUsuarios.apellido}`}/>
+                      <h5>Apellido</h5>
+                        <input type="text" value={lastname}/>
                         </div>
                         <div className="profile-item-info-container">
                       <h5>Correo electrónico</h5>
-                        <input type="email" value={datosUsuarios.email}/>
+                        <input type="email" value={email}/>
                         </div>
                     <div className="profile-item-info-container">
-                      <h5>Contraseña</h5>
-                        <input type="password" value="123456"/>
+                      <h5>Suscripción</h5>
+                        <input type="text" value={subscription ? "Activa" :"Inactiva"}/>
                         </div>
 
                         <button>Modificar datos de perfil</button>
@@ -88,7 +134,8 @@ export function Profile(){
 
                     <h4>Mi Talismán Digital</h4>
                     <div className="profile-botton-image-container">
-                        <p>Aún no tienes un talismán digital</p>
+                        {subscription ? <img className="profile-talismanDigital-image" src={talismanDigital} alt="talisman Digital" />
+                        :<p>Aún no tienes un talismán digital</p>}
                     </div>
                     <div className="auxiliar-button-container">
 
@@ -98,21 +145,29 @@ export function Profile(){
 
             </div>}
 
-            { buttonFocusPosition==="Historial de compras" && <div className="profile-historial-container">
+            { buttonFocusPosition==="Historial de compras" && 
+            
+            <div className="profile-historial-container">
 
 
+            {shopingHistory.length<=0 ? 
+            <div className="profile-historial-container-noRegister">
+                <h4>No se encuentran registros de compra</h4>
+            </div>:
+            
+             <>
             <div className="profile-historial-internal-left-container">
-                    {datosCompras.map((item)=>{
+                    {shopingHistory.length>0 && shopingHistory.map((item,i)=>{
                         return(
-                            <div key={item.numPedido} className="profile-historial-item-card">
+                            <div onClick={()=>handleIndex(i)} key={item[0].order_id} className="profile-historial-item-card">
                                
                                <div className="auxiliar">
-                                <h4>{item.producto}</h4>
-                                <p>{item.fecha}</p>
+                                <h4>Compra Nº{shopingHistory.length -i}</h4>
+                                <p>{item[0].date}</p>
                                 </div>
-                                <p>{`Nº de pedido: ${item.numPedido}`}</p>
-                                <p><span>Precio unitario</span></p>
-                                <strong>{`$ ${item.precio}`}</strong>
+                                <p>{`Nº de pedido: ${item[0].order_id}`}</p>
+                                {/*<p><span>Precio unitario</span></p>
+                                <strong>{`$ ${item[0].unit_price}`}</strong>*/}
                               
                                
                                 
@@ -134,8 +189,8 @@ export function Profile(){
 <div className="profile-historial-detalle-container">
 
     <div className="profile-historial-detalle-center-container">
-    <p>{`Nro. pedido:${datosCompras[0].numPedido}`}</p>
-    <p>{`Fecha:${datosCompras[0].fecha}`}</p>
+    <p>{`Nro. pedido:${shopingHistory.length>0 && shopingHistory[index][0].order_id}`}</p>
+    <p>{`Fecha:${ shopingHistory.length>0 && shopingHistory[index][0].date}`}</p>
     <hr />  
     <div  className="product-image-container">
     {datosCompras[0].image.map((item,i)=>{
@@ -148,25 +203,22 @@ export function Profile(){
     <hr />
     <table>
         <tr>
-    <th className="table-title">Producto</th>
+    <th className="table-title">Producto <span>{`(Material - Piedra - Colgado )`}</span></th>
     <th className="table-title">Precio</th>
     </tr>
-    {/*mapeo ===>*/}
-    <tr>
-    <td>{datosCompras[0].producto}</td>
-    <td>{`$ ${datosCompras[0].precio}`}</td>
+    {shopingHistory.length>0 && shopingHistory[index].map((item)=>{
+
+        return(
+            <tr>
+    <td>{`${item.name} ${item.model} (${item.material}-${item.rock}-${item.chain})`}</td>
+    <td>{`$ ${item.price}`}</td>
     </tr>
-    <tr>
-    <td>{datosCompras[0].producto}</td>
-    <td>{`$ ${datosCompras[0].precio}`}</td>
-    </tr>
-    <tr>
-    <td>{datosCompras[0].producto}</td>
-    <td>{`$ ${datosCompras[0].precio}`}</td>
-    </tr>
+        )
+    })}
+
     <tr>
     <td>TOTAL</td>
-    <td>$ 4000</td>
+    <td>$ {shopingHistory.length>0 && shopingHistory[0].reduce((a,b)=>{return a + b.price},0)}</td>
     </tr>
     
     </table>
@@ -175,16 +227,16 @@ export function Profile(){
     <div className="envio-info-container">
         <div className="envio-info-auxiliar-container">
             <h5>Dirección de envío</h5>
-            <p>{`${datosUsuarios.nombre} ${datosUsuarios.apellido}`}</p>
-            <p>{datosUsuarios.direccion}</p>
-            <p>{datosUsuarios.codigoPostal}</p>
-            <p>{datosUsuarios.telefono}</p>
-            <p>{datosUsuarios.email}</p>
+            <p>{shopingHistory.length>0 && shopingHistory[index][0].address}</p>
+            <p>{shopingHistory.length>0 && shopingHistory[index][0].postalCode}</p>
+            <p>{shopingHistory.length>0 && shopingHistory[index][0].receiver}</p>
+            <p>{shopingHistory[index][0].phone}</p>
+            
             
         </div>
         <div className="envio-info-auxiliar-container">
             <h5>Método de pago</h5>
-            <p>{datosUsuarios.formaDePago}</p>
+            <p>{shopingHistory.length>0 && shopingHistory[index][0].payment_method}</p>
         </div>
     </div>
     </div>
@@ -196,8 +248,13 @@ export function Profile(){
 
 </div>
 
+</> }
+
+           
+                </div>
                 
-                </div>}
+                
+                }
             
 
 

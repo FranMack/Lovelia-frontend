@@ -8,7 +8,7 @@ import { UserContext } from "../context/userContext";
 export function Login() {
   window.scrollTo(0, 0);
 
-  const {setEmail,setId,setName,setToken,setLastname}=useContext(UserContext)
+  const {setEmail,setId,setName,setToken,setLastname,setSuscription}=useContext(UserContext)
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -101,6 +101,7 @@ export function Login() {
         setToken(data.token)
         setName(data.name)
         setLastname(data.lastname)
+        setSuscription(data.payment)
         onResetForm();
         navigatge("/");
       })
@@ -123,18 +124,20 @@ export function Login() {
       >
         <h3>Mi cuenta</h3>
         <h6>Si ya estás registrado en lovelia, inicia sesión aquí:</h6>
+        <label htmlFor="email">Email</label>
         <input
           value={email}
           onChange={onInputChange}
           onBlur={() => handleBlur("email")}
           name="email"
           type="email"
-          placeholder="Dirección de correo electrónico"
-          className={`${emailErrors.length > 0 || errorsFromAPI && "input-error"}`}
+          placeholder="ejemplo@gmail.com"
+          className={`${(emailErrors.length > 0 || errorsFromAPI) && "input-error"}`}
         />
         {emailErrors.length > 0  && (
           <span className="input-helpers-error">{emailErrors[0]}</span>
         )}
+        <label htmlFor="password">Contraseña</label>
         <input
           value={password}
           onChange={onInputChange}
@@ -142,7 +145,7 @@ export function Login() {
           name="password"
           type="password"
           placeholder="Contraseña"
-          className={`${passwordErrors.length > 0 || errorsFromAPI && "input-error"}`}
+          className={`${(passwordErrors.length > 0 || errorsFromAPI) && "input-error"}`}
         />
         {passwordErrors.length > 0 && (
           <span className="input-helpers-error">{passwordErrors[0]}</span>
