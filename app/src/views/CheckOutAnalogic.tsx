@@ -273,6 +273,7 @@ export function CheckOutAnalogic() {
 
     const formData = { name, lastname, email };
 
+    //VERS SI ESTO VA
     localStorage.setItem("checkout-form", JSON.stringify(formData));
 
     const productDetails = shopingCartItems.map((item) => {
@@ -750,7 +751,7 @@ export function CheckOutAnalogic() {
 
                 }
 
-                <button type="submit">{isLoading ? <BeatLoader color={"white"} speedMultiplier={0.4}	/>: "Ir a pagar"}</button>
+                <button type="submit">{isLoading && !errorWarning ? <BeatLoader color={"white"} speedMultiplier={0.4}	/>: "Ir a pagar"}</button>
               </div>
             </div>
           )}

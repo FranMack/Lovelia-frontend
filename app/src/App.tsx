@@ -20,9 +20,12 @@ import { ShopingCart } from './components/ShopingCart'
 import { useContext, useEffect } from 'react'
 import { ShopingCartContext } from './context/modalShopingCart'
 import { CheckOutAnalogic } from './views/CheckOutAnalogic'
+import { CheckOutDigital } from './views/CheckOutDigital'
+import { MyTalisman } from './views/MyTalisman'
 import { UserContext } from './context/userContext'
 import axios from 'axios'
 import { ToastContainer } from "react-toastify";
+import { Navigate } from 'react-router-dom'
 
 
 
@@ -61,14 +64,17 @@ function App() {
         <Route path="/tienda" element={<Tienda/>}/>
         <Route path="/talleres" element={<Blog/>}/>
         <Route path="/login" element={<Login/>}/>
-             <Route path="/register" element={<Register/>}/>
+          <Route path="/register" element={<Register/>}/>
         <Route path="/contacto" element={<Contacto/>}/>
         <Route path="/comprar-talisman-analogico" element={<CustomTalisman/>}/>
         <Route path="/comprar-talisman-digital" element={<BuyDigitalTalisman/>}/>
         <Route path="/blog" element={<Blog/>}/>
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/checkout/store" element={<CheckOutAnalogic/>}/>
+        <Route path="/checkout/digital" element={<CheckOutDigital/>}/>
         <Route path="/terms" element={<SiteTerms/>}/>
+        <Route path="/myTalisman" element={<MyTalisman/>}/>
+        <Route path="/*" element={<Navigate to="/"/>}/>
 
 
 

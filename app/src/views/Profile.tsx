@@ -55,6 +55,7 @@ const datosCompras:DatosCompra[]=[
     {producto:"Talisman Aura",numPedido:"LA1545",fecha:"12/05/2024",precio:1000.00,image:[talismanAnalogico]}]
 
 export function Profile(){
+    window.scrollTo(0, 0);
 
     const [buttonFocusPosition,setButttonFocusPosition]=useState("Datos de la cuenta")
 

@@ -1,5 +1,4 @@
-import { useState } from "react";
-import talismanDigital from "../assets/images/talisman-digital.png";
+import { useState,useContext } from "react";
 import { ejemploTalismanes } from "../assets/images/ejemplos-talismanes/ejemplosTalismanes";
 import { RightNextIcon } from "../assets/images/icons/icons";
 import { ButtonArrowRight } from "../commons/ButtonArrowRight";
@@ -8,6 +7,8 @@ import { ButtonArrowUp } from "../commons/ButtonArrowUp";
 import { DropDownInfo } from "../commons/DropdownInfo";
 import { DropdownInfoOptions } from "../commons/DropdownInfo";
 import { useOpenModal } from "../hooks/useOpenModal";
+import { UserContext } from "../context/userContext";
+import { useNavigate } from "react-router-dom";
 
 const precio="0.000"
 
@@ -36,6 +37,18 @@ export function BuyDigitalTalisman() {
       
     ],
     handleDropDown:handleOpenModal
+  }
+
+  const {email}=useContext(UserContext)
+
+const navigate =useNavigate()
+  const handleBuyTalisman=()=>{
+    if(!email){
+      navigate("/login")
+    }
+    else{
+      navigate("/checkout/digital")
+    }
   }
 
 
@@ -78,14 +91,23 @@ export function BuyDigitalTalisman() {
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
           aliquip ex ea commodo consequat.{" "}
         </p>
-        <strong>Descripción y detalles</strong>
+        <p><strong>Descripción y detalles</strong></p>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
           aliquip ex ea commodo consequat.{" "}
         </p>
-        <p><strong>Para generar tu talismán necesitaremos “estos” datos luego del pago....</strong></p>
+        <p><strong>Importante:</strong></p>
+        <div className="info-requerida-container">
+        <p>Para generar tu talismán necesitaremos:</p>
+        <ul>
+          <li>Nombre completo</li>
+          <li>Lugar de nacimiento</li>
+          <li>Fecha de nacimiento</li>
+          <li>Hora de nacimiento</li>
+        </ul>
+        </div>
       <div className="buttons-arrows-container">
         
 
@@ -96,7 +118,7 @@ export function BuyDigitalTalisman() {
       {openModal && <DropDownInfo {...devolucionesDropDownInfo}/>}
       </div>
       <div className="buttons-container">
-        <Button text={`$${precio}  Ir a comprar`}/>
+        <Button onClick={handleBuyTalisman} text={`$${precio}  Ir a comprar`}/>
         <div className="auxiliar-buttons-container">
         {!openModal && <ButtonArrowUp onClick={handleOpenModal} text="Devoluciones y envío" color="#6f3289"/>}
     <Button text="Agregar al carrito de compras"/>

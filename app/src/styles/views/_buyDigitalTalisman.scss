@@ -5,6 +5,7 @@
   height: 100vh;
 
   display: flex;
+  background-color: $color_background1;
 }
 
 .buyDigitalTalisman-internal-container {
@@ -150,4 +151,31 @@
     row-gap: 5%;
     margin-top: 2%;
   }
+
+  .info-requerida-container{
+    background-color: $color_background2;
+    width:fit-content;
+    padding: 3%;
+
+    p{
+      font-size: 1.4rem;
+      font-weight: 500;
+      font-family: $font_titulos;
+      margin-bottom: 2%;
+    }
+
+    ul {
+      width: fit-content;
+      margin-left: 5%;
+     
+     
+  
+      li {
+        font-size: 1.4rem;
+        font-weight: 400;
+      }
+    }
+  }
+
+
 }

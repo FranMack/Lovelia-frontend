@@ -10,7 +10,7 @@ import { NavbarDropDown } from "../commons/NavbarDropDown";
 
 export function Navbar() {
   const { menuOpen, togleMenu } = useContext(ShopingCartContext);
-  const { email, name, lastname } = useContext(UserContext);
+  const { email, name, lastname,subscription } = useContext(UserContext);
 
  
 
@@ -112,6 +112,8 @@ export function Navbar() {
     ],
   }
 
+  if(email && subscription){navbarButtons[0].buttonOptions.unshift(  { buttonName: "Mi talisman", path: "myTalisman" })}
+
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const handleScroll = () => {
@@ -208,7 +210,7 @@ export function Navbar() {
         >
           <li >
         
-            <h5>{`${name[0]}${lastname[0]}`}</h5>
+            <h5>{(`${name[0]}${lastname[0]}`.toUpperCase())}</h5>
           </li>
           </div>
             {hoverPosition==="login" && <NavbarDropDown buttonOptions={userButton.buttonOptions} handleMouseOver={()=>handleMouseOver("login")} handleMouseLeave={()=>{handleMouseLeave()}} />}
