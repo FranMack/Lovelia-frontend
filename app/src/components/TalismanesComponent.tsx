@@ -1,9 +1,9 @@
-import talismanDigital from "../assets/images/talisman-digital.png"
-import talismanGif from "../assets/images/gif/talismanGif.gif"
+import videoTalisman from "../assets/videos/talismanGif.mp4"
 import talismanFisico  from "../assets/images/talisman-fisico.png"
 import { ButtonArrowRight } from "../commons/ButtonArrowRight"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
+import { useEffect, useRef } from "react"
 
 export function TalismanesComponent(){
 
@@ -14,12 +14,25 @@ export function TalismanesComponent(){
     }
 
 
+    const videoRef = useRef<HTMLVideoElement>(null); 
+
+    useEffect(() => {
+      if (videoRef.current) {
+  
+        videoRef.current.playbackRate = 1; 
+      }
+    }, [videoRef]);
+
+
 return(<section className="talismanesComponent-container">
     <h2>Talismanes lovelia</h2>
     <div className="talismanesComponent-center-container">
        <div className="talismanesComponent-interal-conteiner">
            <div className="talismanesComponent-image-conteiner">
-               <img src={talismanGif} alt="Talisman digital" />
+           <video autoPlay muted loop ref={videoRef}>
+        <source src={videoTalisman} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
            </div>
            <Link to="/talisman-digital"><h4>Talismán digital</h4></Link>
 

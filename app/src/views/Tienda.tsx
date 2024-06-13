@@ -5,7 +5,7 @@ import wallpaperTalisman from "../assets/images/talisman-wallpaper.png";
 import wallpaperColgante from "../assets/images/imagen-colgante.png";
 import wallpaperColgante2 from "../assets/images/imagen-colgante2.png";
 import talismanGif from "../assets/images/gif/talismanGif.gif"
-
+import videoTalisman from "../assets/videos/talismanGif.mp4"
 import talismanFisico from "../assets/images/talisman-fisico2.png";
 import talismanFisico1 from "../assets/images/talisman-fisico.png";
 import talismanDigital from "../assets/images/talisman-digital.png";
@@ -17,9 +17,10 @@ import { ArticulosDestacados } from "../components/ArticulosDestacados";
 import { ejemploTalismanes } from "../assets/images/ejemplos-talismanes/ejemplosTalismanes";
 import { ejemploTalismanesAnalogicos } from "../assets/images/ejemplos-talismán-analogico/ejemplosTalismanes";
 import { GiftComponent } from "../components/GiftComponent";
-import videoTalisman from "../assets/videos/videoFondo.mp4";
+import videoFondo from "../assets/videos/videoFondo.mp4";
 import { useNavigate } from "react-router-dom";
 import { BackgroundVideo } from "../commons/BackgroundVideo";
+import { useEffect, useRef } from "react";
 
 
 const wallpaperInfo1: Wallpaper2Options = {
@@ -65,6 +66,15 @@ const infoPlaca2: PlacaTipo2Options = {
 export function Tienda() {
   window.scrollTo(0, 0);
 
+  const videoRef = useRef<HTMLVideoElement>(null); 
+
+    useEffect(() => {
+      if (videoRef.current) {
+  
+        videoRef.current.playbackRate = 1; 
+      }
+    }, [videoRef]);
+
 
   const navigatge=useNavigate();
 
@@ -84,7 +94,10 @@ navigatge("/comprar-talisman-analogico")
      
        
         <div className="tienda-portada-internal-container">
-          <img src={talismanGif} alt="Talisman digital" />
+        <video className="video-talisman" autoPlay muted loop ref={videoRef}>
+        <source src={videoTalisman} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
           <div className="tienda-portada-internal-info-container right">
             <h4>Talismán digital</h4>
             <Button text="Comprar ahora" onClick={linkToComprarTalismanDigital} />
@@ -124,7 +137,7 @@ navigatge("/comprar-talisman-analogico")
         onClick={linkToComprarTalismanAnalogico}
       />
      <video className="video-informativo" controls>
-        <source src={videoTalisman} type="video/mp4" />
+        <source src={videoFondo} type="video/mp4" />
         Your browser does not support the video tag.
   </video>
       <GiftComponent />

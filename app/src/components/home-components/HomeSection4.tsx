@@ -29,7 +29,9 @@ navigatge("comprar-talisman-analogico")
   return (
     <section className="home-section4-container">
      
+     <div className="section4-auxiliar-wrapper1">
       <PlacaTipo2 {...infoPlacaTipo2} onClick={linkToComprarTalisman}/>
+      </div>
 
       <TalismanesGrilla/>
       

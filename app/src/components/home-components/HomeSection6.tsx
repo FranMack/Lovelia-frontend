@@ -32,10 +32,14 @@ export function HomeSection6() {
   }
   return (
     <section className="section6-container">
-     
-      <WallpaperTipo2 {...infoWallpaper} onClick={linkToComprarTalisman}/>
 
+      
+<div className="section6-auxiliar-wrapper1">
+      <WallpaperTipo2 {...infoWallpaper} onClick={linkToComprarTalisman}/>
+      </div>
+<div className="section6-auxiliar-wrapper2">
       <PlacaTipo1 {...infoPlacaTipo1} onClick={linkToComprarTalisman} />
+      </div>
 
       <ArticulosDestacados talismanes={ejemploTalismanes} onClick={linkToComprarTalisman} button="Comprar talismán digital"/>
       

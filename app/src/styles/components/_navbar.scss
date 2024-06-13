@@ -11,6 +11,7 @@
   padding-left: 2%;
   padding-right: 2%;
   z-index: 40;
+
   a:active {
     color: $color_primary; /* Cambia el color según tus necesidades */
   }
@@ -42,11 +43,15 @@
   }
 }
 .navbar-button-style {
+  display: flex ;
+  align-items: center;
   transition: color 1s ease, background-color 1s ease-out;
   border-radius: 20px;
-  padding: 10%;
+  height: 80%;
+  padding-inline: 20%;
   color: $color_primary;
   font-size: 1.6rem;
+  
   cursor: pointer;
   li {
     font-size: 1.6rem;
@@ -56,7 +61,7 @@
 
 .navbar-menu-icon {
   height: 55%;
-
+ border-radius: 50%;
   color: $color_primary;
   transition: color 1s ease, background-color 1s ease-out;
 }
@@ -66,11 +71,14 @@
 }
 
 .navbar-button-focus-style {
+  display: flex;
+  align-items: center;
   transition: color 1s ease, background-color 1s ease-in;
   cursor: pointer;
   background-color: $color_primary;
   border-radius: 20px;
-  padding: 10%;
+  height: 80%;
+  padding-inline: 20%;
   color: $color_text1;
 }
 

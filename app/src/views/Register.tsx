@@ -5,9 +5,26 @@ import { useForm } from "../hooks/useForm";
 import { RegisterValidation } from "../helpers/registerValidation";
 import axios from "axios";
 import { PopUp, PopUpOptions } from "../commons/PopUp";
+import BeatLoader from "react-spinners/BeatLoader";
+import { EyeClose, EyeOpen } from "../assets/images/icons/icons";
 
 export function Register() {
-  window.scrollTo(0, 0);
+ // window.scrollTo(0, 0);
+
+   //is loading
+
+   const [isLoading, setIsLoading] = useState(false);
+
+   const[showPassword,setShowPassword]=useState(false)
+   const handleShowPassword=()=>{
+     setShowPassword(!showPassword)
+   }
+
+   const[showConfirmPassword,setShowConfirmPassword]=useState(false)
+   const handleShowConfirmPassword=()=>{
+    setShowConfirmPassword(!showConfirmPassword)
+   }
+
 
   const [openPopUp, setOpenPopUp] = useState<boolean>(false);
   const handlePopUp=()=>{
@@ -120,6 +137,10 @@ export function Register() {
 
       return
     }
+
+    setIsLoading(true)
+
+
     axios
       .post("http://localhost:3000/api/v1/user/register", {
         name: name,
@@ -130,12 +151,13 @@ export function Register() {
       .then((response) => {
         console.log(response);
         onResetForm();
+        setIsLoading(false)
         handlePopUp()
-        //navigatge("/login")
       })
       
       .catch((error) => {
         console.log(error);
+        setIsLoading(false)
         setErrorsFromAPI(error.response.data.error)
       });
   };
@@ -213,27 +235,34 @@ export function Register() {
           <span className="input-helpers-error">{emailErrors[0]}</span>
         )}
         <label htmlFor="password">Contraseña</label>
+        <div   className={`password-input-wrapper ${(passwordErrors.length > 0 || errorsFromAPI) && "input-error"}`}>
         <input
           value={password}
           onChange={onInputChange}
           onBlur={() => handleBlur("password")}
           name="password"
-          type="password"
+          type={showPassword ? "text":"password"}
           placeholder="Contraseña"
-          className={`${(passwordErrors.length > 0 || errorsFromAPI) && "input-error"}`}
+        
         />
+        
+        <span onClick={handleShowPassword}>{ showPassword ? <EyeOpen/>:<EyeClose/>}</span>
+        </div>
         {passwordErrors.length > 0 && (
           <span className="input-helpers-error">{passwordErrors[0]}</span>
         )}
         <label htmlFor="confirmPassword">Confirmar contraseña</label>
+        <div   className={`password-input-wrapper ${(passwordErrors.length > 0 || errorsFromAPI) && "input-error"}`}>
         <input
           value={confirmPassword}
           onChange={onInputChange}
           name="confirmPassword"
-          type="password"
+          type={showConfirmPassword ? "text":"password"}
           placeholder="Confirmar contraseña"
           className={`${(confirmPasswordError || errorsFromAPI) && "input-error"}`}
         />
+        <span onClick={handleShowConfirmPassword}>{ showConfirmPassword ? <EyeOpen/>:<EyeClose/>}</span>
+        </div>
         {confirmPasswordError && (
           <span className="input-helpers-error">
             {"Wrong confirm password"}
@@ -258,7 +287,7 @@ export function Register() {
           >{errorsFromAPI}</span>
         )}
         </div>
-        <button type="submit">ACCEDER</button>
+        <button type="submit">{isLoading?  <BeatLoader color={"white"} speedMultiplier={0.4} /> : "REGISTRARME"}</button>
       </form>
     </section>
   );

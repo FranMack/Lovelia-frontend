@@ -6,7 +6,7 @@ import wallpaper from "../../assets/images/wallpaper-activar-talisman.png";
 import wallpaperTalisman from "../../assets/images/talisman-wallpaper.png";
 import { TitleComponent } from "../../commons/TitleComponent";
 import { TitleComponentOptions } from "../../commons/TitleComponent";
-import { infoSonidos } from "../../assets/images/imagnes-sonidos/infoMusica";
+import { infoSonidos } from "../../assets/images/imagnes-sonidos/infoSonidos";
 import { PlayIcon } from "../../assets/images/icons/icons";
 import { GiftComponent } from "../GiftComponent";
 import { useNavigate } from "react-router-dom";

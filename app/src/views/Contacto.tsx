@@ -5,8 +5,13 @@ import { useForm } from "../hooks/useForm";
 import axios from "axios";
 import { PopUp } from "../commons/PopUp";
 import { PopUpOptions } from "../commons/PopUp";
+import BeatLoader from "react-spinners/BeatLoader";
 export function Contacto() {
   window.scrollTo(0, 0);
+
+    //is loading
+
+    const [isLoading, setIsLoading] = useState(false);
 
   const [openPopUp, setOpenPopUp] = useState<boolean>(false);
   const handlePopUp=()=>{
@@ -97,6 +102,8 @@ export function Contacto() {
       return;
     }
 
+    setIsLoading(true)
+
     axios
       .post("http://localhost:3000/api/v1/user/consult", {
         name: name,
@@ -107,9 +114,11 @@ export function Contacto() {
       .then((response) => {
         console.log(response);
         onResetForm();
+        setIsLoading(false)
         handlePopUp()
       })
       .catch((error) => {
+        setIsLoading(false)
         console.log(error);
       });
   };
@@ -136,6 +145,11 @@ export function Contacto() {
         break;
     }
   };
+
+
+
+
+
 
 
   
@@ -208,7 +222,7 @@ export function Contacto() {
         )}
 
       
-        <button>ENVIAR</button>
+        {<button>{isLoading?  <BeatLoader color={"white"} speedMultiplier={0.4} />: "ENVIAR"}</button>}
       </form>
     </section>
   );

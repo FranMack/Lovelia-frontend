@@ -6,6 +6,7 @@ import { ShopingCartContext } from "../context/modalShopingCart"
 import { UserContext } from "../context/userContext"
 import talismanDigital from "../assets/images/talisman-wallpaper.png"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 interface DatosCompra{
     producto:string,
@@ -56,12 +57,20 @@ const datosCompras:DatosCompra[]=[
 
 export function Profile(){
     window.scrollTo(0, 0);
-
+    const navigate=useNavigate()
     const [buttonFocusPosition,setButttonFocusPosition]=useState("Datos de la cuenta")
 
     const handleButtonFocus=(buttonName:string)=>{
         setButttonFocusPosition(buttonName)
     }
+
+    const linkToMyTalisman=()=>{
+        navigate("/myTalisman")
+    }
+    const linkToBuyTalisman=()=>{
+        navigate("/checkout/digital")
+    }
+
 
 
 
@@ -140,7 +149,7 @@ console.log("INDEX",index)
                     </div>
                     <div className="auxiliar-button-container">
 
-                <Button text="Ir a talisman digital"/>
+               {subscription ? <Button text="Ir a talisman digital" onClick={linkToMyTalisman}/>:<Button text="Adquiere tu talismán" onClick={linkToBuyTalisman}/>}
                     </div>
                 </div>
 

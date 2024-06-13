@@ -5,8 +5,19 @@ import { useForm } from "../hooks/useForm";
 import { LoginValidations } from "../helpers/loginValidations";
 import axios from "axios";
 import { UserContext } from "../context/userContext";
+import { BeatLoader } from "react-spinners";
+import { EyeOpen,EyeClose } from "../assets/images/icons/icons";
 export function Login() {
   window.scrollTo(0, 0);
+
+  //is loading
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const[showPassword,setShowPassword]=useState(false)
+  const handleShowPassword=()=>{
+    setShowPassword(!showPassword)
+  }
 
   const {setEmail,setId,setName,setToken,setLastname,setSuscription}=useContext(UserContext)
 
@@ -89,6 +100,8 @@ export function Login() {
       return;
     }
 
+    setIsLoading(true)
+
     axios
       .post("http://localhost:3000/api/v1/user/login", {
         email: email,
@@ -103,10 +116,12 @@ export function Login() {
         setLastname(data.lastname)
         setSuscription(data.payment)
         onResetForm();
+        setIsLoading(false)
         navigatge("/");
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false)
         setErrorsFromAPI(error.response.data.error)
       });
   };
@@ -138,15 +153,19 @@ export function Login() {
           <span className="input-helpers-error">{emailErrors[0]}</span>
         )}
         <label htmlFor="password">Contraseña</label>
+        <div   className={`password-input-wrapper ${(passwordErrors.length > 0 || errorsFromAPI) && "input-error"}`}>
         <input
           value={password}
           onChange={onInputChange}
           onBlur={() => handleBlur("password")}
           name="password"
-          type="password"
+          type={showPassword ? "text":"password"}
           placeholder="Contraseña"
-          className={`${(passwordErrors.length > 0 || errorsFromAPI) && "input-error"}`}
+        
         />
+        <span onClick={handleShowPassword}>{ showPassword ? <EyeOpen/>:<EyeClose/>}</span>
+        
+        </div>
         {passwordErrors.length > 0 && (
           <span className="input-helpers-error">{passwordErrors[0]}</span>
         )}
@@ -163,7 +182,7 @@ export function Login() {
         )}
         </div>
         
-        <button>ACCEDER</button>
+        <button type="submit">{isLoading?  <BeatLoader color={"white"} speedMultiplier={0.4} /> : "ACCEDER"}</button>
       </form>
     </section>
   );

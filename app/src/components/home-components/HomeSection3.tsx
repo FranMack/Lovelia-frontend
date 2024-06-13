@@ -13,8 +13,12 @@ const infoWallpaper: Wallpaper1Options = {
 export function HomeSection3() {
   return (
     <>
+    <div className="section3-auxiliar-wrapper1">
       <TalismanesComponent />
+      </div>
+      <div className="section3-auxiliar-wrapper2">
       <WallpaperTipo1 {...infoWallpaper} />
+      </div>
     </>
   );
 }

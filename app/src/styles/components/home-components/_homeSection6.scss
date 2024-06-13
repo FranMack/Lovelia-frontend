@@ -6,10 +6,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  
   ::-webkit-scrollbar-thumb {
     background-color: transparent;
     border-radius: 5px; /* Radio de borde del dedo de la barra de desplazamiento */
   }
 }
+
+.section6-auxiliar-wrapper1{
+  margin-bottom: 20vh;
+}
+.section6-auxiliar-wrapper2{
+  margin-bottom: 20vh;
+}
+
 
 
