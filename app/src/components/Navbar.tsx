@@ -112,6 +112,7 @@ export function Navbar() {
     ],
   }
 
+
   if(email && subscription){navbarButtons[0].buttonOptions.unshift(  { buttonName: "Mi talisman", path: "myTalisman" })}
 
   const [scrollPosition, setScrollPosition] = useState(0);

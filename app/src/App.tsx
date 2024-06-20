@@ -5,7 +5,7 @@ import { Intensiones } from "./views/Intensiones";
 import { AnalogTalisman } from "./views/AnalogTalisman";
 import { DigitalTalisman } from "./views/DigitalTalisman";
 import { LandingTalisman } from "./views/LandingTalisman";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Tienda } from "./views/Tienda";
 import { Login } from "./views/Login";
 import { Register } from "./views/Register";
@@ -42,17 +42,22 @@ function App() {
         setId(data.id);
         setName(data.name);
         setLastname(data.lastname);
-        setSuscription(data.payment);
+        const subscription=JSON.parse(localStorage.getItem("subscriptionActive") || "false")
+        setSuscription(subscription)
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
+  const location=useLocation().pathname
+
+  console.log("XXXXXXXXXXXXXXXXXX",location)
+
   return (
     <>
       <ToastContainer />
-      <Navbar />
+      {location!=="/myTalisman" &&<Navbar />}
       {menuOpen && <ShopingCart />}
       <Routes>
         <Route path="/" element={<Home />} />
@@ -113,13 +118,13 @@ function App() {
         <Route
           path="/myTalisman"
           element={
-            <PrivateRoute>
+           
               <MyTalisman />
-            </PrivateRoute>
+            
           }
         />
 
-        {<Route path="/*" element={<Navigate to="/" />} />}
+        {/*<Route path="/*" element={<Navigate to="/" />} />*/}
       </Routes>
       <Footer />
     </>

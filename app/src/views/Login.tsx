@@ -114,7 +114,8 @@ export function Login() {
         setToken(data.token)
         setName(data.name)
         setLastname(data.lastname)
-        setSuscription(data.payment)
+        setSuscription(data.subscription)
+        localStorage.setItem("subscriptionActive",JSON.stringify(data.subscription=false))
         onResetForm();
         setIsLoading(false)
         navigatge("/");

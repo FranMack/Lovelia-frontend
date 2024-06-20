@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import ShopingCartContextProvider from "./context/modalShopingCart.tsx";
 import UserContextProvider from "./context/userContext.tsx";
 import TalismanModelContextProvider from "./context/talismanModelContext.tsx";
+import TalismanButtonFocusContextProvider from "./context/talismanButtonFocusContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -13,7 +14,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <UserContextProvider>
         <ShopingCartContextProvider>
           <TalismanModelContextProvider>
+            <TalismanButtonFocusContextProvider>
             <App />
+            </TalismanButtonFocusContextProvider>
           </TalismanModelContextProvider>
         </ShopingCartContextProvider>
       </UserContextProvider>

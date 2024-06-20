@@ -1,11 +1,9 @@
+import { ThreeJsFrame } from "../components/ThreeJsFrame";
 export function MyTalisman() {
   return (
-    <>
-      <div>HOLA MUNDO</div>
-      <div>HOLA MUNDO</div>
-      <div>HOLA MUNDO</div> 
-      <div>HOLA MUNDO</div> 
-      <div>HOLA MUNDO</div>
-    </>
+    <section className="myTalisman-container">
+      
+      <ThreeJsFrame/>
+    </section>
   );
 }

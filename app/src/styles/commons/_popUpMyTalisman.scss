@@ -1,0 +1,81 @@
+@import "../variables";
+
+.popUpMyTalisman-container {
+  position: absolute;
+
+  width: 60%;
+  aspect-ratio: 2;
+  background: rgba(238, 238, 238, 0.8);
+  backdrop-filter: blur(7px);
+  color: $color_primary;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  h4 {
+    font-size: 4rem;
+
+    font-weight: 300;
+  }
+  p {
+    font-family: $font_titulos;
+    font-size: 2rem;
+    font-weight: 400;
+    color: $color_text2;
+  }
+  .closeIcon-container {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+  }
+  .button-auxiliar-container {
+    margin-bottom: 5%;
+  }
+}
+
+.popUpMyTalisman-center-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 10%;
+
+  ol {
+    font-size: 2.5rem;
+    > li {
+      font-weight: 600;
+      margin-bottom: 1%;
+    }
+    ul {
+      margin-top: 1%;
+      margin-left: 0%;
+      margin-right: 0%;
+      font-size: 2.4rem;
+      list-style: none;
+      li {
+        font-weight: 400;
+      }
+    }
+  }
+
+  ul {
+    margin-top: 1%;
+    font-size: 2.5rem;
+    margin-left: 7%;
+    margin-right: 7%;
+    li {
+      font-weight: 400;
+      margin-bottom: 1%;
+    }
+  }
+
+  p {
+    font-size: 2.8rem;
+    margin-left: 7%;
+    margin-right: 7%;
+    color: $color_primary;
+    text-align: center;
+    
+  }
+}

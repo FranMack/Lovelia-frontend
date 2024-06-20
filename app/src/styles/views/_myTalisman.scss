@@ -1,0 +1,67 @@
+@import "../variables";
+
+.myTalisman-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.threejs-container{
+    width: 100vw;
+    height: 100vh;
+
+}
+
+iframe{pointer-events: none;
+    width: "100%"; height: "100%"; border: "none" }
+
+
+    .myTalisman-controls-container{
+        position: absolute;
+        display: flex ;
+        justify-content: space-between;
+        width: 85%;
+        height: 7%;
+        bottom:5%;
+    }
+
+    .myTalisman-controls-internal-container{
+        height: 100%;
+        button{
+           background-color: transparent;
+            height: 100%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+          
+            
+        }
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 5%;
+    }
+
+    .myTalisman-controls-internal-container.left{
+        width: 20%;
+        button{
+            background: rgba(255, 255, 255, 0.30);
+            backdrop-filter: blur(5.699999809265137px);
+        }
+        
+    }
+    .myTalisman-controls-internal-container.right{
+        width: 32%;
+        background: rgba(255, 255, 255, 0.30);
+
+        backdrop-filter: blur(5.699999809265137px);
+        border-radius: 100px;
+        button{
+            
+            
+        }
+    }
+

@@ -33,7 +33,7 @@ export function Register() {
 
   const popUpProps:PopUpOptions={
     title:"¡Tu cunta ha sido registrada!",
-    text:"Recivirás un email que te permetira activar tu cuenta",
+    text:"Recibirás un email que te permetira activar tu cuenta",
     buttonText:"Continuar",
     handlePopUp:handlePopUp
 
@@ -221,7 +221,7 @@ export function Register() {
         {lastNameErrors.length > 0 && (
           <span className="input-helpers-error">{lastNameErrors[0]}</span>
         )}
-        <label htmlFor="email">Apellido</label>
+        <label htmlFor="email">Email</label>
         <input
           value={email}
           onChange={onInputChange}

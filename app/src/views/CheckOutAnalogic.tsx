@@ -594,7 +594,7 @@ export function CheckOutAnalogic() {
 
                 <div className="checkout-form-names-container">
                 <div className="checkout-form-names-internal-container">
-                <label htmlFor="city">Departamento</label>
+                <label htmlFor="city">Ciudad</label>
                   <input
                     value={city}
                     onChange={onInputChange}
