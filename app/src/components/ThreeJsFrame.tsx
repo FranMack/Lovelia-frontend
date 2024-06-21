@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { DropDownMyTalisman } from "../commons/DropDownMyTalisman";
 import { PopUpMyTalisman } from "../commons/PopUpMyTalisman";
 import { useOpenModal } from "../hooks/useOpenModal";
+import { envs } from "../config/envs";
 
 export const ThreeJsFrame = () => {
   const navigate = useNavigate();
@@ -106,7 +107,7 @@ export const ThreeJsFrame = () => {
     async function getUserInfo(email: string) {
       try {
         const userInfo = await axios.get(
-          `http://localhost:3000/api/v1/user/astrological-info?email=${email}`,
+          `${envs.API_DOMAIN}/api/v1/user/astrological-info?email=${email}`,
           { withCredentials: true }
         );
         if (userInfo.data) {
@@ -116,7 +117,7 @@ export const ThreeJsFrame = () => {
         }
 
         const userSound = await axios.get(
-          `http://localhost:3000/api/v1/user/astrological-sound/${email}`,
+          `${envs.API_DOMAIN}/api/v1/user/astrological-sound/${email}`,
           { withCredentials: true, responseType: "blob" }
         );
 
@@ -124,7 +125,7 @@ export const ThreeJsFrame = () => {
 
         setTimeout(() => {
           axios.post(
-            `http://localhost:3000/api/v1/user/cleanUserJSON`,
+            `${envs.API_DOMAIN}/api/v1/user/cleanUserJSON`,
             { email },
             { withCredentials: true }
           );
@@ -145,7 +146,7 @@ export const ThreeJsFrame = () => {
         <>
           <iframe
             title="Modelo 3D"
-            src={`http://localhost:3000/?userProfile=/api/${email}.json`}
+            src={`${envs.API_DOMAIN}/?userProfile=/api/${email}.json`}
             style={{ width: "100vw", height: "100vh", border: "none" }}
           />
           <div className="myTalisman-controls-container">

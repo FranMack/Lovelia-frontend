@@ -29,6 +29,8 @@ import { Navigate } from "react-router-dom";
 import { PrivateRoute } from "./router/PrivateRoute";
 import { PublicRoute } from "./router/PublicRoute";
 
+import { envs } from "./config/envs";
+
 function App() {
   const { menuOpen } = useContext(ShopingCartContext);
   const { email, setEmail, setId, setName, setLastname, setSuscription } =
@@ -36,7 +38,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/v1/user/me", { withCredentials: true })
+      .get(`${envs.API_DOMAIN}/api/v1/user/me`, { withCredentials: true })
       .then(({ data }) => {
         setEmail(data.email);
         setId(data.id);
@@ -52,7 +54,7 @@ function App() {
 
   const location=useLocation().pathname
 
-  console.log("XXXXXXXXXXXXXXXXXX",location)
+  console.log("XXXXXXXXXXXXXXXXXX",envs)
 
   return (
     <>

@@ -7,6 +7,7 @@ import axios from "axios";
 import { UserContext } from "../context/userContext";
 import { BeatLoader } from "react-spinners";
 import { EyeOpen,EyeClose } from "../assets/images/icons/icons";
+import { envs } from "../config/envs";
 export function Login() {
   window.scrollTo(0, 0);
 
@@ -103,7 +104,7 @@ export function Login() {
     setIsLoading(true)
 
     axios
-      .post("http://localhost:3000/api/v1/user/login", {
+      .post(`${envs.API_DOMAIN}/api/v1/user/login`, {
         email: email,
         password: password,
       },{withCredentials:true})

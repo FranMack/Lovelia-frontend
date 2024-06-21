@@ -1,8 +1,9 @@
-import { useState,useContext, useEffect, useRef } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { TalismanButtonFocusContext } from "../context/talismanButtonFocusContext";
 import { ArrowDown, CloseIcon } from "../assets/images/icons/icons";
 import { PlayIcon } from "../assets/images/icons/icons";
 import axios from "axios";
+import { envs } from "../config/envs";
 
 export interface DropdownOptions {
   handleDropDown: () => void;
@@ -12,8 +13,6 @@ interface MeditationsOptions {
   name: string;
   url: string;
 }
-
-
 
 const sections = [
   "Meditaciones lovelia",
@@ -57,173 +56,153 @@ const adnInfo = {
   ],
 };
 
-const meditacionesInfo={
-  name:"Meditaciones lovelia",
-  sections:[
+const meditacionesInfo = {
+  name: "Meditaciones lovelia",
+  sections: [
     {
-      trackName:"Cuencos tibetanos",
-      path:"",
-      duration:"12:15"
+      trackName: "Cuencos tibetanos",
+      path: "",
+      duration: "12:15",
     },
     {
-      trackName:"El sonido del silencio",
-      path:"",
-      duration:"12:15"
-    }
-    ,{
-      trackName:"Reiki melody",
-      path:"",
-      duration:"12:15"
-    }
-    ,{
-      trackName:"Cuencos tibetanos",
-      path:"",
-      duration:"12:15"
-    }
-    ,{
-      trackName:"Cuencos tibetanos",
-      path:"",
-      duration:"12:15"
+      trackName: "El sonido del silencio",
+      path: "",
+      duration: "12:15",
     },
     {
-      trackName:"Cuencos tibetanos",
-      path:"",
-      duration:"12:15"
+      trackName: "Reiki melody",
+      path: "",
+      duration: "12:15",
     },
     {
-      trackName:"El sonido del silencio",
-      path:"",
-      duration:"12:15"
-    }
-    ,{
-      trackName:"Reiki melody",
-      path:"",
-      duration:"12:15"
-    }
-    ,{
-      trackName:"Cuencos tibetanos",
-      path:"",
-      duration:"12:15"
-    }
-    ,{
-      trackName:"Cuencos tibetanos",
-      path:"",
-      duration:"12:15"
-    },
-
-    
-
-  ]
-}
-
-
-const sonidosInfo={
-  name:"Sonidos lovelia",
-  sections:[
-    {
-      trackName:"Cuencos tibetanos",
-      path:"",
-      duration:"12:15"
+      trackName: "Cuencos tibetanos",
+      path: "",
+      duration: "12:15",
     },
     {
-      trackName:"El sonido del silencio",
-      path:"",
-      duration:"12:15"
-    }
-    ,{
-      trackName:"Reiki melody",
-      path:"",
-      duration:"12:15"
-    }
-    ,{
-      trackName:"Cuencos tibetanos",
-      path:"",
-      duration:"12:15"
-    }
-    ,{
-      trackName:"Cuencos tibetanos",
-      path:"",
-      duration:"12:15"
+      trackName: "Cuencos tibetanos",
+      path: "",
+      duration: "12:15",
     },
     {
-      trackName:"Cuencos tibetanos",
-      path:"",
-      duration:"12:15"
+      trackName: "Cuencos tibetanos",
+      path: "",
+      duration: "12:15",
     },
     {
-      trackName:"El sonido del silencio",
-      path:"",
-      duration:"12:15"
-    }
-    ,{
-      trackName:"Reiki melody",
-      path:"",
-      duration:"12:15"
-    }
-    ,{
-      trackName:"Cuencos tibetanos",
-      path:"",
-      duration:"12:15"
-    }
-    ,{
-      trackName:"Cuencos tibetanos",
-      path:"",
-      duration:"12:15"
+      trackName: "El sonido del silencio",
+      path: "",
+      duration: "12:15",
     },
+    {
+      trackName: "Reiki melody",
+      path: "",
+      duration: "12:15",
+    },
+    {
+      trackName: "Cuencos tibetanos",
+      path: "",
+      duration: "12:15",
+    },
+    {
+      trackName: "Cuencos tibetanos",
+      path: "",
+      duration: "12:15",
+    },
+  ],
+};
 
-    
-
-  ]
-}
-
-
-
+const sonidosInfo = {
+  name: "Sonidos lovelia",
+  sections: [
+    {
+      trackName: "Cuencos tibetanos",
+      path: "",
+      duration: "12:15",
+    },
+    {
+      trackName: "El sonido del silencio",
+      path: "",
+      duration: "12:15",
+    },
+    {
+      trackName: "Reiki melody",
+      path: "",
+      duration: "12:15",
+    },
+    {
+      trackName: "Cuencos tibetanos",
+      path: "",
+      duration: "12:15",
+    },
+    {
+      trackName: "Cuencos tibetanos",
+      path: "",
+      duration: "12:15",
+    },
+    {
+      trackName: "Cuencos tibetanos",
+      path: "",
+      duration: "12:15",
+    },
+    {
+      trackName: "El sonido del silencio",
+      path: "",
+      duration: "12:15",
+    },
+    {
+      trackName: "Reiki melody",
+      path: "",
+      duration: "12:15",
+    },
+    {
+      trackName: "Cuencos tibetanos",
+      path: "",
+      duration: "12:15",
+    },
+    {
+      trackName: "Cuencos tibetanos",
+      path: "",
+      duration: "12:15",
+    },
+  ],
+};
 
 export function DropDownMyTalisman({ handleDropDown }: DropdownOptions) {
+  const { buttonFocusPosition, handleButtonFocus } = useContext(
+    TalismanButtonFocusContext
+  );
 
-  const {buttonFocusPosition,handleButtonFocus}=useContext(TalismanButtonFocusContext)
-
-  const [tableFocus,setTableFocus]=useState(0)
-
+  const [tableFocus, setTableFocus] = useState(0);
 
   const audioRefs = useRef<HTMLAudioElement[]>([]);
-  const [meditations,setMeditations]=useState<MeditationsOptions[]>([])
-  const [sounds,setSounds]=useState<MeditationsOptions[]>([])
-
+  const [meditations, setMeditations] = useState<MeditationsOptions[]>([]);
+  const [sounds, setSounds] = useState<MeditationsOptions[]>([]);
 
   const playAudio = (index: number) => {
-    audioRefs.current.forEach(audio => audio.pause());
+    audioRefs.current.forEach((audio) => audio.pause());
     if (audioRefs.current[index]) {
       audioRefs.current[index].play();
     }
   };
-  
 
-
-  useEffect(()=>{
-    axios.get(
-        `http://localhost:3000/api/v1/user/meditations`,
-        { withCredentials: true }
-      )
-      .then((response)=>{
-        setMeditations(response.data)
-
+  useEffect(() => {
+    axios
+      .get(`${envs.API_DOMAIN}/api/v1/user/meditations`, {
+        withCredentials: true,
       })
+      .then((response) => {
+        setMeditations(response.data);
+      });
 
-      axios.get(
-        `http://localhost:3000/api/v1/user/sounds`,
-        { withCredentials: true }
-      )
-      .then((response)=>{
-        setSounds(response.data)
-
+    axios
+      .get(`${envs.API_DOMAIN}/api/v1/user/sounds`, {
+        withCredentials: true,
       })
-
-
-      
-  },[])
-
-
+      .then((response) => {
+        setSounds(response.data);
+      });
+  }, []);
 
   return (
     <div className="dropDownMyTalisman-container">
@@ -271,68 +250,122 @@ export function DropDownMyTalisman({ handleDropDown }: DropdownOptions) {
           })}
         </div>
       )}
-          {buttonFocusPosition==="Meditaciones lovelia" && <div className="dropDownMyTalisman-section-container">
-            <div className="dropDownMyTalisman-title-wrapper">
+      {buttonFocusPosition === "Meditaciones lovelia" && (
+        <div className="dropDownMyTalisman-section-container">
+          <div className="dropDownMyTalisman-title-wrapper">
             <h3>{meditacionesInfo.name}</h3>
             <table className="dropDownMyTalisman-sounds-table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th className="th-trackname-column"><strong>Pista</strong></th>
-                <th>Duración</th>
-              </tr>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th className="th-trackname-column">
+                    <strong>Pista</strong>
+                  </th>
+                  <th>Duración</th>
+                </tr>
               </thead>
-            {sounds.map((item,i)=>{return(
-              <tbody>
-               <tr key={i} onDoubleClick={()=>{playAudio(i)}}  onMouseEnter={()=>{setTableFocus(i+1)}} onMouseLeave={()=>{setTableFocus(0)}}>
-                <td>{tableFocus===i+1 ? <div className="play-icon-container"><PlayIcon/></div>:i+1}</td>
-                <td className="td-trackname-column">
-                  <strong>{item.name}</strong>
-                  <p>{item.name}</p></td>
-                <td>{"10:10"}</td>
-                <audio ref={el => (audioRefs.current[i] = el!)}>
-              <source src={`http://localhost:3000${item.url}`} type="audio/mpeg" />
-              Your browser does not support the audio element.
-            </audio>
-            
-             </tr>
-             </tbody>
-            )})}
+              {sounds.map((item, i) => {
+                return (
+                  <tbody>
+                    <tr
+                      key={i}
+                      onDoubleClick={() => {
+                        playAudio(i);
+                      }}
+                      onMouseEnter={() => {
+                        setTableFocus(i + 1);
+                      }}
+                      onMouseLeave={() => {
+                        setTableFocus(0);
+                      }}
+                    >
+                      <td>
+                        {tableFocus === i + 1 ? (
+                          <div className="play-icon-container">
+                            <PlayIcon />
+                          </div>
+                        ) : (
+                          i + 1
+                        )}
+                      </td>
+                      <td className="td-trackname-column">
+                        <strong>{item.name}</strong>
+                        <p>{item.name}</p>
+                      </td>
+                      <td>{"10:10"}</td>
+                      <audio ref={(el) => (audioRefs.current[i] = el!)}>
+                        <source
+                          src={`${envs.API_DOMAIN}${item.url}`}
+                          type="audio/mpeg"
+                        />
+                        Your browser does not support the audio element.
+                      </audio>
+                    </tr>
+                  </tbody>
+                );
+              })}
             </table>
           </div>
-
-            </div>}
-            {buttonFocusPosition==="Biblioteca de sonidos" && <div className="dropDownMyTalisman-section-container">
-            <div className="dropDownMyTalisman-title-wrapper">
+        </div>
+      )}
+      {buttonFocusPosition === "Biblioteca de sonidos" && (
+        <div className="dropDownMyTalisman-section-container">
+          <div className="dropDownMyTalisman-title-wrapper">
             <h3>{sonidosInfo.name}</h3>
             <table className="dropDownMyTalisman-sounds-table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th className="th-trackname-column"><strong>Pista</strong></th>
-                <th>Duración</th>
-              </tr>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th className="th-trackname-column">
+                    <strong>Pista</strong>
+                  </th>
+                  <th>Duración</th>
+                </tr>
               </thead>
-            {meditations.map((item,i)=>{return(
-              <tbody>
-               <tr onDoubleClick={()=>{playAudio(i)}} key={i} onMouseEnter={()=>{setTableFocus(i+1)}} onMouseLeave={()=>{setTableFocus(0)}}>
-                <td>{tableFocus===i+1 ? <div className="play-icon-container"><PlayIcon/></div>:i+1}</td>
-                <td className="td-trackname-column">
-                  <strong>{item.name}</strong>
-                  <p>{item.name}</p></td>
-                <td>10:12</td>
-                <audio ref={el => (audioRefs.current[i] = el!)}>
-              <source src={`http://localhost:3000${item.url}`} type="audio/mpeg" />
-              Your browser does not support the audio element.
-            </audio>
-            
-             </tr>
-             </tbody>
-            )})}
+              {meditations.map((item, i) => {
+                return (
+                  <tbody>
+                    <tr
+                      onDoubleClick={() => {
+                        playAudio(i);
+                      }}
+                      key={i}
+                      onMouseEnter={() => {
+                        setTableFocus(i + 1);
+                      }}
+                      onMouseLeave={() => {
+                        setTableFocus(0);
+                      }}
+                    >
+                      <td>
+                        {tableFocus === i + 1 ? (
+                          <div className="play-icon-container">
+                            <PlayIcon />
+                          </div>
+                        ) : (
+                          i + 1
+                        )}
+                      </td>
+                      <td className="td-trackname-column">
+                        <strong>{item.name}</strong>
+                        <p>{item.name}</p>
+                      </td>
+                      <td>10:12</td>
+                      <audio ref={(el) => (audioRefs.current[i] = el!)}>
+                        <source
+                          src={`${envs.API_DOMAIN}:3000${item.url}`}
+                          type="audio/mpeg"
+                        />
+                        Your browser does not support the audio element.
+                      </audio>
+                    </tr>
+                  </tbody>
+                );
+              })}
             </table>
           </div>
-
-            </div>}
+        </div>
+      )}
     </div>
   );
 }

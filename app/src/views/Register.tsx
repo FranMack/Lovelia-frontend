@@ -142,7 +142,7 @@ export function Register() {
 
 
     axios
-      .post("http://localhost:3000/api/v1/user/register", {
+      .post(`${envs.API_DOMAIN}/api/v1/user/register`, {
         name: name,
         lastname: lastname,
         email: email,

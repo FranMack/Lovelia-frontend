@@ -7,6 +7,7 @@ import { CheckOutValidation } from "../helpers/checkOutValidations";
 import axios from "axios";
 import { MercadoPagoIcon,PayPalIcon } from "../assets/images/icons/icons";
 import BeatLoader from "react-spinners/BeatLoader";
+import { envs } from "../config/envs";
 
 const sections = ["1. Identificación", "2. Envío", "3. Pago"];
 
@@ -308,7 +309,7 @@ export function CheckOutAnalogic() {
 
       axios
         .post(
-          "http://localhost:3000/api/v1/payment-mercadopago/create-order",
+          `${envs.API_DOMAIN}/api/v1/payment-mercadopago/create-order`,
           {
             items: [...shopingCartMP, delivery],
             email: email,
@@ -355,7 +356,7 @@ export function CheckOutAnalogic() {
 
       axios
       .post(
-        "http://localhost:3000/api/v1/payment-paypal/create-order",{email, type: "analog-product",productDetails,items:[...shopingCartPaypal,delivery]})
+        `${envs.API_DOMAIN}/api/v1/payment-paypal/create-order`,{email, type: "analog-product",productDetails,items:[...shopingCartPaypal,delivery]})
         .then((response)=>{
           localStorage.removeItem("shopingCart");
           window.location.href = response.data.link_de_pago;

@@ -8,6 +8,7 @@ import axios from "axios";
 import { useForm } from "../hooks/useForm";
 import { CheckOutDigitalValidation } from "../helpers/checkOutDigitalValidations";
 import { LoginValidations } from "../helpers/loginValidations";
+import { envs } from "../config/envs";
 
 const sections = ["1. Datos usuario", "2. Pago"];
 
@@ -232,7 +233,7 @@ export function CheckOutDigital() {
 
       axios
         .post(
-          "http://localhost:3000/api/v1/payment-mercadopago/create-order",
+          `${envs.API_DOMAIN}/api/v1/payment-mercadopago/create-order`,
           {
             email: email,
             type: "digital-product",
@@ -268,7 +269,7 @@ export function CheckOutDigital() {
 
       axios
         .post(
-          "http://localhost:3000/api/v1/payment-paypal/create-order",
+          `${envs.API_DOMAIN}/api/v1/payment-paypal/create-order`,
           {
             email: email,
             type: "digital-product",

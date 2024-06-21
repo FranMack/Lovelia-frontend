@@ -2,6 +2,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
+import { envs } from "../config/envs";
 
 // Define the NavbarDropDownOptions interface
 interface NavbarDropDownOptions {
@@ -27,7 +28,7 @@ export function NavbarDropDown({ buttonOptions,handleMouseOver,handleMouseLeave 
 
   const handlerLogout = () => {
     axios
-      .get("http://localhost:3000/api/v1/user/logout", {
+      .get(`${envs.API_DOMAIN}/api/v1/user/logout`, {
         withCredentials: true,
       })
       .then(() => {

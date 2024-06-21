@@ -7,6 +7,7 @@ import { UserContext } from "../context/userContext"
 import talismanDigital from "../assets/images/talisman-wallpaper.png"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { envs } from "../config/envs"
 
 interface DatosCompra{
     producto:string,
@@ -90,7 +91,7 @@ export function Profile(){
 
     useEffect (()=>{
         if(email){
-        axios.get(`http://localhost:3000/api/v1/product/list/${email}`,{withCredentials:true})
+        axios.get(`${envs.API_DOMAIN}/api/v1/product/list/${email}`,{withCredentials:true})
         .then((response)=>{setShopingHistory(response.data)})
         .catch((error)=>{
             console.log(error)

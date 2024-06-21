@@ -6,6 +6,7 @@ import axios from "axios";
 import { PopUp } from "../commons/PopUp";
 import { PopUpOptions } from "../commons/PopUp";
 import BeatLoader from "react-spinners/BeatLoader";
+import { envs } from "../config/envs";
 export function Contacto() {
   window.scrollTo(0, 0);
 
@@ -105,7 +106,7 @@ export function Contacto() {
     setIsLoading(true)
 
     axios
-      .post("http://localhost:3000/api/v1/user/consult", {
+      .post(`${envs.API_DOMAIN}/api/v1/user/consult`, {
         name: name,
         subject: subject,
         email: email,
