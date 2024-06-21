@@ -12,7 +12,7 @@ export class CheckOutDigitalValidation {
   ) {}
 
   static create(object: {
-    [key: string]: any;
+    [key: string]: string;
   }): [CheckOutDigitalValidationErrors[]?, CheckOutDigitalValidation?] {
     const { country, state, city } = object;
 

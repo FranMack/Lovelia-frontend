@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { ejemploTalismanesAnalogicos } from "../assets/images/ejemplos-talisman-analogico/ejemplosTalismanes";
 import { ejemploTalismanes } from "../assets/images/ejemplos-talismanes/ejemplosTalismanes";
-import { ejemploTalismanesAnalogicos } from "../assets/images/ejemplos-talismán-analogico/ejemplosTalismanes";
 import wallpaperColgante from "../assets/images/imagen-colgante.png";
 import wallpaperColgante2 from "../assets/images/imagen-colgante2.png";
 import talismanFisico1 from "../assets/images/talisman-fisico.png";

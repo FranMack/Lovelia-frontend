@@ -13,7 +13,7 @@ export class ContactValidation {
   ) {}
 
   static create(object: {
-    [key: string]: any;
+    [key: string]: string;
   }): [UserValidationErrors[]?, ContactValidation?] {
     const { name, subject, email, message } = object;
 
@@ -46,7 +46,6 @@ export class ContactValidation {
       errors.push({ email: "Email is not valid" });
     }
 
-   
     //message
 
     if (!message) {

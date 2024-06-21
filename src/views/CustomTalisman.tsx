@@ -1,20 +1,17 @@
-import { useState, useContext } from "react";
-import { ejemploTalismanesAnalogicos } from "../assets/images/ejemplos-talismán-analogico/ejemplosTalismanes";
-import { RightNextIcon } from "../assets/images/icons/icons";
-import { DropdownMenu } from "../commons/DropdownMenu";
-import { DropdownMenuOptions } from "../commons/DropdownMenu";
+import { useContext, useState } from "react";
+import { ejemploTalismanesAnalogicos } from "../assets/images/ejemplos-talisman-analogico/ejemplosTalismanes";
+import { ArrowUp, RightNextIcon } from "../assets/images/icons/icons";
 import { ButtonArrowUp } from "../commons/ButtonArrowUp";
-import { ArrowUp } from "../assets/images/icons/icons";
+import { DropdownMenu, DropdownMenuOptions } from "../commons/DropdownMenu";
 
-import { Button } from "../commons/Button";
-import { DropDownInfo } from "../commons/DropdownInfo";
-import { DropdownInfoOptions } from "../commons/DropdownInfo";
-import { useOpenModal } from "../hooks/useOpenModal";
-import { DropDownIntensiones } from "../commons/DropDownIntensiones";
-import { TalismanModelContext } from "../context/talismanModelContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { toast} from "react-toastify";
+import { Button } from "../commons/Button";
+import { DropDownIntensiones } from "../commons/DropDownIntensiones";
+import { DropDownInfo, DropdownInfoOptions } from "../commons/DropdownInfo";
+import { TalismanModelContext } from "../context/talismanModelContext";
+import { useOpenModal } from "../hooks/useOpenModal";
 
 const modelOptions: DropdownMenuOptions = {
   title: "Elige el modelo",
@@ -71,12 +68,11 @@ const intencionOptions: DropdownMenuOptions = {
 };
 
 export function CustomTalisman() {
-
   window.scrollTo(0, 0);
-  const navigate=useNavigate()
-  const linkToCheckOut=()=>{
-    navigate("/checkout/store")
-  }
+  const navigate = useNavigate();
+  const linkToCheckOut = () => {
+    navigate("/checkout/store");
+  };
 
   const [index, setIndex] = useState<number>(0);
 
@@ -112,7 +108,6 @@ export function CustomTalisman() {
     setPriceRock,
     setOptionIntention,
     setPriceIntention,
-    
   } = useContext(TalismanModelContext);
 
   const talismanDropDownInfo: DropdownInfoOptions = {
@@ -199,16 +194,16 @@ export function CustomTalisman() {
       localStorage.setItem("shopingCart", JSON.stringify(shopingCartUpdate));
 
       toast.success("AÑADIDO AL CARRITO");
-      setOptionModel("")
-      setPriceModel(0)
-      setOptionMaterial("")
-      setPriceMaterial(0)
-      setOptioChain("")
-      setPriceChain(0)
-      setOptionRock("")
-      setPriceRock(0)
-      setOptionIntention("")
-      setPriceIntention(0)
+      setOptionModel("");
+      setPriceModel(0);
+      setOptionMaterial("");
+      setPriceMaterial(0);
+      setOptioChain("");
+      setPriceChain(0);
+      setOptionRock("");
+      setPriceRock(0);
+      setOptionIntention("");
+      setPriceIntention(0);
 
       return;
     } else {
@@ -218,12 +213,8 @@ export function CustomTalisman() {
     }
   };
 
- 
-
-
   return (
     <section className="custonTalisman-container">
-  
       <div className="custonTalisman-internal-container left">
         <img
           src={ejemploTalismanesAnalogicos[index].image}
@@ -307,7 +298,7 @@ export function CustomTalisman() {
           )}
           <div className="buttons-container">
             <Button
-            onClick={linkToCheckOut}
+              onClick={linkToCheckOut}
               text={`$${(
                 priceModel +
                 priceMaterial +

@@ -1,14 +1,13 @@
+import axios from "axios";
 import { useContext, useEffect, useRef, useState } from "react";
+import BeatLoader from "react-spinners/BeatLoader";
+import { MercadoPagoIcon, PayPalIcon } from "../assets/images/icons/icons";
+import videoHome from "../assets/videos/videoHome.mp4";
+import { envs } from "../config/envs";
 import { ShopingCartContext } from "../context/modalShopingCart";
 import { UserContext } from "../context/userContext";
-import videoHome from "../assets/videos/videoHome.mp4";
-import { MercadoPagoIcon, PayPalIcon } from "../assets/images/icons/icons";
-import BeatLoader from "react-spinners/BeatLoader";
-import axios from "axios";
-import { useForm } from "../hooks/useForm";
 import { CheckOutDigitalValidation } from "../helpers/checkOutDigitalValidations";
-import { LoginValidations } from "../helpers/loginValidations";
-import { envs } from "../config/envs";
+import { useForm } from "../hooks/useForm";
 
 const sections = ["1. Datos usuario", "2. Pago"];
 
@@ -23,7 +22,7 @@ const month = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 function years() {
   const actualYear = new Date().getFullYear();
-  let years = [1912];
+  const years = [1912];
   for (let i = 0; i <= actualYear - 1912; i++) {
     years.push(years[years.length - 1] + 1);
   }
@@ -31,7 +30,7 @@ function years() {
 }
 
 function minutes() {
-  let minutes = [0];
+  const minutes = [0];
   for (let i = 0; i < 60; i++) {
     minutes.push(minutes[minutes.length - 1] + 1);
   }
@@ -39,7 +38,7 @@ function minutes() {
 }
 
 function hours() {
-  let hours = [1];
+  const hours = [1];
   for (let i = 1; i < 12; i++) {
     hours.push(hours[hours.length - 1] + 1);
   }
@@ -109,7 +108,7 @@ export function CheckOutDigital() {
   //form
   const initialForm = { country: "", state: "", city: "" };
 
-  const { formState, onInputChange, onResetForm } = useForm(initialForm);
+  const { formState, onInputChange } = useForm(initialForm);
 
   const { country, state, city } = formState;
 
@@ -210,7 +209,7 @@ export function CheckOutDigital() {
 
     setErrorWarning("");
 
-    setIsLoading(true)
+    setIsLoading(true);
     const userInfo = {
       country,
       state,
@@ -255,17 +254,15 @@ export function CheckOutDigital() {
         });
     }
 
-
-
     if (paymetType === "paypal") {
       const shopingCartPaypal = {
         title: "Digital talismán",
-          quantity: 1,
-          unit_amount: {
-            currency_code: "USD",
-            value: 2,
-      }
-    }
+        quantity: 1,
+        unit_amount: {
+          currency_code: "USD",
+          value: 2,
+        },
+      };
 
       axios
         .post(
@@ -290,10 +287,6 @@ export function CheckOutDigital() {
           setErrorAPI(error.response.data.error);
         });
     }
-
-
-
-
   };
 
   return (

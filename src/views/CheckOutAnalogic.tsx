@@ -1,13 +1,13 @@
-import { useContext, useEffect, useRef, useState,CSSProperties  } from "react";
-import { useForm } from "../hooks/useForm";
-import { ShopingCartContext } from "../context/modalShopingCart";
-import { ProductosOptions } from "../components/ShopingCart";
-import videoHome from "../assets/videos/videoHome.mp4";
-import { CheckOutValidation } from "../helpers/checkOutValidations";
 import axios from "axios";
-import { MercadoPagoIcon,PayPalIcon } from "../assets/images/icons/icons";
+import { useContext, useEffect, useRef, useState } from "react";
 import BeatLoader from "react-spinners/BeatLoader";
+import { MercadoPagoIcon, PayPalIcon } from "../assets/images/icons/icons";
+import videoHome from "../assets/videos/videoHome.mp4";
+import { ProductosOptions } from "../components/ShopingCart";
 import { envs } from "../config/envs";
+import { ShopingCartContext } from "../context/modalShopingCart";
+import { CheckOutValidation } from "../helpers/checkOutValidations";
+import { useForm } from "../hooks/useForm";
 
 const sections = ["1. Identificación", "2. Envío", "3. Pago"];
 
@@ -65,7 +65,7 @@ export function CheckOutAnalogic() {
     postalCode: "",
   };
 
-  const { formState, onInputChange, onResetForm } = useForm(initialForm);
+  const { formState, onInputChange } = useForm(initialForm);
   const {
     name,
     lastname,
@@ -101,12 +101,12 @@ export function CheckOutAnalogic() {
   const [stateErrors, setStateErrors] = useState<string[]>([]);
   const [countryErrors, setCountryErrors] = useState<string[]>([]);
   const [postalCodeErrors, setPostalCodeErrors] = useState<string[]>([]);
-  const [errorWarning,setErrorWarning]=useState<string>("")
+  const [errorWarning, setErrorWarning] = useState<string>("");
 
   //is loading
 
-  const [isLoading,setIsLoading]=useState(false)
- 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleBlur = (field: string) => {
     const [errors] = CheckOutValidation.create(formState);
     const fieldError = errors?.find((error) =>
@@ -156,7 +156,6 @@ export function CheckOutAnalogic() {
 
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-   
 
     const [errors] = CheckOutValidation.create(formState);
 
@@ -179,10 +178,7 @@ export function CheckOutAnalogic() {
         }
 
         if (Object.keys(error).includes("dni")) {
-          return setDniErrors((prevErrors) => [
-            ...prevErrors,
-            error["dni"],
-          ]);
+          return setDniErrors((prevErrors) => [...prevErrors, error["dni"]]);
         }
 
         if (Object.keys(error).includes("phone")) {
@@ -214,10 +210,7 @@ export function CheckOutAnalogic() {
         }
 
         if (Object.keys(error).includes("city")) {
-          return setCityErrors((prevErrors) => [
-            ...prevErrors,
-            error["city"],
-          ]);
+          return setCityErrors((prevErrors) => [...prevErrors, error["city"]]);
         }
 
         if (Object.keys(error).includes("state")) {
@@ -240,9 +233,6 @@ export function CheckOutAnalogic() {
             error["postalCode"],
           ]);
         }
-
-
-
       });
 
       //limpia los estados cuando no hay errores
@@ -256,21 +246,21 @@ export function CheckOutAnalogic() {
         return Object.keys(error).includes("email");
       }) && setEmailErrors([]);
 
-      setErrorWarning("validationErrors")
+      setErrorWarning("validationErrors");
       return;
     }
 
     if (!paymetType) {
-      setErrorWarning("missing-payment-type")
+      setErrorWarning("missing-payment-type");
       return;
     }
 
-    if(shopingCartItems.length<1){
-      setErrorWarning("empty-cart")
-      return
+    if (shopingCartItems.length < 1) {
+      setErrorWarning("empty-cart");
+      return;
     }
 
-    setIsLoading(true)
+    setIsLoading(true);
 
     const formData = { name, lastname, email };
 
@@ -285,8 +275,12 @@ export function CheckOutAnalogic() {
         email,
         name: "Talisman",
         postal_code: postalCode,
-        address: `${street} ${streetNumber} ${apartmentNumber && `Piso o Departamento ${apartmentNumber}`} - ${city}, ${state}, ${country} `,
-        payment_method: `${paymetType==="mercadoPago" ? "Mercado Pago" :"Paypal"}`,
+        address: `${street} ${streetNumber} ${
+          apartmentNumber && `Piso o Departamento ${apartmentNumber}`
+        } - ${city}, ${state}, ${country} `,
+        payment_method: `${
+          paymetType === "mercadoPago" ? "Mercado Pago" : "Paypal"
+        }`,
       };
     });
 
@@ -321,27 +315,29 @@ export function CheckOutAnalogic() {
         .then((response) => {
           localStorage.removeItem("shopingCart");
           window.location.href = response.data.link_de_pago;
-          setIsLoading(false)
+          setIsLoading(false);
         })
-        .then(()=>{ setIsLoading(false)})
+        .then(() => {
+          setIsLoading(false);
+        })
         .catch((error) => {
           console.log(error);
         });
     }
 
     if (paymetType === "paypal") {
-
-      const shopingCartPaypal = shopingCartItems.map((item: ProductosOptions) => {
-        return {
-          title: item.model,
-          quantity: item.quantity,
-          unit_amount: {
-            currency_code: "USD",
-            value: item.price,
-          }
-        
-        };
-      });
+      const shopingCartPaypal = shopingCartItems.map(
+        (item: ProductosOptions) => {
+          return {
+            title: item.model,
+            quantity: item.quantity,
+            unit_amount: {
+              currency_code: "USD",
+              value: item.price,
+            },
+          };
+        }
+      );
 
       const delivery = {
         title: "Envío",
@@ -349,33 +345,30 @@ export function CheckOutAnalogic() {
         unit_amount: {
           currency_code: "USD",
           value: deliveryPrice,
-        }
+        },
       };
 
-
-
       axios
-      .post(
-        `${envs.API_DOMAIN}/api/v1/payment-paypal/create-order`,{email, type: "analog-product",productDetails,items:[...shopingCartPaypal,delivery]})
-        .then((response)=>{
+        .post(`${envs.API_DOMAIN}/api/v1/payment-paypal/create-order`, {
+          email,
+          type: "analog-product",
+          productDetails,
+          items: [...shopingCartPaypal, delivery],
+        })
+        .then((response) => {
           localStorage.removeItem("shopingCart");
           window.location.href = response.data.link_de_pago;
-       
         })
-        .then(()=>{ setIsLoading(false)})
+        .then(() => {
+          setIsLoading(false);
+        })
         .catch((error) => {
           console.log(error);
         });
-
-
-    };
-
-
-
-
+    }
   };
 
-  console.log(dniErrors)
+  console.log(dniErrors);
 
   return (
     <main className={menuOpen ? "viewport-background" : ""}>
@@ -414,43 +407,39 @@ export function CheckOutAnalogic() {
               <div className="checkout-form">
                 <div className="checkout-form-names-container">
                   <div className="checkout-form-names-internal-container">
-                  <label htmlFor="name">Nombre</label>
-                  <input
-                    value={name}
-                    onChange={onInputChange}
-                    onBlur={() => handleBlur("name")}
-                    name="name"
-                    type="text"
-                    placeholder="Ej. John"
-                    className={
-                      nameErrors.length > 0 
-                        ? "input-error"
-                        : ""
-                    }
-                  />
-                   {nameErrors.length > 0 && (
-                    <span className="checkOut-helpers-error">{nameErrors[0]}</span>
-                  )}
+                    <label htmlFor="name">Nombre</label>
+                    <input
+                      value={name}
+                      onChange={onInputChange}
+                      onBlur={() => handleBlur("name")}
+                      name="name"
+                      type="text"
+                      placeholder="Ej. John"
+                      className={nameErrors.length > 0 ? "input-error" : ""}
+                    />
+                    {nameErrors.length > 0 && (
+                      <span className="checkOut-helpers-error">
+                        {nameErrors[0]}
+                      </span>
+                    )}
                   </div>
 
                   <div className="checkout-form-names-internal-container">
-                  <label htmlFor="lastname">Apellido</label>
-                  <input
-                    value={lastname}
-                    onChange={onInputChange}
-                    onBlur={() => handleBlur("lastname")}
-                    name="lastname"
-                    type="text"
-                    placeholder="Ej. Doe"
-                    className={
-                      lastNameErrors.length > 0 
-                        ? "input-error"
-                        : ""
-                    }
-                  />
+                    <label htmlFor="lastname">Apellido</label>
+                    <input
+                      value={lastname}
+                      onChange={onInputChange}
+                      onBlur={() => handleBlur("lastname")}
+                      name="lastname"
+                      type="text"
+                      placeholder="Ej. Doe"
+                      className={lastNameErrors.length > 0 ? "input-error" : ""}
+                    />
                     {lastNameErrors.length > 0 && (
-                    <span className="checkOut-helpers-error">{lastNameErrors[0]}</span>
-                  )}
+                      <span className="checkOut-helpers-error">
+                        {lastNameErrors[0]}
+                      </span>
+                    )}
                   </div>
                 </div>
                 <label htmlFor="email">Email</label>
@@ -461,50 +450,48 @@ export function CheckOutAnalogic() {
                   name="email"
                   type="email"
                   placeholder="ejemplo@gmail.com"
-                  className={
-                    emailErrors.length > 0  ? "input-error" : ""
-                  }
+                  className={emailErrors.length > 0 ? "input-error" : ""}
                 />
                 {emailErrors.length > 0 && (
-          <span className="checkOut-helpers-error">{emailErrors[0]}</span>
-        )}
+                  <span className="checkOut-helpers-error">
+                    {emailErrors[0]}
+                  </span>
+                )}
 
                 <div className="checkout-form-names-container">
-                <div className="checkout-form-names-internal-container">
-                <label htmlFor="dni">DNI</label>
-                  <input
-                    value={dni}
-                    onChange={onInputChange}
-                    onBlur={() => handleBlur("dni")}
-                    name="dni"
-                    type="text"
-                    placeholder="Ej. 35498535"
-                    className={
-                      dniErrors.length > 0  ? "input-error" : ""
-                    }
-                  />
-                  {dniErrors.length > 0 && (
-          <span className="checkOut-helpers-error">{dniErrors[0]}</span>
-        )}
+                  <div className="checkout-form-names-internal-container">
+                    <label htmlFor="dni">DNI</label>
+                    <input
+                      value={dni}
+                      onChange={onInputChange}
+                      onBlur={() => handleBlur("dni")}
+                      name="dni"
+                      type="text"
+                      placeholder="Ej. 35498535"
+                      className={dniErrors.length > 0 ? "input-error" : ""}
+                    />
+                    {dniErrors.length > 0 && (
+                      <span className="checkOut-helpers-error">
+                        {dniErrors[0]}
+                      </span>
+                    )}
                   </div>
                   <div className="checkout-form-names-internal-container">
-                  <label htmlFor="phone">Telefóno</label>
-                  <input
-                    value={phone}
-                    onChange={onInputChange}
-                    onBlur={() => handleBlur("phone")}
-                    name="phone"
-                    type="text"
-                    placeholder="Ej. +54 9 342 6544569"
-                    className={
-                      phoneErrors.length > 0 
-                        ? "input-error"
-                        : ""
-                    }
-                  />
-                  {phoneErrors.length > 0 && (
-          <span className="checkOut-helpers-error">{phoneErrors[0]}</span>
-        )}
+                    <label htmlFor="phone">Telefóno</label>
+                    <input
+                      value={phone}
+                      onChange={onInputChange}
+                      onBlur={() => handleBlur("phone")}
+                      name="phone"
+                      type="text"
+                      placeholder="Ej. +54 9 342 6544569"
+                      className={phoneErrors.length > 0 ? "input-error" : ""}
+                    />
+                    {phoneErrors.length > 0 && (
+                      <span className="checkOut-helpers-error">
+                        {phoneErrors[0]}
+                      </span>
+                    )}
                   </div>
                 </div>
 
@@ -521,7 +508,7 @@ export function CheckOutAnalogic() {
               </div>
 
               <div className="checkout-form">
-              <label htmlFor="receiver">Destinatario</label>
+                <label htmlFor="receiver">Destinatario</label>
                 <input
                   value={receiver}
                   onChange={onInputChange}
@@ -529,57 +516,52 @@ export function CheckOutAnalogic() {
                   name="receiver"
                   type="text"
                   placeholder="Ej. John Doe"
-                  className={
-                    receiverErrors.length > 0 
-                      ? "input-error"
-                      : ""
-                  }
-                 
+                  className={receiverErrors.length > 0 ? "input-error" : ""}
                 />
-                 {receiverErrors.length > 0 && (
-                    <span className="checkOut-helpers-error">{receiverErrors[0]}</span>
-                  )}
+                {receiverErrors.length > 0 && (
+                  <span className="checkOut-helpers-error">
+                    {receiverErrors[0]}
+                  </span>
+                )}
 
                 <div className="checkout-form-names-container">
-                <div className="checkout-form-names-internal-container">
-                <label htmlFor="receiver">Calle</label>
-                  <input
-                    value={street}
-                    onChange={onInputChange}
-                    onBlur={() => handleBlur("street")}
-                    name="street"
-                    type="text"
-                    placeholder="Ej. Av. Las Américas"
-                    className={
-                      streetErrors.length > 0 
-                        ? "input-error"
-                        : ""
-                    }
-                  />
+                  <div className="checkout-form-names-internal-container">
+                    <label htmlFor="receiver">Calle</label>
+                    <input
+                      value={street}
+                      onChange={onInputChange}
+                      onBlur={() => handleBlur("street")}
+                      name="street"
+                      type="text"
+                      placeholder="Ej. Av. Las Américas"
+                      className={streetErrors.length > 0 ? "input-error" : ""}
+                    />
 
-{streetErrors.length > 0 && (
-                    <span className="checkOut-helpers-error">{streetErrors[0]}</span>
-                  )}
+                    {streetErrors.length > 0 && (
+                      <span className="checkOut-helpers-error">
+                        {streetErrors[0]}
+                      </span>
+                    )}
                   </div>
 
                   <div className="checkout-form-names-internal-container">
-                  <label htmlFor="streetNumber">Número</label>
-                  <input
-                    value={streetNumber}
-                    onChange={onInputChange}
-                    onBlur={() => handleBlur("streetNumber")}
-                    name="streetNumber"
-                    type="text"
-                    placeholder="Ej. 2030"
-                    className={
-                      streetNumberErrors.length > 0 
-                        ? "input-error"
-                        : ""
-                    }
-                  />
-                  {streetNumberErrors.length > 0 && (
-                    <span className="checkOut-helpers-error">{streetNumberErrors[0]}</span>
-                  )}
+                    <label htmlFor="streetNumber">Número</label>
+                    <input
+                      value={streetNumber}
+                      onChange={onInputChange}
+                      onBlur={() => handleBlur("streetNumber")}
+                      name="streetNumber"
+                      type="text"
+                      placeholder="Ej. 2030"
+                      className={
+                        streetNumberErrors.length > 0 ? "input-error" : ""
+                      }
+                    />
+                    {streetNumberErrors.length > 0 && (
+                      <span className="checkOut-helpers-error">
+                        {streetNumberErrors[0]}
+                      </span>
+                    )}
                   </div>
                 </div>
                 <label htmlFor="apartmentNumber">Departamento</label>
@@ -590,88 +572,81 @@ export function CheckOutAnalogic() {
                   name="apartmentNumber"
                   type="text"
                   placeholder="Ej. 8A"
-              
                 />
 
                 <div className="checkout-form-names-container">
-                <div className="checkout-form-names-internal-container">
-                <label htmlFor="city">Ciudad</label>
-                  <input
-                    value={city}
-                    onChange={onInputChange}
-                    onBlur={() => handleBlur("city")}
-                    name="city"
-                    type="text"
-                    placeholder="Ej. Rosario"
-                    className={
-                      cityErrors.length > 0 
-                        ? "input-error"
-                        : ""
-                    }
-                  />
-                   {cityErrors.length > 0 && (
-                    <span className="checkOut-helpers-error">{cityErrors[0]}</span>
-                  )}
+                  <div className="checkout-form-names-internal-container">
+                    <label htmlFor="city">Ciudad</label>
+                    <input
+                      value={city}
+                      onChange={onInputChange}
+                      onBlur={() => handleBlur("city")}
+                      name="city"
+                      type="text"
+                      placeholder="Ej. Rosario"
+                      className={cityErrors.length > 0 ? "input-error" : ""}
+                    />
+                    {cityErrors.length > 0 && (
+                      <span className="checkOut-helpers-error">
+                        {cityErrors[0]}
+                      </span>
+                    )}
                   </div>
                   <div className="checkout-form-names-internal-container">
-                  <label htmlFor="state">Provincia</label>
-                  <input
-                    value={state}
-                    onChange={onInputChange}
-                    onBlur={() => handleBlur("state")}
-                    name="state"
-                    type="text"
-                    placeholder="Ej. Santa Fe"
-                    className={
-                      stateErrors.length > 0 
-                        ? "input-error"
-                        : ""
-                    }
-                  />
-                  {stateErrors.length > 0 && (
-                    <span className="checkOut-helpers-error">{stateErrors[0]}</span>
-                  )}
+                    <label htmlFor="state">Provincia</label>
+                    <input
+                      value={state}
+                      onChange={onInputChange}
+                      onBlur={() => handleBlur("state")}
+                      name="state"
+                      type="text"
+                      placeholder="Ej. Santa Fe"
+                      className={stateErrors.length > 0 ? "input-error" : ""}
+                    />
+                    {stateErrors.length > 0 && (
+                      <span className="checkOut-helpers-error">
+                        {stateErrors[0]}
+                      </span>
+                    )}
                   </div>
                 </div>
 
                 <div className="checkout-form-names-container">
-                <div className="checkout-form-names-internal-container">
-                <label htmlFor="country">País</label>
-                  <input
-                    value={country}
-                    onChange={onInputChange}
-                    onBlur={() => handleBlur("country")}
-                    name="country"
-                    type="text"
-                    placeholder="Ej. Argentina"
-                    className={
-                      countryErrors.length > 0 
-                        ? "input-error"
-                        : ""
-                    }
-                  />
-                  {countryErrors.length > 0 && (
-                    <span className="checkOut-helpers-error">{countryErrors[0]}</span>
-                  )}
+                  <div className="checkout-form-names-internal-container">
+                    <label htmlFor="country">País</label>
+                    <input
+                      value={country}
+                      onChange={onInputChange}
+                      onBlur={() => handleBlur("country")}
+                      name="country"
+                      type="text"
+                      placeholder="Ej. Argentina"
+                      className={countryErrors.length > 0 ? "input-error" : ""}
+                    />
+                    {countryErrors.length > 0 && (
+                      <span className="checkOut-helpers-error">
+                        {countryErrors[0]}
+                      </span>
+                    )}
                   </div>
                   <div className="checkout-form-names-internal-container">
-                  <label htmlFor="postalCode">Codigo postal</label>
-                  <input
-                    value={postalCode}
-                    onChange={onInputChange}
-                    onBlur={() => handleBlur("postalCode")}
-                    name="postalCode"
-                    type="text"
-                    placeholder="Ej. 2000"
-                    className={
-                      postalCodeErrors.length > 0 
-                        ? "input-error"
-                        : ""
-                    }
-                  />
-                   {stateErrors.length > 0 && (
-                    <span className="checkOut-helpers-error">{stateErrors[0]}</span>
-                  )}
+                    <label htmlFor="postalCode">Codigo postal</label>
+                    <input
+                      value={postalCode}
+                      onChange={onInputChange}
+                      onBlur={() => handleBlur("postalCode")}
+                      name="postalCode"
+                      type="text"
+                      placeholder="Ej. 2000"
+                      className={
+                        postalCodeErrors.length > 0 ? "input-error" : ""
+                      }
+                    />
+                    {stateErrors.length > 0 && (
+                      <span className="checkOut-helpers-error">
+                        {stateErrors[0]}
+                      </span>
+                    )}
                   </div>
                 </div>
 
@@ -700,7 +675,7 @@ export function CheckOutAnalogic() {
                           value="mercadoPago"
                           checked={paymetType === "mercadoPago"}
                         />
-                       <MercadoPagoIcon/>
+                        <MercadoPagoIcon />
                       </label>
                     </div>
 
@@ -714,45 +689,54 @@ export function CheckOutAnalogic() {
                           value="paypal"
                           checked={paymetType === "paypal"}
                         />
-                        <PayPalIcon/>
+                        <PayPalIcon />
                       </label>
                     </div>
                   </div>
                 </div>
-                {(paymetType === "paypal" && !errorWarning) ? (
+                {paymetType === "paypal" && !errorWarning ? (
                   <div className="complementary-info-payment-container">
                     <p>
                       Para completar la transacción, te enviaremos a los
                       servidores seguros de PayPal.
                     </p>
                   </div>
-                ) :(paymetType === "mercadoPago" && !errorWarning) ? (
+                ) : paymetType === "mercadoPago" && !errorWarning ? (
                   <div className="complementary-info-payment-container">
                     <p>
                       Para completar la transacción, te enviaremos a los
                       servidores seguros de Mercado Pago.
                     </p>
                   </div>
-                ):<></>}
-                {errorWarning==="validationErrors" ? <div className="complementary-info-payment-container error">
-                    <p>
-                    POR FAVOR, VERIFIQUE HABER LLENADO CORRECTAMENTE LOS CAMPOS
-                    </p>
-                  </div>: errorWarning==="missing-payment-type" ? <div className="complementary-info-payment-container error">
-                    <p>
-                      DEBER SELECCIONAR UN MÉTODO DE PAGO.
-                    </p>
-                  </div>:
-                  errorWarning==="empty-cart" ? <div className="complementary-info-payment-container error">
-                  <p>
-                 NO HAY PRODUCTOS AÑADIDOS AL CARRITO DE COMPRA.
-                  </p>
-                </div>:
+                ) : (
                   <></>
+                )}
+                {errorWarning === "validationErrors" ? (
+                  <div className="complementary-info-payment-container error">
+                    <p>
+                      POR FAVOR, VERIFIQUE HABER LLENADO CORRECTAMENTE LOS
+                      CAMPOS
+                    </p>
+                  </div>
+                ) : errorWarning === "missing-payment-type" ? (
+                  <div className="complementary-info-payment-container error">
+                    <p>DEBER SELECCIONAR UN MÉTODO DE PAGO.</p>
+                  </div>
+                ) : errorWarning === "empty-cart" ? (
+                  <div className="complementary-info-payment-container error">
+                    <p>NO HAY PRODUCTOS AÑADIDOS AL CARRITO DE COMPRA.</p>
+                  </div>
+                ) : (
+                  <></>
+                )}
 
-                }
-
-                <button type="submit">{isLoading && !errorWarning ? <BeatLoader color={"white"} speedMultiplier={0.4}	/>: "Ir a pagar"}</button>
+                <button type="submit">
+                  {isLoading && !errorWarning ? (
+                    <BeatLoader color={"white"} speedMultiplier={0.4} />
+                  ) : (
+                    "Ir a pagar"
+                  )}
+                </button>
               </div>
             </div>
           )}

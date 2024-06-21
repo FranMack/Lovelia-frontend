@@ -21,7 +21,7 @@ export class CheckOutValidation {
   ) {}
 
   static create(object: {
-    [key: string]: any;
+    [key: string]: string;
   }): [CheckOutValidationErrors[]?, CheckOutValidation?] {
     const {
       name,
@@ -32,7 +32,7 @@ export class CheckOutValidation {
       receiver,
       street,
       streetNumber,
-      apartmentNumber,
+      //apartmentNumber,
       state,
       city,
       country,
@@ -89,8 +89,8 @@ export class CheckOutValidation {
       errors.push({ dni: "DNI must contain only numbres" });
     }
 
-    if (dni.length<7) {
-      errors.push({ dni: `DNI must contain at least 7 numbers`});
+    if (dni.length < 7) {
+      errors.push({ dni: `DNI must contain at least 7 numbers` });
     }
 
     //phone
@@ -100,18 +100,13 @@ export class CheckOutValidation {
       });
     }
 
-  if (
-      !regularExpresions.phone.test(phone)
-    ) {
+    if (!regularExpresions.phone.test(phone)) {
       errors.push({ phone: "Wrong phone number" });
     }
 
-
-    if ( phone.length<9
-    ) {
+    if (phone.length < 9) {
       errors.push({ phone: "Wrong phone number" });
     }
-
 
     //Destinatario
     if (!receiver) {

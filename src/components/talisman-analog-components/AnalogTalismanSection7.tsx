@@ -3,14 +3,12 @@ import talismanDigital from "../../assets/images/talisman-digital.png";
 import { ButtonArrowRight } from "../../commons/ButtonArrowRight";
 import { GiftComponent } from "../GiftComponent";
 export function AnalogTalismanSection7() {
-  const navigatge=useNavigate();
+  const navigatge = useNavigate();
 
-  const linkToTalismanDigital=()=>{
-navigatge("/talisman-digital")
-  }
+  const linkToTalismanDigital = () => {
+    navigatge("/talisman-digital");
+  };
 
-  
-  
   return (
     <section className="analogTalisman-section7-container">
       <div className="analogTalisman-section7-top-conteiner">
@@ -26,7 +24,7 @@ navigatge("/talisman-digital")
         onClick={linkToTalismanDigital}
       />
 
-      <GiftComponent/>
+      <GiftComponent />
     </section>
   );
 }

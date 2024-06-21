@@ -1,9 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import talismanDigital from "../../assets/images/talisman-digital.png";
-import talismanGif from "../../assets/images/gif/talismanGif.gif"
+import talismanGif from "../../assets/images/gif/talismanGif.gif";
 
-import { PortadaTalisman } from "../PortadaTalisman";
-import { PortadaTalismanOptions } from "../PortadaTalisman";
+import { PortadaTalisman, PortadaTalismanOptions } from "../PortadaTalisman";
 
 const infoPortada: PortadaTalismanOptions = {
   image: talismanGif,
@@ -16,15 +14,12 @@ const infoPortada: PortadaTalismanOptions = {
   button: "Comprar talismán digital",
 };
 
-
-
 export function DigitalTalismanSection1() {
+  const navigatge = useNavigate();
 
-  const navigatge=useNavigate();
-
-  const linkToComprarTalisman=()=>{
-navigatge("/comprar-talisman-digital")
-  }
+  const linkToComprarTalisman = () => {
+    navigatge("/comprar-talisman-digital");
+  };
   return (
     <>
       <PortadaTalisman {...infoPortada} onClick={linkToComprarTalisman} />

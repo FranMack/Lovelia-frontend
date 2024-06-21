@@ -1,14 +1,11 @@
-import { ButtonArrowRight } from "../../commons/ButtonArrowRight";
-import { Slider } from "../Slider";
-import talismanFisico from "../../assets/images/talisman-fisico.png";
+import { useNavigate } from "react-router-dom";
 import colganteWallpaper from "../../assets/images/imagen-colgante.png";
 import colganteWallpaper2 from "../../assets/images/imagen-colgante2.png";
+import talismanFisico from "../../assets/images/talisman-fisico.png";
 import { TitleComponent } from "../../commons/TitleComponent";
-import { PlacaTipo1 } from "../PlacaTipo1";
-import { PlacaTipo1Options } from "../PlacaTipo1";
-import { WallpaperTipo1 } from "../WallpaperTipo1";
-import { Wallpaper1Options } from "../WallpaperTipo1";
-import { useNavigate } from "react-router-dom";
+import { PlacaTipo1, PlacaTipo1Options } from "../PlacaTipo1";
+import { Slider } from "../Slider";
+import { Wallpaper1Options, WallpaperTipo1 } from "../WallpaperTipo1";
 
 const titleMeditaciones = {
   title: "Meditaciones lovelia",
@@ -29,21 +26,20 @@ const infoPlacaTipo1: PlacaTipo1Options = {
 
 const infoWallpaper1: Wallpaper1Options = {
   image: colganteWallpaper,
-  height:"70vh"
+  height: "70vh",
 };
 
 const infoWallpaper2: Wallpaper1Options = {
   image: colganteWallpaper2,
-  height:"90vh"
+  height: "90vh",
 };
 
 export function IntencionesSection3() {
+  const navigatge = useNavigate();
 
-  const navigatge=useNavigate();
-
-  const linkToComprarTalisman=()=>{
-navigatge("/comprar-talisman-analogico")
-  }
+  const linkToComprarTalisman = () => {
+    navigatge("/comprar-talisman-analogico");
+  };
   return (
     <section className="intensiones-section3">
       <TitleComponent {...titleMeditaciones} />

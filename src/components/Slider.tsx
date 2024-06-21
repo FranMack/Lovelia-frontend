@@ -1,8 +1,7 @@
-import { useRef, useState } from "react";
+import { MouseEvent, useRef, useState } from "react";
 import { infoMusica } from "../assets/images/carrusel-music/infoMusica";
 import { LeftArrowIcon, RightArrowIcon } from "../assets/images/icons/icons";
 import { SliderCard } from "../commons/SliderCard";
-import React, { MouseEvent } from "react";
 
 export function Slider() {
   const slider = useRef<HTMLUListElement>(null);

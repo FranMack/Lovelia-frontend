@@ -1,42 +1,37 @@
 import { useEffect, useRef, useState } from "react";
-import { infoCarrusel } from "../assets/images/intenciones/infoCarrusel"
-import { LeftArrowIcon, RightArrowIcon } from "../assets/images/icons/icons";
 import { useNavigate } from "react-router-dom";
+import { LeftArrowIcon, RightArrowIcon } from "../assets/images/icons/icons";
+import { infoCarrusel } from "../assets/images/intenciones/infoCarrusel";
 
-export function CarruselIntensiones(){
-  const nanvigate= useNavigate()
-  const linkToIntension=(id:number)=>{
-    nanvigate(`/intensiones/${id}`)
-
-  }
+export function CarruselIntensiones() {
+  const nanvigate = useNavigate();
+  const linkToIntension = (id: number) => {
+    nanvigate(`/intensiones/${id}`);
+  };
 
   const galleryContainer = useRef<HTMLDivElement>(null);
 
   const [clases, setClases] = useState<string[]>([]);
-  const [position,setPosition]=useState<number>(2)
+  const [position, setPosition] = useState<number>(2);
 
-
-  function handlePositionNext(){
-    if(position===7){
-      setPosition(0)
-    }
-    else{
-      setPosition(position+1)
+  function handlePositionNext() {
+    if (position === 7) {
+      setPosition(0);
+    } else {
+      setPosition(position + 1);
     }
   }
-  function handlePositionPrevious(){
-    if(position===0){
-      setPosition(7)
-    }
-    else{
-      setPosition(position-1)
+  function handlePositionPrevious() {
+    if (position === 0) {
+      setPosition(7);
+    } else {
+      setPosition(position - 1);
     }
   }
-
 
   useEffect(() => {
     const currentGalleryContainer = galleryContainer.current;
-    const currentItems = Array.from(currentGalleryContainer?.children!);
+    const currentItems = Array.from(currentGalleryContainer!.children!);
 
     const currentClases = currentItems.map((item) => {
       return item.className.split(" ")[1];
@@ -47,16 +42,16 @@ export function CarruselIntensiones(){
 
   const handleInfo = (direction: string) => {
     const currentGalleryContainer = galleryContainer.current;
-    const currentItems = Array.from(currentGalleryContainer?.children!);
+    const currentItems = Array.from(currentGalleryContainer!.children!);
 
     const newOrderClases = [...clases];
 
     if (direction === "previous") {
       newOrderClases.unshift(newOrderClases.pop()!);
-      handlePositionPrevious()
+      handlePositionPrevious();
     } else {
       newOrderClases.push(newOrderClases.shift()!);
-      handlePositionNext()
+      handlePositionNext();
     }
 
     currentItems.forEach((item) => {
@@ -77,52 +72,47 @@ export function CarruselIntensiones(){
     setClases(newOrderClases);
   };
 
-
-    return(<>
-
-    <div className="carrousel-intensiones-container">
-
-    <div ref={galleryContainer} className="intensiones-gallery-container">
-
-   {infoCarrusel.map((item)=>{
-
-    return(
-        <div
-              key={item.id}
-              className={`intensiones-gallery-item ${item.className}`}
-              data-index={item.dataIndex}
-            >
-              <img src={item.image} alt={item.title} />
-              <div className="carruselCard-info-container">
-        <h4>{item.title}</h4>
-        <p>{item.text}</p>
-        <button onClick={()=>linkToIntension(item.id)}>Ver mas</button>
+  return (
+    <>
+      <div className="carrousel-intensiones-container">
+        <div ref={galleryContainer} className="intensiones-gallery-container">
+          {infoCarrusel.map((item) => {
+            return (
+              <div
+                key={item.id}
+                className={`intensiones-gallery-item ${item.className}`}
+                data-index={item.dataIndex}
+              >
+                <img src={item.image} alt={item.title} />
+                <div className="carruselCard-info-container">
+                  <h4>{item.title}</h4>
+                  <p>{item.text}</p>
+                  <button onClick={() => linkToIntension(item.id)}>
+                    Ver mas
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
-            </div>
-    )
-   })}
 
-
-    </div>
-
-    <div
-        className="carrusel-intensiones-btn-previous"
-        onClick={() => {
-          handleInfo("previous");
-        }}
-      >
-        <LeftArrowIcon color="#fff" />
+        <div
+          className="carrusel-intensiones-btn-previous"
+          onClick={() => {
+            handleInfo("previous");
+          }}
+        >
+          <LeftArrowIcon color="#fff" />
+        </div>
+        <div
+          className="carrusel-intensiones-btn-next"
+          onClick={() => {
+            handleInfo("next");
+          }}
+        >
+          <RightArrowIcon color="#fff" />
+        </div>
       </div>
-      <div
-        className="carrusel-intensiones-btn-next"
-        onClick={() => {
-          handleInfo("next");
-        }}
-      >
-        <RightArrowIcon color="#fff" />
-      </div>
-      </div>
-
-    
-    </>)
+    </>
+  );
 }

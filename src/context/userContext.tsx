@@ -1,18 +1,18 @@
-import { useState, createContext, ReactNode } from "react";
+import { ReactNode, createContext, useState } from "react";
 
 interface UserContextValue {
   id: string;
   email: string;
-  token:string;
-  name:string,
-  lastname:string,
-  subscription:boolean
+  token: string;
+  name: string;
+  lastname: string;
+  subscription: boolean;
   setId: (id: string) => void;
   setEmail: (email: string) => void;
-  setToken:(token: string) => void;
-  setName:(name: string) => void;
-  setLastname:(name: string) => void;
-  setSuscription:(subscription:boolean)=>void;
+  setToken: (token: string) => void;
+  setName: (name: string) => void;
+  setLastname: (name: string) => void;
+  setSuscription: (subscription: boolean) => void;
 }
 
 interface UserContextProviderProps {
@@ -22,10 +22,10 @@ interface UserContextProviderProps {
 const userContextDefaultValue: UserContextValue = {
   id: "",
   email: "",
-  token:"",
-  name:"",
-  lastname:"",
-  subscription:false,
+  token: "",
+  name: "",
+  lastname: "",
+  subscription: false,
   setId: () => {},
   setEmail: () => {},
   setToken: () => {},
@@ -34,7 +34,9 @@ const userContextDefaultValue: UserContextValue = {
   setSuscription: () => {},
 };
 
-export const UserContext = createContext<UserContextValue>(userContextDefaultValue);
+export const UserContext = createContext<UserContextValue>(
+  userContextDefaultValue
+);
 
 const UserContextProvider = ({ children }: UserContextProviderProps) => {
   const [id, setId] = useState<string>("");
@@ -56,13 +58,10 @@ const UserContextProvider = ({ children }: UserContextProviderProps) => {
     setToken,
     setName,
     setLastname,
-    setSuscription
+    setSuscription,
   };
 
-  return (
-    <UserContext.Provider value={value}>{children}</UserContext.Provider>
-  );
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
 export default UserContextProvider;
-

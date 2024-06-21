@@ -1,13 +1,13 @@
-import { useRef, useEffect, useState,useContext } from "react";
-import videoHome from "../assets/videos/videoHome.mp4";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "../hooks/useForm";
-import { LoginValidations } from "../helpers/loginValidations";
 import axios from "axios";
-import { UserContext } from "../context/userContext";
+import { useContext, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
-import { EyeOpen,EyeClose } from "../assets/images/icons/icons";
+import { EyeClose, EyeOpen } from "../assets/images/icons/icons";
+import videoHome from "../assets/videos/videoHome.mp4";
 import { envs } from "../config/envs";
+import { UserContext } from "../context/userContext";
+import { LoginValidations } from "../helpers/loginValidations";
+import { useForm } from "../hooks/useForm";
 export function Login() {
   window.scrollTo(0, 0);
 
@@ -15,12 +15,13 @@ export function Login() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const[showPassword,setShowPassword]=useState(false)
-  const handleShowPassword=()=>{
-    setShowPassword(!showPassword)
-  }
+  const [showPassword, setShowPassword] = useState(false);
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
-  const {setEmail,setId,setName,setToken,setLastname,setSuscription}=useContext(UserContext)
+  const { setEmail, setId, setName, setToken, setLastname, setSuscription } =
+    useContext(UserContext);
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -47,8 +48,8 @@ export function Login() {
   const [emailErrors, setEmailErrors] = useState<string[]>([]);
   const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
 
-       //other errors
-       const [errorsFromAPI,setErrorsFromAPI]=useState<string>("")
+  //other errors
+  const [errorsFromAPI, setErrorsFromAPI] = useState<string>("");
 
   const handleBlur = (field: string) => {
     const [errors] = LoginValidations.create(formState);
@@ -70,7 +71,7 @@ export function Login() {
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const [errors, dataValidation] = LoginValidations.create({
+    const [errors] = LoginValidations.create({
       email: email,
       password: password,
     });
@@ -101,30 +102,37 @@ export function Login() {
       return;
     }
 
-    setIsLoading(true)
+    setIsLoading(true);
 
     axios
-      .post(`${envs.API_DOMAIN}/api/v1/user/login`, {
-        email: email,
-        password: password,
-      },{withCredentials:true})
-      .then(({data}) => {
+      .post(
+        `${envs.API_DOMAIN}/api/v1/user/login`,
+        {
+          email: email,
+          password: password,
+        },
+        { withCredentials: true }
+      )
+      .then(({ data }) => {
         console.log(data);
-        setEmail(data.email)
-        setId(data.id)
-        setToken(data.token)
-        setName(data.name)
-        setLastname(data.lastname)
-        setSuscription(data.subscription)
-        localStorage.setItem("subscriptionActive",JSON.stringify(data.subscription=false))
+        setEmail(data.email);
+        setId(data.id);
+        setToken(data.token);
+        setName(data.name);
+        setLastname(data.lastname);
+        setSuscription(data.subscription);
+        localStorage.setItem(
+          "subscriptionActive",
+          JSON.stringify((data.subscription = false))
+        );
         onResetForm();
-        setIsLoading(false)
+        setIsLoading(false);
         navigatge("/");
       })
       .catch((error) => {
         console.log(error);
-        setIsLoading(false)
-        setErrorsFromAPI(error.response.data.error)
+        setIsLoading(false);
+        setErrorsFromAPI(error.response.data.error);
       });
   };
 
@@ -134,11 +142,7 @@ export function Login() {
         <source src={videoHome} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      <form
-        onSubmit={handleSubmit}
-        className="login-form"
-        action=""
-      >
+      <form onSubmit={handleSubmit} className="login-form" action="">
         <h3>Mi cuenta</h3>
         <h6>Si ya estás registrado en lovelia, inicia sesión aquí:</h6>
         <label htmlFor="email">Email</label>
@@ -149,24 +153,30 @@ export function Login() {
           name="email"
           type="email"
           placeholder="ejemplo@gmail.com"
-          className={`${(emailErrors.length > 0 || errorsFromAPI) && "input-error"}`}
+          className={`${
+            (emailErrors.length > 0 || errorsFromAPI) && "input-error"
+          }`}
         />
-        {emailErrors.length > 0  && (
+        {emailErrors.length > 0 && (
           <span className="input-helpers-error">{emailErrors[0]}</span>
         )}
         <label htmlFor="password">Contraseña</label>
-        <div   className={`password-input-wrapper ${(passwordErrors.length > 0 || errorsFromAPI) && "input-error"}`}>
-        <input
-          value={password}
-          onChange={onInputChange}
-          onBlur={() => handleBlur("password")}
-          name="password"
-          type={showPassword ? "text":"password"}
-          placeholder="Contraseña"
-        
-        />
-        <span onClick={handleShowPassword}>{ showPassword ? <EyeOpen/>:<EyeClose/>}</span>
-        
+        <div
+          className={`password-input-wrapper ${
+            (passwordErrors.length > 0 || errorsFromAPI) && "input-error"
+          }`}
+        >
+          <input
+            value={password}
+            onChange={onInputChange}
+            onBlur={() => handleBlur("password")}
+            name="password"
+            type={showPassword ? "text" : "password"}
+            placeholder="Contraseña"
+          />
+          <span onClick={handleShowPassword}>
+            {showPassword ? <EyeOpen /> : <EyeClose />}
+          </span>
         </div>
         {passwordErrors.length > 0 && (
           <span className="input-helpers-error">{passwordErrors[0]}</span>
@@ -178,13 +188,19 @@ export function Login() {
             <strong onClick={linkToRegister}>Haz click aquí.</strong>
           </p>
           {errorsFromAPI && (
-          <span className="input-helpers-error api-errors"
-          
-          >{errorsFromAPI}</span>
-        )}
+            <span className="input-helpers-error api-errors">
+              {errorsFromAPI}
+            </span>
+          )}
         </div>
-        
-        <button type="submit">{isLoading?  <BeatLoader color={"white"} speedMultiplier={0.4} /> : "ACCEDER"}</button>
+
+        <button type="submit">
+          {isLoading ? (
+            <BeatLoader color={"white"} speedMultiplier={0.4} />
+          ) : (
+            "ACCEDER"
+          )}
+        </button>
       </form>
     </section>
   );

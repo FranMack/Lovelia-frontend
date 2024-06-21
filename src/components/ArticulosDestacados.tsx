@@ -1,32 +1,32 @@
-import { CardArticulosDestacados } from "../commons/CardArticulosDestacados"
-import { CardArticulosDestacadosReverse } from "../commons/CardArticulosDestacadosReverse"
-import { Button } from "../commons/Button"
+import { Button } from "../commons/Button";
+import { CardArticulosDestacados } from "../commons/CardArticulosDestacados";
+import { CardArticulosDestacadosReverse } from "../commons/CardArticulosDestacadosReverse";
 
-import { ejemploTalismanAnalogicosOptions } from "../assets/images/ejemplos-talismán-analogico/ejemplosTalismanes"
+import { ejemploTalismanAnalogicosOptions } from "../assets/images/ejemplos-talisman-analogico/ejemplosTalismanes";
 
-interface ArticulosDestacadosOptions{
-    talismanes:ejemploTalismanAnalogicosOptions[],
-    button?:string,
-    onClick?:()=>void
+interface ArticulosDestacadosOptions {
+  talismanes: ejemploTalismanAnalogicosOptions[];
+  button?: string;
+  onClick?: () => void;
 }
 
-export function ArticulosDestacados({talismanes,button,onClick}:ArticulosDestacadosOptions){
-
-  return ( 
+export function ArticulosDestacados({
+  talismanes,
+  button,
+  onClick,
+}: ArticulosDestacadosOptions) {
+  return (
     <div className="articulosDestacados-container">
-  <div className="articulosDestacados-ejemplos-container">
-        {talismanes.map((talisman,i)=>{
-          if(i%2===0){
-            return( <CardArticulosDestacados key={i} {...talisman}/>)
-        }
-        else{
-            return(  <CardArticulosDestacadosReverse key={i} {...talisman}/>)
-        }
+      <div className="articulosDestacados-ejemplos-container">
+        {talismanes.map((talisman, i) => {
+          if (i % 2 === 0) {
+            return <CardArticulosDestacados key={i} {...talisman} />;
+          } else {
+            return <CardArticulosDestacadosReverse key={i} {...talisman} />;
+          }
         })}
-
       </div>
-     {button && <Button text={button} onClick={onClick}/>}
-      </div>
-      
-      )
+      {button && <Button text={button} onClick={onClick} />}
+    </div>
+  );
 }

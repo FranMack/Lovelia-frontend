@@ -1,21 +1,19 @@
 import { regularExpresions } from "../config/regularExpresions";
 
-export interface UserValidationErrors{
-    [key: string]: string
+export interface UserValidationErrors {
+  [key: string]: string;
 }
 
 export class LoginValidations {
-  private constructor(
-       readonly email: string,
-    readonly password: string
-  ) {}
+  private constructor(readonly email: string, readonly password: string) {}
 
-  static create(object: { [key: string]: any }): [UserValidationErrors[]?, LoginValidations?] {
+  static create(object: {
+    [key: string]: string;
+  }): [UserValidationErrors[]?, LoginValidations?] {
     const { email, password } = object;
 
     const errors: UserValidationErrors[] = [];
 
-  
     //email
     if (!email) {
       errors.push({
@@ -57,6 +55,6 @@ export class LoginValidations {
       return [errors, undefined];
     }
 
-    return [undefined, new LoginValidations( email, password)];
+    return [undefined, new LoginValidations(email, password)];
   }
 }

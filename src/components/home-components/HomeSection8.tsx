@@ -1,6 +1,5 @@
-import { ButtonArrowRight } from "../../commons/ButtonArrowRight";
-import { infoTalleres } from "../../assets/images/talleres/infoTallers";
 import creaTuRealizad from "../../assets/images/imagen-crea-tu-realidad.png";
+import { infoTalleres } from "../../assets/images/talleres/infoTallers";
 import { TitleComponent } from "../../commons/TitleComponent";
 import { PlacaTipo2 } from "../PlacaTipo2";
 
@@ -10,16 +9,16 @@ const titleTalleres = {
   buttonText: "Ver todos los talleres",
 };
 
-
 const infoPlacaTipo2 = {
-    image: creaTuRealizad,
-    title: "¿Cómo co-crear tu realidad?",
-    secundaryTitle:"Descubre historias,pensamientos,sentimientos y más",
-    arrowRightButton: "Ver más sobre este taller",
-    direction:"right",
-    description: [" Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis repellat numquam, ea omnis deserunt fuga velit repellendus voluptates reprehenderit, officia earum nulla minus ut ex debitis ipsum dicta beatae quasi."],
-  };
-  
+  image: creaTuRealizad,
+  title: "¿Cómo co-crear tu realidad?",
+  secundaryTitle: "Descubre historias,pensamientos,sentimientos y más",
+  arrowRightButton: "Ver más sobre este taller",
+  direction: "right",
+  description: [
+    " Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis repellat numquam, ea omnis deserunt fuga velit repellendus voluptates reprehenderit, officia earum nulla minus ut ex debitis ipsum dicta beatae quasi.",
+  ],
+};
 
 export function HomeSection8() {
   return (
@@ -40,7 +39,7 @@ export function HomeSection8() {
         })}
       </div>
 
-      <PlacaTipo2 {...infoPlacaTipo2}/>
+      <PlacaTipo2 {...infoPlacaTipo2} />
     </section>
   );
 }

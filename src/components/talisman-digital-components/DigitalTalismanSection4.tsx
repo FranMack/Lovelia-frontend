@@ -1,15 +1,16 @@
-import timerImage from "../../assets/images/image-timer.png";
-import { Button } from "../../commons/Button";
-import { WallpaperTipo2 } from "../WallpaperTipo2";
-import { Wallpaper2Options } from "../WallpaperTipo2";
-import wallpaper from "../../assets/images/wallpaper-activar-talisman.png";
-import wallpaperTalisman from "../../assets/images/talisman-wallpaper.png";
-import { TitleComponent } from "../../commons/TitleComponent";
-import { TitleComponentOptions } from "../../commons/TitleComponent";
-import { infoSonidos } from "../../assets/images/imagnes-sonidos/infoSonidos";
-import { PlayIcon } from "../../assets/images/icons/icons";
-import { GiftComponent } from "../GiftComponent";
 import { useNavigate } from "react-router-dom";
+import { PlayIcon } from "../../assets/images/icons/icons";
+import timerImage from "../../assets/images/image-timer.png";
+import { infoSonidos } from "../../assets/images/imagnes-sonidos/infoSonidos";
+import wallpaperTalisman from "../../assets/images/talisman-wallpaper.png";
+import wallpaper from "../../assets/images/wallpaper-activar-talisman.png";
+import { Button } from "../../commons/Button";
+import {
+  TitleComponent,
+  TitleComponentOptions,
+} from "../../commons/TitleComponent";
+import { GiftComponent } from "../GiftComponent";
+import { Wallpaper2Options, WallpaperTipo2 } from "../WallpaperTipo2";
 
 const infoWallpaper2: Wallpaper2Options = {
   image: wallpaper,
@@ -22,12 +23,12 @@ const infoWallpaper2: Wallpaper2Options = {
     "Ingresa en tu perfil de talisman, activalo y listo!",
   ],
   symbol: "✔",
-  height:"70vh"
+  height: "70vh",
 };
 
 const infoWallpaper2b: Wallpaper2Options = {
   image: wallpaperTalisman,
-  height:"70vh"
+  height: "70vh",
 };
 
 const bibliotecaSonidos: TitleComponentOptions = {
@@ -37,12 +38,11 @@ const bibliotecaSonidos: TitleComponentOptions = {
 };
 
 export function DigitalTalismanSection4() {
+  const navigatge = useNavigate();
 
-  const navigatge=useNavigate();
-
-  const linkToComprarTalisman=()=>{
-navigatge("/comprar-talisman-digital")
-  }
+  const linkToComprarTalisman = () => {
+    navigatge("/comprar-talisman-digital");
+  };
   return (
     <section className="digitalTalisman-section4-container">
       <div className="digitalTalisman-top-container">
@@ -59,8 +59,13 @@ navigatge("/comprar-talisman-digital")
           <img src={timerImage} alt="Timer" />
         </div>
       </div>
-<div className="digitalTalisman-section4-auxiliar-container"><Button onClick={linkToComprarTalisman} text="Comprar talismán digital" /></div>
-      
+      <div className="digitalTalisman-section4-auxiliar-container">
+        <Button
+          onClick={linkToComprarTalisman}
+          text="Comprar talismán digital"
+        />
+      </div>
+
       <WallpaperTipo2 {...infoWallpaper2} />
       <WallpaperTipo2 {...infoWallpaper2b} />
       <TitleComponent {...bibliotecaSonidos} />

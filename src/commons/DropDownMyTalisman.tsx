@@ -1,9 +1,8 @@
-import { useState, useContext, useEffect, useRef } from "react";
-import { TalismanButtonFocusContext } from "../context/talismanButtonFocusContext";
-import { ArrowDown, CloseIcon } from "../assets/images/icons/icons";
-import { PlayIcon } from "../assets/images/icons/icons";
 import axios from "axios";
+import { useContext, useEffect, useRef, useState } from "react";
+import { CloseIcon, PlayIcon } from "../assets/images/icons/icons";
 import { envs } from "../config/envs";
+import { TalismanButtonFocusContext } from "../context/talismanButtonFocusContext";
 
 export interface DropdownOptions {
   handleDropDown: () => void;

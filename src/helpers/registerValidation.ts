@@ -1,7 +1,7 @@
 import { regularExpresions } from "../config/regularExpresions";
 
-export interface UserValidationErrors{
-    [key: string]: string
+export interface UserValidationErrors {
+  [key: string]: string;
 }
 
 export class RegisterValidation {
@@ -12,7 +12,9 @@ export class RegisterValidation {
     readonly password: string
   ) {}
 
-  static create(object: { [key: string]: any }): [UserValidationErrors[]?, RegisterValidation?] {
+  static create(object: {
+    [key: string]: string;
+  }): [UserValidationErrors[]?, RegisterValidation?] {
     const { name, email, password, lastname } = object;
 
     const errors: UserValidationErrors[] = [];

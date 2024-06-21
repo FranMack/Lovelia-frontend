@@ -1,31 +1,29 @@
-import { useRef, useEffect, useState } from "react";
+import axios from "axios";
+import { useEffect, useRef, useState } from "react";
+import BeatLoader from "react-spinners/BeatLoader";
 import videoHome from "../assets/videos/videoHome.mp4";
+import { PopUp, PopUpOptions } from "../commons/PopUp";
+import { envs } from "../config/envs";
 import { ContactValidation } from "../helpers/contactValidation";
 import { useForm } from "../hooks/useForm";
-import axios from "axios";
-import { PopUp } from "../commons/PopUp";
-import { PopUpOptions } from "../commons/PopUp";
-import BeatLoader from "react-spinners/BeatLoader";
-import { envs } from "../config/envs";
 export function Contacto() {
   window.scrollTo(0, 0);
 
-    //is loading
+  //is loading
 
-    const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [openPopUp, setOpenPopUp] = useState<boolean>(false);
-  const handlePopUp=()=>{
-    setOpenPopUp(!openPopUp)
-  }
+  const handlePopUp = () => {
+    setOpenPopUp(!openPopUp);
+  };
 
-  const popUpProps:PopUpOptions={
-    title:"¡Gracias por tu consulta!",
-    text:"Nos comunicaremos de regreso pronto!",
-    buttonText:"Continuar",
-    handlePopUp:handlePopUp
-
-  }
+  const popUpProps: PopUpOptions = {
+    title: "¡Gracias por tu consulta!",
+    text: "Nos comunicaremos de regreso pronto!",
+    buttonText: "Continuar",
+    handlePopUp: handlePopUp,
+  };
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -53,9 +51,7 @@ export function Contacto() {
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-
-
-    const [errors, dataValidation] = ContactValidation.create({
+    const [errors] = ContactValidation.create({
       name: name,
       subject: subject,
       email: email,
@@ -103,7 +99,7 @@ export function Contacto() {
       return;
     }
 
-    setIsLoading(true)
+    setIsLoading(true);
 
     axios
       .post(`${envs.API_DOMAIN}/api/v1/user/consult`, {
@@ -115,11 +111,11 @@ export function Contacto() {
       .then((response) => {
         console.log(response);
         onResetForm();
-        setIsLoading(false)
-        handlePopUp()
+        setIsLoading(false);
+        handlePopUp();
       })
       .catch((error) => {
-        setIsLoading(false)
+        setIsLoading(false);
         console.log(error);
       });
   };
@@ -147,20 +143,15 @@ export function Contacto() {
     }
   };
 
-
-
-
-
-
-
-  
-
-
-  
-
   return (
-    <section className={openPopUp ? "login-container modalOpen-styles":"login-container efectoReveal"}>
-     {openPopUp && <PopUp {...popUpProps}/>}
+    <section
+      className={
+        openPopUp
+          ? "login-container modalOpen-styles"
+          : "login-container efectoReveal"
+      }
+    >
+      {openPopUp && <PopUp {...popUpProps} />}
       <video autoPlay muted loop ref={videoRef}>
         <source src={videoHome} type="video/mp4" />
         Your browser does not support the video tag.
@@ -169,7 +160,7 @@ export function Contacto() {
         <h3>Habla con nosotros</h3>
         <h6>Completa el formulario para enviar tu consulta.</h6>
 
-      <label htmlFor="name">Nombre</label>
+        <label htmlFor="name">Nombre</label>
         <input
           value={name}
           onChange={onInputChange}
@@ -209,7 +200,7 @@ export function Contacto() {
           <span className="input-helpers-error">{emailErrors[0]}</span>
         )}
 
-      <label htmlFor="message">Mensaje</label>
+        <label htmlFor="message">Mensaje</label>
         <textarea
           value={message}
           onChange={onInputChange}
@@ -222,8 +213,15 @@ export function Contacto() {
           <span className="input-helpers-error">{messageErrors[0]}</span>
         )}
 
-      
-        {<button>{isLoading?  <BeatLoader color={"white"} speedMultiplier={0.4} />: "ENVIAR"}</button>}
+        {
+          <button>
+            {isLoading ? (
+              <BeatLoader color={"white"} speedMultiplier={0.4} />
+            ) : (
+              "ENVIAR"
+            )}
+          </button>
+        }
       </form>
     </section>
   );

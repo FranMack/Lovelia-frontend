@@ -1,10 +1,7 @@
-import wallpaper from "../../assets/images/wallpaper-activar-talisman.png";
 import historia from "../../assets/images/imagen-historia.png";
-import { ButtonArrowRight } from "../../commons/ButtonArrowRight";
-import { PlacaTipo1 } from "../PlacaTipo1";
-import { PlacaTipo1Options } from "../PlacaTipo1";
-import { WallpaperTipo2 } from "../WallpaperTipo2";
-import { Wallpaper2Options } from "../WallpaperTipo2";
+import wallpaper from "../../assets/images/wallpaper-activar-talisman.png";
+import { PlacaTipo1, PlacaTipo1Options } from "../PlacaTipo1";
+import { Wallpaper2Options, WallpaperTipo2 } from "../WallpaperTipo2";
 
 const infoPlacaTipo1: PlacaTipo1Options = {
   image: historia,
@@ -19,7 +16,8 @@ const infoPlacaTipo1: PlacaTipo1Options = {
 
 const infoWallpaper2: Wallpaper2Options = {
   image: wallpaper,
-  backgroundStyle:"linear-gradient(270deg, rgba(0, 0, 0, 0.00) 37.29%, rgba(0, 0, 0, 0.74) 100%)",
+  backgroundStyle:
+    "linear-gradient(270deg, rgba(0, 0, 0, 0.00) 37.29%, rgba(0, 0, 0, 0.74) 100%)",
   secundaryTitle: "Activa tu Talismán",
   description: [
     "Regístrate en lovelia, haciendo click aquí.",
@@ -27,16 +25,14 @@ const infoWallpaper2: Wallpaper2Options = {
     "Con la compra recibirás un código.",
     "Ingresa en tu perfil de talisman, ingresa el código y listo!",
   ],
-  symbol:"✔",
-  height:"70vh"
-
+  symbol: "✔",
+  height: "70vh",
 };
 
 export function AnalogTalismanSection6() {
   return (
     <section className="analogTalisman-section6-container">
-     
-      <WallpaperTipo2 {...infoWallpaper2}/>
+      <WallpaperTipo2 {...infoWallpaper2} />
 
       <PlacaTipo1 {...infoPlacaTipo1} />
     </section>

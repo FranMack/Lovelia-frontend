@@ -1,40 +1,35 @@
+import { useNavigate } from "react-router-dom";
 import colgateWallpaper from "../../assets/images/imagen-colgante2.png";
 import talismanFisico from "../../assets/images/talisman-fisico.png";
 import { ButtonArrowRight } from "../../commons/ButtonArrowRight";
-import { CarruselIntensiones } from "../CarruselIntensiones";
 import { TitleComponent } from "../../commons/TitleComponent";
-import { WallpaperTipo1 } from "../WallpaperTipo1";
-import { Wallpaper1Options } from "../WallpaperTipo1";
-import { useNavigate } from "react-router-dom";
-
+import { CarruselIntensiones } from "../CarruselIntensiones";
+import { Wallpaper1Options, WallpaperTipo1 } from "../WallpaperTipo1";
 
 const infoWallpaper1: Wallpaper1Options = {
   image: colgateWallpaper,
-  height:"90vh",
- };
+  height: "90vh",
+};
 
-
-
-const titleEligeTuIntencion={
-  title:"Elige tu intención",
-  description:"Música, videos y meditaciones guiadas.",
-  buttonText:"Intenciones lovelia"
-}
+const titleEligeTuIntencion = {
+  title: "Elige tu intención",
+  description: "Música, videos y meditaciones guiadas.",
+  buttonText: "Intenciones lovelia",
+};
 
 export function AnalogTalismanSection5() {
-  const navigatge=useNavigate();
+  const navigatge = useNavigate();
 
-  const linkToComprarTalisman=()=>{
-navigatge("/comprar-talisman-analogico")
-  }
+  const linkToComprarTalisman = () => {
+    navigatge("/comprar-talisman-analogico");
+  };
 
-  const linkToIntensiones=()=>{
-    navigatge("/intensiones")
-      }
+  const linkToIntensiones = () => {
+    navigatge("/intensiones");
+  };
   return (
     <section className="analogTalisman-section5-container">
-    
-      <WallpaperTipo1 {...infoWallpaper1}/>
+      <WallpaperTipo1 {...infoWallpaper1} />
 
       <div className="analogTalisman-section5-center-container">
         <div className="analogTalisman-section5-center-image-container">
@@ -53,11 +48,15 @@ navigatge("/comprar-talisman-analogico")
             <br /> eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
 
-          <ButtonArrowRight onClick={linkToComprarTalisman} text="Crea tu talismán ahora" color="#6f3289" />
+          <ButtonArrowRight
+            onClick={linkToComprarTalisman}
+            text="Crea tu talismán ahora"
+            color="#6f3289"
+          />
         </div>
       </div>
 
-      <TitleComponent {...titleEligeTuIntencion} onClick={linkToIntensiones}/>
+      <TitleComponent {...titleEligeTuIntencion} onClick={linkToIntensiones} />
 
       <CarruselIntensiones />
     </section>
