@@ -1,0 +1,84 @@
+html,body{
+    min-height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#splash{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    z-index: 1000;
+    width:100%;
+    min-height:100%;
+}
+
+#splash .progress{
+    position: absolute;
+    top:50%;
+    left:  50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    font-size: 200%;
+    text-align: center;
+}
+
+body {
+    margin: 0;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+#container3D {
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    display: inline-block;
+    /*  border: 1px dashed #fff;*/
+}
+
+@media screen and (min-aspect-ratio: 16/9) {
+    #container3D {
+        aspect-ratio: 16/9;
+    }
+}
+
+#container3D canvas {
+    margin: auto;
+    
+}
+#ui{
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    width: 100%;
+}
+
+
+#ui .dot{
+    display: block;
+}
+
+#ui #numerology{
+    position: absolute;
+    top: 0px;    
+    left: 20px;
+}
+
+#ui #horoscope{
+    position: absolute;
+    top: -90px;
+    left: -20px;
+    
+}
+
+#ui #constellation{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    /*border: 1px solid white;*/
+    width: 300px;
+    height: 300px;
+    
+}

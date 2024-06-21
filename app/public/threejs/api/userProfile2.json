@@ -1,0 +1,16 @@
+{
+    "sun": "aries",
+    "moon": "aries",
+    "moonPlanets": ["uranus", "neptune", "pluto"],
+    "sunPlanets": ["mars", "saturn", "jupiter"],
+    "linker": "linker3",
+    "sunHouse": 1,
+    "moonHouse": 1,
+    "rocks": "rocks1",
+    "plants": "plants1",
+    "numerology": 7,
+    "sky": "skyPlane1",
+    "waterEnvironmentMap": "sky2",
+    "horoscope": "horse",
+    "constellation": "virgo"
+}

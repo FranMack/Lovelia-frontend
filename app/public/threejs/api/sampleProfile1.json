@@ -1,0 +1,28 @@
+{
+    "geometry": {
+        "sun": "solAries.glb",
+        "moon": "lunaAries.glb",
+        "linker": "tronco1.glb",
+        "water": "agua1.glb",
+        "rocks": "rocas1.glb",
+        "plants": "plantas1.glb",
+        "asteroids": "asteroides2.glb",
+        "ascendant": "ascendente1.glb",
+        "houses": "casas.glb",
+        "numerology": "numerologia.glb",
+        "mars": "planets/marte.glb",
+        "saturn": "planets/saturno.glb",
+        "jupiter": "planets/jupiter.glb",
+        "uranus": "planets/urano.glb",
+        "venus": "planets/venus.glb",
+        "pluto": "planets/pluton.glb",
+        "neptune": "planets/neptuno.glb",
+        "mercury": "planets/mercurio.glb"
+    },
+    "moonPlanets": ["uranus", "neptune", "pluto"],
+    "sunPlanets": ["mars", "saturn", "jupiter"],
+    "textures": {
+        "sky": "sky_bg2.jpg",
+        "refmap1": "refmap1.jpg"
+    }
+}

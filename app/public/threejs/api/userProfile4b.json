@@ -1,0 +1,16 @@
+{
+    "sun": "virgo",
+    "moon": "virgo",
+    "moonPlanets": ["uranus", "neptune", "pluto"],
+    "sunPlanets": ["mars", "saturn", "jupiter"],
+    "linker": "linker4",
+    "sunHouse": 1,
+    "moonHouse": 1,
+    "rocks": "rocks4",
+    "plants": "plants4",
+    "numerology": 7,
+    "sky": "skyPlane4",
+    "waterEnvironmentMap": "sky2",
+    "horoscope": "horse",
+    "constellation": "leo"
+}
