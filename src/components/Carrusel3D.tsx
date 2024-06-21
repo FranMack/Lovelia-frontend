@@ -93,7 +93,7 @@ export function Carrusel3D() {
           />
 
           <div className="bullet-container">
-            {infoPiedras.map((prop, i) => {
+            {infoPiedras.map((_, i) => {
               return position === i ? (
                 <div key={i} className="bullet-selected"></div>
               ) : (
