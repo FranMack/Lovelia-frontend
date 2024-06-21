@@ -352,7 +352,7 @@ export function DropDownMyTalisman({ handleDropDown }: DropdownOptions) {
                       <td>10:12</td>
                       <audio ref={(el) => (audioRefs.current[i] = el!)}>
                         <source
-                          src={`${envs.API_DOMAIN}:3000${item.url}`}
+                          src={`${envs.API_DOMAIN}${item.url}`}
                           type="audio/mpeg"
                         />
                         Your browser does not support the audio element.
