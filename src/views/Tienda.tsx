@@ -1,27 +1,24 @@
-import { Button } from "../commons/Button";
-import { WallpaperTipo2 } from "../components/WallpaperTipo2";
-import { Wallpaper2Options } from "../components/WallpaperTipo2";
-import wallpaperTalisman from "../assets/images/talisman-wallpaper.png";
-import wallpaperColgante from "../assets/images/imagen-colgante.png";
-import wallpaperColgante2 from "../assets/images/imagen-colgante2.png";
-import talismanGif from "../assets/images/gif/talismanGif.gif"
-import videoTalisman from "../assets/videos/talismanGif.mp4"
-import talismanFisico from "../assets/images/talisman-fisico2.png";
-import talismanFisico1 from "../assets/images/talisman-fisico.png";
-import talismanDigital from "../assets/images/talisman-digital.png";
-import { PlacaTipo1 } from "../components/PlacaTipo1";
-import { PlacaTipo1Options } from "../components/PlacaTipo1";
-import { PlacaTipo2 } from "../components/PlacaTipo2";
-import { PlacaTipo2Options } from "../components/PlacaTipo2";
-import { ArticulosDestacados } from "../components/ArticulosDestacados";
+import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { ejemploTalismanes } from "../assets/images/ejemplos-talismanes/ejemplosTalismanes";
 import { ejemploTalismanesAnalogicos } from "../assets/images/ejemplos-talismán-analogico/ejemplosTalismanes";
-import { GiftComponent } from "../components/GiftComponent";
+import wallpaperColgante from "../assets/images/imagen-colgante.png";
+import wallpaperColgante2 from "../assets/images/imagen-colgante2.png";
+import talismanFisico1 from "../assets/images/talisman-fisico.png";
+import talismanFisico from "../assets/images/talisman-fisico2.png";
+import wallpaperTalisman from "../assets/images/talisman-wallpaper.png";
+import videoTalisman from "../assets/videos/talismanGif.mp4";
 import videoFondo from "../assets/videos/videoFondo.mp4";
-import { useNavigate } from "react-router-dom";
 import { BackgroundVideo } from "../commons/BackgroundVideo";
-import { useEffect, useRef } from "react";
-
+import { Button } from "../commons/Button";
+import { ArticulosDestacados } from "../components/ArticulosDestacados";
+import { GiftComponent } from "../components/GiftComponent";
+import { PlacaTipo1, PlacaTipo1Options } from "../components/PlacaTipo1";
+import { PlacaTipo2, PlacaTipo2Options } from "../components/PlacaTipo2";
+import {
+  Wallpaper2Options,
+  WallpaperTipo2,
+} from "../components/WallpaperTipo2";
 
 const wallpaperInfo1: Wallpaper2Options = {
   image: wallpaperTalisman,
@@ -66,54 +63,64 @@ const infoPlaca2: PlacaTipo2Options = {
 export function Tienda() {
   window.scrollTo(0, 0);
 
-  const videoRef = useRef<HTMLVideoElement>(null); 
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-    useEffect(() => {
-      if (videoRef.current) {
-  
-        videoRef.current.playbackRate = 1; 
-      }
-    }, [videoRef]);
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 1;
+    }
+  }, [videoRef]);
 
+  const navigatge = useNavigate();
 
-  const navigatge=useNavigate();
+  const linkToComprarTalismanAnalogico = () => {
+    navigatge("/comprar-talisman-analogico");
+  };
 
-  const linkToComprarTalismanAnalogico=()=>{
-navigatge("/comprar-talisman-analogico")
-  }
-
-  const linkToComprarTalismanDigital=()=>{
-    navigatge("/comprar-talisman-digital")
-      }
+  const linkToComprarTalismanDigital = () => {
+    navigatge("/comprar-talisman-digital");
+  };
   return (
     <main className="tienda-container efectoReveal">
-      
-      <BackgroundVideo/>
+      <BackgroundVideo />
       <div className="tienda-portada-container">
-      <div className="tienda-portada-center-container">
-     
-       
-        <div className="tienda-portada-internal-container">
-        <video className="video-talisman" autoPlay muted loop ref={videoRef}>
-        <source src={videoTalisman} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-          <div className="tienda-portada-internal-info-container right">
-            <h4>Talismán digital</h4>
-            <Button text="Comprar ahora" onClick={linkToComprarTalismanDigital} />
+        <div className="tienda-portada-center-container">
+          <div className="tienda-portada-internal-container">
+            <video
+              className="video-talisman"
+              autoPlay
+              muted
+              loop
+              ref={videoRef}
+            >
+              <source src={videoTalisman} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div className="tienda-portada-internal-info-container right">
+              <h4>Talismán digital</h4>
+              <Button
+                text="Comprar ahora"
+                onClick={linkToComprarTalismanDigital}
+              />
+            </div>
+          </div>
+          <div className="tienda-portada-internal-container">
+            <img src={talismanFisico1} alt="Talisman fisico" />
+            <div className="tienda-portada-internal-info-container">
+              <h4>Talismán analógico</h4>
+              <Button
+                text="Comprar ahora"
+                onClick={linkToComprarTalismanAnalogico}
+              />
+            </div>
           </div>
         </div>
-        <div className="tienda-portada-internal-container">
-          <img src={talismanFisico1} alt="Talisman fisico" />
-          <div className="tienda-portada-internal-info-container">
-            <h4>Talismán analógico</h4>
-            <Button text="Comprar ahora" onClick={linkToComprarTalismanAnalogico} />
-          </div>
-        </div>
-      </div>
       </div>
 
-      <WallpaperTipo2 {...wallpaperInfo1} onClick={linkToComprarTalismanDigital} />
+      <WallpaperTipo2
+        {...wallpaperInfo1}
+        onClick={linkToComprarTalismanDigital}
+      />
       <PlacaTipo1 {...infoPlaca} onClick={linkToComprarTalismanDigital} />
       <h3>Articulos destacados</h3>
       <ArticulosDestacados
@@ -125,8 +132,12 @@ navigatge("/comprar-talisman-analogico")
       <PlacaTipo2 {...infoPlaca2} onClick={linkToComprarTalismanAnalogico} />
 
       <div className="tienda-talismanes-analogicos-container">
-        <div className="tienda-talismanes-analogicos-image-container"><img src={talismanFisico1} alt="Talisman-vista1" /></div>
-        <div className="tienda-talismanes-analogicos-image-container"><img src={talismanFisico} alt="Talisman-vista2" /></div>
+        <div className="tienda-talismanes-analogicos-image-container">
+          <img src={talismanFisico1} alt="Talisman-vista1" />
+        </div>
+        <div className="tienda-talismanes-analogicos-image-container">
+          <img src={talismanFisico} alt="Talisman-vista2" />
+        </div>
       </div>
 
       <WallpaperTipo2 {...wallpaperInfo3} />
@@ -136,10 +147,10 @@ navigatge("/comprar-talisman-analogico")
         button="Comprar talismán analógico"
         onClick={linkToComprarTalismanAnalogico}
       />
-     <video className="video-informativo" controls>
+      <video className="video-informativo" controls>
         <source src={videoFondo} type="video/mp4" />
         Your browser does not support the video tag.
-  </video>
+      </video>
       <GiftComponent />
     </main>
   );

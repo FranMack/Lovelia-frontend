@@ -1,51 +1,48 @@
-import { useRef, useEffect, useState } from "react";
-import videoHome from "../assets/videos/videoHome.mp4";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "../hooks/useForm";
-import { RegisterValidation } from "../helpers/registerValidation";
 import axios from "axios";
-import { PopUp, PopUpOptions } from "../commons/PopUp";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import BeatLoader from "react-spinners/BeatLoader";
 import { EyeClose, EyeOpen } from "../assets/images/icons/icons";
+import videoHome from "../assets/videos/videoHome.mp4";
+import { PopUp, PopUpOptions } from "../commons/PopUp";
+import { envs } from "../config/envs";
+import { RegisterValidation } from "../helpers/registerValidation";
+import { useForm } from "../hooks/useForm";
 
 export function Register() {
- // window.scrollTo(0, 0);
+  // window.scrollTo(0, 0);
 
-   //is loading
+  //is loading
 
-   const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-   const[showPassword,setShowPassword]=useState(false)
-   const handleShowPassword=()=>{
-     setShowPassword(!showPassword)
-   }
+  const [showPassword, setShowPassword] = useState(false);
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
-   const[showConfirmPassword,setShowConfirmPassword]=useState(false)
-   const handleShowConfirmPassword=()=>{
-    setShowConfirmPassword(!showConfirmPassword)
-   }
-
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const handleShowConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
 
   const [openPopUp, setOpenPopUp] = useState<boolean>(false);
-  const handlePopUp=()=>{
-    setOpenPopUp(!openPopUp)
-  }
+  const handlePopUp = () => {
+    setOpenPopUp(!openPopUp);
+  };
 
-  const popUpProps:PopUpOptions={
-    title:"¡Tu cunta ha sido registrada!",
-    text:"Recibirás un email que te permetira activar tu cuenta",
-    buttonText:"Continuar",
-    handlePopUp:handlePopUp
-
-  }
+  const popUpProps: PopUpOptions = {
+    title: "¡Tu cunta ha sido registrada!",
+    text: "Recibirás un email que te permetira activar tu cuenta",
+    buttonText: "Continuar",
+    handlePopUp: handlePopUp,
+  };
 
   const navigatge = useNavigate();
 
   const linkToLogin = () => {
     navigatge("/login");
   };
-
-  
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -74,13 +71,13 @@ export function Register() {
   const [confirmPasswordError, setConfirmPasswordError] =
     useState<boolean>(false);
 
-     //other errors
-  const [errorsFromAPI,setErrorsFromAPI]=useState<string>("")
+  //other errors
+  const [errorsFromAPI, setErrorsFromAPI] = useState<string>("");
 
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const [errors, dataValidation] = RegisterValidation.create({
+    const [errors] = RegisterValidation.create({
       name: name,
       lastname: lastname,
       email: email,
@@ -131,15 +128,14 @@ export function Register() {
 
       return;
     }
-    
+
     if (formState.password !== formState.confirmPassword) {
       setConfirmPasswordError(true);
 
-      return
+      return;
     }
 
-    setIsLoading(true)
-
+    setIsLoading(true);
 
     axios
       .post(`${envs.API_DOMAIN}/api/v1/user/register`, {
@@ -151,14 +147,14 @@ export function Register() {
       .then((response) => {
         console.log(response);
         onResetForm();
-        setIsLoading(false)
-        handlePopUp()
+        setIsLoading(false);
+        handlePopUp();
       })
-      
+
       .catch((error) => {
         console.log(error);
-        setIsLoading(false)
-        setErrorsFromAPI(error.response.data.error)
+        setIsLoading(false);
+        setErrorsFromAPI(error.response.data.error);
       });
   };
 
@@ -186,8 +182,14 @@ export function Register() {
   };
 
   return (
-    <section className={openPopUp ? "login-container modalOpen-styles":"login-container efectoReveal"}>
-    {openPopUp && <PopUp {...popUpProps} handleNavigate={linkToLogin}/>}
+    <section
+      className={
+        openPopUp
+          ? "login-container modalOpen-styles"
+          : "login-container efectoReveal"
+      }
+    >
+      {openPopUp && <PopUp {...popUpProps} handleNavigate={linkToLogin} />}
       <video autoPlay muted loop ref={videoRef}>
         <source src={videoHome} type="video/mp4" />
         Ingresa tus datos para registrarte en lovelia..
@@ -203,7 +205,9 @@ export function Register() {
           name="name"
           type="text"
           placeholder="Ej. Jonh"
-          className={`${(nameErrors.length > 0 || errorsFromAPI) && "input-error"}`}
+          className={`${
+            (nameErrors.length > 0 || errorsFromAPI) && "input-error"
+          }`}
         />
         {nameErrors.length > 0 && (
           <span className="input-helpers-error">{nameErrors[0]}</span>
@@ -216,7 +220,9 @@ export function Register() {
           name="lastname"
           type="text"
           placeholder="Ej. Doe"
-          className={`${(lastNameErrors.length > 0 || errorsFromAPI) && "input-error"}`}
+          className={`${
+            (lastNameErrors.length > 0 || errorsFromAPI) && "input-error"
+          }`}
         />
         {lastNameErrors.length > 0 && (
           <span className="input-helpers-error">{lastNameErrors[0]}</span>
@@ -229,39 +235,54 @@ export function Register() {
           name="email"
           type="email"
           placeholder="ejemplo@gmail.com"
-          className={`${(emailErrors.length > 0 || errorsFromAPI) && "input-error"}`}
+          className={`${
+            (emailErrors.length > 0 || errorsFromAPI) && "input-error"
+          }`}
         />
         {emailErrors.length > 0 && (
           <span className="input-helpers-error">{emailErrors[0]}</span>
         )}
         <label htmlFor="password">Contraseña</label>
-        <div   className={`password-input-wrapper ${(passwordErrors.length > 0 || errorsFromAPI) && "input-error"}`}>
-        <input
-          value={password}
-          onChange={onInputChange}
-          onBlur={() => handleBlur("password")}
-          name="password"
-          type={showPassword ? "text":"password"}
-          placeholder="Contraseña"
-        
-        />
-        
-        <span onClick={handleShowPassword}>{ showPassword ? <EyeOpen/>:<EyeClose/>}</span>
+        <div
+          className={`password-input-wrapper ${
+            (passwordErrors.length > 0 || errorsFromAPI) && "input-error"
+          }`}
+        >
+          <input
+            value={password}
+            onChange={onInputChange}
+            onBlur={() => handleBlur("password")}
+            name="password"
+            type={showPassword ? "text" : "password"}
+            placeholder="Contraseña"
+          />
+
+          <span onClick={handleShowPassword}>
+            {showPassword ? <EyeOpen /> : <EyeClose />}
+          </span>
         </div>
         {passwordErrors.length > 0 && (
           <span className="input-helpers-error">{passwordErrors[0]}</span>
         )}
         <label htmlFor="confirmPassword">Confirmar contraseña</label>
-        <div   className={`password-input-wrapper ${(passwordErrors.length > 0 || errorsFromAPI) && "input-error"}`}>
-        <input
-          value={confirmPassword}
-          onChange={onInputChange}
-          name="confirmPassword"
-          type={showConfirmPassword ? "text":"password"}
-          placeholder="Confirmar contraseña"
-          className={`${(confirmPasswordError || errorsFromAPI) && "input-error"}`}
-        />
-        <span onClick={handleShowConfirmPassword}>{ showConfirmPassword ? <EyeOpen/>:<EyeClose/>}</span>
+        <div
+          className={`password-input-wrapper ${
+            (passwordErrors.length > 0 || errorsFromAPI) && "input-error"
+          }`}
+        >
+          <input
+            value={confirmPassword}
+            onChange={onInputChange}
+            name="confirmPassword"
+            type={showConfirmPassword ? "text" : "password"}
+            placeholder="Confirmar contraseña"
+            className={`${
+              (confirmPasswordError || errorsFromAPI) && "input-error"
+            }`}
+          />
+          <span onClick={handleShowConfirmPassword}>
+            {showConfirmPassword ? <EyeOpen /> : <EyeClose />}
+          </span>
         </div>
         {confirmPasswordError && (
           <span className="input-helpers-error">
@@ -282,12 +303,18 @@ export function Register() {
             <strong onClick={linkToLogin}>Haz click aquí.</strong>
           </p>
           {errorsFromAPI && (
-          <span className="input-helpers-error api-errors"
-          
-          >{errorsFromAPI}</span>
-        )}
+            <span className="input-helpers-error api-errors">
+              {errorsFromAPI}
+            </span>
+          )}
         </div>
-        <button type="submit">{isLoading?  <BeatLoader color={"white"} speedMultiplier={0.4} /> : "REGISTRARME"}</button>
+        <button type="submit">
+          {isLoading ? (
+            <BeatLoader color={"white"} speedMultiplier={0.4} />
+          ) : (
+            "REGISTRARME"
+          )}
+        </button>
       </form>
     </section>
   );

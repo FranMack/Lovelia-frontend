@@ -1,39 +1,38 @@
-import { Navbar } from "./components/Navbar";
-import { Footer } from "./components/Footer";
-import { Home } from "./views/Home";
-import { Intensiones } from "./views/Intensiones";
-import { AnalogTalisman } from "./views/AnalogTalisman";
-import { DigitalTalisman } from "./views/DigitalTalisman";
-import { LandingTalisman } from "./views/LandingTalisman";
-import { Routes, Route, useLocation } from "react-router-dom";
-import { Tienda } from "./views/Tienda";
-import { Login } from "./views/Login";
-import { Register } from "./views/Register";
-import { Contacto } from "./views/Contacto";
-import { CustomTalisman } from "./views/CustomTalisman";
-import { BuyDigitalTalisman } from "./views/BuyDigitalTalisman";
-import { Blog } from "./views/Blog";
-import { IntensionDescription } from "./views/IntensionDescription";
-import { Profile } from "./views/Profile";
-import { SiteTerms } from "./views/SiteTerms";
-import { ShopingCart } from "./components/ShopingCart";
-import { useContext, useEffect } from "react";
-import { ShopingCartContext } from "./context/modalShopingCart";
-import { CheckOutAnalogic } from "./views/CheckOutAnalogic";
-import { CheckOutDigital } from "./views/CheckOutDigital";
-import { MyTalisman } from "./views/MyTalisman";
-import { UserContext } from "./context/userContext";
 import axios from "axios";
+import { useContext, useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { Navigate } from "react-router-dom";
+import { Footer } from "./components/Footer";
+import { Navbar } from "./components/Navbar";
+import { ShopingCart } from "./components/ShopingCart";
+import { ShopingCartContext } from "./context/modalShopingCart";
+import { UserContext } from "./context/userContext";
 import { PrivateRoute } from "./router/PrivateRoute";
 import { PublicRoute } from "./router/PublicRoute";
+import { AnalogTalisman } from "./views/AnalogTalisman";
+import { Blog } from "./views/Blog";
+import { BuyDigitalTalisman } from "./views/BuyDigitalTalisman";
+import { CheckOutAnalogic } from "./views/CheckOutAnalogic";
+import { CheckOutDigital } from "./views/CheckOutDigital";
+import { Contacto } from "./views/Contacto";
+import { CustomTalisman } from "./views/CustomTalisman";
+import { DigitalTalisman } from "./views/DigitalTalisman";
+import { Home } from "./views/Home";
+import { IntensionDescription } from "./views/IntensionDescription";
+import { Intensiones } from "./views/Intensiones";
+import { LandingTalisman } from "./views/LandingTalisman";
+import { Login } from "./views/Login";
+import { MyTalisman } from "./views/MyTalisman";
+import { Profile } from "./views/Profile";
+import { Register } from "./views/Register";
+import { SiteTerms } from "./views/SiteTerms";
+import { Tienda } from "./views/Tienda";
 
 import { envs } from "./config/envs";
 
 function App() {
   const { menuOpen } = useContext(ShopingCartContext);
-  const { email, setEmail, setId, setName, setLastname, setSuscription } =
+  const { /*email,*/ setEmail, setId, setName, setLastname, setSuscription } =
     useContext(UserContext);
 
   useEffect(() => {
@@ -44,22 +43,24 @@ function App() {
         setId(data.id);
         setName(data.name);
         setLastname(data.lastname);
-        const subscription=JSON.parse(localStorage.getItem("subscriptionActive") || "false")
-        setSuscription(subscription)
+        const subscription = JSON.parse(
+          localStorage.getItem("subscriptionActive") || "false"
+        );
+        setSuscription(subscription);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
-  const location=useLocation().pathname
+  const location = useLocation().pathname;
 
-  console.log("XXXXXXXXXXXXXXXXXX",envs)
+  console.log("XXXXXXXXXXXXXXXXXX", envs);
 
   return (
     <>
       <ToastContainer />
-      {location!=="/myTalisman" &&<Navbar />}
+      {location !== "/myTalisman" && <Navbar />}
       {menuOpen && <ShopingCart />}
       <Routes>
         <Route path="/" element={<Home />} />
@@ -117,14 +118,7 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route
-          path="/myTalisman"
-          element={
-           
-              <MyTalisman />
-            
-          }
-        />
+        <Route path="/myTalisman" element={<MyTalisman />} />
 
         {/*<Route path="/*" element={<Navigate to="/" />} />*/}
       </Routes>
