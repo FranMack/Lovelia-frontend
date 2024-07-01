@@ -644,7 +644,7 @@ export function CheckOutAnalogic() {
                     />
                     {stateErrors.length > 0 && (
                       <span className="checkOut-helpers-error">
-                        {stateErrors[0]}
+                        {postalCodeErrors[0]}
                       </span>
                     )}
                   </div>

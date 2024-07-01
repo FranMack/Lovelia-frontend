@@ -22,37 +22,37 @@ export class CheckOutDigitalValidation {
 
     if (!city) {
       errors.push({
-        city: "Missing city name",
+        city: "Campo requerido",
       });
     }
 
     if (!regularExpresions.city.test(city)) {
-      errors.push({ city: "Name coud contain letterss,spaces and numbers" });
+      errors.push({ city: "El nombre de la ciudad puede tener letras,números y espacios" });
     }
 
     //Provincia
 
     if (!state) {
       errors.push({
-        state: "Missing state name",
+        state: "Campo requerido",
       });
     }
 
     if (!regularExpresions.state.test(state)) {
-      errors.push({ state: "Country should contain only letters and spaces" });
+      errors.push({ state: "El nombre de la provincia puede tener letras y espacios" });
     }
 
     //Pais
 
     if (!country) {
       errors.push({
-        country: "Missing country name",
+        country: "Campo requerido",
       });
     }
 
     if (!regularExpresions.country.test(country)) {
       errors.push({
-        country: "Country should contain only letters and spaces",
+        country: "El nombre de la provincia puede tener letras y espacios",
       });
     }
 

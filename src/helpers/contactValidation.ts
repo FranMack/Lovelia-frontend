@@ -22,35 +22,35 @@ export class ContactValidation {
     //name
     if (!name) {
       errors.push({
-        name: "Missing name",
+        name: "Campo requerido",
       });
     }
 
     if (!regularExpresions.only_letters.test(name)) {
-      errors.push({ name: "Name should contain letters and spaces" });
+      errors.push({ name: "El nombre debe contener letras y espacios" });
     }
 
     //subject
     if (!subject) {
       errors.push({
-        subject: "Missing subject",
+        subject: "Campo requerido",
       });
     }
     //email
     if (!email) {
       errors.push({
-        email: "Missing email",
+        email: "Campo requerido",
       });
     }
     if (!regularExpresions.email.test(email)) {
-      errors.push({ email: "Email is not valid" });
+      errors.push({ email: "Email no valido" });
     }
 
     //message
 
     if (!message) {
       errors.push({
-        message: "Missing message",
+        message: "Campo requerido",
       });
     }
 

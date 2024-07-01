@@ -44,92 +44,92 @@ export class CheckOutValidation {
     //name
     if (!name) {
       errors.push({
-        name: "Missing name",
+        name: "Campo requerido",
       });
     }
 
     if (!regularExpresions.only_letters.test(name)) {
-      errors.push({ name: "Name should contain letters and spaces" });
+      errors.push({ name: "El nombre debe contener letras y espacios" });
     }
 
     if (name.length < 2) {
-      errors.push({ name: "Name should contain at lest two letters" });
+      errors.push({ name: "El nombre debe contener al menos 2 caracteres" });
     }
 
     //lastname
     if (!lastname) {
       errors.push({
-        lastname: "Missing lastname",
+        lastname: "Campo requerido",
       });
     }
     if (!regularExpresions.only_letters.test(lastname)) {
-      errors.push({ lastname: "Name should contain letters and spaces" });
+      errors.push({ lastname: "El apeliido debe contener letras y espacios" });
     }
 
     if (lastname.length < 2) {
-      errors.push({ lastname: "Name should contain at lest two letters" });
+      errors.push({ lastname: "El apeliido debe contener al menos 2 caracteres" });
     }
 
     //email
     if (!email) {
       errors.push({
-        email: "Missing email",
+        email: "Campo requerido",
       });
     }
     if (!regularExpresions.email.test(email)) {
-      errors.push({ email: "Email is not valid" });
+      errors.push({ email: "Email no valido" });
     }
     //DNI
     if (!dni) {
       errors.push({
-        dni: "Missing DNI",
+        dni: "Campo requerido",
       });
     }
     if (!regularExpresions.only_numbers.test(dni)) {
-      errors.push({ dni: "DNI must contain only numbres" });
+      errors.push({ dni: "El DNI solo puede contener números" });
     }
 
     if (dni.length < 7) {
-      errors.push({ dni: `DNI must contain at least 7 numbers` });
+      errors.push({ dni: `El DNI debe contener al menos 7 caracteres` });
     }
 
     //phone
     if (!phone) {
       errors.push({
-        phone: "Missing Phone number",
+        phone: "Campo requerido",
       });
     }
 
     if (!regularExpresions.phone.test(phone)) {
-      errors.push({ phone: "Wrong phone number" });
+      errors.push({ phone: "Número de telefono incorrecto" });
     }
 
     if (phone.length < 9) {
-      errors.push({ phone: "Wrong phone number" });
+      errors.push({ phone: "Número de telefono incorrecto" });
     }
 
     //Destinatario
     if (!receiver) {
       errors.push({
-        receiver: "Missing receiver names",
+        receiver: "Campo requerido",
       });
     }
 
     if (receiver.split(" ").length < 2) {
       errors.push({
-        receiver: "Receiver must contain at least name and lastname",
+        receiver: "El campo debe contener el nombre y apellido del destinatario",
       });
     }
 
     if (!regularExpresions.only_letters.test(receiver)) {
-      errors.push({ receiver: "Name should contain letters and spaces" });
+      errors.push({ receiver: "El nombre debe contener letras y espacios" });
     }
 
     //Calle
 
     if (!street) {
       errors.push({
-        street: "Missing road name",
+        street: "Campo requerido",
       });
     }
 
@@ -137,7 +137,7 @@ export class CheckOutValidation {
 
     if (!streetNumber) {
       errors.push({
-        streetNumber: "Missing street number",
+        streetNumber: "Campo requerido",
       });
     }
 
@@ -145,7 +145,7 @@ export class CheckOutValidation {
 
     if (!city) {
       errors.push({
-        city: "Missing city name",
+        city: "Campo requerido",
       });
     }
 
@@ -153,7 +153,7 @@ export class CheckOutValidation {
 
     if (!state) {
       errors.push({
-        state: "Missing state name",
+        state: "Campo requerido",
       });
     }
 
@@ -161,7 +161,7 @@ export class CheckOutValidation {
 
     if (!country) {
       errors.push({
-        country: "Missing country name",
+        country: "Campo requerido",
       });
     }
 
@@ -169,7 +169,7 @@ export class CheckOutValidation {
 
     if (!postalCode) {
       errors.push({
-        postalCode: "Missing postal code",
+        postalCode: "Campo requerido",
       });
     }
 

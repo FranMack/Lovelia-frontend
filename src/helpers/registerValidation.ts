@@ -22,56 +22,56 @@ export class RegisterValidation {
     //name
     if (!name) {
       errors.push({
-        name: "Missing name",
+        name: "Campo requerido",
       });
     }
     if (!regularExpresions.only_letters.test(name)) {
-      errors.push({ name: "Name should contain letters and spaces" });
+      errors.push({ name: "El nombre debe contener letras y espacios" });
     }
     //lastname
     if (!lastname) {
       errors.push({
-        lastname: "Missing lastname",
+        lastname: "Campo requerido",
       });
     }
     if (!regularExpresions.only_letters.test(lastname)) {
-      errors.push({ lastname: "Name should contain letters and spaces" });
+      errors.push({ lastname: "El apellido debe contener letras y espacios" });
     }
     //email
     if (!email) {
       errors.push({
-        email: "Missing email",
+        email: "Campo requerido",
       });
     }
     if (!regularExpresions.email.test(email)) {
-      errors.push({ email: "Email is not valid" });
+      errors.push({ email: "Email no valido" });
     }
     //password
     if (!password) {
       errors.push({
-        password: "Missing password",
+        password: "Campo requerido",
       });
     }
     if (!regularExpresions.contain_special_character.test(password)) {
       errors.push({
-        password: "Password must contain at least one special character",
+        password: "El password debe contener al menos un caracter especial",
       });
     }
     if (!regularExpresions.contain_letter.test(password)) {
       errors.push({
-        password: "Password must contain at least one lowercase letter",
+        password: "El password debe contener al menos una letra en minúscula",
       });
     }
     if (!regularExpresions.contain_Capital_leter.test(password)) {
       errors.push({
-        password: "Password must contain at least one capital letter",
+        password: "El password debe contener al menos una letra en mayúscula",
       });
     }
     if (!regularExpresions.contain_number.test(password)) {
-      errors.push({ password: "Password must contain at least one number" });
+      errors.push({ password: "El password debe contener al menos un número" });
     }
     if (password.length < 6) {
-      errors.push({ password: "Password is too short" });
+      errors.push({ password: "El password debe tener al menos 6 caracteres" });
     }
 
     if (errors.length > 0) {

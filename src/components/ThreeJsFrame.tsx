@@ -78,14 +78,14 @@ export const ThreeJsFrame = () => {
       },
     },
     {
-      title: "Visibiity",
+      title: "Visibilidad",
       icon: buttonsVisibility ? EyeOpen : EyeClose,
       function: () => {
         handleButtonsVisibility();
       },
     },
     {
-      title: "Sound",
+      title: "Volumen",
       icon: volume ? SoundIcon : NotSoundIcon,
       function: () => {
         handleVolumeBar();
@@ -95,7 +95,7 @@ export const ThreeJsFrame = () => {
 
   const buttonsCenter = [
     {
-      title: "Previous",
+      title: "Atras",
       icon: PreviousAudioIcon,
       function: () => {
         const index = trackIndex! - 1;
@@ -110,7 +110,7 @@ export const ThreeJsFrame = () => {
       },
     },
     {
-      title: "Next",
+      title: "Adelante",
       icon: NextAudioIcon,
       function: () => {
         const index = trackIndex! + 1;
@@ -121,21 +121,21 @@ export const ThreeJsFrame = () => {
 
   const buttonsRight = [
     {
-      title: "Talisman sound",
+      title: "Mi sonido",
       icon: TalismanSoundIcon,
       function: () => {
         playUserSound();
       },
     },
     {
-      title: "Activation",
+      title: "Activación",
       icon: ActivationIcon,
       function: () => {
         popUpActivation.handleOpenModal();
       },
     },
     {
-      title: "Meditation",
+      title: "Meditaciónes",
       icon: MeditationIcon,
       function: () => {
         dropdownInfoTalisman.handleOpenModal(),
@@ -143,7 +143,7 @@ export const ThreeJsFrame = () => {
       },
     },
     {
-      title: "Energetc ADN",
+      title: "Mi ADN",
       icon: MyAdnIcon,
       function: () => {
         dropdownInfoTalisman.handleOpenModal(),
@@ -151,7 +151,7 @@ export const ThreeJsFrame = () => {
       },
     },
     {
-      title: "Sounds",
+      title: "Sonidos",
       icon: MusicIcon,
       function: () => {
         dropdownInfoTalisman.handleOpenModal(),
@@ -159,7 +159,7 @@ export const ThreeJsFrame = () => {
       },
     },
     {
-      title: "Timer",
+      title: "Alarma",
       icon: ClockIcon,
       function: () => {},
     },
