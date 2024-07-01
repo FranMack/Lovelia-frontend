@@ -36,7 +36,6 @@ interface MeditationsOptions {
 
 export const ThreeJsFrame = () => {
   const navigate = useNavigate();
-  const [iframeLoaded, setIframeLoaded] = useState(false);
   const { email, setSuscription } = useContext(UserContext);
   const { handleButtonFocus } = useContext(TalismanButtonFocusContext);
   const [astrologicalInfo, setAstrologicalInfo] = useState(false);
@@ -288,7 +287,11 @@ export const ThreeJsFrame = () => {
 
       if (meditationsRefs.current[index]) {
         meditationsRefs.current[index].play();
+        setTrackDuration(soundRefs.current[index].duration);
         setTrackIndex(index);
+        setPlaying(true);
+
+        startTimer();
       }
     }
   };
@@ -302,6 +305,7 @@ export const ThreeJsFrame = () => {
     } else {
       meditationsRefs.current.forEach((audio) => audio.pause());
       setPlaying(false);
+      stopTimer();
       return;
     }
   };
@@ -377,15 +381,11 @@ export const ThreeJsFrame = () => {
 
   return (
     <>
-      {astrologicalInfo && (
+      {astrologicalInfo ? (
         <>
           <iframe
-            className="efectoReveal"
-            onLoad={() => {
-              setTimeout(() => {
-                setIframeLoaded(true);
-              }, 2000);
-            }}
+          
+         
             title="Modelo 3D"
             src={`https://lovelia.org/public/index.html?userProfile=api/${email}.json`}
             style={{ width: "100vw", height: "100vh", border: "none" }}
@@ -478,13 +478,13 @@ export const ThreeJsFrame = () => {
           {popUpActivation.openModal && (
             <PopUpMyTalisman handlePopUp={popUpActivation.handleOpenModal} />
           )}
-          {iframeLoaded && intention && (
+          { intention && (
             <div className="myTalisman-intention-container efectoReveal">
               <p>{intention}</p>
             </div>
           )}
         </>
-      )}
+      ):<div className="myTalisman-pre-loading">Loading...</div>}
 
       {sounds.map((item, i) => {
         return (

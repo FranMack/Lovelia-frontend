@@ -1,5 +1,17 @@
 @import "../variables";
 
+
+.myTalisman-pre-loading{
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    color:white;
+    font-size: 3.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .myTalisman-container{
     position: relative;
     display: flex;
