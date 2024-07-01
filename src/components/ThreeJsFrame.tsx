@@ -1,33 +1,33 @@
 import { ChangeEvent, useContext, useEffect, useRef, useState } from "react";
+import {
+  ActivationIcon,
+  ClockIcon,
+  EyeClose,
+  EyeOpen,
+  HomeIcon,
+  MeditationIcon,
+  MusicIcon,
+  MyAdnIcon,
+  NextAudioIcon,
+  NotSoundIcon,
+  PlayIcon,
+  PreviousAudioIcon,
+  SoundIcon,
+  StopIcon,
+  TalismanSoundIcon,
+} from "../assets/images/icons/icons";
+import { IntentionContext } from "../context/intentionContext";
+import { TalismanButtonFocusContext } from "../context/talismanButtonFocusContext";
 import { UserContext } from "../context/userContext";
 import { VolumeContext } from "../context/volumeContext";
-import { TalismanButtonFocusContext } from "../context/talismanButtonFocusContext";
-import { IntentionContext } from "../context/intentionContext";
-import {
-  HomeIcon,
-  EyeOpen,
-  EyeClose,
-  SoundIcon,
-  NotSoundIcon,
-  TalismanSoundIcon,
-  ActivationIcon,
-  MeditationIcon,
-  MyAdnIcon,
-  ClockIcon,
-  MusicIcon,
-  PlayIcon,
-  NextAudioIcon,
-  PreviousAudioIcon,
-  StopIcon,
-} from "../assets/images/icons/icons";
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { DropDownMyTalisman } from "../commons/DropDownMyTalisman";
 import { PopUpMyTalisman } from "../commons/PopUpMyTalisman";
-import { useOpenModal } from "../hooks/useOpenModal";
 import { envs } from "../config/envs";
 import { audioDurationTransform } from "../helpers/audioDurationTransform";
+import { useOpenModal } from "../hooks/useOpenModal";
 
 interface MeditationsOptions {
   name: string;
@@ -178,7 +178,7 @@ export const ThreeJsFrame = () => {
             `${envs.API_DOMAIN}/api/v1/user/my-intention/${email}`,
             { withCredentials: true }
           );
-      
+
           if (userInfo.data) {
             setAstrologicalInfo(true);
             localStorage.setItem("subscriptionActive", "true");
@@ -387,7 +387,7 @@ export const ThreeJsFrame = () => {
               }, 2000);
             }}
             title="Modelo 3D"
-            src={`http://34.54.70.75/public/index.html?userProfile=api/${email}.json`}
+            src={`https://lovelia.org/public/index.html?userProfile=api/${email}.json`}
             style={{ width: "100vw", height: "100vh", border: "none" }}
           />
           <div className="myTalisman-controls-container">
