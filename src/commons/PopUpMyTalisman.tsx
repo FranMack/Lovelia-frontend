@@ -1,7 +1,10 @@
-import { useContext, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import { CloseIcon } from "../assets/images/icons/icons";
 import { UserContext } from "../context/userContext";
 import { Button } from "./Button";
+import { IntentionContext } from "../context/intentionContext";
+import { envs } from "../config/envs";
+import axios from "axios";
 
 export interface PopUpOptions {
   handlePopUp: () => void;
@@ -9,7 +12,25 @@ export interface PopUpOptions {
 
 export function PopUpMyTalisman({ handlePopUp }: PopUpOptions) {
   const [step, setStep] = useState("Paso 1");
-  const { name } = useContext(UserContext);
+  const { name, email } = useContext(UserContext);
+  const { intention, setIntention } = useContext(IntentionContext);
+
+  const [inputIntention,setInputIntention]=useState("");
+
+  const handleInputIntention=(event:ChangeEvent<HTMLInputElement>)=>{
+    setInputIntention(event.target.value)
+  }
+
+  const handleSubmitIntention = () => {
+    if (email && inputIntention) {
+      axios.patch(
+        `${envs.API_DOMAIN}/api/v1/user/add-intention`,
+        { email, intention:inputIntention },
+        { withCredentials: true }
+      )
+      .then(()=>{setIntention(inputIntention)})
+    }
+  };
 
   return (
     <>
@@ -24,7 +45,11 @@ export function PopUpMyTalisman({ handlePopUp }: PopUpOptions) {
 
         {step === "Paso 1" && (
           <div className="popUpMyTalisman-center-container">
-            <h4>{`Hola ${name}, Quieres activar tu talismán?`}</h4>
+            {intention ? (
+              <h4>{`Hola ${name}, Quieres modificar tu intensión?`}</h4>
+            ) : (
+              <h4>{`Hola ${name}, Quieres activar tu talismán?`}</h4>
+            )}
 
             <div className="button-auxiliar-container">
               <Button
@@ -51,6 +76,13 @@ export function PopUpMyTalisman({ handlePopUp }: PopUpOptions) {
                 </ul>
               </li>
             </ol>
+            <label htmlFor="">Escribe tu intensión</label>
+            <input
+              value={inputIntention}
+              onChange={handleInputIntention}
+              type="text"
+              placeholder="Tu intención"
+            />
 
             <div className="button-auxiliar-container">
               <Button
@@ -100,7 +132,13 @@ export function PopUpMyTalisman({ handlePopUp }: PopUpOptions) {
             </ul>
 
             <div className="button-auxiliar-container">
-              <Button onClick={handlePopUp} text="Finalizar" />
+              <Button
+                onClick={() => {
+                  handleSubmitIntention();
+                  handlePopUp();
+                }}
+                text="Finalizar"
+              />
             </div>
           </div>
         )}
