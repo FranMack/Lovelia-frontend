@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import talismanGif from "../../assets/images/gif/talismanGif.gif";
+import talisman from "../../assets/images/ejemplos-talismanes/TD-EJEMPLO-1.jpeg"
 
 import { PortadaTalisman, PortadaTalismanOptions } from "../PortadaTalisman";
 
 const infoPortada: PortadaTalismanOptions = {
-  image: talismanGif,
+  image: talisman,
   title: "Talismán Digital",
   description: [
     "El talisman digital es una representación animada de tu ADN energético.",

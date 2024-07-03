@@ -213,6 +213,20 @@ export function CustomTalisman() {
     }
   };
 
+  const productsPrice = () => {
+    const shopingCartJSON = localStorage.getItem("shopingCart") || "[]";
+    const shopingCartItems = JSON.parse(shopingCartJSON);
+    return shopingCartItems.reduce(
+      (
+        acc: number,
+        item: {
+          [key: string]: number;
+        }
+      ) => acc + item.price,
+      0
+    );
+  };
+
   return (
     <section className="custonTalisman-container">
       <div className="custonTalisman-internal-container left">
@@ -299,12 +313,7 @@ export function CustomTalisman() {
           <div className="buttons-container">
             <Button
               onClick={linkToCheckOut}
-              text={`$${(
-                priceModel +
-                priceMaterial +
-                priceRock +
-                priceChain
-              ).toFixed(2)}  Ir a comprar`}
+              text={`$${productsPrice().toFixed(2)}  Ir a comprar`}
             />
             <div className="auxiliar-buttons-container">
               {!dropdownDevoluciones.openModal && (
