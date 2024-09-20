@@ -1,0 +1,80 @@
+@import "../../styles/variables.scss";
+
+
+
+.frontPage2-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  img {
+    position: absolute;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+  }
+}
+.frontPage2-center-container {
+  position: absolute;
+  left: 12%;
+  display: flex;
+  flex-direction: column;
+}
+
+.frontPage2-text-container {
+  margin-bottom: 5%;
+  h2 {
+    display: flex;
+    align-items: center;
+
+    font-size: 8rem;
+    font-weight: 400;
+
+    > .icon-container {
+      height: 100px;
+      display: flex;
+    }
+  }
+  h3 {
+    margin-top: 4%;
+    font-size: 3.5rem;
+    font-weight: 400;
+  }
+}
+
+@media screen and (max-width: 678px) {
+  .frontPage2-container{
+    padding-top: 10vh;
+  
+    justify-content: center;
+  }
+  .frontPage2-text-container {
+    margin-bottom: 5%;
+    
+    h2 {
+      display: flex;
+      font-size: 4.4rem;
+      font-weight: 400;
+
+      > .icon-container {
+        height: 50px;
+        display: flex;
+      }
+    }
+    h3 {
+      margin-top: 4%;
+      font-size: 2.8rem;
+      font-weight: 400;
+    }
+  }
+
+  .frontPage2-center-container {
+ 
+    position:relative;
+    left: 0;
+
+
+  }
+}

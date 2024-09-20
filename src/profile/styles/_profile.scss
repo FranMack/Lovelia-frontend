@@ -1,0 +1,255 @@
+@import "../../styles//variables.scss";
+
+.profile-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+ 
+  
+  
+  .profile-historial-container {
+    width: 80%;
+    margin-top: 2%;
+    height: 70vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+     /* Estilo para la barra de desplazamiento */
+  ::-webkit-scrollbar {
+    width: 10px; /* Ancho de la barra de desplazamiento */
+  }
+
+  /* Estilo para el thumb (el botón que puedes arrastrar) de la barra de desplazamiento */
+  ::-webkit-scrollbar-thumb {
+    background-color: $color_primary; /* Cambia "#color_primary" al color deseado */
+    border-radius: 5px; /* Radio de borde del dedo de la barra de desplazamiento */
+    height: 10px;
+  }
+
+  /* Estilo para el riel de la barra de desplazamiento */
+  ::-webkit-scrollbar-track {
+    background-color: transparent; /* Cambia "#color_background1" al color deseado */
+  }
+
+  /* Estilo para el rincón de la barra de desplazamiento */
+  ::-webkit-scrollbar-corner {
+    background-color: red; /* Cambia "red" al color deseado */
+    width: 20px;
+  }
+  }
+  
+  .profile-historial-container-noRegister{
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 2%;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color_background1;
+    h4{
+      font-family: $font_titles;
+      font-size: 2rem;
+      font-weight: 400;
+      color: #999999;
+    }
+
+    
+  }
+  
+  
+  .profile-historial-internal-left-container {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    row-gap: 2%;
+    overflow-y: scroll;
+
+
+    
+  }
+  
+  .profile-historial-internal-right-container {
+    width: 55%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    h4 {
+      color: $color_primary;
+      font-size: 2.4rem;
+      font-weight: 300;
+    }
+    .auxiliar-button-container {
+      width: 100%;
+      display: flex;
+      justify-content: end;
+    }
+  }
+  
+  .profile-historial-detalle-container {
+    height: 90%;
+    width: 100%;
+    background-color: $color_background1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    .profile-historial-detalle-center-container {
+      width: 80%;
+      height: 95%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .product-image-container {
+        width: 100%;
+        height: 18%;
+        display: flex;
+  
+        img {
+          height: 100%;
+          aspect-ratio: 1;
+          object-fit: cover;
+        }
+      }
+      p {
+        font-family: $font_titles;
+        font-size: 1.2rem;
+        font-weight: 400;
+      }
+      table {
+        width: 70%;
+  
+  
+        th, td {
+          font-size: 1.2rem;
+          height: 3vh;
+          text-align: start;
+  
+          font-weight: 400;
+          span{
+        
+            font-size: 1.2rem;
+          }
+        }
+        .table-title {
+          font-size: 1.6rem;
+          font-weight: 700;
+        }
+      }
+      .envio-info-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        .envio-info-auxiliar-container {
+          display: flex;
+          flex-direction: column;
+          row-gap: 1vh;
+        }
+  
+        h5 {
+          font-size: 1.6rem;
+          font-weight: 700;
+        }
+        p {
+          font-family: $font_titles;
+          font-size: 1.2rem;
+  
+          font-weight: 400;
+        }
+      }
+    }
+  
+    /*p {
+      font-family: $font_titulos;
+      font-size: 2rem;
+      font-weight: 400;
+      color: #999999;
+    }*/
+  }
+  
+  .profile-historial-item-card {
+    width: 95%;
+    background-color: $color_background1;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    padding: 5%;
+   
+  
+    .auxiliar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    p {
+      font-size: 1.4rem;
+      font-weight: 400;
+      font-family: $font_titles;
+      span {
+        font-size: 1.2rem;
+  
+        font-weight: 400;
+      }
+    }
+  
+    h4 {
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+  
+    strong {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+  }
+  .profile-historial-item-card.selected{
+ background-color: rgba($color: $color_salmon, $alpha: 0.6);
+ transition: 0.5s;
+  }
+
+
+
+  @media screen and (max-width: 678px) {
+    .profile-container {
+      
+      padding-top: 10vh;
+      height: fit-content;
+   
+    }
+
+
+    .profile-historial-container {
+      width: 90%;
+      margin-top: 2%;
+      height: 70vh;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+    }
+
+
+
+    .profile-historial-container-noRegister{
+      margin: 0 auto;
+      width: 100%;
+      margin-top: 2%;
+
+      h4{
+        text-align: center;
+        margin: 2%;
+      }
+  
+      
+    }
+  }

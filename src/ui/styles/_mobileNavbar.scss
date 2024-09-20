@@ -1,0 +1,27 @@
+@import "../../styles//variables.scss";
+
+.mobile-navbar-container{
+    position: fixed;
+    width: 100vw;
+    height: 10vh;
+    background-color: $color_background2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 50;
+
+    >.icon-container{
+        height: 50%;
+        margin-left: 3%;
+        margin-right: 5%;
+       
+    }
+    >.image-container{
+        height: 70%;
+        img{
+            object-fit: cover;
+            height: 100%;
+        }
+    }
+
+}

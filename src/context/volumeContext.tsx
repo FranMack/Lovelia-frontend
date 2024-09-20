@@ -23,7 +23,7 @@ interface VolumeContextProviderProps {
 
 
 
-  const VolumeContextProvider = ({ children }: VolumeContextProviderProps) => {
+  export const VolumeContextProvider = ({ children }: VolumeContextProviderProps) => {
     const [volume, setVolume] = useState<number>(1);
    
     const handleVolumeChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -41,5 +41,5 @@ interface VolumeContextProviderProps {
     return <VolumeContext.Provider value={value}>{children}</VolumeContext.Provider>;
   };
   
-  export default VolumeContextProvider;
+
   

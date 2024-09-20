@@ -1,123 +1,87 @@
-@import "./variables";
-@import "./components/navbar";
-@import "./components/footer";
-@import "./components/home-components/homeSection1";
-@import "./components/home-components/_homeSection2";
-@import "./components/home-components/_homeSection3";
-@import "./components/home-components/_homeSection4";
-@import "./components/home-components/_homeSection5";
-@import "./components/home-components/_homeSection6";
-@import "./components/home-components/_homeSection7";
-@import "./components/home-components/_homeSection8";
-@import "./components/home-components/_homeSection9";
+@import "./variables.scss";
+@import "../home/styles/home1";
+@import "../home/styles/home3";
+@import "../home/styles/home4";
+@import "../home/styles/home5";
+@import "../home/styles/home6";
+@import "../home/styles/home7";
+@import "../ui/styles/backgroundVideo.scss";
+@import "../ui/styles/buttonArrowRight.scss";
+@import "../ui/styles/buttonTransparent.scss";
+@import "../ui/styles/footer";
+@import "../ui/styles/navbar";
+@import "../ui/styles/frontPage";
+@import "../ui/styles/frontPage2";
+@import "../ui/styles/template1";
+@import "../ui/styles/buttonArrowRight2.scss";
+@import "../ui/styles/button";
+@import "../ui/styles/buttonArrowUp";
+@import "../ui/styles/shopingCart";
+@import "../ui/styles/navbarDropDown";
+@import "../ui/styles/mobileFooter";
+@import "../ui/styles/dropDownFooter";
+@import "../ui/styles/mobileNavbar";
+@import "../ui/styles/mobileMenu";
+@import "../ui/styles/mercadoPagoCheckoutForm";
+@import "../ui/styles/popUp";
+@import "../talisman/styles//talismanInfo3";
+@import "../talismanDigital/styles/talismanDigital.scss";
+@import "../talismanDigital/styles/talismanDigital7.scss";
+@import "../meditations/styles//meditations2";
+@import "../meditations/styles//meditations3";
+@import "../meditations/styles/gridMeditations";
+@import "../intentions//styles//intentions3";
+@import "../intentions//styles/gridIntentions";
+@import "../intentions//styles/intentionInfo";
+@import "../talismanAnalogic//styles/talismanAnalogic2";
+@import "../talismanAnalogic//styles/talismanAnalogic3";
+@import "../talismanAnalogic//styles/talismanAnalogic4";
+@import "../talismanAnalogic//styles/slider";
+@import "../store//styles/store1";
+@import "../store//styles/store2";
+@import "../store//styles/store3";
+@import "../store//styles/dropDownIntensiones";
+@import "../store//styles/dropDownMenu";
+@import "../store//styles/dropDownInfo";
+@import "../store//styles/buyAnalogTalisman";
+@import "../store//styles/buyDigitalTalisman";
+@import "../blog//styles//blog2";
+@import "../blog//styles//blog3";
+@import "../blog//styles/templateBlog";
+@import "../auth//styles//login";
+@import "../auth//styles/authFrontPage";
+@import "../auth//styles/authPopUp";
+@import "../contact/styles/contact";
+@import "../contact/styles/messageSend";
+@import "../profile//styles//profile";
+@import "../profile//styles/profileNavbar";
+@import "../profile//styles/acountInfo";
+@import "../checkout/styles//checkoutAnalogic";
+@import "../checkout/styles/welcomeDigital";
+@import "../myTalisman/styles//myTalisman";
+@import "../myTalisman/styles/dropDownMyTalisman";
+@import "../myTalisman/styles/activation";
+@import "../myTalisman/styles/playlist";
+@import "../myTalisman/styles/timer";
+@import "../myTalisman/styles//chornometer";
+@import "../talismanAnalogic//styles/activationAnalogic";
+@import "../siteTerms/styles/siteTerms";
 
-@import "./commons//button";
-@import "./commons//buttonArrowDown";
-@import "./commons/buttonArrowRight";
-@import "./components//carrusel";
-@import "./commons/carruselCard";
-@import "./components/slider";
-@import "./components/intensiones-components/intensionesSection1";
-@import "./components/intensiones-components/intensionesSection2";
-@import "./components/intensiones-components/intensionesSection3";
-@import "./components//talisman-analog-components/AnalogTalismanSection1";
-@import "./components//talisman-analog-components/AnalogTalismanSection2";
-@import "./components//talisman-analog-components/AnalogTalismanSection3";
-@import "./components//talisman-analog-components/AnalogTalismanSection4";
-@import "./components//talisman-analog-components/AnalogTalismanSection5";
-@import "./components//talisman-analog-components/AnalogTalismanSection6";
-@import "./components//talisman-analog-components/AnalogTalismanSection7";
-@import "./components/articulosDestacados";
-@import "./commons/cardArticuloDestacado";
-@import "./commons/titleComponent";
-@import "./components/giiftComponent";
-@import "./components//carrusel3D";
-@import "./components/placaTipo1";
-@import "./components/placaTipo2";
-@import "./components/wallpaperTipo1";
-@import "./components/wallpaperTipo2";
-@import "./components/talisman-digital-components/DigitalTalismanSection1";
-@import "./components/talisman-digital-components/DigitalTalismanSection2";
-@import "./components/talisman-digital-components/DigitalTalismanSection3";
-@import "./components/talisman-digital-components/DigitalTalismanSection4";
-@import "./components/portadaTalisman";
-@import "./components/talismanesComponent";
-@import "./components/talisman-landing-components/LandingTalisman";
-@import "./components/tienda-components//tienda";
-@import "./views/login";
-@import "./views/customTalisman";
-@import "./views/buyDigitalTalisman";
-@import "./commons/dropDownMenu";
-@import "./commons//buttonArrowUp";
-@import "./components/destacadosBlog";
-@import "./views/blog";
-@import "./components/carruselIntensiones";
-@import "./commons/dropDownInfoContainer";
-@import "./components/dropDownIntensiones";
-@import "./components//talismanesGrilla";
-@import "./views/intensionDescription";
-@import "./views/profile";
-@import "./commons/backgroundVideo";
-@import "./commons/popUp";
-@import "./components/shopingCart";
-@import "./commons//buttonWide";
-@import "./views/checkoutAnalogic";
-@import "./commons/navbarDropDown";
-@import "./views//siteTerms";
-@import "./views/myTalisman";
-@import"./commons/dropDownMyTalisman";
-@import "./commons//popUpMyTalisman";
+
 
 *{
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font-family: $font_titulos;
 }
 
 html{
-    font-size: 62.5%;
-    background-color:$color_background2;
-    
-}
-
-body{
+    font-size: 63.5%;
+    font-family: $font_titles;
     overflow-x: hidden;
-
 }
 
-p{
-  font-family:'Nib Pro', sans-serif;
-}
-
-svg{
-  cursor: pointer;
-}
-
-
-::-webkit-scrollbar {
-    width: 15px; /* Ancho de la barra de desplazamiento */
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: $color_primary;
-    border-radius: 5px; /* Radio de borde del dedo de la barra de desplazamiento */
-    height: 100px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color:transparent /* Color de fondo de la pista de la barra de desplazamiento */
-    
-  }
-
-  ::-webkit-scrollbar-corner {
-    background-color: red;
-    width: 20px;
-    height: 20px;
-  }
-
-
-  .efectoReveal {
+.efectoReveal {
     animation-name: efectoReveal;
     animation-duration: 1s;
     animation-timing-function: linear;
@@ -136,26 +100,3 @@ svg{
       filter: brightness(100%);
     }
   }
-
-
-  .shopingCartReveal {
-    animation-name: shopingCartReveal;
-    animation-duration: 1s;
-    animation-timing-function: linear;
-    animation-fill-mode: both;
-    
-  }
-  
-  @keyframes shopingCartReveal {
-    from {
-
-      transform: translateY(1000px);
-      opacity:0;
-    }
-    to {
-      transform: translateY(0px);
-      opacity: 1;
-    }
-  }
-
-

@@ -1,0 +1,58 @@
+import intention from "../assets/home_intensiones.png";
+import { ButtonArrowRight } from "../../ui/components"
+import { Template1 } from "../../ui/pages/Template1";
+import { Template1Options } from "../../ui/pages/Template1";
+import { Position } from "../../ui/pages/Template1";
+import { useNavigate } from "react-router-dom";
+
+
+
+const templateOptions:Template1Options={
+  image:intention,
+  position:Position.Left,
+ color:"#6f3289",
+  backgroundColor:"#76CBC0"
+}
+
+export const Home3 = () => {
+  const navigate=useNavigate()
+
+const buttonRightInfo={
+    text:"SEGUIR LEYENDO",
+    color:"#6f3289",
+    onClick:()=>{navigate("/intenciones")}
+}
+
+  return (
+   <Template1 {...templateOptions} >
+    <div className="section3-home-internal-container right">
+    <div className="section3-home-internal-text-container">
+  <h2>
+    EL PODER
+    <br />
+    DE LA INTENCIÓN
+  </h2>
+  <p>
+   <span> Existe el poder de transformar los pensamientos en
+    <br /> realidades durante el proceso de búsqueda de la<br /> plenitud y la
+     realización personal.
+     </span>
+  </p>
+  
+  <p>
+  Es el poder de la intención, la semilla de toda transformación y<br />
+  creación en nuestras vidas.<br />
+    <strong>La intención es el punto de partida para todo cambio y<br /> creación</strong>, ya
+    que se trata de la energía que dirige nuestros<br /> pensamientos,
+    nuestras palabras y nuestras acciones hacia la<br /> manifestación de
+    nuestros deseos más profundos, esos que<br /> están <strong>en conexión íntima con
+    nuestra esencia, nuestros<br /> valores y nuestra visión del mundo</strong>.
+  </p>
+  <div className="button-wrapper">
+  <ButtonArrowRight {...buttonRightInfo}/>
+  </div>
+  </div>
+</div>
+</Template1>
+  );
+};

@@ -9,5 +9,8 @@ interface PrivateRouteProps {
 export function PrivateRoute({ children }: PrivateRouteProps) {
   const { email } = useContext(UserContext);
 
-  return email ? children : <Navigate to="/" />;
+  //VER====>
+  const cookieToken=document.cookie.includes("token")
+
+  return cookieToken ? children : <Navigate to="/portal-usuario" />;
 }

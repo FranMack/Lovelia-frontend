@@ -1,0 +1,75 @@
+@import "../../styles//variables.scss";
+
+
+.profileNavbar-container {
+    background-color: $color_background1;
+    width: 80%;
+    height: 7vh;
+    display: flex;
+    align-items: center;
+    margin-top: 8%;
+  
+    border-radius: 30px;
+    ul {
+      list-style: none;
+      display: flex;
+      column-gap: 5%;
+      width: 65%;
+      height: 100%;
+    }
+    li {
+      color: #999999;
+      font-size: 1.6rem;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding-inline: 3%;
+    }
+    .button-focus-style {
+      background-color: $color_yellow;
+      border-radius: 30px;
+      padding-inline: 3%;
+      color: $color_darkPurple;
+      font-weight: 500;
+    }
+  }
+
+  
+
+  @media screen and (max-width: 678px) {
+    .profileNavbar-container {
+   
+      width: 90%;
+      height: 7vh;
+      display: flex;
+      align-items: center;
+      margin-top: 5%;
+      margin-bottom: 5%;
+    
+      border-radius: 30px;
+      ul {
+  
+        column-gap: 0%;
+        width: 100%;
+        justify-content: space-between;
+      }
+      li {
+        color: #999999;
+        font-size: 1.6rem;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding-inline: 3%;
+      }
+      .button-focus-style {
+        background-color: $color_yellow;
+        border-radius: 30px;
+        padding-inline: 3%;
+        color: $color_darkPurple;
+        font-weight: 500;
+      }
+    }
+  
+  }

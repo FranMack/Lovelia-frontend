@@ -22,7 +22,7 @@ interface IntentionContextProviderProps {
     intentionContextDefaultValue
   );
 
-  const IntentionContextProvider = ({ children }: IntentionContextProviderProps) => {
+  export const IntentionContextProvider = ({ children }: IntentionContextProviderProps) => {
     const [intention, setIntention] = useState<string>("");
    
     const handleIntention = (event: ChangeEvent<HTMLInputElement>) => {
@@ -40,4 +40,4 @@ interface IntentionContextProviderProps {
     return <IntentionContext.Provider value={value}>{children}</IntentionContext.Provider>;
   };
   
-  export default IntentionContextProvider;
+

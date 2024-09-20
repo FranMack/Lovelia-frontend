@@ -1,0 +1,72 @@
+@import "../../styles//variables.scss";
+
+
+.grid-intentions-container{
+    margin: 0 auto;
+    width: 50%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2,minmax(150px,1fr));
+   row-gap: 2%;
+   column-gap: 5%;
+
+}
+
+.grid-intentions-item{
+    width: 100%;
+    aspect-ratio: 0.80;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    .grid-intentions-image-container{
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        >.icon-container{
+            position:absolute;
+            z-index: 10;
+            height: 14%;
+     
+        }
+
+        img{
+
+            object-fit: cover;
+            width: 100%;
+            aspect-ratio: 1;
+        }
+
+
+      
+    }
+    p{
+        font-size: 2rem;
+        font-weight: 300;
+        margin-bottom: 3%;
+        text-align: center;
+        strong{
+            font-weight: 600;
+        }
+    }
+}
+
+
+@media screen and (max-width: 678px) {
+    .grid-intentions-container{
+        margin: 0 auto;
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        row-gap: 5vh;
+
+      
+
+    
+    }
+
+}

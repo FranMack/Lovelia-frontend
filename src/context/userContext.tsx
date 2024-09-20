@@ -38,7 +38,7 @@ export const UserContext = createContext<UserContextValue>(
   userContextDefaultValue
 );
 
-const UserContextProvider = ({ children }: UserContextProviderProps) => {
+export const UserContextProvider = ({ children }: UserContextProviderProps) => {
   const [id, setId] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [token, setToken] = useState<string>("");
@@ -64,4 +64,4 @@ const UserContextProvider = ({ children }: UserContextProviderProps) => {
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
-export default UserContextProvider;
+

@@ -1,0 +1,74 @@
+@import "../../styles/variables.scss";
+
+.template1-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: $color_turquoise;
+    color:$color_primary;
+
+}
+
+.template1-center-container{
+  width: 100%;
+  height:70%;
+  display: flex;
+  align-items: center;
+}
+
+.template1-center-container-reverse{
+  width: 100%;
+  height:70%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  
+}
+
+.template1-internal-container{
+  width:43%;
+
+  height: 100%;
+  display: flex;
+  
+  
+  img{
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 678px) {
+ .template1-container{
+  height: fit-content;
+  min-height: 100vh;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+}
+
+  .template1-center-container{
+flex-direction: column;
+row-gap: 10vh;
+  }
+
+  .template1-center-container-reverse{
+    
+    flex-direction: column-reverse;
+    row-gap: 10vh;
+    
+  }
+
+  .template1-internal-container{
+    width:100%;
+    display: flex;
+    
+    
+    img{
+      object-fit: contain;
+      width: 100%;
+    }
+  }
+  
+}

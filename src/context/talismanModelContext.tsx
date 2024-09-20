@@ -54,7 +54,7 @@ export const TalismanModelContext = createContext<TalismanModelContextValue>(
   talismanModelContextDefaultValue
 );
 
-const TalismanModelContextProvider = ({
+export const TalismanModelContextProvider = ({
   children,
 }: TalismanModelContextProviderProps) => {
   const [optionModel, setOptionModel] = useState<string>("");
@@ -98,4 +98,4 @@ const TalismanModelContextProvider = ({
   );
 };
 
-export default TalismanModelContextProvider;
+

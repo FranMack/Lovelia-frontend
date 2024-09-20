@@ -3,12 +3,18 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./styles/styles.scss";
 import { BrowserRouter } from "react-router-dom";
-import ShopingCartContextProvider from "./context/modalShopingCart.tsx";
-import UserContextProvider from "./context/userContext.tsx";
-import TalismanModelContextProvider from "./context/talismanModelContext.tsx";
-import TalismanButtonFocusContextProvider from "./context/talismanButtonFocusContext.tsx";
-import VolumeContextProvider from "./context/volumeContext.tsx";
-import IntentionContextProvider from "./context/intentionContext.tsx";
+import {
+  UserContextProvider,
+  ShopingCartContextProvider,
+  MobileMenuContextProvider,
+  TalismanModelContextProvider,
+  TalismanButtonFocusContextProvider,
+  VolumeContextProvider,
+  IntentionContextProvider,
+} from "./context/";
+import { TimerContextProvider } from "./context/timerContext.tsx";
+import { TalismanAudioContextProvider } from "./context/talismanAudioContext.tsx";
+import { ActivationStepsContextProvider } from "./context/activationStepsContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -19,9 +25,17 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <TalismanButtonFocusContextProvider>
               <VolumeContextProvider>
                 <IntentionContextProvider>
-            <App />
-            </IntentionContextProvider>
-            </VolumeContextProvider>
+                  <TimerContextProvider>
+                    <TalismanAudioContextProvider>
+                      <ActivationStepsContextProvider>
+                        <MobileMenuContextProvider>
+                  <App />
+                  </MobileMenuContextProvider>
+                  </ActivationStepsContextProvider>
+                  </TalismanAudioContextProvider>
+                  </TimerContextProvider>
+                </IntentionContextProvider>
+              </VolumeContextProvider>
             </TalismanButtonFocusContextProvider>
           </TalismanModelContextProvider>
         </ShopingCartContextProvider>

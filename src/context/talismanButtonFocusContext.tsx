@@ -10,7 +10,7 @@ interface TalismanButtonFocusContextProviderProps {
 }
 
 const talismanButtonFocusDefaultValue: TalismanButtonFocusContextValue = {
-  buttonFocusPosition: "false",
+  buttonFocusPosition: "",
   handleButtonFocus: () => null,
 };
 
@@ -18,7 +18,7 @@ export const TalismanButtonFocusContext = createContext(
   talismanButtonFocusDefaultValue
 );
 
-const TalismanButtonFocusContextProvider = ({
+export const TalismanButtonFocusContextProvider = ({
   children,
 }: TalismanButtonFocusContextProviderProps) => {
   const [focusPosition, setButttonFocusPosition] = useState("");
@@ -39,4 +39,4 @@ const TalismanButtonFocusContextProvider = ({
   );
 };
 
-export default TalismanButtonFocusContextProvider;
+

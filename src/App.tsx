@@ -1,37 +1,40 @@
-import axios from "axios";
-import { useContext, useEffect } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import { Footer } from "./components/Footer";
-import { Navbar } from "./components/Navbar";
-import { ShopingCart } from "./components/ShopingCart";
-import { ShopingCartContext } from "./context/modalShopingCart";
-import { UserContext } from "./context/userContext";
-import { PrivateRoute } from "./router/PrivateRoute";
-import { PublicRoute } from "./router/PublicRoute";
-import { AnalogTalisman } from "./views/AnalogTalisman";
-import { Blog } from "./views/Blog";
-import { BuyDigitalTalisman } from "./views/BuyDigitalTalisman";
-import { CheckOutAnalogic } from "./views/CheckOutAnalogic";
-import { CheckOutDigital } from "./views/CheckOutDigital";
-import { Contacto } from "./views/Contacto";
-import { CustomTalisman } from "./views/CustomTalisman";
-import { DigitalTalisman } from "./views/DigitalTalisman";
-import { Home } from "./views/Home";
-import { IntensionDescription } from "./views/IntensionDescription";
-import { Intensiones } from "./views/Intensiones";
-import { LandingTalisman } from "./views/LandingTalisman";
-import { Login } from "./views/Login";
-import { MyTalisman } from "./views/MyTalisman";
-import { Profile } from "./views/Profile";
-import { Register } from "./views/Register";
-import { SiteTerms } from "./views/SiteTerms";
-import { Tienda } from "./views/Tienda";
 
-import { envs } from "./config/envs";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { Home } from "./home/views/Home";
+import { Footer,Navbar,MobileFooter,MobileNavbar,MobileMenu } from "./ui/components";
+import {TalismanInfo} from "./talisman/views/TalismanInfo.tsx"
+import { TalismanDigital } from "./talismanDigital/views/TalismanDigital.tsx";
+import { Meditations } from "./meditations/views/Meditations.tsx";
+import { Intentions,IntentionInfo } from "./intentions/views";
+import { TalismanAnalogic,ActivationAnalogic } from "./talismanAnalogic/views";
+import { Store,BuyAnalogTalisman,BuyDigitalTalisman } from "./store/views";
+import { Blog } from "./blog/views/Blog.tsx";
+import { Register,Login,ForgetPassword,NewPassword,AuthFrontPage } from "./auth/views/";
+import { Contact } from "./contact/views/Contact.tsx";
+import { Profile } from "./profile/views/Profile.tsx";
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import { envs } from "./config/envs.ts";
+import { UserContext } from "./context/userContext.tsx";
+import { ShopingCartContext } from "./context/modalShopingCartContext.tsx";
+import { CheckOutAnalogic,CheckOutDigital } from "./checkout/views/";
+import { ToastContainer } from "react-toastify";
+import { ShopingCart } from "./ui/components/ShopingCart.tsx";
+import { MyTalisman } from "./myTalisman/views/MyTalisman.tsx";
+import { SiteTerms } from "./siteTerms/views/SiteTerms.tsx";
+import { PrivateRoute,PublicRoute } from "./router";
+import { MailTemplate1 } from "./ui/pages/MailTemplate1.tsx";
+import { MobileMenuContext } from "./context/mobileMenuContext.tsx";
+import { MercadoPagoCheckoutForm } from "./ui/components/MercadoPagoCheckoutForm.tsx";
+import { WelcomeDigital } from "./checkout/views/WelcomeDigital.tsx";
+
+
+
+
 
 function App() {
-  const { menuOpen } = useContext(ShopingCartContext);
+
+  const { shopingCartOpen } = useContext(ShopingCartContext);
   const { /*email,*/ setEmail, setId, setName, setLastname, setSuscription } =
     useContext(UserContext);
 
@@ -53,78 +56,97 @@ function App() {
       });
   }, []);
 
+
   const location = useLocation().pathname;
 
-  console.log("XXXXXXXXXXXXXXXXXX", envs);
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
+
+  const handleWindowSize = () => {
+    setWindowSize(window.innerWidth);
+  };
+  window.addEventListener("resize", handleWindowSize);
+
+  const{menuOpen,toggleMenu,menuRef}=useContext(MobileMenuContext)
+
+
+
+  
+
+  const handleClickOutside = (event: MouseEvent) => {
+    // Verificar si el clic ocurrió fuera del menú
+
+    if (menuOpen && menuRef!.current  && event.target!.id =="menu-hamburguesa-icon" && event.target!.parentNode.tagName=="svg" && !menuRef.current.contains(event.target as Node)) {
+      toggleMenu();
+    }
+  };
+
+  useEffect(() => {
+    // Añadir el event listener al document
+    document.addEventListener("click", handleClickOutside);
+    
+    return () => {
+      // Eliminar el event listener cuando el componente se desmonte
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [menuOpen]);
+
+
+
 
   return (
     <>
-      <ToastContainer />
-      {location !== "/myTalisman" && <Navbar />}
-      {menuOpen && <ShopingCart />}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/intensiones/:id" element={<IntensionDescription />} />
-        <Route path="/intensiones" element={<Intensiones />} />
-        <Route path="/talisman-analogico" element={<AnalogTalisman />} />
-        <Route path="/talisman-digital" element={<DigitalTalisman />} />
-        <Route path="/talisman-landing" element={<LandingTalisman />} />
-        <Route path="/tienda" element={<Tienda />} />
-        <Route path="/talleres" element={<Blog />} />
+   
+    <ToastContainer/>
+    {(location !== "/myTalisman" && windowSize>=1024) && <Navbar />}
+    {(location !== "/myTalisman") &&windowSize<1024 && <MobileNavbar />}
+    {shopingCartOpen && <ShopingCart />}
+   <MobileMenu/>
+    <Routes>
+      <Route path="/" element={ <Home/>}/>
+      <Route path="/talisman-landing" element={ <TalismanInfo/>}/>
+      <Route path="/talisman-digital" element={ <TalismanDigital/>}/>
+      <Route path="/talisman-analogico" element={ <TalismanAnalogic/>}/>
+      <Route path="/meditations" element={ <Meditations/>}/>
+      <Route path="/intenciones" element={ <Intentions/>}/>
+      <Route path="/intenciones/:id" element={ <IntentionInfo/>}/>
+      <Route path="/tienda" element={ <Store/>}/>
+      <Route path="/blog" element={ <Blog/>}/>
+      <Route path="/contacto" element={ <Contact/>}/>
+      <Route path="/buy-analogic" element={ <BuyAnalogTalisman/>}/>
+      <Route path="/buy-digital" element={ <BuyDigitalTalisman/>}/>
+      <Route path="/checkout/store" element={ <CheckOutAnalogic/>}/>
+      <Route path="/activacion" element={ <ActivationAnalogic/>}/>
+      <Route path="/terminos-y-condiciones" element={ <SiteTerms/>}/>
+  
+     {/* <Route path="/mail" element={ <MailTemplate1/>}/>*/}
 
-        <Route path="/contacto" element={<Contacto />} />
-        <Route
-          path="/comprar-talisman-analogico"
-          element={<CustomTalisman />}
-        />
-        <Route
-          path="/comprar-talisman-digital"
-          element={<BuyDigitalTalisman />}
-        />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/checkout/store" element={<CheckOutAnalogic />} />
-        <Route path="/terms" element={<SiteTerms />} />
+      
 
-        <Route
-          path="/login"
-          element={
-            <PublicRoute>
-              <Login />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <PublicRoute>
-              <Register />
-            </PublicRoute>
-          }
-        />
 
-        <Route
-          path="/profile"
-          element={
-            <PrivateRoute>
-              <Profile />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/checkout/digital"
-          element={
-            <PrivateRoute>
-              <CheckOutDigital />
-            </PrivateRoute>
-          }
-        />
-        <Route path="/myTalisman" element={<MyTalisman />} />
+       
+      
 
-        {/*<Route path="/*" element={<Navigate to="/" />} />*/}
-      </Routes>
-      <Footer />
+        {/*RUTAs PUBLICAS*/}
+        <Route path="/portal-usuario" element={ <PublicRoute><AuthFrontPage/></PublicRoute>}/>
+      <Route path="/login" element={ <PublicRoute><Login/></PublicRoute>}/>
+      <Route path="/register" element={ <PublicRoute><Register/></PublicRoute>}/>
+      <Route path="/forget-password" element={ <PublicRoute><ForgetPassword/></PublicRoute>}/>
+       <Route path="/reset-password" element={ <PublicRoute><NewPassword/></PublicRoute>}/>
+
+       {/*RUTAS PRIVADAS*/}
+       
+       <Route path="/profile" element={ <PrivateRoute><Profile/></PrivateRoute>}/>
+       <Route path="/checkout/digital" element={  <PrivateRoute><CheckOutDigital/></PrivateRoute>}/>
+       <Route path="/myTalisman" element={ <PrivateRoute><MyTalisman/></PrivateRoute>}/>
+       <Route path="/welcome" element={ <PrivateRoute><WelcomeDigital/></PrivateRoute>}/>
+
+    </Routes>
+
+{ windowSize>=1024 && <Footer/>}
+{windowSize<1024 &&<MobileFooter/>}
+    
     </>
-  );
+  )
 }
 
-export default App;
+export default App
