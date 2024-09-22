@@ -3,17 +3,34 @@
 .mobile-navbar-container{
     position: fixed;
     width: 100vw;
-    height: 10vh;
-    background-color: $color_background2;
+    height: 9vh;
+    background-color: $color_background;
     display: flex;
     align-items: center;
     justify-content: space-between;
     z-index: 50;
 
     >.icon-container{
+        position: relative;
         height: 50%;
         margin-left: 3%;
         margin-right: 5%;
+
+        strong{
+            position: absolute;
+            top: 0%;
+            width: 1.5rem;
+           aspect-ratio: 1;
+            font-size: 1.4rem;
+            color: #ffff;
+            background-color: $color_cyan;
+            border-radius: 50%;
+            margin: 0 auto;
+            padding: 5%;
+            text-align: center;
+    
+            
+        }
        
     }
     >.image-container{

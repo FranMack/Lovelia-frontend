@@ -1,28 +1,33 @@
-import lovelia from "../assets/home_portada.png";
-import background from "../assets/home_background.png"
-
+import { useNavigate } from "react-router-dom";
+import background from "../assets/background_home.png";
 
 export const Home1 = () => {
+  const navigate = useNavigate();
 
-  
-
-
+  const linkToTest = () => {
+    navigate("test");
+  };
+  const linkToPlans = () => {
+    navigate("#plans");
+  };
   return (
-    <section className="section1-home-container">
-      <img src={background} alt="sky" />
-      
-      <div className="section1-home-logo-container revealLogo2">
-        <img src={lovelia} alt="lovelia-logo" />
+    <section id="home" className="home-section1-container">
+      <img src={background} alt="background-fruits" />
+      <div className="home-section1-center-container revealLogo">
+        <h1>Decile adiós a las dietas, comé sin culpas y sentite renovada.</h1>
+        <h2>
+          Aprenderás a comer sin restricciones, adaptando tu alimentación a tus
+          objetivos y estilo de vida.
+          <br />
+          <br />
+          De manera real, no perfecta.{" "}
+        </h2>
+
+        <div className="home-section1-button-container">
+          <button onClick={linkToTest}>Hacer el test</button>
+          <button onClick={linkToPlans}>Conocer planes</button>
+        </div>
       </div>
-      <div className="section1-home-slogan-container revealLogo2">
-        <p>
-            NUESTRO PROPÓSITO ES
-        </p>
-        <p>
-            COLABORAR CON TU PROPÓSITO
-        </p>
-      </div>
- 
     </section>
   );
 };

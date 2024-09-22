@@ -1,10 +1,12 @@
+
+
 @import "../../styles//variables.scss";
 .mobile-menu-container{
     position: fixed;
     z-index: 50;
-    width: 65%;
+    width: 65vw;
     height: 100vh;
-    background-color: $color_background2;
+    background-color: $color_background;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -36,13 +38,14 @@
 }
 
 .mobile-menu-center-container{
-    margin-top: 5%;
+
     width: 100%;
     display: flex;
     flex-direction: column;
     row-gap: 5vh;
     list-style: none;
     font-size: 1.8rem;
+   
     li{
         margin-left:10%;
     }
@@ -53,16 +56,24 @@
 .mobile-menu-bottom-container{
     width: 100%;
     height: 12%;
+    margin-bottom: 5vh;
     display: flex;
     justify-content: center;
     align-items: center;
     column-gap:10%;
-    background-color: $color_background2;
+    background-color: $color_background;
+    
     >.icon-container{
         height: 60%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        svg{
+            path{
+                fill:$color_cyan;
+            }
+        }
+        
  
     }
 }
@@ -72,12 +83,20 @@
 .mobile-menu-socialMedia-container{
    
     width: 100%;
-    height: 4%;
+    height: 7%;
     display: flex;
     justify-content: center;
     align-items: center;
-    column-gap:10%;
-    margin-bottom: 10vh;
+
+    button{
+        height:100% ;
+        width: 70%;
+        border-radius: 6px;
+        color:#ffff;
+        background-color: $color_purple;
+        border: none;
+    }
+
 
     >.icon-container{
         height: 100%;

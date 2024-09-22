@@ -1,233 +1,284 @@
-@import "../../styles/variables.scss";
+@import "../../styles//variables.scss";
 
 .shoping-cart-conteiner {
-  position: fixed;
-  width: 28vw;
-  height: 100vh;
-  background-color: $color_background1;
-  z-index: 1000;
-  right: 0;
-  /* Estilo para la barra de desplazamiento */
-::-webkit-scrollbar {
-  width: 10px; /* Ancho de la barra de desplazamiento */
+    top:0%;
+    position: fixed;
+    width: 28vw;
+    height: 100vh;
+    background-color: $color_background;
+    z-index: 100;
+    right: 0;
+    /* Estilo para la barra de desplazamiento */
+  ::-webkit-scrollbar {
+    width: 7px; /* Ancho de la barra de desplazamiento */
+    
+  }
   
-}
-
-/* Estilo para el thumb (el botón que puedes arrastrar) de la barra de desplazamiento */
-::-webkit-scrollbar-thumb {
-  display: none;
-  background-color:$color_primary; /* Cambia "#color_primary" al color deseado */
-  border-radius: 5px; /* Radio de borde del dedo de la barra de desplazamiento */
-  height: 10px;
-}
-
-/* Estilo para el riel de la barra de desplazamiento */
-::-webkit-scrollbar-track {
-  background-color: $color_background1; /* Cambia "#color_background1" al color deseado */
-}
-
-/* Estilo para el rincón de la barra de desplazamiento */
-::-webkit-scrollbar-corner {
-  background-color: red; /* Cambia "red" al color deseado */
-  width: 20px;
-}
-}
-
-.shoping-cart-top-container {
-  width: 100%;
-  height: 7%;
-  background-color: $color_primary;
-}
-
-.shoping-cart-title {
-  margin: 0 auto;
-  width: 90%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: $color_text1;
-
-  h4 {
-    font-size: 2rem;
-    font-weight: 400;
+  /* Estilo para el thumb (el botón que puedes arrastrar) de la barra de desplazamiento */
+  ::-webkit-scrollbar-thumb {
+  
+    background-color:$color_orange; /* Cambia "#color_primary" al color deseado */
+    border-radius: 5px; /* Radio de borde del dedo de la barra de desplazamiento */
+    height: 10px;
   }
-  path {
-    fill: $color_text1;
+  
+  /* Estilo para el riel de la barra de desplazamiento */
+  ::-webkit-scrollbar-track {
+    background-color: $color_background; /* Cambia "#color_background1" al color deseado */
   }
-}
-
-.shoping-cart-center-container {
-  width: 100%;
-  height: 56%;
-  margin-top: 4%;
-  margin-bottom: 4%;
-  display: flex;
-  flex-direction: column;
-  row-gap: 2%;
-  overflow-y: scroll;
-}
-
-.shoping-cart-card-container {
-  width: 90%;
-  height: 32%;
-  margin: 0 auto;
-  display: flex;
-  background-color: $color_background2;
-  img {
-    height: 100%;
-    aspect-ratio: 1;
+  
+  /* Estilo para el rincón de la barra de desplazamiento */
+  ::-webkit-scrollbar-corner {
+    background-color: red; /* Cambia "red" al color deseado */
+    width: 15px;
   }
-
-  p {
-    font-size: 0.8rem;
-    font-weight: 300;
   }
-  strong {
-    font-size: 1.2rem;
-    font-weight: 500;
+  
+  .shoping-cart-top-container {
+    width: 100%;
+    height: 7%;
+    background-color: $color_orange;
+
   }
-}
-
-.card-info-container {
-  width: 100%;
-  height: 100%;
-  padding-left: 5%;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: space-between;
-
-  table {
+  
+  .shoping-cart-title {
+    margin: 0 auto;
     width: 90%;
-    text-align: center;
-    th {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $color_background;
+  
+    h4 {
+      font-size: 2rem;
+      font-weight: 400;
+    }
+    path {
+      fill: $color_background;
+    }
+  }
+  
+  .shoping-cart-center-container {
+    width: 100%;
+    height: 56%;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2%;
+    overflow-y: scroll;
+  }
+  
+  .shoping-cart-card-container {
+    width: 90%;
+    height: 32%;
+    margin: 0 auto;
+    display: flex;
+    background-color: $color_background;
+    img {
+      height: 100%;
+      aspect-ratio: 1;
+    }
+  
+    p {
       font-size: 0.8rem;
       font-weight: 300;
     }
-    td {
+    strong {
       font-size: 1.2rem;
       font-weight: 500;
     }
   }
-  .card-title {
+  
+  .card-info-container {
     width: 100%;
-    margin-top: 2%;
+    height: 100%;
+    padding-left: 5%;
     display: flex;
+    flex-direction: column;
+    align-items: start;
     justify-content: space-between;
-    h4 {
-      font-size: 1.6rem;
-      font-weight: 700;
+  
+   
+    .card-title {
+      width: 100%;
+      margin-top: 2%;
+      display: flex;
+      justify-content: end;
+      
+      svg {
+        height: 20px;
+        width: 20px;
+        path {
+        stroke: $color_orange;
+        }
+      }
     }
-    svg {
-      height: 15px;
-      width: 15px;
-      path {
-        fill: $color_text2;
+
+    h5 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color:$color_orange
+    }
+    .card-price-container{
+      width: 100%;
+      height: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      row-gap: 10%;
+      >:last-child{
+        border-top: 2px solid $color_orange;
+       padding-top: 2%;
+      }
+
+      .item-price-container{
+        display: flex;
+        width: 90%;
+        justify-content: space-between;
+        
+        p{
+          font-size: 1.3rem;
+        }
+        strong{
+          font-size: 1.3rem;
+        }
+      }
+    }
+ 
+    button {
+      background-color: transparent;
+      border: none;
+      color: $color_cyan;
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-bottom: 3%;
+    }
+  }
+  
+  .shoping-cart-button-container {
+    height: 31%;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    button{
+      width: 100%;
+      color:$color_background;
+      background-color: $color_orange;
+      border: none;
+      padding-top: 4%;
+      padding-bottom: 4%;
+      font-weight: 600;
+      border-radius: 6px;
+    }
+    
+  
+    .shoping-cart-button-price-container {
+      margin: 0 auto;
+      width: 85%;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2%;
+      p {
+        font-size: 2rem;
+        font-weight: 700;
+  
+      
+      }
+    }
+  
+    .auxiliar-button-container{
+      button{
+        background-color: transparent;
+        color:$color_cyan;
+        border:solid 2px $color_cyan; 
+       
+      }
+    }
+  
+    .shoping-cart-button-help-container {
+      margin: 0 auto;
+      width: 85%;
+      display: flex;
+      justify-content: space-between;
+    
+      strong {
+        font-size: 1.6rem;
+        font-weight: 700;
+      }
+  
+      p{
+        font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  
       }
     }
   }
-  button {
-    background-color: transparent;
-    border: none;
-    color: $color_primary;
-    font-size: 1.4rem;
-    font-weight: 500;
-    margin-bottom: 3%;
-  }
-}
-
-.shoping-cart-button-container {
-  height: 31%;
-  width: 90%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  button{
-    width: 100%;
+  
+  //efecto en el background cuando se abre el shoping cart
+  .viewport-background{
+    pointer-events: none;
+    overflow-y: hidden;
+    opacity: 0.6;
+    filter: brightness(50%);
+  
+    .navbar-menu{
+  background-color: transparent;
+    }
   }
   
-
-  .shoping-cart-button-price-container {
-    margin: 0 auto;
-    width: 85%;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2%;
-    p {
-      font-size: 2rem;
-      font-weight: 700;
-
+  .shopingCartReveal {
+    animation-name: shopingCartReveal;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
     
-    }
   }
-
-  .auxiliar-button-container{
-    button{
-      background-color: transparent;
-      color:$color_primary;
-      border:solid 2px $color_primary; 
-     
-    }
-  }
-
-  .shoping-cart-button-help-container {
-    margin: 0 auto;
-    width: 85%;
-    display: flex;
-    justify-content: space-between;
   
-    strong {
-      font-size: 1.6rem;
-      font-weight: 700;
-    }
-
-    p{
-      font-size: 1.4rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-
-    }
-  }
-}
-
-//efecto en el background cuando se abre el shoping cart
-.viewport-background{
-  pointer-events: none;
-  overflow-y: hidden;
-  opacity: 0.6;
-  filter: brightness(50%);
-
-  .navbar-menu{
-background-color: transparent;
-  }
-}
-
-.shopingCartReveal {
-  animation-name: shopingCartReveal;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-fill-mode: both;
+  @keyframes shopingCartReveal {
+    from {
   
-}
-
-@keyframes shopingCartReveal {
-  from {
-
-    transform: translateY(1000px);
-    opacity:0;
+      transform: translateY(1000px);
+      opacity:0;
+    }
+    to {
+      transform: translateY(0px);
+      opacity: 1;
+    }
   }
-  to {
-    transform: translateY(0px);
-    opacity: 1;
-  }
-}
+  
+  
+  @media screen and (max-width: 678px) {
+    .shoping-cart-conteiner{
+      width: 100vw;
+      
+    }
 
-
-@media screen and (max-width: 678px) {
-  .shoping-cart-conteiner{
-    width: 100vw;
+    .shoping-cart-card-container {
+      width: 90%;
+      height: 35%;
+      margin: 0 auto;
+      display: flex;
+      align-items: end;
+      background-color: $color_background;
+      img {
+        height: 80%;
+        aspect-ratio: 1;
+      }
+    
+      p {
+        font-size: 0.8rem;
+        font-weight: 300;
+      }
+      strong {
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+    }
   }
-}
+  

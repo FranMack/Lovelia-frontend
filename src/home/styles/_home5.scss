@@ -1,58 +1,283 @@
 @import "../../styles//variables.scss";
 
-.section5-home-container{
+.home-section5-container{
     width: 100vw;
-    height: 100vh;
-    position:relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color:$color_primary;
+    margin-top: 20vh;
+    
+   
 
-}
+    .carrpusel-container{
+        position: relative;
+        margin: 0 auto;
+        display: flex;
+        width: 90%;
+        height: 70vh;
+        justify-content: center;
+        align-items: center;
+        
+        .home-section5-internal-container{
+            width: 50%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          
+            >.text-container{
+                width: 65%;
 
-.section5-home-internal-container{
-    width: 50%;
-    height: 100%;
+                h5{
+                    font-size: 4.5rem;
+                    font-family: $font_titles;
+                    line-height: 5.5rem;
+                    color:$color_cyan;
+                }
+    
+                h6{
+                    font-size: 2.7rem;
+                    line-height: 5.5rem;
+                    font-family: $font_titles;
+                    color:$color_cyan;
+                    text-transform: uppercase;
+                    margin-bottom: 5%;
+                }
+                p{
+                    font-size: 2rem;
+                    color:$color_text1
+                }
 
-    img{
-        object-fit: cover;
-        height: 100%;
-        width: 100%;
-    }
-}
-
-.section5-home-button{
-    position: absolute;
-    background-color: $color_primary;
-    color:$color_text1;
-    padding: 1.5%;
-    padding-inline: 8%;
-    border-radius: 30px;
-    font-size: 1.6rem;
-    border: none;
-    cursor: pointer;
-}
-
-
-@media screen and (max-width: 678px) {
-    .section5-home-container{
-        flex-direction: column;
-        .section5-home-internal-container{
-            width: 100%;
-            height: 50%;
+            }
+           
+            img{
+                object-fit: cover;
+                height: 100%;
+            }
+        }
+        .arrow-container{
+            position: absolute;
+          
+            height: 10%;
+            aspect-ratio: 1;
+            cursor: pointer;
+        }
+        .arrow-container.left{
+            left:0%;
+      
+        }
+        .arrow-container.right{
+            right:0%;
+            transform: rotate(180deg);
         }
     }
-    .section5-home-button{
-        position: absolute;
-        background-color: $color_primary;
-        color:$color_text1;
-        padding: 4%;
-        padding-inline: 8%;
-        border-radius: 30px;
-        font-size: 1.6rem;
-        border: none;
-        cursor: pointer;
+
+    .home-section5-bottom-container{
+        width: 100%;
+        height: 80vh;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color:$color_background;
+        text-align: center;
+        transform: translateY(-6.5vh);
+        img{
+            position:absolute;
+            object-fit: cover;
+            width: 100%;
+            
+        
+        }
+        h5{
+            font-size: 4.5rem;
+            font-family: $font_titles;
+            line-height: 5.5rem;
+            z-index: 1;
+            margin-bottom: 2%;
+        }
+        h6{
+            font-size: 2rem;
+            font-weight: 400;
+            line-height: 3rem;
+            z-index: 1;
+            margin-bottom: 2%;
+        }
+
+        >button{
+            z-index: 1;
+            font-size: 1.6rem;
+            font-weight: 600;
+            padding: 1%;
+            padding-inline: 6%;
+            border-radius: 10px;
+            border:none;
+            color:$color_background;
+            background-color: $color_green;
+            transition: 0.5s;
+      
+           
+        }
+        button:hover{
+            opacity: 0.8;
+            scale: 1.05;
+          }
+          button:active{
+            filter: brightness(1.1);
+           
+          }
     }
-  }
-  
+
+    .carrpusel-container-reverse{
+        flex-direction: row-reverse;
+    }
+   
+}
+
+@media screen and (max-width: 678px) {
+
+    .home-section5-container{
+        width: 100vw;
+        margin-top: 10vh;
+      
+        
+       
+    
+        .carrpusel-container{
+            position: relative;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            .home-section5-internal-container.left{
+                height:fit-content;
+                margin-bottom: 2%;
+                
+            }
+            .home-section5-internal-container{
+                width: 100%;
+                height: fit-content;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                
+              
+                >.text-container{
+                    width: 80%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+    
+                    h5{
+                        font-size:3rem;
+                        font-family: $font_titles;
+                        line-height: 4rem;
+                        color:$color_cyan;
+                        text-align: center;
+                    }
+        
+                    h6{
+                        font-size: 2.5rem;
+                        line-height: 5.5rem;
+                        font-family: $font_titles;
+                        color:$color_cyan;
+                        text-transform: uppercase;
+                        margin-bottom: 5%;
+                    }
+                    p{
+                        text-align: center;
+                        font-size: 2rem;
+                        line-height: 3rem;
+                        color:$color_text1
+                    }
+    
+                }
+               
+                img{
+                    object-fit: cover;
+                    width: 100%;
+                }
+                
+            }
+            .arrow-container{
+                position: absolute;
+              
+                height: 10%;
+                aspect-ratio: 1;
+                cursor: pointer;
+            }
+            .arrow-container.left{
+                left:0%;
+          
+            }
+            .arrow-container.right{
+                right:0%;
+                transform: rotate(180deg);
+            }
+        }
+    
+        .home-section5-bottom-container{
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            row-gap: 3%;
+            color:$color_background;
+            text-align: center;
+            transform: translateY(-22vh);
+            img{
+                position:absolute;
+                object-fit:fill;
+                width: 200%;
+                height: 100%;
+                
+            
+            }
+            h5{
+                font-size: 3.5rem;
+                font-family: $font_titles;
+                line-height: 4rem;
+                z-index: 1;
+                margin-bottom: 2%;
+                margin-left: 10%;
+                margin-right: 10%;
+            }
+            h6{
+                font-size: 2rem;
+                font-weight: 400;
+                line-height: 3rem;
+                z-index: 1;
+                margin-bottom: 2%;
+            }
+    
+            >button{
+                z-index: 1;
+                font-size: 2rem;
+                font-weight: 400;
+                padding: 3.5%;
+                width: 80%;
+                border-radius: 10px;
+                border:none;
+                color:$color_background;
+                background-color: $color_green;
+          
+               
+            }
+        }
+    
+        .carrpusel-container-reverse{
+            flex-direction: column;
+
+        }
+       
+    }
+
+
+}

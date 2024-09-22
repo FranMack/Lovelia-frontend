@@ -1,43 +1,76 @@
 @import "../../styles//variables.scss";
+.home-section1-container {
+  position: relative;
+  width: 100vw;
+  height: 88vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $color_background;
 
-.section1-home-container{
-    width: 100vw;
-    height: 100vh;
-    position: relative;
+  .home-section1-center-container {
+    text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    >img{
-        position: absolute;
-        object-fit: cover;
-        height: 100%;
-        width: 100%;
-        z-index: -10;
+    justify-content: center;
+    width: 65%;
+    h1 {
+      font-size: 5.5rem;
+      font-family: "Mackinac";
     }
-}
+    h2 {
+        margin-top: 2%;
+      font-size: 1.8rem;
+      line-height: 2.5rem;
+      font-weight: 400;
+      margin-left: 20%;
+      margin-right: 20%;
 
-.section1-home-logo-container{
-    width: 80%;
-    img{
-        width: 100%;
-        object-fit: cover;
-        
     }
-}
+  }
 
-.section1-home-slogan-container{
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: end;
+  .home-section1-button-container{
     margin-top: 3%;
-    p{
-        font-size: 3.2rem;
-        color:$color_primary;
-        font-weight: 400;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    column-gap: 10%;
+    :last-child{
+        background-color: transparent;
+        color:$color_background;
     }
+
+    button{
+        font-size: 1.6rem;
+        font-weight: 400;
+        padding: 2%;
+        padding-inline: 7%;
+        border-radius: 10px;
+        color:$color_orange;
+        border: solid 2px $color_background;
+        transition: 0.5s;
+       
+    }
+    button:hover{
+      opacity: 0.8;
+      scale: 1.05;
+    }
+    button:active{
+      filter: brightness(1.1);
+     
+    }
+  }
+
+  img {
+    position: absolute;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+  }
 }
+
 
 .revealLogo {
     animation-name: revealLogo;
@@ -49,62 +82,86 @@
   @keyframes revealLogo {
     from {
       opacity: 0;
-      transform: translateX(-100px);
       filter: blur(10px);
     }
     to {
       opacity: 1;
-      transform: translateX(0);
       filter: blur(0);
     }
   }
 
-  @media screen and (max-width: 678px) {
 
-    .section1-home-container{
-    padding-top: 10vh;
+
+
+@media screen and (max-width: 678px) {
+
+  .home-section1-container {
+    padding-top: 9vh;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $color_background;
+  
+    .home-section1-center-container {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 85%;
+      margin-left: 8%;
+      margin-right:8%;
+      row-gap: 2vh;
+      h1 {
+        font-size: 3rem;
+        font-family: "Mackinac";
+        text-align: center;
+      }
+      h2 {
+          margin-top: 2%;
+        font-size: 1.8rem;
+        font-weight: 400;
+        text-align: center;
+        margin-left: 5%;
+      margin-right:5%;
+  
+      }
     }
-    .section1-home-slogan-container{
-
-      p{
-          font-size: 2rem;
+  
+    .home-section1-button-container{
+      margin-top: 3%;
+      width: 80%;
+      height: 20vh;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      row-gap: 2vh;
+    
+     
+  
+      button{
+          font-size: 1.8rem;
+          font-weight: 400;
+          padding: 4%;
+          padding-inline: 7%;
+          border-radius: 10px;
+          color:$color_orange;
+          border: solid 2px $color_background;
          
       }
-  }
-  }
-
-
-  .revealLogo2 {
-    animation-name: revealLogo2;
-    animation-duration: 3s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
+    }
+  
+    img {
+      position: absolute;
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+    }
   }
   
-  @keyframes revealLogo2 {
-    from {
-      opacity: 0;
-     
-      filter: blur(10px);
-    }
-    to {
-      opacity: 1;
-      
-      transform: scale(1);
-      filter: blur(0);
-    }
-  }
 
-  @media screen and (max-width: 678px) {
 
-    .section1-home-container{
-    padding-top: 10vh;
-    }
-    .section1-home-slogan-container{
-
-      p{
-          font-size: 2rem;
-         
-      }
-  }
-  }
+}

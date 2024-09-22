@@ -1,0 +1,211 @@
+@import "../../styles//variables.scss";
+
+.question-component-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+
+  > h2 {
+    font-size: 5rem;
+    font-family: $font_titles;
+    text-align: center;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  .question-component-options-container {
+    width: 20%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2vh;
+
+    label {
+      background-color: #ffff;
+      height: 8vh;
+      border-radius: 12px;
+      display: flex;
+      column-gap: 20px;
+      align-items: center;
+      justify-content: start;
+      border: solid 2px rgba($color: gray, $alpha: 0.4);
+
+      font-size: 2rem;
+      color: $color_text1;
+      input {
+        height: 37%;
+        aspect-ratio: 1;
+        margin-left: 5%;
+       
+      }
+   
+    }
+    .warning{
+        border-color: $color_orange;
+       }
+  }
+
+  > button {
+    width: 18%;
+    height: 9%;
+    background-color: $color_cyan;
+    color: #ffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .question-component-buttons-container {
+    bottom: 5%;
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    button {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: $color_cyan;
+      background-color: transparent;
+      border: none;
+      margin-left: 8%;
+    }
+
+    :last-child {
+      background-color: $color_cyan;
+
+      color: $color_background;
+      padding: 1%;
+      padding-inline: 5%;
+
+      border-radius: 6px;
+      margin-right: 8%;
+    }
+  }
+  >span{
+    font-size: 2rem;
+    margin-top: 3%;
+    color:#ffff;
+    font-weight: 400;
+    background-color: rgba($color: $color_orange, $alpha: 0.5);
+    padding: 1%;
+   }
+   
+}
+
+
+@media screen and (max-width: 678px) {
+  .question-component-container {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+
+  
+    > h2 {
+      font-size: 3rem;
+      font-family: $font_titles;
+      text-align: center;
+      margin-top: 10%;
+      margin-bottom: 5%;
+      margin-left: 10%;
+      margin-right: 10%;
+    }
+  
+    .question-component-options-container {
+      width: 50%;
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      row-gap: 2vh;
+  
+      label {
+        background-color: #ffff;
+        height: 8vh;
+        border-radius: 12px;
+        display: flex;
+        column-gap: 20px;
+        align-items: center;
+        justify-content: start;
+        border: solid 2px rgba($color: gray, $alpha: 0.4);
+  
+        font-size: 2rem;
+        color: $color_text1;
+        input {
+          height: 37%;
+          aspect-ratio: 1;
+          margin-left: 5%;
+         
+        }
+     
+      }
+      .warning{
+          border-color: $color_orange;
+         }
+    }
+  
+    > button {
+      width: 18%;
+      height: 9%;
+      background-color: $color_cyan;
+      color: #ffff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+  
+    .question-component-buttons-container {
+      bottom: 5%;
+      position: absolute;
+      width: 100%;
+      height: 10%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  
+      button {
+        font-size: 1.6rem;
+        font-weight: 600;
+        height: 80%;
+        color: $color_cyan;
+        background-color: transparent;
+        border: none;
+        margin-left: 8%;
+      }
+  
+      :last-child {
+        background-color: $color_cyan;
+  
+        color: $color_background;
+        padding: 1%;
+        padding-inline: 5%;
+  
+        border-radius: 6px;
+        margin-right: 8%;
+      }
+    }
+    >span{
+      font-size: 2rem;
+      margin-top: 3%;
+      color:#ffff;
+      font-weight: 400;
+      background-color: rgba($color: $color_orange, $alpha: 0.5);
+      padding: 1%;
+     }
+     
+  }
+  
+}
