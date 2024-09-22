@@ -1,7 +1,6 @@
-import { TemplateBlog } from "../components/TemplateBlog";
-import { TemplateBlogOptions } from "../components/TemplateBlog";
 import imageBlog from "../assets/imagen-blog.png";
 import imageBlog2 from "../assets/imagen-blog2.png";
+import { TemplateBlog, TemplateBlogOptions } from "../components/TemplateBlog";
 
 const infoTemplate: TemplateBlogOptions = {
   image: imageBlog,

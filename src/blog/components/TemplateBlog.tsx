@@ -6,6 +6,7 @@ export interface TemplateBlogOptions {
   secundaryTitle?: string;
   description: string[];
   arrowRightButton?: string;
+  direction: "left" | "right";
   onClick?: () => void;
 }
 
