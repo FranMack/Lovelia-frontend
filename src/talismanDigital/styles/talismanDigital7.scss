@@ -1,0 +1,50 @@
+@import "../../styles//variables.scss";
+
+.section7-talismanDigital-container{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    img{
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+    .section7-talismanDigital-text-container{
+        position: absolute;
+        left:12%;
+        color:$color_text1;
+
+        h3{
+            font-size: 3.5rem;
+            font-weight: 400;
+            margin-bottom: 7%;
+        }
+
+        .section7-talismanDigitalItem-container{
+            height: 35px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 5%;
+            p{
+                font-family: $font_paragrahp;
+                font-size: 2rem;
+                font-weight: 300;
+                line-height: 3rem;
+                strong{
+                    text-decoration: underline;
+                }
+            }
+            svg{
+    
+                margin-right: 4%;
+            }
+        }
+       
+
+    }
+}
+

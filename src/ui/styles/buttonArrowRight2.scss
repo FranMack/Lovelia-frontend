@@ -1,0 +1,22 @@
+@import "../../styles/variables.scss";
+
+.arrowRight-button2{
+
+  display: inline-flex;
+  column-gap: 10px;
+  align-items: center;
+  background-color: transparent;
+  border: solid 2px $color_text1;
+  color:$color_text1 ;
+  border-radius: 30px;
+  font-size: 1.8rem;
+ padding-top: 2.5%;
+ padding-bottom: 2.5%;
+ padding-inline: 3%;
+  cursor: pointer;
+  >.icon-wrapper{
+    svg {
+      height: 2.4rem;
+    }
+  }
+}

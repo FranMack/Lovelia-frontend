@@ -1,0 +1,35 @@
+@import "../../styles//variables.scss";
+
+.section3-meditations-container{
+
+    width: 100vw;
+    height: fit-content;
+    padding-top:30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10vh;
+    background: rgb(255,239,238);
+background: linear-gradient(135deg, rgba(255,239,238,1) 0%, rgba(237,233,240,1) 39%, rgba(230,231,241,1) 69%, rgba(216,227,244,1) 100%);
+
+    h3{
+        margin: 0 auto;
+        font-size: 3.5rem;
+        font-weight: 300;
+        color:$color_primary
+
+    }
+
+}   
+
+@media screen and (max-width: 678px) {
+    .section3-meditations-container{
+    padding-top:10vh;
+
+
+    h3{font-size: 3rem;}
+
+
+}
+
+}

@@ -1,0 +1,265 @@
+@import "../../styles//variables.scss";
+
+.custonTalisman-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+.custonTalisman-internal-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+
+  background-color: $color_background1;
+  > img {
+    position: absolute;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  > .info-talisman-container {
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    h6 {
+      font-size: 1.5rem;
+    }
+    p {
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 5%;
+    }
+  }
+}
+
+.custonTalisman-internal-bullet-container {
+  position: absolute;
+  left: 5%;
+  top: 13vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 0.5vh;
+  width: 10%;
+
+  .bullet {
+    width: 65%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    opacity: 0.5;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.bullet-visible {
+  width: 65%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  opacity: 1;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.custonTalisman-internal-arrow-container {
+  position: absolute;
+  right: 2%;
+  width: 5%;
+  aspect-ratio: 1;
+}
+.custonTalisman-internal-arrow-container.left {
+  
+  position: absolute;
+  left: 2%;
+  svg {
+    transform: rotate(180deg);
+  }
+}
+
+.custonTalisman-internal-container.right {
+  padding-top: 13vh;
+  justify-content: start;
+  background-color: $color_background2;
+}
+
+.custonTalisman-internal-center-container {
+  width: 75%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  > .options-container {
+  }
+
+  > h2 {
+    font-size: 1.3rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 166.667% */
+  }
+
+  h5 {
+    font-size: 2.3rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  h3 {
+    font-size: 3.6rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    color: $color_primary;
+  }
+}
+
+.custonTalisman-auxiliar-container {
+  display: flex;
+  align-items: center;
+}
+
+.buttons-container {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  border: none;
+
+  button {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border: solid 2px $color_primary;
+  }
+  > :first-child {
+    color: $color_primary;
+    font-size: 14px;
+    background-color: transparent;
+  }
+
+  .auxiliar-buttons-container {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+    div {
+      border: none;
+      svg {
+        border: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 678px) {
+  .custonTalisman-container {
+    flex-direction: column;
+    height: fit-content;
+  }
+
+  .custonTalisman-internal-container {
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  .custonTalisman-internal-bullet-container {
+    top: auto;
+    left: 0%;
+    bottom: 0%;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+
+    width: 100%;
+    height: 14%;
+    background-color: $color_background2;
+
+    .bullet {
+      width: 15%;
+      border-radius: 0%;
+    }
+  }
+
+  .bullet-visible {
+    width: 15%;
+    border-radius: 0%;
+  }
+
+  .custonTalisman-internal-arrow-container {
+    width: 8%;
+  }
+
+  .custonTalisman-internal-center-container {
+    width: 85%;
+    height: 90%;
+
+    > h2 {
+      position: absolute;
+      top:-90vh;
+      left:0%;
+      width: 100%;
+      height: 10%;
+      padding-left: 5%;
+      background-color: $color_background2;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+    }
+    h3 {
+      font-size: 3rem;
+      margin-bottom: 3%;
+    }
+
+    h5 {
+      font-size: 3rem;
+      margin-bottom: 5%;
+    }
+  }
+
+  .buttons-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    row-gap: 3vh;
+    margin-top: 5vh;
+    margin-bottom: 10vh;
+
+    button {
+      font-size: 1.6rem;
+      height: 9vh;
+
+      width: 100%;
+    }
+    > :first-child {
+      font-size: 1.6rem;
+    }
+
+    .auxiliar-buttons-container {
+      width: 100%;
+    }
+  }
+}

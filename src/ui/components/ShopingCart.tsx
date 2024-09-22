@@ -1,37 +1,40 @@
 import { useNavigate } from "react-router-dom";
-import { CloseIcon, DeleteIcon } from "../../assets/icons";
-//import { Button } from "./Button";
-import { useContext } from "react";
-import { ShopingCartContext } from "../../context/shopingCart.context";
-import { ShopingCartItemOptions } from "../../Plans/views/Plan";
+import { CloseIcon } from "../../assets/icons/icons";
+import { Button } from "./Button";
+import { ShopingCartContext } from "../../context/modalShopingCartContext";
+import { useContext, useEffect, useState } from "react";
+
+export interface ProductosOptions {
+  id: number;
+  product: string;
+  quantity: number;
+  model: string;
+  material: string;
+  chain: string;
+  intention: string;
+  image: string;
+  price: number;
+}
 
 export function ShopingCart() {
   const navigate = useNavigate();
 
-  const { toggleMenu, shopingCartItems, setShopingCartItems } =
-    useContext(ShopingCartContext);
+  const { toggleMenu: togleMenu } = useContext(ShopingCartContext);
+
+  const [shopingCartItems, setShopingCartItems] = useState<ProductosOptions[]>(
+    []
+  );
+
+  useEffect(() => {
+    const shopingCartJSON = localStorage.getItem("shopingCart") || "[]";
+    setShopingCartItems(JSON.parse(shopingCartJSON));
+  }, []);
 
   const totalPrice = () => {
-    if (shopingCartItems.length === 0) {
-      return 0; // Devuelve 0 si el carrito aún no ha cargado.
-    }
-    const plansPrice = shopingCartItems.reduce(
-      (acc, item) => acc + item.price,
-      0
-    );
-    const consultNumbers = shopingCartItems.filter((item) => {
-      return item.consult === true;
-    }).length;
-    const total =
-      plansPrice + consultNumbers * shopingCartItems[0].consultPrice;
-
-    return total;
+    return shopingCartItems.reduce((acc, item) => acc + item.price, 0);
   };
 
   const deleteShopingCartItem = (id: number) => {
-    if (shopingCartItems.length === 0) {
-      return 0; // Devuelve 0 si el carrito aún no ha cargado.
-    }
     const shopingCartUpdated = shopingCartItems.filter((item) => {
       if (item.id !== id) {
         return item;
@@ -42,14 +45,13 @@ export function ShopingCart() {
   };
 
   const linkToCheckOut = () => {
-    const shopingCartJSON = localStorage.getItem("shopingCart") || "[]";
-    const shopingCart: ShopingCartItemOptions[] = JSON.parse(shopingCartJSON);
-    if (shopingCart.length < 1) {
-      alert("Aún no has agregado productos al carrito");
+    if (shopingCartItems.length > 0) {
+      navigate("checkout/store");
+      togleMenu();
+    } else {
+      alert("No hay productos en el carrito de compra");
       return;
     }
-    navigate("checkout");
-    toggleMenu();
   };
 
   return (
@@ -60,7 +62,7 @@ export function ShopingCart() {
             Carrito de compras
             {shopingCartItems.length > 0 && ` (${shopingCartItems.length})`}
           </h4>
-          <CloseIcon onClick={toggleMenu} />
+          <CloseIcon onClick={togleMenu} />
         </div>
       </div>
 
@@ -71,34 +73,35 @@ export function ShopingCart() {
               <img src={item.image} alt={item.product} />
               <div className="card-info-container">
                 <div className="card-title">
-                  <DeleteIcon
+                  <h4>{item.product}</h4>
+                  <CloseIcon
                     onClick={() => {
                       deleteShopingCartItem(item.id);
                     }}
                   />
                 </div>
-
-                <h5>{item.product}</h5>
-                <div className="card-price-container">
-                  <div className="item-price-container">
-                    <p>{item.product.includes("Ebook") ? "Ebook" : `Plan`}</p>
-                    <strong>{`$ ${item.price}`}</strong>
-                  </div>
-
-                  {item.consult && (
-                    <div className="item-price-container">
-                      <p>Consulta profesional</p>
-                      <strong>{`$ ${item.consultPrice}`}</strong>
-                    </div>
-                  )}
-
-                  <div className="item-price-container">
-                    <p>Subtotal</p>
-                    <strong>{`$ ${
-                      item.price + (item.consult ? item.consultPrice : 0)
-                    }`}</strong>
-                  </div>
+                <table>
+                  <tr>
+                    <th className="">Cantidad</th>
+                    <th className="">Modelo</th>
+                    <th className="">Material</th>
+                    <th className="">Colgado</th>
+                    <th className="">Intension</th>
+                  </tr>
+                  <tr>
+                    <td className="">{item.quantity}</td>
+                    <td className="">{item.model}</td>
+                    <td className="">{item.material}</td>
+                    <td className="">{item.chain}</td>
+                    <td className="">{item.intention}</td>
+                  </tr>
+                </table>
+                <div>
+                  <p>Precio unitario</p>
+                  <strong>{`$ ${item.price}`}</strong>
                 </div>
+
+                <button>Editar compra</button>
               </div>
             </div>
           );
@@ -111,10 +114,15 @@ export function ShopingCart() {
           <p>Total estimado</p>
           <p>${totalPrice()}</p>
         </div>
+        <Button onClick={linkToCheckOut} text="CONTINUAR AL CHECKOUT" />
+        <div className="auxiliar-button-container">
+          <Button onClick={togleMenu} text="SEGUIR COMPRANDO" />
+        </div>
 
-        <button onClick={linkToCheckOut}>COMPRAR</button>
-        <button onClick={toggleMenu}>SEGUIR NAVEGANDO</button>
-
+        <div className="shoping-cart-button-help-container">
+          <strong>Necesitas ayuda?</strong>
+          <p>Ver más</p>
+        </div>
         <hr />
       </div>
     </div>

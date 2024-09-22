@@ -1,170 +1,102 @@
 @import "./variables.scss";
-@import "../ui/styles/navbar";
-@import "../ui/styles/sectionBreake";
+@import "../home/styles/home1";
+@import "../home/styles/home3";
+@import "../home/styles/home4";
+@import "../home/styles/home5";
+@import "../home/styles/home6";
+@import "../home/styles/home7";
+@import "../ui/styles/backgroundVideo.scss";
+@import "../ui/styles/buttonArrowRight.scss";
+@import "../ui/styles/buttonTransparent.scss";
 @import "../ui/styles/footer";
-@import "../ui//styles/shopingCart";
-@import "../ui/styles//mobileNavbar";
+@import "../ui/styles/navbar";
+@import "../ui/styles/frontPage";
+@import "../ui/styles/frontPage2";
+@import "../ui/styles/template1";
+@import "../ui/styles/buttonArrowRight2.scss";
+@import "../ui/styles/button";
+@import "../ui/styles/buttonArrowUp";
+@import "../ui/styles/shopingCart";
+@import "../ui/styles/navbarDropDown";
+@import "../ui/styles/mobileFooter";
+@import "../ui/styles/dropDownFooter";
+@import "../ui/styles/mobileNavbar";
 @import "../ui/styles/mobileMenu";
-@import "../home//styles//home1";
-@import "../home//styles//home2";
-@import "../home//styles//home3";
-@import "../home//styles//home4";
-@import "../home//styles//home4b";
-@import "../home//styles//home5";
-@import"../home//styles/slider";
-@import "../Plans//styles/plan";
-@import "../Plans//styles/testResult";
-@import "../questonaryTest/styles/questionaryTest";
-@import "../questonaryTest/styles/questionComponent";
-@import "../questonaryTest/styles/topBar";
-@import "../checkout//styles/checkout";
+@import "../ui/styles/mercadoPagoCheckoutForm";
+@import "../ui/styles/popUp";
+@import "../talisman/styles//talismanInfo3";
+@import "../talismanDigital/styles/talismanDigital.scss";
+@import "../talismanDigital/styles/talismanDigital7.scss";
+@import "../meditations/styles//meditations2";
+@import "../meditations/styles//meditations3";
+@import "../meditations/styles/gridMeditations";
+@import "../intentions//styles//intentions3";
+@import "../intentions//styles/gridIntentions";
+@import "../intentions//styles/intentionInfo";
+@import "../talismanAnalogic//styles/talismanAnalogic2";
+@import "../talismanAnalogic//styles/talismanAnalogic3";
+@import "../talismanAnalogic//styles/talismanAnalogic4";
+@import "../talismanAnalogic//styles/slider";
+@import "../store//styles/store1";
+@import "../store//styles/store2";
+@import "../store//styles/store3";
+@import "../store//styles/dropDownIntensiones";
+@import "../store//styles/dropDownMenu";
+@import "../store//styles/dropDownInfo";
+@import "../store//styles/buyAnalogTalisman";
+@import "../store//styles/buyDigitalTalisman";
+@import "../blog//styles//blog2";
+@import "../blog//styles//blog3";
+@import "../blog//styles/templateBlog";
+@import "../auth//styles//login";
+@import "../auth//styles/authFrontPage";
+@import "../auth//styles/authPopUp";
+@import "../contact/styles/contact";
+@import "../contact/styles/messageSend";
+@import "../profile//styles//profile";
+@import "../profile//styles/profileNavbar";
+@import "../profile//styles/acountInfo";
+@import "../checkout/styles//checkoutAnalogic";
+@import "../checkout/styles/welcomeDigital";
+@import "../myTalisman/styles//myTalisman";
+@import "../myTalisman/styles/dropDownMyTalisman";
+@import "../myTalisman/styles/activation";
+@import "../myTalisman/styles/playlist";
+@import "../myTalisman/styles/timer";
+@import "../myTalisman/styles//chornometer";
+@import "../talismanAnalogic//styles/activationAnalogic";
+@import "../siteTerms/styles/siteTerms";
+
+
+
 *{
     box-sizing: border-box;
-    padding: 0 ;
+    padding: 0;
     margin: 0;
 }
 
 html{
-    font-size: 62.5%;
-    font-family:sans-serif;
+    font-size: 63.5%;
+    font-family: $font_titles;
     overflow-x: hidden;
-    background-color: $color_background;
-    scroll-behavior: smooth;
-
 }
-
-button,svg{
-    cursor: pointer;
-}
-
-main{
-    overflow-x: hidden; 
-}
-
-.mobileModalOpen{
-    opacity:0.5;
-    pointer-events: none;
-
-}
-
 
 .efectoReveal {
     animation-name: efectoReveal;
     animation-duration: 1s;
     animation-timing-function: linear;
     animation-fill-mode: both;
+    
   }
   
   @keyframes efectoReveal {
     from {
-      transform: translateY(100px);
+
       opacity: 0;
+      filter: brightness(0%);
     }
     to {
-      transform: translateY(0px);
       opacity: 1;
-    }
-  }
-
-
-  .efectoRevealOut {
-  animation-name: efectoRevealOut;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-fill-mode: both;
-  overflow: hidden
-}
-
-@keyframes efectoRevealOut {
-  from {
-    transform: translateY(0px);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(100px);
-    opacity: 0;
-  }
-}
-
-
-
-
-.leftReveal {
-    animation-name: leftReveal;
-    animation-duration: 1s;
-    animation-timing-function: linear;
-    animation-fill-mode: both;
-  }
-
-  
-@keyframes leftReveal {
-    from {
-      transform: translateX(-200px);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0px);
-      opacity: 1;
-    }
-  }
-
-
-  .rightReveal {
-    animation-name: rightReveal;
-    animation-duration: 1s;
-    animation-timing-function: linear;
-    animation-fill-mode: both;
-  }
-
-  
-@keyframes rightReveal {
-    from {
-      transform: translateX(200px);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0px);
-      opacity: 1;
-    }
-  }
-
-
-
-  .topReveal {
-    animation-name: topReveal;
-    animation-duration: 1s;
-    animation-timing-function: linear;
-    animation-fill-mode: both;
-  }
-
-  
-@keyframes topReveal {
-    from {
-      transform: translatey(500px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0px);
-      opacity: 1;
-    }
-  }
-
-
-  .topRevealOut {
-    animation-name: topRevealOut;
-    animation-duration: 1s;
-    animation-timing-function: linear;
-    animation-fill-mode: both;
-  }
-
-  
-@keyframes topRevealOut {
-    from {
-      transform: translateY(0px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(500px);
-      opacity: 1;
+      filter: brightness(100%);
     }
   }

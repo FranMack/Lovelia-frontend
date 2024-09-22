@@ -1,44 +1,81 @@
-import { RefObject, useContext } from "react";
+import talismanDigital from "../assets/home_td.png";
+import talismanAnalogic from "../assets/home_ta.png";
+import { ButtonTransparent } from "../../ui/components";
+import { ObliqueArrow } from "../../assets/icons/icons";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ScreenSizeContext } from "../../context/screenSize.context";
-import { plans } from "../assets/plansData";
-import { PlansGrid } from "../components/PlansGrid";
-import { Slider } from "../components/Slider";
 
-interface Home4Options {
-  reference: RefObject<HTMLElement> | undefined;
-}
 
-export const Home4 = ({ reference }: Home4Options) => {
-  const navigate = useNavigate();
+export const Home4 = () => {
+  const navigate=useNavigate()
 
-  const linkTo = (path: string) => {
-    navigate(`/plan/${path}`);
+  const [selectedTalisman,setSelectedTalisman]=useState<string>("digital")
+  const handleSelectedTalisman=()=>{
+    if(selectedTalisman==="digital"){
+      setSelectedTalisman("analogic")
+      return
+    }
+    else{
+      setSelectedTalisman("digital")
+      return
+    }
+  }
+  
+  const linkTo=()=>{
+    if(selectedTalisman==="digital"){
+      navigate("/talisman-digital")
+    }
+    else{
+      navigate("/talisman-analogico")
+    }
+  }
+
+  const buttonInfo = {
+    text: "VER MÁS",
+    onClick: linkTo
   };
 
-  const { screenWidth } = useContext(ScreenSizeContext);
-
   return (
-    <section ref={reference} id="plans" className="home-section4-container">
-      <div className="home-section4-top-container efectoRevealOut">
-        <h3>PLANES</h3>
+    <section className="section4-home-container">
+      <div className="section4-home-center-container">
+        <div className="section4-home-internal-container right">
+          <div className="section4-home-internal-text-container">
+            <h2>
+              Intensiona con nuestros
+              <br />
+              talismanes.
+            </h2>
 
-        <h4>
-          Elegi como queres empezar a<br /> cambiar tu vida
-        </h4>
-        <p>¡Elegí el plan que más se adapte a tus objetivos!</p>
-        <p>
-          {" "}
-          Todos los planes incluyen mediciones de porciones según tus
-          requerimientos energéticos y proteicos, kit de menús saludables y
-          deliciosas recetas para complementar tu cocina.
-        </p>
+            <div onClick={handleSelectedTalisman} className={selectedTalisman==="digital"? "focus-talisman":""}>
+              <h3  >
+                <div className="icon-container">
+                  <ObliqueArrow color={selectedTalisman==="digital" ? "#6f3289":"#ffff"} />
+                </div>
+                TALISMÁN
+              </h3>
+              <h3>DIGITAL</h3>
+            </div>
+
+            <div className={selectedTalisman==="analogic"? "focus-talisman":""}>
+            <h3 onClick={handleSelectedTalisman}>
+                <div className="icon-container">
+                <ObliqueArrow color={selectedTalisman==="analogic" ? "#6f3289":"#ffff"} />
+                </div>
+                TALISMÁN
+              </h3>
+              <h3>ANALÓGICO</h3>
+            </div>
+          </div>
+        </div>
+        <div className="section4-home-internal-container">
+          <div className="section4-home-internal-image-container">
+            <img src={selectedTalisman==="digital" ? talismanDigital:talismanAnalogic} alt="digital-talisman" />
+            <div className="button-wrapper">
+              <ButtonTransparent {...buttonInfo} />
+            </div>
+          </div>
+        </div>
       </div>
-      {screenWidth >= 1024 ? (
-        <PlansGrid plans={plans} linkTo={linkTo} />
-      ) : (
-        <Slider plans={plans} linkTo={linkTo} />
-      )}
     </section>
   );
 };

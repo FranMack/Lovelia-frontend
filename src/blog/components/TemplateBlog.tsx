@@ -1,0 +1,34 @@
+import { ButtonArrowRight2 } from "../../ui/components/ButtonArrowRight2"
+
+export interface TemplateBlogOptions{
+    image:string,
+    title:string,
+    arrowRightButton?:string,
+    description:string[],
+    secundaryTitle?:string,
+    direction?:string,
+    onClick?:()=>void
+}
+
+
+export function TemplateBlog({image,title,description,arrowRightButton,secundaryTitle,direction="left",onClick}:PlacaTipo1Options){
+
+    return ( <div className="templateBlog-container">
+    <div className="templateBlog-image-container">
+      <img src={image} alt="Tallisman-fisico" />
+    </div>
+    <div className="templateBlog-info-container">
+      <h4>{title}</h4>
+      <h6>{secundaryTitle}</h6>
+      {description.map((item,i)=>{
+         return (<p key={i}>{item}</p>)
+        })
+      }
+    
+      <div className="button-container">
+   <ButtonArrowRight2 text={arrowRightButton} color="#EDC7B9" onClick={onClick} />
+   </div>
+    </div>
+  </div>)
+
+}

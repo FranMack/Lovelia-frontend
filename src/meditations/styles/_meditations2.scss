@@ -1,0 +1,68 @@
+@import "../../styles//variables.scss";
+
+.section2-meditations-container{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    
+
+    img{
+        position: absolute;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+    .section2-meditations-text-container{
+        position: absolute;
+        left:12%;
+        color:$color_primary;
+        width: 40%;
+
+        h3{
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 7%;
+        }
+
+       p{
+        font-size: 3.5rem;
+        font-family: $font_paragrahp;
+        line-height: 5rem;
+       }
+       
+
+    }
+}
+
+
+@media screen and (max-width: 678px) {
+
+    .section2-meditations-container{
+        justify-content: center;
+     
+    
+        .section2-meditations-text-container{
+            position: relative;
+            width: 85%;
+            left:0;
+            
+    
+            h3{
+                font-size: 3.5rem;
+               
+                margin-bottom: 7%;
+            }
+    
+           p{
+            font-size:2.5rem;
+            line-height: 5rem;
+           }
+           
+    
+        }
+    }
+}
+

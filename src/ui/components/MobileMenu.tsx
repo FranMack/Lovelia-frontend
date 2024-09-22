@@ -1,39 +1,38 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import logo from "../assets/lovelia-logo.png";
 import {
   CloseIcon,
+  LoginIcon,
+  ShopingIcon,
+  ContactUsIcon,
+} from "../../assets/icons/icons";
+import { useNavigate } from "react-router-dom";
+import {
   FacebookIcon,
   InstagramIcon,
-  LinkedinIcon,
-} from "../../assets/icons";
-import { MobileMenuContext } from "../../context/mobileMenuContext";
-import logoN from "../assets/logo-n.png";
-import logoV from "../assets/logo-v.png";
+  TwitterIcon,
+} from "../../assets/icons/icons";
+import { MobileMenuContext } from "../../context";
+import { useContext } from "react";
 
 const navbarMenu = [
-  { title: "Home", path: "/#home" },
-  { title: "Conocerme", path: "/#me" },
-  { title: "Planes", path: "/#plans" },
-  { title: "Ebook", path: "/#ebook" },
-  { title: "Hacer test", path: "/test" },
+  { title: "Home", path: "" },
+  { title: "Talismán", path: "talisman-landing" },
+  { title: "Meditaciones", path: "meditations" },
+  { title: "Intenciones", path: "intenciones" },
+  { title: "Tienda", path: "tienda" },
+  { title: "Blog", path: "blog" },
 ];
 
 const icons = [
-  {
-    title: "Instagram",
-    icon: <InstagramIcon />,
-    path: "https://www.instagram.com/nutriendolavida/",
-  },
-  {
-    title: "Facebook",
-    icon: <FacebookIcon />,
-    path: "https://www.instagram.com/nutriendolavida/",
-  },
-  {
-    title: "Linkedin",
-    icon: <LinkedinIcon />,
-    path: "https://www.instagram.com/nutriendolavida/",
-  },
+  { title: "Mi cuenta", icon: <LoginIcon />, path: "profile" },
+  { title: "Carrito", icon: <ShopingIcon />, path: "" },
+  { title: "Contacto", icon: <ContactUsIcon />, path: "contacto" },
+];
+
+const socialMedia = [
+  { icon: <FacebookIcon />, path: "https://www.instagram.com/lovelia.me/" },
+  { icon: <InstagramIcon />, path: "https://www.instagram.com/lovelia.me/" },
+  { icon: <TwitterIcon />, path: "https://www.instagram.com/lovelia.me/" },
 ];
 
 export const MobileMenu = () => {
@@ -43,13 +42,16 @@ export const MobileMenu = () => {
     toggleMenu();
   };
 
-  const { toggleMenu, menuRef } = useContext(MobileMenuContext);
+  const redirectTo = (path: string) => {
+    window.open(path, "_blank", "noopener,noreferrer");
+    toggleMenu();
+  };
 
+  const { toggleMenu, menuRef } = useContext(MobileMenuContext);
   return (
     <div ref={menuRef} className="mobile-menu-container">
       <div className="mobile-menu-top-container">
-        <img src={logoN} alt="logo N" />
-        <img src={logoV} alt="logo V" />
+        <img src={logo} alt="logo lovelia" />
         <div className="icon-container">
           <CloseIcon
             onClick={() => {
@@ -83,6 +85,22 @@ export const MobileMenu = () => {
             >
               {item.icon}
               <small>{item.title}</small>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="mobile-menu-socialMedia-container">
+        {socialMedia.map((item, i) => {
+          return (
+            <div
+              key={i}
+              className="icon-container"
+              onClick={() => {
+                redirectTo(item.path);
+              }}
+            >
+              {item.icon}
             </div>
           );
         })}
