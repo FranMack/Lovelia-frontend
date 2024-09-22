@@ -3,8 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import { envs } from "../../config/envs";
 import { ShopingCartContext } from "../../context/modalShopingCartContext";
 import { BackgroundVideo } from "../../ui/components";
-import { CheckOutNavbar } from "../components/CheckOutNavbar";
 import { MercadoPagoCheckoutForm } from "../../ui/components/MercadoPagoCheckoutForm";
+import { CheckOutNavbar } from "../components/CheckOutNavbar";
 
 const sections = ["1. Datos usuario", "2. Pago"];
 
@@ -139,14 +139,6 @@ export function CheckOutDigital() {
       meridiamOptionValidation: false,
     });
   };
-
-  //validation errors
-
-  const [errorWarning, setErrorWarning] = useState<string>("");
-
-  //is loading
-
-  const [isLoading, setIsLoading] = useState(false);
 
   const [location, setLocation] = useState<string>("");
   const [result, setResult] = useState<string[]>([]);

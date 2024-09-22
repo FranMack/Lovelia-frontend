@@ -1,9 +1,9 @@
-import { useContext, useEffect, useRef, useState } from "react";
 import { loadMercadoPago } from "@mercadopago/sdk-js";
-import { envs } from "../../config";
-import { UserContext } from "../../context";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
+import { envs } from "../../config";
+import { UserContext } from "../../context";
 
 interface MercadoPagoCheckoutFormProps {
   userInfo: {
@@ -23,24 +23,35 @@ declare global {
   }
 }
 
-export const MercadoPagoCheckoutForm = ({ userInfo }: MercadoPagoCheckoutFormProps) => {
-  const{location,day,month,year,hour,min,meridiam}=userInfo;
+export const MercadoPagoCheckoutForm = ({
+  userInfo,
+}: MercadoPagoCheckoutFormProps) => {
+  const { location, day, month, year, hour, min, meridiam } = userInfo;
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
-  const tryAgain=()=>{
+  const tryAgain = () => {
     window.location.href = "/checkout/digital";
-  }
-  
+  };
+
   const formRef = useRef<HTMLFormElement | null>(null);
   const progressBarRef = useRef<HTMLProgressElement | null>(null);
   const isMounted = useRef(true);
   const userContext = useContext(UserContext);
   const [warning, setWarning] = useState<string>("");
-  const [isLoading,setIsLoading]=useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    if (userContext.email && location && day && month && year && hour && min && meridiam  ) {
+    if (
+      userContext.email &&
+      location &&
+      day &&
+      month &&
+      year &&
+      hour &&
+      min &&
+      meridiam
+    ) {
       isMounted.current = true;
 
       const initializeMercadoPago = async () => {
@@ -103,7 +114,7 @@ export const MercadoPagoCheckoutForm = ({ userInfo }: MercadoPagoCheckoutFormPro
 
                 if (!isMounted.current) return;
 
-                setIsLoading(true)
+                setIsLoading(true);
                 const {
                   paymentMethodId: payment_method_id,
                   issuerId: issuer_id,
@@ -115,12 +126,9 @@ export const MercadoPagoCheckoutForm = ({ userInfo }: MercadoPagoCheckoutFormPro
                   identificationType,
                 } = cardForm.getCardFormData();
 
-               
-              
-
                 try {
                   const response = await fetch(
-                   ` ${envs.API_DOMAIN}/api/v1/payment-mercadopago/subscribe`,
+                    ` ${envs.API_DOMAIN}/api/v1/payment-mercadopago/subscribe`,
                     {
                       method: "POST",
                       headers: { "Content-Type": "application/json" },
@@ -145,32 +153,28 @@ export const MercadoPagoCheckoutForm = ({ userInfo }: MercadoPagoCheckoutFormPro
                     }
                   );
 
-                
-
                   if (!response.ok) {
-                    
                     const errorData = await response.json();
-                    
+
                     console.error(
                       "Error en la respuesta del servidor:",
                       errorData
                     );
-                    setWarning("Error al procesar al pago")
-                    setIsLoading(false)
+                    setWarning("Error al procesar al pago");
+                    setIsLoading(false);
                     return;
                   }
 
-                  setWarning("")
+                  setWarning("");
 
                   const data = await response.json();
-                  navigate("/welcome")
+                  navigate("/welcome");
                   console.log("Respuesta exitosa:", data);
                 } catch (error) {
                   console.error("Error en el proceso de pago:", error);
-                 
                 }
               },
-              onFetching: (resource:unknown) => {
+              onFetching: (resource: unknown) => {
                 console.log("Fetching resource:", resource);
                 const progressBar = progressBarRef.current;
                 progressBar?.removeAttribute("value");
@@ -188,7 +192,6 @@ export const MercadoPagoCheckoutForm = ({ userInfo }: MercadoPagoCheckoutFormPro
           };
         } catch (error) {
           console.error("Error initializing MercadoPago:", error);
-        
         }
       };
 
@@ -200,10 +203,7 @@ export const MercadoPagoCheckoutForm = ({ userInfo }: MercadoPagoCheckoutFormPro
         progressBarRef.current = null;
       };
     }
-  }, [userContext.email,userInfo]);
-
-
-  
+  }, [userContext.email, userInfo]);
 
   return (
     <form id="form-checkout" className="form-checkout" ref={formRef}>
@@ -228,9 +228,24 @@ export const MercadoPagoCheckoutForm = ({ userInfo }: MercadoPagoCheckoutFormPro
         id="form-checkout__cardholderEmail"
         placeholder="E-mail"
       />
-      {warning ? <button onClick={tryAgain}>  {isLoading ? <BeatLoader color={"white"} speedMultiplier={0.4} />:"Volver a intentar"}</button>: <button type="submit" id="form-checkout__submit">
-        {isLoading ? <BeatLoader color={"white"} speedMultiplier={0.4} />:"Pagar"}
-      </button>}
+      {warning ? (
+        <button onClick={tryAgain}>
+          {" "}
+          {isLoading ? (
+            <BeatLoader color={"white"} speedMultiplier={0.4} />
+          ) : (
+            "Volver a intentar"
+          )}
+        </button>
+      ) : (
+        <button type="submit" id="form-checkout__submit">
+          {isLoading ? (
+            <BeatLoader color={"white"} speedMultiplier={0.4} />
+          ) : (
+            "Pagar"
+          )}
+        </button>
+      )}
       {warning && <p className="error-message">{warning}</p>}
       <progress ref={progressBarRef} value="0" className="progress-bar">
         Cargando...

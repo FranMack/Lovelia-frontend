@@ -1,4 +1,3 @@
-import React from "react";
 import { FrontPage1, FrontPage1Options } from "../../ui/pages/FrontPage1";
 import background from "../assets/talisman_info_fondo2.png";
 

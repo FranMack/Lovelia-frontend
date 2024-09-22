@@ -1,34 +1,42 @@
-import { ButtonArrowRight2 } from "../../ui/components/ButtonArrowRight2"
+import { ButtonArrowRight2 } from "../../ui/components/ButtonArrowRight2";
 
-export interface TemplateBlogOptions{
-    image:string,
-    title:string,
-    arrowRightButton?:string,
-    description:string[],
-    secundaryTitle?:string,
-    direction?:string,
-    onClick?:()=>void
+export interface TemplateBlogOptions {
+  image: string;
+  title: string;
+  secundaryTitle?: string;
+  description: string[];
+  arrowRightButton?: string;
+  onClick?: () => void;
 }
 
+export function TemplateBlog({
+  image,
+  title,
+  secundaryTitle,
+  description,
+  arrowRightButton,
+  onClick,
+}: TemplateBlogOptions) {
+  return (
+    <div className="templateBlog-container">
+      <div className="templateBlog-image-container">
+        <img src={image} alt="Tallisman-fisico" />
+      </div>
+      <div className="templateBlog-info-container">
+        <h4>{title}</h4>
+        <h6>{secundaryTitle}</h6>
+        {description.map((item, i) => {
+          return <p key={i}>{item}</p>;
+        })}
 
-export function TemplateBlog({image,title,description,arrowRightButton,secundaryTitle,direction="left",onClick}:PlacaTipo1Options){
-
-    return ( <div className="templateBlog-container">
-    <div className="templateBlog-image-container">
-      <img src={image} alt="Tallisman-fisico" />
+        <div className="button-container">
+          <ButtonArrowRight2
+            text={arrowRightButton!}
+            color="#EDC7B9"
+            onClick={onClick}
+          />
+        </div>
+      </div>
     </div>
-    <div className="templateBlog-info-container">
-      <h4>{title}</h4>
-      <h6>{secundaryTitle}</h6>
-      {description.map((item,i)=>{
-         return (<p key={i}>{item}</p>)
-        })
-      }
-    
-      <div className="button-container">
-   <ButtonArrowRight2 text={arrowRightButton} color="#EDC7B9" onClick={onClick} />
-   </div>
-    </div>
-  </div>)
-
+  );
 }

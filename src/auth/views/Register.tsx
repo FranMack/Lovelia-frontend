@@ -1,20 +1,17 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BeatLoader from "react-spinners/BeatLoader";
-import { EyeClose, EyeOpen } from "../../assets/icons/icons";
-import { BackgroundVideo } from "../../ui/components";
-//import { PopUp, PopUpOptions } from "../commons/PopUp";
-import { RegisterValidation } from "../helpers/registerValidations";
 import { useForm } from "../..//hooks/useForm";
+import { EyeClose, EyeOpen } from "../../assets/icons/icons";
 import { envs } from "../../config";
+import { BackgroundVideo } from "../../ui/components";
+import { RegisterValidation } from "../helpers/registerValidations";
 
 export function Register() {
-
-
-  useEffect(()=>{
-    window.scrollTo(0, 0)
-  },[])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   //is loading
 
@@ -35,7 +32,7 @@ export function Register() {
     setOpenPopUp(!openPopUp);
   };
 
- /* const popUpProps: PopUpOptions = {
+  /* const popUpProps: PopUpOptions = {
     title: "¡Tu cuenta ha sido creada!",
     text: "Recibirás un email que te permetira activarla",
     buttonText: "Continuar",
@@ -47,8 +44,6 @@ export function Register() {
   const linkToLogin = () => {
     navigatge("/login");
   };
-
-
 
   const initialForm = {
     name: "",
@@ -187,13 +182,16 @@ export function Register() {
           : "login-container efectoReveal"
       }
     >
-      <BackgroundVideo/>
+      <BackgroundVideo />
       {/*openPopUp && <PopUp {...popUpProps} handleNavigate={linkToLogin} />*/}
-      
+
       <form onSubmit={handleSubmit} className="login-form" action="">
         <h3>CREA TU CUENTA</h3>
         <h4>Ingresa tus datos para registrarte en lovelia</h4>
-        <h6>Si ya estás registrado en lovelia, <strong onClick={linkToLogin}>Haz click aquí</strong></h6>
+        <h6>
+          Si ya estás registrado en lovelia,{" "}
+          <strong onClick={linkToLogin}>Haz click aquí</strong>
+        </h6>
         <label htmlFor="name">Nombre</label>
         <input
           value={name}
@@ -255,7 +253,11 @@ export function Register() {
           />
 
           <span onClick={handleShowPassword}>
-            {showPassword ? <EyeOpen color="#662A80" /> : <EyeClose color="#662A80" />}
+            {showPassword ? (
+              <EyeOpen color="#662A80" />
+            ) : (
+              <EyeClose color="#662A80" />
+            )}
           </span>
         </div>
         {passwordErrors.length > 0 && (
@@ -278,7 +280,11 @@ export function Register() {
             }`}
           />
           <span onClick={handleShowConfirmPassword}>
-            {showConfirmPassword ? <EyeOpen color="#662A80" /> : <EyeClose color="#662A80" />}
+            {showConfirmPassword ? (
+              <EyeOpen color="#662A80" />
+            ) : (
+              <EyeClose color="#662A80" />
+            )}
           </span>
         </div>
         {confirmPasswordError && (
@@ -290,11 +296,11 @@ export function Register() {
           <div className="login-recibir-info-container">
             <input type="checkbox" />
             <p>
-            Me encantaría recibir promociones, historias e información de Lovelia
+              Me encantaría recibir promociones, historias e información de
+              Lovelia
             </p>
           </div>
 
-        
           {errorsFromAPI && (
             <span className="input-helpers-error api-errors">
               {errorsFromAPI}
