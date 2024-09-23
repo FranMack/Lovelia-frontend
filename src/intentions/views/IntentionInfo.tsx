@@ -13,7 +13,6 @@ export function IntentionInfo() {
   const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
-    console.log(id, typeof id);
     if (id) {
       setPage(parseInt(id));
     }
