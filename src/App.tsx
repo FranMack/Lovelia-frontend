@@ -118,7 +118,7 @@ function App() {
         <Route path="/buy-analogic" element={<BuyAnalogTalisman />} />
         <Route path="/buy-digital" element={<BuyDigitalTalisman />} />
         <Route path="/checkout/store" element={<CheckOutAnalogic />} />
-        <Route path="/activacion" element={<ActivationAnalogic />} />
+        <Route path="/activacion/:id" element={<ActivationAnalogic />} />
         <Route path="/terminos-y-condiciones" element={<SiteTerms />} />
 
         {/* <Route path="/mail" element={ <MailTemplate1/>}/>*/}

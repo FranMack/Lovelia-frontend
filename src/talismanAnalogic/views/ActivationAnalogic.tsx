@@ -1,11 +1,22 @@
 import { useEffect, useRef, useState } from "react";
-import abundanciaImg from "../../intentions/assets/imagen-intensiones3.png";
 import { PlayIcon, StopIcon, RestartIcon } from "../../assets/icons/icons";
 import { Button } from "../../ui/components/Button";
+import { infoIntenciones } from "../../intentions/assets/infoIntentions";
+import { envs } from "../../config";
+import { useParams } from "react-router-dom";
 
-const intention = "Abundancia";
+
 
 export const ActivationAnalogic = () => {
+
+  const { id } = useParams();
+  const [page, setPage] = useState<number>(1);
+
+  useEffect(() => {
+    if (id) {
+      setPage(parseInt(id));
+    }
+  }, [id]);
   const [step, setStep] = useState<number>(1);
 
   const handleStep = () => {
@@ -59,7 +70,7 @@ export const ActivationAnalogic = () => {
     >
       {!playing && !activationFinished && (
         <div className="activationAnalogic-text-container">
-          <h1>{`Intención: ${intention.toLocaleUpperCase()}`}</h1>
+          <h1>{`Intención: ${infoIntenciones[page-1].title.toLocaleUpperCase()}`}</h1>
           {step === 1 && (
             <>
               <h2>
@@ -100,7 +111,7 @@ export const ActivationAnalogic = () => {
               : "activationAnalogic-image-container"
           }
         >
-          <img src={abundanciaImg} alt="intention" />
+          <img src={infoIntenciones[page-1].image} alt="intention" />
           <div className="icon-container" title="Play / Stop">
             {playing ? (
               <StopIcon onClick={stopActivation} />
@@ -124,7 +135,7 @@ export const ActivationAnalogic = () => {
 
       <audio
         ref={activationSoundRef}
-        src="http://localhost:3000/activation/activationExample.mp4"
+        src={`${envs.API_DOMAIN}/activation/activationExample.mp4`}
       />
     </section>
   );
