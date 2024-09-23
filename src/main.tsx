@@ -1,20 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
-import "./styles/styles.scss";
 import { BrowserRouter } from "react-router-dom";
+import App from "./App.tsx";
 import {
-  UserContextProvider,
-  ShopingCartContextProvider,
-  MobileMenuContextProvider,
-  TalismanModelContextProvider,
-  TalismanButtonFocusContextProvider,
-  VolumeContextProvider,
   IntentionContextProvider,
+  MobileMenuContextProvider,
+  ShopingCartContextProvider,
+  TalismanButtonFocusContextProvider,
+  TalismanModelContextProvider,
+  UserContextProvider,
+  VolumeContextProvider,
 } from "./context/";
-import { TimerContextProvider } from "./context/timerContext.tsx";
-import { TalismanAudioContextProvider } from "./context/talismanAudioContext.tsx";
 import { ActivationStepsContextProvider } from "./context/activationStepsContext.tsx";
+import { TalismanAudioContextProvider } from "./context/talismanAudioContext.tsx";
+import { TimerContextProvider } from "./context/timerContext.tsx";
+import "./styles/styles.scss";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -29,10 +29,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
                     <TalismanAudioContextProvider>
                       <ActivationStepsContextProvider>
                         <MobileMenuContextProvider>
-                  <App />
-                  </MobileMenuContextProvider>
-                  </ActivationStepsContextProvider>
-                  </TalismanAudioContextProvider>
+                          <App />
+                        </MobileMenuContextProvider>
+                      </ActivationStepsContextProvider>
+                    </TalismanAudioContextProvider>
                   </TimerContextProvider>
                 </IntentionContextProvider>
               </VolumeContextProvider>
