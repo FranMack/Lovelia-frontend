@@ -225,7 +225,7 @@ export function CheckOutDigital() {
                     <option value="">Dia</option>
                     {days.map((day) => {
                       return (
-                        <option value={day}>
+                        <option key={day} value={day}>
                           {day < 10 ? `0${day}` : day}
                         </option>
                       );
@@ -244,7 +244,7 @@ export function CheckOutDigital() {
                     <option value="">Mes</option>
                     {month.map((month) => {
                       return (
-                        <option value={month}>
+                        <option key={month} value={month}>
                           {month < 10 ? `0${month}` : month}
                         </option>
                       );
@@ -262,7 +262,7 @@ export function CheckOutDigital() {
                   >
                     <option value="">Año</option>
                     {years().map((year) => {
-                      return <option value={year}>{year}</option>;
+                      return <option key={year} value={year}>{year}</option>;
                     })}
                   </select>
                 </div>
@@ -284,7 +284,7 @@ export function CheckOutDigital() {
                     <option value="">Hora</option>
                     {hours().map((hour) => {
                       return (
-                        <option value={hour}>
+                        <option key={hour} value={hour}>
                           {hour < 10 ? `0${hour}` : hour}
                         </option>
                       );
@@ -303,7 +303,7 @@ export function CheckOutDigital() {
                     <option value="">Minutos</option>
                     {minutes().map((minute) => {
                       return (
-                        <option value={minute}>
+                        <option key={minute} value={minute}>
                           {minute < 10 ? `0${minute}` : minute}
                         </option>
                       );

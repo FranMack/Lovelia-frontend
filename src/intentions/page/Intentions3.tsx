@@ -14,10 +14,10 @@ const intentions=[
     {id:1,title:"Sabiduría de la incertidumbre",text:"La intuición es la guía del Alma.",image:itention1},
     {id:2,title:"Amor incondicional",text:"Todos somos UNO.",image:itention2},
     {id:3,title:"Abundancia",text:"Somos el Universo.",image:itention3},
-    {id:4,title:"Aquí y Ahora",text:"Lo único real es el presente.",image:itention4},
-    {id:5,title:"Potencial infinito",text:"Somos seres energía con el poder de co-crear nuestra realidad.",image:itention5},
-    {id:6,title:"Coraje",text:"Valentia en mi corazon.",image:itention6},
-    {id:7,title:"Yo verdadero",text:"Ser quien uno es.",image:itention7},
+    {id:4,title:"Aquí y Ahora",text:"Lo único real es el Presente.",image:itention4},
+    {id:5,title:"Potencial infinito",text:"Somos Seres Energía con el poder de cocrear nuestra realidad.",image:itention5},
+    {id:6,title:"Coraje",text:"Valentía en mi corazón.",image:itention6},
+    {id:7,title:"Yo verdadero",text:"Ser quién uno es.",image:itention7},
     {id:8,title:"Gratitud",text:"Aceptar la realidad con amor.",image:itention8},
 
 ]
@@ -25,7 +25,7 @@ import { GridIntentions } from '../components/GridIntentions'
 export const Intentions3 = () => {
   return (
    <section className='section3-intentions-container'>
-    <h3>INTENSIONES LOVELIA</h3>
+    <h3>INTENCIONES LOVELIA</h3>
     <GridIntentions intentions={intentions}/>
    </section>
   )

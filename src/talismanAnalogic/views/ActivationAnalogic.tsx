@@ -38,6 +38,7 @@ export const ActivationAnalogic = () => {
     if (activationSoundRef.current) {
       activationSoundRef.current.play();
 
+
       setPlaying(true);
 
       activationSoundRef.current.addEventListener("ended", () => {
@@ -70,7 +71,7 @@ export const ActivationAnalogic = () => {
     >
       {!playing && !activationFinished && (
         <div className="activationAnalogic-text-container">
-          <h1>{`Intención: ${infoIntenciones[page-1].title.toLocaleUpperCase()}`}</h1>
+          <h1>{`${infoIntenciones[page-1].title.toLocaleUpperCase()}`}</h1>
           {step === 1 && (
             <>
               <h2>
@@ -88,12 +89,11 @@ export const ActivationAnalogic = () => {
                   Con tu talismán en tus manos, repite 3 veces:
                   <br />
                   <strong>
-                    Yo "Nombre" decreto traer la abundancia en mi vida.{" "}
+                  {infoIntenciones[page-1].activation}
                   </strong>
                 </li>
                 <li>
-                  Reproduce la meditación a continuación,elegida para atraer
-                  abundancia.
+                  Reproduce la meditación a continuación.
                 </li>
               </>
             )}

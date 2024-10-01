@@ -31,6 +31,30 @@ option{
 }
 
 
+.dropDown-Reveal {
+    animation-name: dropDown-Reveal;
+    animation-duration: 1.2s;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    
+  }
+  
+  @keyframes dropDown-Reveal {
+    from {
+
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0px);
+   
+    }
+  }
+
+
+
+
 
 @media screen and (max-width: 678px) {
     .dropdown-container{

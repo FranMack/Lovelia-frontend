@@ -87,7 +87,6 @@ export function Slider({ sliderInfo }: SliderOptions) {
             <SliderCard
               key={i}
               image={slide.image}
-              text={slide.text}
               title={slide.title}
             />
           );

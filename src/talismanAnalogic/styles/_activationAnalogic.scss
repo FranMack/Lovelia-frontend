@@ -66,6 +66,9 @@
         width: 5%;
         aspect-ratio: 1;
         cursor: pointer;
+        svg{
+          opacity: 0.6;
+        }
     }
     >.restart{
         right: 2%;
@@ -95,4 +98,111 @@
   >.playing{
     aspect-ratio:2.5;
   }
+}
+
+
+@media screen and (max-width: 678px) {
+
+  .activationAnalogic-container {
+    width: 100vw;
+    height: fit-content;
+    min-height: 100vh;
+    padding-top: 15vh;
+    padding-bottom:15vh ;
+    background-color: $color_darkPurple;
+    color: $color_background1;
+    font-size: 2.4rem;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 5vh;
+  
+  
+  
+   >button{
+      background-color: $color_yellow;
+      color:$color_darkPurple;
+      padding-inline: 5%;
+      width: 50%;
+      font-size: 2rem;
+    }
+  
+    .activationAnalogic-text-container {
+      width: 90%;
+      margin-top: 2vh;
+      h1 {
+        font-size: 3.5rem;
+        font-weight: 300;
+        color: $color_yellow;
+        margin-bottom: 2vh;
+      }
+      h2 {
+        font-size: 2.7rem;
+        font-weight: 300;
+        color: $color_text1;
+        margin-bottom: 2vh;
+      }
+      h3 {
+          font-size: 2.5rem;
+        font-weight: 300;
+        margin-bottom: 1vh;
+      
+      }
+      ol{
+          padding-left: 2.5rem;
+      }
+      li {
+        line-height: 3.5rem;
+        strong{
+          font-weight: 500;
+        }
+      }
+    }
+  
+    .activationAnalogic-image-container{
+      position: relative;
+      width: 90%;
+      aspect-ratio:1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      >.icon-container{
+          position: absolute;
+          width: 12%;
+          aspect-ratio: 1;
+          cursor: pointer;
+      }
+      >.restart{
+          right: 2%;
+          bottom: 2%;
+          width: 15%;
+          background-color: rgba($color: $color_yellow, $alpha:0.4);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: 1s;
+          
+      }
+      >.restart:hover{
+          background-color: rgba($color: $color_yellow, $alpha:0.7);
+          transform:rotate(360deg); /* Escalar el div */
+      }
+      img{
+          position: absolute;
+          object-fit: cover;
+          object-position: center;
+          height: 100%;
+          width: 100%;
+         
+      }
+    }
+    >.playing{
+      aspect-ratio:1;
+    }
+  }
+
+
 }

@@ -23,7 +23,7 @@ const others = {
   items: [
     { title: "Perfil de usuario", path: "profile" },
     { title: "Carrito de compras", path: "profile" },
-    { title: "Historial de compras", path: "profile" },
+    { title: "Cuidado de los talismanes", path: "mantenimiento-talismanes" },
   ],
 };
 
@@ -32,8 +32,8 @@ const us = {
   items: [
     { title: "Acerca de nosotros", path: "/" },
     { title: "Terminos y condiciones", path: "terminos-y-condiciones" },
-    { title: "Políticas de devolución", path: "" },
-    { title: "Preguntas frecuentes", path: "" },
+    { title: "Cambios y garantias", path: "cambios-y-garantias" },
+    { title: "Políticas de privacidad", path: "politica-de-privacidad" },
     { title: "Contáctanos", path: "contacto" },
   ],
 };

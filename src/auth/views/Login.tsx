@@ -125,7 +125,7 @@ export function Login() {
         );
         onResetForm();
         setIsLoading(false);
-        navigatge("/");
+        navigatge("/profile");
       })
       .catch((error) => {
         console.log(error);

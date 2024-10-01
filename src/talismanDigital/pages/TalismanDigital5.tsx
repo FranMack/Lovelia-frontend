@@ -18,7 +18,7 @@ export const TalismanDigital5 = () => {
         <div className="talismanDigitalTemplate-internal-text-container">
           <h2>(4)<br/>MEDITACIONES LOVELIA</h2>
           <p>
-          Tendrás <strong>acceso ilimitado</strong> a una biblioteca con<br/> meditaciones de Lovelia para que las puedas<br/> usar en <strong>cualquier momento y lugar.</strong>
+          Tendrás <strong>acceso ilimitado</strong> a una biblioteca con meditaciones de Lovelia para que las puedas usar en <strong>cualquier momento y lugar.</strong>
           </p>
         </div>
       </div>

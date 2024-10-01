@@ -54,7 +54,7 @@ export function BuyDigitalTalisman() {
 
   return (
     <section className="buyDigitalTalisman-container efectoReveal">
-      {popUp && <PopUp linkTo={linkTo} closePopUp={togglePopUp} />}
+      {popUp && <PopUp linkTo={linkTo} closePopUp={togglePopUp} buttonText="Continuar" text="Para adquirir tu talismán digital debes estar logueado." />}
       <div
         style={{ opacity: popUp ? "0.4" : "1" }}
         className="buyDigitalTalisman-internal-container"
@@ -98,19 +98,15 @@ export function BuyDigitalTalisman() {
 
           <h6>Descripción y detalles</h6>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.{" "}
+          El Talismán Digital es una animación 3D única por cada usuario, cuidadosamente diseñada para reflejar el ADN energético de cada individuo en el momento de su nacimiento.
           </p>
           <h6>Importante:</h6>
           <div className="info-requerida-container">
             <p>Para generar tu talismán necesitaremos:</p>
             <ul>
               <li>Nombre completo</li>
-              <li>Lugar de nacimiento</li>
-              <li>Fecha de nacimiento</li>
-              <li>Hora de nacimiento</li>
+              <li>Lugar, fecha, y hora de nacimiento</li>
+             
             </ul>
           </div>
         </div>

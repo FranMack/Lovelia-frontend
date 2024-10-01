@@ -21,7 +21,7 @@ export const TalismanDigital8 = () => {
            BANCO DE SONIDOS
           </h2>
           <p>
-          Lovelia pone a <strong>tu disposición sonidos y<br/> música</strong> para que medites o te acompañe<br/> en tu vida diaria.
+          Lovelia pone a <strong>tu disposición sonidos y música</strong> para que medites o te acompañe en tu vida diaria.
           </p>
         </div>
       </div>

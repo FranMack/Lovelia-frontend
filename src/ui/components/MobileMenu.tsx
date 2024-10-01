@@ -11,16 +11,72 @@ import {
   InstagramIcon,
   TwitterIcon,
 } from "../../assets/icons/icons";
-import { MobileMenuContext } from "../../context";
+import { MobileMenuContext, UserContext } from "../../context";
 import { useContext } from "react";
+import { DropDownMobileMenu } from "./DropDownMobileMenu";
+import axios from "axios";
+import { envs } from "../../config";
 
-const navbarMenu = [
-  { title: "Home", path: "" },
-  { title: "Talismán", path: "talisman-landing" },
-  { title: "Meditaciones", path: "meditations" },
-  { title: "Intenciones", path: "intenciones" },
-  { title: "Tienda", path: "tienda" },
-  { title: "Blog", path: "blog" },
+const sections = [
+  {
+    title: "Home",
+    path: "/",
+    items: [],
+  },
+
+  {
+    title: "Talismán",
+    path: "",
+    items: [
+      { title: "Intro", path: "talisman-landing" },
+      { title: "Talismán analógico", path: "talisman-analogico" },
+      { title: "Talismán digital", path: "talisman-digital" },
+    ],
+  },
+
+  {
+    title: "Meditaciones",
+    path: "/meditations",
+    items: [],
+  },
+
+  {
+    title: "Intenciones",
+    path: "",
+    items: [
+      { title: "Intro", path: "intenciones" },
+      { title: "Sabiduría", path: "intenciones/1" },
+      { title: "Amor incondicional", path: "intenciones/2" },
+      { title: "Abundancia", path: "intenciones/3" },
+      { title: "Aquí y ahora", path: "intenciones/4" },
+      { title: "Potencial infinito", path: "intenciones/5" },
+      { title: "Coraje", path: "intenciones/6" },
+      { title: "Yo verdadero", path: "intenciones/7" },
+      { title: "Gratitud", path: "intenciones/8" },
+    ],
+  },
+
+  {
+    title: "Tienda",
+    path: "",
+    items: [
+      { title: "Colección", path: "tienda" },
+      { title: "Talisman Digital", path: "buy-digital" },
+      { title: "Talisman Analógico", path: "buy-analogic" },
+    ],
+  },
+
+  {
+    title: "Blog",
+    path: "blog",
+    items: [],
+  },
+
+  {
+    title: "Contacto",
+    path: "contacto",
+    items: [],
+  },
 ];
 
 const icons = [
@@ -48,6 +104,30 @@ export const MobileMenu = () => {
   };
 
   const { toggleMenu, menuRef } = useContext(MobileMenuContext);
+  const{email,setEmail, setId, setName, setLastname,subscription}=useContext(UserContext)
+
+
+  const handlerLogout = () => {
+    axios
+      .get(`${envs.API_DOMAIN}/api/v1/user/logout`, {
+        withCredentials: true,
+      })
+      .then(() => {
+        setEmail("");
+        setId("");
+        setName("");
+        setLastname("");
+        toggleMenu()
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  
+
+
   return (
     <div ref={menuRef} className="mobile-menu-container">
       <div className="mobile-menu-top-container">
@@ -61,19 +141,13 @@ export const MobileMenu = () => {
         </div>
       </div>
       <ul className="mobile-menu-center-container">
-        {navbarMenu.map((item, i) => {
-          return (
-            <li
-              key={i}
-              onClick={() => {
-                linkTo(item.path);
-              }}
-            >
-              {item.title}
-            </li>
-          );
+        {sections.map((item, i) => {
+          return <DropDownMobileMenu key={i} {...item} />;
         })}
+         {subscription && <li className="myTalisman" onClick={()=>{linkTo("myTalisman")}}>Mi Talismán</li>}
+        {email && <li onClick={handlerLogout}>Logout</li>}
       </ul>
+      
 
       <div className="mobile-menu-bottom-container">
         {icons.map((item) => {

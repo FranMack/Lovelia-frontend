@@ -1,12 +1,23 @@
 @import "../../styles//variables.scss";
 
 .acountInfo-container {
+  position: relative;
     width: 80%;
     margin-top: 2%;
     height: 60vh;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+  
+  }
+
+  .acountInfo-internal-container{
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+
   }
   
   .acountInfo-internal-left-container {

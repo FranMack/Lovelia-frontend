@@ -2,11 +2,14 @@
 
 .template1-container{
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     background-color: $color_turquoise;
     color:$color_primary;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+
 
 }
 

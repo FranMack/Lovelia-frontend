@@ -32,17 +32,19 @@ import { CheckOutAnalogic, CheckOutDigital } from "./checkout/views/";
 import { ToastContainer } from "react-toastify";
 import { ShopingCart } from "./ui/components/ShopingCart.tsx";
 import { MyTalisman } from "./myTalisman/views/MyTalisman.tsx";
-import { SiteTerms } from "./siteTerms/views/SiteTerms.tsx";
+import { SiteTerms,PrivacyTerms,ChangesAndWarranty,MainteneneTalisman } from "./siteTerms/views";
 import { PrivateRoute, PublicRoute } from "./router";
 import { MobileMenuContext } from "./context/mobileMenuContext.tsx";
 import { WelcomeDigital } from "./checkout/views/WelcomeDigital.tsx";
 
 function App() {
-  const { shopingCartOpen } = useContext(ShopingCartContext);
+  const { shopingCartOpen,setShopingCartItems } = useContext(ShopingCartContext);
   const { /*email,*/ setEmail, setId, setName, setLastname, setSuscription } =
     useContext(UserContext);
 
   useEffect(() => {
+    const shopingCartJSON = localStorage.getItem("shopingCart") || "[]";
+    setShopingCartItems(JSON.parse(shopingCartJSON));
     axios
       .get(`${envs.API_DOMAIN}/api/v1/user/me`, { withCredentials: true })
       .then(({ data }) => {
@@ -72,34 +74,34 @@ function App() {
   const { menuOpen, toggleMenu, menuRef } = useContext(MobileMenuContext);
 
 
-  //ver esto====>
+  
   const handleClickOutside = (event: MouseEvent) => {
     const target = event.target as HTMLElement; // Convertir event.target a HTMLElement
     
     if (
       menuOpen &&
       menuRef!.current &&
-      target.id == "menu-hamburguesa-icon" &&
-      target.parentNode && (target.parentNode as HTMLElement).tagName === "svg" &&
-      !menuRef!.current.contains(target as Node)
+      target.id !== "menu-hamburguesa-icon" &&
+      !menuRef!.current.contains(target)
     ) {
       toggleMenu();
     }
   };
 
   useEffect(() => {
-    // Añadir el event listener al document
+   if(menuOpen){
     document.addEventListener("click", handleClickOutside);
 
     return () => {
-      // Eliminar el event listener cuando el componente se desmonte
+      // Eliminar el event listener cuando el componente se desmontefS
       document.removeEventListener("click", handleClickOutside);
     };
+  }
   }, [menuOpen]);
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer style={{fontSize:"1.6rem"}}/>
       {location !== "/myTalisman" && windowSize >= 1024 && <Navbar />}
       {location !== "/myTalisman" && windowSize < 1024 && <MobileNavbar />}
       {shopingCartOpen && <ShopingCart />}
@@ -120,6 +122,9 @@ function App() {
         <Route path="/checkout/store" element={<CheckOutAnalogic />} />
         <Route path="/activacion/:id" element={<ActivationAnalogic />} />
         <Route path="/terminos-y-condiciones" element={<SiteTerms />} />
+        <Route path="/politica-de-privacidad" element={<PrivacyTerms />} />
+        <Route path="/cambios-y-garantias" element={<ChangesAndWarranty />} />
+        <Route path="/mantenimiento-talismanes" element={<MainteneneTalisman />} />
 
         {/* <Route path="/mail" element={ <MailTemplate1/>}/>*/}
 

@@ -41,7 +41,7 @@ export const Home4 = () => {
         <div className="section4-home-internal-container right">
           <div className="section4-home-internal-text-container">
             <h2>
-              Intensiona con nuestros
+              Intenciona con nuestros
               <br />
               talismanes.
             </h2>

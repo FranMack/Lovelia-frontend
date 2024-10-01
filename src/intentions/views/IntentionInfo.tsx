@@ -48,7 +48,7 @@ export function IntentionInfo() {
           </div>
           <article>
             <h3>{page && infoIntenciones[page - 1].title}</h3>
-            <h6> {page && infoIntenciones[page - 1].secundaryTitle}</h6>
+            
             {page &&
               infoIntenciones[page - 1].description.map((parrafo, i) => {
                 return <p key={i}>{parrafo}</p>;

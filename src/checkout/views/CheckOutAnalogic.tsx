@@ -51,11 +51,9 @@ export function CheckOutAnalogic() {
     setButttonFocusPosition(buttonName);
   };
 
-  const { shopingCartOpen } = useContext(ShopingCartContext);
+  const { shopingCartOpen,shopingCartItems,setShopingCartItems } = useContext(ShopingCartContext);
 
-  const [shopingCartItems, setShopingCartItems] = useState<ProductosOptions[]>(
-    []
-  );
+ 
 
   const [billing, setBilling] = useState<boolean>(false);
   const handleBilling = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,8 +62,6 @@ export function CheckOutAnalogic() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const shopingCartJSON = localStorage.getItem("shopingCart") || "[]";
-    setShopingCartItems(JSON.parse(shopingCartJSON));
   }, []);
 
   const productsPrice = () => {
@@ -501,6 +497,7 @@ export function CheckOutAnalogic() {
         )
         .then((response) => {
           localStorage.removeItem("shopingCart");
+          setShopingCartItems([])
           window.location.href = response.data.link_de_pago;
           setIsLoading(false);
         })
@@ -545,6 +542,7 @@ export function CheckOutAnalogic() {
         })
         .then((response) => {
           localStorage.removeItem("shopingCart");
+          setShopingCartItems([])
           window.location.href = response.data.link_de_pago;
         })
         .then(() => {
@@ -1055,7 +1053,7 @@ export function CheckOutAnalogic() {
                           <th className="">Modelo</th>
                           <th className="">Material</th>
                           <th className="">Colgado</th>
-                          <th className="">Intension</th>
+                          <th className="">Intencion</th>
                         </tr>
                         <tr>
                           <td className="">{item.quantity}</td>

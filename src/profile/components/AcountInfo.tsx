@@ -1,6 +1,8 @@
 import { ButtonArrowRight2 } from "../../ui/components";
 import { useNavigate } from "react-router-dom";
 import talismanDigital from "../assets/talisman-wallpaper.png";
+import { PopUp } from "../../ui/components/PopUp";
+import { useState } from "react";
 
 interface AcountInfoOptions {
   name?: string;
@@ -24,8 +26,20 @@ export const AcountInfo = ({
     navigate("/tienda");
   };
 
+  const linkToSubscription=()=>{
+    navigate("/checkout/digital");
+  }
+
+  const [openPopUp,setOpenPopUp]=useState<boolean>(false)
+
+  const tolgglePopUp=()=>{
+    setOpenPopUp(!openPopUp)
+  }
+
   return (
-    <div className="acountInfo-container">
+    <div className={openPopUp ? "acountInfo-container":"acountInfo-container"} >
+  {  openPopUp && <PopUp linkTo={()=>{}} closePopUp={tolgglePopUp} buttonText="Confirmar" text="¿Esta seguro que desea cancelar la subscripción?"/>}
+    <div className="acountInfo-internal-container" style={{ opacity: openPopUp ? "0.4" : "1" }}>
       <div className="acountInfo-internal-left-container">
         <div className="acountInfo-item-info-container">
           <h5>Nombre</h5>
@@ -44,7 +58,8 @@ export const AcountInfo = ({
           <input type="text" value={subscription ? "Activa" : "Inactiva"} />
         </div>
 
-        <button>Modificar datos de perfil</button>
+        {subscription && <button onClick={tolgglePopUp}>Cancelar subscripción</button>}
+        {!subscription && <button onClick={linkToSubscription}>Activar subscripción</button>}
       </div>
       <div className="acountInfo-internal-right-container">
         <h4>MI TALISMÁN DIGITAL</h4>
@@ -75,6 +90,7 @@ export const AcountInfo = ({
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 };

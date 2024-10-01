@@ -34,19 +34,19 @@ const buttonRightInfo={
   </h2>
   <p>
    <span> Existe el poder de transformar los pensamientos en
-    <br /> realidades durante el proceso de búsqueda de la<br /> plenitud y la
+     realidades durante el proceso de búsqueda de la plenitud y la
      realización personal.
      </span>
   </p>
   
   <p>
-  Es el poder de la intención, la semilla de toda transformación y<br />
-  creación en nuestras vidas.<br />
-    <strong>La intención es el punto de partida para todo cambio y<br /> creación</strong>, ya
-    que se trata de la energía que dirige nuestros<br /> pensamientos,
-    nuestras palabras y nuestras acciones hacia la<br /> manifestación de
-    nuestros deseos más profundos, esos que<br /> están <strong>en conexión íntima con
-    nuestra esencia, nuestros<br /> valores y nuestra visión del mundo</strong>.
+  Es el poder de la intención, la semilla de toda transformación y
+  creación en nuestras vidas.
+    <strong>La intención es el punto de partida para todo cambio y creación</strong>, ya
+    que se trata de la energía que dirige nuestros pensamientos,
+    nuestras palabras y nuestras acciones hacia la manifestación de
+    nuestros deseos más profundos, esos que están <strong>en conexión íntima con
+    nuestra esencia, nuestros valores y nuestra visión del mundo</strong>.
   </p>
   <div className="button-wrapper">
   <ButtonArrowRight {...buttonRightInfo}/>

@@ -62,7 +62,7 @@ export function DropdownMenu({ title, options }: DropdownMenuOptions) {
         setPriceModel(0);
       }
     }
-    if (title === "Material del dije") {
+    if (title === "Metal") {
       if (selectedOption) {
         let optionContex = options.find((item) => {
           return item.option === selectedOption;

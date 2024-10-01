@@ -21,10 +21,7 @@ export const TalismanDigital7 = () => {
             TIMER
           </h2>
           <p>
-            <span>LA ENERGÍA DE LOS ASTROS</span> <br />
-            Lorem ipsum dolor sit amet, consectetur
-            <br /> adipiscing elit, sed do eiusmod tempor
-            <br /> incididunt ut labore et dolore magna aliqua.
+          Tendrás la posibilidad de usar el timer <strong>para meditar</strong> y para también <strong>programar tu sonido personal.</strong>
           </p>
         </div>
       </div>

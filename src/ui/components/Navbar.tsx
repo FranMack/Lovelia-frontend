@@ -9,13 +9,11 @@ import { UserContext } from "../../context/userContext";
 import { NavbarDropDown } from "./NavbarDropDown";
 
 export function Navbar() {
-  const { shopingCartOpen, toggleMenu: toggleMenu } =
+  const { shopingCartOpen, toggleMenu,shopingCartItems } =
     useContext(ShopingCartContext);
   const { email, name, lastname, subscription } = useContext(UserContext);
 
-  //Guarda ver que si no es necesario agrgar algun estado para el manejo de localstorage
-  const shopingCartJSON = localStorage.getItem("shopingCart") || "[]";
-  const shopingCartItems = JSON.parse(shopingCartJSON).length;
+ 
 
   const navigate = useNavigate();
 
@@ -150,6 +148,7 @@ export function Navbar() {
         {navbarButtons.map((button, i) => {
           return (
             <div
+            key={i}
               className="navbar-button-menu-container"
               onMouseEnter={() => {
                 handleMouseOver(button.path[0]);
@@ -213,9 +212,9 @@ export function Navbar() {
           className="navbar-menu-icon shoping-icon"
         >
           <ShopingIcon />
-          {shopingCartItems > 0 && (
+          {shopingCartItems.length > 0 && (
             <div className="number-items-container">
-              <h2>{shopingCartItems}</h2>
+              <h2>{shopingCartItems.length}</h2>
             </div>
           )}
         </li>

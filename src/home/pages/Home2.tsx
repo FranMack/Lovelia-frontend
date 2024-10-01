@@ -8,8 +8,8 @@ const frontPageInfo: FrontPage1Options = {
   text: [
     "CUANDO USO UN",
     "TALISMÁN, ESTOY",
-    "RECORDANDO QUE QUIERO",
-    "PARA MI,CONECTANDO",
+    "RECORDANDO QUÉ QUIERO",
+    "PARA MI, CONECTANDO CON",
     "MI SABIDURIA INTERNA.",
   ],
   color: "#6f3289",

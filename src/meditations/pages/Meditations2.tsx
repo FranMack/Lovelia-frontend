@@ -8,9 +8,8 @@ export const Meditations2 = () => {
       <div className="section2-meditations-text-container">
         <h3>¿PARA QUÉ MEDITAMOS ?</h3>
         <p>
-          Este enfoque en un ritmo y un patrón específicos tiene la finalidad de
-          ayudar a tu mente a liberar pensamientosintrusivos y entrar en un
-          estado meditativo profundo.
+        Para qué meditamos?
+        Cuando desarrollamos el hábito de estar presentes conectamos con nuestro ser interior, fomentando el bienestar físico, mental y emocional, para alcanzar un estado de conciencia expandida, experimentando una forma de percepción más amplia y profunda que la habitual, lo que nos facilita conectar con uno mismo, con los demás y con el entorno.
         </p>
       </div>
     </section>

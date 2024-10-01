@@ -28,24 +28,16 @@ export const TalismanAnalogic2 = () => {
       <div className="section2-talismanAnalogic-internal-container right">
         <div className="section2-talismanAnalogic-internal-text-container">
           <h3>PERSONALIZA TU TALISMÁN</h3>
-          <h2>EL PODER ES TUYO</h2>
+
           <p>
-            Podrás configurar tu propio talismán seleccionando
-            <br /> cada elemento:{" "}
-            <strong>
-              modelo, material, piedra,
-              <br /> intención.
-            </strong>
-            <br />
-            Las piedras que empleamos son auténticas y están
-            <br />
-            meticulosamente talladas a mano, lo que significa
-            <br /> que{" "}
-            <strong>
-              cada talismán será verdaderamente único,
-              <br /> igual que tú.
-            </strong>
+            Puedes configurar tu propio talismán seleccionando cada elemento:{" "}
+            <strong>modelo, metal, piedra, colgante e intención.</strong>
           </p>
+          <p> Las piedras que empleamos son auténticas y están meticulosamente
+            talladas a mano, lo que significa que{" "}
+            <strong>
+              cada talismán será verdaderamente único, igual que tú.
+            </strong></p>
           <div className="button-wrapper">
             <ButtonArrowRight {...buttonRightInfo} />
           </div>

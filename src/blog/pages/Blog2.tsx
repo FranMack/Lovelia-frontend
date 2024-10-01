@@ -28,9 +28,7 @@ const infoTemplate2: TemplateBlogOptions = {
 export const Blog2 = () => {
   return (
     <section className="section2-blog-container">
-      <h2>
-        "I am still learning to be a jewelry designer, but I AM a story teller"
-      </h2>
+      
       <TemplateBlog {...infoTemplate} />
       <TemplateBlog {...infoTemplate2} />
     </section>

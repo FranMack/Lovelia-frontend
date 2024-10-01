@@ -20,7 +20,7 @@ export const Home6 = () => {
             <p>
               Somos un espacio de vanguardia<br/>donde <strong>la tecnología y los saberes<br/>
               ancestrales están al servicio de tu<br/> propósito.</strong><br/> Te brindamos
-              herramientas,<br/> experiencias y contenido para que<br/> puedas co-crear tu
+              herramientas,<br/> experiencias y contenido para que<br/> puedas cocrear tu
               propia realidad,<br/> validando el poder de la intención, la<br/> energía y
               tu potencial.<br/> 
               <br/>

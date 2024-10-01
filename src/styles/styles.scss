@@ -24,6 +24,7 @@
 @import "../ui/styles/mobileMenu";
 @import "../ui/styles/mercadoPagoCheckoutForm";
 @import "../ui/styles/popUp";
+@import "../ui/styles/dropDownMobileMenu.scss";
 @import "../talisman/styles//talismanInfo3";
 @import "../talismanDigital/styles/talismanDigital.scss";
 @import "../talismanDigital/styles/talismanDigital7.scss";
@@ -83,10 +84,14 @@ html{
 
 .efectoReveal {
     animation-name: efectoReveal;
-    animation-duration: 1s;
+    animation-duration: 1.5s;
     animation-timing-function: linear;
     animation-fill-mode: both;
     
+  }
+
+  button{
+    cursor: pointer;
   }
   
   @keyframes efectoReveal {

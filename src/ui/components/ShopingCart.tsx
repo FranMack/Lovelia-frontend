@@ -3,6 +3,8 @@ import { CloseIcon } from "../../assets/icons/icons";
 import { Button } from "./Button";
 import { ShopingCartContext } from "../../context/modalShopingCartContext";
 import { useContext, useEffect, useState } from "react";
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export interface ProductosOptions {
   id: number;
@@ -19,16 +21,11 @@ export interface ProductosOptions {
 export function ShopingCart() {
   const navigate = useNavigate();
 
-  const { toggleMenu: togleMenu } = useContext(ShopingCartContext);
+  const { toggleMenu,shopingCartItems,setShopingCartItems } = useContext(ShopingCartContext);
 
-  const [shopingCartItems, setShopingCartItems] = useState<ProductosOptions[]>(
-    []
-  );
+ 
 
-  useEffect(() => {
-    const shopingCartJSON = localStorage.getItem("shopingCart") || "[]";
-    setShopingCartItems(JSON.parse(shopingCartJSON));
-  }, []);
+
 
   const totalPrice = () => {
     return shopingCartItems.reduce((acc, item) => acc + item.price, 0);
@@ -47,9 +44,9 @@ export function ShopingCart() {
   const linkToCheckOut = () => {
     if (shopingCartItems.length > 0) {
       navigate("checkout/store");
-      togleMenu();
+      toggleMenu();
     } else {
-      alert("No hay productos en el carrito de compra");
+      toast.warning("No hay productos en el carrito de compra");
       return;
     }
   };
@@ -62,7 +59,7 @@ export function ShopingCart() {
             Carrito de compras
             {shopingCartItems.length > 0 && ` (${shopingCartItems.length})`}
           </h4>
-          <CloseIcon onClick={togleMenu} />
+          <CloseIcon onClick={toggleMenu} />
         </div>
       </div>
 
@@ -116,7 +113,7 @@ export function ShopingCart() {
         </div>
         <Button onClick={linkToCheckOut} text="CONTINUAR AL CHECKOUT" />
         <div className="auxiliar-button-container">
-          <Button onClick={togleMenu} text="SEGUIR COMPRANDO" />
+          <Button onClick={toggleMenu} text="SEGUIR COMPRANDO" />
         </div>
 
         <div className="shoping-cart-button-help-container">

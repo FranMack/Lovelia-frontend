@@ -28,7 +28,7 @@ export const Store3 = () => {
         <h2>
   REGALA UN TALISMÁN
   </h2>
-  <h3>Analógico o digital</h3>
+  
         </div>
   
   
@@ -38,9 +38,7 @@ export const Store3 = () => {
   </p>
   
   
-  <div className="button-wrapper">
-  <ButtonArrowRight2 {...buttonRightInfo}/>
-  </div>
+
   </div>
 </div>
 </Template1>

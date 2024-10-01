@@ -25,6 +25,16 @@ export const TalismanAnalogic3 = () => {
               setButtonPosition("MODELOS");
             }}
           />
+             <ButtonTransparent
+            color={buttonPosition === "METAL" ? "#662A80" : ""}
+            backgroundColor={
+              buttonPosition === "METAL" ? "#ECEA60" : ""
+            }
+            text="METAL"
+            onClick={() => {
+              setButtonPosition("METAL");
+            }}
+          />
           <ButtonTransparent
             color={buttonPosition === "PIEDRAS" ? "#662A80" : ""}
             backgroundColor={buttonPosition === "PIEDRAS" ? "#ECEA60" : ""}
@@ -41,25 +51,17 @@ export const TalismanAnalogic3 = () => {
               setButtonPosition("COLGANTE");
             }}
           />
-          <ButtonTransparent
-            color={buttonPosition === "MATERIAL DIJE" ? "#662A80" : ""}
-            backgroundColor={
-              buttonPosition === "MATERIAL DIJE" ? "#ECEA60" : ""
-            }
-            text="MATERIAL DIJE"
-            onClick={() => {
-              setButtonPosition("MATERIAL DIJE");
-            }}
-          />
+       
         </div>
       </div>
       <div className="section3-talismanAnlaogic-center-container">
         {buttonPosition === "MODELOS" && <Slider sliderInfo={infoTalismans} />}
-        {buttonPosition === "PIEDRAS" && <Slider sliderInfo={infoStones} />}
-        {buttonPosition === "COLGANTE" && <Slider sliderInfo={infoChains} />}
-        {buttonPosition === "MATERIAL DIJE" && (
+        {buttonPosition === "METAL" && (
           <Slider sliderInfo={infoMaterials} />
         )}
+        {buttonPosition === "PIEDRAS" && <Slider sliderInfo={infoStones} />}
+        {buttonPosition === "COLGANTE" && <Slider sliderInfo={infoChains} />}
+        
       </div>
     </section>
   );
