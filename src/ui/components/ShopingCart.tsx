@@ -1,10 +1,10 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { CloseIcon } from "../../assets/icons/icons";
-import { Button } from "./Button";
 import { ShopingCartContext } from "../../context/modalShopingCartContext";
-import { useContext, useEffect, useState } from "react";
-import {  toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Button } from "./Button";
 
 export interface ProductosOptions {
   id: number;
@@ -21,11 +21,8 @@ export interface ProductosOptions {
 export function ShopingCart() {
   const navigate = useNavigate();
 
-  const { toggleMenu,shopingCartItems,setShopingCartItems } = useContext(ShopingCartContext);
-
- 
-
-
+  const { toggleMenu, shopingCartItems, setShopingCartItems } =
+    useContext(ShopingCartContext);
 
   const totalPrice = () => {
     return shopingCartItems.reduce((acc, item) => acc + item.price, 0);
