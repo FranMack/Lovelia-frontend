@@ -91,9 +91,9 @@ export function BuyDigitalTalisman() {
         style={{ opacity: popUp ? "0.4" : "1" }}
       >
         <div className="buyDigitalTalisman-internal-center-container">
-          <h2>Inicio /Tienda /Talisman Digital</h2>
+          <h2>Inicio /Tienda /Talismán Digital</h2>
 
-          <h3>Talisman Digital</h3>
+          <h3>Talismán Digital</h3>
           <h5>{`$${precio}`}</h5>
 
           <h6>Descripción y detalles</h6>

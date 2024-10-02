@@ -61,8 +61,8 @@ const sections = [
     path: "",
     items: [
       { title: "Colección", path: "tienda" },
-      { title: "Talisman Digital", path: "buy-digital" },
-      { title: "Talisman Analógico", path: "buy-analogic" },
+      { title: "Talismán Digital", path: "buy-digital" },
+      { title: "Talismán Analógico", path: "buy-analogic" },
     ],
   },
 

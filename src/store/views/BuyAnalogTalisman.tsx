@@ -125,7 +125,7 @@ export function BuyAnalogTalisman() {
       const shopingCart = JSON.parse(shopingCartJSON);
       const shopingCartNewItem = {
         id: Math.round(Math.random() * 10000000),
-        product: "Talisman analógico",
+        product: "Talismán analógico",
         model: optionModel,
         material: optionMaterial,
         rock: optionRock,
@@ -203,9 +203,9 @@ export function BuyAnalogTalisman() {
           className="custonTalisman-internal-center-container"
           style={{ opacity: dropdownIntensiones.openModal ? "0.5" : "1" }}
         >
-          <h2>Inicio /Tienda /Talisman analógico</h2>
+          <h2>Inicio /Tienda /Talismán analógico</h2>
 
-          <h3>Talisman Analógico</h3>
+          <h3>Talismán Analógico</h3>
           <h5>
             ${(priceModel + priceMaterial + priceRock + priceChain).toFixed(2)}
           </h5>

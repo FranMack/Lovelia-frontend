@@ -40,27 +40,12 @@ export const TalismanInfo3 = () => {
           <br />
 
           <p>
-            El talisman digital es un <strong>espacio virtual</strong>, es una
-             expresion de tu ADN energetico, es un sonido, un mantra,
-             es <strong>recordar tu propósito,</strong> enfocarte, es una herramienta
-           para conectarte, es <strong>saber que puedes.</strong>
+          El talismán digital es un <strong>espacio virtual</strong>, es una expresión de tu ADN energético, es un sonido, un mantra, es <strong>recordar tu propósito</strong>, enfocarte, es una herramienta para <strong>conectarte</strong>, es <strong>saber que puedes</strong>.
           </p>
           <p>
-            Combinando tecnología y saberes ancestrales
-             generamos un <strong>espacio de meditación visual</strong>,
-             <strong>auditiva y kinestésica,</strong> que te posibilita
-            <strong>volver a tu
-             centro</strong> siempre que lo desees, mediante
-             <strong>una representación 3D de tu ADN energético.</strong>
-            
-            El talismán digital te conecta con{" "}
-            <strong>
-              tu intención personal
-               y con las intenciones de Lovelia, </strong>{" "}
-            para que puedas
-             enfocar tu energía y conectar con{" "}
-            <strong>tu potencial infinito.</strong>
+          Combinando tecnología y saberes ancestrales generamos un <strong>espacio de meditación visual, auditiva y kinestésica</strong>, que te posibilita <strong>volver a tu centro</strong> siempre que lo desees, mediante una <strong>representación 3D de tu ADN energético.</strong>
           </p>
+          <p>El talismán digital te conecta con <strong>tu intención personal y con las intenciones de Lovelia</strong>, para que puedas enfocar tu energía y conectar con tu <strong>potencial infinito</strong>.</p>
           <div className="button-wrapper"></div>
           <ButtonArrowRight2 {...buttonRightInfo} />
         </div>

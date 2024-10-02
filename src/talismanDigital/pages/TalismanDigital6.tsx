@@ -49,7 +49,7 @@ personas.
           <span>LA ENERGÍA DE LOS MAYAS </span><br/>
           El Kin Maya es una parte integral del calendario maya, y se relaciona
 con ciertas cualidades, emociones y energías que influyen en la vida de
-las personas según el dia de su nacimiento. Es una herramienta que
+las personas según el día de su nacimiento. Es una herramienta que
 busca conectar a los individuos con el cosmos y su propósito en la vida.
           </p>
           

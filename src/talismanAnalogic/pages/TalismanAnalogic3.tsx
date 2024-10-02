@@ -7,6 +7,7 @@ import {
   infoChains,
   infoMaterials,
 } from "../assets";
+import { infoIntenciones } from "../../intentions/assets/infoIntentions";
 import background from "../assets/talisman_analog_options.png";
 
 export const TalismanAnalogic3 = () => {
@@ -51,6 +52,15 @@ export const TalismanAnalogic3 = () => {
               setButtonPosition("COLGANTE");
             }}
           />
+
+<ButtonTransparent
+            color={buttonPosition === "INTENCIONES" ? "#662A80" : ""}
+            backgroundColor={buttonPosition === "INTENCIONES" ? "#ECEA60" : ""}
+            text="INTENCIONES"
+            onClick={() => {
+              setButtonPosition("INTENCIONES");
+            }}
+          />
        
         </div>
       </div>
@@ -61,6 +71,7 @@ export const TalismanAnalogic3 = () => {
         )}
         {buttonPosition === "PIEDRAS" && <Slider sliderInfo={infoStones} />}
         {buttonPosition === "COLGANTE" && <Slider sliderInfo={infoChains} />}
+        {buttonPosition === "INTENCIONES" && <Slider sliderInfo={infoIntenciones} />}
         
       </div>
     </section>

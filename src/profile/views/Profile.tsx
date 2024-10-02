@@ -54,35 +54,35 @@ type ShopingHistory = ShopingHistoryItem[];
 
 const datosCompras: DatosCompra[] = [
   {
-    producto: "Talisman Aura",
+    producto: "Talismán Aura",
     numPedido: "LA1545",
     fecha: "12/05/2024",
     precio: 1000.0,
     image: [talismanDigital, talismanDigital, talismanDigital],
   },
   {
-    producto: "Talisman Aura",
+    producto: "Talismán Aura",
     numPedido: "LA1545",
     fecha: "12/05/2024",
     precio: 1000.0,
     image: [talismanDigital],
   },
   {
-    producto: "Talisman Aura",
+    producto: "Talismán Aura",
     numPedido: "LA1545",
     fecha: "12/05/2024",
     precio: 1000.0,
     image: [talismanDigital],
   },
   {
-    producto: "Talisman Aura",
+    producto: "Talismán Aura",
     numPedido: "LA1545",
     fecha: "12/05/2024",
     precio: 1000.0,
     image: [talismanDigital],
   },
   {
-    producto: "Talisman Aura",
+    producto: "Talismán Aura",
     numPedido: "LA1545",
     fecha: "12/05/2024",
     precio: 1000.0,

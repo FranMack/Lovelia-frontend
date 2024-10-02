@@ -58,8 +58,8 @@ export function Navbar() {
       title: "Talismán",
       path: ["talisman-landing", "talisman-digital", "talisman-analogico"],
       buttonOptions: [
-        { buttonName: "Talisman Digital", path: "talisman-digital" },
-        { buttonName: "Talisman Analógico", path: "talisman-analogico" },
+        { buttonName: "Talismán Digital", path: "talisman-digital" },
+        { buttonName: "Talismán Analógico", path: "talisman-analogico" },
       ],
     },
     {
@@ -71,7 +71,6 @@ export function Navbar() {
       title: "Intenciones",
       path: ["intenciones"],
       buttonOptions: [
-        { buttonName: "Sabiduría", path: "intenciones/1" },
         { buttonName: "Amor incondicional", path: "intenciones/2" },
         { buttonName: "Abundancia", path: "intenciones/3" },
         { buttonName: "Aquí y ahora", path: "intenciones/4" },
@@ -79,6 +78,7 @@ export function Navbar() {
         { buttonName: "Coraje", path: "intenciones/6" },
         { buttonName: "Yo verdadero", path: "intenciones/7" },
         { buttonName: "Gratitud", path: "intenciones/8" },
+        { buttonName: "Sabiduría de la Incertidumbre", path: "intenciones/1" },
       ],
     },
     {
@@ -89,8 +89,8 @@ export function Navbar() {
         "comprar-talisman-analogico",
       ],
       buttonOptions: [
-        { buttonName: "Talisman Digital", path: "buy-digital" },
-        { buttonName: "Talisman Analógico", path: "buy-analogic" },
+        { buttonName: "Talismán Digital", path: "buy-digital" },
+        { buttonName: "Talismán Analógico", path: "buy-analogic" },
       ],
     },
     {

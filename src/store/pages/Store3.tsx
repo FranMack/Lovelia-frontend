@@ -22,10 +22,10 @@ export const Store3 = () => {
           </div>
 
           <p>
-            Cuando regalas un talismán, brindas a<br /> alguien querido{" "}
+            Cuando regalas un talismán, brindas a alguien querido{" "}
             <strong>
               la oportunidad de
-              <br /> conectar con su deseo o propósito.
+               conectar con su deseo o propósito.
             </strong>
           </p>
         </div>

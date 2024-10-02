@@ -1,8 +1,8 @@
 import { CloseIcon } from "../../assets/icons/icons";
 import { Button } from "./Button";
 
-interface PopUpOptions {
-  linkTo: () => void;
+export interface PopUpOptions {
+  linkTo?: () => void;
   closePopUp: () => void;
   text:string,
   buttonText:string
@@ -10,7 +10,7 @@ interface PopUpOptions {
 
 export const PopUp = ({ linkTo, closePopUp,text,buttonText }: PopUpOptions) => {
   return (
-    <div className="popUpp-container">
+    <div className="popUpp-container efectoReveal">
       <div className="icon-container">
         <CloseIcon onClick={closePopUp} />
       </div>

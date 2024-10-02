@@ -30,7 +30,7 @@ export const TalismanDigital2 = () => {
             {" "}
             Esta meditación tiene como propósito principal
             <strong>
-            {" "}inducir la concentración y la relajación profunda,
+            {" "}inducir a la concentración y a la relajación profunda,
             </strong>{" "}
             ayudando a tu mente a{" "}
             <strong>

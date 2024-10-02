@@ -4,7 +4,7 @@ import background from "../assets/intensiones_portada1.png"
 
 const frontPageInfo: FrontPage2Options = {
     image: background,
-    title:"INTENCIONES DIGITAL",
+    title:"INTENCIONES LOVELIA",
     secundaryTitle:"",
     color:"#FFFF"
   

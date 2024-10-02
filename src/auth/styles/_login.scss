@@ -11,6 +11,31 @@
 
 }
 
+.login-message-container{
+  text-align: center;
+  width: 35vw;
+  height: 35vh;
+  background-color: $color_background1;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  row-gap: 3vh;
+  font-family: $font_titles;
+  padding: 3%;
+  h4{
+    font-size: 2.5rem;
+    color:$color_primary;
+    
+  }
+  p{
+    font-size: 1.6rem;
+  }
+  button{
+    width: 40%;
+  }
+}
+
 .login-form {
   
   background-color: $color_darkPurple;
@@ -222,6 +247,26 @@ textarea{
 
 @media screen and (max-width: 678px) {
 
+  .login-message-container{
+    margin: 0 auto;
+
+    width: 90%;
+    height: 35vh;
+    background-color: $color_background1;
+    
+    row-gap: 3vh;
+    h4{
+      font-size: 2.2rem;
+      
+    }
+    p{
+      font-size: 1.7rem;
+    }
+    button{
+      width: 60%;
+    }
+  }
+
   .login-form {
   
 
@@ -233,6 +278,7 @@ textarea{
   padding-top: 10vh;
   padding-bottom: 10vh;
   color:$color_text1;
+  
 
   h3 {
     margin-top: 4vh;

@@ -142,11 +142,9 @@ export function Contact() {
             <img src={logo} alt="logo lovelia" />
             <p>a tu servicio</p>
           </div>
+          <h2>Contactanos:</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore
-            obcaecati, ipsa fugit possimus harum explicabo doloremque
-            consequatur corrupti ut doloribus! Vitae ad cupiditate a distinctio
-            vero et corrupti corporis est.
+          Si tienes alguna duda, comentario o sugencia, escríbenos a través de este formulario de contacto.
           </p>
         </div>
       </div>

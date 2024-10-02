@@ -121,17 +121,26 @@ align-items: center;
     
   }
 
-  .acountInfo-internal-left-container {
-    width: 90%;
-    height: fit-content;
-    background-color: $color_background1;
-    display: flex;
+  .acountInfo-internal-container{
+    width: 100%;
+    height: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     row-gap: 2vh;
+  
+    
+      }
+
+  .acountInfo-internal-left-container {
+    width: 90%;
+    height: 100%;
+    background-color: $color_background1;
+    display: flex;
     padding-top: 3vh;
     padding-bottom: 3vh;
+   
+  
     button {
       width: 80%;
       border: none;

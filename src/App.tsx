@@ -36,6 +36,8 @@ import { SiteTerms,PrivacyTerms,ChangesAndWarranty,MainteneneTalisman } from "./
 import { PrivateRoute, PublicRoute } from "./router";
 import { MobileMenuContext } from "./context/mobileMenuContext.tsx";
 import { WelcomeDigital } from "./checkout/views/WelcomeDigital.tsx";
+import { WelcomeRegister } from "./checkout/views/WelcomeRegister.tsx";
+import { ValidateEmailTokenExpired } from "./checkout/views/ValidateEmailTokenExpired.tsx";
 
 function App() {
   const { shopingCartOpen,setShopingCartItems } = useContext(ShopingCartContext);
@@ -125,7 +127,10 @@ function App() {
         <Route path="/politica-de-privacidad" element={<PrivacyTerms />} />
         <Route path="/cambios-y-garantias" element={<ChangesAndWarranty />} />
         <Route path="/mantenimiento-talismanes" element={<MainteneneTalisman />} />
+        <Route path="/tiempo-validacion-expiro" element={<ValidateEmailTokenExpired />} />
 
+
+        <Route path="/correo-validado" element={<WelcomeRegister />} />
         {/* <Route path="/mail" element={ <MailTemplate1/>}/>*/}
 
         {/*RUTAs PUBLICAS*/}

@@ -43,8 +43,8 @@ export const TalismanInfo4 = () => {
           <p>
             Los talismanes analógicos Lovelia son una
         
-            <strong>manifestación física de nuestras intenciones,</strong> un
-            <strong>reflejo de nuestro poder interior</strong> y de la
+            {" "}<strong>manifestación física de nuestras intenciones,</strong> un
+            {" "}<strong>reflejo de nuestro poder interior</strong> y de la
             maravillosa
             capacidad que todos poseemos para{" "}
             <strong>

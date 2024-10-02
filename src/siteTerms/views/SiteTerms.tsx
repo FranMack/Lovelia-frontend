@@ -25,7 +25,7 @@ export function SiteTerms() {
 
   const navigate=useNavigate()
   const linkToPrivacyTerms=()=>{
-    navigate("politica-de-privacidad")
+    navigate("/politica-de-privacidad")
   }
 
   return (
