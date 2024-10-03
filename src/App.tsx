@@ -32,15 +32,22 @@ import { CheckOutAnalogic, CheckOutDigital } from "./checkout/views/";
 import { ToastContainer } from "react-toastify";
 import { ShopingCart } from "./ui/components/ShopingCart.tsx";
 import { MyTalisman } from "./myTalisman/views/MyTalisman.tsx";
-import { SiteTerms,PrivacyTerms,ChangesAndWarranty,MainteneneTalisman } from "./siteTerms/views";
+import {
+  SiteTerms,
+  PrivacyTerms,
+  ChangesAndWarranty,
+  MainteneneTalisman,
+} from "./siteTerms/views";
 import { PrivateRoute, PublicRoute } from "./router";
 import { MobileMenuContext } from "./context/mobileMenuContext.tsx";
-import { WelcomeDigital } from "./checkout/views/WelcomeDigital.tsx";
-import { WelcomeRegister } from "./checkout/views/WelcomeRegister.tsx";
-import { ValidateEmailTokenExpired } from "./checkout/views/ValidateEmailTokenExpired.tsx";
+import { WelcomeDigital } from "./wellcome/views/WelcomeDigital.tsx";
+import { WelcomeRegister } from "./wellcome/views/WelcomeRegister.tsx";
+import { ValidateEmailTokenExpired } from "./wellcome/views/ValidateEmailTokenExpired.tsx";
+import { BlogNote } from "./blog/views/BlogNote.tsx";
 
 function App() {
-  const { shopingCartOpen,setShopingCartItems } = useContext(ShopingCartContext);
+  const { shopingCartOpen, setShopingCartItems } =
+    useContext(ShopingCartContext);
   const { /*email,*/ setEmail, setId, setName, setLastname, setSuscription } =
     useContext(UserContext);
 
@@ -75,11 +82,9 @@ function App() {
 
   const { menuOpen, toggleMenu, menuRef } = useContext(MobileMenuContext);
 
-
-  
   const handleClickOutside = (event: MouseEvent) => {
     const target = event.target as HTMLElement; // Convertir event.target a HTMLElement
-    
+
     if (
       menuOpen &&
       menuRef!.current &&
@@ -91,19 +96,19 @@ function App() {
   };
 
   useEffect(() => {
-   if(menuOpen){
-    document.addEventListener("click", handleClickOutside);
+    if (menuOpen) {
+      document.addEventListener("click", handleClickOutside);
 
-    return () => {
-      // Eliminar el event listener cuando el componente se desmontefS
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }
+      return () => {
+        // Eliminar el event listener cuando el componente se desmontefS
+        document.removeEventListener("click", handleClickOutside);
+      };
+    }
   }, [menuOpen]);
 
   return (
     <>
-      <ToastContainer style={{fontSize:"1.6rem"}}/>
+      <ToastContainer style={{ fontSize: "1.6rem" }} />
       {location !== "/myTalisman" && windowSize >= 1024 && <Navbar />}
       {location !== "/myTalisman" && windowSize < 1024 && <MobileNavbar />}
       {shopingCartOpen && <ShopingCart />}
@@ -126,12 +131,23 @@ function App() {
         <Route path="/terminos-y-condiciones" element={<SiteTerms />} />
         <Route path="/politica-de-privacidad" element={<PrivacyTerms />} />
         <Route path="/cambios-y-garantias" element={<ChangesAndWarranty />} />
-        <Route path="/mantenimiento-talismanes" element={<MainteneneTalisman />} />
-        <Route path="/tiempo-validacion-expiro" element={<ValidateEmailTokenExpired />} />
-
+        <Route
+          path="/mantenimiento-talismanes"
+          element={<MainteneneTalisman />}
+        />
+        <Route
+          path="/tiempo-validacion-expiro"
+          element={<ValidateEmailTokenExpired />}
+        />
 
         <Route path="/correo-validado" element={<WelcomeRegister />} />
         {/* <Route path="/mail" element={ <MailTemplate1/>}/>*/}
+
+
+
+
+        <Route path="/blog/nota/:id" element={<BlogNote />} />
+
 
         {/*RUTAs PUBLICAS*/}
         <Route

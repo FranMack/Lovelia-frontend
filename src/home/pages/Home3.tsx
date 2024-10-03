@@ -20,7 +20,7 @@ export const Home3 = () => {
 const buttonRightInfo={
     text:"SEGUIR LEYENDO",
     color:"#6f3289",
-    onClick:()=>{navigate("/intenciones")}
+    onClick:()=>{navigate("/blog/nota/1")}
 }
 
   return (

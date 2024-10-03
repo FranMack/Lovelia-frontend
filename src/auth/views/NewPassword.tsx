@@ -193,7 +193,7 @@ export function NewPassword() {
           </div>
           {confirmPasswordError && (
             <span className="input-helpers-error">
-              {"Wrong confirm password"}
+              {"La confirmación de contraseña es incorrecta"}
             </span>
           )}
 

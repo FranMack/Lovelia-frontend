@@ -27,7 +27,7 @@ export function Register() {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  const [openMessage, setOpenMessage] = useState<boolean>(true);
+  const [openMessage, setOpenMessage] = useState<boolean>(false);
   const handleMessage = () => {
     setOpenMessage(!openMessage);
   };
@@ -286,7 +286,7 @@ export function Register() {
           </div>
           {confirmPasswordError && (
             <span className="input-helpers-error">
-              {"Wrong confirm password"}
+              {"La confirmación de contraseña es incorrecta"}
             </span>
           )}
           <div className="login-button-container">
