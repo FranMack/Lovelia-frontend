@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ButtonArrowRight } from "../../ui/components/ButtonArrowRight";
 import { PlayIcon } from "../../assets/icons/icons";
 
-export function IntentionInfo() {
+ function IntentionInfo() {
   window.scrollTo(0, 0);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -70,3 +70,5 @@ export function IntentionInfo() {
     </>
   );
 }
+
+export default IntentionInfo

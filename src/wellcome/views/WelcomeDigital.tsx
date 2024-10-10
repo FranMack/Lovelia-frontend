@@ -4,7 +4,7 @@ import lovelia from "../../contact/assets/logoSimple.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-export const WelcomeDigital = () => {
+ const WelcomeDigital = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -30,3 +30,5 @@ export const WelcomeDigital = () => {
     </section>
   );
 };
+
+export default WelcomeDigital

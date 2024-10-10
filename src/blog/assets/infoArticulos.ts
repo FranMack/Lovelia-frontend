@@ -1,7 +1,7 @@
-import articulo1 from "./articulo1.png"
-import articulo2 from "./articulo2.png"
-import articulo3 from "./articulo3.png"
-import articulo4 from "./articulo4.png"
+import articulo1 from "./articulo1.webp"
+import articulo2 from "./articulo2.webp"
+import articulo3 from "./articulo3.webp"
+import articulo4 from "./articulo4.webp"
 
 interface ArticlesBlog{
     tittle:string,

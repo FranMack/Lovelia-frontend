@@ -1,8 +1,8 @@
-import imagen1 from "../assets/talisman-fisico.png";
+import imagen1 from "../assets/talisman-fisico.webp";
 import {
   default as imagen2,
   default as imagen4,
-} from "../assets/talisman-fisico2.png";
+} from "../assets/talisman-fisico2.webp";
 
 export interface ejemploTalismanAnalogicosOptions {
   title: string;

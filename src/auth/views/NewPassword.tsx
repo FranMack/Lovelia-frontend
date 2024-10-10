@@ -9,7 +9,7 @@ import { useForm } from "../../hooks/useForm";
 import { AuthPopUp } from "../components/AuthPopUp";
 import { BackgroundVideo } from "../../ui/components";
 
-export function NewPassword() {
+ function NewPassword() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -209,3 +209,5 @@ export function NewPassword() {
     </section>
   );
 }
+
+export default NewPassword

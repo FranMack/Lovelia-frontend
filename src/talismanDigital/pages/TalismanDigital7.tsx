@@ -1,4 +1,4 @@
-import timer from "../assets/talisman_digital_timer.png";
+import timer from "../assets/talisman_digital_timer.webp";
 import { Template1 } from "../../ui/pages/Template1";
 import { Template1Options } from "../../ui/pages/Template1";
 import { Position } from "../../ui/pages/Template1";

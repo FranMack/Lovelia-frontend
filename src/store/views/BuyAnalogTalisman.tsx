@@ -62,14 +62,29 @@ const intencionOptions: DropdownMenuOptions = {
   ],
 };
 
-export function BuyAnalogTalisman() {
+ function BuyAnalogTalisman() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   const navigate = useNavigate();
+
+  const{shopingCartItems}=useContext(ShopingCartContext)
+
   const linkToCheckOut = () => {
-    navigate("/checkout/store");
+    if (shopingCartItems.length > 0) {
+      navigate("/checkout/store");
+  
+    } else {
+      toast.warning("No hay productos en el carrito de compra");
+      return;
+    }
   };
+
+
+
+  
+
+
   const { toggleMenu, setShopingCartItems } = useContext(ShopingCartContext);
 
   const [index, setIndex] = useState<number>(0);
@@ -232,3 +247,5 @@ export function BuyAnalogTalisman() {
     </section>
   );
 }
+
+export default BuyAnalogTalisman;

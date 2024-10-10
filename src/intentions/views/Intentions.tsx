@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Intentions1,Intentions2,Intentions3 } from "../page"
 
-export const Intentions = () => {
+ const Intentions = () => {
   useEffect(()=>{ window.scrollTo(0, 0);},[])
   return (
     <main>
@@ -12,3 +12,5 @@ export const Intentions = () => {
     </main>
   )
 }
+
+export default Intentions

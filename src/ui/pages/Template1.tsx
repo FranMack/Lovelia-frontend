@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { LazyImage } from "../components";
 
 export enum Position {
   Left = "left",
@@ -33,7 +34,7 @@ export const Template1 = ({
         }
       >
         <div className="template1-internal-container">
-          <img src={image} alt="intention-image" />
+          <LazyImage src={image} alt="intention-image" />
         </div>
 
         {children}

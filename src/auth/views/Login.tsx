@@ -9,7 +9,7 @@ import { UserContext } from "../../context/userContext";
 import { LoginValidations } from "../helpers/loginValidations";
 import { useForm } from "../../hooks/useForm";
 
-export function Login() {
+ function Login() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -205,3 +205,5 @@ export function Login() {
     </section>
   );
 }
+
+export default Login;

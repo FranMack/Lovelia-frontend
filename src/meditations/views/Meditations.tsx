@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { Meditations1,Meditations2,Meditations3 } from "../pages"
 
-export const Meditations = () => {
+ const Meditations = () => {
   useEffect(()=>{ window.scrollTo(0, 0);},[])
   return (
    <main>
@@ -12,3 +12,5 @@ export const Meditations = () => {
    </main>
   )
 }
+
+export default Meditations

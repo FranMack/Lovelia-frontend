@@ -71,6 +71,7 @@
             backdrop-filter: blur(5.699999809265137px);
             svg{
                 height: 52%;
+
             }
         }
         
@@ -127,6 +128,9 @@
 
         svg{
             height: 55%;
+            path{
+                fill:#F2F2F2
+            }
         }
 
         .soundButton-motion{

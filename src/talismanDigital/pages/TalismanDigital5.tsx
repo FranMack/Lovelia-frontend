@@ -1,4 +1,4 @@
-import meditaciones from "../assets/talisman_digital_meditaciones.png"
+import meditaciones from "../assets/talisman_digital_meditaciones.webp"
 import { Template1 } from "../../ui/pages/Template1";
 import { Template1Options } from "../../ui/pages/Template1";
 import { Position } from "../../ui/pages/Template1";

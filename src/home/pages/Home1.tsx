@@ -1,5 +1,5 @@
-import lovelia from "../assets/home_portada.png";
-import background from "../assets/home_background.png"
+import lovelia from "../assets/home_portada.webp";
+import background from "../../../public/home_background.webp"
 
 
 export const Home1 = () => {

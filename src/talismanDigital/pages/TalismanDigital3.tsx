@@ -1,4 +1,4 @@
-import sonido from "../assets/talisman_digital_sonidopng.png";
+import sonido from "../assets/talisman_digital_sonidopng.webp";
 import { Template1 } from "../../ui/pages/Template1";
 import { Template1Options } from "../../ui/pages/Template1";
 import { Position } from "../../ui/pages/Template1";

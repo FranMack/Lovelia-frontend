@@ -1,6 +1,6 @@
 import { FrontPage2 } from '../../ui/pages/FrontPage2'
 import { FrontPage2Options } from '../../ui/pages/FrontPage2';
-import background from "../assets/talisman_analog_portada.png"
+import background from "../assets/talisman_analog_portada.webp"
 
 const frontPageInfo: FrontPage2Options = {
     image: background,

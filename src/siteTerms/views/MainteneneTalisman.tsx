@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { BackgroundVideo } from "../../ui/components";
 
-export function MainteneneTalisman() {
+ function MainteneneTalisman() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -61,3 +61,5 @@ export function MainteneneTalisman() {
     </section>
   );
 }
+
+export default MainteneneTalisman;

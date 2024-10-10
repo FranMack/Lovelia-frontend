@@ -1,16 +1,17 @@
-import imagen1 from "./imagen-intensiones1.png";
-import imagen2 from "./imagen-intensiones2.png";
-import imagen3 from "./imagen-intensiones3.png";
-import imagen4 from "./imagen-intensiones4.png";
-import imagen5 from "./imagen-intensiones5.png";
-import imagen6 from "./imagen-intensiones6.png";
-import imagen7 from "./imagen-intensiones7.png";
-import imagen8 from "./imagen-intensiones8.png";
+import imagen1 from "./imagen-intensiones1.webp";
+import imagen2 from "./imagen-intensiones2.webp";
+import imagen3 from "./imagen-intensiones3.webp";
+import imagen4 from "./imagen-intensiones4.webp";
+import imagen5 from "./imagen-intensiones5.webp";
+import imagen6 from "./imagen-intensiones6.webp";
+import imagen7 from "./imagen-intensiones7.webp";
+import imagen8 from "./imagen-intensiones8.webp";
 
 interface InfoIntenciones {
   id: number;
   image: string;
   title: string;
+  text:string
   secundaryTitle: string;
   description: string[];
   activation: string;
@@ -21,6 +22,7 @@ export const infoIntenciones: InfoIntenciones[] = [
     id: 1,
     image: imagen1,
     title: "Sabiduría de la incertidumbre",
+    text:"La intuición es la guía del Alma.",
     secundaryTitle: "Sapientia Incerti",
     description: [
       "“La intuición es la capacidad humana de llegar a la respuesta correcta con datos insuficientes”. — Issac Asimov",
@@ -42,6 +44,7 @@ export const infoIntenciones: InfoIntenciones[] = [
     id: 2,
     image: imagen2,
     title: "Amor Incondicional",
+    text:"Todos somos UNO.",
     secundaryTitle: "Amor Sine Conditione",
     description: [
       "El amor es un estado de Ser, tu amor no está afuera, está en lo profundo de tí, nunca puedes perderlo, no puede dejarte, no depende de otro cuerpo, de otra forma externa. — Eckhart Tolle",
@@ -64,6 +67,7 @@ export const infoIntenciones: InfoIntenciones[] = [
     id: 3,
     image: imagen3,
     title: "Abundancia",
+    text:"Somos el Universo.",
     secundaryTitle: "Abundantia",
     description: [
       "“Todo lo que somos es el resultado de lo que hemos pensado”. —Buda”",
@@ -87,6 +91,7 @@ export const infoIntenciones: InfoIntenciones[] = [
     id: 4,
     image: imagen4,
     title: "Aquí y Ahora",
+    text:"Lo único real es el Presente.",
     secundaryTitle: "Hic et Nunc",
     description: [
       "“En el momento que atendemos algo, ese algo es real”. — William James",
@@ -106,6 +111,7 @@ export const infoIntenciones: InfoIntenciones[] = [
     id: 5,
     image: imagen5,
     title: "Potencial Infinito",
+    text:"Somos Seres Energía con el poder de cocrear nuestra realidad.",
     secundaryTitle: "Potentia infinita",
     description: [
       "“La energía no se crea ni se destruye, solo se transforma”.  —Antonine Lavoisier",
@@ -113,18 +119,19 @@ export const infoIntenciones: InfoIntenciones[] = [
       "Todo lo que hemos logrado en nuestra vida, de la cosa más grande a la más pequeña, fué primero un pensamiento o una intención. Pero como nuestra mente no distingue la experiencia real de lo que imagina que puede ocurrir, nadie que no pueda creer en su potencial hará algo para manifestarlo.",
       "Cuando tomamos un momento para contemplar nuestra potencia se produce una química interna en nuestra mente, en nuestro cuerpo y en nuestra emoción, haciendo que nuestras acciones y decisiones vayan dirigidas hacia eso que tanto queremos lograr.",
       "Una vez allí, con el corazón, la mente y el cuerpo sincronizados, ocurre la magia de la neuroplasticidad, la acción correcta retroalimenta esa conexión neuronal con cada práctica moviéndonos por el universo como si su poder se moviera a través nuestro.",
-      "Y es que con cada movimiento y pensamiento alineados pongo algo de mi en el mundo co-creándolo. Cocrear es aprender a usar nuestras facultades con una atención y una intención especial.",
+      "Y es que con cada movimiento y pensamiento alineados pongo algo de mi en el mundo cocreándolo. Cocrear es aprender a usar nuestras facultades con una atención y una intención especial.",
       "La repetición de experiencias forma patrones cerebrales y emocionales. Los pensamientos pueden convertirse en experiencias reales; por eso entrenar nuestra mente y cuerpo es esencial.",
       "Más allá de nuestro entendimiento intelectual, ahí donde la intención se alía con la práctica, se encuentra nuestra posibilidad de cambio. Y en la medida en que vamos caminando con intención hacia lo que soñamos dejando lo viejo atrás, construímos nuestro futuro posible con cada paso.",
       "Para poner en práctica la ley de potencialidad pura, puedo permitirme desear para que, con una intención clara y un objetivo en mente, pueda compromprometerme a pasar un instante en silencio, un momento con la naturaleza, un tiempo libre de la necesidad de juzgar a quien tenga atrás o adelante y decirme: “Mediante la ley de la potencialidad pura yo puedo crear lo que sea, cuando sea, donde sea”.",
       "Y entramos al campo de las infinitas posibilidades.",
     ],
-    activation: "Decreto entrar en el campo de las infinitas posibilidades. Y a través de mi potencial, co-crear la realidad que deseo para mi. Con intención y atención, declaro poner en funcionamiento el orden universal.",
+    activation: "Decreto entrar en el campo de las infinitas posibilidades. Y a través de mi potencial, cocrear la realidad que deseo para mi. Con intención y atención, declaro poner en funcionamiento el orden universal.",
   },
   {
     id: 6,
     image: imagen6,
     title: "Coraje",
+    text:"Valentía en mi corazón.",
     secundaryTitle: "Fortitudo",
     description: [
       "“No puedes nadar por nuevos horizontes, hasta que tengas el coraje de perder de vista la orilla”. — William Faulkner",
@@ -144,6 +151,7 @@ export const infoIntenciones: InfoIntenciones[] = [
     id: 7,
     image: imagen7,
     title: "Yo verdadero",
+    text:"Ser quién uno es.",
     secundaryTitle: "Ego veridicus",
     description: [
       "“El privilegio de una vida es ser quien uno es¨. — Joseph Campbell”",
@@ -166,6 +174,7 @@ export const infoIntenciones: InfoIntenciones[] = [
     id: 8,
     image: imagen8,
     title: "Gratitud",
+    text:"Aceptar la realidad con amor.",
     secundaryTitle: "Gratia",
     description: [
       "“No tengo que perseguir momentos extraordinarios para encontrar la felicidad. Está justo frente a mí si presto atención y practico la gratitud”. — Brené Brown",

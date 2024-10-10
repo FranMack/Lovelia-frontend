@@ -1,6 +1,6 @@
-import talisman1 from "./talisman1.png";
-import talisman2 from "./talisman2.png";
-import talisman3 from "./talisman3.png";
+import talisman1 from "./talisman1.webp";
+import talisman2 from "./talisman2.webp";
+import talisman3 from "./talisman3.webp";
 
 
 export const infoTalismans=[

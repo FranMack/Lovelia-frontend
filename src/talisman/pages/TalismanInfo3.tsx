@@ -1,4 +1,4 @@
-import talismanDigital from "../assets/talisman_info_td.png";
+import talismanDigital from "../assets/talisman_info_td.webp";
 import { Template1 } from "../../ui/pages/Template1";
 import { Template1Options } from "../../ui/pages/Template1";
 import { Position } from "../../ui/pages/Template1";

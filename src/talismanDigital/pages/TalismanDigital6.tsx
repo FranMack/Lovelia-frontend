@@ -1,4 +1,4 @@
-import adnEnergetico from "../assets/talisman_digital_ADN.png"
+import adnEnergetico from "../assets/talisman_digital_ADN.webp"
 import { Template1 } from "../../ui/pages/Template1";
 import { Template1Options } from "../../ui/pages/Template1";
 import { Position } from "../../ui/pages/Template1";

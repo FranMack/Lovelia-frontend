@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const AuthFrontPage = () => {
+ const AuthFrontPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -25,3 +25,5 @@ export const AuthFrontPage = () => {
     </section>
   );
 };
+
+export default AuthFrontPage;

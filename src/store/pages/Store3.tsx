@@ -3,7 +3,7 @@ import {
   Template1,
   Template1Options,
 } from "../../ui/pages/Template1";
-import gift from "../assets/tienda_regalo.png";
+import gift from "../assets/tienda_regalo.webp";
 
 const templateOptions: Template1Options = {
   image: gift,

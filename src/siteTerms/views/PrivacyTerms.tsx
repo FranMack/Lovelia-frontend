@@ -3,7 +3,7 @@ import { BackgroundVideo } from "../../ui/components";
 
 
 
-export function PrivacyTerms() {
+ function PrivacyTerms() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -197,3 +197,5 @@ export function PrivacyTerms() {
     </section>
   );
 }
+
+export default PrivacyTerms;

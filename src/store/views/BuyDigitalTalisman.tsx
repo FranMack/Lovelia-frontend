@@ -8,7 +8,7 @@ import { PopUp } from "../../ui/components/PopUp";
 
 const precio = "15,00";
 
-export function BuyDigitalTalisman() {
+ function BuyDigitalTalisman() {
   window.scrollTo(0, 0);
   const [index, setIndex] = useState<number>(0);
 
@@ -120,3 +120,5 @@ export function BuyDigitalTalisman() {
     </section>
   );
 }
+
+export default BuyDigitalTalisman;

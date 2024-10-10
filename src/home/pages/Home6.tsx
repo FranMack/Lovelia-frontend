@@ -1,4 +1,4 @@
-import proposito from "../assets/home_proposito.png";
+import proposito from "../assets/home_proposito.webp";
 import { Position, Template1 } from "../../ui/pages/Template1";
 import { Template1Options } from "../../ui/pages/Template1";
 

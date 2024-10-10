@@ -8,7 +8,7 @@ import {
   infoMaterials,
 } from "../assets";
 import { infoIntenciones } from "../../intentions/assets/infoIntentions";
-import background from "../assets/talisman_analog_options.png";
+import background from "../assets/talisman_analog_options.webp";
 
 export const TalismanAnalogic3 = () => {
   const [buttonPosition, setButtonPosition] = useState<string>("MODELOS");

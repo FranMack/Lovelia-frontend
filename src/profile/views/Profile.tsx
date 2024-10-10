@@ -90,7 +90,7 @@ const datosCompras: DatosCompra[] = [
   },
 ];
 
-export function Profile() {
+ function Profile() {
   const [buttonFocusPosition, setButttonFocusPosition] = useState("Datos de cuenta");
 
   const handleButtonFocus = (buttonName: string) => {
@@ -241,3 +241,5 @@ export function Profile() {
     </section>
   );
 }
+
+export default Profile;

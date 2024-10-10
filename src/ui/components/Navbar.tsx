@@ -1,5 +1,5 @@
-import logo from "../assets/lovelia-logo.png";
-import logoYellow from "../assets/logo-lovelia-yellow.png";
+import logo from "../assets/lovelia-logo.webp";
+import logoYellow from "../assets/logo-lovelia-yellow.webp";
 import { LoginIcon, ShopingIcon } from "../../assets/icons/icons";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -129,8 +129,8 @@ export function Navbar() {
 
   window.addEventListener("scroll", handleScroll);
 
-  const sectionWithYellowLogo = ["intenciones", "portal-usuario", "activacion"];
-
+  const sectionWithYellowLogo = ["intenciones", "portal-usuario","activacion/1"];
+console.log("xxxxxxxxxxx",location)
   return (
     <nav
       onMouseLeave={() => handleMouseLeave()}

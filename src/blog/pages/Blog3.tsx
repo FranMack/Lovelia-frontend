@@ -1,4 +1,5 @@
 import { articlesBlog } from "../assets/infoArticulos";
+import { LazyImage } from "../../ui/components";
 
 export const Blog3 = () => {
   return (
@@ -12,7 +13,7 @@ export const Blog3 = () => {
         {articlesBlog.map((articulo, i) => {
           return (
             <div className={`blog-historias-card card${i}`} key={i}>
-              <img src={articulo.image} alt={articulo.tittle} />
+              <LazyImage src={articulo.image} alt={articulo.tittle} />
 
               <h6>{articulo.author}</h6>
               <h4>{articulo.tittle}</h4>

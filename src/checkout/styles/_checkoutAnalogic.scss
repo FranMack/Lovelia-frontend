@@ -405,10 +405,10 @@ input{
 
 .checkout-card-container {
   width: 90%;
-
+  height: 20vh;
   margin: 0 auto;
   display: flex;
-  background-color: $color_background2;
+  background-color:$color_background2;
 
   .card-image-container {
     width: 30%;
@@ -442,16 +442,23 @@ input{
   align-items: start;
   justify-content: space-between;
 
-  table {
-    width: 90%;
-    text-align: center;
-    th {
-      font-size: 0.8rem;
-      font-weight: 300;
-    }
-    td {
+
+
+  > .card-td {
+    display: flex;
+    align-items: center;
+    justify-content:start;
+    width: 95%;
+strong{
+  width: 30%;
+}
+    p {
       font-size: 1.2rem;
-      font-weight: 500;
+    }
+    span {
+      font-weight: 600;
+      font-size: 2rem;
+    
     }
   }
   .card-title {

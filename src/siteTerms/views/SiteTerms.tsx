@@ -15,7 +15,7 @@ const index = [
 ];
 
 
-export function SiteTerms() {
+ function SiteTerms() {
   useEffect(()=>{window.scrollTo(0, 0);},[])
   
 
@@ -228,3 +228,5 @@ export function SiteTerms() {
     </section>
   );
 }
+
+export default SiteTerms;

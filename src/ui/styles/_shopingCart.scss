@@ -2,35 +2,34 @@
 
 .shoping-cart-conteiner {
   position: fixed;
-  width: 28vw;
+  width: 31vw;
   height: 100vh;
   background-color: $color_background1;
   z-index: 1000;
   right: 0;
   /* Estilo para la barra de desplazamiento */
-::-webkit-scrollbar {
-  width: 10px; /* Ancho de la barra de desplazamiento */
-  
-}
+  ::-webkit-scrollbar {
+    width: 10px; /* Ancho de la barra de desplazamiento */
+  }
 
-/* Estilo para el thumb (el botón que puedes arrastrar) de la barra de desplazamiento */
-::-webkit-scrollbar-thumb {
-  display: none;
-  background-color:$color_primary; /* Cambia "#color_primary" al color deseado */
-  border-radius: 5px; /* Radio de borde del dedo de la barra de desplazamiento */
-  height: 10px;
-}
+  /* Estilo para el thumb (el botón que puedes arrastrar) de la barra de desplazamiento */
+  ::-webkit-scrollbar-thumb {
+    display: none;
+    background-color: $color_primary; /* Cambia "#color_primary" al color deseado */
+    border-radius: 5px; /* Radio de borde del dedo de la barra de desplazamiento */
+    height: 10px;
+  }
 
-/* Estilo para el riel de la barra de desplazamiento */
-::-webkit-scrollbar-track {
-  background-color: $color_background1; /* Cambia "#color_background1" al color deseado */
-}
+  /* Estilo para el riel de la barra de desplazamiento */
+  ::-webkit-scrollbar-track {
+    background-color: $color_background1; /* Cambia "#color_background1" al color deseado */
+  }
 
-/* Estilo para el rincón de la barra de desplazamiento */
-::-webkit-scrollbar-corner {
-  background-color: red; /* Cambia "red" al color deseado */
-  width: 20px;
-}
+  /* Estilo para el rincón de la barra de desplazamiento */
+  ::-webkit-scrollbar-corner {
+    background-color: red; /* Cambia "red" al color deseado */
+    width: 20px;
+  }
 }
 
 .shoping-cart-top-container {
@@ -70,7 +69,7 @@
 
 .shoping-cart-card-container {
   width: 90%;
-  height: 32%;
+  height: 35%;
   margin: 0 auto;
   display: flex;
   background-color: $color_background2;
@@ -92,24 +91,27 @@
 .card-info-container {
   width: 100%;
   height: 100%;
-  padding-left: 5%;
+  padding-left: 3%;
   display: flex;
   flex-direction: column;
   align-items: start;
-  justify-content: space-between;
+  justify-content: space-evenly;
 
-  table {
-    width: 90%;
-    text-align: center;
-    th {
-      font-size: 0.8rem;
-      font-weight: 300;
-    }
-    td {
+  > .card-td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 95%;
+
+    p {
       font-size: 1.2rem;
-      font-weight: 500;
+    }
+    span {
+      font-weight: 600;
+      font-size: 2rem;
     }
   }
+
   .card-title {
     width: 100%;
     margin-top: 2%;
@@ -144,10 +146,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  button{
+  button {
     width: 100%;
   }
-  
 
   .shoping-cart-button-price-container {
     margin: 0 auto;
@@ -158,17 +159,14 @@
     p {
       font-size: 2rem;
       font-weight: 700;
-
-    
     }
   }
 
-  .auxiliar-button-container{
-    button{
+  .auxiliar-button-container {
+    button {
       background-color: transparent;
-      color:$color_primary;
-      border:solid 2px $color_primary; 
-     
+      color: $color_primary;
+      border: solid 2px $color_primary;
     }
   }
 
@@ -177,31 +175,30 @@
     width: 85%;
     display: flex;
     justify-content: space-between;
-  
+
     strong {
       font-size: 1.6rem;
       font-weight: 700;
     }
 
-    p{
+    p {
       font-size: 1.4rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
     }
   }
 }
 
 //efecto en el background cuando se abre el shoping cart
-.viewport-background{
+.viewport-background {
   pointer-events: none;
   overflow-y: hidden;
   opacity: 0.6;
   filter: brightness(50%);
 
-  .navbar-menu{
-background-color: transparent;
+  .navbar-menu {
+    background-color: transparent;
   }
 }
 
@@ -210,14 +207,12 @@ background-color: transparent;
   animation-duration: 1s;
   animation-timing-function: linear;
   animation-fill-mode: both;
-  
 }
 
 @keyframes shopingCartReveal {
   from {
-
     transform: translateY(1000px);
-    opacity:0;
+    opacity: 0;
   }
   to {
     transform: translateY(0px);
@@ -225,9 +220,126 @@ background-color: transparent;
   }
 }
 
-
 @media screen and (max-width: 678px) {
-  .shoping-cart-conteiner{
+  .shoping-cart-conteiner {
     width: 100vw;
+
+    .shoping-cart-title {
+      margin: 0 auto;
+      width: 90%;
+      height: 100%;
+
+      h4 {
+        font-size: 2rem;
+        font-weight: 400;
+      }
+   
+    }
+
+    .shoping-cart-center-container {
+      width: 100%;
+      height: 62%;
+      margin-top: 4%;
+      margin-bottom: 4%;
+      display: flex;
+      flex-direction: column;
+      row-gap: 2%;
+      overflow-y: scroll;
+    }
+
+    .shoping-cart-card-container {
+      width: 95%;
+      height: 40%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      background-color: $color_background2;
+      img {
+        height: 60%;
+        aspect-ratio: 1;
+      }
+
+
+    }
+
+    .card-info-container {
+      width: 100%;
+      height: 100%;
+      padding-left: 3%;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: space-evenly;
+
+      > .card-td {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: space-between;
+        width: 95%;
+
+        p {
+          font-size: 1.2rem;
+        }
+        span {
+          font-weight: 600;
+          font-size: 2rem;
+        }
+      }
+
+      .card-title {
+        width: 100%;
+        margin-top: 2%;
+        display: flex;
+        justify-content: space-between;
+        h4 {
+          font-size: 1.6rem;
+          font-weight: 700;
+        }
+        svg {
+          height: 15px;
+          width: 15px;
+          path {
+            fill: $color_text2;
+          }
+        }
+      }
+      button {
+        background-color: transparent;
+        border: none;
+        color: $color_primary;
+        font-size: 1.4rem;
+        font-weight: 500;
+        margin-bottom: 3%;
+      }
+    }
+
+    .shoping-cart-button-container {
+      height: 31%;
+      width: 90%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      button {
+        width: 100%;
+      }
+
+      .shoping-cart-button-price-container {
+        margin: 0 auto;
+        width: 85%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2%;
+        p {
+          font-size: 2rem;
+          font-weight: 700;
+        }
+      }
+
+      
+
+      
+    }
   }
 }

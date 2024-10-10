@@ -8,7 +8,8 @@ import { envs } from "../../config";
 import { BackgroundVideo } from "../../ui/components";
 import { RegisterValidation } from "../helpers/registerValidations";
 import { Button } from "../../ui/components/Button";
-export function Register() {
+
+ function Register() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -316,3 +317,5 @@ export function Register() {
     </section>
   );
 }
+
+export default Register;

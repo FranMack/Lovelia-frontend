@@ -1,5 +1,68 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import { Home } from "./home/views/Home";
+import { Suspense, lazy } from "react";
+import { Loader } from "./ui/pages/Loader.tsx";
+const Home = lazy(() => import("./home/views/Home"));
+const TalismanInfo = lazy(() => import("./talisman/views/TalismanInfo.tsx"));
+const TalismanAnalogic = lazy(
+  () => import("./talismanAnalogic/views/TalismanAnalogic.tsx")
+);
+const TalismanDigital = lazy(
+  () => import("./talismanDigital/views/TalismanDigital.tsx")
+);
+const Meditations = lazy(() => import("./meditations/views/Meditations.tsx"));
+const Intentions = lazy(() => import("./intentions/views/Intentions.tsx"));
+const IntentionInfo = lazy(
+  () => import("./intentions/views/IntentionInfo.tsx")
+);
+
+const Store = lazy(() => import("./store/views/Store.tsx"));
+const BuyAnalogTalisman = lazy(
+  () => import("./store/views/BuyAnalogTalisman.tsx")
+);
+const BuyDigitalTalisman = lazy(
+  () => import("./store/views/BuyDigitalTalisman.tsx")
+);
+const Blog = lazy(() => import("./blog/views/Blog.tsx"));
+const BlogNote = lazy(() => import("./blog/views/BlogNote.tsx"));
+const Contact = lazy(() => import("./contact/views/Contact.tsx"));
+const Profile = lazy(() => import("./profile/views/Profile.tsx"));
+const SiteTerms = lazy(() => import("./siteTerms/views/SiteTerms.tsx"));
+const PrivacyTerms = lazy(() => import("./siteTerms/views/PrivacyTerms.tsx"));
+const ChangesAndWarranty = lazy(
+  () => import("./siteTerms/views/ChangesAndWarranty.tsx")
+);
+const MainteneneTalisman = lazy(
+  () => import("./siteTerms/views/MainteneneTalisman.tsx")
+);
+
+const Register = lazy(() => import("./auth/views/Register.tsx"));
+const Login = lazy(() => import("./auth/views/Login.tsx"));
+const ForgetPassword = lazy(() => import("./auth/views/ForgetPassword.tsx"));
+const NewPassword = lazy(() => import("./auth/views/NewPassword.tsx"));
+const AuthFrontPage = lazy(() => import("./auth/views/AuthFrontPage.tsx"));
+
+const MyTalisman = lazy(() => import("./myTalisman/views/MyTalisman.tsx"));
+const CheckOutAnalogic = lazy(
+  () => import("./checkout/views/CheckOutAnalogic.tsx")
+);
+const CheckOutDigital = lazy(
+  () => import("./checkout/views/CheckOutDigital.tsx")
+);
+
+const WelcomeRegister = lazy(
+  () => import("./wellcome/views/WelcomeRegister.tsx")
+);
+const ValidateEmailTokenExpired = lazy(
+  () => import("./wellcome/views/ValidateEmailTokenExpired.tsx")
+);
+const WelcomeDigital = lazy(
+  () => import("./wellcome/views/WelcomeDigital.tsx")
+);
+
+const ActivationAnalogic = lazy(
+  () => import("./talismanAnalogic/views/ActivationAnalogic.tsx")
+);
+
 import {
   Footer,
   Navbar,
@@ -7,43 +70,16 @@ import {
   MobileNavbar,
   MobileMenu,
 } from "./ui/components";
-import { TalismanInfo } from "./talisman/views/TalismanInfo.tsx";
-import { TalismanDigital } from "./talismanDigital/views/TalismanDigital.tsx";
-import { Meditations } from "./meditations/views/Meditations.tsx";
-import { Intentions, IntentionInfo } from "./intentions/views";
-import { TalismanAnalogic, ActivationAnalogic } from "./talismanAnalogic/views";
-import { Store, BuyAnalogTalisman, BuyDigitalTalisman } from "./store/views";
-import { Blog } from "./blog/views/Blog.tsx";
-import {
-  Register,
-  Login,
-  ForgetPassword,
-  NewPassword,
-  AuthFrontPage,
-} from "./auth/views/";
-import { Contact } from "./contact/views/Contact.tsx";
-import { Profile } from "./profile/views/Profile.tsx";
+
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { envs } from "./config/envs.ts";
 import { UserContext } from "./context/userContext.tsx";
 import { ShopingCartContext } from "./context/modalShopingCartContext.tsx";
-import { CheckOutAnalogic, CheckOutDigital } from "./checkout/views/";
 import { ToastContainer } from "react-toastify";
 import { ShopingCart } from "./ui/components/ShopingCart.tsx";
-import { MyTalisman } from "./myTalisman/views/MyTalisman.tsx";
-import {
-  SiteTerms,
-  PrivacyTerms,
-  ChangesAndWarranty,
-  MainteneneTalisman,
-} from "./siteTerms/views";
 import { PrivateRoute, PublicRoute } from "./router";
 import { MobileMenuContext } from "./context/mobileMenuContext.tsx";
-import { WelcomeDigital } from "./wellcome/views/WelcomeDigital.tsx";
-import { WelcomeRegister } from "./wellcome/views/WelcomeRegister.tsx";
-import { ValidateEmailTokenExpired } from "./wellcome/views/ValidateEmailTokenExpired.tsx";
-import { BlogNote } from "./blog/views/BlogNote.tsx";
 
 function App() {
   const { shopingCartOpen, setShopingCartItems } =
@@ -75,10 +111,12 @@ function App() {
 
   const [windowSize, setWindowSize] = useState(window.innerWidth);
 
-  const handleWindowSize = () => {
-    setWindowSize(window.innerWidth);
-  };
-  window.addEventListener("resize", handleWindowSize);
+  useEffect(() => {
+    const handleWindowSize = () => setWindowSize(window.innerWidth);
+
+    window.addEventListener("resize", handleWindowSize);
+    return () => window.removeEventListener("resize", handleWindowSize);
+  }, []);
 
   const { menuOpen, toggleMenu, menuRef } = useContext(MobileMenuContext);
 
@@ -114,47 +152,186 @@ function App() {
       {shopingCartOpen && <ShopingCart />}
       <MobileMenu />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/talisman-landing" element={<TalismanInfo />} />
-        <Route path="/talisman-digital" element={<TalismanDigital />} />
-        <Route path="/talisman-analogico" element={<TalismanAnalogic />} />
-        <Route path="/meditations" element={<Meditations />} />
-        <Route path="/intenciones" element={<Intentions />} />
-        <Route path="/intenciones/:id" element={<IntentionInfo />} />
-        <Route path="/tienda" element={<Store />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/contacto" element={<Contact />} />
-        <Route path="/buy-analogic" element={<BuyAnalogTalisman />} />
-        <Route path="/buy-digital" element={<BuyDigitalTalisman />} />
-        <Route path="/checkout/store" element={<CheckOutAnalogic />} />
-        <Route path="/activacion/:id" element={<ActivationAnalogic />} />
-        <Route path="/terminos-y-condiciones" element={<SiteTerms />} />
-        <Route path="/politica-de-privacidad" element={<PrivacyTerms />} />
-        <Route path="/cambios-y-garantias" element={<ChangesAndWarranty />} />
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Home />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/talisman-landing"
+          element={
+            <Suspense fallback={<Loader />}>
+              <TalismanInfo />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/talisman-analogico"
+          element={
+            <Suspense fallback={<Loader />}>
+              <TalismanAnalogic />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/talisman-digital"
+          element={
+            <Suspense fallback={<Loader />}>
+              <TalismanDigital />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/meditations"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Meditations />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/intenciones"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Intentions />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/intenciones/:id"
+          element={
+            <Suspense fallback={<Loader />}>
+              <IntentionInfo />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/tienda"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Store />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/buy-digital"
+          element={
+            <Suspense fallback={<Loader />}>
+              <BuyDigitalTalisman />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/buy-analogic"
+          element={
+            <Suspense fallback={<Loader />}>
+              <BuyAnalogTalisman />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/blog"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Blog />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/nota/:id"
+          element={
+            <Suspense fallback={<Loader />}>
+              <BlogNote />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/contacto"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Contact />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/checkout/store"
+          element={
+            <Suspense fallback={<Loader />}>
+              <CheckOutAnalogic />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/activacion/:id"
+          element={
+            <Suspense fallback={<Loader />}>
+              <ActivationAnalogic />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/terminos-y-condiciones"
+          element={
+            <Suspense fallback={<Loader />}>
+              <SiteTerms />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/politica-de-privacidad"
+          element={
+            <Suspense fallback={<Loader />}>
+              <PrivacyTerms />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/cambios-y-garantias"
+          element={
+            <Suspense fallback={<Loader />}>
+              <ChangesAndWarranty />
+            </Suspense>
+          }
+        />
         <Route
           path="/mantenimiento-talismanes"
-          element={<MainteneneTalisman />}
+          element={
+            <Suspense fallback={<Loader />}>
+              <MainteneneTalisman />
+            </Suspense>
+          }
         />
         <Route
           path="/tiempo-validacion-expiro"
-          element={<ValidateEmailTokenExpired />}
+          element={
+            <Suspense fallback={<Loader />}>
+              <ValidateEmailTokenExpired />
+            </Suspense>
+          }
         />
 
-        <Route path="/correo-validado" element={<WelcomeRegister />} />
-        {/* <Route path="/mail" element={ <MailTemplate1/>}/>*/}
-
-
-
-
-        <Route path="/blog/nota/:id" element={<BlogNote />} />
-
+        <Route
+          path="/correo-validado"
+          element={
+            <Suspense fallback={<Loader />}>
+              <WelcomeRegister />
+            </Suspense>
+          }
+        />
 
         {/*RUTAs PUBLICAS*/}
         <Route
           path="/portal-usuario"
           element={
             <PublicRoute>
-              <AuthFrontPage />
+              <Suspense fallback={<Loader />}>
+                <AuthFrontPage />
+              </Suspense>
             </PublicRoute>
           }
         />
@@ -162,7 +339,9 @@ function App() {
           path="/login"
           element={
             <PublicRoute>
-              <Login />
+              <Suspense fallback={<Loader />}>
+                <Login />
+              </Suspense>
             </PublicRoute>
           }
         />
@@ -170,7 +349,9 @@ function App() {
           path="/register"
           element={
             <PublicRoute>
-              <Register />
+              <Suspense fallback={<Loader />}>
+                <Register />
+              </Suspense>
             </PublicRoute>
           }
         />
@@ -178,7 +359,9 @@ function App() {
           path="/forget-password"
           element={
             <PublicRoute>
-              <ForgetPassword />
+              <Suspense fallback={<Loader />}>
+                <ForgetPassword />
+              </Suspense>
             </PublicRoute>
           }
         />
@@ -186,7 +369,9 @@ function App() {
           path="/reset-password"
           element={
             <PublicRoute>
-              <NewPassword />
+              <Suspense fallback={<Loader />}>
+                <NewPassword />
+              </Suspense>
             </PublicRoute>
           }
         />
@@ -197,7 +382,9 @@ function App() {
           path="/profile"
           element={
             <PrivateRoute>
-              <Profile />
+              <Suspense fallback={<Loader />}>
+                <Profile />
+              </Suspense>
             </PrivateRoute>
           }
         />
@@ -205,7 +392,9 @@ function App() {
           path="/checkout/digital"
           element={
             <PrivateRoute>
-              <CheckOutDigital />
+              <Suspense fallback={<Loader />}>
+                <CheckOutDigital />
+              </Suspense>
             </PrivateRoute>
           }
         />
@@ -213,7 +402,10 @@ function App() {
           path="/myTalisman"
           element={
             <PrivateRoute>
-              <MyTalisman />
+              <CheckOutAnalogic />
+              <Suspense fallback={<Loader />}>
+                <MyTalisman />
+              </Suspense>
             </PrivateRoute>
           }
         />
@@ -221,7 +413,9 @@ function App() {
           path="/welcome"
           element={
             <PrivateRoute>
-              <WelcomeDigital />
+              <Suspense fallback={<Loader />}>
+                <WelcomeDigital />
+              </Suspense>
             </PrivateRoute>
           }
         />

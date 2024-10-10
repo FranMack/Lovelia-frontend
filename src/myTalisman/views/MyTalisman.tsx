@@ -1,5 +1,5 @@
 import { ThreeJsFrame } from "../components/ThreeJsFrame";
-export function MyTalisman() {
+ function MyTalisman() {
   return (
     <section className="myTalisman-container">
       
@@ -7,3 +7,5 @@ export function MyTalisman() {
     </section>
   );
 }
+
+export default MyTalisman;

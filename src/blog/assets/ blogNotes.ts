@@ -1,5 +1,5 @@
-import elPoderDeLaIntencionImage1 from "../assets/imagen-blog.png"
-import elPoderDeLaIntencionImage2 from "../assets/poder_de_intencion.png"
+import elPoderDeLaIntencionImage1 from "../assets/imagen-blog.webp"
+import elPoderDeLaIntencionImage2 from "../assets/poder_de_intencion.webp"
 
 
 export const blogNotes=[

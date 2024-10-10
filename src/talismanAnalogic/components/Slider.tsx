@@ -3,6 +3,7 @@ import { LeftArrowIcon, RightArrowIcon } from "../../assets/icons/icons";
 import { SliderCard } from "./SlideCard";
 import { SliderCardOptions } from "./SlideCard";
 
+
 export interface SliderOptions {
   sliderInfo: SliderCardOptions[];
 }

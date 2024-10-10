@@ -1,4 +1,5 @@
 import { PlayIcon } from "../../assets/icons/icons";
+import { LazyImage } from "../../ui/components";
 
 interface MeditationOptions {
   color: string;
@@ -20,7 +21,7 @@ export const GridMeditations = ({ meditations }: Meditations) => {
               className="grid-meditations-color-container"
               style={{ backgroundColor: item.color }}
             >
-              {item.image && <img src={item.image} alt="elipses" />}
+              {item.image && <LazyImage src={item.image} alt="elipses" />}
               <div className="icon-container">
                 <PlayIcon />
               </div>

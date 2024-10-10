@@ -1,7 +1,7 @@
-import talisman1 from "../../talismanAnalogic/assets/talisman1.png"
-import talisman2 from "../../talismanAnalogic/assets/talisman2.png"
-import talisman3 from "../../talismanAnalogic/assets/talisman3.png"
-import talismanDigital from "../../home/assets/home_td.png";
+import talisman1 from "../../talismanAnalogic/assets/talisman1.webp"
+import talisman2 from "../../talismanAnalogic/assets/talisman2.webp"
+import talisman3 from "../../talismanAnalogic/assets/talisman3.webp"
+import talismanDigital from "../../home/assets/home_td.webp";
 
 interface TalismanOptions{
     image:string,

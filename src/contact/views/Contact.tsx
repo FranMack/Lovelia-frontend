@@ -8,7 +8,7 @@ import logo from "../assets/logoSimple.png";
 import { MessageSend } from "../components/MessageSend";
 import { BackgroundVideo } from "../../ui/components";
 
-export function Contact() {
+ function Contact() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -220,3 +220,5 @@ export function Contact() {
     </section>
   );
 }
+
+export default Contact

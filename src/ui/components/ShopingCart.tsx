@@ -67,35 +67,37 @@ export function ShopingCart() {
               <img src={item.image} alt={item.product} />
               <div className="card-info-container">
                 <div className="card-title">
-                  <h4>{item.product}</h4>
+                  <h4>{`Talismán ${item.model}`}</h4>
                   <CloseIcon
                     onClick={() => {
                       deleteShopingCartItem(item.id);
                     }}
                   />
                 </div>
-                <table>
-                  <tr>
-                    <th className="">Cantidad</th>
-                    <th className="">Modelo</th>
-                    <th className="">Material</th>
-                    <th className="">Colgado</th>
-                    <th className="">Intension</th>
-                  </tr>
-                  <tr>
-                    <td className="">{item.quantity}</td>
-                    <td className="">{item.model}</td>
-                    <td className="">{item.material}</td>
-                    <td className="">{item.chain}</td>
-                    <td className="">{item.intention}</td>
-                  </tr>
-                </table>
-                <div>
-                  <p>Precio unitario</p>
-                  <strong>{`$ ${item.price}`}</strong>
+
+                <div className="card-td">
+                  <strong>Metal:</strong>
+                  <p>{item.material}</p>
+                </div>
+                <div className="card-td">
+                  <strong>Piedra:</strong>
+                  <p>{item.rock}</p>
+                </div>
+                <div className="card-td">
+                  <strong>Calgante:</strong>
+                  <p>{item.chain}</p>
+                </div>
+                <div className="card-td">
+                  <strong>Intención:</strong>
+                  <p>{item.intention}</p>
                 </div>
 
-                <button>Editar compra</button>
+                <div className="card-td">
+                  <strong>Precio unitario:</strong>
+                  <span>{`$ ${item.price}`}</span>
+                </div>
+
+         
               </div>
             </div>
           );
@@ -113,10 +115,7 @@ export function ShopingCart() {
           <Button onClick={toggleMenu} text="SEGUIR COMPRANDO" />
         </div>
 
-        <div className="shoping-cart-button-help-container">
-          <strong>Necesitas ayuda?</strong>
-          <p>Ver más</p>
-        </div>
+       
         <hr />
       </div>
     </div>

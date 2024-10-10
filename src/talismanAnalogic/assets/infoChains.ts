@@ -1,5 +1,5 @@
-import chain1 from "./colgante1.png";
-import chain2 from "./colgante2.png";
+import chain1 from "./colgante1.webp";
+import chain2 from "./colgante2.webp";
 
 
 export const infoChains=[

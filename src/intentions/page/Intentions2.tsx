@@ -1,4 +1,4 @@
-import wallpaper from "../assets/intensiones_portada2.png";
+import wallpaper from "../assets/intensiones_portada2.webp";
 import { FrontPage1 } from "../../ui/pages/FrontPage1";
 import { FrontPage1Options } from "../../ui/pages/FrontPage1";
 

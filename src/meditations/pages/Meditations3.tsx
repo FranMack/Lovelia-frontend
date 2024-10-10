@@ -1,5 +1,5 @@
 import { GridMeditations } from "../components/GridMeditations";
-import elipses from "../assets/elipses.png";
+import elipses from "../assets/elipses.webp";
 
 const meditations = [
   { color: "#E7C8BB", title: "Amor incondicional", image: "" },

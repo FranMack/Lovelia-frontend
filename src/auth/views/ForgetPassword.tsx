@@ -8,7 +8,7 @@ import { AuthPopUp } from "../components/AuthPopUp";
 import { envs } from "../../config";
 import { BackgroundVideo } from "../../ui/components";
 
-export function ForgetPassword() {
+ function ForgetPassword() {
   const navigate = useNavigate();
   const linkToLogin = () => {
     navigate("/login");
@@ -149,3 +149,5 @@ export function ForgetPassword() {
     </section>
   );
 }
+
+export default ForgetPassword;

@@ -1,5 +1,6 @@
 import { ButtonArrowRight } from "../../ui/components";
 import { ObliqueArrow } from "../../assets/icons/icons";
+import { LazyImage } from "../../ui/components";
 
 export interface FrontPage1Options {
   image: string;
@@ -28,7 +29,7 @@ export const FrontPage1 = ({
 
   return (
     <section className="frontPage1-container">
-      <img src={image} alt="wallpaper" />
+      <LazyImage src={image} alt="wallpaper" />
       <div className="frontPage1-center-container">
         <div className="frontPage1-text-container" style={{ color: color }}>
           {text.map((item, i) => {

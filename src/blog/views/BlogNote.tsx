@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 
 
-export const BlogNote = () => {
+ const BlogNote = () => {
 
   const navigate=useNavigate()
 
@@ -61,3 +61,5 @@ export const BlogNote = () => {
     </section>
   );
 };
+
+export default BlogNote

@@ -4,7 +4,7 @@ import lovelia from "../../contact/assets/logoSimple.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-export const ValidateEmailTokenExpired = () => {
+ const ValidateEmailTokenExpired = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -30,3 +30,5 @@ export const ValidateEmailTokenExpired = () => {
     </section>
   );
 };
+
+export default ValidateEmailTokenExpired

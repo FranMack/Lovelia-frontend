@@ -1,4 +1,5 @@
 import { infoTalismanes } from "../assets/talismansInfo"
+import { LazyImage } from "../../ui/components"
 
 export const Store2 = () => {
   return (
@@ -8,7 +9,7 @@ export const Store2 = () => {
       {infoTalismanes.map((item,i)=>{
         return(
         <div key={i} className={`section2-grid-item item${i+1}`}>
-            <img src={item.image} alt={item.title} />
+            <LazyImage src={item.image} alt={item.title} />
             <h4>{item.title}</h4>
         </div>
         )

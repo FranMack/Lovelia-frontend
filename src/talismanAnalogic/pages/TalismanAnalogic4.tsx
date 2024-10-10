@@ -1,4 +1,4 @@
-import activation from "../assets/talisman_analog_activacion.png";
+import activation from "../assets/talisman_analog_activacion.webp";
 import { Template1 } from "../../ui/pages/Template1";
 import { Template1Options } from "../../ui/pages/Template1";
 import { Position } from "../../ui/pages/Template1";

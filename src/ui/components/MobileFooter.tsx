@@ -1,4 +1,4 @@
-import logo from "../assets/lovelia-logo.png";
+import logo from "../assets/lovelia-logo.webp";
 import {
   FacebookIcon,
   InstagramIcon,

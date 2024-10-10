@@ -1,6 +1,7 @@
-import background from "../assets/meditaciones_portada2.png";
+import background from "../assets/meditaciones_portada2.webp";
 import { ButtonArrowRight } from "../../ui/components";
 import { useNavigate } from "react-router";
+import { LazyImage } from "../../ui/components";
 
 export const Meditations2 = () => {
 
@@ -10,7 +11,7 @@ export const Meditations2 = () => {
   }
   return (
     <section className="section2-meditations-container">
-      <img src={background} alt="activa tu talismán" />
+      <LazyImage src={background} alt="activa tu talismán" />
 
       <div className="section2-meditations-text-container">
         <h3>¿PARA QUÉ MEDITAMOS ?</h3>

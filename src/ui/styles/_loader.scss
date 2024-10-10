@@ -1,0 +1,59 @@
+@import "../../styles/variables.scss";
+
+.loading-container {
+  width: 100vw;
+  height: 100vh;
+  padding-bottom: 0vh;
+
+  > .loading-center-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 3vh;
+    background-color: $color_yellow;
+
+    > .logo-container {
+      width: 15%;
+      height: auto;
+
+      img {
+        object-fit: cover;
+        width: 100%;
+      }
+    }
+    p {
+      font-size: 3rem;
+      font-weight: 400;
+      color: $color_primary;
+    }
+  }
+}
+
+@keyframes revealFromBottom {
+  0% {
+    clip-path: inset(0 0 0 100%);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.loading-image {
+  animation: revealFromBottom 2s ease-out forwards infinite;
+}
+
+@media screen and (max-width: 678px) {
+  .loading-container {
+    padding-bottom: 0vh;
+
+    > .loading-center-container {
+      > .logo-container {
+        width: 50%;
+        height: auto;
+      }
+    }
+  }
+}

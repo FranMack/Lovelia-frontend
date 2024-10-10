@@ -1,7 +1,7 @@
-import talisman1 from "./TD-EJEMPLO-1.jpeg";
-import talisman2 from "./TD-EJEMPLO-2.jpeg";
-import talisman3 from "./TD-EJEMPLO-3.jpeg";
-import talisman4 from "./TD-EJEMPLO-4.jpeg";
+import talisman1 from "./TD-EJEMPLO-1.webp";
+import talisman2 from "./TD-EJEMPLO-2.webp";
+import talisman3 from "./TD-EJEMPLO-3.webp";
+import talisman4 from "./TD-EJEMPLO-4.webp";
 
 interface ejTalismanOptions{
     title:string,

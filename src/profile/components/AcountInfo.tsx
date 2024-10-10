@@ -2,7 +2,12 @@ import { ButtonArrowRight2 } from "../../ui/components";
 import { useNavigate } from "react-router-dom";
 import talismanDigital from "../assets/talisman-wallpaper.png";
 import { PopUp } from "../../ui/components/PopUp";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import axios from "axios";
+import { envs } from "../../config";
+import { UserContext } from "../../context";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface AcountInfoOptions {
   name?: string;
@@ -10,6 +15,10 @@ interface AcountInfoOptions {
   email?: string;
   subscription?: boolean;
 }
+
+
+
+
 
 export const AcountInfo = ({
   name,
@@ -36,9 +45,24 @@ export const AcountInfo = ({
     setOpenPopUp(!openPopUp)
   }
 
+  const{setSuscription}=useContext(UserContext)
+
+  const cancelSubscription=()=>{
+   
+   
+    axios.put(`${envs.API_DOMAIN}/api/v1/payment-mercadopago/cancel-subscription`,{email})
+    .then(()=>{
+      localStorage.removeItem("subscriptionActive")
+    setSuscription(false)
+    toast.warning("Subscripción cancelada",{style:{backgroundColor:"#6f3289",color:"#ece976"},hideProgressBar:true,autoClose:4000})
+    tolgglePopUp()
+    })
+    .catch((error)=>{console.log(error)})
+  }
+
   return (
     <div className={openPopUp ? "acountInfo-container":"acountInfo-container"} >
-  {  openPopUp && <PopUp linkTo={()=>{}} closePopUp={tolgglePopUp} buttonText="Confirmar" text="¿Esta seguro que desea cancelar la subscripción?"/>}
+  {  openPopUp && <PopUp linkTo={cancelSubscription} closePopUp={tolgglePopUp} buttonText="Confirmar" text="¿Esta seguro que desea cancelar la subscripción?"/>}
     <div className="acountInfo-internal-container" style={{ opacity: openPopUp ? "0.4" : "1" }}>
       <div className="acountInfo-internal-left-container">
         <div className="acountInfo-item-info-container">

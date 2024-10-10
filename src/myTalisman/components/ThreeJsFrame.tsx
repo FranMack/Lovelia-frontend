@@ -676,7 +676,7 @@ export const ThreeJsFrame = () => {
           {audioURL && <audio ref={userSoundRef} src={audioURL} />}
           <audio
             ref={activationSoundRef}
-            src="http://localhost:3000/activation/activationExample.mp4"
+            src={`${envs.API_DOMAIN}/activation/activationExample.mp4`}
           />
 
           {buttonFocusPosition === "Mi ADN Energético" && <MyADN />}

@@ -1,5 +1,5 @@
 import { MenuIcon, ShopingIcon } from "../../assets/icons/icons";
-import logo from "../assets/lovelia-logo.png";
+import logo from "../assets/lovelia-logo.webp";
 import { MobileMenuContext } from "../../context";
 import { ShopingCartContext } from "../../context";
 import { useContext } from "react";

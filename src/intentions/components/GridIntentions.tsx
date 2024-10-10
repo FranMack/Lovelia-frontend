@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { PlayIcon } from "../../assets/icons/icons";
+import { LazyImage } from "../../ui/components";
 
 interface IntentionOption {
   id: number;
@@ -34,7 +35,7 @@ export const GridIntentions = ({ intentions }: GridIntentionsProps) => {
               <div className="icon-container">
                 <PlayIcon />
               </div>
-              <img src={item.image} alt={item.title} />
+              <LazyImage src={item.image} alt={item.title} />
             </div>
             <p>
               <strong> {item.title}</strong>

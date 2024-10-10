@@ -12,6 +12,7 @@ export interface ShopingCartItemOptions {
   intention: string;
   image: string;
   price: number;
+  rock:string
 }
 
 interface ShopingCartContextValue {

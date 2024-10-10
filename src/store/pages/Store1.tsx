@@ -1,5 +1,5 @@
-import talismanDigital from "../assets/tienda_td.png";
-import talismanAnalogic from "../assets/tienda_ta.png";
+import talismanDigital from "../assets/tienda_td.webp";
+import talismanAnalogic from "../assets/tienda_ta.webp";
 import { ObliqueArrow } from "../../assets/icons/icons";
 import { useNavigate } from "react-router-dom";
 

@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 
 
 
-export const ActivationAnalogic = () => {
+ const ActivationAnalogic = () => {
 
   const { id } = useParams();
   const [page, setPage] = useState<number>(1);
@@ -81,7 +81,7 @@ export const ActivationAnalogic = () => {
             </>
           )}
           <ol start={step}>
-            {step === 1 && <li>Buscar un lugar tranquilo.</li>}
+            {step === 1 && <li>Busca un lugar tranquilo.</li>}
             {step === 2 && <li>Haz tres respiraciones profundas.</li>}
             {step === 3 && (
               <>
@@ -140,3 +140,5 @@ export const ActivationAnalogic = () => {
     </section>
   );
 };
+
+export default ActivationAnalogic

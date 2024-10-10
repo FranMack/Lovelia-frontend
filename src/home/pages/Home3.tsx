@@ -1,4 +1,4 @@
-import intention from "../assets/home_intensiones.png";
+import intention from "../assets/home_intensiones.webp";
 import { ButtonArrowRight } from "../../ui/components"
 import { Template1 } from "../../ui/pages/Template1";
 import { Template1Options } from "../../ui/pages/Template1";

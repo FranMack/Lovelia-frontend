@@ -1,4 +1,5 @@
 import { ButtonArrowRight2 } from "../../ui/components/ButtonArrowRight2";
+import { LazyImage } from "../../ui/components";
 
 export interface TemplateBlogOptions {
   image: string;
@@ -21,7 +22,7 @@ export function TemplateBlog({
   return (
     <div className="templateBlog-container">
       <div className="templateBlog-image-container">
-        <img src={image} alt="Tallisman-fisico" />
+        <LazyImage src={image} alt="Tallisman-fisico" />
       </div>
       <div className="templateBlog-info-container">
         <h4>{title}</h4>

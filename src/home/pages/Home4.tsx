@@ -1,9 +1,10 @@
-import talismanDigital from "../assets/home_td.png";
-import talismanAnalogic from "../assets/home_ta.png";
+import talismanDigital from "../assets/home_td.webp";
+import talismanAnalogic from "../assets/home_ta.webp";
 import { ButtonTransparent } from "../../ui/components";
 import { ObliqueArrow } from "../../assets/icons/icons";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { LazyImage } from "../../ui/components";
 
 
 export const Home4 = () => {
@@ -69,7 +70,7 @@ export const Home4 = () => {
         </div>
         <div className="section4-home-internal-container">
           <div className="section4-home-internal-image-container">
-            <img src={selectedTalisman==="digital" ? talismanDigital:talismanAnalogic} alt="digital-talisman" />
+            <LazyImage src={selectedTalisman==="digital" ? talismanDigital:talismanAnalogic} alt="digital-talisman" />
             <div className="button-wrapper">
               <ButtonTransparent {...buttonInfo} />
             </div>

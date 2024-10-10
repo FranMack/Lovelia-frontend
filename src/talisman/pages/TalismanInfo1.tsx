@@ -1,5 +1,5 @@
 import {FrontPage1, FrontPage1Options} from "../../ui/pages/FrontPage1";
-import background from "../assets/talisman_info_fondo1.png"
+import background from "../assets/talisman_info_fondo1.webp"
 
 
 export const TalismanInfo1 = () => {

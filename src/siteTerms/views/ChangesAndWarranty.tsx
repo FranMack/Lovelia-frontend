@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { BackgroundVideo } from "../../ui/components";
 
-export function ChangesAndWarranty() {
+ function ChangesAndWarranty() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -69,3 +69,5 @@ export function ChangesAndWarranty() {
     </section>
   );
 }
+
+export default ChangesAndWarranty;

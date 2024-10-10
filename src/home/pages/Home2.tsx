@@ -1,4 +1,4 @@
-import wallpaper from "../assets/home_fondo2.png";
+import wallpaper from "../assets/home_fondo2.webp";
 import { FrontPage1 } from "../../ui/pages/FrontPage1";
 import { FrontPage1Options } from "../../ui/pages/FrontPage1";
 import { useNavigate } from "react-router-dom";

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
-import imageBlog from "../assets/imagen-blog.png";
-import imageBlog2 from "../assets/imagen-blog2.png";
+import imageBlog from "../assets/imagen-blog.webp";
+import imageBlog2 from "../assets/imagen-blog2.webp";
 import { TemplateBlog, TemplateBlogOptions } from "../components/TemplateBlog";
 
 const infoTemplate: TemplateBlogOptions = {

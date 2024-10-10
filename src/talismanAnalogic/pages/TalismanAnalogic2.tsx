@@ -1,4 +1,4 @@
-import poder from "../assets/talisman_analog_poder.png";
+import poder from "../assets/talisman_analog_poder.webp";
 import { ButtonArrowRight } from "../../ui/components";
 import { Template1 } from "../../ui/pages/Template1";
 import { Template1Options } from "../../ui/pages/Template1";

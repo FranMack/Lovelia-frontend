@@ -39,7 +39,7 @@ const taxRegimeOptions = [
   "Régimen de las actividades empresariales con ingresos a travéz de plataformas tecnológicas",
 ];
 
-export function CheckOutAnalogic() {
+ function CheckOutAnalogic() {
   //is loading
 
   const [isLoading, setIsLoading] = useState(false);
@@ -1045,28 +1045,29 @@ export function CheckOutAnalogic() {
 
                     <div className="checkout-card-info-container">
                       <div className="card-title">
-                        <h4>{item.product}</h4>
+                        <h4>{`Talismán ${item.model}`}</h4>
                       </div>
-                      <table>
-                        <tr>
-                          <th className="">Cantidad</th>
-                          <th className="">Modelo</th>
-                          <th className="">Material</th>
-                          <th className="">Colgado</th>
-                          <th className="">Intencion</th>
-                        </tr>
-                        <tr>
-                          <td className="">{item.quantity}</td>
-                          <td className="">{item.model}</td>
-                          <td className="">{item.material}</td>
-                          <td className="">{item.chain}</td>
-                          <td className="">{item.intention}</td>
-                        </tr>
-                      </table>
-                      <div className="precio-unitario-container">
-                        <p>Precio unitario</p>
-                        <strong>{`$ ${item.price}`}</strong>
-                      </div>
+                      <div className="card-td">
+                  <strong>Metal:</strong>
+                  <p>{item.material}</p>
+                </div>
+                <div className="card-td">
+                  <strong>Piedra:</strong>
+                  <p>{item.rock}</p>
+                </div>
+                <div className="card-td">
+                  <strong>Calgante:</strong>
+                  <p>{item.chain}</p>
+                </div>
+                <div className="card-td">
+                  <strong>Intención:</strong>
+                  <p>{item.intention}</p>
+                </div>
+
+                <div className="card-td">
+                  <strong>Precio unitario:</strong>
+                  <span>{`$ ${item.price}`}</span>
+                </div>
                     </div>
                   </div>
                 );
@@ -1104,3 +1105,6 @@ export function CheckOutAnalogic() {
     </main>
   );
 }
+
+
+export default CheckOutAnalogic
