@@ -402,9 +402,8 @@ function App() {
           path="/myTalisman"
           element={
             <PrivateRoute>
-              <CheckOutAnalogic />
-              <Suspense fallback={<Loader />}>
-                <MyTalisman />
+                <Suspense fallback={<Loader />}>
+              <MyTalisman />
               </Suspense>
             </PrivateRoute>
           }
