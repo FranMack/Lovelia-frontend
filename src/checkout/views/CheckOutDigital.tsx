@@ -146,7 +146,7 @@ function hours() {
   const locationPrediction = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLocation(event.target.value);
     axios
-      .get(`${envs.API_DOMAIN}/api/v1/autocomplete?input=${event.target.value}`)
+      .get(`${envs.API_DOMAIN}/api/v1/autocomplete?input=${event.target.value}`,{withCredentials:true})
       .then((response) => {
         setResult(response.data);
       })
