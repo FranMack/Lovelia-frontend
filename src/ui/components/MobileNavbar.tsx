@@ -10,6 +10,9 @@ export const MobileNavbar = () => {
   const { toggleMenu } = useContext(MobileMenuContext);
   const shopingCart = useContext(ShopingCartContext);
 
+  const { shopingCartItems } =
+  useContext(ShopingCartContext);
+
   const linkToHome = () => {
     navigate("/");
   };
@@ -31,6 +34,11 @@ export const MobileNavbar = () => {
 
       <div className="icon-container" onClick={shopingCart.toggleMenu}>
         <ShopingIcon />
+        {shopingCartItems.length > 0 && (
+            <div className="number-items-container">
+              <p>{shopingCartItems.length}</p>
+            </div>
+          )}
       </div>
     </nav>
   );

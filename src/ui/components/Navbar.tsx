@@ -130,7 +130,7 @@ export function Navbar() {
   window.addEventListener("scroll", handleScroll);
 
   const sectionWithYellowLogo = ["intenciones", "portal-usuario","activacion/1"];
-console.log("xxxxxxxxxxx",location)
+
   return (
     <nav
       onMouseLeave={() => handleMouseLeave()}

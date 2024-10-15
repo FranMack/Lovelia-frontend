@@ -50,7 +50,7 @@ export const AcountInfo = ({
   const cancelSubscription=()=>{
    
    
-    axios.put(`${envs.API_DOMAIN}/api/v1/payment-mercadopago/cancel-subscription`,{email})
+    axios.put(`${envs.API_DOMAIN}/api/v1/payment-mercadopago/cancel-subscription`,{email},{ withCredentials: true })
     .then(()=>{
       localStorage.removeItem("subscriptionActive")
     setSuscription(false)
@@ -61,9 +61,9 @@ export const AcountInfo = ({
   }
 
   return (
-    <div className={openPopUp ? "acountInfo-container":"acountInfo-container"} >
+    <div className="acountInfo-container">
   {  openPopUp && <PopUp linkTo={cancelSubscription} closePopUp={tolgglePopUp} buttonText="Confirmar" text="¿Esta seguro que desea cancelar la subscripción?"/>}
-    <div className="acountInfo-internal-container" style={{ opacity: openPopUp ? "0.4" : "1" }}>
+    <div className={openPopUp ?"acountInfo-internal-container viewport-background":"acountInfo-internal-container"}>
       <div className="acountInfo-internal-left-container">
         <div className="acountInfo-item-info-container">
           <h5>Nombre</h5>

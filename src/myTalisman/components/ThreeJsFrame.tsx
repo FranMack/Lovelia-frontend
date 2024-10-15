@@ -322,7 +322,7 @@ export const ThreeJsFrame = () => {
               { email },
               { withCredentials: true }
             );
-          }, 120000);
+          }, 12000000);
 
           return;
         }
@@ -723,7 +723,7 @@ export const ThreeJsFrame = () => {
 
       {sounds.map((item, i) => {
         return (
-          <audio ref={(el) => (soundRefs.current[i] = el!)}>
+          <audio key={i} ref={(el) => (soundRefs.current[i] = el!)}>
             <source src={`${envs.API_DOMAIN}${item.url}`} type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
@@ -732,7 +732,7 @@ export const ThreeJsFrame = () => {
 
       {meditations.map((item, i) => {
         return (
-          <audio ref={(el) => (meditationsRefs.current[i] = el!)}>
+          <audio key={i} ref={(el) => (meditationsRefs.current[i] = el!)}>
             <source src={`${envs.API_DOMAIN}${item.url}`} type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
@@ -743,10 +743,10 @@ export const ThreeJsFrame = () => {
           <p>{subtitleLine}</p>
         </div>
       )}
-      {/*IMPORTANTE: DEBE CAMIARSE SOUNDS POR LOS SONIDOS CORRESPONDIENTES AL TIMER */}
+      {/*IMPORTANTE: DEBE CAMBIARSE SOUNDS POR LOS SONIDOS CORRESPONDIENTES AL TIMER */}
       {sounds.map((item, i) => {
         return (
-          <audio ref={(el) => (timerSoundRefs.current[i] = el!)}>
+          <audio key={i} ref={(el) => (timerSoundRefs.current[i] = el!)}>
             <source src={`${envs.API_DOMAIN}${item.url}`} type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>

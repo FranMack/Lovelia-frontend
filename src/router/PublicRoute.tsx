@@ -1,13 +1,13 @@
-import { ReactNode, useContext } from "react";
+import { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
-import { UserContext } from "../context/userContext";
+
 
 interface PrivateRouteProps {
   children: ReactNode;
 }
 
 export function PublicRoute({ children }: PrivateRouteProps) {
-  const { email } = useContext(UserContext);
+  const cookieToken = document.cookie.includes("token");
 
-  return !email ? children : <Navigate to="/" />;
+  return !cookieToken ? children : <Navigate to="/" />;
 }

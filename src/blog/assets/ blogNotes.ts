@@ -1,15 +1,16 @@
-import elPoderDeLaIntencionImage1 from "../assets/imagen-blog.webp"
-import elPoderDeLaIntencionImage2 from "../assets/poder_de_intencion.webp"
+
+import imagenMeditaciones from "../assets/imagen-blog2.webp"
+import elPoderDeLaIntencionImage1 from "../assets/blognote-poder-intencion.webp"
 
 
 export const blogNotes=[
 
     {
         title:"El Poder de la Intención",
-        author:"Amparo Bernave",
+        author:"Lovelia",
         date:"03 de Septiembre del 2024",
         image1:elPoderDeLaIntencionImage1,
-        image2:elPoderDeLaIntencionImage2,
+        image2:elPoderDeLaIntencionImage1,
         paragraphs1:[
             "Existe el poder de transformar los pensamientos en realidades durante el proceso de búsqueda de la plenitud y la realización personal. Es el poder de la intención, la semilla de toda transformación y creación en nuestras vidas.",
             "La intención es el punto de partida para todo cambio y creación, ya que se trata de la energía que dirige nuestros pensamientos, nuestras palabras y nuestras acciones hacia la manifestación de nuestros deseos más profundos, esos que están en conexión íntima con nuestra esencia, nuestros valores y nuestra visión del mundo.",
@@ -28,11 +29,11 @@ export const blogNotes=[
 
 
     {
-        title:"Para que meditamos?",
-        author:"Julieta Mollo",
+        title:"¿Para qué meditamos?",
+        author:"Lovelia",
         date:"03 de Septiembre del 2024",
-        image1:elPoderDeLaIntencionImage1,
-        image2:elPoderDeLaIntencionImage2,
+        image1:imagenMeditaciones,
+        image2:imagenMeditaciones,
         paragraphs1:[
             "Existe el poder de transformar los pensamientos en realidades durante el proceso de búsqueda de la plenitud y la realización personal. Es el poder de la intención, la semilla de toda transformación y creación en nuestras vidas.",
             "La intención es el punto de partida para todo cambio y creación, ya que se trata de la energía que dirige nuestros pensamientos, nuestras palabras y nuestras acciones hacia la manifestación de nuestros deseos más profundos, esos que están en conexión íntima con nuestra esencia, nuestros valores y nuestra visión del mundo.",

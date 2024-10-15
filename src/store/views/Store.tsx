@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Store1,Store2,Store3 } from "../pages"
+import { Store1,Store2,Store3,Store2b } from "../pages"
 
  const Store = () => {
   useEffect(()=>{ window.scrollTo(0, 0);},[])
@@ -7,6 +7,7 @@ import { Store1,Store2,Store3 } from "../pages"
     <main>
     <Store1/>
     <Store2/>
+    <Store2b/>
     <Store3/>
     </main>
   )

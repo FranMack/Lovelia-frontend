@@ -29,7 +29,7 @@ const materialOptions: DropdownMenuOptions = {
 const piedraOptions: DropdownMenuOptions = {
   title: "Piedra",
   options: [
-    { option: "Lapislazuli", price: 15 },
+    { option: "Lapislázuli", price: 15 },
     { option: "Labradorita", price: 15 },
     { option: "Turquesa", price: 25 },
     { option: "Obsidiana dorada", price: 30 },

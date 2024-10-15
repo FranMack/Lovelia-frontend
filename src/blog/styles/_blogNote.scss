@@ -58,15 +58,37 @@ margin-top: 15vh;
             font-size: 2rem;
             font-weight: 400;
         }
-        h4{
-            font-size: 1.7rem;
-            font-weight: 300;
-            span{
-                font-style: italic;
-                color:gray;
-    
+     
+
+        .title-bottom-container{
+            display: flex;
+            column-gap: 1vw;
+            align-items: center;
+
+            .blogNote-avatar-container{
+                height: 3rem;
+                aspect-ratio: 1;
+                border-radius: 50%;
+                img{
+                    object-fit: cover;
+                    height: 100%;
+                    aspect-ratio: 1;
+                    border-radius: 50%;
+                }
             }
+
+            h4{
+                font-size: 1.7rem;
+                font-weight: 300;
+                span{
+                    font-style: italic;
+                    color:gray;
+        
+                }
+            }
+
         }
+   
 
     }
     >.text-container{
@@ -91,6 +113,25 @@ margin-top: 15vh;
         }
     }
    
+}
+
+.blogNote-botton-title-container{
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 10vh;
+    h3{
+
+        font-size: 2.6rem;
+        color:$color_primary;
+        font-weight: 300;
+      }
+
+      h4{
+        font-size: 2.2rem;
+        color:$color_text2;
+        font-weight: 300;
+      }
+
 }
 
 

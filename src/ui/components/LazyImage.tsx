@@ -40,7 +40,7 @@ export const LazyImage = ({ src, alt, className,draggable }: LazyOptions) => {
       alt={alt}
       className={className}
       draggable={draggable}
-      // loading="lazy" // Opcional si usas IntersectionObserver
+       loading="lazy"
     />
   );
 };

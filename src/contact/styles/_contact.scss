@@ -274,6 +274,9 @@ textarea{
   .contact-container{
     flex-direction: column;
     padding-top: 10vh;
+       
+      height: auto;
+     
 
     .contact-internal-container{
       width: 100%;
@@ -318,7 +321,7 @@ textarea{
          
         }
         p{
-          text-align: center;
+          text-align: start;
         }
         
       }

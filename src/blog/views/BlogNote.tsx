@@ -1,7 +1,9 @@
 import { useNavigate, useParams } from "react-router";
-import { BackgroundVideo } from "../../ui/components";
+import {  LazyImage } from "../../ui/components";
 import { blogNotes } from "../assets/ blogNotes";
 import { useEffect, useState } from "react";
+import { moreArticles } from "../assets/infoArticulos";
+import avatar from "../../../public/isologo-lovelia.png"
 
 
 
@@ -29,7 +31,7 @@ import { useEffect, useState } from "react";
 
   return (
     <section className="blogNote-container">
-      <BackgroundVideo/>
+      
       <div className="blogNote-top-container">
         <small>{`Incio / Blog / ${blogNotes[index-1].title}`}</small>
         <div className="image-container">
@@ -40,10 +42,16 @@ import { useEffect, useState } from "react";
       <div className="blogNote-center-container">
         <div className="title-container">
           <h2>{blogNotes[index-1].title}</h2>
-          <h3>Una experiencia puede cambiar muchas cosas.</h3>
+
+          <div className="title-bottom-container">
+          <div className="blogNote-avatar-container">
+            <img src={avatar} alt="author picture" />
+          </div>
           <h4>
-            {`${blogNotes[index-1].author}`} <span>{`${blogNotes[index-1].date}`}</span>
+            {`${blogNotes[index-1].author}`} - <span>{`${blogNotes[index-1].date}`}</span>
           </h4>
+          </div>
+          
         </div>
 
         <div className="text-container">
@@ -57,6 +65,25 @@ import { useEffect, useState } from "react";
         return(<p key={i}>{item}</p>)
       })}
         </div>
+      </div>
+
+
+      <div className="blogNote-botton-title-container">
+        <h3>Otras notas:</h3>
+     
+      </div>
+      <div className="blog-historias-container">
+        {moreArticles.map((articulo, i) => {
+          return (
+            <div className={`blog-historias-card card${i}`} key={i}>
+              <LazyImage src={articulo.image} alt={articulo.tittle} />
+
+              <h6>{articulo.author}</h6>
+              <h4>{articulo.tittle}</h4>
+              <p>{articulo.date}</p>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

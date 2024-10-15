@@ -361,10 +361,17 @@ function hours() {
 
           <div className="checkout-botton-right-container">
             <div className="checkout-title-container">
-              <h3>Resumen de pedido</h3>
+              <h3>Resumen</h3>
             </div>
 
+            <div className="checkout-freeMonth-container">
+                <strong>¡Descubrí Lovelia!</strong>
+                <p>El primer mes de subscripción es gratis.</p>
+              
+              </div>
+
             <div className="checkout-price-container">
+            
               <div className="checkout-prince">
                 <p>Total estimado</p>
                 <p>${15}</p>

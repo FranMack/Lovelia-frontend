@@ -23,3 +23,13 @@ export const articlesBlog:ArticlesBlog[]=[
     {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo1},
     {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo2},
 ]
+
+
+
+export const moreArticles:ArticlesBlog[]=[
+    {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo1},
+    {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo2},
+    {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo3},
+    {tittle:"Titulo del articulo",author:"Nombre del autor",date:"Abril 04, 2024",image:articulo4},
+   
+]

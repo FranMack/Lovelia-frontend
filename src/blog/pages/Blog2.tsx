@@ -5,11 +5,11 @@ import { TemplateBlog, TemplateBlogOptions } from "../components/TemplateBlog";
 
 const infoTemplate: TemplateBlogOptions = {
   image: imageBlog,
-  title: "Dale color a el ahora",
+  title: "El Poder de la Intención",
   secundaryTitle: "Descubre historias, pensamientos, sentimientos y más.",
   description: [
-    "Las piedras que empleamos son auténticas y están  meticulosamente talladas a mano, lo que significa que cada talismán será verdaderamente único, igual que tu.",
-    "Podrás configurar tu propio talismán seleccionando cada elemento: modelo, material, piedra, intención",
+    "Existe el poder de transformar los pensamientos en realidades durante el proceso de búsqueda de la plenitud y la realización personal. Es el poder de la intención, la semilla de toda transformación y creación en nuestras vidas.",
+   
   ],
   arrowRightButton: "LEER MÁS",
   direction: "right",
@@ -18,10 +18,10 @@ const infoTemplate: TemplateBlogOptions = {
 
 const infoTemplate2: TemplateBlogOptions = {
   image: imageBlog2,
-  title: "¿Para que meditamos?",
+  title: "¿Para qué meditamos?",
   secundaryTitle: "Descubre historias, pensamientos, sentimientos y más.",
   description: [
-    "Para qué meditamos? Cuando desarrollamos el hábito de estar presentes conectamos con nuestro ser interior, fomentando el bienestar físico, mental y emocional, para alcanzar un estado de conciencia expandida, experimentando una forma de percepción más amplia y profunda que la habitual, lo que nos facilita conectar con uno mismo, con los demás y con el entorno. ",
+    "¿Para qué meditamos? Cuando desarrollamos el hábito de estar presentes conectamos con nuestro ser interior, fomentando el bienestar físico, mental y emocional, para alcanzar un estado de conciencia expandida, experimentando una forma de percepción más amplia y profunda que la habitual, lo que nos facilita conectar con uno mismo, con los demás y con el entorno. ",
   ],
   arrowRightButton: "LEER MÁS",
   direction: "left",

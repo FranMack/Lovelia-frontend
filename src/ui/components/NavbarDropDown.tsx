@@ -23,7 +23,7 @@ export function NavbarDropDown({
   handleMouseLeave,
 }: NavbarDropDownProps) {
   const navigate = useNavigate();
-  const { setEmail, setId, setName, setLastname } = useContext(UserContext);
+  const { setEmail, setId, setName, setLastname,setSuscription,setToken } = useContext(UserContext);
 
   const linkTo = (linkPath: string) => {
     navigate(linkPath);
@@ -40,6 +40,8 @@ export function NavbarDropDown({
         setId("");
         setName("");
         setLastname("");
+        setSuscription(false)
+        setToken("")
         navigate("/");
       })
       .catch((error) => {

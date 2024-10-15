@@ -16,7 +16,7 @@ import { BackgroundVideo } from "../../ui/components";
 
   const popUpInfo = {
     title: "Listo!",
-    text: "Te enviamos un correo amparo.bernabé@gmail.com. Por favor chequea tu bandeja de entrada y seguí las instrucciones.",
+    text: `Te enviamos un correo para que puedas restaurar tu contraseña. Por favor chequea tu bandeja de entrada y seguí las instrucciones.`,
     handlePopUp: linkToLogin,
     buttonText: "INICIAR SESIÓN",
   };

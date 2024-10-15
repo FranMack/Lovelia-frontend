@@ -14,6 +14,25 @@
         height: 50%;
         margin-left: 3%;
         margin-right: 5%;
+        position: relative;
+        >.number-items-container {
+            top: -30%;
+            right: -30%;
+            position: absolute;
+            background-color: $color_primary;
+            width: 1.6rem;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          p {
+            font-size: 1.5rem;
+            color: $color_text1;
+            font-weight: 500;
+          }
        
     }
     >.image-container{

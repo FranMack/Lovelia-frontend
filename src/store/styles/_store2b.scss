@@ -1,0 +1,60 @@
+@import "../../styles//variables.scss";
+
+.store2b-container{
+
+    width: 100vw;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    
+
+    padding-bottom: 10vh;
+
+
+    .store2b-slider-container{
+        width: 80%;
+        z-index: 10;
+
+        color:$color_primary;
+        font-weight: 400;
+      
+        h3{
+          font-size: 2.6rem;
+          color:$color_primary;
+          font-weight: 300;
+          margin-bottom: 2vh;
+          margin-bottom: 2%;
+         
+        }
+      }
+}
+
+
+@media screen and (max-width: 678px) {
+    .store2b-container{
+
+       
+        
+    
+        padding-bottom: 10vh;
+    
+    
+        .store2b-slider-container{
+            width: 90%;
+            z-index: 10;
+    
+            color:$color_primary;
+            font-weight: 400;
+          
+            h3{
+              font-size: 2.6rem;
+              color:$color_primary;
+              font-weight: 300;
+              margin-bottom: 2vh;
+              margin-bottom: 2%;
+             
+            }
+          }
+    }
+
+}

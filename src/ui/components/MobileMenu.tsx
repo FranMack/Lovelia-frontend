@@ -104,7 +104,7 @@ export const MobileMenu = () => {
   };
 
   const { toggleMenu, menuRef } = useContext(MobileMenuContext);
-  const{email,setEmail, setId, setName, setLastname,subscription}=useContext(UserContext)
+  const{email,setEmail, setId, setName, setLastname,subscription,setSuscription,setToken}=useContext(UserContext)
 
 
   const handlerLogout = () => {
@@ -117,6 +117,8 @@ export const MobileMenu = () => {
         setId("");
         setName("");
         setLastname("");
+        setToken("")
+        setSuscription(false)
         toggleMenu()
         navigate("/");
       })

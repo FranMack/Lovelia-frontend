@@ -20,13 +20,14 @@ interface MercadoPagoCheckoutFormProps {
 declare global {
   interface Window {
     MercadoPago: any;
+    cardFormInstance: any;
   }
 }
 
 export const MercadoPagoCheckoutForm = ({
   userInfo,
 }: MercadoPagoCheckoutFormProps) => {
-  const { location, day, month, year, hour, min, meridiam } = userInfo;
+  const { location, day, month, year, hour, meridiam } = userInfo;
 
   const navigate = useNavigate();
 
@@ -49,7 +50,6 @@ export const MercadoPagoCheckoutForm = ({
       month &&
       year &&
       hour &&
-      min &&
       meridiam
     ) {
       isMounted.current = true;
@@ -57,139 +57,146 @@ export const MercadoPagoCheckoutForm = ({
       const initializeMercadoPago = async () => {
         try {
           await loadMercadoPago();
+
+          if (!window.MercadoPago) {
+            console.error("MercadoPago SDK no se cargó correctamente.");
+            return;
+          }
+
           const mp = new window.MercadoPago(envs.MP_PUBLIC_KEY);
 
-          const cardForm = mp.cardForm({
-            amount: "15",
-            iframe: true,
-            form: {
-              id: "form-checkout",
-              cardNumber: {
-                id: "form-checkout__cardNumber",
-                placeholder: "Número de tarjeta",
+          // Comprueba si cardForm ya ha sido instanciado previamente
+          if (!window.cardFormInstance) {
+            const cardForm = mp.cardForm({
+              amount: "15",
+              iframe: true,
+              form: {
+                id: "form-checkout",
+                cardNumber: {
+                  id: "form-checkout__cardNumber",
+                  placeholder: "Número de tarjeta",
+                },
+                expirationDate: {
+                  id: "form-checkout__expirationDate",
+                  placeholder: "MM/YY",
+                },
+                securityCode: {
+                  id: "form-checkout__securityCode",
+                  placeholder: "Código de seguridad",
+                },
+                cardholderName: {
+                  id: "form-checkout__cardholderName",
+                  placeholder: "Titular de la tarjeta",
+                },
+                issuer: {
+                  id: "form-checkout__issuer",
+                  placeholder: "Banco emisor",
+                },
+                installments: {
+                  id: "form-checkout__installments",
+                  placeholder: "Cuotas",
+                },
+                identificationType: {
+                  id: "form-checkout__identificationType",
+                  placeholder: "Tipo de documento",
+                },
+                identificationNumber: {
+                  id: "form-checkout__identificationNumber",
+                  placeholder: "Número del documento",
+                },
+                cardholderEmail: {
+                  id: "form-checkout__cardholderEmail",
+                  placeholder: "E-mail",
+                },
               },
-              expirationDate: {
-                id: "form-checkout__expirationDate",
-                placeholder: "MM/YY",
-              },
-              securityCode: {
-                id: "form-checkout__securityCode",
-                placeholder: "Código de seguridad",
-              },
-              cardholderName: {
-                id: "form-checkout__cardholderName",
-                placeholder: "Titular de la tarjeta",
-              },
-              issuer: {
-                id: "form-checkout__issuer",
-                placeholder: "Banco emisor",
-              },
-              installments: {
-                id: "form-checkout__installments",
-                placeholder: "Cuotas",
-              },
-              identificationType: {
-                id: "form-checkout__identificationType",
-                placeholder: "Tipo de documento",
-              },
-              identificationNumber: {
-                id: "form-checkout__identificationNumber",
-                placeholder: "Número del documento",
-              },
-              cardholderEmail: {
-                id: "form-checkout__cardholderEmail",
-                placeholder: "E-mail",
-              },
-            },
-            callbacks: {
-              onFormMounted: (error: unknown) => {
-                if (error) {
-                  console.warn("Form Mounted handling error:", error);
-                  return;
-                }
-                console.log("Form mounted");
-              },
-              onSubmit: async (event: React.FormEvent<HTMLFormElement>) => {
-                event.preventDefault();
-
-                if (!isMounted.current) return;
-
-                setIsLoading(true);
-                const {
-                  paymentMethodId: payment_method_id,
-                  issuerId: issuer_id,
-                  cardholderEmail: email,
-                  amount,
-                  token,
-                  installments,
-                  identificationNumber,
-                  identificationType,
-                } = cardForm.getCardFormData();
-
-                try {
-                  const response = await fetch(
-                    ` ${envs.API_DOMAIN}/api/v1/payment-mercadopago/subscribe`,
-                    {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({
-                        token,
-                        issuer_id,
-                        payment_method_id,
-                        transaction_amount: Number(amount),
-                        installments: Number(installments),
-                        description: "Descripción del producto",
-                        user_email: userContext.email,
-                        userInfo: userInfo,
-                        payer: {
-                          email,
-                          identification: {
-                            type: identificationType,
-                            number: identificationNumber,
-                          },
-                        },
-                      }),
-                      credentials: "include",
-                    }
-                  );
-
-                  if (!response.ok) {
-                    const errorData = await response.json();
-
-                    console.error(
-                      "Error en la respuesta del servidor:",
-                      errorData
-                    );
-                    setWarning("Error al procesar al pago");
-                    setIsLoading(false);
+              callbacks: {
+                onFormMounted: (error: unknown) => {
+                  if (error) {
+                    console.warn("Form Mounted handling error:", error);
                     return;
                   }
+                  console.log("Form mounted");
+                },
+                onSubmit: async (event: React.FormEvent<HTMLFormElement>) => {
+                  event.preventDefault();
 
-                  setWarning("");
+                  if (!isMounted.current) return;
 
-                  const data = await response.json();
-                  navigate("/welcome");
-                  console.log("Respuesta exitosa:", data);
-                } catch (error) {
-                  console.error("Error en el proceso de pago:", error);
-                }
+                  setIsLoading(true);
+                  const {
+                    paymentMethodId: payment_method_id,
+                    issuerId: issuer_id,
+                    cardholderEmail: email,
+                    amount,
+                    token,
+                    installments,
+                    identificationNumber,
+                    identificationType,
+                  } = window.cardFormInstance.getCardFormData();
+
+                  try {
+                    const response = await fetch(
+                      `${envs.API_DOMAIN}/api/v1/payment-mercadopago/subscribe`,
+                      {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        credentials: "include",
+                        body: JSON.stringify({
+                          token,
+                          issuer_id,
+                          payment_method_id,
+                          transaction_amount: Number(amount),
+                          installments: Number(installments),
+                          description: "Descripción del producto",
+                          user_email: userContext.email,
+                          userInfo: userInfo,
+                          payer: {
+                            email,
+                            identification: {
+                              type: identificationType,
+                              number: identificationNumber,
+                            },
+                          },
+                        }),
+                      }
+                    );
+
+                    if (!response.ok) {
+                      const errorData = await response.json();
+
+                      console.error(
+                        "Error en la respuesta del servidor:",
+                        errorData
+                      );
+                      setWarning("Error al procesar al pago");
+                      setIsLoading(false);
+                      return;
+                    }
+
+                    setWarning("");
+
+                    const data = await response.json();
+                    navigate("/welcome");
+                    console.log("Respuesta exitosa:", data);
+                  } catch (error) {
+                    console.error("Error en el proceso de pago:", error);
+                  }
+                },
+                onFetching: (resource: unknown) => {
+                  console.log("Fetching resource:", resource);
+                  const progressBar = progressBarRef.current;
+                  progressBar?.removeAttribute("value");
+
+                  return () => {
+                    progressBar?.setAttribute("value", "0");
+                  };
+                },
               },
-              onFetching: (resource: unknown) => {
-                console.log("Fetching resource:", resource);
-                const progressBar = progressBarRef.current;
-                progressBar?.removeAttribute("value");
+            });
 
-                return () => {
-                  progressBar?.setAttribute("value", "0");
-                };
-              },
-            },
-          });
-
-          return () => {
-            cardForm?.unmount();
-            isMounted.current = false;
-          };
+            // Guarda cardForm en la referencia global
+            window.cardFormInstance = cardForm;
+          }
         } catch (error) {
           console.error("Error initializing MercadoPago:", error);
         }
@@ -199,8 +206,12 @@ export const MercadoPagoCheckoutForm = ({
 
       return () => {
         isMounted.current = false;
-        formRef.current = null;
-        progressBarRef.current = null;
+
+        // Desmonta el formulario al salir del componente
+        if (window.cardFormInstance) {
+          window.cardFormInstance.unmount();
+          window.cardFormInstance = null;
+        }
       };
     }
   }, [userContext.email, userInfo]);
@@ -230,7 +241,6 @@ export const MercadoPagoCheckoutForm = ({
       />
       {warning ? (
         <button onClick={tryAgain}>
-          {" "}
           {isLoading ? (
             <BeatLoader color={"white"} speedMultiplier={0.4} />
           ) : (

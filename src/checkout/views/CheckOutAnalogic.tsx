@@ -1065,7 +1065,7 @@ const taxRegimeOptions = [
                 </div>
 
                 <div className="card-td">
-                  <strong>Precio unitario:</strong>
+                  <strong>Precio:</strong>
                   <span>{`$ ${item.price}`}</span>
                 </div>
                     </div>

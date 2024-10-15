@@ -7,7 +7,7 @@ import stone6 from "./Onix.webp";
 
 
 export const infoStones=[
-    {image:stone1,title:"Lapislazuli",text:"La intuición es la guía del Alma."},
+    {image:stone1,title:"Lapislázuli",text:"La intuición es la guía del Alma."},
     {image:stone3,title:"Labradorita",text:"La intuición es la guía del Alma"},
     {image:stone2,title:"Turquesa",text:"La intuición es la guía del Alma"},
 {image:stone4,title:"Obsidiana dorada",text:"La intuición es la guía del Alma"},

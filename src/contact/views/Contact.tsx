@@ -142,9 +142,9 @@ import { BackgroundVideo } from "../../ui/components";
             <img src={logo} alt="logo lovelia" />
             <p>a tu servicio</p>
           </div>
-          <h2>Contactanos:</h2>
+          <h2>Contáctanos:</h2>
           <p>
-          Si tienes alguna duda, comentario o sugencia, escríbenos a través de este formulario de contacto.
+          Si tienes alguna duda, comentario o sugerencia, escríbenos a través de este formulario de contacto.
           </p>
         </div>
       </div>

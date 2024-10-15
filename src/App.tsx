@@ -78,7 +78,7 @@ import { UserContext } from "./context/userContext.tsx";
 import { ShopingCartContext } from "./context/modalShopingCartContext.tsx";
 import { ToastContainer } from "react-toastify";
 import { ShopingCart } from "./ui/components/ShopingCart.tsx";
-import {  PublicRoute } from "./router";
+import {  PublicRoute,PrivateRoute } from "./router";
 import { MobileMenuContext } from "./context/mobileMenuContext.tsx";
 
 function App() {
@@ -381,40 +381,44 @@ function App() {
         <Route
           path="/profile"
           element={
-     
+            <PrivateRoute>
               <Suspense fallback={<Loader />}>
                 <Profile />
               </Suspense>
+              </PrivateRoute>
         
           }
         />
         <Route
           path="/checkout/digital"
           element={
-          
+            <PrivateRoute>
               <Suspense fallback={<Loader />}>
                 <CheckOutDigital />
               </Suspense>
+              </PrivateRoute>
    
           }
         />
         <Route
           path="/myTalisman"
           element={
-           
+           <PrivateRoute>
                 <Suspense fallback={<Loader />}>
               <MyTalisman />
               </Suspense>
+              </PrivateRoute>
  
           }
         />
         <Route
           path="/welcome"
           element={
-      
+            <PrivateRoute>
               <Suspense fallback={<Loader />}>
                 <WelcomeDigital />
               </Suspense>
+              </PrivateRoute>
       
           }
         />
