@@ -18,6 +18,8 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 
+
+
   }
   
   .acountInfo-internal-left-container {
@@ -29,6 +31,7 @@ align-items: center;
     justify-content: center;
     align-items: center;
     row-gap: 6%;
+    
     button {
       width: 80%;
       border: none;
@@ -117,6 +120,7 @@ align-items: center;
       justify-content: space-between;
       align-items: center;
       row-gap: 4vh;
+      
 
     
   }
@@ -135,8 +139,8 @@ align-items: center;
   .acountInfo-internal-left-container {
     width: 90%;
     height: 100%;
-    background-color: $color_background1;
     display: flex;
+    row-gap: 1vh;
     padding-top: 3vh;
     padding-bottom: 3vh;
    

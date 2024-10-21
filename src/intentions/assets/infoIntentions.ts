@@ -105,7 +105,7 @@ export const infoIntenciones: InfoIntenciones[] = [
       "Cada una de las situaciones de tu vida es una oportunidad para aprender a estar en ella, con toda tu atención en vivir esa experiencia.",
       "Y si, como suele ocurrir a las personas, llegaras a olvidarlo por un pequeño momento es importante recordar que serás bienvenido a reconectar con el aquí y ahora, porque el presente será tu hogar.",
     ],
-    activation: "Yo xxxx decreto, vivir en el Aquí y en el Ahora, aceptando plenamente este momento, conectando conmigo, con los otros y con el mundo que me rodea. Aceptando vivir de manera consciente mis experiencias, mis sentimientos, emociones y pensamientos.",
+    activation: "Yo ............................................ decreto, vivir en el Aquí y en el Ahora, aceptando plenamente este momento, conectando conmigo, con los otros y con el mundo que me rodea. Aceptando vivir de manera consciente mis experiencias, mis sentimientos, emociones y pensamientos.",
   },
   {
     id: 5,

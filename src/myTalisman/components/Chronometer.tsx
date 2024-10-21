@@ -120,9 +120,12 @@ export const Chronometer = ({playTrack}:ChronometerOptions) => {
         <div className="chorometer-center-container">
       <p>{timerDurationTransform(calcSeconds)}</p>
 
+      <div className="buttons-container">
+
       {!started ?<Button text="Iniciar" onClick={startTimer} />: (chronometer && started)?<Button text="Detener" onClick={stopTimer} /> :<Button text="Continuar" onClick={continueTimer} />}
 
      {started && <Button text="Reiniciar" onClick={restart} />}
+     </div>
      </div>
     </div>
   );

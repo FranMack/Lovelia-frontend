@@ -123,6 +123,7 @@ import { useForm } from "../../hooks/useForm";
           "subscriptionActive",
           JSON.stringify(data.subscription ? true : false)
         );
+        localStorage.setItem("userLogged",JSON.stringify(true))
         onResetForm();
         setIsLoading(false);
         navigatge("/profile");

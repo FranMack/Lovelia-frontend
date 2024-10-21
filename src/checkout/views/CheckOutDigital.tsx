@@ -5,6 +5,13 @@ import { ShopingCartContext } from "../../context/modalShopingCartContext";
 import { BackgroundVideo } from "../../ui/components";
 import { MercadoPagoCheckoutForm } from "../../ui/components/MercadoPagoCheckoutForm";
 import { CheckOutNavbar } from "../components/CheckOutNavbar";
+import imageVisa from "../assets/visa.png"
+import imageMaster from "../assets/mastercard.png"
+import imageAmerican from "../assets/americanExpress.svg"
+import imageCabal from "../assets/caabal.png"
+import imageNaranja from "../assets/naranja.png"
+import imageMaestro from "../assets/maestro.png"
+import logoMp from "../assets/mercado_pago_logo.png"
 
 const sections = ["1. Datos usuario", "2. Pago"];
 
@@ -344,7 +351,18 @@ function hours() {
           >
             <div className="checkout-title-container">
               <h3>Pago</h3>
-              <h6>Tu primer mes de subscripción es gratis.</h6>
+              <h6>Métodos de pago:</h6>
+              
+            </div>
+         
+              
+            <div className="checkout-payment-methods-container">
+              <img src={imageMaster} alt="mastercard logo" />
+              <img src={imageVisa} alt="visa logo" />
+              <img src={imageAmerican} alt="american express logo" />
+              <img src={imageCabal} alt="cabal logo" />
+              <img src={imageNaranja} alt="naranja logo" />
+              <img src={imageMaestro} alt="maestro logo" />
             </div>
             <MercadoPagoCheckoutForm
               userInfo={{
@@ -357,6 +375,19 @@ function hours() {
                 meridiam: meridiamOption,
               }}
             />
+
+<div className="mp-info-container">
+                <div className="image-container">
+                  <img src={logoMp} alt="logo mercado pago" />
+                </div>
+                <div className="info-container">
+                  <h3>Pago seguro</h3>
+                  <p>
+                  Procesamos los pagos de forma segura a través de Mercado Pago
+                  </p>
+                </div>
+              </div>
+             
           </div>
 
           <div className="checkout-botton-right-container">

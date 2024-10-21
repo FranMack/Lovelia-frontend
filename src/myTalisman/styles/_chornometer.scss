@@ -1,49 +1,128 @@
 @import "../../styles//variables.scss";
 
-.chronometer-container{
-    position: relative;
-    color:$color_text1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-   width: fit-content;
-   height: 100%;
+.chronometer-container {
+  position: relative;
+  color: $color_text1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 100%;
 
-
-   >.icon-container{
+  > .icon-container {
     position: absolute;
     top: -50%;
     width: 120%;
     margin-bottom: 2%;
     display: flex;
     justify-content: end;
-    svg{
-        path{
-            fill:white
-        }
+    svg {
+      path {
+        fill: white;
+      }
     }
-}
-.chorometer-center-container{
+  }
+  .chorometer-center-container {
     display: flex;
     align-items: center;
     column-gap: 5%;
-    p{
-        font-size: 5rem;
-        font-weight: lighter;
+    p {
+      font-size: 5rem;
+      font-weight: lighter;
     }
 
-    :last-child{
-        background-color: $color_yellow;
-        color:$color_darkPurple
+    >.buttons-container{
+        display: flex;
+        column-gap: 3%;
+        button{
+            background-color: $color_darkPurple;
+            color: $color_yellow;
+            border: none;
+            font-weight: 400;
+           
+        }
+       
+        :last-child {
+            background-color: $color_yellow;
+            color: $color_darkPurple;
+          }
     }
+
+  
+  }
 }
 
 
 
+@media screen and (max-width: 678px) {
 
+
+    .chronometer-container {
+        position: relative;
+        color: $color_text1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 80%;
+        height: auto;
+        margin: 0 auto;
+      
+        > .icon-container {
+          position: absolute;
+          top: -5%;
+          width: 120%;
+          margin-bottom: 2%;
+          display: flex;
+          justify-content: end;
+          svg {
+            path {
+              fill: white;
+            }
+          }
+        }
+        .chorometer-center-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          column-gap: 5%;
+          row-gap: 1vh;
+  
+          p {
+            font-size: 5rem;
+            font-weight: lighter;
+          }
+      
+          >.buttons-container{
+              display: flex;
+              flex-direction: row;
+              row-gap: 0%;
+              column-gap: 15%;
+              margin: 0;
+          
+              width: 100%;
+              button{
+                  background-color: $color_darkPurple;
+                  color: $color_yellow;
+                  border: none;
+                  padding: 8%;
+                  height: 10%;
+                  font-size: 1.3rem;
+                
+                
+                 
+              }
+             
+              :last-child {
+                  background-color: $color_yellow;
+                  color: $color_darkPurple;
+                }
+          }
+      
+        
+        }
+      }
+      
 
 }
-
-
-   

@@ -42,6 +42,18 @@ export const MercadoPagoCheckoutForm = ({
   const [warning, setWarning] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  //validations
+  const [cardNumberErrors, setCardNumberErrors] = useState<boolean>(false);
+  const [securityCodeErrors, setSecurityCodeErrors] = useState<boolean>(false);
+  const [expirationMonthErrors, setExpirationMonthErrors] =
+    useState<boolean>(false);
+  const [expirationYearErrors, setExpirationYearErrors] =
+    useState<boolean>(false);
+  const [cardholderNameErrors, setCardholderNameErrors] =
+    useState<boolean>(false);
+
+    const [payerEmailErrors,setPayerEmailErrors]=useState<boolean>(false)
+
   useEffect(() => {
     if (
       userContext.email &&
@@ -86,7 +98,7 @@ export const MercadoPagoCheckoutForm = ({
                 },
                 cardholderName: {
                   id: "form-checkout__cardholderName",
-                  placeholder: "Titular de la tarjeta",
+                  placeholder: "Nombre completo",
                 },
                 issuer: {
                   id: "form-checkout__issuer",
@@ -147,7 +159,7 @@ export const MercadoPagoCheckoutForm = ({
                           payment_method_id,
                           transaction_amount: Number(amount),
                           installments: Number(installments),
-                          description: "Descripción del producto",
+                          description: "Subscripción Lovelia",
                           user_email: userContext.email,
                           userInfo: userInfo,
                           payer: {
@@ -161,9 +173,15 @@ export const MercadoPagoCheckoutForm = ({
                       }
                     );
 
+                    setCardNumberErrors(false)
+                    setExpirationMonthErrors(false)
+                    setExpirationYearErrors(false)
+                    setCardholderNameErrors(false)
+                    setSecurityCodeErrors(false)
+
                     if (!response.ok) {
                       const errorData = await response.json();
-
+                      errorData.error.includes("payer_email") ? setPayerEmailErrors(true):setPayerEmailErrors(false)
                       console.error(
                         "Error en la respuesta del servidor:",
                         errorData
@@ -173,6 +191,7 @@ export const MercadoPagoCheckoutForm = ({
                       return;
                     }
 
+                   
                     setWarning("");
 
                     const data = await response.json();
@@ -182,6 +201,54 @@ export const MercadoPagoCheckoutForm = ({
                     console.error("Error en el proceso de pago:", error);
                   }
                 },
+
+                onError: (error: unknown) => {
+                  console.error(
+                    "Error capturado en el callback onError:",
+                    error
+                  );
+                  setWarning(
+                    "Ocurrió un error al procesar el formulario. Revise los datos e intente nuevamente."
+                  );
+
+
+              
+
+
+                  if (error instanceof Array) {
+                    const checkError = (
+                      field: string,
+                      setError: (value: boolean) => void
+                    ) => {
+                      const hasError = error.some((item) => {
+                        if (item.message.includes(field)) {
+                          setError(true);
+                          return true;
+                        }
+                        setError(false);
+                        return false;
+                      });
+                      return hasError;
+                    };
+
+                    // Usando la función para cada campo
+                    checkError("cardNumber", setCardNumberErrors);
+                    checkError("securityCode", setSecurityCodeErrors);
+                    checkError("expirationMonth", setExpirationMonthErrors);
+                    checkError("expirationYear", setExpirationYearErrors);
+                    checkError("cardholderName", setCardholderNameErrors);
+                  }
+
+                  if(!error){
+                    setCardNumberErrors(false)
+                    setExpirationMonthErrors(false)
+                    setExpirationYearErrors(false)
+                    setCardholderNameErrors(false)
+                    setSecurityCodeErrors(false)
+
+                  }
+                },
+
                 onFetching: (resource: unknown) => {
                   console.log("Fetching resource:", resource);
                   const progressBar = progressBarRef.current;
@@ -218,44 +285,46 @@ export const MercadoPagoCheckoutForm = ({
 
   return (
     <form id="form-checkout" className="form-checkout" ref={formRef}>
-      <div id="form-checkout__cardNumber" className="container"></div>
-      <div id="form-checkout__expirationDate" className="container"></div>
-      <div id="form-checkout__securityCode" className="container"></div>
+      <label htmlFor="">Información de la tarjeta</label>
+      <div id="form-checkout__cardNumber" className={cardNumberErrors ? "container error":"container"}></div>
+      <div id="form-checkout__expirationDate"  className={(expirationMonthErrors || expirationYearErrors) ? "container error":"container"}></div>
+      
+  
+      <div id="form-checkout__securityCode" className={securityCodeErrors ? "container error":"container"}></div>
+      <label htmlFor="">Nombre del titular de la tarjeta</label>
       <input
         type="text"
         id="form-checkout__cardholderName"
         placeholder="Titular de la tarjeta"
+        className={cardholderNameErrors ? "error":""}
       />
+         <label htmlFor="">Entidad bancaria</label>
       <select id="form-checkout__issuer"></select>
+      <label htmlFor="">Cuotas</label>
       <select id="form-checkout__installments"></select>
+      <label htmlFor="">Tipo de identificación</label>
       <select id="form-checkout__identificationType"></select>
+      <label htmlFor="">Número de identificación</label>
       <input
         type="text"
         id="form-checkout__identificationNumber"
         placeholder="Número del documento"
       />
+       <label htmlFor="">Email</label>
       <input
         type="email"
         id="form-checkout__cardholderEmail"
         placeholder="E-mail"
+        className={payerEmailErrors ? "error":""}
       />
-      {warning ? (
-        <button onClick={tryAgain}>
-          {isLoading ? (
-            <BeatLoader color={"white"} speedMultiplier={0.4} />
-          ) : (
-            "Volver a intentar"
-          )}
-        </button>
-      ) : (
-        <button type="submit" id="form-checkout__submit">
-          {isLoading ? (
-            <BeatLoader color={"white"} speedMultiplier={0.4} />
-          ) : (
-            "Pagar"
-          )}
-        </button>
-      )}
+      <button type="submit" id="form-checkout__submit">
+        {isLoading ? (
+          <BeatLoader color={"white"} speedMultiplier={0.4} />
+        ) : (
+          "Pagar"
+        )}
+      </button>
+
       {warning && <p className="error-message">{warning}</p>}
       <progress ref={progressBarRef} value="0" className="progress-bar">
         Cargando...

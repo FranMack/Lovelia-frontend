@@ -2,12 +2,14 @@ import { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
 
 
+
 interface PrivateRouteProps {
   children: ReactNode;
 }
 
 export function PublicRoute({ children }: PrivateRouteProps) {
-  const cookieToken = document.cookie.includes("token");
+  const userInfoJSON = localStorage.getItem("userLogged") || "false";
+  const userLogged=JSON.parse(userInfoJSON)
 
-  return !cookieToken ? children : <Navigate to="/" />;
+  return !userLogged ? children : <Navigate to="/" />;
 }

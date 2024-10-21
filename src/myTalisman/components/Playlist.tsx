@@ -5,6 +5,7 @@ import { TalismanButtonFocusContext } from "../../context/talismanButtonFocusCon
 type SoundsType = {
   name: string;
   url: string;
+  duration?:string
 };
 
 export interface DropdownOptions {
@@ -31,6 +32,12 @@ export function Playlist({
   );
 
   const [tableFocus, setTableFocus] = useState(0);
+
+
+  console.log("tableFocus",tableFocus)
+  console.log("buttonFocusPosition",buttonFocusPosition)
+  console.log("audioType",audioType)
+
 
   return (
     <div className="playlist-container">
@@ -64,6 +71,7 @@ export function Playlist({
               return (
                 <tbody>
                   <tr
+                    title="Doble click para reproducir."
                     className={
                       trackIndex === i && audioType === "sound"
                         ? "selected-track"
@@ -117,7 +125,7 @@ export function Playlist({
                       <strong>{item.name}</strong>
                       <p>{item.name}</p>
                     </td>
-                    <td>{"10:10"}</td>
+                    <td>{item.duration}</td>
                   </tr>
                 </tbody>
               );
@@ -128,6 +136,7 @@ export function Playlist({
               return (
                 <tbody>
                   <tr
+                  title="Doble click para reproducir."
                     className={
                       trackIndex === i && audioType === "meditation"
                         ? "selected-track"
@@ -147,7 +156,7 @@ export function Playlist({
                     <td>
                       {tableFocus === i + 1 ? (
                         <div className="play-icon-container">
-                          {trackIndex === i && audioType === "meditation" ? (
+                          {trackIndex === i && audioType === "meditation" && playing ? (
                             <StopIcon
                               onClick={() => {
                                 pauseTrack("meditation");
@@ -177,7 +186,7 @@ export function Playlist({
                       <strong>{item.name}</strong>
                       <p>{item.name}</p>
                     </td>
-                    <td>{"10:10"}</td>
+                    <td>{item.duration}</td>
                   </tr>
                 </tbody>
               );

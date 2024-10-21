@@ -1,12 +1,15 @@
-import { ReactNode } from "react";
+import { ReactNode, useContext } from "react";
 import { Navigate } from "react-router-dom";
+
 
 interface PrivateRouteProps {
   children: ReactNode;
 }
 
 export function PrivateRoute({ children }: PrivateRouteProps) {
-  const cookieToken = document.cookie.includes("token");
 
-  return cookieToken ? children : <Navigate to="/portal-usuario" />;
+  const userInfoJSON = localStorage.getItem("userLogged") || "false";
+  const userLogged=JSON.parse(userInfoJSON)
+
+  return userLogged ? children : <Navigate to="/portal-usuario" />;
 }
