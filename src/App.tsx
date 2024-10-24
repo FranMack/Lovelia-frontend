@@ -1,6 +1,9 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+import { onMessage } from "firebase/messaging";
 import { Suspense, lazy } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { messaging } from "./config/firebase.ts"; // Import the messaging object
 import { Loader } from "./ui/pages/Loader.tsx";
+
 const Home = lazy(() => import("./home/views/Home"));
 const TalismanInfo = lazy(() => import("./talisman/views/TalismanInfo.tsx"));
 const TalismanAnalogic = lazy(
@@ -65,21 +68,22 @@ const ActivationAnalogic = lazy(
 
 import {
   Footer,
-  Navbar,
   MobileFooter,
-  MobileNavbar,
   MobileMenu,
+  MobileNavbar,
+  Navbar,
 } from "./ui/components";
 
-import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { envs } from "./config/envs.ts";
-import { UserContext } from "./context/userContext.tsx";
-import { ShopingCartContext } from "./context/modalShopingCartContext.tsx";
+import { useContext, useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
-import { ShopingCart } from "./ui/components/ShopingCart.tsx";
-import {  PublicRoute,PrivateRoute } from "./router";
+import { envs } from "./config/envs.ts";
 import { MobileMenuContext } from "./context/mobileMenuContext.tsx";
+import { ShopingCartContext } from "./context/modalShopingCartContext.tsx";
+import { UserContext } from "./context/userContext.tsx";
+import useRequestPermission from "./hooks/useRequestPermission.ts";
+import { PrivateRoute, PublicRoute } from "./router";
+import { ShopingCart } from "./ui/components/ShopingCart.tsx";
 
 function App() {
   const { shopingCartOpen, setShopingCartItems } =
@@ -143,6 +147,24 @@ function App() {
       };
     }
   }, [menuOpen]);
+
+  // Request permission to receive notifications
+  useRequestPermission();
+
+  // Listen for messages when the app is in the foreground
+  useEffect(() => {
+    // Listen for messages when the app is in the foreground
+    const unsubscribe = onMessage(messaging, (payload) => {
+      console.log("Message received in the foreground: ", payload);
+      // Customize how you want to display the notification or data
+      // For example, you can use alert or a custom UI component to show the message
+    });
+
+    // Cleanup the listener when the component unmounts
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   return (
     <>
@@ -385,8 +407,7 @@ function App() {
               <Suspense fallback={<Loader />}>
                 <Profile />
               </Suspense>
-              </PrivateRoute>
-        
+            </PrivateRoute>
           }
         />
         <Route
@@ -396,19 +417,17 @@ function App() {
               <Suspense fallback={<Loader />}>
                 <CheckOutDigital />
               </Suspense>
-              </PrivateRoute>
-   
+            </PrivateRoute>
           }
         />
         <Route
           path="/myTalisman"
           element={
-           <PrivateRoute>
-                <Suspense fallback={<Loader />}>
-              <MyTalisman />
+            <PrivateRoute>
+              <Suspense fallback={<Loader />}>
+                <MyTalisman />
               </Suspense>
-              </PrivateRoute>
- 
+            </PrivateRoute>
           }
         />
         <Route
@@ -418,8 +437,7 @@ function App() {
               <Suspense fallback={<Loader />}>
                 <WelcomeDigital />
               </Suspense>
-              </PrivateRoute>
-      
+            </PrivateRoute>
           }
         />
       </Routes>
