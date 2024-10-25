@@ -222,7 +222,7 @@ export function Navbar() {
             </div>
           )}
         </li>
-        {!email ? (
+        {!name ? (
           <li
             onClick={(event) => linkToSection("portal-usuario", event)}
             className={

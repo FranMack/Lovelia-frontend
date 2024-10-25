@@ -1,0 +1,66 @@
+@import "../../styles//variables.scss";
+
+.alarm-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 3%;
+    
+   
+}
+
+.alarm-inputs-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    row-gap:1.5vh;
+    padding-top: 5%;
+    z-index: 10;
+    cursor: pointer;
+    
+    >.alarmn-internal-input-conainer{
+        width: 100%;
+       
+        display: flex;
+        align-items: center;
+        justify-content: center;
+       
+     font-size: 1.4rem;
+        column-gap: 1.5vw;
+        >input{
+            font-size: 1.4rem;
+            font-family: $font_titles;
+            height: 4vh;
+            background-color: transparent;
+            outline: none;
+            border:none;
+            z-index: 10;
+        } 
+       
+    }
+     
+}
+
+
+.alarm-dropdown-container {
+    width: 60%;
+    height: 15%;
+    display: flex;
+    flex-direction: column;
+    label {
+      text-align: center;
+      font-size: 1.7rem;
+      margin-bottom: 4%;
+    }
+    select {
+      background-color:$color_background1;
+      height: 73%;
+      color:gray;
+      font-size: 1.4rem;
+    }
+    }
+  

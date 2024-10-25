@@ -1,0 +1,73 @@
+@import "../../styles//variables.scss";
+
+.time-picker-container
+{
+    margin: 0 auto;
+    height:85%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 50;
+    background-color: $color_yellow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 5%;
+    color:$color_darkPurple;
+
+    >.close-icon-container{
+        position: absolute;
+       top:10%;
+       right: 20%;
+        svg{
+            path{
+                fill:$color_darkPurple
+            }
+        }
+    }
+    >h4{
+        font-size: 2rem;
+        font-weight: 400;
+        font-family: $font_titles;
+    }
+
+
+   > .time-picker-center-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 8%;
+        width: 50%;
+        height: fit-content;
+      
+        
+  
+     
+  
+       > .clock-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          column-gap: 5%;
+          > .icon-container {
+            cursor: pointer;
+            height: 40px;
+            svg{
+                path{
+                    fill: $color_darkPurple;
+                }
+            }
+          }
+          small{
+            margin-top: 8%;
+  font-size: 1.2rem;
+          }
+        }
+        p {
+          font-size: 4rem;
+          font-weight: lighter;
+          cursor: default;
+        }
+      }
+}

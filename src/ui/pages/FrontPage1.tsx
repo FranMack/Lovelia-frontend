@@ -1,6 +1,5 @@
-import { ButtonArrowRight } from "../../ui/components";
 import { ObliqueArrow } from "../../assets/icons/icons";
-import { LazyImage } from "../../ui/components";
+import { ButtonArrowRight, LazyImage } from "../../ui/components";
 
 export interface FrontPage1Options {
   image: string;
@@ -35,14 +34,14 @@ export const FrontPage1 = ({
           {text.map((item, i) => {
             if (i === 0) {
               return (
-                <p key={i}>
+                <div key={i}>
                   {arrow && (
                     <div className="icon-container">
                       <ObliqueArrow color={color} />
                     </div>
                   )}
-                  {item}
-                </p>
+                  <p>{item}</p>
+                </div>
               );
             } else {
               return <p key={i}>{item}</p>;

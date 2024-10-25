@@ -40,7 +40,10 @@ export const UserContext = createContext<UserContextValue>(
 
 export const UserContextProvider = ({ children }: UserContextProviderProps) => {
   const [id, setId] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
+  const [email, setEmail] = useState(() => {
+    const savedEmail = sessionStorage.getItem("userInfo");
+    return savedEmail ? JSON.parse(savedEmail) : "";
+  });
   const [token, setToken] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [lastname, setLastname] = useState<string>("");

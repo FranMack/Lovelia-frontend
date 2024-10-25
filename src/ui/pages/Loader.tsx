@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import logo from "../assets/lovelia-logo.webp"
+import logo from "../assets/lovelia-logo.webp";
 
 export const Loader = () => {
 

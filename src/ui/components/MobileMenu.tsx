@@ -119,7 +119,7 @@ export const MobileMenu = () => {
         setLastname("");
         setToken("")
         setSuscription(false)
-        localStorage.setItem("userLogged",JSON.stringify(false))
+        sessionStorage.removeItem("userInfo")
         toggleMenu()
         navigate("/");
       })

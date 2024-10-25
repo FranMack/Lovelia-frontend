@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import { ReactNode, useContext } from "react";
 import { Navigate } from "react-router-dom";
-
+import { UserContext } from "../context";
 
 
 interface PrivateRouteProps {
@@ -8,8 +8,6 @@ interface PrivateRouteProps {
 }
 
 export function PublicRoute({ children }: PrivateRouteProps) {
-  const userInfoJSON = localStorage.getItem("userLogged") || "false";
-  const userLogged=JSON.parse(userInfoJSON)
-
-  return !userLogged ? children : <Navigate to="/" />;
+  const {email}=useContext(UserContext)
+  return !email ? children : <Navigate to="/" />;
 }

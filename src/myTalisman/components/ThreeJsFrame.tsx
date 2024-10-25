@@ -287,6 +287,7 @@ export const ThreeJsFrame = () => {
   ];
 
   useEffect(() => {
+    setAudioType("")
     async function getUserInfo(email: string) {
       try {
         if (email) {

@@ -41,7 +41,7 @@ export function NavbarDropDown({
         setName("");
         setLastname("");
         setSuscription(false)
-        localStorage.setItem("userLogged",JSON.stringify(false))
+        sessionStorage.removeItem("userInfo")
         setToken("")
         navigate("/");
       })

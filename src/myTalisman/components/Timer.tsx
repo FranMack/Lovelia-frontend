@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
-import { CloseIcon } from "../../assets/icons/icons";
+import { ArrowDown, ArrowUp, CloseIcon } from "../../assets/icons/icons";
 import { TalismanButtonFocusContext } from "../../context";
-import { ArrowUp, ArrowDown } from "../../assets/icons/icons";
+import { TalismanAudioContext } from "../../context/talismanAudioContext";
+import { TimerContext } from "../../context/timerContext";
 import { Button } from "../../ui/components/Button";
 import timerCircle from "../assets/timer.png";
-import { TimerContext } from "../../context/timerContext";
-import { TalismanAudioContext } from "../../context/talismanAudioContext";
+import { Alarm } from "./Alarm";
 
 type SoundsType = {
   name: string;
@@ -54,11 +54,6 @@ export const Timer = ({ sounds }: TimerOptions) => {
     return;
   };
 
-  const [alarmActivated, setAlarmActivated] = useState<boolean>(false);
-
-  const handleAlarm = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAlarmActivated(event.target.checked);
-  };
 
   return (
     <div className="timer-container">
@@ -92,7 +87,7 @@ export const Timer = ({ sounds }: TimerOptions) => {
       </div>
 
       {sectionPosition === "timer" && (
-        <div className="timer-section-container">
+        <div className="timer-section-container revealLogo">
           <img src={timerCircle} alt="circle" />
 
           <div className="timer-top-container">
@@ -187,70 +182,7 @@ export const Timer = ({ sounds }: TimerOptions) => {
 
       {sectionPosition === "alarm" && (
         <div className="timer-section-container">
-          <img src={timerCircle} alt="circle" />
-
-          <div className="timer-top-container">
-            <div className="clock-container">
-              <div
-                className="icon-container"
-                onClick={() => {
-                  hours < 24 ? setHours(hours + 1) : setHours(0);
-                }}
-              >
-                <ArrowUp color="#ffff" />
-              </div>
-              <p>{hours < 10 ? `0${hours}` : hours}</p>
-              <div
-                className="icon-container"
-                onClick={() => {
-                  hours > 0 ? setHours(hours - 1) : setHours(24);
-                }}
-              >
-                <ArrowDown color="#ffff" />
-              </div>
-              <small>HORAS</small>
-            </div>
-            <p>:</p>
-
-            <div className="clock-container">
-              <div
-                className="icon-container"
-                onClick={() => {
-                  minutes < 59 ? setMinutes(minutes + 1) : setMinutes(0);
-                }}
-              >
-                <ArrowUp color="#ffff" />
-              </div>
-              <p>{minutes < 10 ? `0${minutes}` : minutes}</p>
-              <div
-                className="icon-container"
-                onClick={() => {
-                  minutes > 0 ? setMinutes(minutes - 1) : setMinutes(59);
-                }}
-              >
-                <ArrowDown color="#ffff" />
-              </div>
-              <small>MINUTOS</small>
-            </div>
-          </div>
-
-          <div className="timer-dropdown-container">
-            <label>Sonidos alarma</label>
-            <select>
-              <option>Cuencos de cuarzo</option>
-              <option>Cuencos tibetanos</option>
-              <option>El sonido del silencio</option>
-            </select>
-          </div>
-
-          <div className="alarm-state-container">
-            <p>Alarma activada</p>
-            <input
-              type="checkbox"
-              checked={alarmActivated}
-              onChange={handleAlarm}
-            />
-          </div>
+       <Alarm sounds={sounds}/>
         </div>
       )}
     </div>

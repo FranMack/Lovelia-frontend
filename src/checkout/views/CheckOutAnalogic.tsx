@@ -11,6 +11,7 @@ import { BackgroundVideo } from "../../ui/components";
 import { CheckOutNavbar } from "../components/CheckOutNavbar";
 import logoDhl from "../assets/logo-dhl.png";
 import { BillingValidation } from "../helpers/billingValidations";
+import { Link } from "react-router-dom";
 
 const sections = ["1. Identificación", "2. Envío", "3. Pago"];
 
@@ -39,7 +40,7 @@ const taxRegimeOptions = [
   "Régimen de las actividades empresariales con ingresos a travéz de plataformas tecnológicas",
 ];
 
- function CheckOutAnalogic() {
+function CheckOutAnalogic() {
   //is loading
 
   const [isLoading, setIsLoading] = useState(false);
@@ -51,14 +52,20 @@ const taxRegimeOptions = [
     setButttonFocusPosition(buttonName);
   };
 
-  const { shopingCartOpen,shopingCartItems,setShopingCartItems } = useContext(ShopingCartContext);
-
- 
+  const { shopingCartOpen, shopingCartItems, setShopingCartItems } =
+    useContext(ShopingCartContext);
 
   const [billing, setBilling] = useState<boolean>(false);
   const handleBilling = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBilling(event.target.checked);
   };
+
+
+  const [siteTerms, setSiteTerms] = useState<boolean>(false);
+  const handleSiteTerms = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSiteTerms(event.target.checked);
+  };
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -435,6 +442,11 @@ const taxRegimeOptions = [
       return;
     }
 
+    if(!siteTerms){
+      setErrorWarning("site-terms");
+      return;
+    }
+
     setIsLoading(true);
 
     const formData = { name, lastname, email };
@@ -497,7 +509,7 @@ const taxRegimeOptions = [
         )
         .then((response) => {
           localStorage.removeItem("shopingCart");
-          setShopingCartItems([])
+          setShopingCartItems([]);
           window.location.href = response.data.link_de_pago;
           setIsLoading(false);
         })
@@ -542,7 +554,7 @@ const taxRegimeOptions = [
         })
         .then((response) => {
           localStorage.removeItem("shopingCart");
-          setShopingCartItems([])
+          setShopingCartItems([]);
           window.location.href = response.data.link_de_pago;
         })
         .then(() => {
@@ -985,6 +997,20 @@ const taxRegimeOptions = [
                     </div>
                   </div>
                 </div>
+                <div className="checkout-siteTerms-container">
+              
+              <div className="siteTerms-checkbox">
+                <label htmlFor="">
+                  Acepto las <Link to="/politica-de-privacidad">Políticas de privacidad</Link> y <Link to="/terminos-y-condiciones">Terminos y condiciones</Link>
+                </label>
+                <input
+                  type="checkbox"
+                  checked={siteTerms}
+                  onChange={handleSiteTerms}
+                />
+              </div>
+              
+            </div>
                 {paymetType === "paypal" && !errorWarning ? (
                   <div className="complementary-info-payment-container">
                     <p>
@@ -1017,9 +1043,15 @@ const taxRegimeOptions = [
                   <div className="complementary-info-payment-container error">
                     <p>NO HAY PRODUCTOS AÑADIDOS AL CARRITO DE COMPRA.</p>
                   </div>
-                ) : (
+                ) :errorWarning === "site-terms" ? (
+                  <div className="complementary-info-payment-container error">
+                    <p>PARA REALIZAR LA COMPRA DEBE ACEPTAR TERMINOS Y CONDICIONES</p>
+                  </div>
+                ): (
                   <></>
                 )}
+
+          
 
                 <button type="submit">
                   {isLoading && !errorWarning ? (
@@ -1048,26 +1080,26 @@ const taxRegimeOptions = [
                         <h4>{`Talismán ${item.model}`}</h4>
                       </div>
                       <div className="card-td">
-                  <strong>Metal:</strong>
-                  <p>{item.material}</p>
-                </div>
-                <div className="card-td">
-                  <strong>Piedra:</strong>
-                  <p>{item.rock}</p>
-                </div>
-                <div className="card-td">
-                  <strong>Calgante:</strong>
-                  <p>{item.chain}</p>
-                </div>
-                <div className="card-td">
-                  <strong>Intención:</strong>
-                  <p>{item.intention}</p>
-                </div>
+                        <strong>Metal:</strong>
+                        <p>{item.material}</p>
+                      </div>
+                      <div className="card-td">
+                        <strong>Piedra:</strong>
+                        <p>{item.rock}</p>
+                      </div>
+                      <div className="card-td">
+                        <strong>Calgante:</strong>
+                        <p>{item.chain}</p>
+                      </div>
+                      <div className="card-td">
+                        <strong>Intención:</strong>
+                        <p>{item.intention}</p>
+                      </div>
 
-                <div className="card-td">
-                  <strong>Precio:</strong>
-                  <span>{`$ ${item.price}`}</span>
-                </div>
+                      <div className="card-td">
+                        <strong>Precio:</strong>
+                        <span>{`$ ${item.price}`}</span>
+                      </div>
                     </div>
                   </div>
                 );
@@ -1106,5 +1138,4 @@ const taxRegimeOptions = [
   );
 }
 
-
-export default CheckOutAnalogic
+export default CheckOutAnalogic;
