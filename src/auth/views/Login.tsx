@@ -3,13 +3,13 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 import { EyeClose, EyeOpen } from "../../assets/icons/icons";
-import { BackgroundVideo } from "../../ui/components";
 import { envs } from "../../config/envs";
 import { UserContext } from "../../context/userContext";
-import { LoginValidations } from "../helpers/loginValidations";
 import { useForm } from "../../hooks/useForm";
+import { BackgroundVideo } from "../../ui/components";
+import { LoginValidations } from "../helpers/loginValidations";
 
- function Login() {
+function Login() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -102,12 +102,16 @@ import { useForm } from "../../hooks/useForm";
 
     setIsLoading(true);
 
+    //Get fcmToken from local storage
+    const fcmToken = localStorage.getItem("fcmToken");
+
     axios
       .post(
         `${envs.API_DOMAIN}/api/v1/user/login`,
         {
           email: email,
           password: password,
+          fcmToken,
         },
         { withCredentials: true }
       )

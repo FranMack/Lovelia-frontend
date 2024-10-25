@@ -31,10 +31,6 @@ export const MercadoPagoCheckoutForm = ({
 
   const navigate = useNavigate();
 
-  const tryAgain = () => {
-    window.location.href = "/checkout/digital";
-  };
-
   const formRef = useRef<HTMLFormElement | null>(null);
   const progressBarRef = useRef<HTMLProgressElement | null>(null);
   const isMounted = useRef(true);
@@ -52,7 +48,7 @@ export const MercadoPagoCheckoutForm = ({
   const [cardholderNameErrors, setCardholderNameErrors] =
     useState<boolean>(false);
 
-    const [payerEmailErrors,setPayerEmailErrors]=useState<boolean>(false)
+  const [payerEmailErrors, setPayerEmailErrors] = useState<boolean>(false);
 
   useEffect(() => {
     if (
@@ -173,15 +169,17 @@ export const MercadoPagoCheckoutForm = ({
                       }
                     );
 
-                    setCardNumberErrors(false)
-                    setExpirationMonthErrors(false)
-                    setExpirationYearErrors(false)
-                    setCardholderNameErrors(false)
-                    setSecurityCodeErrors(false)
+                    setCardNumberErrors(false);
+                    setExpirationMonthErrors(false);
+                    setExpirationYearErrors(false);
+                    setCardholderNameErrors(false);
+                    setSecurityCodeErrors(false);
 
                     if (!response.ok) {
                       const errorData = await response.json();
-                      errorData.error.includes("payer_email") ? setPayerEmailErrors(true):setPayerEmailErrors(false)
+                      errorData.error.includes("payer_email")
+                        ? setPayerEmailErrors(true)
+                        : setPayerEmailErrors(false);
                       console.error(
                         "Error en la respuesta del servidor:",
                         errorData
@@ -191,7 +189,6 @@ export const MercadoPagoCheckoutForm = ({
                       return;
                     }
 
-                   
                     setWarning("");
 
                     const data = await response.json();
@@ -210,10 +207,6 @@ export const MercadoPagoCheckoutForm = ({
                   setWarning(
                     "Ocurrió un error al procesar el formulario. Revise los datos e intente nuevamente."
                   );
-
-
-              
-
 
                   if (error instanceof Array) {
                     const checkError = (
@@ -239,13 +232,12 @@ export const MercadoPagoCheckoutForm = ({
                     checkError("cardholderName", setCardholderNameErrors);
                   }
 
-                  if(!error){
-                    setCardNumberErrors(false)
-                    setExpirationMonthErrors(false)
-                    setExpirationYearErrors(false)
-                    setCardholderNameErrors(false)
-                    setSecurityCodeErrors(false)
-
+                  if (!error) {
+                    setCardNumberErrors(false);
+                    setExpirationMonthErrors(false);
+                    setExpirationYearErrors(false);
+                    setCardholderNameErrors(false);
+                    setSecurityCodeErrors(false);
                   }
                 },
 
@@ -286,19 +278,31 @@ export const MercadoPagoCheckoutForm = ({
   return (
     <form id="form-checkout" className="form-checkout" ref={formRef}>
       <label htmlFor="">Información de la tarjeta</label>
-      <div id="form-checkout__cardNumber" className={cardNumberErrors ? "container error":"container"}></div>
-      <div id="form-checkout__expirationDate"  className={(expirationMonthErrors || expirationYearErrors) ? "container error":"container"}></div>
-      
-  
-      <div id="form-checkout__securityCode" className={securityCodeErrors ? "container error":"container"}></div>
+      <div
+        id="form-checkout__cardNumber"
+        className={cardNumberErrors ? "container error" : "container"}
+      ></div>
+      <div
+        id="form-checkout__expirationDate"
+        className={
+          expirationMonthErrors || expirationYearErrors
+            ? "container error"
+            : "container"
+        }
+      ></div>
+
+      <div
+        id="form-checkout__securityCode"
+        className={securityCodeErrors ? "container error" : "container"}
+      ></div>
       <label htmlFor="">Nombre del titular de la tarjeta</label>
       <input
         type="text"
         id="form-checkout__cardholderName"
         placeholder="Titular de la tarjeta"
-        className={cardholderNameErrors ? "error":""}
+        className={cardholderNameErrors ? "error" : ""}
       />
-         <label htmlFor="">Entidad bancaria</label>
+      <label htmlFor="">Entidad bancaria</label>
       <select id="form-checkout__issuer"></select>
       <label htmlFor="">Cuotas</label>
       <select id="form-checkout__installments"></select>
@@ -310,12 +314,12 @@ export const MercadoPagoCheckoutForm = ({
         id="form-checkout__identificationNumber"
         placeholder="Número del documento"
       />
-       <label htmlFor="">Email</label>
+      <label htmlFor="">Email</label>
       <input
         type="email"
         id="form-checkout__cardholderEmail"
         placeholder="E-mail"
-        className={payerEmailErrors ? "error":""}
+        className={payerEmailErrors ? "error" : ""}
       />
       <button type="submit" id="form-checkout__submit">
         {isLoading ? (
