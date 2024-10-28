@@ -91,11 +91,23 @@ function App() {
   const { /*email,*/ setEmail, setId, setName, setLastname, setSuscription } =
     useContext(UserContext);
 
+     // Request permission to receive notifications
+  useRequestPermission();
+
   useEffect(() => {
+
+     // Listen for messages when the app is in the foreground
+     const unsubscribe = onMessage(messaging, (payload) => {
+      console.log("Message received in the foreground: ", payload);
+      // Customize how you want to display the notification or data
+      // For example, you can use alert or a custom UI component to show the message
+    });
     const shopingCartJSON = localStorage.getItem("shopingCart") || "[]";
+
+    const fcmToken = localStorage.getItem("fcmToken");
     setShopingCartItems(JSON.parse(shopingCartJSON));
     axios
-      .get(`${envs.API_DOMAIN}/api/v1/user/me`, { withCredentials: true })
+      .get(`${envs.API_DOMAIN}/api/v1/user/me/${fcmToken}`, { withCredentials: true })
       .then(({ data }) => {
         setEmail(data.email);
         setId(data.id);
@@ -109,6 +121,13 @@ function App() {
       .catch((error) => {
         console.log(error);
       });
+
+
+      return () => {
+        unsubscribe();
+      };
+
+
   }, []);
 
   const location = useLocation().pathname;
@@ -148,23 +167,9 @@ function App() {
     }
   }, [menuOpen]);
 
-  // Request permission to receive notifications
-  useRequestPermission();
+ 
 
-  // Listen for messages when the app is in the foreground
-  useEffect(() => {
-    // Listen for messages when the app is in the foreground
-    const unsubscribe = onMessage(messaging, (payload) => {
-      console.log("Message received in the foreground: ", payload);
-      // Customize how you want to display the notification or data
-      // For example, you can use alert or a custom UI component to show the message
-    });
 
-    // Cleanup the listener when the component unmounts
-    return () => {
-      unsubscribe();
-    };
-  }, []);
 
   return (
     <>

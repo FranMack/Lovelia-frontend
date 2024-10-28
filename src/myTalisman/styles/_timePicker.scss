@@ -1,7 +1,6 @@
 @import "../../styles//variables.scss";
 
-.time-picker-container
-{
+.time-picker-container{
     margin: 0 auto;
     height:85%;
     aspect-ratio: 1;
@@ -15,17 +14,16 @@
     justify-content: center;
     row-gap: 5%;
     color:$color_darkPurple;
+    :last-child{
+      >button{
 
-    >.close-icon-container{
-        position: absolute;
-       top:10%;
-       right: 20%;
-        svg{
-            path{
-                fill:$color_darkPurple
-            }
-        }
+        background-color: $color_darkPurple;
+        color: $color_yellow;
+      }
     }
+   
+   
+  
     >h4{
         font-size: 2rem;
         font-weight: 400;
@@ -41,8 +39,10 @@
         width: 50%;
         height: fit-content;
       
+
+      
         
-  
+       
      
   
        > .clock-container {
@@ -70,4 +70,5 @@
           cursor: default;
         }
       }
+     
 }

@@ -102,8 +102,6 @@ function Login() {
 
     setIsLoading(true);
 
-    //Get fcmToken from local storage
-    const fcmToken = localStorage.getItem("fcmToken");
 
     axios
       .post(
@@ -111,7 +109,7 @@ function Login() {
         {
           email: email,
           password: password,
-          fcmToken,
+       
         },
         { withCredentials: true }
       )

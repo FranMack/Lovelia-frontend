@@ -1,4 +1,5 @@
-import { ArrowDown, ArrowUp, CloseIcon } from '../../assets/icons/icons';
+import { ArrowDown, ArrowUp } from '../../assets/icons/icons';
+import { Button } from '../../ui/components/Button';
 
 
 interface TimePickerOptions{
@@ -18,9 +19,7 @@ export const TimePicker = ({hours,minutes,alarmIndex,nextHour,previuosHour,nextM
    
   return (
     <div className='time-picker-container'>
-        <div className='close-icon-container'>
-            <CloseIcon onClick={handleTimePicker}/>
-        </div>
+      
         <h4>{`Alarma ${alarmIndex+1}`}</h4>
 
         <div className="time-picker-center-container">
@@ -59,6 +58,9 @@ export const TimePicker = ({hours,minutes,alarmIndex,nextHour,previuosHour,nextM
               <small>MINUTOS</small>
             </div>
       
+          </div>
+          <div>
+          <Button text='Continuar' onClick={handleTimePicker}/>
           </div>
     </div>
   )

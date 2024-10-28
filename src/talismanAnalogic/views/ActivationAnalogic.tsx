@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { PlayIcon, StopIcon, RestartIcon } from "../../assets/icons/icons";
-import { Button } from "../../ui/components/Button";
-import { infoIntenciones } from "../../intentions/assets/infoIntentions";
-import { envs } from "../../config";
 import { useParams } from "react-router-dom";
+import { PlayIcon, RestartIcon, StopIcon } from "../../assets/icons/icons";
+import { infoIntenciones } from "../../intentions/assets/infoIntentions";
+import { Button } from "../../ui/components/Button";
 
 
 
@@ -127,15 +126,15 @@ import { useParams } from "react-router-dom";
       {activationFinished && (
         <div className="activationAnalogic-text-container">
           <h3>
-            Cada vez que quieras recordar tu intención o reafirmarla puedes
-            volver a escuchar esta meditación. 
+            Cada vez que quieras recordar tu intención o reafirmarla puedes
+            volver a escuchar esta meditación.
           </h3>
         </div>
       )}
 
       <audio
         ref={activationSoundRef}
-        src={`${envs.API_DOMAIN}/activation/activationExample.mp4`}
+        src={`https://lovelia.org/public/activation/activationExample.mp4`}
       />
     </section>
   );

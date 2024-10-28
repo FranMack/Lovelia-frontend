@@ -67,7 +67,7 @@ export const ThreeJsFrame = () => {
     setButtonsVisibility(!buttonsVisibility);
   };
 
-  const [audioURL, setAuidioURL] = useState("");
+  const [userSoundURL, setUserSoundURL] = useState("");
   const userSoundRef = useRef<HTMLAudioElement | null>(null);
   const activationSoundRef = useRef<HTMLAudioElement | null>(null);
 
@@ -304,14 +304,11 @@ export const ThreeJsFrame = () => {
             setAstrologicalInfo(true);
             localStorage.setItem("subscriptionActive", "true");
             setSuscription(true);
+            setUserSoundURL(userInfo.data.soundPath);
+        
           }
 
-          const userSound = await axios.get(
-            `${envs.API_DOMAIN}/api/v1/user/astrological-sound/${email}`,
-            { withCredentials: true, responseType: "blob" }
-          );
 
-          setAuidioURL(URL.createObjectURL(userSound.data));
 
           if (userIntention) {
             setIntention(userIntention.data);
@@ -339,8 +336,8 @@ export const ThreeJsFrame = () => {
 
   useEffect(() => {
     if (audioType === "activation") {
-      let line = lineSubtitle(seconds)!;
-      setSubtitleLine(line);
+      const line = lineSubtitle(seconds)!;
+      setSubtitleLine(line);             
     }
   }, [seconds]);
 
@@ -579,6 +576,10 @@ export const ThreeJsFrame = () => {
       });
   }, []);
 
+
+
+
+
   return (
     <>
       {astrologicalInfo ? (
@@ -674,10 +675,11 @@ export const ThreeJsFrame = () => {
               </div>
             )}
           </div>
-          {audioURL && <audio ref={userSoundRef} src={audioURL} />}
+          {userSoundURL && <audio ref={userSoundRef} src={`https://lovelia.org/public/userSounds/${userSoundURL}`} />}
+          
           <audio
             ref={activationSoundRef}
-            src={`${envs.API_DOMAIN}/activation/activationExample.mp4`}
+            src={`https://lovelia.org/public/activation/activationExample.mp4`}
           />
 
           {buttonFocusPosition === "Mi ADN Energético" && <MyADN />}
@@ -725,7 +727,7 @@ export const ThreeJsFrame = () => {
       {sounds.map((item, i) => {
         return (
           <audio key={i} ref={(el) => (soundRefs.current[i] = el!)}>
-            <source src={`${envs.API_DOMAIN}${item.url}`} type="audio/mpeg" />
+        <source src={`${item.url}`} type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
         );
@@ -734,7 +736,7 @@ export const ThreeJsFrame = () => {
       {meditations.map((item, i) => {
         return (
           <audio key={i} ref={(el) => (meditationsRefs.current[i] = el!)}>
-            <source src={`${envs.API_DOMAIN}${item.url}`} type="audio/mpeg" />
+            <source src={`${item.url}`} type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
         );
@@ -746,9 +748,10 @@ export const ThreeJsFrame = () => {
       )}
       {/*IMPORTANTE: DEBE CAMBIARSE SOUNDS POR LOS SONIDOS CORRESPONDIENTES AL TIMER */}
       {sounds.map((item, i) => {
+    
         return (
           <audio key={i} ref={(el) => (timerSoundRefs.current[i] = el!)}>
-            <source src={`${envs.API_DOMAIN}${item.url}`} type="audio/mpeg" />
+            <source src={`${item.url}`} type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
         );
