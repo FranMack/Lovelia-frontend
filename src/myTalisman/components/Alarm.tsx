@@ -22,7 +22,7 @@ interface TimerOptions {
 
 
 
-export const Alarm = ({ sounds }: TimerOptions) => {
+export const Alarm = ({ sounds=[] }: TimerOptions) => {
     const [loading,setIsLoading]=useState<boolean>(false)
 
   const [alarmMode, setAlarmMode] = useState<string>("Nunca");
@@ -114,16 +114,26 @@ export const Alarm = ({ sounds }: TimerOptions) => {
   const handleAlarm = () => {
 
 
-    const newAlarms={
-      alarm1:(state.alarms[0].hours===null || state.alarms[0].minutes===null) ? "":`${state.alarms[0].hours? timeFormater(state.alarms[0].hours):"" }:${timeFormater(state.alarms[0].minutes)}`,
-      alarm2:(state.alarms[1].hours===null || state.alarms[1].minutes===null) ? "":`${state.alarms[1].hours? timeFormater(state.alarms[1].hours):"" }:${timeFormater(state.alarms[1].minutes)}`,
-      alarm3:(state.alarms[2].hours===null || state.alarms[2].minutes===null) ? "":`${state.alarms[2].hours? timeFormater(state.alarms[2].hours):"" }:${timeFormater(state.alarms[2].minutes)}`,
-      alarm4:(state.alarms[3].hours===null || state.alarms[3].minutes===null) ? "":`${state.alarms[3].hours? timeFormater(state.alarms[3].hours):"" }:${timeFormater(state.alarms[3].minutes)}`,
-      
+    const newAlarms = {
+      alarm1: (state.alarms[0].hours === null || state.alarms[0].minutes === null)
+        ? ""
+        : `${state.alarms[0].hours !== null ? timeFormater(state.alarms[0].hours) : ""}:${timeFormater(state.alarms[0].minutes)}`,
+      alarm2: (state.alarms[1].hours === null || state.alarms[1].minutes === null)
+        ? ""
+        : `${state.alarms[1].hours !== null ? timeFormater(state.alarms[1].hours) : ""}:${timeFormater(state.alarms[1].minutes)}`,
+      alarm3: (state.alarms[2].hours === null || state.alarms[2].minutes === null)
+        ? ""
+        : `${state.alarms[2].hours !== null ? timeFormater(state.alarms[2].hours) : ""}:${timeFormater(state.alarms[2].minutes)}`,
+      alarm4: (state.alarms[3].hours === null || state.alarms[3].minutes === null)
+        ? ""
+        : `${state.alarms[3].hours !== null ? timeFormater(state.alarms[3].hours) : ""}:${timeFormater(state.alarms[3].minutes)}`,
     }
+
+    console.log("xxxxxxxxxxxxxxxx",newAlarms)
 
     
     const alarms = alarmMode !== "Nunca" ? newAlarms : initialForm;
+    const activated =alarmMode !== "Nunca" ? true : false;
 
     setIsLoading(true)
 
@@ -133,6 +143,7 @@ export const Alarm = ({ sounds }: TimerOptions) => {
         {
           ...alarms,
           sound: timerSound,
+          alarm_active:activated
         },
         { withCredentials: true }
       )
@@ -172,7 +183,7 @@ export const Alarm = ({ sounds }: TimerOptions) => {
 
 
  
-
+console.log("xxxxxxxxxxxxxxxxx",state)
   return (
     <div className="alarm-container revealLogo">
     {timePicker &&  <TimePicker hours={state.alarms[alarmIndex].hours} minutes={state.alarms[alarmIndex].minutes} nextHour={() => dispatch({ type: "NEXT_HOUR", index:alarmIndex })} previuosHour={() => dispatch({ type: "PREVIOUS_HOUR", index:alarmIndex })} nextMinute={() => dispatch({ type: "NEXT_MINUTE", index:alarmIndex })} previousMinute={() => dispatch({ type: "PREVIOUS_MINUTE", index:alarmIndex })} handleTimePicker={handleTimePicker} alarmIndex={alarmIndex}/>}
@@ -191,11 +202,11 @@ export const Alarm = ({ sounds }: TimerOptions) => {
       <div className="alarm-dropdown-container">
         <label>Sonido</label>
         <select
-          defaultValue={sounds[0].name}
+          defaultValue={sounds.length ? sounds[0].name:" - "}
           value={timerSound}
           onChange={handleSelectChange}
         >
-          {sounds.map((item, i) => {
+          {sounds.length && sounds.map((item, i) => {
             return (
               <option value={item.name} key={i} data-index={i}>
                 {item.name}{" "}

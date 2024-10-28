@@ -17,7 +17,7 @@ interface TimerOptions {
 
 const sections = ["timer", "alarm"];
 
-export const Timer = ({ sounds }: TimerOptions) => {
+export const Timer = ({ sounds=[] }: TimerOptions) => {
   const { handleButtonFocus } = useContext(TalismanButtonFocusContext);
 
   const [sectionPosition, setSectionPosition] = useState<string>("timer");
@@ -162,11 +162,11 @@ export const Timer = ({ sounds }: TimerOptions) => {
           <div className="timer-dropdown-container">
             <label>Sonido para inicio y fin de meditación</label>
             <select
-              defaultValue={sounds[0].name}
+              defaultValue={sounds.length ? sounds[0].name :"  - "}
               value={timerSound}
               onChange={handleSelectChange}
             >
-              {sounds.map((item, i) => {
+              {sounds.length && sounds.map((item, i) => {
                 return (
                   <option value={item.name} key={i} data-index={i}>
                     {item.name}{" "}
