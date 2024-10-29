@@ -101,6 +101,7 @@ function App() {
       console.log("Message received in the foreground: ", payload);
       // Customize how you want to display the notification or data
       // For example, you can use alert or a custom UI component to show the message
+      alert("A new FCM message arrived!" + JSON.stringify(payload));
     });
     const shopingCartJSON = localStorage.getItem("shopingCart") || "[]";
 
