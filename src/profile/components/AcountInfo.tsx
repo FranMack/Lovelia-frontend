@@ -65,20 +65,22 @@ export const AcountInfo = ({
   {  openPopUp && <PopUp linkTo={cancelSubscription} closePopUp={tolgglePopUp} buttonText="Confirmar" text="¿Esta seguro que desea cancelar la subscripción?"/>}
     <div className={openPopUp ?"acountInfo-internal-container viewport-background":"acountInfo-internal-container"}>
       <div className="acountInfo-internal-left-container">
+      <h4>DATOS DE USUARIO</h4>
         <div className="acountInfo-item-info-container">
-          <h5>Nombre</h5>
+        
+          <label>Nombre</label>
           <input type="text" value={name} />
         </div>
         <div className="acountInfo-item-info-container">
-          <h5>Apellido</h5>
+          <label>Apellido</label>
           <input type="text" value={lastname} />
         </div>
         <div className="acountInfo-item-info-container">
-          <h5>Correo electrónico</h5>
+          <label>Correo electrónico</label>
           <input type="email" value={email} />
         </div>
         <div className="acountInfo-item-info-container">
-          <h5>Suscripción</h5>
+          <label>Suscripción</label>
           <input type="text" value={subscription ? "Activa" : "Inactiva"} />
         </div>
 

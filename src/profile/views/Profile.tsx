@@ -220,11 +220,12 @@ const datosCompras: DatosCompra[] = [
 
                     <div className="envio-info-container">
                       <div className="envio-info-auxiliar-container">
-                        <h5>Dirección de envío</h5>
-                        <p>{shopingHistory[index].deliveryDetails.address}</p>
-                        <p>{shopingHistory[index].deliveryDetails.postal_code}</p>
-                        <p>{shopingHistory[index].deliveryDetails.receiver}</p>
-                        <p>{shopingHistory[index].deliveryDetails.phone}</p>
+                        <h5>Datos de envío</h5>
+                        <p>{`Dirección: ${shopingHistory[index].deliveryDetails.address}`}</p>
+                        <p>{`CP: ${shopingHistory[index].deliveryDetails.postal_code}`}</p>
+                        <p>{`Destinatario: ${shopingHistory[index].deliveryDetails.receiver}`}</p>
+                        <p>{`Teléfono: ${shopingHistory[index].deliveryDetails.phone}`}</p>
+              
                       </div>
                       <div className="envio-info-auxiliar-container">
                         <h5>Método de pago</h5>

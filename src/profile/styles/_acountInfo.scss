@@ -30,7 +30,8 @@ align-items: center;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    row-gap: 6%;
+    row-gap: 5%;
+
     
     button {
       width: 80%;
@@ -41,12 +42,22 @@ align-items: center;
       text-align: start;
     }
   }
+
+  h4{
+    font-family: $font_titles;
+    color:$color_primary;
+    font-size: 2.5rem;
+    font-weight: 300;
+    width: 80%;
+  }
   
   .acountInfo-item-info-container {
     width: 80%;
     color: $color_text2;
+
   
-    h5 {
+ 
+    label {
       font-size: 1.6rem;
       font-weight: 400;
     }
@@ -132,6 +143,7 @@ align-items: center;
     justify-content: center;
     align-items: center;
     row-gap: 2vh;
+    
   
     
       }
@@ -140,9 +152,10 @@ align-items: center;
     width: 90%;
     height: 100%;
     display: flex;
-    row-gap: 1vh;
+    row-gap: 2vh;
     padding-top: 3vh;
     padding-bottom: 3vh;
+
    
   
     button {
@@ -158,8 +171,11 @@ align-items: center;
   .acountInfo-item-info-container {
     width: 80%;
     color: $color_text2;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
   
-    h5 {
+    label {
       font-size: 1.5rem;
     }
     input {

@@ -30,11 +30,12 @@
   height: 80%;
   h4 {
     font-size: 2rem;
-    font-weight: 700;
-
+    font-weight: 400;
+    display: inline;
     margin-bottom: 10%;
   }
   ul {
+    margin-top: 1vh;
     list-style: none;
     font-size: 1.6rem;
     font-weight: 400;
@@ -46,12 +47,16 @@
 }
 
 .footer-socialMedia-container {
+
+
   h4 {
     font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 10%;
+    font-weight: 400;
+    display: inline;
+    
   }
   .footer-socialMedia-icons {
+    margin-top: 3vh;
     display: flex;
     justify-content: space-evenly;
     height: 8%;

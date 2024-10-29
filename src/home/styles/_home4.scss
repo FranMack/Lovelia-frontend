@@ -101,11 +101,13 @@
     .section4-home-center-container{
         flex-direction: column;
         align-items: center;
+        row-gap: 5%;
+
     }
 
     .section4-home-internal-container{
         width: 100%;
-        height:100%;
+        height:fit-content;
        
         display: flex;
         flex-direction: column;
@@ -114,7 +116,7 @@
         
         .section4-home-internal-image-container{
             border-radius: 30px;
-            width: 60%;
+            width: 65%;
             aspect-ratio: 1;
             position: relative;
             margin-top: 10%;
