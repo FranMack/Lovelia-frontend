@@ -57,7 +57,7 @@ self.addEventListener("notificationclick", function (event) {
         }
       }
       if (clients.openWindow) {
-        return clients.openWindow(event.notification.data.url);
+        return clients.openWindow("https://www.lovelia.me");
       }
     })
   );
