@@ -34,7 +34,7 @@ messaging.onBackgroundMessage(function (payload) {
     body: payload.notification.body,
     icon: "/firebase-logo.png",
     data: {
-      url: payload.data.click_action || "https://www.lovelia.me"
+      url: /* payload.data.click_action || */ "https://www.lovelia.me"
     },
   };
 
