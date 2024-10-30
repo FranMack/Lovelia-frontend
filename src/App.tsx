@@ -66,6 +66,8 @@ const ActivationAnalogic = lazy(
   () => import("./talismanAnalogic/views/ActivationAnalogic.tsx")
 );
 
+import { AlarmPopUp } from "./ui/components/AlarmPopUp.tsx";
+
 import {
   Footer,
   MobileFooter,
@@ -91,6 +93,12 @@ function App() {
   const { /*email,*/ setEmail, setId, setName, setLastname, setSuscription } =
     useContext(UserContext);
 
+
+    const[activatedAlarm,setActivatedAlarm]=useState(false)
+    const handleActivatedAlarm=()=>{
+      setActivatedAlarm(!activatedAlarm)
+    }
+    const[alarmUrl,setAlarmUrl]=useState<string>("")
      // Request permission to receive notifications
   useRequestPermission();
 
@@ -99,6 +107,11 @@ function App() {
      // Listen for messages when the app is in the foreground
      const unsubscribe = onMessage(messaging, (payload) => {
       console.log("Message received in the foreground: ", payload);
+      if(payload.data){
+        setAlarmUrl(payload.data.soundUrl)
+        setActivatedAlarm(true)
+      }
+      
       // Customize how you want to display the notification or data
       // For example, you can use alert or a custom UI component to show the message
       alert("A new FCM message arrived!" + JSON.stringify(payload));
@@ -179,6 +192,7 @@ function App() {
       {location !== "/myTalisman" && windowSize < 1024 && <MobileNavbar />}
       {shopingCartOpen && <ShopingCart />}
       <MobileMenu />
+     {activatedAlarm && <AlarmPopUp alarmUrl={alarmUrl} handleActivatedAlarm={handleActivatedAlarm}/>}
       <Routes>
         <Route
           path="/"

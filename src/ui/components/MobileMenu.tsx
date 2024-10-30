@@ -45,7 +45,6 @@ const sections = [
     path: "",
     items: [
       { title: "Intro", path: "intenciones" },
-      { title: "Sabiduría", path: "intenciones/1" },
       { title: "Amor incondicional", path: "intenciones/2" },
       { title: "Abundancia", path: "intenciones/3" },
       { title: "Aquí y ahora", path: "intenciones/4" },
@@ -53,6 +52,7 @@ const sections = [
       { title: "Coraje", path: "intenciones/6" },
       { title: "Yo verdadero", path: "intenciones/7" },
       { title: "Gratitud", path: "intenciones/8" },
+      { title: "Sabiduría de la insertidumbre", path: "intenciones/1" },
     ],
   },
 

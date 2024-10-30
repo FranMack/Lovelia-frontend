@@ -39,7 +39,7 @@ export const Home4 = () => {
   return (
     <section className="section4-home-container">
       <div className="section4-home-center-container">
-        <div className="section4-home-internal-container right">
+        <div className="section4-home-internal-container">
           <div className="section4-home-internal-text-container">
             <h2>
               Intenciona con nuestros

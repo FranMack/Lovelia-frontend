@@ -1,0 +1,55 @@
+@import "../../styles/variables.scss";
+
+.alarm-popUp-container{
+    position: absolute;
+    width: 30vw;
+    height: 80vh;
+    left: 35vw;
+    top:10vh;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 30px;
+    >.close-icon-container{
+        width: 100%;
+        display: flex;
+      justify-content: end;
+      svg{
+        margin-top: 3%;
+        margin-right: 3%;
+        path{
+            fill:#ffff
+        }
+      }
+    }
+    >img{
+        inset: 0;
+        position: absolute;
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+        border-radius: 30px;
+    }
+
+    >span{
+        color:#ffff;
+        font-size: 3rem;
+        line-height: 4rem;
+        font-family: $font_paragrahp;
+        text-align: center;
+        width: 80%;
+        margin-top: 20vh;
+        font-weight: 300;
+    }
+    >button{
+        margin-bottom: 10vh;
+        width: 50%;
+        background-color: $color_yellow;
+        color:$color_darkPurple
+    }
+
+}
+
