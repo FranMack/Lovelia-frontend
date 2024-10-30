@@ -9,6 +9,7 @@ import { useOpenModal } from "../../hooks/useOpenModal";
 import { ShopingCartContext } from "../../context";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { TimerContext } from "../../context/timerContext";
 
 const modelOptions: DropdownMenuOptions = {
   title: "Modelo",
@@ -174,7 +175,12 @@ const intencionOptions: DropdownMenuOptions = {
     }
   };
 
+  const{activatedAlarm}=useContext(TimerContext)
+  const {shopingCartOpen}=useContext(ShopingCartContext)
+
+
   return (
+    <main className={activatedAlarm || shopingCartOpen ? "viewport-background":""}>
     <section className="custonTalisman-container efectoReveal">
       <div className="custonTalisman-internal-container left">
         <img
@@ -245,6 +251,7 @@ const intencionOptions: DropdownMenuOptions = {
         </div>
       </div>
     </section>
+    </main>
   );
 }
 

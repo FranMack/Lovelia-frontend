@@ -9,6 +9,10 @@ interface TimerContextValue {
   setHours: (hours: number) => void;
   timerSound:string,
   setTimerSound:(sound:string)=>void
+  activatedAlarm:boolean;
+  setActivatedAlarm:(alarm:boolean)=>void
+  
+  handleActivatedAlarm:()=>void
 }
 
 interface TimerContextProviderProps {
@@ -20,10 +24,13 @@ const timerContextDefaultValue: TimerContextValue = {
   minutes: 0,
   hours: 0,
   timerSound:"",
+  activatedAlarm:false,
   setSeconds: () => {},
   setMinutes: () => {},
   setHours: () => {},
   setTimerSound: () => {},
+  setActivatedAlarm: () => {},
+  handleActivatedAlarm: () => {},
 };
 
 export const TimerContext = createContext<TimerContextValue>(
@@ -37,6 +44,11 @@ export const TimerContextProvider = ({
   const [minutes, setMinutes] = useState<number>(0);
   const [hours, setHours] = useState<number>(0);
   const [timerSound, setTimerSound] = useState<string>("");
+  const[activatedAlarm,setActivatedAlarm]=useState(false)
+
+  const handleActivatedAlarm=()=>{
+    setActivatedAlarm(!activatedAlarm)
+  }
 
 
   const value: TimerContextValue = {
@@ -44,10 +56,13 @@ export const TimerContextProvider = ({
     minutes,
     hours,
     timerSound,
+    activatedAlarm,
     setSeconds,
     setMinutes,
     setHours,
-    setTimerSound
+    setTimerSound,
+    setActivatedAlarm,
+    handleActivatedAlarm
   };
 
   return (

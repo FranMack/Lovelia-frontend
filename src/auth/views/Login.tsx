@@ -8,6 +8,8 @@ import { UserContext } from "../../context/userContext";
 import { useForm } from "../../hooks/useForm";
 import { BackgroundVideo } from "../../ui/components";
 import { LoginValidations } from "../helpers/loginValidations";
+import { TimerContext } from "../../context/timerContext";
+import { ShopingCartContext } from "../../context";
 
 function Login() {
   useEffect(() => {
@@ -137,7 +139,12 @@ function Login() {
       });
   };
 
+  const{activatedAlarm}=useContext(TimerContext)
+  const {shopingCartOpen}=useContext(ShopingCartContext)
+
+
   return (
+    <main className={activatedAlarm || shopingCartOpen ? "viewport-background":""}>
     <section className="login-container efectoReveal">
       <BackgroundVideo />
       <form onSubmit={handleSubmit} className="login-form" action="">
@@ -206,6 +213,7 @@ function Login() {
         </button>
       </form>
     </section>
+    </main>
   );
 }
 

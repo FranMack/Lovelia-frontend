@@ -61,9 +61,10 @@ export const AcountInfo = ({
   }
 
   return (
+    <>
     <div className="acountInfo-container">
   {  openPopUp && <PopUp linkTo={cancelSubscription} closePopUp={tolgglePopUp} buttonText="Confirmar" text="¿Esta seguro que desea cancelar la subscripción?"/>}
-    <div className={openPopUp ?"acountInfo-internal-container viewport-background":"acountInfo-internal-container"}>
+    <div className={"acountInfo-internal-container"}>
       <div className="acountInfo-internal-left-container">
       <h4>DATOS DE USUARIO</h4>
         <div className="acountInfo-item-info-container">
@@ -118,5 +119,6 @@ export const AcountInfo = ({
       </div>
     </div>
     </div>
+    </>
   );
 };

@@ -53,3 +53,51 @@
 
 }
 
+
+@media screen and (max-width: 678px) {
+
+    .alarm-popUp-container{
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        left: 0vw;
+        top:0vh;
+        border-radius: 0px;
+        >.close-icon-container{
+            width: 100%;
+            display: flex;
+          justify-content: end;
+          svg{
+            margin-top: 3%;
+            margin-right: 3%;
+            path{
+                fill:#ffff
+            }
+          }
+        }
+        >img{
+            border-radius: 0px;
+        }
+    
+        >span{
+            color:#ffff;
+            font-size: 3rem;
+            line-height: 4rem;
+            font-family: $font_paragrahp;
+            text-align: center;
+            width: 80%;
+            margin-top: 20vh;
+            font-weight: 300;
+        }
+        >button{
+            margin-bottom: 15vh;
+            width: 70%;
+            height: 7vh;
+            background-color: $color_yellow;
+            color:$color_darkPurple
+        }
+    
+    }
+    
+
+}

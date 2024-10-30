@@ -1,12 +1,19 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { BackgroundVideo } from "../../ui/components";
+import { ShopingCartContext } from "../../context";
+import { TimerContext } from "../../context/timerContext";
 
  function ChangesAndWarranty() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const{activatedAlarm}=useContext(TimerContext)
+  const {shopingCartOpen}=useContext(ShopingCartContext)
+
+
   return (
+    <main className={activatedAlarm || shopingCartOpen ? "viewport-background":""}>
     <section className="siteTerms-container efectoReveal">
       <BackgroundVideo />
 
@@ -67,6 +74,7 @@ import { BackgroundVideo } from "../../ui/components";
         </p>
       </article>
     </section>
+    </main>
   );
 }
 

@@ -6,6 +6,8 @@ import { envs } from "../../config/envs";
 //import { ShopingCartContext } from "../../context/modalShopingCartContext";
 import { UserContext } from "../../context/userContext";
 import { ProfileNavbar, AcountInfo } from "../components";
+import { ShopingCartContext } from "../../context";
+import { TimerContext } from "../../context/timerContext";
 
 interface DatosCompra {
   producto: string;
@@ -131,7 +133,12 @@ const datosCompras: DatosCompra[] = [
     return 0;
   }
 
+  const{activatedAlarm}=useContext(TimerContext)
+  const {shopingCartOpen}=useContext(ShopingCartContext)
+
+
   return (
+    <main className={activatedAlarm || shopingCartOpen ? "viewport-background":""}>
     <section className="profile-container efectoReveal">
       <BackgroundVideo />
       <ProfileNavbar
@@ -240,6 +247,7 @@ const datosCompras: DatosCompra[] = [
         </div>
       )}
     </section>
+    </main>
   );
 }
 

@@ -70,7 +70,7 @@ export const Alarm = ({ sounds=[] }: TimerOptions) => {
   dispatch({ type: "LOAD_ALARM", alarms: transformedAlarms });
 
   
-        setTimerSound(data.sound);
+        setTimerSound(data.sound ? data.sound : sounds[0].name);
         if (data.alarm4) {
           setAlarmMode("4 veces al día");
           return;

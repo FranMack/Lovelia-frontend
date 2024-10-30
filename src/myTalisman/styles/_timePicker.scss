@@ -14,6 +14,7 @@
     justify-content: center;
     row-gap: 5%;
     color:$color_darkPurple;
+    user-select:none;
     :last-child{
       >button{
 
@@ -63,12 +64,14 @@
           small{
             margin-top: 8%;
   font-size: 1.2rem;
+  user-select:none
           }
         }
         p {
           font-size: 4rem;
           font-weight: lighter;
-          cursor: default;
+      
+        
         }
       }
      

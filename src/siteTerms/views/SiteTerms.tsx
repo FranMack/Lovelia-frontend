@@ -1,6 +1,8 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { BackgroundVideo } from "../../ui/components";
 import { useNavigate } from "react-router";
+import { ShopingCartContext } from "../../context";
+import { TimerContext } from "../../context/timerContext";
 
 const index = [
   "Compras",
@@ -28,7 +30,12 @@ const index = [
     navigate("/politica-de-privacidad")
   }
 
+  const{activatedAlarm}=useContext(TimerContext)
+  const {shopingCartOpen}=useContext(ShopingCartContext)
+
+
   return (
+    <main className={activatedAlarm || shopingCartOpen ? "viewport-background":""}>
     <section className="siteTerms-container efectoReveal">
       <BackgroundVideo />
       
@@ -226,6 +233,7 @@ const index = [
         <p>A través de este <strong onClick={linkToPrivacyTerms}>link</strong> se puede obtener dicha información. </p>
       </article>
     </section>
+    </main>
   );
 }
 

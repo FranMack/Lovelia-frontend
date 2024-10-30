@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BeatLoader from "react-spinners/BeatLoader";
 import { useForm } from "../..//hooks/useForm";
@@ -8,6 +8,8 @@ import { envs } from "../../config";
 import { BackgroundVideo } from "../../ui/components";
 import { RegisterValidation } from "../helpers/registerValidations";
 import { Button } from "../../ui/components/Button";
+import { ShopingCartContext } from "../../context";
+import { TimerContext } from "../../context/timerContext";
 
  function Register() {
   useEffect(() => {
@@ -170,7 +172,12 @@ import { Button } from "../../ui/components/Button";
     }
   };
 
+  const{activatedAlarm}=useContext(TimerContext)
+  const {shopingCartOpen}=useContext(ShopingCartContext)
+
+
   return (
+    <main className={activatedAlarm || shopingCartOpen ? "viewport-background":""}>
     <section className="login-container efectoReveal">
       <BackgroundVideo />
 
@@ -315,6 +322,7 @@ import { Button } from "../../ui/components/Button";
         </form>
       )}
     </section>
+    </main>
   );
 }
 

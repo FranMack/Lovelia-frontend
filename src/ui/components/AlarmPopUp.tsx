@@ -1,16 +1,19 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useContext } from "react";
 import { CloseIcon } from "../../assets/icons/icons";
 import background from "../assets/alarma.webp";
 import { Button } from "./Button";
+import { TimerContext } from "../../context/timerContext";
 
 interface AlarmPopUpOptions {
   alarmUrl: string;
-  handleActivatedAlarm: () => void;
+
 }
 
-export const AlarmPopUp = ({ alarmUrl, handleActivatedAlarm }: AlarmPopUpOptions) => {
+export const AlarmPopUp = ({ alarmUrl }: AlarmPopUpOptions) => {
   const alarmSoundRef = useRef<HTMLAudioElement | null>(null);
   const [alarmPath, setAlarmPath] = useState(alarmUrl);
+  
+  const{handleActivatedAlarm}=useContext(TimerContext)
 
   useEffect(() => {
     setAlarmPath(alarmUrl);
@@ -36,7 +39,7 @@ export const AlarmPopUp = ({ alarmUrl, handleActivatedAlarm }: AlarmPopUpOptions
   };
 
   const playAlarmSequentially = async () => {
-    const maxPlays = 10;
+    const maxPlays = 50;
     for (let i = 0; i < maxPlays; i++) {
       await playAlarmSoundWithCount();
     }

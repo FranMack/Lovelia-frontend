@@ -5,6 +5,8 @@ import { Button } from "../../ui/components/Button";
 import { UserContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 import { PopUp } from "../../ui/components/PopUp";
+import { TimerContext } from "../../context/timerContext";
+import { ShopingCartContext } from "../../context";
 
 const precio = "15,00";
 
@@ -52,7 +54,12 @@ const precio = "15,00";
     }
   };
 
+  const{activatedAlarm}=useContext(TimerContext)
+  const {shopingCartOpen}=useContext(ShopingCartContext)
+
+
   return (
+    <main className={activatedAlarm || shopingCartOpen ? "viewport-background":""}>
     <section className="buyDigitalTalisman-container efectoReveal">
       {popUp && <PopUp linkTo={linkTo} closePopUp={togglePopUp} buttonText="Continuar" text="Para adquirir tu talismán digital debes estar logueado." />}
       <div
@@ -118,6 +125,7 @@ const precio = "15,00";
         </div>
       </div>
     </section>
+    </main>
   );
 }
 

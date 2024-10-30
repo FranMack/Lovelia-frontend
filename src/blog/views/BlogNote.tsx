@@ -1,9 +1,11 @@
 import { useNavigate, useParams } from "react-router";
 import {  LazyImage } from "../../ui/components";
 import { blogNotes } from "../assets/ blogNotes";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { moreArticles } from "../assets/infoArticulos";
 import avatar from "../../../public/isologo-lovelia.png"
+import { TimerContext } from "../../context/timerContext";
+import { ShopingCartContext } from "../../context";
 
 
 
@@ -28,8 +30,12 @@ import avatar from "../../../public/isologo-lovelia.png"
 
 
 
+  const{activatedAlarm}=useContext(TimerContext)
+  const {shopingCartOpen}=useContext(ShopingCartContext)
+
 
   return (
+    <main className={activatedAlarm || shopingCartOpen ? "viewport-background":""}>
     <section className="blogNote-container">
       
       <div className="blogNote-top-container">
@@ -86,6 +92,7 @@ import avatar from "../../../public/isologo-lovelia.png"
         })}
       </div>
     </section>
+    </main>
   );
 };
 

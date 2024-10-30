@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import BeatLoader from "react-spinners/BeatLoader";
 import { envs } from "../../config/envs";
 import { ContactValidation } from "../helpers/contactValidations";
@@ -7,6 +7,8 @@ import { useForm } from "../../hooks/useForm";
 import logo from "../assets/logoSimple.png";
 import { MessageSend } from "../components/MessageSend";
 import { BackgroundVideo } from "../../ui/components";
+import { ShopingCartContext } from "../../context";
+import { TimerContext } from "../../context/timerContext";
 
  function Contact() {
   useEffect(() => {
@@ -132,7 +134,12 @@ import { BackgroundVideo } from "../../ui/components";
     }
   };
 
+  const{activatedAlarm}=useContext(TimerContext)
+  const {shopingCartOpen}=useContext(ShopingCartContext)
+
+
   return (
+    <main className={activatedAlarm || shopingCartOpen ? "viewport-background":""}>
     <section className="contact-container efectoReveal">
       <BackgroundVideo />
 
@@ -218,6 +225,7 @@ import { BackgroundVideo } from "../../ui/components";
         )}
       </div>
     </section>
+    </main>
   );
 }
 

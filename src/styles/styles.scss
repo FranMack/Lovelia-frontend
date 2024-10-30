@@ -112,3 +112,16 @@ html{
       filter: brightness(100%);
     }
   }
+
+
+  //efecto en el background cuando se abre el shoping cart
+.viewport-background {
+  pointer-events: none;
+  overflow-y: hidden;
+  opacity: 0.6;
+  filter: brightness(10%);
+
+  .navbar-menu {
+    background-color: transparent;
+  }
+}

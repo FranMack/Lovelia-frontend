@@ -1,5 +1,7 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { ShopingCartContext } from "../../context";
+import { TimerContext } from "../../context/timerContext";
 
  const AuthFrontPage = () => {
   useEffect(() => {
@@ -13,7 +15,12 @@ import { useNavigate } from "react-router-dom";
   const linkToLogin = () => {
     navigate("/login");
   };
+  const{activatedAlarm}=useContext(TimerContext)
+  const {shopingCartOpen}=useContext(ShopingCartContext)
+
+
   return (
+    <main className={activatedAlarm || shopingCartOpen ? "viewport-background":""}>
     <section className="auth-frontpage-container">
       <div className="auth-frontpage-center-container">
         <h2>CONECTATE CON TU ESENCIA Y PROPÓSITO.</h2>
@@ -23,6 +30,7 @@ import { useNavigate } from "react-router-dom";
         </div>
       </div>
     </section>
+    </main>
   );
 };
 

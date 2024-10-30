@@ -82,6 +82,7 @@ import { ToastContainer } from "react-toastify";
 import { envs } from "./config/envs.ts";
 import { MobileMenuContext } from "./context/mobileMenuContext.tsx";
 import { ShopingCartContext } from "./context/modalShopingCartContext.tsx";
+import { TimerContext } from "./context/timerContext.tsx";
 import { UserContext } from "./context/userContext.tsx";
 import useRequestPermission from "./hooks/useRequestPermission.ts";
 import { PrivateRoute, PublicRoute } from "./router";
@@ -93,11 +94,8 @@ function App() {
   const { /*email,*/ setEmail, setId, setName, setLastname, setSuscription } =
     useContext(UserContext);
 
-
-    const[activatedAlarm,setActivatedAlarm]=useState(false)
-    const handleActivatedAlarm=()=>{
-      setActivatedAlarm(!activatedAlarm)
-    }
+const{activatedAlarm,setActivatedAlarm}=useContext(TimerContext)
+  
     const[alarmUrl,setAlarmUrl]=useState<string>("")
      // Request permission to receive notifications
   useRequestPermission();
@@ -190,7 +188,7 @@ function App() {
       {location !== "/myTalisman" && windowSize < 1024 && <MobileNavbar />}
       {shopingCartOpen && <ShopingCart />}
       <MobileMenu />
-     {activatedAlarm && <AlarmPopUp alarmUrl={alarmUrl} handleActivatedAlarm={handleActivatedAlarm}/>}
+     {activatedAlarm && <AlarmPopUp alarmUrl={alarmUrl}/>}
       <Routes>
         <Route
           path="/"

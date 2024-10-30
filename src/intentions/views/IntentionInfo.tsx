@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { infoIntenciones } from "../assets/infoIntentions";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ButtonArrowRight } from "../../ui/components/ButtonArrowRight";
 import { PlayIcon } from "../../assets/icons/icons";
+import { TimerContext } from "../../context/timerContext";
+import { ShopingCartContext } from "../../context";
 
  function IntentionInfo() {
   window.scrollTo(0, 0);
@@ -30,8 +32,12 @@ import { PlayIcon } from "../../assets/icons/icons";
     }
   };
 
+  const{activatedAlarm}=useContext(TimerContext)
+  const {shopingCartOpen}=useContext(ShopingCartContext)
+
   return (
     <>
+      <main className={activatedAlarm || shopingCartOpen ? "viewport-background":""}>
       <section className="intencionesDescription-container efectoReveal">
         <div className="intencionesDescription-info-container">
           <div className="intencionesDescription-top-buttons-container">
@@ -67,6 +73,7 @@ import { PlayIcon } from "../../assets/icons/icons";
           {page && <img src={infoIntenciones[page - 1].image} alt="" />}
         </div>
       </section>
+      </main>
     </>
   );
 }
