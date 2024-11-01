@@ -10,9 +10,10 @@ export default defineConfig({
       clientsClaim: true,
       skipWaiting: true
     },
-    devOptions: {
-      enabled: true, // Enable in development for testing
-    },
+    // Enable in development for testing
+    //devOptions: {
+    //  enabled: true,
+    //},
     manifest: {
       name: 'Lovelia',
       short_name: 'Lovelia',
