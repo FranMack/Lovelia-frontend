@@ -70,19 +70,19 @@ export const AcountInfo = ({
         <div className="acountInfo-item-info-container">
         
           <label>Nombre</label>
-          <input type="text" value={name} />
+          <input type="text" value={name} onChange={()=>{}} />
         </div>
         <div className="acountInfo-item-info-container">
           <label>Apellido</label>
-          <input type="text" value={lastname} />
+          <input type="text" value={lastname} onChange={()=>{}} />
         </div>
         <div className="acountInfo-item-info-container">
           <label>Correo electrónico</label>
-          <input type="email" value={email} />
+          <input type="email" value={email} onChange={()=>{}} />
         </div>
         <div className="acountInfo-item-info-container">
           <label>Suscripción</label>
-          <input type="text" value={subscription ? "Activa" : "Inactiva"} />
+          <input type="text" value={subscription ? "Activa" : "Inactiva"} onChange={()=>{}} />
         </div>
 
         {subscription && <button onClick={tolgglePopUp}>Cancelar subscripción</button>}

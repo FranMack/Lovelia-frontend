@@ -31,9 +31,10 @@ export const DropDownFooter = ({ title, items }: DropdownOptions) => {
       </div>
       {dropDownOpen && (
         <div className="mobile-footer-card-items-container">
-          {items.map((item) => {
+          {items.map((item,i) => {
             return (
               <p
+              key={i}
                 onClick={() => {
                   linkTo(item.path);
                   handleDropDown();

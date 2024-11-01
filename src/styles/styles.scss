@@ -97,9 +97,10 @@ html{
     
   }
 
-  button{
+  button,svg{
     cursor: pointer;
   }
+
   
   @keyframes efectoReveal {
     from {

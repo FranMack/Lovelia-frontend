@@ -395,20 +395,20 @@
 .checkout-facturacion-container {
   width: 100%;
   margin-bottom: 5%;
-
   .facturacion-checkbox {
     width: 100%;
     display: flex;
     align-items: center;
-    column-gap: 5%;
+justify-content: space-between;
     label {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
+    }
+    input {
+      width: 3.5%;
+      aspect-ratio: 1;
     }
   }
-  input {
-    width: 4%;
-    aspect-ratio: 1;
-  }
+
 }
 
 .checkout-siteTerms-container {
@@ -424,15 +424,16 @@
     width: 100%;
     display: flex;
     align-items: center;
-    column-gap: 3%;
+    justify-content: space-between;
     label {
       font-size: 1.4rem;
     }
+    input {
+      width: 3.5%;
+      aspect-ratio: 1;
+    }
   }
-  input {
-    width: 3.5%;
-    aspect-ratio: 1;
-  }
+
 }
 
 .checkout-tipo-envio-container {
@@ -790,5 +791,56 @@
       font-weight: 500;
       margin-bottom: 3%;
     }
+  }
+
+
+
+
+  .checkout-facturacion-container {
+    width: 100%;
+    margin-bottom: 5%;
+  
+    .facturacion-checkbox {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      column-gap: 3%;
+      label {
+        font-size: 1.2rem;
+        text-align: start;
+      }
+      input {
+        width: 9%;
+        aspect-ratio: 1;
+      }
+    }
+  
+  }
+
+
+
+
+
+
+  .checkout-siteTerms-container {
+
+    
+    .siteTerms-checkbox {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      column-gap: 3%;
+      label {
+        font-size: 1.2rem;
+   
+      }
+
+      input {
+        width: 8%;
+        aspect-ratio: 1;
+      }
+      
+    }
+  
   }
 }

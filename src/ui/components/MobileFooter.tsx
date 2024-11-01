@@ -62,10 +62,9 @@ export const MobileFooter = () => {
       </div>
 
       <div className="mobile-bottom-container">
-        <p>
-          {" "}
+        
           <p>{`© ${year} lovelia. Todos los derechos reservados`}</p>
-        </p>
+       
       </div>
     </footer>
   );

@@ -838,16 +838,16 @@ function CheckOutAnalogic() {
             <div className="checkout-botton-left-container">
               <div className="checkout-title-container">
                 <h3>Detalle de pago</h3>
-                <h6>Ingresa los datos según tu método de pago seleccionado.</h6>
+                <h6>Selecciona tu método de pago.</h6>
               </div>
 
               <div className="checkout-form">
                 <div className="checkout-facturacion-container">
-                  {country === "Mexico" && (
+                  {country!.toLowerCase() === "mexico" && (
                     <div className="facturacion-checkbox">
                       <label htmlFor="">
                         Si requieres factura fiscal, marque la casilla
-                        <br /> y complete los campos
+                        y complete los campos
                       </label>
                       <input
                         type="checkbox"
@@ -1001,7 +1001,7 @@ function CheckOutAnalogic() {
               
               <div className="siteTerms-checkbox">
                 <label htmlFor="">
-                  Acepto las <Link to="/politica-de-privacidad">Políticas de privacidad</Link> y <Link to="/terminos-y-condiciones">Terminos y condiciones</Link>
+                  Acepto los <Link to="/terminos-y-condiciones">Términos y condiciones</Link> y <Link to="/politica-de-privacidad">Políticas de privacidad</Link> 
                 </label>
                 <input
                   type="checkbox"
@@ -1045,7 +1045,7 @@ function CheckOutAnalogic() {
                   </div>
                 ) :errorWarning === "site-terms" ? (
                   <div className="complementary-info-payment-container error">
-                    <p>PARA REALIZAR LA COMPRA DEBE ACEPTAR TERMINOS Y CONDICIONES</p>
+                    <p>PARA REALIZAR LA COMPRA DEBE ACEPTAR TÉRMINOS Y CONDICIONES</p>
                   </div>
                 ): (
                   <></>

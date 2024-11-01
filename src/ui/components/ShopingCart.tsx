@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { CloseIcon } from "../../assets/icons/icons";
+import { CloseIcon,GarbageCan } from "../../assets/icons/icons";
 import { ShopingCartContext } from "../../context/modalShopingCartContext";
 import { Button } from "./Button";
 
@@ -69,7 +69,7 @@ export function ShopingCart() {
               <div className="card-info-container">
                 <div className="card-title">
                   <h4>{`Talismán ${item.model}`}</h4>
-                  <CloseIcon
+                  <GarbageCan
                     onClick={() => {
                       deleteShopingCartItem(item.id);
                     }}

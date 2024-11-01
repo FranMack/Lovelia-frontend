@@ -39,9 +39,10 @@ export const DropDownMobileMenu = ({ title, items,path }: DropdownOptions) => {
       </div>
       {dropDownOpen && (
         <div className="dropDown-mobile-menu-card-items-container dropDown-Reveal">
-          {items.map((item) => {
+          {items.map((item,i) => {
             return (
               <p
+              key={i}
                 onClick={() => {
                   linkTo(item.path);
                   handleDropDown();
