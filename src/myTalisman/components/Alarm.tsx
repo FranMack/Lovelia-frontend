@@ -111,8 +111,41 @@ export const Alarm = ({ sounds=[] }: TimerOptions) => {
     }
   }, [alarmMode]);
 
+
+  const [warning,setWarning]=useState<boolean>(false)
+
   const handleAlarm = () => {
 
+   
+    if(alarmMode === "1 vez al día" && (state.alarms[0].hours === null || state.alarms[0].minutes === null) ){
+      setWarning(true)
+      toast.error("Existen alarmas sin definir",{style:{backgroundColor:"#6f3289",color:"#ece976"},hideProgressBar:true,autoClose:4000})
+
+      setIsLoading(false)
+      toast.error("Existen alarmas sin definir",{style:{backgroundColor:"#6f3289",color:"#ece976"},hideProgressBar:true,autoClose:4000})
+      return
+    }
+
+    if(alarmMode === "2 veces al día" && (state.alarms[0].hours === null || state.alarms[0].minutes === null ||state.alarms[1].hours === null || state.alarms[1].minutes === null) ){
+      setWarning(true)
+      toast.error("Existen alarmas sin definir",{style:{backgroundColor:"#6f3289",color:"#ece976"},hideProgressBar:true,autoClose:4000})
+      return
+    }
+    if(alarmMode === "3 veces al día" && (state.alarms[0].hours === null || state.alarms[0].minutes === null ||state.alarms[1].hours === null || state.alarms[1].minutes === null ||state.alarms[2].hours === null || state.alarms[2].minutes === null) ){
+      setWarning(true)
+      toast.error("Existen alarmas sin definir",{style:{backgroundColor:"#6f3289",color:"#ece976"},hideProgressBar:true,autoClose:4000})
+      return
+    }
+
+    if(alarmMode === "4 veces al día" && (state.alarms[0].hours === null || state.alarms[0].minutes === null ||state.alarms[1].hours === null || state.alarms[1].minutes === null ||state.alarms[2].hours === null || state.alarms[2].minutes === null || state.alarms[3].hours === null || state.alarms[3].minutes === null) ){
+      setWarning(true)
+      toast.error("Existen alarmas sin definir",{style:{backgroundColor:"#6f3289",color:"#ece976"},hideProgressBar:true,autoClose:4000})
+      return
+    }
+
+
+
+setWarning(false)
 
     const newAlarms = {
       alarm1: (state.alarms[0].hours === null || state.alarms[0].minutes === null)
@@ -129,7 +162,7 @@ export const Alarm = ({ sounds=[] }: TimerOptions) => {
         : `${state.alarms[3].hours !== null ? timeFormater(state.alarms[3].hours) : ""}:${timeFormater(state.alarms[3].minutes)}`,
     }
 
-    console.log("xxxxxxxxxxxxxxxx",newAlarms)
+    
 
     
     const alarms = alarmMode !== "Nunca" ? newAlarms : initialForm;
@@ -181,9 +214,8 @@ export const Alarm = ({ sounds=[] }: TimerOptions) => {
 
   const [alarmIndex,setAlarmIndex]=useState(0)
 
-
  
-console.log("xxxxxxxxxxxxxxxxx",state)
+
   return (
     <div className="alarm-container revealLogo">
     {timePicker &&  <TimePicker hours={state.alarms[alarmIndex].hours} minutes={state.alarms[alarmIndex].minutes} nextHour={() => dispatch({ type: "NEXT_HOUR", index:alarmIndex })} previuosHour={() => dispatch({ type: "PREVIOUS_HOUR", index:alarmIndex })} nextMinute={() => dispatch({ type: "NEXT_MINUTE", index:alarmIndex })} previousMinute={() => dispatch({ type: "PREVIOUS_MINUTE", index:alarmIndex })} handleTimePicker={handleTimePicker} alarmIndex={alarmIndex}/>}
@@ -248,6 +280,8 @@ console.log("xxxxxxxxxxxxxxxxx",state)
             )}
         </div>
       )}
+
+      {warning && <strong className="warning">EXISTEN ALARMAS SIN DEFINIR</strong>}
 
     {  loading ?  <BeatLoader color={"white"} speedMultiplier={0.4} /> :<Button text="Guardar alarma" onClick={handleAlarm} />}
     </div>

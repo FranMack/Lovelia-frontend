@@ -9,6 +9,12 @@
     justify-content: center;
     row-gap: 3%;
     
+
+    >.warning{
+        font-size: 2rem;
+        font-weight: 400;
+        color:$color_yellow
+    }
    
 }
 
@@ -42,7 +48,7 @@
         } 
        
     }
-     
+   
 }
 
 

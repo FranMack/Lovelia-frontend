@@ -2,7 +2,7 @@ import { ButtonArrowRight2 } from "../../ui/components";
 import { useNavigate } from "react-router-dom";
 import talismanDigital from "../assets/talisman-wallpaper.png";
 import { PopUp } from "../../ui/components/PopUp";
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import axios from "axios";
 import { envs } from "../../config";
 import { UserContext } from "../../context";
@@ -60,10 +60,20 @@ export const AcountInfo = ({
     .catch((error)=>{console.log(error)})
   }
 
+  const backgroundClass = useMemo(() => {
+    if (!openPopUp) {
+      return ;
+    }
+
+    return "viewport-background"
+  }, [openPopUp]);
+
+
+
   return (
     <>
-    <div className="acountInfo-container">
   {  openPopUp && <PopUp linkTo={cancelSubscription} closePopUp={tolgglePopUp} buttonText="Confirmar" text="¿Esta seguro que desea cancelar la subscripción?"/>}
+    <div className={`acountInfo-container ${backgroundClass}`}>
     <div className={"acountInfo-internal-container"}>
       <div className="acountInfo-internal-left-container">
       <h4>DATOS DE USUARIO</h4>

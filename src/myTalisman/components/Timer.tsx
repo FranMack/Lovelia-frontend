@@ -6,6 +6,8 @@ import { TimerContext } from "../../context/timerContext";
 import { Button } from "../../ui/components/Button";
 import timerCircle from "../assets/timer.png";
 import { Alarm } from "./Alarm";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type SoundsType = {
   name: string;
@@ -47,6 +49,7 @@ export const Timer = ({ sounds=[] }: TimerOptions) => {
   const startMeditation = () => {
     if (!hours && !minutes && !seconds) {
       setWarning(true);
+      toast.error("Atención: defina el intervalo del timer",{style:{backgroundColor:"#6f3289",color:"#ece976"},hideProgressBar:true,autoClose:4000})
       return;
     }
 
