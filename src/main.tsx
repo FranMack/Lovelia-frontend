@@ -47,12 +47,24 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 // Register the service worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then((registration) => {
-        console.log('Service Worker registered with scope:', registration.scope);
-      })
-      .catch((error) => {
-        console.log('Service Worker registration failed:', error);
-      });
+    navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+      console.log('Service Worker registered with scope:', registration.scope);
+
+      // Check for updates
+      registration.onupdatefound = () => {
+        const newWorker = registration.installing;
+        if (newWorker) {
+          newWorker.onstatechange = () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              // New content is available; let the user know or automatically refresh
+              console.log('New service worker available; will activate immediately.');
+              window.location.reload(); // Optional: reload to get the new version
+            }
+          };
+        }
+      };
+    }).catch((error) => {
+      console.log('Service Worker registration failed:', error);
+    });
   });
 }
