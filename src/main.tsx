@@ -43,3 +43,37 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     </BrowserRouter>
   </React.StrictMode>
 );
+
+// Register the service worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+      console.log('Service Worker registered with scope:', registration.scope);
+
+      // Listen for updates found
+      registration.onupdatefound = () => {
+        const newWorker = registration.installing;
+        if (newWorker) {
+          newWorker.onstatechange = () => {
+            if (newWorker.state === 'installed') {
+              if (navigator.serviceWorker.controller) {
+                // New update available, prompt user or handle logic
+                console.log('New service worker available.');
+
+                // Optional: Notify user for manual reload
+                if (confirm('New version available. Would you like to refresh?')) {
+                  window.location.reload();
+                }
+              } else {
+                // Service worker is installed for the first time
+                console.log('Service Worker installed for the first time.');
+              }
+            }
+          };
+        }
+      };
+    }).catch((error) => {
+      console.log('Service Worker registration failed:', error);
+    });
+  });
+}
