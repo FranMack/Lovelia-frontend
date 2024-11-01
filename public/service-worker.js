@@ -1,3 +1,5 @@
+/* global clients */
+
 self.addEventListener('install', (event) => {
   self.skipWaiting(); // Forces the waiting service worker to become active
   event.waitUntil(
@@ -13,7 +15,7 @@ self.addEventListener('install', (event) => {
   );
 });
 
-self.addEventListener('activate', (event) => {
+self.addEventListener('activate', () => {
   clients.claim(); // Takes control of any clients as soon as the service worker activates
   console.log('Service worker activated');
 });
