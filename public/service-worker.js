@@ -15,7 +15,11 @@ self.addEventListener('install', (event) => {
   );
 });
 
-self.addEventListener('activate', () => {
-  clients.claim(); // Takes control of any clients as soon as the service worker activates
-  console.log('Service worker activated');
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    (async () => {
+      await clients.claim(); // Takes control of all clients immediately
+      console.log('Service worker activated');
+    })()
+  );
 });

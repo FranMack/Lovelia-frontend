@@ -50,15 +50,24 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js').then((registration) => {
       console.log('Service Worker registered with scope:', registration.scope);
 
-      // Check for updates
+      // Listen for updates found
       registration.onupdatefound = () => {
         const newWorker = registration.installing;
         if (newWorker) {
           newWorker.onstatechange = () => {
-            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-              // New content is available; let the user know or automatically refresh
-              console.log('New service worker available; will activate immediately.');
-              window.location.reload(); // Optional: reload to get the new version
+            if (newWorker.state === 'installed') {
+              if (navigator.serviceWorker.controller) {
+                // New update available, prompt user or handle logic
+                console.log('New service worker available.');
+
+                // Optional: Notify user for manual reload
+                if (confirm('New version available. Would you like to refresh?')) {
+                  window.location.reload();
+                }
+              } else {
+                // Service worker is installed for the first time
+                console.log('Service Worker installed for the first time.');
+              }
             }
           };
         }
