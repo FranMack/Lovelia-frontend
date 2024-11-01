@@ -1,17 +1,17 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import BeatLoader from "react-spinners/BeatLoader";
 import { MercadoPagoIcon, PayPalIcon } from "../../assets//icons/icons";
-import { ProductosOptions } from "../../ui/components/ShopingCart";
 import { envs } from "../../config/envs";
 import { ShopingCartContext } from "../../context/modalShopingCartContext";
-import { CheckOutValidation } from "../helpers/checkOutValidations";
 import { useForm } from "../../hooks/useForm";
 import { BackgroundVideo } from "../../ui/components";
-import { CheckOutNavbar } from "../components/CheckOutNavbar";
+import { ProductosOptions } from "../../ui/components/ShopingCart";
 import logoDhl from "../assets/logo-dhl.png";
+import { CheckOutNavbar } from "../components/CheckOutNavbar";
 import { BillingValidation } from "../helpers/billingValidations";
-import { Link } from "react-router-dom";
+import { CheckOutValidation } from "../helpers/checkOutValidations";
 
 const sections = ["1. Identificación", "2. Envío", "3. Pago"];
 
@@ -737,7 +737,7 @@ function CheckOutAnalogic() {
                     )}
                   </div>
                   <div className="checkout-form-names-internal-container">
-                    <label htmlFor="state">Provincia</label>
+                    <label htmlFor="state">Provincia/Estado</label>
                     <input
                       value={state}
                       onChange={onInputChange}

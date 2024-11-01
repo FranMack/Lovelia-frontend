@@ -33,6 +33,12 @@ export default defineConfig({
           sizes: '512x512',
           type: 'image/png',
         },
+        {
+          src: '/apple-touch-icon.png', // iOS-specific icon
+          sizes: '180x180',
+          type: 'image/png',
+          purpose: 'any maskable', // Ensure compatibility for adaptive icons
+        },
       ],
     },
   })],
