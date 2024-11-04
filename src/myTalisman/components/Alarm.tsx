@@ -176,7 +176,8 @@ setWarning(false)
         {
           ...alarms,
           sound: timerSound,
-          alarm_active:activated
+          alarm_active:activated,
+          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         },
         { withCredentials: true }
       )
