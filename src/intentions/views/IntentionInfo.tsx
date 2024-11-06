@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { infoIntenciones } from "../assets/infoIntentions";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ButtonArrowRight } from "../../ui/components/ButtonArrowRight";
-import { PlayIcon } from "../../assets/icons/icons";
+import { PlayIcon,StopIcon } from "../../assets/icons/icons";
 import { TimerContext } from "../../context/timerContext";
 import { ShopingCartContext } from "../../context";
 
@@ -18,6 +18,14 @@ import { ShopingCartContext } from "../../context";
     if (id) {
       setPage(parseInt(id));
     }
+
+    if(meditationRef.current){
+      meditationRef.current.currentTime=0;
+      meditationRef.current.pause()
+      setIsPlaying(false)
+    }
+
+
   }, [id]);
 
   const handlerPage = (direction: string) => {
@@ -35,9 +43,45 @@ import { ShopingCartContext } from "../../context";
   const{activatedAlarm}=useContext(TimerContext)
   const {shopingCartOpen}=useContext(ShopingCartContext)
 
+
+  const [isPlaying,setIsPlaying]=useState<boolean>(false)
+
+  const [timeProgress,setTimeProgress]=useState(0)
+
+  const meditationRef = useRef<HTMLAudioElement | null>(null);
+
+
+  const playMeditation=()=>{
+    
+    if(meditationRef.current){
+      setIsPlaying(true)
+      meditationRef.current.play()
+    }
+  }
+
+  const stopMeditation=()=>{
+    if(meditationRef.current){
+      meditationRef.current.pause()
+      setTimeProgress(meditationRef.current.currentTime)
+      setIsPlaying(false)
+    }
+  }
+
+  const restartMeditation =()=>{
+    if(meditationRef.current){
+      meditationRef.current.currentTime=0
+      setTimeProgress(0)
+      meditationRef.current.play()
+      setIsPlaying(true)
+    }
+  }
+
+
+
   return (
     <>
       <main className={activatedAlarm || shopingCartOpen ? "viewport-background":""}>
+      <audio preload="metadata"  src={infoIntenciones[page - 1].meditationURL} ref={meditationRef} />
       <section className="intencionesDescription-container efectoReveal">
         <div className="intencionesDescription-info-container">
           <div className="intencionesDescription-top-buttons-container">
@@ -61,12 +105,17 @@ import { ShopingCartContext } from "../../context";
               })}
           </article>
           <div className="intencionesDescription-buttons-container">
-            <button>
+            {isPlaying ?<button title="Doble click para reiniciar" onClick={stopMeditation} onDoubleClick={restartMeditation} >
               <div className="icon-container">
-                <PlayIcon />
+              {  <StopIcon  />}
               </div>{" "}
-              Iniciar meditación
-            </button>
+              Pausar meditación
+            </button>:<button title="Doble click para reiniciar" onClick={playMeditation} onDoubleClick={restartMeditation}>
+              <div className="icon-container">
+              {  <PlayIcon  />}
+              </div>{" "}
+              {timeProgress ? "Continuar meditación":"Iniciar meditación"}
+            </button>}
           </div>
         </div>
         <div className="intencionesDescription-image-container">

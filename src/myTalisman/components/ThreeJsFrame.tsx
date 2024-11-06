@@ -1,4 +1,6 @@
+import axios from "axios";
 import { ChangeEvent, useContext, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   ActivationIcon,
   ClockIcon,
@@ -10,31 +12,29 @@ import {
   MyAdnIcon,
   NextAudioIcon,
   NotSoundIcon,
+  PlayIcon,
   PreviousAudioIcon,
   SoundIcon,
   StopIcon,
   TalismanSoundIcon,
 } from "../../assets/icons/icons";
-import { IntentionContext } from "../../context/intentionContext";
+import { envs } from "../../config/envs";
+import { ActivationStepsContex } from "../../context/activationStepsContext";
+import { TalismanAudioContext } from "../../context/talismanAudioContext";
 import { TalismanButtonFocusContext } from "../../context/talismanButtonFocusContext";
 import { UserContext } from "../../context/userContext";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { Activation } from "./Activation";
-import { envs } from "../../config/envs";
 import { audioDurationTransform } from "../helpers/audioDurationTransform";
 import { lineSubtitle } from "../helpers/subtitles";
+import { Activation } from "./Activation";
+import { Chronometer } from "./Chronometer";
 import { MyADN } from "./MyADN";
-import { PlayIcon } from "../../assets/icons/icons";
 import { Playlist } from "./Playlist";
 import { Timer } from "./Timer";
-import { Chronometer } from "./Chronometer";
-import { TalismanAudioContext } from "../../context/talismanAudioContext";
-import { ActivationStepsContex } from "../../context/activationStepsContext";
 
 interface MeditationsOptions {
   name: string;
   url: string;
+  duration:string
 }
 
 export const ThreeJsFrame = () => {
@@ -152,7 +152,7 @@ export const ThreeJsFrame = () => {
 
   const timerSoundRefs = useRef<HTMLAudioElement[]>([]);
 
-  const { intention, setIntention } = useContext(IntentionContext);
+ {/* const { intention, setIntention } = useContext(IntentionContext);*/}
 
   const buttonsLeft = [
     {
@@ -295,10 +295,10 @@ export const ThreeJsFrame = () => {
             `${envs.API_DOMAIN}/api/v1/user/astrological-info?email=${email}`,
             { withCredentials: true }
           );
-          const userIntention = await axios.get(
+         {/* const userIntention = await axios.get(
             `${envs.API_DOMAIN}/api/v1/user/my-intention/${email}`,
             { withCredentials: true }
-          );
+          );*/}
 
           if (userInfo.data) {
             setAstrologicalInfo(true);
@@ -310,9 +310,9 @@ export const ThreeJsFrame = () => {
 
 
 
-          if (userIntention) {
+        {/*  if (userIntention) {
             setIntention(userIntention.data);
-          }
+          }*/}
 
           setTimeout(() => {
             axios.post(
@@ -474,7 +474,7 @@ export const ThreeJsFrame = () => {
 
       if (meditationsRefs.current[index]) {
         meditationsRefs.current[index].play();
-        setTrackDuration(soundRefs.current[index].duration);
+        setTrackDuration(meditationsRefs.current[index].duration);
         setTrackIndex(index);
         handlePlaying(true);
 
@@ -558,27 +558,64 @@ export const ThreeJsFrame = () => {
     };
   }, [volumeBarVisibility]);
 
+  
+
+  //obtiene la duración de cada audio de la lista
+  const fetchAudioDurations = async (
+    items: MeditationsOptions[],
+    refs: React.MutableRefObject<HTMLAudioElement[]>
+  ): Promise<MeditationsOptions[]> => { // Cambiamos aquí para que solo devuelva MeditationsOptions[]
+    return Promise.all(
+      items.map((item, index) => {
+        return new Promise<MeditationsOptions>((resolve) => { // Especificamos el tipo de resolución
+          const audio = new Audio(item.url);
+          refs.current[index] = audio;
+  
+          audio.addEventListener("loadedmetadata", () => {
+            resolve({
+              ...item,
+              duration:audioDurationTransform (audio.duration), // Dejamos la duración como número
+            });
+          });
+        });
+      })
+    );
+  };
+  
   useEffect(() => {
-    axios
-      .get(`${envs.API_DOMAIN}/api/v1/user/meditations`, {
-        withCredentials: true,
-      })
-      .then((response) => {
-        setMeditations(response.data);
-      });
-
-    axios
-      .get(`${envs.API_DOMAIN}/api/v1/user/sounds`, {
-        withCredentials: true,
-      })
-      .then((response) => {
-        setSounds(response.data);
-      });
+    const fetchData = async () => {
+      try {
+        // Tipamos explícitamente la respuesta de axios
+        const [meditationsResponse, soundsResponse] = await Promise.all([
+          axios.get<MeditationsOptions[]>(`${envs.API_DOMAIN}/api/v1/user/meditations`, {
+            withCredentials: true,
+          }),
+          axios.get<MeditationsOptions[]>(`${envs.API_DOMAIN}/api/v1/user/sounds`, {
+            withCredentials: true,
+          }),
+        ]);
+  
+        // Obtenemos duraciones para meditaciones y sonidos
+        const meditationsWithDuration = await fetchAudioDurations(
+          meditationsResponse.data,
+          meditationsRefs
+        );
+        const soundsWithDuration = await fetchAudioDurations(
+          soundsResponse.data,
+          soundRefs
+        );
+  
+        // Actualizamos los estados con los resultados
+        setMeditations(meditationsWithDuration);
+        setSounds(soundsWithDuration);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+  
+    fetchData();
   }, []);
-
-
-
-
+  
 
   return (
     <>
@@ -714,11 +751,11 @@ export const ThreeJsFrame = () => {
           )}
           {buttonFocusPosition === "timer" && <Timer sounds={sounds} />}
 
-          {intention && (
+          {/*intention && (
             <div className="myTalisman-intention-container efectoReveal">
               <p>{intention}</p>
             </div>
-          )}
+          )*/}
         </>
       ) : (
         <div className="myTalisman-pre-loading">Loading...</div>

@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { CloseIcon, PlayIcon, StopIcon } from "../../assets/icons/icons";
 import { TalismanButtonFocusContext } from "../../context/talismanButtonFocusContext";
 
-type SoundsType = {
+export type SoundsType = {
   name: string;
   url: string;
   duration?:string

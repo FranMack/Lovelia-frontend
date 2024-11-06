@@ -56,17 +56,20 @@ align-items: center;
   .acountInfo-item-info-container {
     width: 80%;
     color: $color_text2;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
 
   
  
     label {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 400;
     }
     input {
       border: none;
       font-size: 2rem;
-      font-weight: 700;
+      font-weight: 600;
       background-color: transparent;
       &:focus {
         outline: none;
@@ -125,7 +128,6 @@ align-items: center;
   @media screen and (max-width: 678px) {
     .acountInfo-container {
       width: 100%;
-      height: fit-content;
       margin-top: 2%;
       height: fit-content;
       display: flex;
@@ -173,9 +175,7 @@ align-items: center;
   .acountInfo-item-info-container {
     width: 80%;
     color: $color_text2;
-    display: flex;
-    flex-direction: column;
-    row-gap: 0.5rem;
+
   
     label {
       font-size: 1.5rem;

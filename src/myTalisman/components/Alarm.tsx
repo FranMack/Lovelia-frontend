@@ -151,19 +151,18 @@ setWarning(false)
       alarm1: (state.alarms[0].hours === null || state.alarms[0].minutes === null)
         ? ""
         : `${state.alarms[0].hours !== null ? timeFormater(state.alarms[0].hours) : ""}:${timeFormater(state.alarms[0].minutes)}`,
-      alarm2: (state.alarms[1].hours === null || state.alarms[1].minutes === null)
+      alarm2: (state.alarms[1].hours === null || state.alarms[1].minutes === null || alarmMode==="1 vez al día")
         ? ""
         : `${state.alarms[1].hours !== null ? timeFormater(state.alarms[1].hours) : ""}:${timeFormater(state.alarms[1].minutes)}`,
-      alarm3: (state.alarms[2].hours === null || state.alarms[2].minutes === null)
+      alarm3: (state.alarms[2].hours === null || state.alarms[2].minutes === null || alarmMode==="1 vez al día" || alarmMode==="2 veces al día" )
         ? ""
         : `${state.alarms[2].hours !== null ? timeFormater(state.alarms[2].hours) : ""}:${timeFormater(state.alarms[2].minutes)}`,
-      alarm4: (state.alarms[3].hours === null || state.alarms[3].minutes === null)
+      alarm4: (state.alarms[3].hours === null || state.alarms[3].minutes === null || alarmMode==="1 vez al día" || alarmMode==="2 veces al día" || alarmMode==="3 veces al día")
         ? ""
         : `${state.alarms[3].hours !== null ? timeFormater(state.alarms[3].hours) : ""}:${timeFormater(state.alarms[3].minutes)}`,
     }
 
     
-
     
     const alarms = alarmMode !== "Nunca" ? newAlarms : initialForm;
     const activated =alarmMode !== "Nunca" ? true : false;
@@ -176,8 +175,7 @@ setWarning(false)
         {
           ...alarms,
           sound: timerSound,
-          alarm_active:activated,
-          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+          alarm_active:activated
         },
         { withCredentials: true }
       )

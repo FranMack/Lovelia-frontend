@@ -19,41 +19,23 @@ export const AlarmPopUp = ({ alarmUrl }: AlarmPopUpOptions) => {
     setAlarmPath(alarmUrl);
   }, [alarmUrl]);
 
-  const playAlarmSoundWithCount = (): Promise<void> => {
-    return new Promise<void>((resolve) => {
-      if (alarmSoundRef.current) {
-        alarmSoundRef.current.currentTime = 0;
-        alarmSoundRef.current.play();
+const playAlarm=()=>{
 
-        // Cuando el audio termina, resolvemos la promesa
-        const handleEnded = () => {
-          alarmSoundRef.current?.removeEventListener("ended", handleEnded);
-          resolve();
-        };
-
-        alarmSoundRef.current.addEventListener("ended", handleEnded);
-      } else {
-        resolve();
-      }
-    });
-  };
-
-  const playAlarmSequentially = async () => {
-    const maxPlays = 50;
-    for (let i = 0; i < maxPlays; i++) {
-      await playAlarmSoundWithCount();
-    }
-  };
+  if(alarmSoundRef.current){
+    alarmSoundRef.current.play()
+  }
+}
 
   useEffect(() => {
     if (alarmPath) {
-      playAlarmSequentially();
+      playAlarm();
     }
   }, [alarmPath]);
 
   return (
     <div className="alarm-popUp-container efectoReveal">
       <audio
+      preload="metadata"
         ref={alarmSoundRef}
         src={`https://lovelia.org/public/userSounds/${alarmPath}`}
       />
