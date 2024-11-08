@@ -1,15 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import { ejemploTalismanesAnalogicos } from "../assets/ejemplosTalismanes";
-import { RightNextIcon } from "../../assets/icons/icons";
-import { DropdownMenu, DropdownMenuOptions } from "../components/DropdownMenu";
-import { useNavigate } from "react-router-dom";
-import { Button } from "../../ui/components/Button";
-import { TalismanModelContext } from "../../context/talismanModelContext";
-import { useOpenModal } from "../../hooks/useOpenModal";
-import { ShopingCartContext } from "../../context";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { RightNextIcon } from "../../assets/icons/icons";
+import { ShopingCartContext } from "../../context";
+import { TalismanModelContext } from "../../context/talismanModelContext";
 import { TimerContext } from "../../context/timerContext";
+import { useOpenModal } from "../../hooks/useOpenModal";
+import { Button } from "../../ui/components/Button";
+import { ejemploTalismanesAnalogicos } from "../assets/ejemplosTalismanes";
+import { DropdownMenu, DropdownMenuOptions } from "../components/DropdownMenu";
 
 const modelOptions: DropdownMenuOptions = {
   title: "Modelo",
@@ -67,23 +66,7 @@ const intencionOptions: DropdownMenuOptions = {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  const navigate = useNavigate();
 
-  const{shopingCartItems}=useContext(ShopingCartContext)
-
-  const linkToCheckOut = () => {
-    if (shopingCartItems.length > 0) {
-      navigate("/checkout/store");
-  
-    } else {
-      toast.warning("No hay productos en el carrito de compra");
-      return;
-    }
-  };
-
-
-
-  
 
 
   const { toggleMenu, setShopingCartItems } = useContext(ShopingCartContext);
@@ -244,9 +227,7 @@ const intencionOptions: DropdownMenuOptions = {
               onClick={addToShopingCart}
               text="Agregar al carrito de compras"
             />
-            <div className="auxiliar-buttons-container">
-              <Button onClick={linkToCheckOut} text={`Ir a comprar`} />
-            </div>
+          
           </div>
         </div>
       </div>

@@ -1,0 +1,48 @@
+@import "../../styles//variables.scss";
+
+
+.constelationBox-container{
+    position: absolute;
+    top: 4%;
+    right: 7.5%;
+width: 20vw;
+aspect-ratio: 1;
+
+    img{
+        object-fit: cover;
+        height: 100%;
+        aspect-ratio: 1;
+        background-color: rgba($color: $color_darkPurple, $alpha: 0.8)
+    }
+}
+
+
+
+
+@media screen and (max-width: 678px) {
+
+
+
+    .constelationBox-container{
+        position: absolute;
+        top: 0%;
+        right: 0;
+    width: 50vw;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    
+        img{
+            object-fit: cover;
+            object-position: center;
+            height: 130%;
+            aspect-ratio: 1;
+            background-color: rgba($color: $color_darkPurple, $alpha: 0.8)
+        }
+    }
+
+
+
+}

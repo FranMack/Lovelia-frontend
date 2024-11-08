@@ -30,6 +30,9 @@ import { Chronometer } from "./Chronometer";
 import { MyADN } from "./MyADN";
 import { Playlist } from "./Playlist";
 import { Timer } from "./Timer";
+import { TalismanBox } from "./TalismanBox";
+import { IntentionContext } from "../../context";
+import { ConstelationBox } from "./ConstelationBox";
 
 interface MeditationsOptions {
   name: string;
@@ -152,7 +155,7 @@ export const ThreeJsFrame = () => {
 
   const timerSoundRefs = useRef<HTMLAudioElement[]>([]);
 
- {/* const { intention, setIntention } = useContext(IntentionContext);*/}
+  const { intention, setIntention } = useContext(IntentionContext);
 
   const buttonsLeft = [
     {
@@ -286,6 +289,9 @@ export const ThreeJsFrame = () => {
     },
   ];
 
+  const[astrologicalData,setAstrologicalData]=useState({numerology:0,horoscope:"",kinMaya:"",tones:"",constellation:""})
+console.log("pppppppppppppp",astrologicalData)
+
   useEffect(() => {
     setAudioType("")
     async function getUserInfo(email: string) {
@@ -295,12 +301,13 @@ export const ThreeJsFrame = () => {
             `${envs.API_DOMAIN}/api/v1/user/astrological-info?email=${email}`,
             { withCredentials: true }
           );
-         {/* const userIntention = await axios.get(
+          const userIntention = await axios.get(
             `${envs.API_DOMAIN}/api/v1/user/my-intention/${email}`,
             { withCredentials: true }
-          );*/}
+          );
 
           if (userInfo.data) {
+            setAstrologicalData(userInfo.data)
             setAstrologicalInfo(true);
             localStorage.setItem("subscriptionActive", "true");
             setSuscription(true);
@@ -310,9 +317,9 @@ export const ThreeJsFrame = () => {
 
 
 
-        {/*  if (userIntention) {
+          if (userIntention) {
             setIntention(userIntention.data);
-          }*/}
+          }
 
           setTimeout(() => {
             axios.post(
@@ -621,6 +628,8 @@ export const ThreeJsFrame = () => {
     <>
       {astrologicalInfo ? (
         <>
+       { <TalismanBox numerology={astrologicalData.numerology} kinMaya={astrologicalData.kinMaya} tones={astrologicalData.tones} phrase={intention} horoscope={astrologicalData.horoscope}/>}
+          <ConstelationBox constellation={astrologicalData.constellation}/>
           <iframe
             className="threejs-container"
             title="Modelo 3D"
