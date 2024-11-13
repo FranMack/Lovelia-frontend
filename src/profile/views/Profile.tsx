@@ -100,7 +100,7 @@ const datosCompras: DatosCompra[] = [
   };
 
  // const { shopingCartOpen } = useContext(ShopingCartContext);
-  const { name, lastname, email, subscription } = useContext(UserContext);
+  const { name, lastname, email, subscription,talismanActivated } = useContext(UserContext);
 
   const [shopingHistory, setShopingHistory] = useState<ShopingHistory>([]);
   const [index, setIndex] = useState<number>(0);
@@ -151,6 +151,7 @@ const datosCompras: DatosCompra[] = [
           lastname={lastname}
           email={email}
           subscription={subscription}
+          talismanActivated={talismanActivated}
         />
       )}
 

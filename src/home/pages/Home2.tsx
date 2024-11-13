@@ -5,17 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 const frontPageInfo: FrontPage1Options = {
   image: wallpaper,
-  text: [
-    "CUANDO USO UN",
-    "TALISMÁN, ESTOY",
-    "RECORDANDO QUÉ QUIERO",
-    "PARA MI, CONECTANDO CON",
-    "MI SABIDURIA INTERNA.",
-  ],
+  text: "↘️ CUANDO USO UN TALISMÁN, ESTOY RECORDANDO QUE QUIERO PARA MÍ, CONECTANDO CON MI SABIDURÍA INTERNA.",
   color: "#6f3289",
   button:true,
-  buttonText: "VER MÁS INFORMACIÓN",
-  arrow:true
+  buttonText: "VER MÁS INFORMACIÓN"
 };
 
 export const Home2 = () => {

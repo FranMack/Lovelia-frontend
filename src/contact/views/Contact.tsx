@@ -2,13 +2,13 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import BeatLoader from "react-spinners/BeatLoader";
 import { envs } from "../../config/envs";
-import { ContactValidation } from "../helpers/contactValidations";
-import { useForm } from "../../hooks/useForm";
-import logo from "../assets/logoSimple.png";
-import { MessageSend } from "../components/MessageSend";
-import { BackgroundVideo } from "../../ui/components";
 import { ShopingCartContext } from "../../context";
 import { TimerContext } from "../../context/timerContext";
+import { BackgroundVideo } from "../../ui/components";
+import logo from "../assets/logoSimple.png";
+import { MessageSend } from "../components/MessageSend";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
  function Contact() {
   useEffect(() => {
@@ -24,118 +24,57 @@ import { TimerContext } from "../../context/timerContext";
     setMessageSent(!messageSent);
   };
 
-  const initialForm = {
-    name: "",
-    subject: "",
-    email: "",
-    message: "",
-  };
-
-  const { formState, onInputChange, onResetForm } = useForm(initialForm);
-  const { name, subject, email, message } = formState;
-
-  const [nameErrors, setNameErrors] = useState<string[]>([]);
-  const [subjectErrors, setSubjectErrors] = useState<string[]>([]);
-  const [emailErrors, setEmailErrors] = useState<string[]>([]);
-  const [messageErrors, setMessageErrors] = useState<string[]>([]);
-
-  const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const [errors] = ContactValidation.create({
-      name: name,
-      subject: subject,
-      email: email,
-      message: message,
-    });
-
-    if (errors) {
-      errors.map((error) => {
-        if (Object.keys(error).includes("name")) {
-          return setNameErrors((prevErrors) => [...prevErrors, error["name"]]);
-        }
-        if (Object.keys(error).includes("subject")) {
-          return setSubjectErrors((prevErrors) => [
-            ...prevErrors,
-            error["subject"],
-          ]);
-        }
-        if (Object.keys(error).includes("email")) {
-          return setEmailErrors((prevErrors) => [
-            ...prevErrors,
-            error["email"],
-          ]);
-        }
-        if (Object.keys(error).includes("message")) {
-          return setMessageErrors((prevErrors) => [
-            ...prevErrors,
-            error["message"],
-          ]);
-        }
-      });
-
-      !errors.find((error) => {
-        return Object.keys(error).includes("name");
-      }) && setNameErrors([]);
-      !errors.find((error) => {
-        return Object.keys(error).includes("subject");
-      }) && setSubjectErrors([]);
-      !errors.find((error) => {
-        return Object.keys(error).includes("email");
-      }) && setEmailErrors([]);
-      !errors.find((error) => {
-        return Object.keys(error).includes("message");
-      }) && setMessageErrors([]);
-
-      return;
-    }
-
-    setIsLoading(true);
-
-    axios
-      .post(`${envs.API_DOMAIN}/api/v1/user/consult`, {
-        name: name,
-        subject: subject,
-        email: email,
-        message: message,
-      })
-      .then((response) => {
-        console.log(response);
-        onResetForm();
-        setIsLoading(false);
-        handleMessageSent();
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        console.log(error);
-      });
-  };
-
-  const handleBlur = (field: string) => {
-    const [errors] = ContactValidation.create(formState);
-    const fieldError = errors?.find((error) =>
-      Object.keys(error).includes(field)
-    );
-    switch (field) {
-      case "name":
-        setNameErrors(fieldError ? [fieldError[field]] : []);
-        break;
-      case "subject":
-        setSubjectErrors(fieldError ? [fieldError[field]] : []);
-        break;
-      case "email":
-        setEmailErrors(fieldError ? [fieldError[field]] : []);
-        break;
-      case "message":
-        setMessageErrors(fieldError ? [fieldError[field]] : []);
-        break;
-      default:
-        break;
-    }
-  };
 
   const{activatedAlarm}=useContext(TimerContext)
   const {shopingCartOpen}=useContext(ShopingCartContext)
+
+
+  const singUpForm = useFormik({
+    initialValues: {
+      name: "",
+      subject: "",
+      email: "",
+      message: "",
+    },
+    validationSchema: Yup.object({
+      name: Yup.string()
+        .required("Campo requerido"),
+        subject: Yup.string()
+        .required("Campo requerido"),
+      email: Yup.string().email("Email no valido").required("Campo requerido"),
+      message: Yup.string()
+      .required("Campo requerido"),
+     
+    }),
+
+    onSubmit: (values) => {
+
+      if(isLoading){
+        return
+      }
+   
+      setIsLoading(true);
+
+      axios
+        .post(`${envs.API_DOMAIN}/api/v1/user/consult`, {
+          name: values.name,
+          subject: values.subject,
+          email: values.email,
+          message: values.message,
+        })
+        .then((response) => {
+          console.log(response);
+          singUpForm.resetForm();
+          setIsLoading(false);
+          handleMessageSent();
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          console.log(error);
+        });
+   
+    },
+  });
 
 
   return (
@@ -159,61 +98,74 @@ import { TimerContext } from "../../context/timerContext";
         {messageSent ? (
           <MessageSend handleMessage={handleMessageSent} />
         ) : (
-          <form onSubmit={handleSubmit} className="contact-form" action="">
+          <form  onSubmit={singUpForm.handleSubmit} className="contact-form" action="">
             <h3>Habla con nosotros</h3>
             <h6>Completa el formulario para enviar tu consulta.</h6>
 
             <input
-              value={name}
-              onChange={onInputChange}
-              onBlur={() => handleBlur("name")}
+            
+                value={singUpForm.values.name}
+                onChange={singUpForm.handleChange}
+                onBlur={singUpForm.handleBlur}
               name="name"
               type="text"
               placeholder="Tu nombre"
-              className={`${nameErrors.length > 0 && "input-error"}`}
+              className={singUpForm.touched.name &&
+                singUpForm.errors.name ? "input-error":""}
             />
-            {nameErrors.length > 0 && (
-              <span className="input-helpers-error">{nameErrors[0]}</span>
+            {singUpForm.touched.name &&
+              singUpForm.errors.name && (
+              <span className="input-helpers-error">{singUpForm.errors.name}</span>
             )}
             <input
-              value={subject}
-              onChange={onInputChange}
-              onBlur={() => handleBlur("subject")}
+                 
+                  value={singUpForm.values.subject}
+                  onChange={singUpForm.handleChange}
+                  onBlur={singUpForm.handleBlur}
               name="subject"
               type="text"
               placeholder="Asunto"
-              className={`${subjectErrors.length > 0 && "input-error"}`}
+              className={singUpForm.touched.subject &&
+                singUpForm.errors.subject ? "input-error":""}
             />
-            {subjectErrors.length > 0 && (
-              <span className="input-helpers-error">{subjectErrors[0]}</span>
+          {singUpForm.touched.subject &&
+              singUpForm.errors.subject && (
+              <span className="input-helpers-error">{singUpForm.errors.subject}</span>
             )}
             <input
-              value={email}
-              onChange={onInputChange}
-              onBlur={() => handleBlur("email")}
+               
+                 value={singUpForm.values.email}
+                 onChange={singUpForm.handleChange}
+                 onBlur={singUpForm.handleBlur}
               name="email"
               type="email"
               placeholder="Tu correo electrónico"
-              className={`${emailErrors.length > 0 && "input-error"}`}
+              className={singUpForm.touched.email &&
+                singUpForm.errors.email ? "input-error":""}
             />
-            {emailErrors.length > 0 && (
-              <span className="input-helpers-error">{emailErrors[0]}</span>
+              {singUpForm.touched.email &&
+              singUpForm.errors.email && (
+              <span className="input-helpers-error">{singUpForm.errors.email}</span>
             )}
 
             <textarea
-              value={message}
-              onChange={onInputChange}
-              onBlur={() => handleBlur("message")}
+          
+               value={singUpForm.values.message}
+               onChange={singUpForm.handleChange}
+               onBlur={singUpForm.handleBlur}
               name="message"
               placeholder="Escribe tu mensaje aqui"
-              className={`${messageErrors.length > 0 && "input-error"}`}
+              className={singUpForm.touched.message &&
+                singUpForm.errors.message ? "input-error":""}
             />
-            {messageErrors.length > 0 && (
-              <span className="input-helpers-error">{messageErrors[0]}</span>
+            {singUpForm.touched.message &&
+              singUpForm.errors.message && (
+              <span className="input-helpers-error">{singUpForm.errors.message}</span>
             )}
 
+
             {
-              <button>
+              <button type="submit">
                 {isLoading ? (
                   <BeatLoader color={"white"} speedMultiplier={0.4} />
                 ) : (

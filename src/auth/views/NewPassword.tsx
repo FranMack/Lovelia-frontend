@@ -1,13 +1,13 @@
 import axios from "axios";
+import { useFormik } from "formik";
 import { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
+import * as Yup from "yup";
 import { EyeClose, EyeOpen } from "../../assets/icons/icons";
 import { envs } from "../../config/envs";
-import { NewPasswordValidation } from "../helpers/newPasswordValidations";
-import { useForm } from "../../hooks/useForm";
-import { AuthPopUp } from "../components/AuthPopUp";
 import { BackgroundVideo } from "../../ui/components";
+import { AuthPopUp } from "../components/AuthPopUp";
 
  function NewPassword() {
   useEffect(() => {
@@ -43,82 +43,65 @@ import { BackgroundVideo } from "../../ui/components";
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  const initialForm = {
-    password: "",
-    confirmPassword: "",
-  };
 
   //validation erros
-  const { formState, onInputChange, onResetForm } = useForm(initialForm);
-  const { password, confirmPassword } = formState;
-  const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
+ 
   const [confirmPasswordError, setConfirmPasswordError] =
     useState<boolean>(false);
 
   //other errors
   const [errorsFromAPI, setErrorsFromAPI] = useState<string>("");
 
-  const handleBlur = (field: string) => {
-    const [errors] = NewPasswordValidation.create(formState);
-    const fieldError = errors?.find((error) =>
-      Object.keys(error).includes(field)
-    );
-    switch (field) {
-      case "password":
-        setPasswordErrors(fieldError ? [fieldError[field]] : []);
-        break;
-      default:
-        break;
-    }
-  };
 
-  const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
-    event.preventDefault();
 
-    const [errors] = NewPasswordValidation.create({
-      password: password,
-    });
+  const singUpForm = useFormik({
+    initialValues: {
+     
+      password: "",
+      confirmPassword:""
 
-    if (formState.password === formState.confirmPassword) {
-      setConfirmPasswordError(false);
-    }
+    },
+    validationSchema: Yup.object({
+      password: Yup.string()
+      .min(8, "El password debe contener al menos 8 caracteres")
+      .matches(
+        /^(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
+        "El password debe contener al menos un caracter especial"
+      )
+      .matches(/\d/, "El password debe contener al menos un número")
+      .matches(/[a-z]/, "El password debe contener al menos una letra en minúscula")
+      .matches(/[A-Z]/, "El password debe contener al menos una letra en mayúscula")
+      .required("Campo requerido"),
 
-    if (errors) {
-      errors.map((error) => {
-        if (Object.keys(error).includes("password")) {
-          return setPasswordErrors((prevErrors) => [
-            ...prevErrors,
-            error["password"],
-          ]);
-        }
-      });
+    confirmPassword: Yup.string().required("Campo requerido"),
 
-      !errors.find((error) => {
-        return Object.keys(error).includes("password");
-      }) && setPasswordErrors([]);
+    }),
 
-      return;
-    }
+    onSubmit: (values) => {
 
-    if (formState.password !== formState.confirmPassword) {
-      setConfirmPasswordError(true);
-      return;
-    }
 
-    setIsLoading(true);
+      if (values.confirmPassword !== values.password) {
+        setConfirmPasswordError(true);
 
-    axios
+        return;
+      }
+
+      if(isLoading){
+        return
+      }
+
+      axios
       .patch(
         `${envs.API_DOMAIN}/api/v1/user/changePassword`,
         {
           token: token,
-          password: password,
+          password: values.password,
         },
         { withCredentials: true }
       )
       .then(({ data }) => {
         console.log(data);
-        onResetForm();
+       singUpForm.resetForm();
         setIsLoading(false);
         setShowPupUp(true);
       })
@@ -127,7 +110,11 @@ import { BackgroundVideo } from "../../ui/components";
         setIsLoading(false);
         setErrorsFromAPI(error.response.data.error);
       });
-  };
+
+   
+    },
+  });
+
 
   return (
     <section className="login-container efectoReveal">
@@ -135,7 +122,7 @@ import { BackgroundVideo } from "../../ui/components";
       {showPopUp ? (
         <AuthPopUp {...popUpInfo} />
       ) : (
-        <form onSubmit={handleSubmit} className="login-form" action="">
+        <form onSubmit={singUpForm.handleSubmit} className="login-form" action="">
           <h3>NUEVA CONTRASEÑA</h3>
 
           <h6>
@@ -144,14 +131,15 @@ import { BackgroundVideo } from "../../ui/components";
           </h6>
 
           <div
-            className={`password-input-wrapper ${
-              (passwordErrors.length > 0 || errorsFromAPI) && "input-error"
-            }`}
+         className={` ${
+          (singUpForm.touched.password &&
+            singUpForm.errors.password ||errorsFromAPI ) ? "password-input-wrapper-error ":"password-input-wrapper"
+        }`}
           >
             <input
-              value={password}
-              onChange={onInputChange}
-              onBlur={() => handleBlur("password")}
+            value={singUpForm.values.password}
+            onChange={singUpForm.handleChange}
+            onBlur={singUpForm.handleBlur}
               name="password"
               type={showPassword ? "text" : "password"}
               placeholder="Nueva contraseña"
@@ -164,24 +152,25 @@ import { BackgroundVideo } from "../../ui/components";
               )}
             </span>
           </div>
-          {passwordErrors.length > 0 && (
-            <span className="input-helpers-error">{passwordErrors[0]}</span>
+          { singUpForm.touched.password &&
+              singUpForm.errors.password && (
+            <span className="input-helpers-error">{singUpForm.errors.password}</span>
           )}
 
           <div
-            className={`password-input-wrapper ${
-              (passwordErrors.length > 0 || errorsFromAPI) && "input-error"
+             className={` ${
+              (singUpForm.touched.confirmPassword &&
+                singUpForm.errors.confirmPassword ||errorsFromAPI ||confirmPasswordError ) ? "password-input-wrapper-error ":"password-input-wrapper"
             }`}
           >
             <input
-              value={confirmPassword}
-              onChange={onInputChange}
+          value={singUpForm.values.confirmPassword}
+          onChange={singUpForm.handleChange}
+          onBlur={singUpForm.handleBlur}
               name="confirmPassword"
               type={showConfirmPassword ? "text" : "password"}
               placeholder="Confirmar contraseña"
-              className={`${
-                (confirmPasswordError || errorsFromAPI) && "input-error"
-              }`}
+              
             />
             <span onClick={handleShowConfirmPassword}>
               {showConfirmPassword ? (
@@ -191,11 +180,19 @@ import { BackgroundVideo } from "../../ui/components";
               )}
             </span>
           </div>
-          {confirmPasswordError && (
+          {singUpForm.touched.confirmPassword &&
+                singUpForm.errors.confirmPassword ? (
+            <span className="input-helpers-error">
+              {singUpForm.errors.confirmPassword}
+            </span>
+          ):
+          !singUpForm.errors.confirmPassword && confirmPasswordError ?
+          (
             <span className="input-helpers-error">
               {"La confirmación de contraseña es incorrecta"}
-            </span>
-          )}
+            </span>):null
+          
+          }
 
           <button type="submit">
             {isLoading ? (

@@ -7,12 +7,14 @@ interface UserContextValue {
   name: string;
   lastname: string;
   subscription: boolean;
+  talismanActivated:boolean
   setId: (id: string) => void;
   setEmail: (email: string) => void;
   setToken: (token: string) => void;
   setName: (name: string) => void;
   setLastname: (name: string) => void;
   setSuscription: (subscription: boolean) => void;
+  setTalismanActivated: (talismanActivated: boolean) => void
 }
 
 interface UserContextProviderProps {
@@ -26,12 +28,14 @@ const userContextDefaultValue: UserContextValue = {
   name: "",
   lastname: "",
   subscription: false,
+  talismanActivated: false,
   setId: () => {},
   setEmail: () => {},
   setToken: () => {},
   setName: () => {},
   setLastname: () => {},
   setSuscription: () => {},
+  setTalismanActivated: () => {},
 };
 
 export const UserContext = createContext<UserContextValue>(
@@ -48,6 +52,7 @@ export const UserContextProvider = ({ children }: UserContextProviderProps) => {
   const [name, setName] = useState<string>("");
   const [lastname, setLastname] = useState<string>("");
   const [subscription, setSuscription] = useState<boolean>(false);
+  const [talismanActivated, setTalismanActivated] = useState<boolean>(false);
 
   const value: UserContextValue = {
     id,
@@ -56,12 +61,14 @@ export const UserContextProvider = ({ children }: UserContextProviderProps) => {
     name,
     lastname,
     subscription,
+    talismanActivated,
     setId,
     setEmail,
     setToken,
     setName,
     setLastname,
     setSuscription,
+    setTalismanActivated
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

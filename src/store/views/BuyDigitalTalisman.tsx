@@ -1,12 +1,12 @@
-import { useState, useContext } from "react";
-import { ejDigitalTalisman } from "../assets/ejDigitalTalisman";
-import { RightNextIcon } from "../../assets/icons/icons";
-import { Button } from "../../ui/components/Button";
-import { UserContext } from "../../context/userContext";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { PopUp } from "../../ui/components/PopUp";
-import { TimerContext } from "../../context/timerContext";
+import { RightNextIcon } from "../../assets/icons/icons";
 import { ShopingCartContext } from "../../context";
+import { TimerContext } from "../../context/timerContext";
+import { Button } from "../../ui/components/Button";
+import { PopUp } from "../../ui/components/PopUp";
+import { ejDigitalTalisman } from "../assets/ejDigitalTalisman";
+import talismanDigital from "../assets/TD-EJEMPLO-1.webp"
 
 const precio = "15,00";
 
@@ -34,7 +34,7 @@ const precio = "15,00";
     }
   };
 
-  const { email, subscription } = useContext(UserContext);
+ 
 
   const navigate = useNavigate();
 
@@ -42,20 +42,44 @@ const precio = "15,00";
     navigate("/portal-usuario");
   };
 
+
+
+  const {shopingCartOpen,toggleMenu,setShopingCartItems}=useContext(ShopingCartContext)
+
+
+
+
+
   const handleBuyTalisman = () => {
-    if (!email) {
-      setPopUp(true);
+
+      const shopingCartJSON = localStorage.getItem("shopingCart") || "[]";
+      const shopingCart = JSON.parse(shopingCartJSON);
+      const shopingCartNewItem = {
+        id: Math.round(Math.random() * 10000000),
+        product: "Talismán digital",
+        model: "Digital",
+        material: "-",
+        rock: "-",
+        chain: "-",
+        intention:"-",
+        image: talismanDigital,
+        price: 10,
+        quantity: 1,
+      };
+      const shopingCartUpdate = [shopingCartNewItem, ...shopingCart];
+      localStorage.setItem("shopingCart", JSON.stringify(shopingCartUpdate));
+      setShopingCartItems(shopingCartUpdate);
+
+      toggleMenu();
+ 
+
       return;
-    }
-    if (subscription) {
-      navigate("/profile");
-    } else {
-      navigate("/checkout/digital");
-    }
+
   };
 
+
+
   const{activatedAlarm}=useContext(TimerContext)
-  const {shopingCartOpen}=useContext(ShopingCartContext)
 
 
   return (
@@ -120,7 +144,7 @@ const precio = "15,00";
 
         <div className="buttons-container">
           <div className="auxiliar-buttons-container">
-            <Button onClick={handleBuyTalisman} text={`Suscribirme`} />
+            <Button onClick={handleBuyTalisman} text={`Agregar al carrito`} />
           </div>
         </div>
       </div>

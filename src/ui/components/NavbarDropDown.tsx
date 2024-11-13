@@ -1,8 +1,8 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { UserContext } from "../../context/userContext";
+import { useNavigate } from "react-router-dom";
 import { envs } from "../../config/envs";
+import { UserContext } from "../../context/userContext";
 
 // Define the NavbarDropDownOptions interface
 interface NavbarDropDownOptions {
@@ -42,6 +42,8 @@ export function NavbarDropDown({
         setLastname("");
         setSuscription(false)
         sessionStorage.removeItem("userInfo")
+        localStorage.removeItem("subscriptionActive")
+        localStorage.removeItem("talismanActivated")
         setToken("")
         navigate("/");
       })

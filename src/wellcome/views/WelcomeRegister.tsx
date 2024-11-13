@@ -23,7 +23,7 @@ import { useEffect } from "react";
           <img src={lovelia} alt="logo lovelia" />
           <h2>te da la bienvenida. </h2>
         </div>
-        <h3>Tuc cuenta ha sido activada</h3>
+        <h3>Tu cuenta ha sido activada</h3>
         <h4>Hace click a continuación para iniciar sesión</h4>
         <Button text="Iniciar Sesión" onClick={linkToLogin} />
       </div>

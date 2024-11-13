@@ -28,6 +28,8 @@
 
 .frontPage1-text-container{
   margin-bottom: 5%;
+  width: 70%;
+  display: flex;
 
   >p{
     font-size: 5rem;
@@ -35,24 +37,7 @@
     font-weight: 300;
 
   }
-    div{
-     
-        display: flex;
-  
-        >p{
-          font-size: 5rem;
-          line-height: 6rem;
-          font-weight: 300;
- 
-        }
-        >.icon-container{
-          height: 70px;
-          display: flex;
-        
-    
-         
-      }
-    }
+
    
 }
 
@@ -73,26 +58,16 @@
     width: 88%;
 
 
-    div{
     
-      display: flex;
-      align-items: center;
      
       >p{
         font-size:2rem;
         line-height: 5rem;
+        text-align: center;
 
       }
-      >.icon-container{
-        height: 30px;
-        display: flex;
-     
+  
 
-  
-  
-       
-    }
-  }
   
     
       p{

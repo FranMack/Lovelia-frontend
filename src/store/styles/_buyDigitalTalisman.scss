@@ -80,13 +80,15 @@
     align-items: end;
 
     button {
-      font-size: 16px;
+      font-size: 14px;
       font-style: normal;
       font-weight: 700;
       line-height: normal;
-      background-color: $color_salmon;
-      border: none;
+      background-color: transparent;
+      border: solid 2px $color_primary;
+      color:$color_primary
     }
+ 
 
     .auxiliar-buttons-container {
       border: none;
@@ -316,6 +318,11 @@
     .buttons-container {
     
       width: 85%;
+
+      button{
+        font-size: 1.6rem;
+        height: 8vh;
+      }
     
 
       .auxiliar-buttons-container {

@@ -3,17 +3,11 @@ import { useContext, useEffect, useState } from "react";
 import { envs } from "../../config/envs";
 import { ShopingCartContext } from "../../context/modalShopingCartContext";
 import { BackgroundVideo } from "../../ui/components";
-import { MercadoPagoCheckoutForm } from "../../ui/components/MercadoPagoCheckoutForm";
-import { CheckOutNavbar } from "../components/CheckOutNavbar";
-import imageVisa from "../assets/visa.png"
-import imageMaster from "../assets/mastercard.png"
-import imageAmerican from "../assets/americanExpress.svg"
-import imageCabal from "../assets/caabal.png"
-import imageNaranja from "../assets/naranja.png"
-import imageMaestro from "../assets/maestro.png"
-import logoMp from "../assets/mercado_pago_logo.png"
+import { useNavigate } from "react-router";
+import { BeatLoader } from "react-spinners";
+import { UserContext } from "../../context";
 
-const sections = ["1. Datos usuario", "2. Pago"];
+
 
 const days = [
   1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
@@ -47,12 +41,16 @@ function hours() {
 }
 
  function CheckOutDigital() {
+
+  const{email}=useContext(UserContext)
+
+  const navigate=useNavigate()
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const [buttonFocusPosition, setButttonFocusPosition] =
-    useState("1. Datos usuario");
+  const [isLoading,setIsLoading]=useState<boolean>(false)
+ 
 
   const [validationErrors, setValidationErrors] = useState({
     locationValidation: false,
@@ -64,8 +62,8 @@ function hours() {
     monthOptionValidation: false,
   });
 
-  const handleButtonFocus = (buttonName: string) => {
-    if (buttonFocusPosition === "1. Datos usuario") {
+  const handleButtonFocus = () => {
+   
       if (
         !location ||
         !dayOption ||
@@ -84,9 +82,9 @@ function hours() {
           meridiamOptionValidation: !meridiamOption,
           monthOptionValidation: !monthOption,
         });
-        return;
+        return false
       } else {
-        setButttonFocusPosition(buttonName);
+   
 
         setValidationErrors({
           locationValidation: false,
@@ -97,10 +95,9 @@ function hours() {
           meridiamOptionValidation: false,
           monthOptionValidation: false,
         });
+        return true
       }
-    } else {
-      setButttonFocusPosition(buttonName);
-    }
+ 
   };
 
   const { shopingCartOpen } = useContext(ShopingCartContext);
@@ -168,25 +165,48 @@ function hours() {
     setValidationErrors({ ...validationErrors, locationValidation: false });
   };
 
+
+  const handleSubmit=()=>{
+
+
+    if(!handleButtonFocus()){
+        return  
+    }
+
+    setIsLoading(true)
+
+    axios.post(`${envs.API_DOMAIN}/api/v1/user/activate-talisman`,{
+      email: email,
+      day: Number(dayOption),
+      month: Number(monthOption),
+      hour: Number(hourOption),
+      year: Number(yearOption),
+      min: Number(minuesOption),
+      location: location,
+      meridiam: meridiamOption
+    },{withCredentials:true})
+    .then(()=>{
+      navigate("/myTalisman")
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
+
+
+
   return (
     <main className={shopingCartOpen ? "viewport-background" : ""}>
-      <section className="checkout-container efectoReveal">
+      <section className="checkoutDigital-container efectoReveal">
         <BackgroundVideo />
 
-        <CheckOutNavbar
-          sections={sections}
-          buttonFocusPosition={buttonFocusPosition}
-          handleButtonFocus={handleButtonFocus}
-        />
 
-        <div className="checkout-botton-container">
+  
           <div
-            className="checkout-botton-left-container"
-            style={{
-              display: buttonFocusPosition === "1. Datos usuario" ? "" : "none",
-            }}
+            className="checkoutDigital-botton-left-container"
+          
           >
-            <div className="checkout-title-container">
+            <div className="checkoutDigital-title-container">
               <h3>Datos de nacimiento</h3>
               <h6>
                 Los siguientes datos son necesarios para la creación de tu
@@ -194,7 +214,7 @@ function hours() {
               </h6>
             </div>
 
-            <div className="checkout-form">
+            <div className="checkoutDigital-form">
               <h2>Lugar de nacimiento</h2>
               <input
                 className={
@@ -220,8 +240,8 @@ function hours() {
 
               <h2>Fecha de nacimiento</h2>
 
-              <div className="checkout-form-names-container">
-                <div className="checkout-date-options-container">
+              <div className="checkoutDigital-form-names-container">
+                <div className="checkoutDigital-date-options-container">
                   <select
                     value={dayOption}
                     onChange={handleDayOption}
@@ -277,8 +297,8 @@ function hours() {
 
               <h2>Hora de nacimiento</h2>
 
-              <div className="checkout-form-names-container">
-                <div className="checkout-date-options-container">
+              <div className="checkoutDigital-form-names-container">
+                <div className="checkoutDigital-date-options-container">
                   <select
                     value={hourOption}
                     onChange={handleHourOption}
@@ -339,91 +359,19 @@ function hours() {
                 </div>
               )}
 
-              <button onClick={() => handleButtonFocus("2. Pago")}>
-                Continuar
+              <button onClick={handleSubmit}>
+              {isLoading ? (
+                    <BeatLoader color={"white"} speedMultiplier={0.4} />
+                  ) : (
+                    "Continuar"
+                  )}
               </button>
             </div>
           </div>
 
-          <div
-            className="checkout-botton-left-container"
-            style={{ display: buttonFocusPosition === "2. Pago" ? "" : "none" }}
-          >
-            <div className="checkout-title-container">
-              <h3>Pago</h3>
-              <h6>Métodos de pago:</h6>
-              
-            </div>
-         
-              
-            <div className="checkout-payment-methods-container">
-              <img src={imageMaster} alt="mastercard logo" />
-              <img src={imageVisa} alt="visa logo" />
-              <img src={imageAmerican} alt="american express logo" />
-              <img src={imageCabal} alt="cabal logo" />
-              <img src={imageNaranja} alt="naranja logo" />
-              <img src={imageMaestro} alt="maestro logo" />
-            </div>
-            <MercadoPagoCheckoutForm
-              userInfo={{
-                location,
-                day: Number(dayOption),
-                month: Number(monthOption),
-                year: Number(yearOption),
-                hour: Number(hourOption),
-                min: Number(minuesOption),
-                meridiam: meridiamOption,
-              }}
-            />
 
-<div className="mp-info-container">
-                <div className="image-container">
-                  <img src={logoMp} alt="logo mercado pago" />
-                </div>
-                <div className="info-container">
-                  <h3>Pago seguro</h3>
-                  <p>
-                  Procesamos los pagos de forma segura a través de Mercado Pago
-                  </p>
-                </div>
-              </div>
-             
-          </div>
-
-          <div className="checkout-botton-right-container">
-            <div className="checkout-title-container">
-              <h3>Resumen</h3>
-            </div>
-
-            <div className="checkout-freeMonth-container">
-                <strong>¡Descubrí Lovelia!</strong>
-                <p>El primer mes de subscripción es gratis.</p>
-              
-              </div>
-
-            <div className="checkout-price-container">
-            
-              <div className="checkout-prince">
-                <p>Total estimado</p>
-                <p>${15}</p>
-              </div>
-
-              <div className="checkout-prince">
-                <p>Impuestos</p>
-                <p>${0}</p>
-              </div>
-              <hr />
-              <div className="checkout-prince">
-                <p>
-                  <strong>Total</strong>
-                </p>
-                <p>
-                  <strong>${15}</strong>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        
+   
       </section>
     </main>
   );

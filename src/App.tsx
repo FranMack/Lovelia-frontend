@@ -91,7 +91,7 @@ import { ShopingCart } from "./ui/components/ShopingCart.tsx";
 function App() {
   const { shopingCartOpen, setShopingCartItems } =
     useContext(ShopingCartContext);
-  const { /*email,*/ setEmail, setId, setName, setLastname, setSuscription } =
+  const { /*email,*/ setEmail, setId, setName, setLastname, setSuscription,setTalismanActivated } =
     useContext(UserContext);
 
 const{activatedAlarm,setActivatedAlarm}=useContext(TimerContext)
@@ -126,7 +126,13 @@ const{activatedAlarm,setActivatedAlarm}=useContext(TimerContext)
         const subscription = JSON.parse(
           localStorage.getItem("subscriptionActive") || "false"
         );
+
+        const talismanActivated = JSON.parse(
+          localStorage.getItem("talismanActivated") || "false"
+        );
+
         setSuscription(subscription);
+        setTalismanActivated(talismanActivated)
       })
       .catch((error) => {
         console.log(error);

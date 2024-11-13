@@ -1,12 +1,13 @@
 import axios from "axios";
+import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
-import { ForgetPasswordValidations } from "../helpers/forgetPasswordValidations";
-import { useForm } from "../../hooks/useForm";
-import { AuthPopUp } from "../components/AuthPopUp";
+import * as Yup from "yup";
 import { envs } from "../../config";
 import { BackgroundVideo } from "../../ui/components";
+import { AuthPopUp } from "../components/AuthPopUp";
+
 
  function ForgetPassword() {
   const navigate = useNavigate();
@@ -30,72 +31,42 @@ import { BackgroundVideo } from "../../ui/components";
   const [isLoading, setIsLoading] = useState(false);
   const [popUp, setPopUp] = useState<boolean>(false);
 
-  const initialForm = {
-    email: "",
-    password: "",
-  };
-
-  //validation erros
-  const { formState, onInputChange, onResetForm } = useForm(initialForm);
-  const { email, password } = formState;
-  const [emailErrors, setEmailErrors] = useState<string[]>([]);
 
   //other errors
   const [errorsFromAPI, setErrorsFromAPI] = useState<string>("");
 
-  const handleBlur = (field: string) => {
-    const [errors] = ForgetPasswordValidations.create(formState);
-    const fieldError = errors?.find((error) =>
-      Object.keys(error).includes(field)
-    );
-    switch (field) {
-      case "email":
-        setEmailErrors(fieldError ? [fieldError[field]] : []);
-        break;
-      default:
-        break;
-    }
-  };
 
-  const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
-    event.preventDefault();
+ 
 
-    const [errors] = ForgetPasswordValidations.create({
-      email: email,
-      password: password,
-    });
 
-    if (errors) {
-      errors.map((error) => {
-        if (Object.keys(error).includes("email")) {
-          return setEmailErrors((prevErrors) => [
-            ...prevErrors,
-            error["email"],
-          ]);
-        }
-      });
+  const singUpForm = useFormik({
+    initialValues: {
+     
+      email: "",
+    },
+    validationSchema: Yup.object({
+    email: Yup.string().required("Campo requerido").email("Email no valido"),
 
-      !errors.find((error) => {
-        return Object.keys(error).includes("email");
-      }) && setEmailErrors([]);
+    }),
 
-      return;
-    }
+    onSubmit: (values) => {
 
-    setIsLoading(true);
+      if(isLoading){
+        return
+      }
 
-    axios
+      axios
       .post(
         `${envs.API_DOMAIN}/api/v1/user/forgetPassword`,
         {
-          email: email,
+          email:values.email,
         },
         { withCredentials: true }
       )
       .then(({ data }) => {
         console.log(data);
         setPopUp(true);
-        onResetForm();
+        singUpForm.resetForm()
         setIsLoading(false);
       })
       .catch((error) => {
@@ -103,7 +74,12 @@ import { BackgroundVideo } from "../../ui/components";
         setIsLoading(false);
         setErrorsFromAPI(error.response.data.error);
       });
-  };
+
+   
+    },
+  });
+
+
 
   return (
     <section className="login-container efectoReveal">
@@ -112,26 +88,40 @@ import { BackgroundVideo } from "../../ui/components";
       {popUp ? (
         <AuthPopUp {...popUpInfo} />
       ) : (
-        <form onSubmit={handleSubmit} className="login-form" action="">
+        <form onSubmit={singUpForm.handleSubmit} className="login-form" action="">
           <h3>¿OLVIDASTE TU CONTRASEÑA?</h3>
           <h6>
             Ingresá la dirección de correo con la que te registraste a Lovelia y
             te enviaremos las instrucciones para restablecerla.
           </h6>
           <input
-            value={email}
-            onChange={onInputChange}
-            onBlur={() => handleBlur("email")}
+        value={singUpForm.values.email}
+        onChange={singUpForm.handleChange}
+        onBlur={singUpForm.handleBlur}
             name="email"
             type="email"
             placeholder="Dirección de correo electrónico"
-            className={`${
-              (emailErrors.length > 0 || errorsFromAPI) && "input-error"
-            }`}
+            className={singUpForm.touched.email &&
+              singUpForm.errors.email ||errorsFromAPI ? "input-error":""}
           />
-          {emailErrors.length > 0 && (
-            <span className="input-helpers-error">{emailErrors[0]}</span>
+          { singUpForm.touched.email &&
+              singUpForm.errors.email && (
+                <>
+            <span className="input-helpers-error">{singUpForm.errors.email}</span>
+            <br/>
+            </>
           )}
+
+{errorsFromAPI && (
+  <>
+              <br/>
+              <span className="input-helpers-error api-errors">
+                {errorsFromAPI}
+              </span>
+              <br/>
+              </>
+            )}
+          
 
           <button type="submit">
             {isLoading ? (

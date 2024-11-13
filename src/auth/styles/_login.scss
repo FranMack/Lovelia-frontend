@@ -128,7 +128,7 @@
     height: 100%;
     font-size: 1.4rem;
   border: 1px solid rgba(187, 187, 187, 0.30);
-  background:$color_background2;
+
     
   }
   span{
@@ -140,9 +140,44 @@ height: 51%;
   }
 }
 
+.password-input-wrapper-error{
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5vh;
+  width: 90%;
+  height: 7vh;
+  border:solid 2px $color_yellow;
+  margin-bottom: 0.5vh;
+  
+  cursor: pointer;
+  input{
+    padding-left: 2%;
+    width: 100%;
+    height: 100%;
+    font-size: 1.4rem;
+    background-color: rgba(187, 187, 187, 0.30);
+
+    
+  }
+  span{
+position: absolute;
+right: 5%;
+display: flex;
+align-items: center;
+height: 51%;
+  }
+
+}
+
 .input-error{
-  border:solid 2px red;
-  margin-bottom: 1vh;
+  border:solid 2px $color_yellow;
+  margin-bottom: 0.5vh;
+  background-color: rgba(187, 187, 187, 0.30);
+  >input{
+    background-color: rgba(187, 187, 187, 0.30);
+  }
 }
 
 
@@ -191,7 +226,9 @@ textarea{
     margin-right: 5%;
     text-decoration: underline;
     text-align: end;
+  span{
     cursor: pointer;
+  }
     ;
   }
 }
@@ -218,7 +255,7 @@ textarea{
     
 }
 .input-helpers-error{
-  color:red;
+  color:$color_yellow;
     margin-left: 5%;
     margin-bottom: 1.5%;
     font-family: $font_titles;
@@ -228,7 +265,7 @@ textarea{
     line-height: normal;
 }
 
-.input-helpers-error.api-erros{
+.input-helpers-error.api-errors{
   font-size: 1.6rem;
   text-transform: uppercase;
 }
@@ -359,7 +396,7 @@ textarea{
     height: 100%;
     font-size: 1.4rem;
   border: 1px solid rgba(187, 187, 187, 0.30);
-  background:$color_background2;
+ 
     
   }
   span{
@@ -370,10 +407,7 @@ align-items: center;
   }
 }
 
-.input-error{
-  border:solid 2px red;
-  margin-bottom: 1vh;
-}
+
 
 
 textarea{

@@ -24,8 +24,8 @@ export const TalismanBox = ({
     for (let i = 0; i < chineseNumber; i++) {
       array.push(i);
     }
-    const array2=[1,2,3,4,5,6,7,8]
-    return array2;
+
+    return array;
   };
 
   const [path, setPath] = useState({

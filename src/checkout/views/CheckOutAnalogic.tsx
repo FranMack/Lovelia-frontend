@@ -12,33 +12,14 @@ import logoDhl from "../assets/logo-dhl.png";
 import { CheckOutNavbar } from "../components/CheckOutNavbar";
 import { BillingValidation } from "../helpers/billingValidations";
 import { CheckOutValidation } from "../helpers/checkOutValidations";
+import { taxRegimeOptions } from "../helpers/taxRegimeOptions";
 
-const sections = ["1. Identificación", "2. Envío", "3. Pago"];
+
 
 //el precio del envío me lo devería dar la api de correos
 const deliveryPrice = 200;
 
-const taxRegimeOptions = [
-  "General de Ley Personas Morales",
-  "Personas morales con fines no lucrativos",
-  "Sueldos y salarios e ingresos asimilados a salarios",
-  "Arrendamiento",
-  "Régimen de enajenación o adquisición de bienes",
-  "Demás ingresos",
-  "Residentes en el extrangero sin establecimiento permanente en Mexico",
-  "Ingresos por dividendos (socios y accionistas)",
-  "Personas fisicas con actividades empresariales yprofesionales",
-  "Ingresos por intereses",
-  "Régimen de los ingresos por obtención de premios",
-  "Sin obligaciones fiscales",
-  "Sociedades cooperaivas de producción que optan por diferir sus ingresos",
-  "Incorporación Fiscal",
-  "Actividades agricolas, ganaderas, silvícolas y pesqueras",
-  "Opcional para grupos de sociedades",
-  "Coordinados",
-  "Régimen simplificado de confianza",
-  "Régimen de las actividades empresariales con ingresos a travéz de plataformas tecnológicas",
-];
+
 
 function CheckOutAnalogic() {
   //is loading
@@ -66,10 +47,66 @@ function CheckOutAnalogic() {
     setSiteTerms(event.target.checked);
   };
 
+  const [sections,setSections]=useState(["1. Identificación", "2. Envío", "3. Pago"])
+  const[numberOfDigitalTalisman,setNumberOfDigitalTalisman]=useState<number>(0)
+
+  const [talismanDigitalAcounts, setTalismanDigitalAcounts] = useState([""]);
+  const [talismanDigitalAcountsErrors, setTalismanDigitalAcountsErrors] = useState<string[]>([]);
+
+  console.log("yyyyyyyyyyyy",talismanDigitalAcounts)
+  console.log("zzzzzzzzzzzzzzzzz",talismanDigitalAcountsErrors)
+
+  const talismanDigitalAcountsHandleBlur = (index:number) => {
+    const updatedErrors = [...talismanDigitalAcountsErrors];
+    if (!talismanDigitalAcounts[index]) {
+      updatedErrors[index] = 'Campo requerido';
+      setTalismanDigitalAcountsErrors(updatedErrors);
+      return
+    } 
+     if(talismanDigitalAcounts[index] && !talismanDigitalAcounts[index].includes("@")){
+      updatedErrors[index]="Email no valido"
+      setTalismanDigitalAcountsErrors(updatedErrors);
+      return
+    }
+    else {
+      updatedErrors[index] = '';
+      setTalismanDigitalAcountsErrors(updatedErrors);
+      return
+    }
+
+  };
+
+    // Manejar el cambio en cada input
+    const handleTalismanDigitalInpunt = (index:number, value:string) => {
+      const updatedEmails = [...talismanDigitalAcounts];
+      updatedEmails[index] = value;
+      setTalismanDigitalAcounts(updatedEmails);
+    };
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+
+    const hasTalismanDigital=shopingCartItems.some((item)=>{return item.model==="Digital"})
+    const hasTalismanAnalog=shopingCartItems.some((item)=>{return item.model!=="Digital"})
+    if(hasTalismanDigital && hasTalismanAnalog ){
+      setSections(["1. Identificación", "2. Envío", "3. Talismán Digital", "4. Pago"])
+      const numberOfTalismans=shopingCartItems.filter((item)=>{
+        return item.model==="Digital"
+      }).length
+
+      setNumberOfDigitalTalisman(numberOfTalismans)
+
+      setTalismanDigitalAcounts(Array(numberOfTalismans).fill(''))
+      
+      return
+    }
+    if(hasTalismanDigital &&! hasTalismanAnalog ){
+      setSections(["1. Identificación","2. Talismán Digital", "3. Pago"])
+      return
+    }
+
+
+  }, [shopingCartItems]);
 
   const productsPrice = () => {
     return shopingCartItems.reduce((acc, item) => acc + item.price, 0);
@@ -447,6 +484,13 @@ function CheckOutAnalogic() {
       return;
     }
 
+    if(talismanDigitalAcountsErrors.join("").length>0){
+      setErrorWarning("validationErrors");
+      return;
+    }
+  
+
+
     setIsLoading(true);
 
     const formData = { name, lastname, email };
@@ -488,6 +532,12 @@ function CheckOutAnalogic() {
         };
       });
 
+      const needDelivery= shopingCartMP.some((item)=>{
+        if( item.title !=="Digital"){
+          return true
+        }
+      })
+
       const delivery = {
         title: "Envío",
         quantity: 1,
@@ -495,15 +545,18 @@ function CheckOutAnalogic() {
         currency_id: "USD",
       };
 
+      const talismanDigitalOwners=talismanDigitalAcounts.map((email)=>{return {email:email}})
+      
       axios
         .post(
           `${envs.API_DOMAIN}/api/v1/payment-mercadopago/create-order`,
           {
-            items: [...shopingCartMP, delivery],
+            items: needDelivery ? [...shopingCartMP, delivery]:[...shopingCartMP],
             email: email,
             productDetails,
             deliveryDetails,
             billingDetails: billing ? billingDetails : undefined,
+            talismanDigitalOwners:talismanDigitalOwners.length>0 ? talismanDigitalOwners:undefined
           },
           { withCredentials: true }
         )
@@ -566,6 +619,11 @@ function CheckOutAnalogic() {
     }
   };
 
+
+
+  console.log("XXXXXXXXXXXXXXXXX",talismanDigitalAcounts)
+  
+
   return (
     <main className={shopingCartOpen ? "viewport-background" : ""}>
       <section className="checkout-container efectoReveal">
@@ -578,7 +636,7 @@ function CheckOutAnalogic() {
         />
 
         <form onSubmit={handleSubmit} className="checkout-botton-container">
-          {buttonFocusPosition === "1. Identificación" ? (
+          {buttonFocusPosition.includes("Identificación") ? (
             <div className="checkout-botton-left-container">
               <div className="checkout-title-container">
                 <h3>Identificación</h3>
@@ -639,12 +697,54 @@ function CheckOutAnalogic() {
                   </span>
                 )}
 
-                <button onClick={() => setButttonFocusPosition("2. Envío")}>
+                <button onClick={() => setButttonFocusPosition(sections[1])}>
                   Continuar
                 </button>
               </div>
             </div>
-          ) : buttonFocusPosition === "2. Envío" ? (
+          ) :
+
+          buttonFocusPosition.includes("Talismán Digital") ? (
+            <div className="checkout-botton-left-container">
+              <div className="checkout-title-container">
+                <h3>Talismán digital</h3>
+                <h6>Introduzca los correos de activación</h6>
+              </div>
+
+              <div className="checkout-form">
+
+                {[...Array(numberOfDigitalTalisman)].map((_,i)=>{
+
+                  return(
+                    <>
+                          <label htmlFor="email">Email</label>
+                <input
+               value={talismanDigitalAcounts[i]}
+               onChange={(e) => handleTalismanDigitalInpunt(i, e.target.value)}
+               onBlur={() => talismanDigitalAcountsHandleBlur(i)}
+                  name={`email${i}`}
+                  type={`email${i}`}
+                  placeholder="ejemplo@gmail.com"
+                  className={talismanDigitalAcountsErrors[i] ? "input-error" : ""}
+                />
+                  {talismanDigitalAcountsErrors[i] && (
+            <span className="checkOut-helpers-error">
+              {talismanDigitalAcountsErrors[i]}
+            </span>
+          )}
+                    </>
+                  )
+                })}
+              
+          
+
+<button onClick={() => setButttonFocusPosition(sections[sections.length-1])}>
+                  Continuar
+                </button>
+              </div>
+            </div>
+          ) :
+           buttonFocusPosition.includes("Envío") ? (
             <div className="checkout-botton-left-container">
               <div className="checkout-title-container">
                 <h3>Detalle de envío</h3>
@@ -829,7 +929,7 @@ function CheckOutAnalogic() {
                     </>
                   )}
 
-                <button onClick={() => setButttonFocusPosition("3. Pago")}>
+          <button onClick={() => setButttonFocusPosition(sections[2])}>
                   Continuar
                 </button>
               </div>
@@ -1054,7 +1154,7 @@ function CheckOutAnalogic() {
           
 
                 <button type="submit">
-                  {isLoading && !errorWarning ? (
+                {isLoading && !errorWarning ? (
                     <BeatLoader color={"white"} speedMultiplier={0.4} />
                   ) : (
                     "Ir a pagar"

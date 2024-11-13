@@ -135,37 +135,9 @@
     cursor: pointer;
   }
 
-.password-input-wrapper{
-  position: relative;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  margin-bottom: 3vh;
-  width: 90%;
-  height: 7vh;
-  
-  cursor: pointer;
-  input{
-    padding-left: 2%;
-    width: 100%;
-    height: 100%;
-    font-size: 1.4rem;
-  border: 1px solid rgba(187, 187, 187, 0.30);
-  background:$color_background2;
-    
-  }
-  span{
-position: absolute;
-right: 5%;
-display: flex;
-align-items: center;
-  }
-}
 
-.input-error{
-  border:solid 2px red;
-  margin-bottom: 1vh;
-}
+
+
 
 
 textarea{
@@ -206,6 +178,29 @@ textarea{
     margin-top: 2%;
     width: fit-content;
   }
+
+
+  .input-error{
+    border:solid 2px red;
+    margin-bottom: 0.5vh;
+    
+  }
+
+  .input-helpers-error{
+    color:red;
+      margin-left: 5%;
+      margin-bottom: 1.5%;
+      font-family: $font_titles;
+      font-size: 1.2rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+  }
+  
+  .input-helpers-error.api-erros{
+    font-size: 1.6rem;
+    text-transform: uppercase;
+  }
 }
 
 .contact-button-container{
@@ -240,21 +235,7 @@ textarea{
     }
     
 }
-.input-helpers-error{
-  color:red;
-    margin-left: 5%;
-    margin-bottom: 1.5%;
-    font-family: $font_titles;
-    font-size: 1.2rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
 
-.input-helpers-error.api-erros{
-  font-size: 1.6rem;
-  text-transform: uppercase;
-}
 
 
 .modalOpen-styles{
@@ -305,6 +286,18 @@ textarea{
         }
         button{
        width: 85%;
+        }
+
+      
+      
+        .input-helpers-error{
+          color:red;
+            margin-left: 7.5%;
+        }
+        
+        .input-helpers-error.api-erros{
+          font-size: 1.6rem;
+          text-transform: uppercase;
         }
       }
 

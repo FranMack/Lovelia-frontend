@@ -2,9 +2,10 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { CloseIcon,GarbageCan } from "../../assets/icons/icons";
+import { CloseIcon } from "../../assets/icons/icons";
 import { ShopingCartContext } from "../../context/modalShopingCartContext";
 import { Button } from "./Button";
+import { ShopingCartCard } from "./ShopingCartCard";
 
 
 export interface ProductosOptions {
@@ -22,22 +23,14 @@ export interface ProductosOptions {
 export function ShopingCart() {
   const navigate = useNavigate();
 
-  const { toggleMenu, shopingCartItems, setShopingCartItems } =
+  const { toggleMenu, shopingCartItems } =
     useContext(ShopingCartContext);
 
   const totalPrice = () => {
     return shopingCartItems.reduce((acc, item) => acc + item.price, 0);
   };
 
-  const deleteShopingCartItem = (id: number) => {
-    const shopingCartUpdated = shopingCartItems.filter((item) => {
-      if (item.id !== id) {
-        return item;
-      }
-    });
-    localStorage.setItem("shopingCart", JSON.stringify(shopingCartUpdated));
-    setShopingCartItems(shopingCartUpdated);
-  };
+  
 
   const linkToCheckOut = () => {
     if (shopingCartItems.length > 0) {
@@ -64,43 +57,7 @@ export function ShopingCart() {
       <div className="shoping-cart-center-container">
         {shopingCartItems.map((item) => {
           return (
-            <div key={item.id} className="shoping-cart-card-container">
-              <img src={item.image} alt={item.product} />
-              <div className="card-info-container">
-                <div className="card-title">
-                  <h4>{`Talismán ${item.model}`}</h4>
-                  <GarbageCan
-                    onClick={() => {
-                      deleteShopingCartItem(item.id);
-                    }}
-                  />
-                </div>
-
-                <div className="card-td">
-                  <strong>Metal:</strong>
-                  <p>{item.material}</p>
-                </div>
-                <div className="card-td">
-                  <strong>Piedra:</strong>
-                  <p>{item.rock}</p>
-                </div>
-                <div className="card-td">
-                  <strong>Calgante:</strong>
-                  <p>{item.chain}</p>
-                </div>
-                <div className="card-td">
-                  <strong>Intención:</strong>
-                  <p>{item.intention}</p>
-                </div>
-
-                <div className="card-td">
-                  <strong>Precio unitario:</strong>
-                  <span>{`$ ${item.price}`}</span>
-                </div>
-
-         
-              </div>
-            </div>
+          <ShopingCartCard key={item.id} {...item}/>
           );
         })}
       </div>

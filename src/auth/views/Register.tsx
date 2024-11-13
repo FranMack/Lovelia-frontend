@@ -1,15 +1,15 @@
 import axios from "axios";
+import { useFormik } from "formik";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BeatLoader from "react-spinners/BeatLoader";
-import { useForm } from "../..//hooks/useForm";
+import * as Yup from "yup";
 import { EyeClose, EyeOpen } from "../../assets/icons/icons";
 import { envs } from "../../config";
-import { BackgroundVideo } from "../../ui/components";
-import { RegisterValidation } from "../helpers/registerValidations";
-import { Button } from "../../ui/components/Button";
 import { ShopingCartContext } from "../../context";
 import { TimerContext } from "../../context/timerContext";
+import { BackgroundVideo } from "../../ui/components";
+import { Button } from "../../ui/components/Button";
 
  function Register() {
   useEffect(() => {
@@ -42,101 +42,79 @@ import { TimerContext } from "../../context/timerContext";
     navigatge("/login");
   };
 
-  const initialForm = {
-    name: "",
-    lastname: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  };
 
-  const { formState, onInputChange, onResetForm } = useForm(initialForm);
-  const { name, lastname, email, password, confirmPassword } = formState;
 
   //validation errors
-  const [nameErrors, setNameErrors] = useState<string[]>([]);
-  const [lastNameErrors, setLastnameErrors] = useState<string[]>([]);
-  const [emailErrors, setEmailErrors] = useState<string[]>([]);
-  const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
+
   const [confirmPasswordError, setConfirmPasswordError] =
     useState<boolean>(false);
 
   //other errors
   const [errorsFromAPI, setErrorsFromAPI] = useState<string>("");
 
-  const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const{activatedAlarm}=useContext(TimerContext)
+  const {shopingCartOpen}=useContext(ShopingCartContext)
 
-    const [errors] = RegisterValidation.create({
-      name: name,
-      lastname: lastname,
-      email: email,
-      password: password,
-    });
 
-    if (errors) {
-      errors.map((error) => {
-        if (Object.keys(error).includes("name")) {
-          return setNameErrors((prevErrors) => [...prevErrors, error["name"]]);
-        }
-        if (Object.keys(error).includes("lastname")) {
-          return setLastnameErrors((prevErrors) => [
-            ...prevErrors,
-            error["lastname"],
-          ]);
-        }
-        if (Object.keys(error).includes("email")) {
-          return setEmailErrors((prevErrors) => [
-            ...prevErrors,
-            error["email"],
-          ]);
-        }
-        if (Object.keys(error).includes("password")) {
-          return setPasswordErrors((prevErrors) => [
-            ...prevErrors,
-            error["password"],
-          ]);
-        }
-      });
+  const singUpForm = useFormik({
+    initialValues: {
+      name: "",
+      lastname: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    validationSchema: Yup.object({
+      name: Yup.string()
+      .required("Campo requerido"),
+    lastname: Yup.string()
+    .required("Campo requerido"),
+    email: Yup.string().required("Campo requerido").email("Email no valido"),
+    password: Yup.string()
+      .min(8, "El password debe contener al menos 8 caracteres")
+      .matches(
+        /^(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
+        "El password debe contener al menos un caracter especial"
+      )
+      .matches(/\d/, "El password debe contener al menos un número")
+      .matches(/[a-z]/, "El password debe contener al menos una letra en minúscula")
+      .matches(/[A-Z]/, "El password debe contener al menos una letra en mayúscula")
+      .required("Campo requerido"),
 
-      !errors.find((error) => {
-        return Object.keys(error).includes("name");
-      }) && setNameErrors([]);
-      !errors.find((error) => {
-        return Object.keys(error).includes("lastname");
-      }) && setLastnameErrors([]);
-      !errors.find((error) => {
-        return Object.keys(error).includes("email");
-      }) && setEmailErrors([]);
-      !errors.find((error) => {
-        return Object.keys(error).includes("password");
-      }) && setPasswordErrors([]);
+    confirmPassword: Yup.string().required("Campo requerido"),
+     
+    }),
 
-      if (formState.password !== formState.confirmPassword) {
-        setConfirmPasswordError(true);
+    onSubmit: (values) => {
+
+      console.log("Wrong confirmed password");
+
+      if(isLoading){
+        return
       }
 
-      return;
-    }
 
-    if (formState.password !== formState.confirmPassword) {
-      setConfirmPasswordError(true);
+      if (values.confirmPassword !== values.password) {
+        console.log("Wrong confirmed password");
+        setConfirmPasswordError(true);
 
-      return;
-    }
+        return;
+      }
+   
+      setIsLoading(true);
 
-    setIsLoading(true);
 
-    axios
+
+      axios
       .post(`${envs.API_DOMAIN}/api/v1/user/register`, {
-        name: name,
-        lastname: lastname,
-        email: email,
-        password: password,
+        name: values.name,
+        lastname: values.lastname,
+        email: values.email,
+        password: values.password,
       })
       .then((response) => {
         console.log(response);
-        onResetForm();
+        singUpForm.resetForm();
         setIsLoading(false);
         window.scrollTo(0, 0);
         handleMessage();
@@ -147,33 +125,10 @@ import { TimerContext } from "../../context/timerContext";
         setIsLoading(false);
         setErrorsFromAPI(error.response.data.error);
       });
-  };
+   
+    },
+  });
 
-  const handleBlur = (field: string) => {
-    const [errors] = RegisterValidation.create(formState);
-    const fieldError = errors?.find((error) =>
-      Object.keys(error).includes(field)
-    );
-    switch (field) {
-      case "name":
-        setNameErrors(fieldError ? [fieldError[field]] : []);
-        break;
-      case "lastname":
-        setLastnameErrors(fieldError ? [fieldError[field]] : []);
-        break;
-      case "email":
-        setEmailErrors(fieldError ? [fieldError[field]] : []);
-        break;
-      case "password":
-        setPasswordErrors(fieldError ? [fieldError[field]] : []);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const{activatedAlarm}=useContext(TimerContext)
-  const {shopingCartOpen}=useContext(ShopingCartContext)
 
 
   return (
@@ -190,7 +145,7 @@ import { TimerContext } from "../../context/timerContext";
       )}
 
       {!openMessage && (
-        <form onSubmit={handleSubmit} className="login-form" action="">
+        <form onSubmit={singUpForm.handleSubmit} className="login-form" action="">
           <h3>CREA TU CUENTA</h3>
           <h4>Ingresa tus datos para registrarte en lovelia</h4>
           <h6>
@@ -199,59 +154,61 @@ import { TimerContext } from "../../context/timerContext";
           </h6>
           <label htmlFor="name">Nombre</label>
           <input
-            value={name}
-            onChange={onInputChange}
-            onBlur={() => handleBlur("name")}
+              value={singUpForm.values.name}
+              onChange={singUpForm.handleChange}
+              onBlur={singUpForm.handleBlur}
             name="name"
             type="text"
             placeholder="Ej. Jonh"
-            className={`${
-              (nameErrors.length > 0 || errorsFromAPI) && "input-error"
-            }`}
+            className={(singUpForm.touched.name &&
+              singUpForm.errors.name) ||errorsFromAPI ? "input-error":""}
           />
-          {nameErrors.length > 0 && (
-            <span className="input-helpers-error">{nameErrors[0]}</span>
+          { singUpForm.touched.name &&
+              singUpForm.errors.name && (
+            <span className="input-helpers-error">{singUpForm.errors.name}</span>
           )}
           <label htmlFor="lastname">Apellido</label>
           <input
-            value={lastname}
-            onChange={onInputChange}
-            onBlur={() => handleBlur("lastname")}
+              value={singUpForm.values.lastname}
+              onChange={singUpForm.handleChange}
+              onBlur={singUpForm.handleBlur}
             name="lastname"
             type="text"
             placeholder="Ej. Doe"
-            className={`${
-              (lastNameErrors.length > 0 || errorsFromAPI) && "input-error"
-            }`}
+            className={(singUpForm.touched.lastname &&
+              singUpForm.errors.lastname) ||errorsFromAPI ? "input-error":""}
           />
-          {lastNameErrors.length > 0 && (
-            <span className="input-helpers-error">{lastNameErrors[0]}</span>
+          { singUpForm.touched.lastname &&
+              singUpForm.errors.lastname && (
+            <span className="input-helpers-error">{singUpForm.errors.lastname}</span>
           )}
           <label htmlFor="email">Email</label>
           <input
-            value={email}
-            onChange={onInputChange}
-            onBlur={() => handleBlur("email")}
+         value={singUpForm.values.email}
+         onChange={singUpForm.handleChange}
+         onBlur={singUpForm.handleBlur}
             name="email"
             type="email"
             placeholder="ejemplo@gmail.com"
-            className={`${
-              (emailErrors.length > 0 || errorsFromAPI) && "input-error"
-            }`}
+            className={(singUpForm.touched.email && singUpForm.errors.email) || errorsFromAPI ? "input-error" : ""}
           />
-          {emailErrors.length > 0 && (
-            <span className="input-helpers-error">{emailErrors[0]}</span>
+          { singUpForm.touched.email &&
+              singUpForm.errors.email &&  (
+            <span className="input-helpers-error">{singUpForm.errors.email}</span>
           )}
           <label htmlFor="password">Contraseña</label>
           <div
-            className={`password-input-wrapper ${
-              (passwordErrors.length > 0 || errorsFromAPI) && "input-error"
+
+          
+            className={` ${
+              (singUpForm.touched.password &&
+                singUpForm.errors.password ||errorsFromAPI ) ? "password-input-wrapper-error ":"password-input-wrapper"
             }`}
           >
             <input
-              value={password}
-              onChange={onInputChange}
-              onBlur={() => handleBlur("password")}
+                value={singUpForm.values.password}
+                onChange={singUpForm.handleChange}
+                onBlur={singUpForm.handleBlur}
               name="password"
               type={showPassword ? "text" : "password"}
               placeholder="Contraseña"
@@ -265,24 +222,25 @@ import { TimerContext } from "../../context/timerContext";
               )}
             </span>
           </div>
-          {passwordErrors.length > 0 && (
-            <span className="input-helpers-error">{passwordErrors[0]}</span>
+          { singUpForm.touched.password &&
+              singUpForm.errors.password && (
+            <span className="input-helpers-error">{singUpForm.errors.password}</span>
           )}
           <label htmlFor="confirmPassword">Confirmar contraseña</label>
           <div
-            className={`password-input-wrapper ${
-              (passwordErrors.length > 0 || errorsFromAPI) && "input-error"
-            }`}
+               className={` ${
+                (singUpForm.touched.password &&
+                  singUpForm.errors.password ||errorsFromAPI ) ? "password-input-wrapper-error ":"password-input-wrapper"
+              }`}
           >
             <input
-              value={confirmPassword}
-              onChange={onInputChange}
+             value={singUpForm.values.confirmPassword}
+             onChange={singUpForm.handleChange}
+             onBlur={singUpForm.handleBlur}
               name="confirmPassword"
               type={showConfirmPassword ? "text" : "password"}
               placeholder="Confirmar contraseña"
-              className={`${
-                (confirmPasswordError || errorsFromAPI) && "input-error"
-              }`}
+        
             />
             <span onClick={handleShowConfirmPassword}>
               {showConfirmPassword ? (
@@ -292,11 +250,19 @@ import { TimerContext } from "../../context/timerContext";
               )}
             </span>
           </div>
-          {confirmPasswordError && (
+          {singUpForm.touched.confirmPassword &&
+                singUpForm.errors.confirmPassword ? (
+            <span className="input-helpers-error">
+              {singUpForm.errors.confirmPassword}
+            </span>
+          ):
+          !singUpForm.errors.confirmPassword && confirmPasswordError ?
+          (
             <span className="input-helpers-error">
               {"La confirmación de contraseña es incorrecta"}
-            </span>
-          )}
+            </span>):null
+          
+          }
           <div className="login-button-container">
             <div className="login-recibir-info-container">
               <input type="checkbox" />
