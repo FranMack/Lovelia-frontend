@@ -2,6 +2,8 @@ import sonido from "../assets/talisman_digital_sonidopng.webp";
 import { Template1 } from "../../ui/pages/Template1";
 import { Template1Options } from "../../ui/pages/Template1";
 import { Position } from "../../ui/pages/Template1";
+import { Button } from "../../ui/components";
+import { useNavigate } from "react-router";
 
 
 const templateOptions: Template1Options = {
@@ -12,6 +14,12 @@ const templateOptions: Template1Options = {
 };
 
 export const TalismanDigital3 = () => {
+
+  const navigate = useNavigate();
+  const linkTo = () => {
+    navigate("/buy-digital");
+  };
+  
   return (
     <Template1 {...templateOptions}>
       <div className="talismanDigitalTemplate-container right">
@@ -22,6 +30,9 @@ export const TalismanDigital3 = () => {
           
           </p>
           <p>Es tuyo, y puedes utilizarlo según lo que sientas en el momento. Establece un vínculo especial entre ese sonido y tu <strong>capacidad de regresar a tu esencia, a ese lugar de calma y autenticidad en tu interior.</strong></p>
+        </div>
+        <div className="button-container">
+          <Button text="QUIERO MI TALISMÁN" onClick={linkTo} />
         </div>
       </div>
     </Template1>

@@ -128,14 +128,14 @@
         font-weight: 400;
       }
       table {
-        width: 70%;
+        width: 90%;
   
   
         th, td {
           font-size: 1.2rem;
           height: 3vh;
+        
           text-align: start;
-  
           font-weight: 400;
           span{
         
@@ -151,10 +151,13 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
+
         .envio-info-auxiliar-container {
           display: flex;
           flex-direction: column;
           row-gap: 1vh;
+          min-width: 30%;
+    
         }
   
         h5 {
@@ -164,8 +167,8 @@
         p {
           font-family: $font_titles;
           font-size: 1.2rem;
-  
           font-weight: 400;
+          padding-right: 1vw;
         }
       }
     }

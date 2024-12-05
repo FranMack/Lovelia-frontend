@@ -2,6 +2,8 @@ import timer from "../assets/talisman_digital_timer.webp";
 import { Template1 } from "../../ui/pages/Template1";
 import { Template1Options } from "../../ui/pages/Template1";
 import { Position } from "../../ui/pages/Template1";
+import { Button } from "../../ui/components";
+import { useNavigate } from "react-router";
 
 const templateOptions: Template1Options = {
   image: timer,
@@ -11,6 +13,11 @@ const templateOptions: Template1Options = {
 };
 
 export const TalismanDigital7 = () => {
+
+  const navigate = useNavigate();
+  const linkTo = () => {
+    navigate("/buy-digital");
+  };
   return (
     <Template1 {...templateOptions}>
       <div className="talismanDigitalTemplate-container right">
@@ -23,6 +30,9 @@ export const TalismanDigital7 = () => {
           <p>
           Tendrás la posibilidad de usar el timer <strong>para meditar</strong> y para también <strong>programar tu sonido personal.</strong>
           </p>
+        </div>
+        <div className="button-container">
+          <Button text="QUIERO MI TALISMÁN" onClick={linkTo} />
         </div>
       </div>
     </Template1>

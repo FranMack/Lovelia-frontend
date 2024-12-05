@@ -9,7 +9,7 @@ import { envs } from "../../config/envs";
 import { BackgroundVideo } from "../../ui/components";
 import { AuthPopUp } from "../components/AuthPopUp";
 
- function NewPassword() {
+function NewPassword() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -43,78 +43,73 @@ import { AuthPopUp } from "../components/AuthPopUp";
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-
   //validation erros
- 
+
   const [confirmPasswordError, setConfirmPasswordError] =
     useState<boolean>(false);
 
   //other errors
   const [errorsFromAPI, setErrorsFromAPI] = useState<string>("");
 
-
-
   const singUpForm = useFormik({
     initialValues: {
-     
       password: "",
-      confirmPassword:""
-
+      confirmPassword: "",
     },
     validationSchema: Yup.object({
       password: Yup.string()
-      .min(8, "El password debe contener al menos 8 caracteres")
-      .matches(
-        /^(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
-        "El password debe contener al menos un caracter especial"
-      )
-      .matches(/\d/, "El password debe contener al menos un número")
-      .matches(/[a-z]/, "El password debe contener al menos una letra en minúscula")
-      .matches(/[A-Z]/, "El password debe contener al menos una letra en mayúscula")
-      .required("Campo requerido"),
+        .min(8, "El password debe contener al menos 8 caracteres")
+        .matches(
+          /^(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
+          "El password debe contener al menos un caracter especial"
+        )
+        .matches(/\d/, "El password debe contener al menos un número")
+        .matches(
+          /[a-z]/,
+          "El password debe contener al menos una letra en minúscula"
+        )
+        .matches(
+          /[A-Z]/,
+          "El password debe contener al menos una letra en mayúscula"
+        )
+        .required("Campo requerido"),
 
-    confirmPassword: Yup.string().required("Campo requerido"),
-
+      confirmPassword: Yup.string().required("Campo requerido"),
     }),
 
     onSubmit: (values) => {
-
-
       if (values.confirmPassword !== values.password) {
         setConfirmPasswordError(true);
 
         return;
       }
 
-      if(isLoading){
-        return
+      if (isLoading) {
+        return;
       }
 
       axios
-      .patch(
-        `${envs.API_DOMAIN}/api/v1/user/changePassword`,
-        {
-          token: token,
-          password: values.password,
-        },
-        { withCredentials: true }
-      )
-      .then(({ data }) => {
-        console.log(data);
-       singUpForm.resetForm();
-        setIsLoading(false);
-        setShowPupUp(true);
-      })
-      .catch((error) => {
-        console.log(error);
-        setIsLoading(false);
-        setErrorsFromAPI(error.response.data.error);
-      });
-
-   
+        .patch(
+          `${envs.API_DOMAIN}/api/v1/user/changePassword`,
+          {
+            token: token,
+            password: values.password,
+          },
+          { withCredentials: true }
+        )
+        .then(({ data }) => {
+          console.log(data);
+          singUpForm.resetForm();
+          setIsLoading(false);
+          setShowPupUp(true);
+        })
+        .catch((error) => {
+          console.log(error);
+          setIsLoading(false);
+          setErrorsFromAPI(error.response.data.error);
+        });
     },
   });
-
 
   return (
     <section className="login-container efectoReveal">
@@ -122,7 +117,11 @@ import { AuthPopUp } from "../components/AuthPopUp";
       {showPopUp ? (
         <AuthPopUp {...popUpInfo} />
       ) : (
-        <form onSubmit={singUpForm.handleSubmit} className="login-form" action="">
+        <form
+          onSubmit={singUpForm.handleSubmit}
+          className="login-form"
+          action=""
+        >
           <h3>NUEVA CONTRASEÑA</h3>
 
           <h6>
@@ -131,15 +130,17 @@ import { AuthPopUp } from "../components/AuthPopUp";
           </h6>
 
           <div
-         className={` ${
-          (singUpForm.touched.password &&
-            singUpForm.errors.password ||errorsFromAPI ) ? "password-input-wrapper-error ":"password-input-wrapper"
-        }`}
+            className={` ${
+              (singUpForm.touched.password && singUpForm.errors.password) ||
+              errorsFromAPI
+                ? "password-input-wrapper-error "
+                : "password-input-wrapper"
+            }`}
           >
             <input
-            value={singUpForm.values.password}
-            onChange={singUpForm.handleChange}
-            onBlur={singUpForm.handleBlur}
+              value={singUpForm.values.password}
+              onChange={singUpForm.handleChange}
+              onBlur={singUpForm.handleBlur}
               name="password"
               type={showPassword ? "text" : "password"}
               placeholder="Nueva contraseña"
@@ -152,25 +153,29 @@ import { AuthPopUp } from "../components/AuthPopUp";
               )}
             </span>
           </div>
-          { singUpForm.touched.password &&
-              singUpForm.errors.password && (
-            <span className="input-helpers-error">{singUpForm.errors.password}</span>
+          {singUpForm.touched.password && singUpForm.errors.password && (
+            <span className="input-helpers-error">
+              {singUpForm.errors.password}
+            </span>
           )}
 
           <div
-             className={` ${
+            className={` ${
               (singUpForm.touched.confirmPassword &&
-                singUpForm.errors.confirmPassword ||errorsFromAPI ||confirmPasswordError ) ? "password-input-wrapper-error ":"password-input-wrapper"
+                singUpForm.errors.confirmPassword) ||
+              errorsFromAPI ||
+              confirmPasswordError
+                ? "password-input-wrapper-error "
+                : "password-input-wrapper"
             }`}
           >
             <input
-          value={singUpForm.values.confirmPassword}
-          onChange={singUpForm.handleChange}
-          onBlur={singUpForm.handleBlur}
+              value={singUpForm.values.confirmPassword}
+              onChange={singUpForm.handleChange}
+              onBlur={singUpForm.handleBlur}
               name="confirmPassword"
               type={showConfirmPassword ? "text" : "password"}
               placeholder="Confirmar contraseña"
-              
             />
             <span onClick={handleShowConfirmPassword}>
               {showConfirmPassword ? (
@@ -181,18 +186,15 @@ import { AuthPopUp } from "../components/AuthPopUp";
             </span>
           </div>
           {singUpForm.touched.confirmPassword &&
-                singUpForm.errors.confirmPassword ? (
+          singUpForm.errors.confirmPassword ? (
             <span className="input-helpers-error">
               {singUpForm.errors.confirmPassword}
             </span>
-          ):
-          !singUpForm.errors.confirmPassword && confirmPasswordError ?
-          (
+          ) : !singUpForm.errors.confirmPassword && confirmPasswordError ? (
             <span className="input-helpers-error">
               {"La confirmación de contraseña es incorrecta"}
-            </span>):null
-          
-          }
+            </span>
+          ) : null}
 
           <button type="submit">
             {isLoading ? (
@@ -207,4 +209,4 @@ import { AuthPopUp } from "../components/AuthPopUp";
   );
 }
 
-export default NewPassword
+export default NewPassword;

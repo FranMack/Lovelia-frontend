@@ -1,23 +1,26 @@
-import { talismanTones, chineseHoroscope, stamps } from "../assets/talismanBoxInfo";
+import {
+  talismanTones,
+  chineseHoroscope,
+  stamps,
+} from "../assets/talismanBoxInfo";
 import dot from "../assets/misc/dot.png";
 import { useEffect, useState } from "react";
 
 interface TalismanBoxOptions {
-  horoscope?: string;
-  numerology?: number;
-  kinMaya?: string;
-  tones?: string;
+  chineseSymbol?: string;
+  numerologySymbol?: number;
+  solarSailSymbol?: string;
+  toneSymbol?: string;
   phrase?: string;
 }
 
 export const TalismanBox = ({
-  numerology = 8,
-  kinMaya = "dragon",
-  tones = "cosmico",
-  horoscope = "snake",
+  numerologySymbol = 8,
+  solarSailSymbol = "dragon",
+  toneSymbol = "cosmico",
+  chineseSymbol = "snake",
   phrase = "Activa tu talismán",
 }: TalismanBoxOptions) => {
-  
   // Function to generate an array of 'dots' based on numerology
   const dotFunction = (chineseNumber: number) => {
     const array = [];
@@ -29,10 +32,10 @@ export const TalismanBox = ({
   };
 
   const [path, setPath] = useState({
-    chinesePath: horoscope,
+    chinesePath: chineseSymbol,
     solarSailPath: "",
     tonesPath: "",
-    numerology: numerology,
+    numerologyPath: numerologySymbol,
   });
 
   // Function to filter solar sail path based on kinMaya
@@ -53,43 +56,42 @@ export const TalismanBox = ({
   };
 
   useEffect(() => {
-    const solarSailPath = solarSailFilter(kinMaya);
-    const tonesPath = tonesFilter(tones);
-    const chinesePath=chineseHoroscopeFilter(horoscope)
+    const solarSailPath = solarSailFilter(solarSailSymbol);
+    const tonesPath = tonesFilter(toneSymbol);
+    const chinesePath = chineseHoroscopeFilter(chineseSymbol);
 
     // Update state with paths for the talisman
     setPath({
       chinesePath, // Not sure if you want to set this dynamically from horoscope
       solarSailPath,
       tonesPath,
-      numerology,
+      numerologyPath: numerologySymbol,
     });
-  }, [kinMaya, tones, numerology]); // Re-run the effect if any of these change
+  }, [solarSailSymbol, toneSymbol, numerologySymbol,chineseSymbol]); // Re-run the effect if any of these change
 
-
-  console.log("xxxxxxxxxxx",path)
   return (
     <div className="talismanBox-container">
       <div className="talismanBox-top-container">
-        {dotFunction(path.numerology).map((_, i) => (
+        {dotFunction(path.numerologyPath).map((_, i) => (
           <img key={i} src={dot} alt="dot" />
         ))}
       </div>
 
       <div className="talismanBox-bottom-container">
-        <input type="text" value={phrase} readOnly /> {/* Make input readonly */}
+        <input type="text" value={phrase} readOnly />{" "}
+        {/* Make input readonly */}
         <div className="symbols-container">
-        <div className="chinese-icon-container">
-          <img src={path.chinesePath} alt="chinese horoscope sign" />
-        </div>
-        <div className="cosmicTone-icon-container">
-          <img src={path.tonesPath} alt="cosmic tone" />
-        </div>
-        <div className="solarSail-auxiliar">
-          <div className="solarSail-icon-container">
-            <img src={path.solarSailPath} alt="solar sail" />
+          <div className="chinese-icon-container">
+            <img src={path.chinesePath} alt="chinese horoscope sign" />
           </div>
-        </div>
+          <div className="cosmicTone-icon-container">
+            <img src={path.tonesPath} alt="cosmic tone" />
+          </div>
+          <div className="solarSail-auxiliar">
+            <div className="solarSail-icon-container">
+              <img src={path.solarSailPath} alt="solar sail" />
+            </div>
+          </div>
         </div>
       </div>
     </div>

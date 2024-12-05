@@ -186,6 +186,7 @@ function hours() {
       meridiam: meridiamOption
     },{withCredentials:true})
     .then(()=>{
+      
       navigate("/myTalisman")
     })
     .catch((error)=>{

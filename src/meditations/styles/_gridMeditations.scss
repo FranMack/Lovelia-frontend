@@ -1,102 +1,105 @@
 @import "../../styles//variables.scss";
 
-
-.grid-meditations-container{
-    margin: 0 auto;
-    width: 80%;
-    height: fit-content;
-    display: grid;
-    grid-template-columns: repeat(4,minmax(150px,1fr));
-   row-gap: 10%;
-   column-gap: 5%;
-   padding-bottom:60vh;
- 
-
+.grid-meditations-container {
+  margin: 0 auto;
+  width: 80%;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
+  row-gap: 10%;
+  column-gap: 5%;
+  padding-bottom: 60vh;
 }
 
-.grid-meditations-item{
-   
+.grid-meditations-item {
+  width: 100%;
+  aspect-ratio: 1.4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  .grid-meditations-color-container {
+    position: relative;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      position: absolute;
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+    > .icon-container {
+      height: 17%;
+      z-index: 10;
+    }
+  }
+  p {
+    font-size: 1.7rem;
+    font-weight: 600;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .grid-meditations-item {
+    .grid-meditations-color-container {
+      height: 75%;
+
+      > .icon-container {
+        height: 25%;
+      }
+    }
+    p {
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+  }
+}
+
+@media screen and (max-width: 678px) {
+  .grid-meditations-container {
+    margin: 0 auto;
+    width: 90%;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+    row-gap: 5%;
+    column-gap: 5%;
+  }
+
+  .grid-meditations-item {
     width: 100%;
     aspect-ratio: 1.4;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
- 
-    .grid-meditations-color-container{
-        position: relative;
+
+    .grid-meditations-color-container {
+      position: relative;
+      width: 100%;
+      height: 80%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        position: absolute;
+        object-fit: cover;
+        height: 100%;
         width: 100%;
-        height: 80%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        img{
-            position: absolute;
-            object-fit: cover;
-            height: 100%;
-            width: 100%;
-        }
-        >.icon-container{
-            height: 17%;
-            z-index: 10;
-        }
-
+      }
+      > .icon-container {
+        height: 25%;
+      }
     }
-    p{
-        font-size: 1.7rem;
-        font-weight: 600;
+    p {
+      font-size: 1.6rem;
+      font-weight: 600;
+      text-align: center;
     }
-}
-
-
-@media screen and (max-width: 678px) {
-
-    .grid-meditations-container{
-        margin: 0 auto;
-        width: 90%;
-        height: fit-content;
-        display: grid;
-        grid-template-columns: repeat(2,minmax(100px,1fr));
-       row-gap: 5%;
-       column-gap: 5%;
-
-       
-    
-    }
-
-
-    .grid-meditations-item{
-
-        width: 100%;
-        aspect-ratio: 1.4;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-     
-        .grid-meditations-color-container{
-            position: relative;
-            width: 100%;
-            height: 80%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            img{
-                position: absolute;
-                object-fit: cover;
-                height: 100%;
-                width: 100%;
-            }
-            >.icon-container{
-                height: 25%;
-            }
-    
-        }
-        p{
-            font-size: 1.6rem;
-            font-weight: 600;
-            text-align: center;
-        }
-    }
-
+  }
 }

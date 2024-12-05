@@ -30,19 +30,23 @@ import { Chronometer } from "./Chronometer";
 import { MyADN } from "./MyADN";
 import { Playlist } from "./Playlist";
 import { Timer } from "./Timer";
-import { TalismanBox } from "./TalismanBox";
+//import { TalismanBox } from "./TalismanBox";
 import { IntentionContext } from "../../context";
 import { ConstelationBox } from "./ConstelationBox";
+import { TalismanBox } from "./TalismanBox";
+//import { ConstelationBox } from "./ConstelationBox";
+import { AstrologicalDataProps } from "../interface/myAdn.interface";
 
 interface MeditationsOptions {
   name: string;
   url: string;
-  duration:string
+  duration: string;
 }
 
 export const ThreeJsFrame = () => {
   const navigate = useNavigate();
-  const { email, setSuscription } = useContext(UserContext);
+  const { email, setSuscription, setTalismanActivated } =
+    useContext(UserContext);
   const { handleButtonFocus, buttonFocusPosition } = useContext(
     TalismanButtonFocusContext
   );
@@ -102,7 +106,7 @@ export const ThreeJsFrame = () => {
             userSoundRef.current.currentTime = 0;
             userSoundRef.current.volume = volume;
             userSoundRef.current.play();
-      
+
             userSoundRef.current.addEventListener("ended", function handler() {
               playCount++;
               userSoundRef.current!.removeEventListener("ended", handler);
@@ -289,11 +293,83 @@ export const ThreeJsFrame = () => {
     },
   ];
 
-  const[astrologicalData,setAstrologicalData]=useState({numerology:0,horoscope:"",kinMaya:"",tones:"",constellation:""})
-console.log("pppppppppppppp",astrologicalData)
+  const initialAstrologicalData: AstrologicalDataProps = {
+    numerologySymbol: 0,
+    chinseseSymbol: "",
+    solarSailSymbol: "",
+    toneSymbol: "",
+    constellation: "",
+    kingMayaUserInfo: {
+      title: "",
+      text: [],
+    },
+    tonesUserInfo: {
+      title: "",
+      text: [],
+    },
+    chineseUserInfo: {
+      commonInfo: {
+        title: "",
+        text: [],
+      },
+      particularInfo: {
+        title: "",
+        text: [],
+      },
+    },
+
+    ascendantUserInfo: {
+      title: "",
+      text: [],
+    },
+    sunHouseUserInfo: {
+      title: "",
+      text: [],
+    },
+    moonHouseUserInfo: {
+      title: "",
+      text: [],
+    },
+
+    sunUserInfo: {
+      title: "",
+      text: [],
+    },
+    moonUserInfo: {
+      title: "",
+      text: [],
+    },
+
+    aspectsAndPlanetsUserInfo: {
+      generalInfo: {
+        title: "",
+        text: "",
+      },
+      userAspects: [
+        {
+          planet: {
+            title: "",
+            text: [],
+          },
+          aspect: {
+            title: "",
+            text: [],
+          },
+        },
+      ],
+      filterAspects: [],
+    },
+    numberUserInfo: {
+      title: "",
+      text: [],
+    },
+  };
+
+  const [astrologicalData, setAstrologicalData] =
+    useState<AstrologicalDataProps>(initialAstrologicalData);
 
   useEffect(() => {
-    setAudioType("")
+    setAudioType("");
     async function getUserInfo(email: string) {
       try {
         if (email) {
@@ -307,15 +383,16 @@ console.log("pppppppppppppp",astrologicalData)
           );
 
           if (userInfo.data) {
-            setAstrologicalData(userInfo.data)
+            setAstrologicalData(userInfo.data);
             setAstrologicalInfo(true);
             localStorage.setItem("subscriptionActive", "true");
+            localStorage.setItem("talismanActivated", "true");
+
             setSuscription(true);
+            setTalismanActivated(true);
+
             setUserSoundURL(userInfo.data.soundPath);
-        
           }
-
-
 
           if (userIntention) {
             setIntention(userIntention.data);
@@ -344,7 +421,7 @@ console.log("pppppppppppppp",astrologicalData)
   useEffect(() => {
     if (audioType === "activation") {
       const line = lineSubtitle(seconds)!;
-      setSubtitleLine(line);             
+      setSubtitleLine(line);
     }
   }, [seconds]);
 
@@ -354,7 +431,7 @@ console.log("pppppppppppppp",astrologicalData)
   const [meditations, setMeditations] = useState<MeditationsOptions[]>([]);
   const [sounds, setSounds] = useState<MeditationsOptions[]>([]);
 
-  const intervalRef =useRef<ReturnType<typeof setInterval> | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const startTimer = () => {
     if (intervalRef.current === null) {
@@ -565,43 +642,49 @@ console.log("pppppppppppppp",astrologicalData)
     };
   }, [volumeBarVisibility]);
 
-  
-
   //obtiene la duración de cada audio de la lista
   const fetchAudioDurations = async (
     items: MeditationsOptions[],
     refs: React.MutableRefObject<HTMLAudioElement[]>
-  ): Promise<MeditationsOptions[]> => { // Cambiamos aquí para que solo devuelva MeditationsOptions[]
+  ): Promise<MeditationsOptions[]> => {
+    // Cambiamos aquí para que solo devuelva MeditationsOptions[]
     return Promise.all(
       items.map((item, index) => {
-        return new Promise<MeditationsOptions>((resolve) => { // Especificamos el tipo de resolución
+        return new Promise<MeditationsOptions>((resolve) => {
+          // Especificamos el tipo de resolución
           const audio = new Audio(item.url);
           refs.current[index] = audio;
-  
+
           audio.addEventListener("loadedmetadata", () => {
             resolve({
               ...item,
-              duration:audioDurationTransform (audio.duration), // Dejamos la duración como número
+              duration: audioDurationTransform(audio.duration), // Dejamos la duración como número
             });
           });
         });
       })
     );
   };
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Tipamos explícitamente la respuesta de axios
         const [meditationsResponse, soundsResponse] = await Promise.all([
-          axios.get<MeditationsOptions[]>(`${envs.API_DOMAIN}/api/v1/user/meditations`, {
-            withCredentials: true,
-          }),
-          axios.get<MeditationsOptions[]>(`${envs.API_DOMAIN}/api/v1/user/sounds`, {
-            withCredentials: true,
-          }),
+          axios.get<MeditationsOptions[]>(
+            `${envs.API_DOMAIN}/api/v1/user/meditations`,
+            {
+              withCredentials: true,
+            }
+          ),
+          axios.get<MeditationsOptions[]>(
+            `${envs.API_DOMAIN}/api/v1/user/sounds`,
+            {
+              withCredentials: true,
+            }
+          ),
         ]);
-  
+
         // Obtenemos duraciones para meditaciones y sonidos
         const meditationsWithDuration = await fetchAudioDurations(
           meditationsResponse.data,
@@ -611,7 +694,7 @@ console.log("pppppppppppppp",astrologicalData)
           soundsResponse.data,
           soundRefs
         );
-  
+
         // Actualizamos los estados con los resultados
         setMeditations(meditationsWithDuration);
         setSounds(soundsWithDuration);
@@ -619,17 +702,24 @@ console.log("pppppppppppppp",astrologicalData)
         console.error("Error fetching data:", error);
       }
     };
-  
+
     fetchData();
   }, []);
-  
 
   return (
     <>
       {astrologicalInfo ? (
         <>
-       { <TalismanBox numerology={astrologicalData.numerology} kinMaya={astrologicalData.kinMaya} tones={astrologicalData.tones} phrase={intention} horoscope={astrologicalData.horoscope}/>}
-          <ConstelationBox constellation={astrologicalData.constellation}/>
+          {/*{
+            <TalismanBox
+              numerologySymbol={astrologicalData.numerologySymbol}
+              solarSailSymbol={astrologicalData.solarSailSymbol}
+              toneSymbol={astrologicalData.toneSymbol}
+              phrase={intention}
+              chineseSymbol={astrologicalData.chinseseSymbol}
+            />
+          }
+          <ConstelationBox constellation={astrologicalData.constellation} />*/}
           <iframe
             className="threejs-container"
             title="Modelo 3D"
@@ -721,14 +811,21 @@ console.log("pppppppppppppp",astrologicalData)
               </div>
             )}
           </div>
-          {userSoundURL && <audio ref={userSoundRef} src={`https://lovelia.org/public/userSounds/${userSoundURL}`} />}
-          
+          {userSoundURL && (
+            <audio
+              ref={userSoundRef}
+              src={`https://lovelia.org/public/userSounds/${userSoundURL}`}
+            />
+          )}
+
           <audio
             ref={activationSoundRef}
             src={`https://lovelia.org/public/activation/activationExample.mp4`}
           />
 
-          {buttonFocusPosition === "Mi ADN Energético" && <MyADN />}
+          {buttonFocusPosition === "Mi ADN Energético" && (
+            <MyADN {...astrologicalData} />
+          )}
           {buttonFocusPosition === "activation" && (
             <Activation
               handleActivation={handleActivation}
@@ -773,7 +870,7 @@ console.log("pppppppppppppp",astrologicalData)
       {sounds.map((item, i) => {
         return (
           <audio key={i} ref={(el) => (soundRefs.current[i] = el!)}>
-        <source src={`${item.url}`} type="audio/mpeg" />
+            <source src={`${item.url}`} type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
         );
@@ -794,7 +891,6 @@ console.log("pppppppppppppp",astrologicalData)
       )}
       {/*IMPORTANTE: DEBE CAMBIARSE SOUNDS POR LOS SONIDOS CORRESPONDIENTES AL TIMER */}
       {sounds.map((item, i) => {
-    
         return (
           <audio key={i} ref={(el) => (timerSoundRefs.current[i] = el!)}>
             <source src={`${item.url}`} type="audio/mpeg" />

@@ -16,22 +16,26 @@ export const LazyImage = ({ src, alt, className,draggable }: LazyOptions) => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.disconnect(); // Desconectar el observer una vez que la imagen es visible
+          observer.disconnect(); // Detener observación una vez visible
         }
       },
-      { threshold: 0.1 }
+      { 
+        rootMargin: '200px', // Detecta 200px antes de que la imagen entre al viewport
+        threshold: 0.1 
+      }
     );
-
+  
     if (imgRef.current) {
-      observer.observe(imgRef.current); // Observa la imagen
+      observer.observe(imgRef.current); // Observar la imagen
     }
-
+  
     return () => {
       if (imgRef.current) {
-        observer.unobserve(imgRef.current); // Des-observar solo si current no es null
+        observer.unobserve(imgRef.current); // Des-observar si current no es null
       }
     };
   }, []);
+  
 
   return (
     <img

@@ -19,7 +19,7 @@ interface TimerOptions {
 
 const sections = ["timer", "alarm"];
 
-export const Timer = ({ sounds=[] }: TimerOptions) => {
+export const Timer = ({ sounds = [] }: TimerOptions) => {
   const { handleButtonFocus } = useContext(TalismanButtonFocusContext);
 
   const [sectionPosition, setSectionPosition] = useState<string>("timer");
@@ -49,14 +49,17 @@ export const Timer = ({ sounds=[] }: TimerOptions) => {
   const startMeditation = () => {
     if (!hours && !minutes && !seconds) {
       setWarning(true);
-      toast.error("Atención: defina el intervalo del timer",{style:{backgroundColor:"#6f3289",color:"#ece976"},hideProgressBar:true,autoClose:4000})
+      toast.error("Atención: defina el intervalo del timer", {
+        style: { backgroundColor: "#6f3289", color: "#ece976" },
+        hideProgressBar: true,
+        autoClose: 4000,
+      });
       return;
     }
 
     handleButtonFocus("chronometer");
     return;
   };
-
 
   return (
     <div className="timer-container">
@@ -165,17 +168,18 @@ export const Timer = ({ sounds=[] }: TimerOptions) => {
           <div className="timer-dropdown-container">
             <label>Sonido para inicio y fin de meditación</label>
             <select
-              defaultValue={sounds.length ? sounds[0].name :"  - "}
+              defaultValue={sounds.length ? sounds[0].name : "  - "}
               value={timerSound}
               onChange={handleSelectChange}
             >
-              {sounds.length && sounds.map((item, i) => {
-                return (
-                  <option value={item.name} key={i} data-index={i}>
-                    {item.name}{" "}
-                  </option>
-                );
-              })}
+              {sounds.length &&
+                sounds.map((item, i) => {
+                  return (
+                    <option value={item.name} key={i} data-index={i}>
+                      {item.name}{" "}
+                    </option>
+                  );
+                })}
             </select>
           </div>
 
@@ -185,7 +189,7 @@ export const Timer = ({ sounds=[] }: TimerOptions) => {
 
       {sectionPosition === "alarm" && (
         <div className="timer-section-container">
-       <Alarm sounds={sounds}/>
+          <Alarm sounds={sounds} />
         </div>
       )}
     </div>

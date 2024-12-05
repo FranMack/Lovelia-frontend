@@ -136,6 +136,116 @@ margin-top: 15vh;
 }
 
 
+
+@media screen and (max-width:1024px) {
+
+
+    .blogNote-container{
+   
+        row-gap: 5vh;
+        padding-bottom: 15vh;
+
+    }
+    
+    
+    .blogNote-top-container{
+    margin-top: 15vh;
+        width: 80%;
+        height: 50vh;
+      
+    
+        small{
+            font-size: 1.2rem;
+        }
+    
+    
+    }
+    
+    .blogNote-center-container{
+        width: 80%;
+        row-gap: 4vh;
+     
+    
+       > .title-container{
+        width: 100%;
+        row-gap: 1vh;
+            h2{
+                font-size: 2.5rem;
+                margin-bottom: 2vh;
+            }
+            h3{
+                font-size: 1.8rem;
+                font-weight: 400;
+            }
+         
+    
+            .title-bottom-container{
+         
+                column-gap: 1vw;
+        
+    
+                .blogNote-avatar-container{
+                    height: 3rem;
+                    aspect-ratio: 1;
+                    border-radius: 50%;
+               
+                }
+    
+                h4{
+                    font-size: 1.6rem;
+                    font-weight: 300;
+                    span{
+                        font-style: italic;
+                        color:gray;
+            
+                    }
+                }
+    
+            }
+       
+    
+        }
+        >.text-container{
+       
+    
+            >.image-container{
+             
+                margin-bottom: 4vh;
+             
+            }
+            p{
+                font-size: 1.5rem;
+                line-height: 2.5rem;
+                margin-bottom: 2vh;
+                
+            }
+        }
+       
+    }
+    
+    .blogNote-botton-title-container{
+        margin: 0 auto;
+        width: 80%;
+        margin-top: 10vh;
+        h3{
+    
+            font-size: 2.5rem;
+       
+          }
+    
+          h4{
+            font-size: 2.2rem;
+         
+          }
+    
+    }
+
+
+
+
+}
+
+
 @media screen and (max-width: 678px) {
     .blogNote-top-container{
         margin-top: 12vh;

@@ -11,7 +11,7 @@ import { TimerContext } from "../../context/timerContext";
 import { BackgroundVideo } from "../../ui/components";
 import { Button } from "../../ui/components/Button";
 
- function Register() {
+function Register() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -42,8 +42,6 @@ import { Button } from "../../ui/components/Button";
     navigatge("/login");
   };
 
-
-
   //validation errors
 
   const [confirmPasswordError, setConfirmPasswordError] =
@@ -52,9 +50,10 @@ import { Button } from "../../ui/components/Button";
   //other errors
   const [errorsFromAPI, setErrorsFromAPI] = useState<string>("");
 
-  const{activatedAlarm}=useContext(TimerContext)
-  const {shopingCartOpen}=useContext(ShopingCartContext)
+  const { activatedAlarm } = useContext(TimerContext);
+  const { shopingCartOpen } = useContext(ShopingCartContext);
 
+  const [confirmedAcount,setConfirmedAcount]=useState<boolean>(false)
 
   const singUpForm = useFormik({
     initialValues: {
@@ -65,34 +64,35 @@ import { Button } from "../../ui/components/Button";
       confirmPassword: "",
     },
     validationSchema: Yup.object({
-      name: Yup.string()
-      .required("Campo requerido"),
-    lastname: Yup.string()
-    .required("Campo requerido"),
-    email: Yup.string().required("Campo requerido").email("Email no valido"),
-    password: Yup.string()
-      .min(8, "El password debe contener al menos 8 caracteres")
-      .matches(
-        /^(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
-        "El password debe contener al menos un caracter especial"
-      )
-      .matches(/\d/, "El password debe contener al menos un número")
-      .matches(/[a-z]/, "El password debe contener al menos una letra en minúscula")
-      .matches(/[A-Z]/, "El password debe contener al menos una letra en mayúscula")
-      .required("Campo requerido"),
+      name: Yup.string().required("Campo requerido"),
+      lastname: Yup.string().required("Campo requerido"),
+      email: Yup.string().required("Campo requerido").email("Email no valido"),
+      password: Yup.string()
+        .min(8, "El password debe contener al menos 8 caracteres")
+        .matches(
+          /^(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
+          "El password debe contener al menos un caracter especial"
+        )
+        .matches(/\d/, "El password debe contener al menos un número")
+        .matches(
+          /[a-z]/,
+          "El password debe contener al menos una letra en minúscula"
+        )
+        .matches(
+          /[A-Z]/,
+          "El password debe contener al menos una letra en mayúscula"
+        )
+        .required("Campo requerido"),
 
-    confirmPassword: Yup.string().required("Campo requerido"),
-     
+      confirmPassword: Yup.string().required("Campo requerido"),
     }),
 
     onSubmit: (values) => {
-
       console.log("Wrong confirmed password");
 
-      if(isLoading){
-        return
+      if (isLoading) {
+        return;
       }
-
 
       if (values.confirmPassword !== values.password) {
         console.log("Wrong confirmed password");
@@ -100,194 +100,215 @@ import { Button } from "../../ui/components/Button";
 
         return;
       }
-   
+
       setIsLoading(true);
 
-
-
       axios
-      .post(`${envs.API_DOMAIN}/api/v1/user/register`, {
-        name: values.name,
-        lastname: values.lastname,
-        email: values.email,
-        password: values.password,
-      })
-      .then((response) => {
-        console.log(response);
-        singUpForm.resetForm();
-        setIsLoading(false);
-        window.scrollTo(0, 0);
-        handleMessage();
-      })
+        .post(`${envs.API_DOMAIN}/api/v1/user/register`, {
+          name: values.name,
+          lastname: values.lastname,
+          email: values.email,
+          password: values.password,
+        })
+        .then((response) => {
+          console.log(response);
+          singUpForm.resetForm();
+          setIsLoading(false);
+          window.scrollTo(0, 0);
+          if (response.data.acountConfirmed) {
+            setConfirmedAcount(true)
+          } 
 
-      .catch((error) => {
-        console.log(error);
-        setIsLoading(false);
-        setErrorsFromAPI(error.response.data.error);
-      });
-   
+          handleMessage();
+        })
+
+        .catch((error) => {
+          console.log(error);
+          setIsLoading(false);
+          setErrorsFromAPI(error.response.data.error);
+        });
     },
   });
 
-
-
   return (
-    <main className={activatedAlarm || shopingCartOpen ? "viewport-background":""}>
-    <section className="login-container efectoReveal">
-      <BackgroundVideo />
+    <main
+      className={activatedAlarm || shopingCartOpen ? "viewport-background" : ""}
+    >
+      <section className="login-container efectoReveal">
+        <BackgroundVideo />
 
-      {openMessage && (
-        <div className="login-message-container efectoReveal">
-          <h4>Su cuenta ha sido registrada.</h4>
-          <p>Recibirás un mail que te permitirá activarla</p>
-          <Button text="Continuar" onClick={linkToLogin} />
-        </div>
-      )}
+        {openMessage && (
+          <div className="login-message-container efectoReveal">
+            <h4>Su cuenta ha sido registrada.</h4>
+           {confirmedAcount? <p>Haz click en continuar para iniciar sesíon</p>:
+          <p>Recibirás un mail que te permitirá activarla</p> }
+            <Button text="Continuar" onClick={linkToLogin} />
+          </div>
+        )}
 
-      {!openMessage && (
-        <form onSubmit={singUpForm.handleSubmit} className="login-form" action="">
-          <h3>CREA TU CUENTA</h3>
-          <h4>Ingresa tus datos para registrarte en lovelia</h4>
-          <h6>
-            Si ya estás registrado en lovelia,{" "}
-            <strong onClick={linkToLogin}>Haz click aquí</strong>
-          </h6>
-          <label htmlFor="name">Nombre</label>
-          <input
+        {!openMessage && (
+          <form
+            onSubmit={singUpForm.handleSubmit}
+            className="login-form"
+            action=""
+          >
+            <h3>CREA TU CUENTA</h3>
+            <h4>Ingresa tus datos para registrarte en lovelia</h4>
+            <h6>
+              Si ya estás registrado en lovelia,{" "}
+              <strong onClick={linkToLogin}>Haz click aquí</strong>
+            </h6>
+            <label htmlFor="name">Nombre</label>
+            <input
               value={singUpForm.values.name}
               onChange={singUpForm.handleChange}
               onBlur={singUpForm.handleBlur}
-            name="name"
-            type="text"
-            placeholder="Ej. Jonh"
-            className={(singUpForm.touched.name &&
-              singUpForm.errors.name) ||errorsFromAPI ? "input-error":""}
-          />
-          { singUpForm.touched.name &&
-              singUpForm.errors.name && (
-            <span className="input-helpers-error">{singUpForm.errors.name}</span>
-          )}
-          <label htmlFor="lastname">Apellido</label>
-          <input
+              name="name"
+              type="text"
+              placeholder="Ej. Jonh"
+              className={
+                (singUpForm.touched.name && singUpForm.errors.name) ||
+                errorsFromAPI
+                  ? "input-error"
+                  : ""
+              }
+            />
+            {singUpForm.touched.name && singUpForm.errors.name && (
+              <span className="input-helpers-error">
+                {singUpForm.errors.name}
+              </span>
+            )}
+            <label htmlFor="lastname">Apellido</label>
+            <input
               value={singUpForm.values.lastname}
               onChange={singUpForm.handleChange}
               onBlur={singUpForm.handleBlur}
-            name="lastname"
-            type="text"
-            placeholder="Ej. Doe"
-            className={(singUpForm.touched.lastname &&
-              singUpForm.errors.lastname) ||errorsFromAPI ? "input-error":""}
-          />
-          { singUpForm.touched.lastname &&
-              singUpForm.errors.lastname && (
-            <span className="input-helpers-error">{singUpForm.errors.lastname}</span>
-          )}
-          <label htmlFor="email">Email</label>
-          <input
-         value={singUpForm.values.email}
-         onChange={singUpForm.handleChange}
-         onBlur={singUpForm.handleBlur}
-            name="email"
-            type="email"
-            placeholder="ejemplo@gmail.com"
-            className={(singUpForm.touched.email && singUpForm.errors.email) || errorsFromAPI ? "input-error" : ""}
-          />
-          { singUpForm.touched.email &&
-              singUpForm.errors.email &&  (
-            <span className="input-helpers-error">{singUpForm.errors.email}</span>
-          )}
-          <label htmlFor="password">Contraseña</label>
-          <div
-
-          
-            className={` ${
-              (singUpForm.touched.password &&
-                singUpForm.errors.password ||errorsFromAPI ) ? "password-input-wrapper-error ":"password-input-wrapper"
-            }`}
-          >
+              name="lastname"
+              type="text"
+              placeholder="Ej. Doe"
+              className={
+                (singUpForm.touched.lastname && singUpForm.errors.lastname) ||
+                errorsFromAPI
+                  ? "input-error"
+                  : ""
+              }
+            />
+            {singUpForm.touched.lastname && singUpForm.errors.lastname && (
+              <span className="input-helpers-error">
+                {singUpForm.errors.lastname}
+              </span>
+            )}
+            <label htmlFor="email">Email</label>
             <input
+              value={singUpForm.values.email}
+              onChange={singUpForm.handleChange}
+              onBlur={singUpForm.handleBlur}
+              name="email"
+              type="email"
+              placeholder="ejemplo@gmail.com"
+              className={
+                (singUpForm.touched.email && singUpForm.errors.email) ||
+                errorsFromAPI
+                  ? "input-error"
+                  : ""
+              }
+            />
+            {singUpForm.touched.email && singUpForm.errors.email && (
+              <span className="input-helpers-error">
+                {singUpForm.errors.email}
+              </span>
+            )}
+            <label htmlFor="password">Contraseña</label>
+            <div
+              className={` ${
+                (singUpForm.touched.password && singUpForm.errors.password) ||
+                errorsFromAPI
+                  ? "password-input-wrapper-error "
+                  : "password-input-wrapper"
+              }`}
+            >
+              <input
                 value={singUpForm.values.password}
                 onChange={singUpForm.handleChange}
                 onBlur={singUpForm.handleBlur}
-              name="password"
-              type={showPassword ? "text" : "password"}
-              placeholder="Contraseña"
-            />
+                name="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Contraseña"
+              />
 
-            <span onClick={handleShowPassword}>
-              {showPassword ? (
-                <EyeOpen color="#662A80" />
-              ) : (
-                <EyeClose color="#662A80" />
-              )}
-            </span>
-          </div>
-          { singUpForm.touched.password &&
-              singUpForm.errors.password && (
-            <span className="input-helpers-error">{singUpForm.errors.password}</span>
-          )}
-          <label htmlFor="confirmPassword">Confirmar contraseña</label>
-          <div
-               className={` ${
-                (singUpForm.touched.password &&
-                  singUpForm.errors.password ||errorsFromAPI ) ? "password-input-wrapper-error ":"password-input-wrapper"
-              }`}
-          >
-            <input
-             value={singUpForm.values.confirmPassword}
-             onChange={singUpForm.handleChange}
-             onBlur={singUpForm.handleBlur}
-              name="confirmPassword"
-              type={showConfirmPassword ? "text" : "password"}
-              placeholder="Confirmar contraseña"
-        
-            />
-            <span onClick={handleShowConfirmPassword}>
-              {showConfirmPassword ? (
-                <EyeOpen color="#662A80" />
-              ) : (
-                <EyeClose color="#662A80" />
-              )}
-            </span>
-          </div>
-          {singUpForm.touched.confirmPassword &&
-                singUpForm.errors.confirmPassword ? (
-            <span className="input-helpers-error">
-              {singUpForm.errors.confirmPassword}
-            </span>
-          ):
-          !singUpForm.errors.confirmPassword && confirmPasswordError ?
-          (
-            <span className="input-helpers-error">
-              {"La confirmación de contraseña es incorrecta"}
-            </span>):null
-          
-          }
-          <div className="login-button-container">
-            <div className="login-recibir-info-container">
-              <input type="checkbox" />
-              <p>
-                Me encantaría recibir promociones, historias e información de
-                Lovelia
-              </p>
+              <span onClick={handleShowPassword}>
+                {showPassword ? (
+                  <EyeOpen color="#662A80" />
+                ) : (
+                  <EyeClose color="#662A80" />
+                )}
+              </span>
             </div>
-
-            {errorsFromAPI && (
-              <span className="input-helpers-error api-errors">
-                {errorsFromAPI}
+            {singUpForm.touched.password && singUpForm.errors.password && (
+              <span className="input-helpers-error">
+                {singUpForm.errors.password}
               </span>
             )}
-          </div>
-          <button type="submit">
-            {isLoading ? (
-              <BeatLoader color={"white"} speedMultiplier={0.4} />
-            ) : (
-              "REGISTRARME"
-            )}
-          </button>
-        </form>
-      )}
-    </section>
+            <label htmlFor="confirmPassword">Confirmar contraseña</label>
+            <div
+              className={` ${
+                (singUpForm.touched.password && singUpForm.errors.password) ||
+                errorsFromAPI
+                  ? "password-input-wrapper-error "
+                  : "password-input-wrapper"
+              }`}
+            >
+              <input
+                value={singUpForm.values.confirmPassword}
+                onChange={singUpForm.handleChange}
+                onBlur={singUpForm.handleBlur}
+                name="confirmPassword"
+                type={showConfirmPassword ? "text" : "password"}
+                placeholder="Confirmar contraseña"
+              />
+              <span onClick={handleShowConfirmPassword}>
+                {showConfirmPassword ? (
+                  <EyeOpen color="#662A80" />
+                ) : (
+                  <EyeClose color="#662A80" />
+                )}
+              </span>
+            </div>
+            {singUpForm.touched.confirmPassword &&
+            singUpForm.errors.confirmPassword ? (
+              <span className="input-helpers-error">
+                {singUpForm.errors.confirmPassword}
+              </span>
+            ) : !singUpForm.errors.confirmPassword && confirmPasswordError ? (
+              <span className="input-helpers-error">
+                {"La confirmación de contraseña es incorrecta"}
+              </span>
+            ) : null}
+            <div className="login-button-container">
+              <div className="login-recibir-info-container">
+                <input type="checkbox" />
+                <p>
+                  Me encantaría recibir promociones, historias e información de
+                  Lovelia
+                </p>
+              </div>
+
+              {errorsFromAPI && (
+                <span className="input-helpers-error api-errors">
+                  {errorsFromAPI}
+                </span>
+              )}
+            </div>
+            <button type="submit">
+              {isLoading ? (
+                <BeatLoader color={"white"} speedMultiplier={0.4} />
+              ) : (
+                "REGISTRARME"
+              )}
+            </button>
+          </form>
+        )}
+      </section>
     </main>
   );
 }

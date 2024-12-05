@@ -4,10 +4,10 @@
   width: 100vw;
   height: 100vh;
   display: flex;
-  color: $color_primary;
+  color: $color_text1;
 
   :first-child {
-    color: $color_text1;
+    color: $color_darkPurple;
   }
 
   .section1-store-internal-contaner {
@@ -42,30 +42,41 @@
   }
 }
 
+@media screen and (max-width: 1024px) {
+  .section1-store-container {
+    .section1-store-internal-contaner {
+      .section1-store-text-container {
+        > .icon-container {
+          height: 40px;
+        }
+        h2 {
+          font-size: 3rem;
+        }
+      }
+    }
+  }
+}
 
 @media screen and (max-width: 678px) {
   .section1-store-container {
     flex-direction: column;
     padding-top: 10vh;
 
-
     .section1-store-internal-contaner {
       width: 100%;
       height: 50%;
       align-items: end;
       justify-content: center;
-  
-     
-  
+
       .section1-store-text-container {
         position: absolute;
         display: flex;
- 
+
         align-items: center;
-        
+
         z-index: 10;
         margin-bottom: 10%;
-  
+
         > .icon-container {
           height: 40px;
         }

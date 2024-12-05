@@ -1,9 +1,11 @@
 @import "../../styles//variables.scss";
 
+
+
 .mobile-navbar-container{
     position: fixed;
     width: 100vw;
-    height: 10vh;
+    height: 12vh;
     background-color: $color_background2;
     display: flex;
     align-items: center;
@@ -11,16 +13,16 @@
     z-index: 50;
 
     >.icon-container{
-        height: 50%;
+        height: 60%;
         margin-left: 3%;
         margin-right: 5%;
         position: relative;
         >.number-items-container {
-            top: -30%;
-            right: -30%;
+            top: -20%;
+            right: -60%;
             position: absolute;
             background-color: $color_primary;
-            width: 1.6rem;
+            width: 1.5rem;
             aspect-ratio: 1;
             border-radius: 50%;
             display: flex;
@@ -29,7 +31,7 @@
           }
 
           p {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: $color_text1;
             font-weight: 500;
           }
@@ -43,4 +45,54 @@
         }
     }
 
+}
+
+
+@media screen and (max-width: 678px) {
+
+    .mobile-navbar-container{
+        position: fixed;
+        width: 100vw;
+        height: 10vh;
+        background-color: $color_background2;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 50;
+    
+        >.icon-container{
+            height: 50%;
+            margin-left: 3%;
+            margin-right: 5%;
+            position: relative;
+            >.number-items-container {
+                top: -30%;
+                right: -30%;
+                position: absolute;
+                background-color: $color_primary;
+                width: 1.6rem;
+                aspect-ratio: 1;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              }
+    
+              p {
+                font-size: 1.5rem;
+                color: $color_text1;
+                font-weight: 500;
+              }
+           
+        }
+        >.image-container{
+            height: 70%;
+            img{
+                object-fit: cover;
+                height: 100%;
+            }
+        }
+    
+    }
+    
 }

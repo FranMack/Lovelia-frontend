@@ -95,6 +95,104 @@ right: -5%;
     }
 
 
+    @media screen and (max-width: 1024px) {
+
+        .wrapper{
+            position: relative;
+            width: 100%;
+            display: flex;
+        align-items: center;
+        user-select:none;
+        }
+        
+        
+        .wrapper .slider{
+            width: 100%;
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: calc((100% / 3) - 12px);
+            gap: 16px;
+            overflow: auto;
+            scroll-behavior: smooth;
+        }
+        
+        .slider::-webkit-scrollbar{
+            display: none;
+        }
+        
+        .slider.dragging .card{
+            cursor: grab;
+            user-select: none;
+        }
+        
+        
+        .slider .card{
+            scroll-snap-align: start;
+            list-style: none;
+            aspect-ratio: 1;
+            border: solid 2px $color_background1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            cursor:pointer;
+            h4{
+                font-size: 2rem;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                text-align: center;
+               
+            }
+            p{
+                text-align: center;
+                font-family: "Marlin Geo";
+                font-size: 2rem;
+                font-style: normal;
+                font-weight: 300;
+                line-height: normal;
+            }
+        }
+        
+        
+        
+        .card .image{
+            width: 70%;
+            aspect-ratio: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           
+        }
+        .card .image img{
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+        
+        .btn-next, .btn-previous {
+            position: absolute;
+            background-color: rgba($color: $color_primary, $alpha: 0.5);
+            width: 50px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            svg{
+                height: 50%;
+                aspect-ratio: 1;
+            }
+        }
+        
+        .btn-next{
+        right: -5%;
+        }
+        .btn-previous{
+            left: -5%;
+            }
+        
+    }
 
     @media screen and (max-width: 678px) {
 

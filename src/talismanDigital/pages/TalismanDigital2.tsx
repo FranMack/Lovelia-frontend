@@ -1,7 +1,11 @@
+import { useNavigate } from "react-router";
+import { Button } from "../../ui/components";
+import {
+  Position,
+  Template1,
+  Template1Options,
+} from "../../ui/pages/Template1";
 import meditation from "../assets/talisman_digital_meditacion.webp";
-import { Template1 } from "../../ui/pages/Template1";
-import { Template1Options } from "../../ui/pages/Template1";
-import { Position } from "../../ui/pages/Template1";
 
 const templateOptions: Template1Options = {
   image: meditation,
@@ -11,6 +15,10 @@ const templateOptions: Template1Options = {
 };
 
 export const TalismanDigital2 = () => {
+  const navigate = useNavigate();
+  const linkTo = () => {
+    navigate("/buy-digital");
+  };
   return (
     <Template1 {...templateOptions}>
       <div className="talismanDigitalTemplate-container right">
@@ -30,15 +38,18 @@ export const TalismanDigital2 = () => {
             {" "}
             Esta meditación tiene como propósito principal
             <strong>
-            {" "}inducir a la concentración y a la relajación profunda,
+              {" "}
+              inducir a la concentración y a la relajación profunda,
             </strong>{" "}
             ayudando a tu mente a{" "}
             <strong>
-              liberar pensamientos intrusivos,  y guiándola hacia la repetición
+              liberar pensamientos intrusivos, y guiándola hacia la repetición
               de un ciclo continuo.
             </strong>
-           
           </p>
+        </div>
+        <div className="button-container">
+          <Button text="QUIERO MI TALISMÁN" onClick={linkTo} />
         </div>
       </div>
     </Template1>

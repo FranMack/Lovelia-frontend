@@ -64,6 +64,10 @@
       font-size: 1.6rem;
       font-weight: 400;
     }
+
+    &:hover{
+      background-color: rgba($color: $color_primary, $alpha: 0.2);
+    }
   }
 
   
@@ -77,6 +81,7 @@
         stroke:$color_primary
       }
     }
+    
     
   }
   

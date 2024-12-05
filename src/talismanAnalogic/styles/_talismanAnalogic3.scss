@@ -17,6 +17,12 @@
     width: 100%;
     height: 100%;    
   }
+
+  >button{
+    position: absolute;
+    bottom: 2%;
+    right: 10%;
+  }
 }
 
 .section3-talismanAnlaogic-top-container{
@@ -51,6 +57,63 @@
 }
 
 
+
+@media screen and (max-width: 1024px) {
+
+
+  .section3-talismanAnalogic-container{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color:$color_text1;
+    >img{
+      position: absolute;
+      object-fit: cover;
+      z-index: -1;
+      width: 100%;
+      height: 100%;    
+    }
+  }
+  
+  .section3-talismanAnlaogic-top-container{
+    width: 85%;
+    h2{
+      font-size: 2.5rem;
+      font-weight: 300;
+      
+    }
+    .section3-talismanAnlaogic-buttons-container{
+      display: flex;
+      column-gap: 3%;
+      margin-top: 2%;
+      margin-bottom: 2%;
+      button{
+        height: 4rem;
+        font-size: 1.5rem;
+        padding: 0%;
+        padding-inline: 2%;
+        border-radius: 40px;
+      }
+    }
+  }
+  
+  .section3-talismanAnlaogic-center-container{
+    margin-top: 2%;
+    width: 85%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+
+
+}
 
 @media screen and (max-width: 678px) {
 

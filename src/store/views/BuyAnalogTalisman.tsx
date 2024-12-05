@@ -1,7 +1,9 @@
+import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RightNextIcon } from "../../assets/icons/icons";
+import { envs } from "../../config";
 import { ShopingCartContext } from "../../context";
 import { TalismanModelContext } from "../../context/talismanModelContext";
 import { TimerContext } from "../../context/timerContext";
@@ -13,38 +15,36 @@ import { DropdownMenu, DropdownMenuOptions } from "../components/DropdownMenu";
 const modelOptions: DropdownMenuOptions = {
   title: "Modelo",
   options: [
-    { option: "Aura", price: 300 },
-    { option: "Halo", price: 400 },
-    { option: "Bindu", price: 500 },
+    { option: "Aura", price: 3 },
+    { option: "Halo", price: 4 },
+    { option: "Bindu", price: 5 },
   ],
 };
 const materialOptions: DropdownMenuOptions = {
   title: "Metal",
   options: [
-    { option: "Aleación bañada en oro", price: 30 },
-    { option: "Plata 925", price: 20 },
+    { option: "Aleación bañada en oro", price: 1 },
+    { option: "Plata 925", price: 2 },
   ],
 };
 
 const piedraOptions: DropdownMenuOptions = {
   title: "Piedra",
   options: [
-    { option: "Lapislázuli", price: 15 },
-    { option: "Labradorita", price: 15 },
-    { option: "Turquesa", price: 25 },
-    { option: "Obsidiana dorada", price: 30 },
-    { option: "Rodocrosita", price: 45 },
-    { option: "Onix blanco", price: 20 },
+    { option: "Lapislázuli", price: 1 },
+    { option: "Labradorita", price: 1 },
+    { option: "Turquesa", price: 2 },
+    { option: "Onix Negro", price: 3 },
+    { option: "Rodocrosita", price: 4 },
+    { option: "Onix Blanco", price: 2 },
   ],
 };
 
 const chainOptions: DropdownMenuOptions = {
   title: "Colgante",
   options: [
-    { option: "Cadena de plata", price: 20 },
-    { option: "Cadena de plata bañada en oro", price: 15 },
-    { option: "Tiento café", price: 10 },
-    { option: "Tiento negro", price: 5 },
+    { option: "Cadena", price: 2 },
+    { option: "Tiento", price: 1 },
   ],
 };
 
@@ -62,19 +62,35 @@ const intencionOptions: DropdownMenuOptions = {
   ],
 };
 
- function BuyAnalogTalisman() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+interface Product {
+  model: string;
+  metal: string;
+  rock: string;
+  chain: string;
+  price: number;
+  stock: number;
+  images: string[]; // Array de URLs como strings
+  id: string; // Identificador único (asumimos que es un string)
+}
 
+const initialValue: Product = {
+  model: "",
+  metal: "",
+  rock: "",
+  chain: "",
+  price: 0,
+  stock: 0,
+  images: [],
+  id: "",
+};
 
-
+function BuyAnalogTalisman() {
   const { toggleMenu, setShopingCartItems } = useContext(ShopingCartContext);
 
   const [index, setIndex] = useState<number>(0);
 
   const nextIndex = () => {
-    if (index < ejemploTalismanesAnalogicos.length - 1) {
+    if (index < product.images.length - 1) {
       setIndex(index + 1);
     } else {
       setIndex(0);
@@ -84,7 +100,7 @@ const intencionOptions: DropdownMenuOptions = {
     if (index > 0) {
       setIndex(index - 1);
     } else {
-      setIndex(ejemploTalismanesAnalogicos.length - 1);
+      setIndex(product.images.length - 1);
     }
   };
 
@@ -130,7 +146,7 @@ const intencionOptions: DropdownMenuOptions = {
         rock: optionRock,
         chain: optionChain,
         intention: optionIntention,
-        image: ejemploTalismanesAnalogicos[0].image,
+        image: product.images[0],
         price: priceModel + priceMaterial + priceRock + priceChain,
         quantity: 1,
       };
@@ -158,80 +174,132 @@ const intencionOptions: DropdownMenuOptions = {
     }
   };
 
-  const{activatedAlarm}=useContext(TimerContext)
-  const {shopingCartOpen}=useContext(ShopingCartContext)
+  const { activatedAlarm } = useContext(TimerContext);
+  const { shopingCartOpen } = useContext(ShopingCartContext);
 
+  const [product, setProduct] = useState<Product>(initialValue);
+  const [listOfProducts, setListOfProducts] = useState<Product[]>([]);
+  console.log("xxxxxxxxxxxxxxx", listOfProducts);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    axios
+      .get(`${envs.API_DOMAIN}/api/v1/product/get-list-of-products`)
+      .then((response) => {
+        setListOfProducts(response.data);
+        setProduct(response.data[0]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (optionModel || optionRock || optionChain || optionMaterial) {
+      const model = optionModel ? optionModel : "Aura";
+      const rock = optionRock ? optionRock : "Labradorita";
+      const chain = optionChain ? optionChain : "Cadena";
+      const metal = optionMaterial ? optionMaterial : "Aleación bañada en oro";
+
+      const filter = listOfProducts.find((item) => {
+        if (
+          item.model === model &&
+          item.rock === rock &&
+          item.chain === chain &&
+          item.metal === metal
+        ) {
+          return item;
+        }
+      });
+      if (filter) {
+        setProduct(filter!);
+      }
+
+      return;
+    }
+  }, [optionModel, optionRock, optionChain, optionMaterial]);
 
   return (
-    <main className={activatedAlarm || shopingCartOpen ? "viewport-background":""}>
-    <section className="custonTalisman-container efectoReveal">
-      <div className="custonTalisman-internal-container left">
-        <img
-          src={ejemploTalismanesAnalogicos[index].image}
-          alt={ejemploTalismanesAnalogicos[index].title}
-        />
+    <main
+      className={activatedAlarm || shopingCartOpen ? "viewport-background" : ""}
+    >
+      <section className="custonTalisman-container efectoReveal">
+        <div className="custonTalisman-internal-container left">
+          <img
+            src={product.images[index]}
+            alt={ejemploTalismanesAnalogicos[index].title}
+          />
 
-        <div className="custonTalisman-internal-bullet-container">
-          {ejemploTalismanesAnalogicos.map((item, i) => {
-            return (
-              <div
-                className={index === i ? "bullet-visible" : "bullet"}
-                key={i}
-              >
-                <img src={item.image} alt={item.title} />
-              </div>
-            );
-          })}
-        </div>
-        <div
-          onClick={previousIndex}
-          className="custonTalisman-internal-arrow-container left"
-        >
-          <RightNextIcon />
-        </div>
-        <div
-          onClick={nextIndex}
-          className="custonTalisman-internal-arrow-container"
-        >
-          <RightNextIcon />
-        </div>
-      </div>
-
-      <div
-        className="custonTalisman-internal-container right"
-        style={{
-          backgroundColor: dropdownIntensiones.openModal ? "#EDC7B9" : "",
-        }}
-      >
-        <div
-          className="custonTalisman-internal-center-container"
-          style={{ opacity: dropdownIntensiones.openModal ? "0.5" : "1" }}
-        >
-          <h2>Inicio /Tienda /Talismán analógico</h2>
-
-          <h3>Talismán Analógico</h3>
-          <h5>
-            ${(priceModel + priceMaterial + priceRock + priceChain).toFixed(2)}
-          </h5>
-
-          <div className="options-container">
-            <DropdownMenu {...modelOptions} />
-            <DropdownMenu {...materialOptions} />
-            <DropdownMenu {...piedraOptions} />
-            <DropdownMenu {...chainOptions} />
-            <DropdownMenu {...intencionOptions} />
+          <div className="custonTalisman-internal-bullet-container">
+            {product.images.map((item, i) => {
+              return (
+                <div
+                  className={index === i ? "bullet-visible" : "bullet"}
+                  key={i}
+                >
+                  <img
+                    src={item}
+                    alt={`${product.model} ${product.metal} ${product.rock} ${product.chain}`}
+                  />
+                </div>
+              );
+            })}
           </div>
-
-          <div className="buttons-container">
-            <Button
-              onClick={addToShopingCart}
-              text="Agregar al carrito de compras"
-            />
-          
+          <div
+            onClick={previousIndex}
+            className="custonTalisman-internal-arrow-container left"
+          >
+            <RightNextIcon />
+          </div>
+          <div
+            onClick={nextIndex}
+            className="custonTalisman-internal-arrow-container"
+          >
+            <RightNextIcon />
           </div>
         </div>
-      </div>
-    </section>
+
+        <div
+          className="custonTalisman-internal-container right"
+          style={{
+            backgroundColor: dropdownIntensiones.openModal ? "#EDC7B9" : "",
+          }}
+        >
+          <div
+            className="custonTalisman-internal-center-container"
+            style={{ opacity: dropdownIntensiones.openModal ? "0.5" : "1" }}
+          >
+            <h2>Inicio /Tienda /Talismán analógico</h2>
+
+            <h3>Talismán Analógico</h3>
+            <h5>
+              {optionModel && optionRock && optionChain && optionMaterial
+                ? `$${(
+                    priceModel +
+                    priceMaterial +
+                    priceRock +
+                    priceChain
+                  ).toFixed(2)}`
+                : "Para ver el precio, arma tu talismán "}
+            </h5>
+
+            <div className="options-container">
+              <DropdownMenu {...modelOptions} />
+              <DropdownMenu {...materialOptions} />
+              <DropdownMenu {...piedraOptions} />
+              <DropdownMenu {...chainOptions} />
+              <DropdownMenu {...intencionOptions} />
+            </div>
+
+            <div className="buttons-container">
+              <Button
+                onClick={addToShopingCart}
+                text="Agregar al carrito de compras"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

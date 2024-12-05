@@ -10,11 +10,13 @@ import planetario from "../assets/tones/planetario.png";
 import espectral from "../assets/tones/espectral.png";
 import cristal from "../assets/tones/cristal.png";
 import cosmico from "../assets/tones/cosmico.png";
+import electrico from "../assets/tones/electrico.png"
 
 
 export const talismanTones = [
     { tone: "magnetico", path: magnetico },
     { tone: "lunar", path: lunar },
+    { tone: "electrico", path: electrico },
     { tone: "autoexistente", path: autoexistente },
     { tone: "entonado", path: entonado },
     { tone: "ritmico", path: ritmico },

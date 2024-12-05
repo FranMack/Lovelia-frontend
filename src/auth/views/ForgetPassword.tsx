@@ -8,8 +8,7 @@ import { envs } from "../../config";
 import { BackgroundVideo } from "../../ui/components";
 import { AuthPopUp } from "../components/AuthPopUp";
 
-
- function ForgetPassword() {
+function ForgetPassword() {
   const navigate = useNavigate();
   const linkToLogin = () => {
     navigate("/login");
@@ -31,55 +30,43 @@ import { AuthPopUp } from "../components/AuthPopUp";
   const [isLoading, setIsLoading] = useState(false);
   const [popUp, setPopUp] = useState<boolean>(false);
 
-
   //other errors
   const [errorsFromAPI, setErrorsFromAPI] = useState<string>("");
 
-
- 
-
-
   const singUpForm = useFormik({
     initialValues: {
-     
       email: "",
     },
     validationSchema: Yup.object({
-    email: Yup.string().required("Campo requerido").email("Email no valido"),
-
+      email: Yup.string().required("Campo requerido").email("Email no valido"),
     }),
 
     onSubmit: (values) => {
-
-      if(isLoading){
-        return
+      if (isLoading) {
+        return;
       }
 
       axios
-      .post(
-        `${envs.API_DOMAIN}/api/v1/user/forgetPassword`,
-        {
-          email:values.email,
-        },
-        { withCredentials: true }
-      )
-      .then(({ data }) => {
-        console.log(data);
-        setPopUp(true);
-        singUpForm.resetForm()
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setIsLoading(false);
-        setErrorsFromAPI(error.response.data.error);
-      });
-
-   
+        .post(
+          `${envs.API_DOMAIN}/api/v1/user/forgetPassword`,
+          {
+            email: values.email,
+          },
+          { withCredentials: true }
+        )
+        .then(({ data }) => {
+          console.log(data);
+          setPopUp(true);
+          singUpForm.resetForm();
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+          setIsLoading(false);
+          setErrorsFromAPI(error.response.data.error);
+        });
     },
   });
-
-
 
   return (
     <section className="login-container efectoReveal">
@@ -88,40 +75,48 @@ import { AuthPopUp } from "../components/AuthPopUp";
       {popUp ? (
         <AuthPopUp {...popUpInfo} />
       ) : (
-        <form onSubmit={singUpForm.handleSubmit} className="login-form" action="">
+        <form
+          onSubmit={singUpForm.handleSubmit}
+          className="login-form"
+          action=""
+        >
           <h3>¿OLVIDASTE TU CONTRASEÑA?</h3>
           <h6>
             Ingresá la dirección de correo con la que te registraste a Lovelia y
             te enviaremos las instrucciones para restablecerla.
           </h6>
           <input
-        value={singUpForm.values.email}
-        onChange={singUpForm.handleChange}
-        onBlur={singUpForm.handleBlur}
+            value={singUpForm.values.email}
+            onChange={singUpForm.handleChange}
+            onBlur={singUpForm.handleBlur}
             name="email"
             type="email"
             placeholder="Dirección de correo electrónico"
-            className={singUpForm.touched.email &&
-              singUpForm.errors.email ||errorsFromAPI ? "input-error":""}
+            className={
+              (singUpForm.touched.email && singUpForm.errors.email) ||
+              errorsFromAPI
+                ? "input-error"
+                : ""
+            }
           />
-          { singUpForm.touched.email &&
-              singUpForm.errors.email && (
-                <>
-            <span className="input-helpers-error">{singUpForm.errors.email}</span>
-            <br/>
+          {singUpForm.touched.email && singUpForm.errors.email && (
+            <>
+              <span className="input-helpers-error">
+                {singUpForm.errors.email}
+              </span>
+              <br />
             </>
           )}
 
-{errorsFromAPI && (
-  <>
-              <br/>
+          {errorsFromAPI && (
+            <>
+              <br />
               <span className="input-helpers-error api-errors">
                 {errorsFromAPI}
               </span>
-              <br/>
-              </>
-            )}
-          
+              <br />
+            </>
+          )}
 
           <button type="submit">
             {isLoading ? (

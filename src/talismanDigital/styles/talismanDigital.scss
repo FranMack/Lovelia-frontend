@@ -1,65 +1,111 @@
 @import "../../styles//variables.scss";
 
-.talismanDigitalTemplate-container.right{
+.talismanDigitalTemplate-container.right {
   display: flex;
-  
- justify-content: center;
- width:57%;
+  flex-direction: column;
+  align-items: center;
+  width: 57%;
+  row-gap: 2vh;
+  > .button-container {
+    width: 70%;
+    button {
+      background-color: $color_primary;
+      border: none;
+    }
+  }
 
-  .talismanDigitalTemplate-internal-text-container{
-  
-    width:70%;
-    h2{
+  .talismanDigitalTemplate-internal-text-container {
+    width: 70%;
+
+    h2 {
       font-size: 3.6rem;
       font-weight: 400;
       margin-bottom: 5%;
     }
-    >p{
+    > p {
       font-size: 1.8rem;
       font-family: $font_paragrahp;
       font-weight: 400;
       margin-bottom: 2%;
       line-height: 30px; /* 128.571% */
-      span{
+      span {
         font-family: $font_titles;
-        text-transform:uppercase;
+        text-transform: uppercase;
       }
     }
-    .button-wrapper{
+    .button-wrapper {
       margin-top: 5%;
     }
   }
- 
 }
 
 
-@media screen and (max-width: 678px) {
-  .talismanDigitalTemplate-container.right{
-  
-   width:80%;
-  
-    .talismanDigitalTemplate-internal-text-container{
-    width: 100%;
- 
-      h2{
-    
-        font-size: 2.5rem;
-   
-        >.icon-container{
-height: 40px;
-        }
-      }
-      >p{
-        font-size: 1.8rem;
+@media screen and (max-width: 1024px) {
 
+  .talismanDigitalTemplate-container.right {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    row-gap: 3vh;
+    > .button-container {
+      width: 70%;
+      button {
+        background-color: $color_primary;
+        border: none;
+      }
+    }
+  
+    .talismanDigitalTemplate-internal-text-container {
+      width: 85%;
+  
+      h2 {
+        font-size: 2.5rem;
     
       }
-      .button-wrapper{
+      > p {
+        font-size: 1.5rem;
+    
+      }
+      .button-wrapper {
         margin-top: 5%;
       }
     }
-   
   }
-  
+
+
 }
 
+
+
+
+
+@media screen and (max-width: 678px) {
+  .talismanDigitalTemplate-container.right {
+    width: 80%;
+
+    > .button-container {
+      width: 100%;
+      button {
+        margin: 0 auto;
+        width: 100%;
+      }
+    }
+
+    .talismanDigitalTemplate-internal-text-container {
+      width: 100%;
+
+      h2 {
+        font-size: 2.5rem;
+
+        > .icon-container {
+          height: 40px;
+        }
+      }
+      > p {
+        font-size: 1.8rem;
+      }
+      .button-wrapper {
+        margin-top: 5%;
+      }
+    }
+  }
+}

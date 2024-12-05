@@ -1,11 +1,22 @@
-import chain1 from "./colgante1.webp";
-import chain2 from "./colgante2.webp";
+import aura_cadena_oro from "./aura_cadena_oro.png";
+import aura_cadena_plata from "./aura_cadena_plata.png";
+import aura_tiento_oro from "./aura_tiento_oro.png";
 
+export const infoChains = [
+  {
+    image: aura_cadena_oro,
+    title: "Cadena de plata bañada en oro",
+    text: "La intuición es la guía del Alma",
+  },
+  {
+    image: aura_cadena_plata,
+    title: "Cadena de plata",
+    text: "La intuición es la guía del Alma.",
+  },
 
-export const infoChains=[
-    {image:chain1,title:"Cadena de plata",text:"La intuición es la guía del Alma."},
-{image:chain2,title:"Cadena de plata bañada en oro",text:"La intuición es la guía del Alma"},
-{image:chain1,title:"Tiento café",text:"La intuición es la guía del Alma."},
-{image:chain2,title:"Tiento negro",text:"La intuición es la guía del Alma"},
-
-]
+  {
+    image: aura_tiento_oro,
+    title: "Tiento negro",
+    text: "La intuición es la guía del Alma",
+  },
+];

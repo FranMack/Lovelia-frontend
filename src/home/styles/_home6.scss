@@ -25,6 +25,31 @@
   }
 }
 
+@media screen and (max-width: 1024px) {
+  
+  .section6-home-internal-container.left {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  
+    .section6-home-internal-text-container {
+      width: fit-content;
+  
+      > p {
+        font-size: 1.5rem;
+        font-weight: lighter;
+        margin-bottom: 2%;
+        line-height: 3rem; /* 128.571% */
+        text-align: end;
+        text-transform: uppercase;
+        span {
+          font-family: $font_titles;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 678px) {
   
   .section6-home-internal-container.left {

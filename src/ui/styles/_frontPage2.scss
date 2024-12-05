@@ -1,7 +1,5 @@
 @import "../../styles/variables.scss";
 
-
-
 .frontPage2-container {
   width: 100vw;
   height: 100vh;
@@ -44,15 +42,39 @@
   }
 }
 
+@media screen and (max-width: 1024px) {
+  .frontPage2-text-container {
+    margin-bottom: 5%;
+    padding-top: 12vh;
+    h2 {
+      display: flex;
+      align-items: center;
+
+      font-size: 5rem;
+      font-weight: 400;
+
+      > .icon-container {
+        height: 5rem;
+        display: flex;
+      }
+    }
+    h3 {
+      margin-top: 4%;
+      font-size: 2.5rem;
+      font-weight: 400;
+    }
+  }
+}
+
 @media screen and (max-width: 678px) {
-  .frontPage2-container{
+  .frontPage2-container {
     padding-top: 10vh;
-  
+
     justify-content: center;
   }
   .frontPage2-text-container {
     margin-bottom: 5%;
-    
+
     h2 {
       display: flex;
       font-size: 4.4rem;
@@ -71,10 +93,7 @@
   }
 
   .frontPage2-center-container {
- 
-    position:relative;
+    position: relative;
     left: 0;
-
-
   }
 }

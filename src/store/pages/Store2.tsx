@@ -1,4 +1,4 @@
-import { infoTalismanes } from "../assets/talismansInfo"
+import { infoTalismanes } from "../assets/talismansInfoExample"
 import { LazyImage } from "../../ui/components"
 import { useNavigate } from "react-router"
 

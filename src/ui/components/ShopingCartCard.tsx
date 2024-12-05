@@ -50,7 +50,7 @@ const{setShopingCartItems,shopingCartItems} =useContext(ShopingCartContext)
       </div>
 
       <div className="card-td">
-        <strong>Meditación visutal</strong>
+        <strong>Meditación visual</strong>
        <p>Animación 3D única</p>
        
       </div>
