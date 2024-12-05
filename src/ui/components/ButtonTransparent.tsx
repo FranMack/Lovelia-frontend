@@ -1,4 +1,4 @@
-export interface OptionsButton {
+interface OptionsButton {
   text: string;
   onClick?: () => void;
   backgroundColor?: string;

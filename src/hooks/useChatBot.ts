@@ -109,11 +109,17 @@ export const useChatBot = () => {
           },
         );
       } catch (error: unknown) {
-        if (error.response?.status === 429 && attempt < retries - 1) {
-          console.log(`Retrying request (${attempt + 1}/${retries})...`);
-          await new Promise(resolve => setTimeout(resolve, delay));
+        if (axios.isAxiosError(error)) {
+          // Handle Axios error
+          if (error.response?.status === 429 && attempt < retries - 1) {
+            console.log(`Retrying request (${attempt + 1}/${retries})...`);
+            await new Promise(resolve => setTimeout(resolve, delay));
+          } else {
+            throw error;
+          }
         } else {
-          throw error;
+          // Handle generic error
+          console.error('Unexpected error:', error);
         }
       }
     }
