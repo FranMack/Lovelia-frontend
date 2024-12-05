@@ -8,7 +8,24 @@ export default defineConfig({
     registerType: 'autoUpdate',
     workbox: {
       clientsClaim: true,
-      skipWaiting: true
+      skipWaiting: true,
+      runtimeCaching: [
+        {
+          // Match URLs to cache
+          urlPattern: /^https:\/\/lovelia\.org\/public\/.*$/,
+          handler: "CacheFirst", // Use cache first before making network requests
+          options: {
+            cacheName: "lovelia-cdn-files", // Custom cache name
+            expiration: {
+              maxEntries: 10, // Maximum number of entries to keep
+              maxAgeSeconds: 30 * 24 * 60 * 60, // Cache expiration: 30 days
+            },
+            cacheableResponse: {
+              statuses: [200], // Cache only successful responses
+            },
+          },
+        },
+      ],
     },
     // Enable in development for testing
     //devOptions: {

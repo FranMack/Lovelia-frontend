@@ -25,3 +25,6 @@ dist-ssr
 
 # archivo variables entorno
 envs.ts
+
+# Variables de entorno
+.env

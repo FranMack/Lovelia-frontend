@@ -1,72 +1,72 @@
-import { onMessage } from "firebase/messaging";
-import { Suspense, lazy } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
-import { messaging } from "./config/firebase.ts"; // Import the messaging object
-import { Loader } from "./ui/pages/Loader.tsx";
+import {onMessage} from 'firebase/messaging';
+import {Suspense, lazy} from 'react';
+import {Route, Routes, useLocation} from 'react-router-dom';
+import {messaging} from './config/firebase.ts'; // Import the messaging object
+import {Loader} from './ui/pages/Loader.tsx';
 
-const Home = lazy(() => import("./home/views/Home"));
-const TalismanInfo = lazy(() => import("./talisman/views/TalismanInfo.tsx"));
+const Home = lazy(() => import('./home/views/Home'));
+const TalismanInfo = lazy(() => import('./talisman/views/TalismanInfo.tsx'));
 const TalismanAnalogic = lazy(
-  () => import("./talismanAnalogic/views/TalismanAnalogic.tsx")
+  () => import('./talismanAnalogic/views/TalismanAnalogic.tsx'),
 );
 const TalismanDigital = lazy(
-  () => import("./talismanDigital/views/TalismanDigital.tsx")
+  () => import('./talismanDigital/views/TalismanDigital.tsx'),
 );
-const Meditations = lazy(() => import("./meditations/views/Meditations.tsx"));
-const Intentions = lazy(() => import("./intentions/views/Intentions.tsx"));
+const Meditations = lazy(() => import('./meditations/views/Meditations.tsx'));
+const Intentions = lazy(() => import('./intentions/views/Intentions.tsx'));
 const IntentionInfo = lazy(
-  () => import("./intentions/views/IntentionInfo.tsx")
+  () => import('./intentions/views/IntentionInfo.tsx'),
 );
 
-const Store = lazy(() => import("./store/views/Store.tsx"));
+const Store = lazy(() => import('./store/views/Store.tsx'));
 const BuyAnalogTalisman = lazy(
-  () => import("./store/views/BuyAnalogTalisman.tsx")
+  () => import('./store/views/BuyAnalogTalisman.tsx'),
 );
 const BuyDigitalTalisman = lazy(
-  () => import("./store/views/BuyDigitalTalisman.tsx")
+  () => import('./store/views/BuyDigitalTalisman.tsx'),
 );
-const Blog = lazy(() => import("./blog/views/Blog.tsx"));
-const BlogNote = lazy(() => import("./blog/views/BlogNote.tsx"));
-const Contact = lazy(() => import("./contact/views/Contact.tsx"));
-const Profile = lazy(() => import("./profile/views/Profile.tsx"));
-const SiteTerms = lazy(() => import("./siteTerms/views/SiteTerms.tsx"));
-const PrivacyTerms = lazy(() => import("./siteTerms/views/PrivacyTerms.tsx"));
+const Blog = lazy(() => import('./blog/views/Blog.tsx'));
+const BlogNote = lazy(() => import('./blog/views/BlogNote.tsx'));
+const Contact = lazy(() => import('./contact/views/Contact.tsx'));
+const Profile = lazy(() => import('./profile/views/Profile.tsx'));
+const SiteTerms = lazy(() => import('./siteTerms/views/SiteTerms.tsx'));
+const PrivacyTerms = lazy(() => import('./siteTerms/views/PrivacyTerms.tsx'));
 const ChangesAndWarranty = lazy(
-  () => import("./siteTerms/views/ChangesAndWarranty.tsx")
+  () => import('./siteTerms/views/ChangesAndWarranty.tsx'),
 );
 const MainteneneTalisman = lazy(
-  () => import("./siteTerms/views/MainteneneTalisman.tsx")
+  () => import('./siteTerms/views/MainteneneTalisman.tsx'),
 );
 
-const Register = lazy(() => import("./auth/views/Register.tsx"));
-const Login = lazy(() => import("./auth/views/Login.tsx"));
-const ForgetPassword = lazy(() => import("./auth/views/ForgetPassword.tsx"));
-const NewPassword = lazy(() => import("./auth/views/NewPassword.tsx"));
-const AuthFrontPage = lazy(() => import("./auth/views/AuthFrontPage.tsx"));
+const Register = lazy(() => import('./auth/views/Register.tsx'));
+const Login = lazy(() => import('./auth/views/Login.tsx'));
+const ForgetPassword = lazy(() => import('./auth/views/ForgetPassword.tsx'));
+const NewPassword = lazy(() => import('./auth/views/NewPassword.tsx'));
+const AuthFrontPage = lazy(() => import('./auth/views/AuthFrontPage.tsx'));
 
-const MyTalisman = lazy(() => import("./myTalisman/views/MyTalisman.tsx"));
+const MyTalisman = lazy(() => import('./myTalisman/views/MyTalisman.tsx'));
 const CheckOutAnalogic = lazy(
-  () => import("./checkout/views/CheckOutAnalogic.tsx")
+  () => import('./checkout/views/CheckOutAnalogic.tsx'),
 );
 const CheckOutDigital = lazy(
-  () => import("./checkout/views/CheckOutDigital.tsx")
+  () => import('./checkout/views/CheckOutDigital.tsx'),
 );
 
 const WelcomeRegister = lazy(
-  () => import("./wellcome/views/WelcomeRegister.tsx")
+  () => import('./wellcome/views/WelcomeRegister.tsx'),
 );
 const ValidateEmailTokenExpired = lazy(
-  () => import("./wellcome/views/ValidateEmailTokenExpired.tsx")
+  () => import('./wellcome/views/ValidateEmailTokenExpired.tsx'),
 );
 const WelcomeDigital = lazy(
-  () => import("./wellcome/views/WelcomeDigital.tsx")
+  () => import('./wellcome/views/WelcomeDigital.tsx'),
 );
 
 const ActivationAnalogic = lazy(
-  () => import("./talismanAnalogic/views/ActivationAnalogic.tsx")
+  () => import('./talismanAnalogic/views/ActivationAnalogic.tsx'),
 );
 
-import { AlarmPopUp } from "./ui/components/AlarmPopUp.tsx";
+import {AlarmPopUp} from './ui/components/AlarmPopUp.tsx';
 
 import {
   Footer,
@@ -74,57 +74,61 @@ import {
   MobileMenu,
   MobileNavbar,
   Navbar,
-} from "./ui/components";
+} from './ui/components';
 
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import { ToastContainer } from "react-toastify";
-import { envs } from "./config/envs.ts";
-import { MobileMenuContext } from "./context/mobileMenuContext.tsx";
-import { ShopingCartContext } from "./context/modalShopingCartContext.tsx";
-import { TimerContext } from "./context/timerContext.tsx";
-import { UserContext } from "./context/userContext.tsx";
-import useRequestPermission from "./hooks/useRequestPermission.ts";
-import { PrivateRoute, PublicRoute } from "./router";
-import { ShopingCart } from "./ui/components/ShopingCart.tsx";
+import axios from 'axios';
+import {useContext, useEffect, useState} from 'react';
+import {ToastContainer} from 'react-toastify';
+import {envs} from './config/envs.ts';
+import {MobileMenuContext} from './context/mobileMenuContext.tsx';
+import {ShopingCartContext} from './context/modalShopingCartContext.tsx';
+import {TimerContext} from './context/timerContext.tsx';
+import {UserContext} from './context/userContext.tsx';
+import useRequestPermission from './hooks/useRequestPermission.ts';
+import {PrivateRoute, PublicRoute} from './router';
+import {ShopingCart} from './ui/components/ShopingCart.tsx';
 
 function App() {
+<<<<<<< HEAD
   const { shopingCartOpen, setShopingCartItems } =
     useContext(ShopingCartContext);
   const { /*email,*/ setEmail, setId, setName, setLastname, setSuscription,setTalismanActivated } =
+=======
+  const {shopingCartOpen, setShopingCartItems} = useContext(ShopingCartContext);
+  const {/*email,*/ setEmail, setId, setName, setLastname, setSuscription} =
+>>>>>>> 8d1c62b84459e49740520896b78c7febbc2a1ef1
     useContext(UserContext);
 
-const{activatedAlarm,setActivatedAlarm}=useContext(TimerContext)
-  
-    const[alarmUrl,setAlarmUrl]=useState<string>("")
-     // Request permission to receive notifications
+  const {activatedAlarm, setActivatedAlarm} = useContext(TimerContext);
+
+  const [alarmUrl, setAlarmUrl] = useState<string>('');
+  // Request permission to receive notifications
   useRequestPermission();
 
   useEffect(() => {
-
-     // Listen for messages when the app is in the foreground
-     const unsubscribe = onMessage(messaging, (payload) => {
-      console.log("Message received in the foreground: ", payload);
-      if(payload.data){
-        setAlarmUrl(payload.data.soundUrl)
-        setActivatedAlarm(true)
+    // Listen for messages when the app is in the foreground
+    const unsubscribe = onMessage(messaging, payload => {
+      console.log('Message received in the foreground: ', payload);
+      if (payload.data) {
+        setAlarmUrl(payload.data.soundUrl);
+        setActivatedAlarm(true);
       }
-      
-      
     });
-    const shopingCartJSON = localStorage.getItem("shopingCart") || "[]";
+    const shopingCartJSON = localStorage.getItem('shopingCart') || '[]';
 
-    const fcmToken = localStorage.getItem("fcmToken");
+    const fcmToken = localStorage.getItem('fcmToken');
     setShopingCartItems(JSON.parse(shopingCartJSON));
     axios
-      .get(`${envs.API_DOMAIN}/api/v1/user/me/${fcmToken}`, { withCredentials: true })
-      .then(({ data }) => {
+      .get(`${envs.API_DOMAIN}/api/v1/user/me/${fcmToken}`, {
+        withCredentials: true,
+      })
+      .then(({data}) => {
         setEmail(data.email);
         setId(data.id);
         setName(data.name);
         setLastname(data.lastname);
         const subscription = JSON.parse(
-          localStorage.getItem("subscriptionActive") || "false"
+          localStorage.getItem('subscriptionActive') || 'false',
         );
 
         const talismanActivated = JSON.parse(
@@ -134,16 +138,13 @@ const{activatedAlarm,setActivatedAlarm}=useContext(TimerContext)
         setSuscription(subscription);
         setTalismanActivated(talismanActivated)
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
       });
 
-
-      return () => {
-        unsubscribe();
-      };
-
-
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   const location = useLocation().pathname;
@@ -153,11 +154,11 @@ const{activatedAlarm,setActivatedAlarm}=useContext(TimerContext)
   useEffect(() => {
     const handleWindowSize = () => setWindowSize(window.innerWidth);
 
-    window.addEventListener("resize", handleWindowSize);
-    return () => window.removeEventListener("resize", handleWindowSize);
+    window.addEventListener('resize', handleWindowSize);
+    return () => window.removeEventListener('resize', handleWindowSize);
   }, []);
 
-  const { menuOpen, toggleMenu, menuRef } = useContext(MobileMenuContext);
+  const {menuOpen, toggleMenu, menuRef} = useContext(MobileMenuContext);
 
   const handleClickOutside = (event: MouseEvent) => {
     const target = event.target as HTMLElement; // Convertir event.target a HTMLElement
@@ -165,7 +166,7 @@ const{activatedAlarm,setActivatedAlarm}=useContext(TimerContext)
     if (
       menuOpen &&
       menuRef!.current &&
-      target.id !== "menu-hamburguesa-icon" &&
+      target.id !== 'menu-hamburguesa-icon' &&
       !menuRef!.current.contains(target)
     ) {
       toggleMenu();
@@ -174,27 +175,23 @@ const{activatedAlarm,setActivatedAlarm}=useContext(TimerContext)
 
   useEffect(() => {
     if (menuOpen) {
-      document.addEventListener("click", handleClickOutside);
+      document.addEventListener('click', handleClickOutside);
 
       return () => {
         // Eliminar el event listener cuando el componente se desmontefS
-        document.removeEventListener("click", handleClickOutside);
+        document.removeEventListener('click', handleClickOutside);
       };
     }
   }, [menuOpen]);
 
- 
-
-
-
   return (
     <>
-      <ToastContainer style={{ fontSize: "1.6rem" }} />
-      {location !== "/myTalisman" && windowSize >= 1024 && <Navbar />}
-      {location !== "/myTalisman" && windowSize < 1024 && <MobileNavbar />}
+      <ToastContainer style={{fontSize: '1.6rem'}} />
+      {location !== '/myTalisman' && windowSize >= 1024 && <Navbar />}
+      {location !== '/myTalisman' && windowSize < 1024 && <MobileNavbar />}
       {shopingCartOpen && <ShopingCart />}
       <MobileMenu />
-     {activatedAlarm && <AlarmPopUp alarmUrl={alarmUrl}/>}
+      {activatedAlarm && <AlarmPopUp alarmUrl={alarmUrl} />}
       <Routes>
         <Route
           path="/"
