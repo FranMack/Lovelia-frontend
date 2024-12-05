@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 @import "./variables.scss";
 @import "../home/styles/home1";
 @import "../home/styles/home3";
@@ -77,84 +77,8 @@
 @import "../myTalisman/styles/constellationBox";
 @import "../talismanAnalogic//styles/activationAnalogic";
 @import "../siteTerms/styles/siteTerms";
-=======
-@import './variables.scss';
-@import '../home/styles/home1';
-@import '../home/styles/home3';
-@import '../home/styles/home4';
-@import '../home/styles/home5';
-@import '../home/styles/home6';
-@import '../home/styles/home7';
-@import '../ui/styles/backgroundVideo.scss';
-@import '../ui/styles/buttonArrowRight.scss';
-@import '../ui/styles/buttonTransparent.scss';
-@import '../ui/styles/footer';
-@import '../ui/styles/navbar';
-@import '../ui/styles/frontPage';
-@import '../ui/styles/frontPage2';
-@import '../ui/styles/template1';
-@import '../ui/styles/buttonArrowRight2.scss';
-@import '../ui/styles/button';
-@import '../ui/styles/buttonArrowUp';
-@import '../ui/styles/shopingCart';
-@import '../ui/styles/navbarDropDown';
-@import '../ui/styles/mobileFooter';
-@import '../ui/styles/dropDownFooter';
-@import '../ui/styles/mobileNavbar';
-@import '../ui/styles/mobileMenu';
-@import '../ui/styles/mercadoPagoCheckoutForm';
-@import '../ui/styles/popUp';
-@import '../ui/styles/dropDownMobileMenu.scss';
-@import '../ui/styles//loader';
-@import '../ui/styles/alarmPopUp';
-@import '../talisman/styles//talismanInfo3';
-@import '../talismanDigital/styles/talismanDigital.scss';
-@import '../talismanDigital/styles/talismanDigital7.scss';
-@import '../meditations/styles//meditations2';
-@import '../meditations/styles//meditations3';
-@import '../meditations/styles/gridMeditations';
-@import '../intentions//styles//intentions3';
-@import '../intentions//styles/gridIntentions';
-@import '../intentions//styles/intentionInfo';
-@import '../talismanAnalogic//styles/talismanAnalogic2';
-@import '../talismanAnalogic//styles/talismanAnalogic3';
-@import '../talismanAnalogic//styles/talismanAnalogic4';
-@import '../talismanAnalogic//styles/slider';
-@import '../store//styles/store1';
-@import '../store//styles/store2';
-@import '../store//styles/store2b';
-@import '../store//styles/store3';
-@import '../store//styles/dropDownIntensiones';
-@import '../store//styles/dropDownMenu';
-@import '../store//styles/dropDownInfo';
-@import '../store//styles/buyAnalogTalisman';
-@import '../store//styles/buyDigitalTalisman';
-@import '../blog//styles//blog2';
-@import '../blog//styles//blog3';
-@import '../blog//styles/templateBlog';
-@import '../blog/styles/blogNote';
-@import '../auth//styles//login';
-@import '../auth//styles/authFrontPage';
-@import '../auth//styles/authPopUp';
-@import '../contact/styles/contact';
-@import '../contact/styles/messageSend';
-@import '../profile//styles//profile';
-@import '../profile//styles/profileNavbar';
-@import '../profile//styles/acountInfo';
-@import '../checkout/styles//checkoutAnalogic';
-@import '../wellcome/styles/welcomeDigital';
-@import '../myTalisman/styles//myTalisman';
-@import '../myTalisman/styles/dropDownMyTalisman';
-@import '../myTalisman/styles/activation';
-@import '../myTalisman/styles/playlist';
-@import '../myTalisman/styles/timer';
-@import '../myTalisman/styles/alarm';
-@import '../myTalisman/styles//timePicker';
-@import '../myTalisman/styles//chornometer';
 @import '../myTalisman/styles/chatbot';
-@import '../talismanAnalogic//styles/activationAnalogic';
-@import '../siteTerms/styles/siteTerms';
->>>>>>> 8d1c62b84459e49740520896b78c7febbc2a1ef1
+
 
 * {
   box-sizing: border-box;
@@ -203,7 +127,7 @@ svg {
     background-color: transparent;
   }
 }
-<<<<<<< HEAD
+
 
 .button-animation {
   background-color: #ecea60;
@@ -224,5 +148,4 @@ svg {
     box-shadow: 0 0 0 0 rgba(236, 234, 96, 0.7);
   }
 }
-=======
->>>>>>> 8d1c62b84459e49740520896b78c7febbc2a1ef1
+

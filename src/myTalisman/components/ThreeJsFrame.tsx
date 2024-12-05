@@ -17,7 +17,7 @@ import {
   SoundIcon,
   StopIcon,
   TalismanSoundIcon,
-<<<<<<< HEAD
+
 } from "../../assets/icons/icons";
 import { envs } from "../../config/envs";
 import { ActivationStepsContex } from "../../context/activationStepsContext";
@@ -32,27 +32,13 @@ import { MyADN } from "./MyADN";
 import { Playlist } from "./Playlist";
 import { Timer } from "./Timer";
 //import { TalismanBox } from "./TalismanBox";
-import { IntentionContext } from "../../context";
-import { ConstelationBox } from "./ConstelationBox";
-import { TalismanBox } from "./TalismanBox";
+//import { IntentionContext } from "../../context";
+//import { ConstelationBox } from "./ConstelationBox";
+//import { TalismanBox } from "./TalismanBox";
 //import { ConstelationBox } from "./ConstelationBox";
 import { AstrologicalDataProps } from "../interface/myAdn.interface";
-=======
-} from '../../assets/icons/icons';
-import {envs} from '../../config/envs';
-import {ActivationStepsContex} from '../../context/activationStepsContext';
-import {TalismanAudioContext} from '../../context/talismanAudioContext';
-import {TalismanButtonFocusContext} from '../../context/talismanButtonFocusContext';
-import {UserContext} from '../../context/userContext';
-import {audioDurationTransform} from '../helpers/audioDurationTransform';
-import {lineSubtitle} from '../helpers/subtitles';
-import {Activation} from './Activation';
 import {ChatBot} from './ChatBot';
-import {Chronometer} from './Chronometer';
-import {MyADN} from './MyADN';
-import {Playlist} from './Playlist';
-import {Timer} from './Timer';
->>>>>>> 8d1c62b84459e49740520896b78c7febbc2a1ef1
+
 
 interface MeditationsOptions {
   name: string;
@@ -62,16 +48,12 @@ interface MeditationsOptions {
 
 export const ThreeJsFrame = () => {
   const navigate = useNavigate();
-<<<<<<< HEAD
+
   const { email, setSuscription, setTalismanActivated } =
     useContext(UserContext);
   const { handleButtonFocus, buttonFocusPosition } = useContext(
     TalismanButtonFocusContext
-=======
-  const {email, setSuscription} = useContext(UserContext);
-  const {handleButtonFocus, buttonFocusPosition} = useContext(
-    TalismanButtonFocusContext,
->>>>>>> 8d1c62b84459e49740520896b78c7febbc2a1ef1
+
   );
   const [astrologicalInfo, setAstrologicalInfo] = useState(false);
   //AUDIO STATES
@@ -130,11 +112,9 @@ export const ThreeJsFrame = () => {
             userSoundRef.current.volume = volume;
             userSoundRef.current.play();
 
-<<<<<<< HEAD
-            userSoundRef.current.addEventListener("ended", function handler() {
-=======
+
             userSoundRef.current.addEventListener('ended', function handler() {
->>>>>>> 8d1c62b84459e49740520896b78c7febbc2a1ef1
+
               playCount++;
               userSoundRef.current!.removeEventListener('ended', handler);
               resolve(); // Resuelve la promesa cuando el sonido ha terminado
@@ -186,13 +166,11 @@ export const ThreeJsFrame = () => {
 
   const timerSoundRefs = useRef<HTMLAudioElement[]>([]);
 
-<<<<<<< HEAD
-  const { intention, setIntention } = useContext(IntentionContext);
-=======
+
   {
     /* const { intention, setIntention } = useContext(IntentionContext);*/
   }
->>>>>>> 8d1c62b84459e49740520896b78c7febbc2a1ef1
+
 
   const buttonsLeft = [
     {
@@ -402,11 +380,10 @@ export const ThreeJsFrame = () => {
     useState<AstrologicalDataProps>(initialAstrologicalData);
 
   useEffect(() => {
-<<<<<<< HEAD
-    setAudioType("");
-=======
+
+
     setAudioType('');
->>>>>>> 8d1c62b84459e49740520896b78c7febbc2a1ef1
+
     async function getUserInfo(email: string) {
       try {
         if (email) {
@@ -414,45 +391,35 @@ export const ThreeJsFrame = () => {
             `${envs.API_DOMAIN}/api/v1/user/astrological-info?email=${email}`,
             {withCredentials: true},
           );
-<<<<<<< HEAD
-          const userIntention = await axios.get(
-            `${envs.API_DOMAIN}/api/v1/user/my-intention/${email}`,
-            { withCredentials: true }
-          );
-=======
+
           {
             /* const userIntention = await axios.get(
             `${envs.API_DOMAIN}/api/v1/user/my-intention/${email}`,
             { withCredentials: true }
           );*/
           }
->>>>>>> 8d1c62b84459e49740520896b78c7febbc2a1ef1
+
 
           if (userInfo.data) {
             setAstrologicalData(userInfo.data);
             setAstrologicalInfo(true);
-<<<<<<< HEAD
+
             localStorage.setItem("subscriptionActive", "true");
             localStorage.setItem("talismanActivated", "true");
 
-=======
-            localStorage.setItem('subscriptionActive', 'true');
->>>>>>> 8d1c62b84459e49740520896b78c7febbc2a1ef1
+
             setSuscription(true);
             setTalismanActivated(true);
 
             setUserSoundURL(userInfo.data.soundPath);
           }
 
-<<<<<<< HEAD
-          if (userIntention) {
-            setIntention(userIntention.data);
-=======
+
           {
             /*  if (userIntention) {
             setIntention(userIntention.data);
           }*/
->>>>>>> 8d1c62b84459e49740520896b78c7febbc2a1ef1
+
           }
 
           setTimeout(() => {
@@ -702,29 +669,23 @@ export const ThreeJsFrame = () => {
   //obtiene la duración de cada audio de la lista
   const fetchAudioDurations = async (
     items: MeditationsOptions[],
-<<<<<<< HEAD
-    refs: React.MutableRefObject<HTMLAudioElement[]>
-=======
+
     refs: React.MutableRefObject<HTMLAudioElement[]>,
->>>>>>> 8d1c62b84459e49740520896b78c7febbc2a1ef1
+
   ): Promise<MeditationsOptions[]> => {
     // Cambiamos aquí para que solo devuelva MeditationsOptions[]
     return Promise.all(
       items.map((item, index) => {
-<<<<<<< HEAD
-        return new Promise<MeditationsOptions>((resolve) => {
-=======
+
         return new Promise<MeditationsOptions>(resolve => {
->>>>>>> 8d1c62b84459e49740520896b78c7febbc2a1ef1
+
           // Especificamos el tipo de resolución
           const audio = new Audio(item.url);
           refs.current[index] = audio;
 
-<<<<<<< HEAD
-          audio.addEventListener("loadedmetadata", () => {
-=======
+
           audio.addEventListener('loadedmetadata', () => {
->>>>>>> 8d1c62b84459e49740520896b78c7febbc2a1ef1
+
             resolve({
               ...item,
               duration: audioDurationTransform(audio.duration), // Dejamos la duración como número
@@ -744,21 +705,17 @@ export const ThreeJsFrame = () => {
             `${envs.API_DOMAIN}/api/v1/user/meditations`,
             {
               withCredentials: true,
-<<<<<<< HEAD
-            }
-=======
+
             },
->>>>>>> 8d1c62b84459e49740520896b78c7febbc2a1ef1
+
           ),
           axios.get<MeditationsOptions[]>(
             `${envs.API_DOMAIN}/api/v1/user/sounds`,
             {
               withCredentials: true,
-<<<<<<< HEAD
-            }
-=======
+
             },
->>>>>>> 8d1c62b84459e49740520896b78c7febbc2a1ef1
+
           ),
         ]);
 
@@ -897,15 +854,12 @@ export const ThreeJsFrame = () => {
             src={`https://lovelia.org/public/activation/activationExample.mp4`}
           />
 
-<<<<<<< HEAD
+
           {buttonFocusPosition === "Mi ADN Energético" && (
             <MyADN {...astrologicalData} />
           )}
           {buttonFocusPosition === "activation" && (
-=======
-          {buttonFocusPosition === 'Mi ADN Energético' && <MyADN />}
-          {buttonFocusPosition === 'activation' && (
->>>>>>> 8d1c62b84459e49740520896b78c7febbc2a1ef1
+
             <Activation
               handleActivation={handleActivation}
               pauseTrack={pauseTrack}
@@ -949,11 +903,9 @@ export const ThreeJsFrame = () => {
 
       {sounds.map((item, i) => {
         return (
-<<<<<<< HEAD
+
           <audio key={i} ref={(el) => (soundRefs.current[i] = el!)}>
-=======
-          <audio key={i} ref={el => (soundRefs.current[i] = el!)}>
->>>>>>> 8d1c62b84459e49740520896b78c7febbc2a1ef1
+
             <source src={`${item.url}`} type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>

@@ -89,14 +89,11 @@ import {PrivateRoute, PublicRoute} from './router';
 import {ShopingCart} from './ui/components/ShopingCart.tsx';
 
 function App() {
-<<<<<<< HEAD
+
   const { shopingCartOpen, setShopingCartItems } =
     useContext(ShopingCartContext);
   const { /*email,*/ setEmail, setId, setName, setLastname, setSuscription,setTalismanActivated } =
-=======
-  const {shopingCartOpen, setShopingCartItems} = useContext(ShopingCartContext);
-  const {/*email,*/ setEmail, setId, setName, setLastname, setSuscription} =
->>>>>>> 8d1c62b84459e49740520896b78c7febbc2a1ef1
+
     useContext(UserContext);
 
   const {activatedAlarm, setActivatedAlarm} = useContext(TimerContext);
