@@ -1,35 +1,34 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ObliqueArrow } from "../../assets/icons/icons";
-import { ButtonTransparent, LazyImage } from "../../ui/components";
-import aura from "../assets/aura_oro_onix.jpg";
-import talismanDigital from "../assets/home_td.webp";
-import bindus from "../assets/Bindus 9.webp"
+import {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {ObliqueArrow} from '../../assets/icons/icons';
+import {ButtonTransparent, LazyImage} from '../../ui/components';
+import bindus from '../assets/Bindus 9.webp';
+import talismanDigital from '../assets/home_td.webp';
 
 export const Home4 = () => {
   const navigate = useNavigate();
 
-  const [selectedTalisman, setSelectedTalisman] = useState<string>("digital");
+  const [selectedTalisman, setSelectedTalisman] = useState<string>('digital');
   const handleSelectedTalisman = () => {
-    if (selectedTalisman === "digital") {
-      setSelectedTalisman("analogic");
+    if (selectedTalisman === 'digital') {
+      setSelectedTalisman('analogic');
       return;
     } else {
-      setSelectedTalisman("digital");
+      setSelectedTalisman('digital');
       return;
     }
   };
 
   const linkTo = () => {
-    if (selectedTalisman === "digital") {
-      navigate("/talisman-digital");
+    if (selectedTalisman === 'digital') {
+      navigate('/talisman-digital');
     } else {
-      navigate("/talisman-analogico");
+      navigate('/talisman-analogico');
     }
   };
 
   const buttonInfo = {
-    text: "VER MÁS",
+    text: 'VER MÁS',
     onClick: linkTo,
   };
 
@@ -46,12 +45,13 @@ export const Home4 = () => {
 
             <div
               onClick={handleSelectedTalisman}
-              className={selectedTalisman === "digital" ? "focus-talisman" : ""}
-            >
+              className={
+                selectedTalisman === 'digital' ? 'focus-talisman' : ''
+              }>
               <h3>
                 <div className="icon-container">
                   <ObliqueArrow
-                    color={selectedTalisman === "digital" ? "#6f3289" : "#ffff"}
+                    color={selectedTalisman === 'digital' ? '#6f3289' : '#ffff'}
                   />
                 </div>
                 TALISMÁN
@@ -61,14 +61,13 @@ export const Home4 = () => {
 
             <div
               className={
-                selectedTalisman === "analogic" ? "focus-talisman" : ""
-              }
-            >
+                selectedTalisman === 'analogic' ? 'focus-talisman' : ''
+              }>
               <h3 onClick={handleSelectedTalisman}>
                 <div className="icon-container">
                   <ObliqueArrow
                     color={
-                      selectedTalisman === "analogic" ? "#6f3289" : "#ffff"
+                      selectedTalisman === 'analogic' ? '#6f3289' : '#ffff'
                     }
                   />
                 </div>
@@ -81,7 +80,7 @@ export const Home4 = () => {
         <div className="section4-home-internal-container">
           <div className="section4-home-internal-image-container">
             <LazyImage
-              src={selectedTalisman === "digital" ? talismanDigital : bindus}
+              src={selectedTalisman === 'digital' ? talismanDigital : bindus}
               alt="digital-talisman"
             />
             <div className="button-wrapper">

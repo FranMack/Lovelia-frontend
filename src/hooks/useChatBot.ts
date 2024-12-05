@@ -70,21 +70,23 @@ export const useChatBot = () => {
         ],
       });
 
-      const botResponse = response.data.choices[0].message.content;
-      const botMessage = {text: botResponse, sender: 'bot'};
-      setMessages(prev => [...prev, botMessage]);
+      if (response?.data?.choices?.[0]?.message?.content) {
+        const botResponse = response.data.choices[0].message.content;
+        const botMessage = {text: botResponse, sender: 'bot'};
+        setMessages(prev => [...prev, botMessage]);
 
-      // Store bot message in the backend
-      try {
-        await axios.post(
-          `${envs.API_DOMAIN}/api/v1/chat/set-chat`,
-          {text: botResponse, sender: 'assistant'},
-          {
-            withCredentials: true,
-          },
-        );
-      } catch (error) {
-        console.error('Error storing bot message:', error);
+        // Store bot message in the backend
+        try {
+          await axios.post(
+            `${envs.API_DOMAIN}/api/v1/chat/set-chat`,
+            {text: botResponse, sender: 'assistant'},
+            {
+              withCredentials: true,
+            },
+          );
+        } catch (error) {
+          console.error('Error storing bot message:', error);
+        }
       }
     } catch (error) {
       console.error('Error calling OpenAI API:', error);
@@ -106,7 +108,7 @@ export const useChatBot = () => {
             },
           },
         );
-      } catch (error) {
+      } catch (error: unknown) {
         if (error.response?.status === 429 && attempt < retries - 1) {
           console.log(`Retrying request (${attempt + 1}/${retries})...`);
           await new Promise(resolve => setTimeout(resolve, delay));
