@@ -9,7 +9,6 @@ import { TalismanModelContext } from "../../context/talismanModelContext";
 import { TimerContext } from "../../context/timerContext";
 import { useOpenModal } from "../../hooks/useOpenModal";
 import { Button } from "../../ui/components/Button";
-import { ejemploTalismanesAnalogicos } from "../assets/ejemplosTalismanes";
 import { DropdownMenu, DropdownMenuOptions } from "../components/DropdownMenu";
 
 const modelOptions: DropdownMenuOptions = {
@@ -227,7 +226,7 @@ function BuyAnalogTalisman() {
         <div className="custonTalisman-internal-container left">
           <img
             src={product.images[index]}
-            alt={ejemploTalismanesAnalogicos[index].title}
+            alt={product.model}
           />
 
           <div className="custonTalisman-internal-bullet-container">

@@ -4,10 +4,11 @@
   width: 100vw;
   height: 100vh;
   display: flex;
-  color: $color_text1;
-
+  
+  color: $color_darkPurple;
   :first-child {
-    color: $color_darkPurple;
+    color: $color_text1;
+   
   }
 
   .section1-store-internal-contaner {
@@ -28,8 +29,7 @@
       position: absolute;
       display: flex;
       justify-content: center;
-      z-index: 10;
-
+      margin-top: 22vh;
       > .icon-container {
         height: 40px;
       }
@@ -75,6 +75,7 @@
         align-items: center;
 
         z-index: 10;
+        margin-top: 0vh;
         margin-bottom: 10%;
 
         > .icon-container {

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ObliqueArrow } from "../../assets/icons/icons";
-import bindus from "../../home/assets/Lu-Bindu Plata Rodo 4.jpg";
-import talismanDigital from "../assets/ejemplo2_talisman_digital.png";
+import bindus from "../../home/assets/aura_oro_onix.jpg";
+import talismanDigital from "../assets/ejemplo3_talisman_digital.png";
 
 export const Store1 = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ export const Store1 = () => {
         <img src={talismanDigital} alt="talisman digital" />
         <div className="section1-store-text-container">
           <div className="icon-container">
-            <ObliqueArrow color="#662A80" />
+            <ObliqueArrow color="#ffff" />
           </div>
           <h2 onClick={linkToBuyDigital}>TALISMÁN DIGITAL</h2>
         </div>
@@ -26,7 +26,7 @@ export const Store1 = () => {
         <img src={bindus} alt="talisman analogico" />
         <div className="section1-store-text-container">
           <div className="icon-container">
-          <ObliqueArrow color="#ffff" />
+          <ObliqueArrow color="#662A80" />
           </div>
           <h2 onClick={linkToBuyAnalogic}>TALISMÁN ANALÓGICO</h2>
         </div>
