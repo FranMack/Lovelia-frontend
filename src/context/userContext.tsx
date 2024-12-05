@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react";
+import {ReactNode, createContext, useState} from 'react';
 
 interface UserContextValue {
   id: string;
@@ -20,11 +20,11 @@ interface UserContextProviderProps {
 }
 
 const userContextDefaultValue: UserContextValue = {
-  id: "",
-  email: "",
-  token: "",
-  name: "",
-  lastname: "",
+  id: '',
+  email: '',
+  token: '',
+  name: '',
+  lastname: '',
   subscription: false,
   setId: () => {},
   setEmail: () => {},
@@ -35,18 +35,18 @@ const userContextDefaultValue: UserContextValue = {
 };
 
 export const UserContext = createContext<UserContextValue>(
-  userContextDefaultValue
+  userContextDefaultValue,
 );
 
-export const UserContextProvider = ({ children }: UserContextProviderProps) => {
-  const [id, setId] = useState<string>("");
+export const UserContextProvider = ({children}: UserContextProviderProps) => {
+  const [id, setId] = useState<string>('');
   const [email, setEmail] = useState(() => {
-    const savedEmail = sessionStorage.getItem("userInfo");
-    return savedEmail ? JSON.parse(savedEmail) : "";
+    const savedEmail = sessionStorage.getItem('userInfo');
+    return savedEmail ? JSON.parse(savedEmail) : '';
   });
-  const [token, setToken] = useState<string>("");
-  const [name, setName] = useState<string>("");
-  const [lastname, setLastname] = useState<string>("");
+  const [token, setToken] = useState<string>('');
+  const [name, setName] = useState<string>('');
+  const [lastname, setLastname] = useState<string>('');
   const [subscription, setSuscription] = useState<boolean>(false);
 
   const value: UserContextValue = {
@@ -66,5 +66,3 @@ export const UserContextProvider = ({ children }: UserContextProviderProps) => {
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
-
-

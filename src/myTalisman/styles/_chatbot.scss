@@ -1,0 +1,113 @@
+.chat-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;
+  height: 500px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  background-image: url('../../../public/chat_bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.chat-minimize {
+  position: absolute; /* Absolute positioning within the container */
+  right: 20px; /* Adjust distance from the right */
+  top: -10px; /* Adjust distance from the top */
+  background: none;
+  border: none;
+  color: gray;
+  cursor: pointer;
+  font-size: 40px; /* Adjust size as needed */
+  z-index: 10; /* Ensure it's above other elements */
+  transition: top 0.3s ease; /* Smooth transition for the top adjustment */
+}
+
+.chat-minimize.scrolled {
+  //right: 20px; /* Adjust the distance when scrolling is detected */
+}
+
+.chat-window {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}
+
+.chat-message {
+  display: inline-block;
+  margin: 5px 10px; /* Add space between messages */
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 70%; /* Adjust to control message width */
+  word-wrap: break-word;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+}
+
+.user-message {
+  background-color: #d9fdd3; /* Light green for user */
+  align-self: flex-end; /* Align to the right */
+  text-align: right; /* Align text within the bubble */
+}
+
+.bot-message {
+  background-color: #fff; /* White for bot */
+  align-self: flex-start; /* Align to the left */
+  text-align: left; /* Align text within the bubble */
+}
+
+.chat-input {
+  display: flex;
+  padding: 10px;
+  //border-top: 1px solid #ddd;
+  background-color: lightgray;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  background-color: #fff;
+}
+
+.chat-input button {
+  padding: 10px 20px;
+  background-color: #662a80;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  background-color: #6200ee;
+}
+
+.chat-bubble {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #662a80;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

@@ -1,6 +1,6 @@
-import axios from "axios";
-import { ChangeEvent, useContext, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import {ChangeEvent, useContext, useEffect, useRef, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {
   ActivationIcon,
   ClockIcon,
@@ -17,31 +17,32 @@ import {
   SoundIcon,
   StopIcon,
   TalismanSoundIcon,
-} from "../../assets/icons/icons";
-import { envs } from "../../config/envs";
-import { ActivationStepsContex } from "../../context/activationStepsContext";
-import { TalismanAudioContext } from "../../context/talismanAudioContext";
-import { TalismanButtonFocusContext } from "../../context/talismanButtonFocusContext";
-import { UserContext } from "../../context/userContext";
-import { audioDurationTransform } from "../helpers/audioDurationTransform";
-import { lineSubtitle } from "../helpers/subtitles";
-import { Activation } from "./Activation";
-import { Chronometer } from "./Chronometer";
-import { MyADN } from "./MyADN";
-import { Playlist } from "./Playlist";
-import { Timer } from "./Timer";
+} from '../../assets/icons/icons';
+import {envs} from '../../config/envs';
+import {ActivationStepsContex} from '../../context/activationStepsContext';
+import {TalismanAudioContext} from '../../context/talismanAudioContext';
+import {TalismanButtonFocusContext} from '../../context/talismanButtonFocusContext';
+import {UserContext} from '../../context/userContext';
+import {audioDurationTransform} from '../helpers/audioDurationTransform';
+import {lineSubtitle} from '../helpers/subtitles';
+import {Activation} from './Activation';
+import {ChatBot} from './ChatBot';
+import {Chronometer} from './Chronometer';
+import {MyADN} from './MyADN';
+import {Playlist} from './Playlist';
+import {Timer} from './Timer';
 
 interface MeditationsOptions {
   name: string;
   url: string;
-  duration:string
+  duration: string;
 }
 
 export const ThreeJsFrame = () => {
   const navigate = useNavigate();
-  const { email, setSuscription } = useContext(UserContext);
-  const { handleButtonFocus, buttonFocusPosition } = useContext(
-    TalismanButtonFocusContext
+  const {email, setSuscription} = useContext(UserContext);
+  const {handleButtonFocus, buttonFocusPosition} = useContext(
+    TalismanButtonFocusContext,
   );
   const [astrologicalInfo, setAstrologicalInfo] = useState(false);
   //AUDIO STATES
@@ -67,7 +68,7 @@ export const ThreeJsFrame = () => {
     setButtonsVisibility(!buttonsVisibility);
   };
 
-  const [userSoundURL, setUserSoundURL] = useState("");
+  const [userSoundURL, setUserSoundURL] = useState('');
   const userSoundRef = useRef<HTMLAudioElement | null>(null);
   const activationSoundRef = useRef<HTMLAudioElement | null>(null);
 
@@ -83,7 +84,7 @@ export const ThreeJsFrame = () => {
   const handleActivation = () => {
     setReadyForActivation(!readyForActivation);
   };
-  const { setStep } = useContext(ActivationStepsContex);
+  const {setStep} = useContext(ActivationStepsContex);
 
   const playActivationSound = () => {
     if (activationSoundRef.current) {
@@ -94,15 +95,15 @@ export const ThreeJsFrame = () => {
       const maxPlays = 3;
 
       const playUserSoundWithCount = (): Promise<void> => {
-        return new Promise<void>((resolve) => {
+        return new Promise<void>(resolve => {
           if (userSoundRef.current) {
             userSoundRef.current.currentTime = 0;
             userSoundRef.current.volume = volume;
             userSoundRef.current.play();
-      
-            userSoundRef.current.addEventListener("ended", function handler() {
+
+            userSoundRef.current.addEventListener('ended', function handler() {
               playCount++;
-              userSoundRef.current!.removeEventListener("ended", handler);
+              userSoundRef.current!.removeEventListener('ended', handler);
               resolve(); // Resuelve la promesa cuando el sonido ha terminado
             });
           } else {
@@ -120,27 +121,27 @@ export const ThreeJsFrame = () => {
         setSeconds(0);
         setTrackDuration(activationSoundRef.current!.duration);
         startTimer();
-        setAudioType("activation");
+        setAudioType('activation');
         setReadyForActivation(false);
 
-        soundRefs.current.forEach((audio) => {
+        soundRefs.current.forEach(audio => {
           audio.pause();
           audio.currentTime = 0;
           audio.volume = volume;
         });
-        meditationsRefs.current.forEach((audio) => {
+        meditationsRefs.current.forEach(audio => {
           audio.pause();
           audio.currentTime = 0;
           audio.volume = volume;
         });
 
-        activationSoundRef.current!.addEventListener("ended", () => {
+        activationSoundRef.current!.addEventListener('ended', () => {
           stopTimer();
           setSeconds(0);
           handlePlaying(false);
-          setAudioType("");
-          setStep("Paso 6");
-          handleButtonFocus("activation");
+          setAudioType('');
+          setStep('Paso 6');
+          handleButtonFocus('activation');
         });
 
         handlePlaying(true);
@@ -152,26 +153,28 @@ export const ThreeJsFrame = () => {
 
   const timerSoundRefs = useRef<HTMLAudioElement[]>([]);
 
- {/* const { intention, setIntention } = useContext(IntentionContext);*/}
+  {
+    /* const { intention, setIntention } = useContext(IntentionContext);*/
+  }
 
   const buttonsLeft = [
     {
-      title: "Home",
+      title: 'Home',
       icon: HomeIcon,
       function: () => {
-        navigate("/");
-        handleButtonFocus("");
+        navigate('/');
+        handleButtonFocus('');
       },
     },
     {
-      title: "Visibilidad",
+      title: 'Visibilidad',
       icon: buttonsVisibility ? EyeOpen : EyeClose,
       function: () => {
         handleButtonsVisibility();
       },
     },
     {
-      title: "Volumen",
+      title: 'Volumen',
       icon: volume ? SoundIcon : NotSoundIcon,
       function: () => {
         handleVolumeBarVisibility();
@@ -181,10 +184,10 @@ export const ThreeJsFrame = () => {
 
   const buttonsCenter = [
     {
-      title: "Atras",
+      title: 'Atras',
       icon: PreviousAudioIcon,
       function: () => {
-        if (audioType === "sound") {
+        if (audioType === 'sound') {
           if (trackIndex === 0) {
             const index = sounds.length - 1;
             restartTrack(index, audioType);
@@ -194,7 +197,7 @@ export const ThreeJsFrame = () => {
           }
           return;
         }
-        if (audioType === "meditation") {
+        if (audioType === 'meditation') {
           if (trackIndex === 0) {
             const index = sounds.length - 1;
             restartTrack(index, audioType);
@@ -207,17 +210,17 @@ export const ThreeJsFrame = () => {
       },
     },
     {
-      title: "Play",
+      title: 'Play',
       icon: playing ? StopIcon : PlayIcon,
       function: () => {
         playing ? pauseTrack(audioType) : playTrack(trackIndex!, audioType);
       },
     },
     {
-      title: "Adelante",
+      title: 'Adelante',
       icon: NextAudioIcon,
       function: () => {
-        if (audioType === "sound") {
+        if (audioType === 'sound') {
           if (trackIndex === sounds.length - 1) {
             const index = 0;
             restartTrack(index, audioType);
@@ -227,7 +230,7 @@ export const ThreeJsFrame = () => {
           }
           return;
         }
-        if (audioType === "meditation") {
+        if (audioType === 'meditation') {
           if (trackIndex === meditations.length - 1) {
             const index = 0;
             restartTrack(index, audioType);
@@ -243,82 +246,83 @@ export const ThreeJsFrame = () => {
 
   const buttonsRight = [
     {
-      title: "Mi sonido",
+      title: 'Mi sonido',
       icon: TalismanSoundIcon,
       function: () => {
         playUserSound();
       },
     },
     {
-      title: "Activación",
+      title: 'Activación',
       icon: ActivationIcon,
       function: () => {
-        handleButtonFocus("activation");
+        handleButtonFocus('activation');
       },
     },
     {
-      title: "Meditaciónes",
+      title: 'Meditaciónes',
       icon: MeditationIcon,
       function: () => {
-        handleButtonFocus("meditaciones lovelia");
+        handleButtonFocus('meditaciones lovelia');
       },
     },
     {
-      title: "Mi ADN",
+      title: 'Mi ADN',
       icon: MyAdnIcon,
       function: () => {
-        handleButtonFocus("Mi ADN Energético");
+        handleButtonFocus('Mi ADN Energético');
       },
     },
     {
-      title: "Sonidos",
+      title: 'Sonidos',
       icon: MusicIcon,
       function: () => {
-        handleButtonFocus("sonidos lovelia");
+        handleButtonFocus('sonidos lovelia');
       },
     },
     {
-      title: "Alarma",
+      title: 'Alarma',
       icon: ClockIcon,
       function: () => {
-        handleButtonFocus("timer");
+        handleButtonFocus('timer');
       },
     },
   ];
 
   useEffect(() => {
-    setAudioType("")
+    setAudioType('');
     async function getUserInfo(email: string) {
       try {
         if (email) {
           const userInfo = await axios.get(
             `${envs.API_DOMAIN}/api/v1/user/astrological-info?email=${email}`,
-            { withCredentials: true }
+            {withCredentials: true},
           );
-         {/* const userIntention = await axios.get(
+          {
+            /* const userIntention = await axios.get(
             `${envs.API_DOMAIN}/api/v1/user/my-intention/${email}`,
             { withCredentials: true }
-          );*/}
+          );*/
+          }
 
           if (userInfo.data) {
             setAstrologicalInfo(true);
-            localStorage.setItem("subscriptionActive", "true");
+            localStorage.setItem('subscriptionActive', 'true');
             setSuscription(true);
             setUserSoundURL(userInfo.data.soundPath);
-        
           }
 
-
-
-        {/*  if (userIntention) {
+          {
+            /*  if (userIntention) {
             setIntention(userIntention.data);
-          }*/}
+          }*/
+          }
 
           setTimeout(() => {
             axios.post(
               `${envs.API_DOMAIN}/api/v1/user/cleanUserJSON`,
-              { email },
-              { withCredentials: true }
+              {email},
+              {withCredentials: true},
             );
           }, 12000000);
 
@@ -332,12 +336,12 @@ export const ThreeJsFrame = () => {
     getUserInfo(email);
   }, [email]);
 
-  const [subtitleLine, setSubtitleLine] = useState<string>("");
+  const [subtitleLine, setSubtitleLine] = useState<string>('');
 
   useEffect(() => {
-    if (audioType === "activation") {
+    if (audioType === 'activation') {
       const line = lineSubtitle(seconds)!;
-      setSubtitleLine(line);             
+      setSubtitleLine(line);
     }
   }, [seconds]);
 
@@ -347,12 +351,12 @@ export const ThreeJsFrame = () => {
   const [meditations, setMeditations] = useState<MeditationsOptions[]>([]);
   const [sounds, setSounds] = useState<MeditationsOptions[]>([]);
 
-  const intervalRef =useRef<ReturnType<typeof setInterval> | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const startTimer = () => {
     if (intervalRef.current === null) {
       intervalRef.current = setInterval(() => {
-        setSeconds((prevSeconds) => prevSeconds + 1);
+        setSeconds(prevSeconds => prevSeconds + 1);
       }, 1000);
     }
   };
@@ -366,14 +370,14 @@ export const ThreeJsFrame = () => {
 
   const handleTimeBar = (event: ChangeEvent<HTMLInputElement>) => {
     const time = (Number(event.target.value) / 100) * trackDuration;
-    if (soundRefs.current[trackIndex!] && audioType === "sound") {
+    if (soundRefs.current[trackIndex!] && audioType === 'sound') {
       soundRefs.current[trackIndex!].currentTime = time;
     } else if (
       meditationsRefs.current[trackIndex!] &&
-      audioType === "meditation"
+      audioType === 'meditation'
     ) {
       meditationsRefs.current[trackIndex!].currentTime = time;
-    } else if (activationSoundRef.current && audioType === "activation") {
+    } else if (activationSoundRef.current && audioType === 'activation') {
       activationSoundRef.current.currentTime = time;
     }
 
@@ -381,23 +385,23 @@ export const ThreeJsFrame = () => {
   };
 
   const playTrack = (index: number, type: string) => {
-    if (type === "sound") {
+    if (type === 'sound') {
       if (index > soundRefs.current.length - 1) {
-        soundRefs.current.forEach((audio) => {
+        soundRefs.current.forEach(audio => {
           audio.pause();
         });
         stopTimer();
         setSeconds(0);
         handlePlaying(false);
-        setAudioType("");
+        setAudioType('');
         return;
       }
-      setAudioType("sound");
-      soundRefs.current.forEach((audio) => {
+      setAudioType('sound');
+      soundRefs.current.forEach(audio => {
         audio.pause(),
-          audio.addEventListener("ended", () => {
+          audio.addEventListener('ended', () => {
             setTrackIndex(index + 1);
-            playTrack(index + 1, "sound"), setSeconds(0);
+            playTrack(index + 1, 'sound'), setSeconds(0);
           });
       });
 
@@ -409,33 +413,33 @@ export const ThreeJsFrame = () => {
 
         startTimer();
       }
-    } else if (type === "activation") {
+    } else if (type === 'activation') {
       if (activationSoundRef.current) {
         activationSoundRef.current.play();
         setTrackDuration(activationSoundRef.current.duration);
         handlePlaying(true);
         startTimer();
       }
-    } else if (type === "timerSound") {
+    } else if (type === 'timerSound') {
       if (index > timerSoundRefs.current.length - 1) {
-        timerSoundRefs.current.forEach((audio) => {
+        timerSoundRefs.current.forEach(audio => {
           audio.pause();
         });
         stopTimer();
         setSeconds(0);
         handlePlaying(false);
-        setAudioType("");
+        setAudioType('');
         return;
       }
-      soundRefs.current.forEach((audio) => {
+      soundRefs.current.forEach(audio => {
         audio.pause(), (audio.currentTime = 0), (audio.volume = volume);
       });
-      meditationsRefs.current.forEach((audio) => {
+      meditationsRefs.current.forEach(audio => {
         audio.pause(), (audio.currentTime = 0), (audio.volume = volume);
       });
 
-      setAudioType("timerSound");
-      soundRefs.current.forEach((audio) => {
+      setAudioType('timerSound');
+      soundRefs.current.forEach(audio => {
         audio.pause(), (audio.currentTime = 0), (audio.volume = volume);
 
         /* audio.addEventListener("ended", () => {
@@ -453,21 +457,21 @@ export const ThreeJsFrame = () => {
       }
     } else {
       if (index > meditationsRefs.current.length - 1) {
-        meditationsRefs.current.forEach((audio) => {
+        meditationsRefs.current.forEach(audio => {
           audio.pause();
         });
         stopTimer();
         setSeconds(0);
         handlePlaying(false);
-        setAudioType("");
+        setAudioType('');
         return;
       }
-      setAudioType("meditation");
-      meditationsRefs.current.forEach((audio) => {
+      setAudioType('meditation');
+      meditationsRefs.current.forEach(audio => {
         audio.pause(),
-          audio.addEventListener("ended", () => {
+          audio.addEventListener('ended', () => {
             setTrackIndex(index + 1);
-            playTrack(index + 1, "meditation");
+            playTrack(index + 1, 'meditation');
             setSeconds(0);
           });
       });
@@ -484,19 +488,19 @@ export const ThreeJsFrame = () => {
   };
 
   const pauseTrack = (type: string) => {
-    if (type === "sound") {
-      soundRefs.current.forEach((audio) => audio.pause());
+    if (type === 'sound') {
+      soundRefs.current.forEach(audio => audio.pause());
       handlePlaying(false);
       stopTimer();
       return;
-    } else if (type === "activation") {
+    } else if (type === 'activation') {
       if (activationSoundRef.current) {
         activationSoundRef.current.pause();
         handlePlaying(false);
         stopTimer();
       }
     } else {
-      meditationsRefs.current.forEach((audio) => audio.pause());
+      meditationsRefs.current.forEach(audio => audio.pause());
       handlePlaying(false);
       stopTimer();
       return;
@@ -506,26 +510,26 @@ export const ThreeJsFrame = () => {
   const restartTrack = (index: number, type: string) => {
     setSeconds(0);
 
-    if (type === "sound") {
-      soundRefs.current.forEach((audio) => {
+    if (type === 'sound') {
+      soundRefs.current.forEach(audio => {
         audio.pause(), (audio.currentTime = 0), (audio.volume = volume);
       });
-      meditationsRefs.current.forEach((audio) => {
+      meditationsRefs.current.forEach(audio => {
         audio.pause(), (audio.currentTime = 0), (audio.volume = volume);
       });
       activationSoundRef.current?.pause();
-      setAudioType("sound");
-      playTrack(index, "sound");
+      setAudioType('sound');
+      playTrack(index, 'sound');
       handlePlaying(true);
       return;
     } else {
-      meditationsRefs.current.forEach((audio) => {
+      meditationsRefs.current.forEach(audio => {
         audio.pause(), (audio.currentTime = 0);
       });
-      soundRefs.current.forEach((audio) => audio.pause());
+      soundRefs.current.forEach(audio => audio.pause());
       activationSoundRef.current?.pause();
-      setAudioType("meditation");
-      playTrack(index, "meditation");
+      setAudioType('meditation');
+      playTrack(index, 'meditation');
       handlePlaying(true);
       return;
     }
@@ -534,8 +538,8 @@ export const ThreeJsFrame = () => {
   const handleVolumeChange = (event: ChangeEvent<HTMLInputElement>) => {
     const volume = parseFloat(event.target.value);
 
-    soundRefs.current.forEach((audio) => (audio.volume = volume));
-    meditationsRefs.current.forEach((audio) => (audio.volume = volume));
+    soundRefs.current.forEach(audio => (audio.volume = volume));
+    meditationsRefs.current.forEach(audio => (audio.volume = volume));
     userSoundRef.current!.volume = volume;
     activationSoundRef.current!.volume = volume;
     setVolume(soundRefs.current[0].volume);
@@ -545,77 +549,82 @@ export const ThreeJsFrame = () => {
     if (
       volumeBarVisibility &&
       event.target instanceof HTMLElement &&
-      !event.target.closest("#volume-range")
+      !event.target.closest('#volume-range')
     ) {
       handleVolumeBarVisibility();
     }
   };
 
   useEffect(() => {
-    window.addEventListener("click", handleExitMenu);
+    window.addEventListener('click', handleExitMenu);
     return () => {
-      window.removeEventListener("click", handleExitMenu);
+      window.removeEventListener('click', handleExitMenu);
     };
   }, [volumeBarVisibility]);
-
-  
 
   //obtiene la duración de cada audio de la lista
   const fetchAudioDurations = async (
     items: MeditationsOptions[],
-    refs: React.MutableRefObject<HTMLAudioElement[]>
-  ): Promise<MeditationsOptions[]> => { // Cambiamos aquí para que solo devuelva MeditationsOptions[]
+    refs: React.MutableRefObject<HTMLAudioElement[]>,
+  ): Promise<MeditationsOptions[]> => {
+    // Cambiamos aquí para que solo devuelva MeditationsOptions[]
     return Promise.all(
       items.map((item, index) => {
-        return new Promise<MeditationsOptions>((resolve) => { // Especificamos el tipo de resolución
+        return new Promise<MeditationsOptions>(resolve => {
+          // Especificamos el tipo de resolución
           const audio = new Audio(item.url);
           refs.current[index] = audio;
-  
-          audio.addEventListener("loadedmetadata", () => {
+
+          audio.addEventListener('loadedmetadata', () => {
             resolve({
               ...item,
-              duration:audioDurationTransform (audio.duration), // Dejamos la duración como número
+              duration: audioDurationTransform(audio.duration), // Dejamos la duración como número
             });
           });
         });
-      })
+      }),
     );
   };
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Tipamos explícitamente la respuesta de axios
         const [meditationsResponse, soundsResponse] = await Promise.all([
-          axios.get<MeditationsOptions[]>(`${envs.API_DOMAIN}/api/v1/user/meditations`, {
-            withCredentials: true,
-          }),
-          axios.get<MeditationsOptions[]>(`${envs.API_DOMAIN}/api/v1/user/sounds`, {
-            withCredentials: true,
-          }),
+          axios.get<MeditationsOptions[]>(
+            `${envs.API_DOMAIN}/api/v1/user/meditations`,
+            {
+              withCredentials: true,
+            },
+          ),
+          axios.get<MeditationsOptions[]>(
+            `${envs.API_DOMAIN}/api/v1/user/sounds`,
+            {
+              withCredentials: true,
+            },
+          ),
         ]);
-  
+
         // Obtenemos duraciones para meditaciones y sonidos
         const meditationsWithDuration = await fetchAudioDurations(
           meditationsResponse.data,
-          meditationsRefs
+          meditationsRefs,
         );
         const soundsWithDuration = await fetchAudioDurations(
           soundsResponse.data,
-          soundRefs
+          soundRefs,
         );
-  
+
         // Actualizamos los estados con los resultados
         setMeditations(meditationsWithDuration);
         setSounds(soundsWithDuration);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
       }
     };
-  
+
     fetchData();
   }, []);
-  
 
   return (
     <>
@@ -628,13 +637,12 @@ export const ThreeJsFrame = () => {
           />
           <div className="myTalisman-controls-container">
             <div className="myTalisman-controls-internal-container left">
-              {buttonsLeft.map((item) => {
+              {buttonsLeft.map(item => {
                 return (
                   <button
                     key={item.title}
                     title={item.title}
-                    onClick={item.function}
-                  >
+                    onClick={item.function}>
                     {<item.icon color="#ffff" />}
                   </button>
                 );
@@ -652,22 +660,21 @@ export const ThreeJsFrame = () => {
               )}
             </div>
 
-            {buttonFocusPosition === "chronometer" && (
+            {buttonFocusPosition === 'chronometer' && (
               <Chronometer playTrack={playTrack} />
             )}
 
             {buttonsVisibility &&
               audioType &&
-              buttonFocusPosition !== "chronometer" && (
+              buttonFocusPosition !== 'chronometer' && (
                 <div className="myTalisman-audio-controls-container">
                   <div className="myTalisman-controls-internal-container center">
-                    {buttonsCenter.map((item) => {
+                    {buttonsCenter.map(item => {
                       return (
                         <button
                           key={item.title}
                           title={item.title}
-                          onClick={item.function}
-                        >
+                          onClick={item.function}>
                           <div className="icon-container">{<item.icon />}</div>
                         </button>
                       );
@@ -694,8 +701,8 @@ export const ThreeJsFrame = () => {
                     <button
                       className={
                         i === 0 && readyForActivation
-                          ? "soundButton-motion"
-                          : ""
+                          ? 'soundButton-motion'
+                          : ''
                       }
                       key={item.title}
                       title={item.title}
@@ -703,8 +710,7 @@ export const ThreeJsFrame = () => {
                         i === 0 && readyForActivation
                           ? playActivationSound
                           : item.function
-                      }
-                    >
+                      }>
                       {<item.icon />}
                     </button>
                   );
@@ -712,22 +718,27 @@ export const ThreeJsFrame = () => {
               </div>
             )}
           </div>
-          {userSoundURL && <audio ref={userSoundRef} src={`https://lovelia.org/public/userSounds/${userSoundURL}`} />}
-          
+          {userSoundURL && (
+            <audio
+              ref={userSoundRef}
+              src={`https://lovelia.org/public/userSounds/${userSoundURL}`}
+            />
+          )}
+
           <audio
             ref={activationSoundRef}
             src={`https://lovelia.org/public/activation/activationExample.mp4`}
           />
 
-          {buttonFocusPosition === "Mi ADN Energético" && <MyADN />}
-          {buttonFocusPosition === "activation" && (
+          {buttonFocusPosition === 'Mi ADN Energético' && <MyADN />}
+          {buttonFocusPosition === 'activation' && (
             <Activation
               handleActivation={handleActivation}
               pauseTrack={pauseTrack}
             />
           )}
 
-          {buttonFocusPosition === "sonidos lovelia" && (
+          {buttonFocusPosition === 'sonidos lovelia' && (
             <Playlist
               sounds={sounds}
               audioType={audioType}
@@ -738,7 +749,7 @@ export const ThreeJsFrame = () => {
               playing={playing}
             />
           )}
-          {buttonFocusPosition === "meditaciones lovelia" && (
+          {buttonFocusPosition === 'meditaciones lovelia' && (
             <Playlist
               sounds={meditations}
               audioType={audioType}
@@ -749,13 +760,14 @@ export const ThreeJsFrame = () => {
               playing={playing}
             />
           )}
-          {buttonFocusPosition === "timer" && <Timer sounds={sounds} />}
+          {buttonFocusPosition === 'timer' && <Timer sounds={sounds} />}
 
           {/*intention && (
             <div className="myTalisman-intention-container efectoReveal">
               <p>{intention}</p>
             </div>
           )*/}
+          <ChatBot />
         </>
       ) : (
         <div className="myTalisman-pre-loading">Loading...</div>
@@ -763,8 +775,8 @@ export const ThreeJsFrame = () => {
 
       {sounds.map((item, i) => {
         return (
-          <audio key={i} ref={(el) => (soundRefs.current[i] = el!)}>
-        <source src={`${item.url}`} type="audio/mpeg" />
+          <audio key={i} ref={el => (soundRefs.current[i] = el!)}>
+            <source src={`${item.url}`} type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
         );
@@ -772,22 +784,21 @@ export const ThreeJsFrame = () => {
 
       {meditations.map((item, i) => {
         return (
-          <audio key={i} ref={(el) => (meditationsRefs.current[i] = el!)}>
+          <audio key={i} ref={el => (meditationsRefs.current[i] = el!)}>
             <source src={`${item.url}`} type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
         );
       })}
-      {audioType === "activation" && (
+      {audioType === 'activation' && (
         <div className="subtitles-container">
           <p>{subtitleLine}</p>
         </div>
       )}
       {/*IMPORTANTE: DEBE CAMBIARSE SOUNDS POR LOS SONIDOS CORRESPONDIENTES AL TIMER */}
       {sounds.map((item, i) => {
-    
         return (
-          <audio key={i} ref={(el) => (timerSoundRefs.current[i] = el!)}>
+          <audio key={i} ref={el => (timerSoundRefs.current[i] = el!)}>
             <source src={`${item.url}`} type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
