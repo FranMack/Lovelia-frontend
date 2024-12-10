@@ -1,5 +1,5 @@
-import paraQueMeditamos1 from "../assets/para que meditamos.webp";
-import paraQueMeditamos2 from "../assets/Para que meditamos (1).webp";
+import paraQueMeditamos2 from "../assets/para que meditamos.webp";
+import paraQueMeditamos1 from "../assets/Para que meditamos (1).webp";
 import elPoderDeLaIntencionImage1 from "../assets/El poder de la Intencion.webp";
 import elPoderDeLaIntencionImage2 from "../assets/El poder de la intencion2.webp";
 

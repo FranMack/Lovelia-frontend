@@ -80,7 +80,10 @@
             }
             
             >.buttons-container{
+
+                row-gap: 3vh;
             button {
+              
                 margin-bottom:0%;
                 background-color: $color_yellow;
                 width: 100%;

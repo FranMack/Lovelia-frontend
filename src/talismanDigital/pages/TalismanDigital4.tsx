@@ -32,23 +32,13 @@ export const TalismanDigital4 = () => {
             La activación de tu talismán es un ritual para que puedas{" "}
             <strong>
               conectarte profundamente con tu intención y energía personal.
-            </strong>{" "}
+            </strong>{" "}Al activar tu talismán, eres tú quien elige tu propia intención, un propósito o deseo que deseas manifestar en tu vida. Esta intención es completamente personal, y lo más significativo es que puedes cambiarla siempre que lo necesites.
           </p>
-          <p>
-            A través de este proceso te embarcarás en un{" "}
-            <strong>
-              viaje introspectivo que fortalecerá tu conexión con tu ser
-              interior,
-            </strong>{" "}
-            facilitando que tu intención se manifieste en tu vida diaria.
-          </p>
-          <p>
-            Este momento de activación{" "}
-            <strong>
-              es una oportunidad para centrarte, con intención y atención,
-            </strong>{" "}
-            enfocando tu energía en lo que verdaderamente deseas alcanzar.
-          </p>
+        <p>
+        A través de este proceso, te embarcarás en un viaje introspectivo que fortalecerá tu conexión con tu ser interior, facilitando que tu intención se manifieste en tu vida diaria. Es una experiencia que te permite dirigir tu energía de manera consciente, reafirmando tu capacidad de transformar tus intenciones en realidades.
+        </p>
+        
+         
         </div>
         <div className="button-container">
           <Button text="QUIERO MI TALISMÁN" onClick={linkTo} />

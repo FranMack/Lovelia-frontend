@@ -1,4 +1,6 @@
+import axios from 'axios';
 import {ReactNode, createContext, useState} from 'react';
+import { envs } from '../config';
 
 interface UserContextValue {
   id: string;
@@ -15,6 +17,7 @@ interface UserContextValue {
   setLastname: (name: string) => void;
   setSuscription: (subscription: boolean) => void;
   setTalismanActivated: (talismanActivated: boolean) => void
+  refreshME: () => void;
 }
 
 interface UserContextProviderProps {
@@ -36,6 +39,7 @@ const userContextDefaultValue: UserContextValue = {
   setLastname: () => {},
   setSuscription: () => {},
   setTalismanActivated: () => {},
+  refreshME:()=>{}
 };
 
 export const UserContext = createContext<UserContextValue>(
@@ -54,6 +58,34 @@ export const UserContextProvider = ({children}: UserContextProviderProps) => {
   const [subscription, setSuscription] = useState<boolean>(false);
   const [talismanActivated, setTalismanActivated] = useState<boolean>(false);
 
+  const refreshME=async()=>{
+    const fcmToken = localStorage.getItem('fcmToken');
+    axios
+      .get(`${envs.API_DOMAIN}/api/v1/user/me/${fcmToken}`, {
+        withCredentials: true,
+      })
+      .then(({data}) => {
+        setEmail(data.email);
+        setId(data.id);
+        setName(data.name);
+        setLastname(data.lastname);
+        const subscription = JSON.parse(
+          localStorage.getItem('subscriptionActive') || 'false',
+        );
+
+        const talismanActivated = JSON.parse(
+          localStorage.getItem("talismanActivated") || "false"
+        );
+
+        setSuscription(subscription);
+        setTalismanActivated(talismanActivated)
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+  }
+
   const value: UserContextValue = {
     id,
     email,
@@ -68,7 +100,8 @@ export const UserContextProvider = ({children}: UserContextProviderProps) => {
     setName,
     setLastname,
     setSuscription,
-    setTalismanActivated
+    setTalismanActivated,
+    refreshME
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

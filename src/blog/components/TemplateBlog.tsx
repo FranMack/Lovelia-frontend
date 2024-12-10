@@ -4,7 +4,6 @@ import { LazyImage } from "../../ui/components";
 export interface TemplateBlogOptions {
   image: string;
   title: string;
-  secundaryTitle?: string;
   description: string[];
   arrowRightButton?: string;
   direction: "left" | "right";
@@ -14,7 +13,6 @@ export interface TemplateBlogOptions {
 export function TemplateBlog({
   image,
   title,
-  secundaryTitle,
   description,
   arrowRightButton,
   onClick,
@@ -26,7 +24,6 @@ export function TemplateBlog({
       </div>
       <div className="templateBlog-info-container">
         <h4>{title}</h4>
-        <h6>{secundaryTitle}</h6>
         {description.map((item, i) => {
           return <p key={i}>{item}</p>;
         })}

@@ -1,63 +1,63 @@
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { RightNextIcon } from "../../assets/icons/icons";
-import { envs } from "../../config";
-import { ShopingCartContext } from "../../context";
-import { TalismanModelContext } from "../../context/talismanModelContext";
-import { TimerContext } from "../../context/timerContext";
-import { useOpenModal } from "../../hooks/useOpenModal";
-import { Button } from "../../ui/components/Button";
-import { DropdownMenu, DropdownMenuOptions } from "../components/DropdownMenu";
+import axios from 'axios';
+import {useContext, useEffect, useState} from 'react';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {RightNextIcon} from '../../assets/icons/icons';
+import {envs} from '../../config';
+import {ShopingCartContext} from '../../context';
+import {TalismanModelContext} from '../../context/talismanModelContext';
+import {TimerContext} from '../../context/timerContext';
+import {useOpenModal} from '../../hooks/useOpenModal';
+import {Button} from '../../ui/components/Button';
+import {DropdownMenu, DropdownMenuOptions} from '../components/DropdownMenu';
 
 const modelOptions: DropdownMenuOptions = {
-  title: "Modelo",
+  title: 'Modelo',
   options: [
-    { option: "Aura", price: 3 },
-    { option: "Halo", price: 4 },
-    { option: "Bindu", price: 5 },
+    {option: 'Aura', price: 3},
+    {option: 'Halo', price: 4},
+    {option: 'Bindu', price: 5},
   ],
 };
 const materialOptions: DropdownMenuOptions = {
-  title: "Metal",
+  title: 'Metal',
   options: [
-    { option: "Aleación bañada en oro", price: 1 },
-    { option: "Plata 925", price: 2 },
+    {option: 'Aleación bañada en oro', price: 1},
+    {option: 'Plata 925', price: 2},
   ],
 };
 
 const piedraOptions: DropdownMenuOptions = {
-  title: "Piedra",
+  title: 'Piedra',
   options: [
-    { option: "Lapislázuli", price: 1 },
-    { option: "Labradorita", price: 1 },
-    { option: "Turquesa", price: 2 },
-    { option: "Onix Negro", price: 3 },
-    { option: "Rodocrosita", price: 4 },
-    { option: "Onix Blanco", price: 2 },
+    {option: 'Lapislázuli', price: 1},
+    {option: 'Labradorita', price: 1},
+    {option: 'Turquesa', price: 2},
+    {option: 'Onix Negro', price: 3},
+    {option: 'Rodocrosita', price: 4},
+    {option: 'Onix Blanco', price: 2},
   ],
 };
 
 const chainOptions: DropdownMenuOptions = {
-  title: "Colgante",
+  title: 'Colgante',
   options: [
-    { option: "Cadena", price: 2 },
-    { option: "Tiento", price: 1 },
+    {option: 'Cadena', price: 2},
+    {option: 'Tiento', price: 1},
   ],
 };
 
 const intencionOptions: DropdownMenuOptions = {
-  title: "Intención",
+  title: 'Intención',
   options: [
-    { option: "Abundancia", price: 0 },
-    { option: "Amor incondicional", price: 0 },
-    { option: "Aquí y ahora", price: 0 },
-    { option: "Coraje", price: 0 },
-    { option: "Gratitud", price: 0 },
-    { option: "Potencial infinito", price: 0 },
-    { option: "Sabiduría de la incertidumbre", price: 0 },
-    { option: "Yo verdadero", price: 0 },
+    {option: 'Abundancia', price: 0},
+    {option: 'Amor incondicional', price: 0},
+    {option: 'Aquí y ahora', price: 0},
+    {option: 'Coraje', price: 0},
+    {option: 'Gratitud', price: 0},
+    {option: 'Potencial infinito', price: 0},
+    {option: 'Sabiduría de la incertidumbre', price: 0},
+    {option: 'Yo verdadero', price: 0},
   ],
 };
 
@@ -73,18 +73,18 @@ interface Product {
 }
 
 const initialValue: Product = {
-  model: "",
-  metal: "",
-  rock: "",
-  chain: "",
+  model: '',
+  metal: '',
+  rock: '',
+  chain: '',
   price: 0,
   stock: 0,
   images: [],
-  id: "",
+  id: '',
 };
 
 function BuyAnalogTalisman() {
-  const { toggleMenu, setShopingCartItems } = useContext(ShopingCartContext);
+  const {toggleMenu, setShopingCartItems} = useContext(ShopingCartContext);
 
   const [index, setIndex] = useState<number>(0);
 
@@ -135,11 +135,11 @@ function BuyAnalogTalisman() {
       optionChain &&
       optionIntention
     ) {
-      const shopingCartJSON = localStorage.getItem("shopingCart") || "[]";
+      const shopingCartJSON = localStorage.getItem('shopingCart') || '[]';
       const shopingCart = JSON.parse(shopingCartJSON);
       const shopingCartNewItem = {
         id: Math.round(Math.random() * 10000000),
-        product: "Talismán analógico",
+        product: 'Talismán analógico',
         model: optionModel,
         material: optionMaterial,
         rock: optionRock,
@@ -150,57 +150,80 @@ function BuyAnalogTalisman() {
         quantity: 1,
       };
       const shopingCartUpdate = [shopingCartNewItem, ...shopingCart];
-      localStorage.setItem("shopingCart", JSON.stringify(shopingCartUpdate));
+      localStorage.setItem('shopingCart', JSON.stringify(shopingCartUpdate));
       setShopingCartItems(shopingCartUpdate);
 
       toggleMenu();
-      setOptionModel("");
+      setOptionModel('');
       setPriceModel(0);
-      setOptionMaterial("");
+      setOptionMaterial('');
       setPriceMaterial(0);
-      setOptioChain("");
+      setOptioChain('');
       setPriceChain(0);
-      setOptionRock("");
+      setOptionRock('');
       setPriceRock(0);
-      setOptionIntention("");
+      setOptionIntention('');
       setPriceIntention(0);
+      setAddedToCart(false)
+      setProduct(listOfProducts[0]);
 
       return;
     } else {
+      setWarnings({
+        model: !optionModel,
+        rock: !optionRock,
+        chain: !optionChain,
+        metal: !optionMaterial,
+        intention: !optionIntention,
+      });
+      setAddedToCart(true)
       //agregar un pop up
-      toast.warning("Debe completar todos los campos del talismán");
+      toast.warning('Debe completar todos los campos del talismán');
       return;
     }
   };
 
-  const { activatedAlarm } = useContext(TimerContext);
-  const { shopingCartOpen } = useContext(ShopingCartContext);
+  const {activatedAlarm} = useContext(TimerContext);
+  const {shopingCartOpen} = useContext(ShopingCartContext);
 
   const [product, setProduct] = useState<Product>(initialValue);
   const [listOfProducts, setListOfProducts] = useState<Product[]>([]);
-  console.log("xxxxxxxxxxxxxxx", listOfProducts);
+
+  //validaciones
+  const [validationError,setAddedToCart]=useState(false)
+  const [warnings, setWarnings] = useState({
+    model: false,
+    rock: false,
+    chain: false,
+    metal: false,
+    intention: false,
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
     axios
       .get(`${envs.API_DOMAIN}/api/v1/product/get-list-of-products`)
-      .then((response) => {
+      .then(response => {
         setListOfProducts(response.data);
         setProduct(response.data[0]);
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
       });
   }, []);
 
   useEffect(() => {
     if (optionModel || optionRock || optionChain || optionMaterial) {
-      const model = optionModel ? optionModel : "Aura";
-      const rock = optionRock ? optionRock : "Labradorita";
-      const chain = optionChain ? optionChain : "Cadena";
-      const metal = optionMaterial ? optionMaterial : "Aleación bañada en oro";
+      const model = optionModel ? optionModel : 'Aura';
+      const rock = optionRock ? optionRock : 'Labradorita';
+      const chain = optionChain ? optionChain : 'Cadena';
+      const metal = optionMaterial ? optionMaterial : 'Aleación bañada en oro';
 
-      const filter = listOfProducts.find((item) => {
+if(validationError){
+  setWarnings({model:!optionModel,rock:!optionRock,chain:!optionChain,metal:!optionMaterial,intention:!optionIntention})
+}
+     
+      const filter = listOfProducts.find(item => {
         if (
           item.model === model &&
           item.rock === rock &&
@@ -216,26 +239,23 @@ function BuyAnalogTalisman() {
 
       return;
     }
-  }, [optionModel, optionRock, optionChain, optionMaterial]);
+  }, [optionModel, optionRock, optionChain, optionMaterial, optionIntention]);
 
   return (
     <main
-      className={activatedAlarm || shopingCartOpen ? "viewport-background" : ""}
-    >
+      className={
+        activatedAlarm || shopingCartOpen ? 'viewport-background' : ''
+      }>
       <section className="custonTalisman-container efectoReveal">
         <div className="custonTalisman-internal-container left">
-          <img
-            src={product.images[index]}
-            alt={product.model}
-          />
+          <img src={product.images[index]} alt={product.model} />
 
           <div className="custonTalisman-internal-bullet-container">
             {product.images.map((item, i) => {
               return (
                 <div
-                  className={index === i ? "bullet-visible" : "bullet"}
-                  key={i}
-                >
+                  className={index === i ? 'bullet-visible' : 'bullet'}
+                  key={i}>
                   <img
                     src={item}
                     alt={`${product.model} ${product.metal} ${product.rock} ${product.chain}`}
@@ -246,14 +266,12 @@ function BuyAnalogTalisman() {
           </div>
           <div
             onClick={previousIndex}
-            className="custonTalisman-internal-arrow-container left"
-          >
+            className="custonTalisman-internal-arrow-container left">
             <RightNextIcon />
           </div>
           <div
             onClick={nextIndex}
-            className="custonTalisman-internal-arrow-container"
-          >
+            className="custonTalisman-internal-arrow-container">
             <RightNextIcon />
           </div>
         </div>
@@ -261,33 +279,42 @@ function BuyAnalogTalisman() {
         <div
           className="custonTalisman-internal-container right"
           style={{
-            backgroundColor: dropdownIntensiones.openModal ? "#EDC7B9" : "",
-          }}
-        >
+            backgroundColor: dropdownIntensiones.openModal ? '#EDC7B9' : '',
+          }}>
           <div
             className="custonTalisman-internal-center-container"
-            style={{ opacity: dropdownIntensiones.openModal ? "0.5" : "1" }}
-          >
+            style={{opacity: dropdownIntensiones.openModal ? '0.5' : '1'}}>
             <h2>Inicio /Tienda /Talismán analógico</h2>
 
             <h3>Talismán Analógico</h3>
             <h5>
               {optionModel && optionRock && optionChain && optionMaterial
                 ? `$${(
-                    priceModel +
-                    priceMaterial +
-                    priceRock +
-                    priceChain
+                   product.price
                   ).toFixed(2)}`
-                : "Para ver el precio, arma tu talismán "}
+                : 'Para ver el precio, arma tu talismán '}
             </h5>
 
             <div className="options-container">
-              <DropdownMenu {...modelOptions} />
-              <DropdownMenu {...materialOptions} />
-              <DropdownMenu {...piedraOptions} />
-              <DropdownMenu {...chainOptions} />
-              <DropdownMenu {...intencionOptions} />
+              <DropdownMenu
+                {...{...modelOptions, validationError: warnings.model}}
+              />
+
+              <DropdownMenu
+                {...{...materialOptions, validationError: warnings.metal}}
+              />
+
+              <DropdownMenu
+                {...{...piedraOptions, validationError: warnings.rock}}
+              />
+
+              <DropdownMenu
+                {...{...chainOptions, validationError: warnings.chain}}
+              />
+
+              <DropdownMenu
+                {...{...intencionOptions, validationError: warnings.intention}}
+              />
             </div>
 
             <div className="buttons-container">

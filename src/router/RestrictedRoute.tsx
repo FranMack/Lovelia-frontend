@@ -3,11 +3,11 @@ import { Navigate } from "react-router-dom";
 import { UserContext } from "../context";
 
 
-interface PrivateRouteProps {
+interface Props {
   children: ReactNode;
 }
 
-export function PublicRoute({ children }: PrivateRouteProps) {
+export function RestrictedRoute({ children }: Props) {
   const {email}=useContext(UserContext)
   return !email ? children : <Navigate to="/" />;
 }

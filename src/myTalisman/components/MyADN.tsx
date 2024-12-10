@@ -73,6 +73,10 @@ export const MyADN = ({
 
       {sectionPosition === "Astros" && (
         <div className="dropDownMyTalisman-section-container">
+            <ArticleMyADN title={sunUserInfo.title} text={sunUserInfo.text} />
+          <br />
+          <ArticleMyADN title={moonUserInfo.title} text={moonUserInfo.text} />
+          <br />
           <ArticleMyADN
             title={ascendantUserInfo.title}
             text={ascendantUserInfo.text}
@@ -88,10 +92,7 @@ export const MyADN = ({
             text={moonHouseUserInfo.text}
           />
           <br />
-          <ArticleMyADN title={sunUserInfo.title} text={sunUserInfo.text} />
-          <br />
-          <ArticleMyADN title={moonUserInfo.title} text={moonUserInfo.text} />
-          <br />
+        
           {aspectsAndPlanetsUserInfo && (
             <>
               <div className="dropDownMyTalisman-card-container">

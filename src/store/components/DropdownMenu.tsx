@@ -9,9 +9,10 @@ interface Options {
 export interface DropdownMenuOptions {
   title: string;
   options: Options[];
+  validationError?:boolean
 }
 
-export function DropdownMenu({ title, options }: DropdownMenuOptions) {
+export function DropdownMenu({ title, options,validationError }: DropdownMenuOptions) {
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -116,8 +117,8 @@ export function DropdownMenu({ title, options }: DropdownMenuOptions) {
   });
 
   return (
-    <div className="dropdown-container">
-      <select value={selectedOption} onChange={handleSelectChange}>
+    <div className={`dropdown-container ${validationError ? "dropdown-error":""}`}>
+      <select  value={selectedOption} onChange={handleSelectChange}>
         <option value="">{title}</option>
         {optionsArray.map((item, i) => {
           return (
@@ -127,6 +128,7 @@ export function DropdownMenu({ title, options }: DropdownMenuOptions) {
           );
         })}
       </select>
+      {validationError && <p>Campo requerido</p>}
     </div>
   );
 }
