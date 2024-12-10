@@ -164,7 +164,7 @@ function BuyAnalogTalisman() {
       setPriceRock(0);
       setOptionIntention('');
       setPriceIntention(0);
-      setAddedToCart(false)
+      setAddedToCart(false);
       setProduct(listOfProducts[0]);
 
       return;
@@ -176,7 +176,7 @@ function BuyAnalogTalisman() {
         metal: !optionMaterial,
         intention: !optionIntention,
       });
-      setAddedToCart(true)
+      setAddedToCart(true);
       //agregar un pop up
       toast.warning('Debe completar todos los campos del talismán');
       return;
@@ -190,7 +190,7 @@ function BuyAnalogTalisman() {
   const [listOfProducts, setListOfProducts] = useState<Product[]>([]);
 
   //validaciones
-  const [validationError,setAddedToCart]=useState(false)
+  const [validationError, setAddedToCart] = useState(false);
   const [warnings, setWarnings] = useState({
     model: false,
     rock: false,
@@ -219,10 +219,16 @@ function BuyAnalogTalisman() {
       const chain = optionChain ? optionChain : 'Cadena';
       const metal = optionMaterial ? optionMaterial : 'Aleación bañada en oro';
 
-if(validationError){
-  setWarnings({model:!optionModel,rock:!optionRock,chain:!optionChain,metal:!optionMaterial,intention:!optionIntention})
-}
-     
+      if (validationError) {
+        setWarnings({
+          model: !optionModel,
+          rock: !optionRock,
+          chain: !optionChain,
+          metal: !optionMaterial,
+          intention: !optionIntention,
+        });
+      }
+
       const filter = listOfProducts.find(item => {
         if (
           item.model === model &&
@@ -289,9 +295,7 @@ if(validationError){
             <h3>Talismán Analógico</h3>
             <h5>
               {optionModel && optionRock && optionChain && optionMaterial
-                ? `$${(
-                   product.price
-                  ).toFixed(2)}`
+                ? `$${product.price.toFixed(2)}`
                 : 'Para ver el precio, arma tu talismán '}
             </h5>
 

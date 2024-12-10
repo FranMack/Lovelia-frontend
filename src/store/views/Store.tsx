@@ -1,19 +1,24 @@
-import { useContext, useEffect } from "react";
-import { Store1,Store2,Store3,Store2b } from "../pages"
-import { TimerContext } from "../../context/timerContext";
-import { ShopingCartContext } from "../../context";
+import {useContext, useEffect} from 'react';
+import {ShopingCartContext} from '../../context';
+import {TimerContext} from '../../context/timerContext';
+import {Store1, Store2, Store2b, Store3} from '../pages';
 
- const Store = () => {
-  useEffect(()=>{ window.scrollTo(0, 0);},[])
-  const{activatedAlarm}=useContext(TimerContext)
-  const {shopingCartOpen}=useContext(ShopingCartContext)
+const Store = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  const {activatedAlarm} = useContext(TimerContext);
+  const {shopingCartOpen} = useContext(ShopingCartContext);
   return (
-    <main className={activatedAlarm || shopingCartOpen ? "viewport-background":""}>
-    <Store1/>
-    <Store2/>
-    <Store2b/>
-    <Store3/>
+    <main
+      className={
+        activatedAlarm || shopingCartOpen ? 'viewport-background' : ''
+      }>
+      <Store1 />
+      <Store2 />
+      <Store2b />
+      <Store3 />
     </main>
-  )
-}
-export default Store
+  );
+};
+export default Store;

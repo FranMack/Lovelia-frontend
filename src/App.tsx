@@ -1,7 +1,6 @@
 import {onMessage} from 'firebase/messaging';
 import {Routes, useLocation} from 'react-router-dom';
 import {messaging} from './config/firebase.ts'; // Import the messaging object
-
 import {AlarmPopUp} from './ui/components/AlarmPopUp.tsx';
 
 import {

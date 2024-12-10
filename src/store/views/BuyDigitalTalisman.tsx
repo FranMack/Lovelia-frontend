@@ -1,14 +1,14 @@
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { RightNextIcon } from "../../assets/icons/icons";
-import { ShopingCartContext } from "../../context";
-import { TimerContext } from "../../context/timerContext";
-import { Button } from "../../ui/components/Button";
-import { PopUp } from "../../ui/components/PopUp";
-import { ejDigitalTalisman } from "../assets/ejDigitalTalisman";
-import talismanDigital from "../assets/TD-EJEMPLO-1.webp";
+import {useContext, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {RightNextIcon} from '../../assets/icons/icons';
+import {ShopingCartContext} from '../../context';
+import {TimerContext} from '../../context/timerContext';
+import {Button} from '../../ui/components/Button';
+import {PopUp} from '../../ui/components/PopUp';
+import {ejDigitalTalisman} from '../assets/ejDigitalTalisman';
+import talismanDigital from '../assets/TD-EJEMPLO-1.webp';
 
-const precio = "15,00";
+const precio = '15,00';
 
 function BuyDigitalTalisman() {
   window.scrollTo(0, 0);
@@ -37,29 +37,29 @@ function BuyDigitalTalisman() {
   const navigate = useNavigate();
 
   const linkTo = () => {
-    navigate("/portal-usuario");
+    navigate('/portal-usuario');
   };
 
-  const { shopingCartOpen, toggleMenu, setShopingCartItems } =
+  const {shopingCartOpen, toggleMenu, setShopingCartItems} =
     useContext(ShopingCartContext);
 
   const handleBuyTalisman = () => {
-    const shopingCartJSON = localStorage.getItem("shopingCart") || "[]";
+    const shopingCartJSON = localStorage.getItem('shopingCart') || '[]';
     const shopingCart = JSON.parse(shopingCartJSON);
     const shopingCartNewItem = {
       id: Math.round(Math.random() * 10000000),
-      product: "Talismán digital",
-      model: "Digital",
-      material: "-",
-      rock: "-",
-      chain: "-",
-      intention: "-",
+      product: 'Talismán digital',
+      model: 'Digital',
+      material: '-',
+      rock: '-',
+      chain: '-',
+      intention: '-',
       image: talismanDigital,
       price: 10,
       quantity: 1,
     };
     const shopingCartUpdate = [shopingCartNewItem, ...shopingCart];
-    localStorage.setItem("shopingCart", JSON.stringify(shopingCartUpdate));
+    localStorage.setItem('shopingCart', JSON.stringify(shopingCartUpdate));
     setShopingCartItems(shopingCartUpdate);
 
     toggleMenu();
@@ -67,12 +67,13 @@ function BuyDigitalTalisman() {
     return;
   };
 
-  const { activatedAlarm } = useContext(TimerContext);
+  const {activatedAlarm} = useContext(TimerContext);
 
   return (
     <main
-      className={activatedAlarm || shopingCartOpen ? "viewport-background" : ""}
-    >
+      className={
+        activatedAlarm || shopingCartOpen ? 'viewport-background' : ''
+      }>
       <section className="buyDigitalTalisman-container efectoReveal">
         {popUp && (
           <PopUp
@@ -83,17 +84,15 @@ function BuyDigitalTalisman() {
           />
         )}
         <div
-          style={{ opacity: popUp ? "0.4" : "1" }}
-          className="buyDigitalTalisman-internal-container"
-        >
+          style={{opacity: popUp ? '0.4' : '1'}}
+          className="buyDigitalTalisman-internal-container">
           <img src={ejDigitalTalisman[index].image} alt="talisman digital" />
           <div className="buyDigitalTalisman-internal-bullet-container left">
             {ejDigitalTalisman.map((item, i) => {
               return (
                 <div
-                  className={index === i ? "bullet-visible" : "bullet"}
-                  key={i}
-                >
+                  className={index === i ? 'bullet-visible' : 'bullet'}
+                  key={i}>
                   <img src={item.image} alt={item.title} />
                 </div>
               );
@@ -101,22 +100,19 @@ function BuyDigitalTalisman() {
           </div>
           <div
             onClick={previousIndex}
-            className="buyDigitalTalisman-internal-arrow-container left"
-          >
+            className="buyDigitalTalisman-internal-arrow-container left">
             <RightNextIcon />
           </div>
           <div
             onClick={nextIndex}
-            className="buyDigitalTalisman-internal-arrow-container"
-          >
+            className="buyDigitalTalisman-internal-arrow-container">
             <RightNextIcon />
           </div>
         </div>
 
         <div
           className="buyDigitalTalisman-internal-container right"
-          style={{ opacity: popUp ? "0.4" : "1" }}
-        >
+          style={{opacity: popUp ? '0.4' : '1'}}>
           <div className="buyDigitalTalisman-internal-center-container">
             <h2>Inicio /Tienda /Talismán Digital</h2>
 
@@ -140,7 +136,6 @@ function BuyDigitalTalisman() {
                 <li>Acceso a Meditaciones Lovelia</li>
                 <li>Timer</li>
                 <li>Banco de sonidos</li>
-                
               </ul>
             </div>
             <h6>Importante:</h6>

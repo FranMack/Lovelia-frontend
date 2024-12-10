@@ -1,6 +1,11 @@
 import {useChatBot} from '../../hooks/useChatBot';
+import {MyAdnProps} from '../interface/myAdn.interface';
 
-export const ChatBot = () => {
+interface ChatBotProps {
+  astroData: MyAdnProps;
+}
+
+export const ChatBot = ({astroData}: ChatBotProps) => {
   const {
     messages,
     input,
@@ -9,7 +14,7 @@ export const ChatBot = () => {
     setIsOpen,
     handleSend,
     handleKeyDown,
-  } = useChatBot();
+  } = useChatBot(astroData);
 
   return (
     <>
