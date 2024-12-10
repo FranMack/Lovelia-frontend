@@ -17,28 +17,26 @@ import {
   SoundIcon,
   StopIcon,
   TalismanSoundIcon,
-
-} from "../../assets/icons/icons";
-import { envs } from "../../config/envs";
-import { ActivationStepsContex } from "../../context/activationStepsContext";
-import { TalismanAudioContext } from "../../context/talismanAudioContext";
-import { TalismanButtonFocusContext } from "../../context/talismanButtonFocusContext";
-import { UserContext } from "../../context/userContext";
-import { audioDurationTransform } from "../helpers/audioDurationTransform";
-import { lineSubtitle } from "../helpers/subtitles";
-import { Activation } from "./Activation";
-import { Chronometer } from "./Chronometer";
-import { MyADN } from "./MyADN";
-import { Playlist } from "./Playlist";
-import { Timer } from "./Timer";
+} from '../../assets/icons/icons';
+import {envs} from '../../config/envs';
+import {ActivationStepsContex} from '../../context/activationStepsContext';
+import {TalismanAudioContext} from '../../context/talismanAudioContext';
+import {TalismanButtonFocusContext} from '../../context/talismanButtonFocusContext';
+import {UserContext} from '../../context/userContext';
+import {audioDurationTransform} from '../helpers/audioDurationTransform';
+import {lineSubtitle} from '../helpers/subtitles';
+import {Activation} from './Activation';
+import {Chronometer} from './Chronometer';
+import {MyADN} from './MyADN';
+import {Playlist} from './Playlist';
+import {Timer} from './Timer';
 //import { TalismanBox } from "./TalismanBox";
 //import { IntentionContext } from "../../context";
 //import { ConstelationBox } from "./ConstelationBox";
 //import { TalismanBox } from "./TalismanBox";
 //import { ConstelationBox } from "./ConstelationBox";
-import { AstrologicalDataProps } from "../interface/myAdn.interface";
+import {AstrologicalDataProps} from '../interface/myAdn.interface';
 import {ChatBot} from './ChatBot';
-
 
 interface MeditationsOptions {
   name: string;
@@ -49,11 +47,9 @@ interface MeditationsOptions {
 export const ThreeJsFrame = () => {
   const navigate = useNavigate();
 
-  const { email, setSuscription, setTalismanActivated } =
-    useContext(UserContext);
-  const { handleButtonFocus, buttonFocusPosition } = useContext(
-    TalismanButtonFocusContext
-
+  const {email, setSuscription, setTalismanActivated} = useContext(UserContext);
+  const {handleButtonFocus, buttonFocusPosition} = useContext(
+    TalismanButtonFocusContext,
   );
   const [astrologicalInfo, setAstrologicalInfo] = useState(false);
   //AUDIO STATES
@@ -112,9 +108,7 @@ export const ThreeJsFrame = () => {
             userSoundRef.current.volume = volume;
             userSoundRef.current.play();
 
-
             userSoundRef.current.addEventListener('ended', function handler() {
-
               playCount++;
               userSoundRef.current!.removeEventListener('ended', handler);
               resolve(); // Resuelve la promesa cuando el sonido ha terminado
@@ -166,11 +160,9 @@ export const ThreeJsFrame = () => {
 
   const timerSoundRefs = useRef<HTMLAudioElement[]>([]);
 
-
   {
     /* const { intention, setIntention } = useContext(IntentionContext);*/
   }
-
 
   const buttonsLeft = [
     {
@@ -306,64 +298,64 @@ export const ThreeJsFrame = () => {
 
   const initialAstrologicalData: AstrologicalDataProps = {
     numerologySymbol: 0,
-    chinseseSymbol: "",
-    solarSailSymbol: "",
-    toneSymbol: "",
-    constellation: "",
+    chinseseSymbol: '',
+    solarSailSymbol: '',
+    toneSymbol: '',
+    constellation: '',
     kingMayaUserInfo: {
-      title: "",
+      title: '',
       text: [],
     },
     tonesUserInfo: {
-      title: "",
+      title: '',
       text: [],
     },
     chineseUserInfo: {
       commonInfo: {
-        title: "",
+        title: '',
         text: [],
       },
       particularInfo: {
-        title: "",
+        title: '',
         text: [],
       },
     },
 
     ascendantUserInfo: {
-      title: "",
+      title: '',
       text: [],
     },
     sunHouseUserInfo: {
-      title: "",
+      title: '',
       text: [],
     },
     moonHouseUserInfo: {
-      title: "",
+      title: '',
       text: [],
     },
 
     sunUserInfo: {
-      title: "",
+      title: '',
       text: [],
     },
     moonUserInfo: {
-      title: "",
+      title: '',
       text: [],
     },
 
     aspectsAndPlanetsUserInfo: {
       generalInfo: {
-        title: "",
-        text: "",
+        title: '',
+        text: '',
       },
       userAspects: [
         {
           planet: {
-            title: "",
+            title: '',
             text: [],
           },
           aspect: {
-            title: "",
+            title: '',
             text: [],
           },
         },
@@ -371,7 +363,7 @@ export const ThreeJsFrame = () => {
       filterAspects: [],
     },
     numberUserInfo: {
-      title: "",
+      title: '',
       text: [],
     },
   };
@@ -380,8 +372,6 @@ export const ThreeJsFrame = () => {
     useState<AstrologicalDataProps>(initialAstrologicalData);
 
   useEffect(() => {
-
-
     setAudioType('');
 
     async function getUserInfo(email: string) {
@@ -399,14 +389,12 @@ export const ThreeJsFrame = () => {
           );*/
           }
 
-
           if (userInfo.data) {
             setAstrologicalData(userInfo.data);
             setAstrologicalInfo(true);
 
-            localStorage.setItem("subscriptionActive", "true");
-            localStorage.setItem("talismanActivated", "true");
-
+            localStorage.setItem('subscriptionActive', 'true');
+            localStorage.setItem('talismanActivated', 'true');
 
             setSuscription(true);
             setTalismanActivated(true);
@@ -414,12 +402,10 @@ export const ThreeJsFrame = () => {
             setUserSoundURL(userInfo.data.soundPath);
           }
 
-
           {
             /*  if (userIntention) {
             setIntention(userIntention.data);
           }*/
-
           }
 
           setTimeout(() => {
@@ -671,21 +657,16 @@ export const ThreeJsFrame = () => {
     items: MeditationsOptions[],
 
     refs: React.MutableRefObject<HTMLAudioElement[]>,
-
   ): Promise<MeditationsOptions[]> => {
     // Cambiamos aquí para que solo devuelva MeditationsOptions[]
     return Promise.all(
       items.map((item, index) => {
-
         return new Promise<MeditationsOptions>(resolve => {
-
           // Especificamos el tipo de resolución
           const audio = new Audio(item.url);
           refs.current[index] = audio;
 
-
           audio.addEventListener('loadedmetadata', () => {
-
             resolve({
               ...item,
               duration: audioDurationTransform(audio.duration), // Dejamos la duración como número
@@ -705,17 +686,13 @@ export const ThreeJsFrame = () => {
             `${envs.API_DOMAIN}/api/v1/user/meditations`,
             {
               withCredentials: true,
-
             },
-
           ),
           axios.get<MeditationsOptions[]>(
             `${envs.API_DOMAIN}/api/v1/user/sounds`,
             {
               withCredentials: true,
-
             },
-
           ),
         ]);
 
@@ -854,12 +831,10 @@ export const ThreeJsFrame = () => {
             src={`https://lovelia.org/public/activation/activationExample.mp4`}
           />
 
-
-          {buttonFocusPosition === "Mi ADN Energético" && (
+          {buttonFocusPosition === 'Mi ADN Energético' && (
             <MyADN {...astrologicalData} />
           )}
-          {buttonFocusPosition === "activation" && (
-
+          {buttonFocusPosition === 'activation' && (
             <Activation
               handleActivation={handleActivation}
               pauseTrack={pauseTrack}
@@ -895,7 +870,7 @@ export const ThreeJsFrame = () => {
               <p>{intention}</p>
             </div>
           )*/}
-          <ChatBot />
+          <ChatBot astroData={astrologicalData} />
         </>
       ) : (
         <div className="myTalisman-pre-loading">Loading...</div>
@@ -903,9 +878,7 @@ export const ThreeJsFrame = () => {
 
       {sounds.map((item, i) => {
         return (
-
-          <audio key={i} ref={(el) => (soundRefs.current[i] = el!)}>
-
+          <audio key={i} ref={el => (soundRefs.current[i] = el!)}>
             <source src={`${item.url}`} type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>

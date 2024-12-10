@@ -1,10 +1,11 @@
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 import {envs} from '../config/envs';
+import {MyAdnProps} from '../myTalisman/interface/myAdn.interface';
 
 const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
-export const useChatBot = () => {
+export const useChatBot = (astroData: MyAdnProps) => {
   const [messages, setMessages] = useState<
     Array<{text: string; sender: string}>
   >([]);
@@ -59,8 +60,9 @@ export const useChatBot = () => {
         messages: [
           {
             role: 'system',
-            content:
-              'Eres un asistente útil especializado en astrología, meditaciones y temas relacionados. Responde en español y ofrece información relevante y amigable.',
+            content: `Eres un asistente útil especializado en astrología, meditaciones y temas relacionados. Responde en español y ofrece información relevante y amigable.
+              Aquí tienes información sobre el adn energético de la persona que te consulta:
+              ${astroData}`,
           },
           ...messages.map(msg => ({
             role: msg.sender === 'user' ? 'user' : 'assistant',
