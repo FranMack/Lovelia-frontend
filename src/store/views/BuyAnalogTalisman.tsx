@@ -30,15 +30,11 @@ interface Product {
   id: string; // Identificador único (asumimos que es un string)
 }
 
-
-
 function BuyAnalogTalisman() {
-
-
-    const [searchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const initialValue: Product = {
-    model: searchParams.get("model") ?? "",
+    model: searchParams.get('model') ?? '',
     metal: '',
     rock: '',
     chain: '',
@@ -166,7 +162,7 @@ function BuyAnalogTalisman() {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    setOptionModel(searchParams.get("model") ?? "")
+    setOptionModel(searchParams.get('model') ?? '');
     axios
       .get(`${envs.API_DOMAIN}/api/v1/product/get-list-of-products`)
       .then(response => {
@@ -179,7 +175,6 @@ function BuyAnalogTalisman() {
   }, [searchParams]);
 
   useEffect(() => {
-
     if (optionModel === 'Pulsera') {
       const metal = optionMaterial ? optionMaterial : 'Aleación bañada en oro';
       const filter = listOfProducts.find(item => {
@@ -227,7 +222,6 @@ function BuyAnalogTalisman() {
         }
       });
 
-      
       if (filter) {
         setProduct(filter!);
       }
@@ -235,8 +229,6 @@ function BuyAnalogTalisman() {
       return;
     }
   }, [optionModel, optionRock, optionChain, optionMaterial, optionIntention]);
-
-
 
   // para renderizar el producto correspondiente a las query params
   useEffect(() => {
@@ -249,7 +241,7 @@ function BuyAnalogTalisman() {
     const queryChain = searchParams.get('chain');
 
     // Filtrar el producto basado en las query params
-    const filteredProduct = listOfProducts.find((item) => {
+    const filteredProduct = listOfProducts.find(item => {
       return (
         (!queryModel || item.model === queryModel) &&
         (!queryMaterial || item.metal === queryMaterial) &&
@@ -260,21 +252,13 @@ function BuyAnalogTalisman() {
 
     if (filteredProduct) {
       setProduct(filteredProduct);
-
-      // Actualizar valores en el contexto
-      setOptionModel(filteredProduct.model);
-      setOptionMaterial(filteredProduct.metal);
-      setOptionRock(filteredProduct.rock);
-      setOptioChain(filteredProduct.chain);
     } else {
-      toast.warning('No se encontraron productos con las opciones seleccionadas');
+      toast.warning(
+        'No se encontraron productos con las opciones seleccionadas',
+      );
     }
   }, [searchParams, listOfProducts]);
 
-
-
-
-console.log("xxxxxxxxxxxxproduct",optionModel)
   return (
     <main
       className={
@@ -329,22 +313,38 @@ console.log("xxxxxxxxxxxxproduct",optionModel)
 
             <div className="options-container">
               <DropdownMenu
-                {...{...modelOptions, validationError: warnings.model,initialValue:searchParams.get('model')??""}}
+                {...{
+                  ...modelOptions,
+                  validationError: warnings.model,
+                  initialValue: searchParams.get('model') ?? '',
+                }}
               />
 
               <DropdownMenu
-                {...{...materialOptions, validationError: warnings.metal,initialValue:searchParams.get('metal')??""}}
+                {...{
+                  ...materialOptions,
+                  validationError: warnings.metal,
+                  initialValue: searchParams.get('metal') ?? '',
+                }}
               />
 
               {optionModel !== 'Pulsera' && (
                 <DropdownMenu
-                  {...{...piedraOptions, validationError: warnings.rock,initialValue:searchParams.get('rock')??""}}
+                  {...{
+                    ...piedraOptions,
+                    validationError: warnings.rock,
+                    initialValue: searchParams.get('rock') ?? '',
+                  }}
                 />
               )}
 
               {optionModel !== 'Pulsera' && (
                 <DropdownMenu
-                  {...{...chainOptions, validationError: warnings.chain,initialValue:searchParams.get('chain')??""}}
+                  {...{
+                    ...chainOptions,
+                    validationError: warnings.chain,
+                    initialValue: searchParams.get('chain') ?? '',
+                  }}
                 />
               )}
 

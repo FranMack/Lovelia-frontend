@@ -69,7 +69,7 @@ export const ShopingCartCard = ({
               <p>Timer, alarma, activación, ...</p>
             </div>
 
-            <div className="card-td">
+            <div className="card-td price">
               <strong>Precio unitario:</strong>
               <span>{`$ ${price}`}</span>
             </div>

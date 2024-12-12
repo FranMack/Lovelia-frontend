@@ -1,18 +1,18 @@
-import axios from "axios";
-import { useFormik } from "formik";
-import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import BeatLoader from "react-spinners/BeatLoader";
-import * as Yup from "yup";
-import { MercadoPagoIcon, PayPalIcon } from "../../assets//icons/icons";
-import { envs } from "../../config/envs";
-import { ShopingCartContext } from "../../context/modalShopingCartContext";
-import { BackgroundVideo } from "../../ui/components";
-import { ProductosOptions } from "../../ui/components/ShopingCart";
-import logoDhl from "../assets/logo-dhl.png";
-import { CheckOutNavbar } from "../components/CheckOutNavbar";
-import { taxRegimeOptions } from "../helpers/taxRegimeOptions";
-import { CheckOutCard } from "../components/CheckOutCard";
+import axios from 'axios';
+import {useFormik} from 'formik';
+import {useContext, useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
+import BeatLoader from 'react-spinners/BeatLoader';
+import * as Yup from 'yup';
+import {MercadoPagoIcon, PayPalIcon} from '../../assets//icons/icons';
+import {envs} from '../../config/envs';
+import {ShopingCartContext} from '../../context/modalShopingCartContext';
+import {BackgroundVideo} from '../../ui/components';
+import {ProductosOptions} from '../../ui/components/ShopingCart';
+import logoDhl from '../assets/logo-dhl.png';
+import {CheckOutCard} from '../components/CheckOutCard';
+import {CheckOutNavbar} from '../components/CheckOutNavbar';
+import {taxRegimeOptions} from '../helpers/taxRegimeOptions';
 
 //el precio del envío me lo devería dar la api de correos
 const deliveryPrice = 1;
@@ -23,13 +23,13 @@ function CheckOutAnalogic() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [buttonFocusPosition, setButttonFocusPosition] =
-    useState("1. Identificación");
+    useState('1. Identificación');
 
   const handleButtonFocus = (buttonName: string) => {
     setButttonFocusPosition(buttonName);
   };
 
-  const { shopingCartOpen, shopingCartItems, setShopingCartItems } =
+  const {shopingCartOpen, shopingCartItems, setShopingCartItems} =
     useContext(ShopingCartContext);
 
   const [billing, setBilling] = useState<boolean>(false);
@@ -45,29 +45,29 @@ function CheckOutAnalogic() {
   };
 
   const [sections, setSections] = useState([
-    "1. Identificación",
-    "2. Envío",
-    "3. Pago",
+    '1. Identificación',
+    '2. Envío',
+    '3. Pago',
   ]);
   const [numberOfDigitalTalisman, setNumberOfDigitalTalisman] =
     useState<number>(0);
 
-  const [talismanDigitalAcounts, setTalismanDigitalAcounts] = useState([""]);
+  const [talismanDigitalAcounts, setTalismanDigitalAcounts] = useState(['']);
   const [talismanDigitalAcountsErrors, setTalismanDigitalAcountsErrors] =
     useState<string[]>([]);
 
   const talismanDigitalAcountsHandleBlur = (index: number) => {
     const updatedErrors = [...talismanDigitalAcountsErrors];
     if (!talismanDigitalAcounts[index]) {
-      updatedErrors[index] = "Campo requerido";
+      updatedErrors[index] = 'Campo requerido';
       setTalismanDigitalAcountsErrors(updatedErrors);
       return;
     }
     if (
       talismanDigitalAcounts[index] &&
-      !talismanDigitalAcounts[index].includes("@")
+      !talismanDigitalAcounts[index].includes('@')
     ) {
-      updatedErrors[index] = "Email no valido";
+      updatedErrors[index] = 'Email no valido';
       setTalismanDigitalAcountsErrors(updatedErrors);
       return;
     } else {
@@ -79,15 +79,15 @@ function CheckOutAnalogic() {
 
   // Manejar el cambio en cada input
   const handleTalismanDigitalInput = (index: number, value: string) => {
-    setTalismanDigitalAcounts((prev) => {
+    setTalismanDigitalAcounts(prev => {
       const updatedEmails = [...prev];
       updatedEmails[index] = value; // Modifica el índice correspondiente
       return updatedEmails;
     });
 
-    setTalismanAcounts((prev) => {
+    setTalismanAcounts(prev => {
       const updatedTalismans = [...prev];
-      updatedTalismans[index] = ""; // Asigna una cadena vacía en el índice correspondiente
+      updatedTalismans[index] = ''; // Asigna una cadena vacía en el índice correspondiente
       return updatedTalismans;
     });
   };
@@ -95,38 +95,38 @@ function CheckOutAnalogic() {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    const hasTalismanDigital = shopingCartItems.some((item) => {
-      return item.model === "Digital";
+    const hasTalismanDigital = shopingCartItems.some(item => {
+      return item.model === 'Digital';
     });
-    const hasTalismanAnalog = shopingCartItems.some((item) => {
-      return item.model !== "Digital";
+    const hasTalismanAnalog = shopingCartItems.some(item => {
+      return item.model !== 'Digital';
     });
     if (hasTalismanDigital && hasTalismanAnalog) {
       setSections([
-        "1. Identificación",
-        "2. Envío",
-        "3. Talismán Digital",
-        "4. Pago",
+        '1. Identificación',
+        '2. Envío',
+        '3. Talismán Digital',
+        '4. Pago',
       ]);
-      const numberOfTalismans = shopingCartItems.filter((item) => {
-        return item.model === "Digital";
+      const numberOfTalismans = shopingCartItems.filter(item => {
+        return item.model === 'Digital';
       }).length;
 
       setNumberOfDigitalTalisman(numberOfTalismans);
 
-      setTalismanDigitalAcounts(Array(numberOfTalismans).fill(""));
+      setTalismanDigitalAcounts(Array(numberOfTalismans).fill(''));
 
       return;
     }
     if (hasTalismanDigital && !hasTalismanAnalog) {
-      setSections(["1. Identificación", "2. Talismán Digital", "3. Pago"]);
-      const numberOfTalismans = shopingCartItems.filter((item) => {
-        return item.model === "Digital";
+      setSections(['1. Identificación', '2. Talismán Digital', '3. Pago']);
+      const numberOfTalismans = shopingCartItems.filter(item => {
+        return item.model === 'Digital';
       }).length;
 
       setNumberOfDigitalTalisman(numberOfTalismans);
 
-      setTalismanDigitalAcounts(Array(numberOfTalismans).fill(""));
+      setTalismanDigitalAcounts(Array(numberOfTalismans).fill(''));
       setDelivery(false);
       return;
     }
@@ -138,7 +138,7 @@ function CheckOutAnalogic() {
 
   //FORM
 
-  const [paymetType, setPaymentType] = useState<string>("");
+  const [paymetType, setPaymentType] = useState<string>('');
 
   const handlePaymentType = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPaymentType(event.target.value);
@@ -146,24 +146,21 @@ function CheckOutAnalogic() {
 
   //validation errors
 
-  const [errorWarning, setErrorWarning] = useState<string>("");
+  const [errorWarning, setErrorWarning] = useState<string>('');
 
   //chequear si la el correo del talismán existe
 
   const [talismanAcounts, setTalismanAcounts] = useState<Array<string | null>>(
-    []
+    [],
   );
 
   const checkTalismanAcount = async () => {
-
-
     try {
-      
       const response = await axios.post(
         `${envs.API_DOMAIN}/api/v1/user/check-talisman-acounts`,
         {
           talismanAcounts: talismanDigitalAcounts,
-        }
+        },
       );
 
       const talismanAcounts = await response.data;
@@ -181,87 +178,87 @@ function CheckOutAnalogic() {
 
   const singUpForm = useFormik({
     initialValues: {
-      name: "",
-      lastname: "",
-      email: "",
-      phone: "",
-      receiver: "",
-      street: "",
-      streetNumber: "",
-      apartmentNumber: "",
-      state: "",
-      city: "",
-      country: "",
-      postalCode: "",
-      billingName: "",
-      billingLastname: "",
-      billingRfc: "",
-      billingLegalName: "",
-      billingTaxRegime: "",
+      name: '',
+      lastname: '',
+      email: '',
+      phone: '',
+      receiver: '',
+      street: '',
+      streetNumber: '',
+      apartmentNumber: '',
+      state: '',
+      city: '',
+      country: '',
+      postalCode: '',
+      billingName: '',
+      billingLastname: '',
+      billingRfc: '',
+      billingLegalName: '',
+      billingTaxRegime: '',
     },
     validationSchema: Yup.object({
       name: Yup.string()
-        .required("Campo requerido")
-        .matches(/^[a-zA-Z\s]+$/, "Solo se permiten letras"),
+        .required('Campo requerido')
+        .matches(/^[a-zA-Z\s]+$/, 'Solo se permiten letras'),
       lastname: Yup.string()
-        .required("Campo requerido")
-        .matches(/^[a-zA-Z\s]+$/, "Solo se permiten letras"),
-      email: Yup.string().required("Campo requerido").email("Email no valido"),
+        .required('Campo requerido')
+        .matches(/^[a-zA-Z\s]+$/, 'Solo se permiten letras'),
+      email: Yup.string().required('Campo requerido').email('Email no valido'),
       //delivery validations
       phone: delivery
         ? Yup.string()
-            .required("Campo requerido")
+            .required('Campo requerido')
             .matches(
               /^\+?[0-9\s\-()]+$/,
-              "El teléfono debe ser válido y puede incluir un prefijo internacional"
+              'El teléfono debe ser válido y puede incluir un prefijo internacional',
             )
-            .min(8, "El teléfono debe tener al menos 8 dígitos")
-            .max(15, "El teléfono no debe exceder los 15 dígitos")
+            .min(8, 'El teléfono debe tener al menos 8 dígitos')
+            .max(15, 'El teléfono no debe exceder los 15 dígitos')
         : Yup.string(),
       receiver: delivery
         ? Yup.string()
-            .required("Campo requerido")
-            .matches(/^[a-zA-Z\s]+$/, "Solo se permiten letras")
+            .required('Campo requerido')
+            .matches(/^[a-zA-Z\s]+$/, 'Solo se permiten letras')
             .test(
-              "two-words", // Nombre del test
-              "Debe contener nombre y apellido", // Mensaje de error
-              (value) => (value ? value.trim().split(/\s+/).length >= 2 : false)
+              'two-words', // Nombre del test
+              'Debe contener nombre y apellido', // Mensaje de error
+              value => (value ? value.trim().split(/\s+/).length >= 2 : false),
             )
         : Yup.string(),
       street: delivery
-        ? Yup.string().required("Campo requerido")
+        ? Yup.string().required('Campo requerido')
         : Yup.string(),
       streetNumber: delivery
-        ? Yup.string().required("Campo requerido")
+        ? Yup.string().required('Campo requerido')
         : Yup.string(),
       apartmentNumber: delivery ? Yup.string().notRequired() : Yup.string(),
-      state: delivery ? Yup.string().required("Campo requerido") : Yup.string(),
-      city: delivery ? Yup.string().required("Campo requerido") : Yup.string(),
+      state: delivery ? Yup.string().required('Campo requerido') : Yup.string(),
+      city: delivery ? Yup.string().required('Campo requerido') : Yup.string(),
       country: delivery
-        ? Yup.string().required("Campo requerido")
+        ? Yup.string().required('Campo requerido')
         : Yup.string(),
       postalCode: delivery
-        ? Yup.string().required("Campo requerido")
+        ? Yup.string().required('Campo requerido')
         : Yup.string(),
       //billing validations
       billingName: billing
-        ? Yup.string().required("Campo requerido")
+        ? Yup.string().required('Campo requerido')
         : Yup.string(),
       billingLastname: billing
-        ? Yup.string().required("Campo requerido")
+        ? Yup.string().required('Campo requerido')
         : Yup.string(),
       billingRfc: billing
-        ? Yup.string().required("Campo requerido")
+        ? Yup.string().required('Campo requerido')
         : Yup.string(),
       billingLegalName: billing
-        ? Yup.string().required("Campo requerido")
+        ? Yup.string().required('Campo requerido')
         : Yup.string(),
       billingTaxRegime: billing
-        ? Yup.string().required("Campo requerido")
+        ? Yup.string().required('Campo requerido')
         : Yup.string(),
     }),
 
-    onSubmit: async (values) => {
+    onSubmit: async values => {
       const {
         name,
         lastname,
@@ -292,38 +289,38 @@ function CheckOutAnalogic() {
         });
 
         if (talismanDigitalAcountsErrors.length > 0) {
-          setErrorWarning("validationErrors");
+          setErrorWarning('validationErrors');
           return;
         }
         if (talismanAcounts.length > 0) {
           const checkedAcounts = await checkTalismanAcount();
           if (!checkedAcounts) {
-            setErrorWarning("validationErrors");
+            setErrorWarning('validationErrors');
             return;
           }
         }
       }
 
       if (!paymetType) {
-        setErrorWarning("missing-payment-type");
+        setErrorWarning('missing-payment-type');
         return;
       }
 
       if (shopingCartItems.length < 1) {
-        setErrorWarning("empty-cart");
+        setErrorWarning('empty-cart');
         return;
       }
 
       if (!siteTerms) {
-        setErrorWarning("site-terms");
+        setErrorWarning('site-terms');
         return;
       }
 
-      setErrorWarning("");
+      setErrorWarning('');
 
       setIsLoading(true);
 
-      const buyerInfo={email,name,lastname}
+      const buyerInfo = {email, name, lastname};
 
       const billingDetails = {
         name: billingName,
@@ -343,47 +340,40 @@ function CheckOutAnalogic() {
         price: deliveryPrice,
       };
 
-      const productDetails = shopingCartItems.map((item) => {
+      const productDetails = shopingCartItems.map(item => {
         return {
           ...item,
         };
       });
 
-
-
-      const needDelivery = shopingCartItems.some((item) => {
-        if (item.model !== "Digital") {
+      const needDelivery = shopingCartItems.some(item => {
+        if (item.model !== 'Digital') {
           return true;
         }
       });
 
       const talismanDigitalOwners = talismanDigitalAcounts[0]
-      ? talismanDigitalAcounts.map((email) => {
-          return { email: email };
-        })
-      : undefined;
+        ? talismanDigitalAcounts.map(email => {
+            return {email: email};
+          })
+        : undefined;
 
-
-
-      if (paymetType === "mercadoPago") {
+      if (paymetType === 'mercadoPago') {
         const shopingCartMP = shopingCartItems.map((item: ProductosOptions) => {
           return {
             title: item.model,
             quantity: item.quantity,
             unit_price: item.price,
-            currency_id: "USD",
+            currency_id: 'USD',
           };
         });
 
-
         const delivery = {
-          title: "Envío",
+          title: 'Envío',
           quantity: 1,
           unit_price: deliveryPrice,
-          currency_id: "USD",
+          currency_id: 'USD',
         };
-
-   
 
         axios
           .post(
@@ -392,16 +382,16 @@ function CheckOutAnalogic() {
               items: needDelivery
                 ? [...shopingCartMP, delivery]
                 : [...shopingCartMP],
-                buyerInfo,
+              buyerInfo,
               productDetails,
               deliveryDetails,
               billingDetails: billing ? billingDetails : undefined,
               talismanDigitalOwners: talismanDigitalOwners,
             },
-            { withCredentials: true }
+            {withCredentials: true},
           )
-          .then((response) => {
-            localStorage.removeItem("shopingCart");
+          .then(response => {
+            localStorage.removeItem('shopingCart');
             setShopingCartItems([]);
             window.location.href = response.data.link_de_pago;
             setIsLoading(false);
@@ -409,55 +399,54 @@ function CheckOutAnalogic() {
           .then(() => {
             setIsLoading(false);
           })
-          .catch((error) => {
+          .catch(error => {
             console.log(error);
           });
       }
 
-
-      if (paymetType === "paypal") {
+      if (paymetType === 'paypal') {
         const shopingCartPaypal = shopingCartItems.map(
           (item: ProductosOptions) => {
             return {
               title: item.model,
               quantity: item.quantity,
               unit_amount: {
-                currency_code: "USD",
+                currency_code: 'USD',
                 value: item.price,
               },
             };
-          }
+          },
         );
 
-  
         const delivery = {
-          title: "Envío",
+          title: 'Envío',
           quantity: 1,
           unit_amount: {
-            currency_code: "USD",
+            currency_code: 'USD',
             value: deliveryPrice,
           },
         };
-        
-  
+
         axios
           .post(`${envs.API_DOMAIN}/api/v1/payment-paypal/create-order`, {
-            items:needDelivery ? [...shopingCartPaypal, delivery]:[...shopingCartPaypal],
+            items: needDelivery
+              ? [...shopingCartPaypal, delivery]
+              : [...shopingCartPaypal],
             buyerInfo,
             productDetails,
             deliveryDetails,
             billingDetails: billing ? billingDetails : undefined,
             talismanDigitalOwners: talismanDigitalOwners,
           })
-          .then((response) => {
-            //localStorage.removeItem("shopingCart");
+          .then(response => {
+            localStorage.removeItem('shopingCart');
             setShopingCartItems([]);
             window.location.href = response.data.link_de_pago;
           })
           .then(() => {
             setIsLoading(false);
           })
-          .catch((error) => {
+          .catch(error => {
             console.log(error);
           });
       }
@@ -467,16 +456,14 @@ function CheckOutAnalogic() {
   useEffect(() => {
     // Si hay errores de validación, se establece `errorWarning` en true
     if (Object.keys(singUpForm.errors).length > 0) {
-      setErrorWarning("validationErrors");
+      setErrorWarning('validationErrors');
     } else {
-      setErrorWarning("");
+      setErrorWarning('');
     }
   }, [singUpForm.errors]);
 
-
-
   return (
-    <main className={shopingCartOpen ? "viewport-background" : ""}>
+    <main className={shopingCartOpen ? 'viewport-background' : ''}>
       <section className="checkout-container efectoReveal">
         <BackgroundVideo />
 
@@ -488,9 +475,8 @@ function CheckOutAnalogic() {
 
         <form
           onSubmit={singUpForm.handleSubmit}
-          className="checkout-botton-container"
-        >
-          {buttonFocusPosition.includes("Identificación") ? (
+          className="checkout-botton-container">
+          {buttonFocusPosition.includes('Identificación') ? (
             <div className="checkout-botton-left-container">
               <div className="checkout-title-container">
                 <h3>Identificación</h3>
@@ -510,8 +496,8 @@ function CheckOutAnalogic() {
                       placeholder="Ej. John"
                       className={
                         singUpForm.touched.name && singUpForm.errors.name
-                          ? "input-error"
-                          : ""
+                          ? 'input-error'
+                          : ''
                       }
                     />
                     {singUpForm.touched.name && singUpForm.errors.name && (
@@ -533,8 +519,8 @@ function CheckOutAnalogic() {
                       className={
                         singUpForm.touched.lastname &&
                         singUpForm.errors.lastname
-                          ? "input-error"
-                          : ""
+                          ? 'input-error'
+                          : ''
                       }
                     />
                     {singUpForm.touched.lastname &&
@@ -555,8 +541,8 @@ function CheckOutAnalogic() {
                   placeholder="ejemplo@gmail.com"
                   className={
                     singUpForm.touched.email && singUpForm.errors.email
-                      ? "input-error"
-                      : ""
+                      ? 'input-error'
+                      : ''
                   }
                 />
                 {singUpForm.touched.email && singUpForm.errors.email && (
@@ -570,7 +556,7 @@ function CheckOutAnalogic() {
                 </button>
               </div>
             </div>
-          ) : buttonFocusPosition.includes("Talismán Digital") ? (
+          ) : buttonFocusPosition.includes('Talismán Digital') ? (
             <div className="checkout-botton-left-container">
               <div className="checkout-title-container">
                 <h3>Talismán digital</h3>
@@ -584,7 +570,7 @@ function CheckOutAnalogic() {
                       <label htmlFor="email">Email</label>
                       <input
                         value={talismanDigitalAcounts[i]}
-                        onChange={(e) =>
+                        onChange={e =>
                           handleTalismanDigitalInput(i, e.target.value)
                         }
                         onBlur={() => talismanDigitalAcountsHandleBlur(i)}
@@ -594,17 +580,17 @@ function CheckOutAnalogic() {
                         className={
                           talismanDigitalAcountsErrors[i] ||
                           talismanAcounts[i] ||
-                          (errorWarning === "validationErrors" &&
+                          (errorWarning === 'validationErrors' &&
                             !talismanDigitalAcounts[i])
-                            ? "input-error"
-                            : ""
+                            ? 'input-error'
+                            : ''
                         }
                       />
                       {(talismanDigitalAcountsErrors[i] ||
-                        (errorWarning === "validationErrors" &&
+                        (errorWarning === 'validationErrors' &&
                           !talismanDigitalAcounts[i])) && (
                         <span className="checkOut-helpers-error">
-                          {talismanDigitalAcountsErrors[i] || "Campo requerido"}
+                          {talismanDigitalAcountsErrors[i] || 'Campo requerido'}
                         </span>
                       )}
                       {talismanAcounts[i] && (
@@ -616,22 +602,22 @@ function CheckOutAnalogic() {
                   );
                 })}
 
-                <button type="button"
+                <button
+                  type="button"
                   onClick={async () => {
                     const checkAcounts = await checkTalismanAcount();
 
-                    console.log("xxxxxxxxxxxxxxx",checkAcounts)
+                    console.log('xxxxxxxxxxxxxxx', checkAcounts);
 
                     if (checkAcounts) {
                       setButttonFocusPosition(sections[sections.length - 1]);
                     }
-                  }}
-                >
+                  }}>
                   Continuar
                 </button>
               </div>
             </div>
-          ) : buttonFocusPosition.includes("Envío") ? (
+          ) : buttonFocusPosition.includes('Envío') ? (
             <div className="checkout-botton-left-container">
               <div className="checkout-title-container">
                 <h3>Detalle de envío</h3>
@@ -649,8 +635,8 @@ function CheckOutAnalogic() {
                   placeholder="Ej. John Doe"
                   className={
                     singUpForm.touched.receiver && singUpForm.errors.receiver
-                      ? "input-error"
-                      : ""
+                      ? 'input-error'
+                      : ''
                   }
                 />
                 {singUpForm.touched.receiver && singUpForm.errors.receiver && (
@@ -671,8 +657,8 @@ function CheckOutAnalogic() {
                       placeholder="Ej. Av. Las Américas"
                       className={
                         singUpForm.touched.street && singUpForm.errors.street
-                          ? "input-error"
-                          : ""
+                          ? 'input-error'
+                          : ''
                       }
                     />
                     {singUpForm.touched.street && singUpForm.errors.street && (
@@ -694,8 +680,8 @@ function CheckOutAnalogic() {
                       className={
                         singUpForm.touched.streetNumber &&
                         singUpForm.errors.street
-                          ? "input-error"
-                          : ""
+                          ? 'input-error'
+                          : ''
                       }
                     />
                     {singUpForm.touched.streetNumber &&
@@ -717,8 +703,8 @@ function CheckOutAnalogic() {
                   className={
                     singUpForm.touched.apartmentNumber &&
                     singUpForm.errors.apartmentNumber
-                      ? "input-error"
-                      : ""
+                      ? 'input-error'
+                      : ''
                   }
                 />
                 {singUpForm.touched.apartmentNumber &&
@@ -740,8 +726,8 @@ function CheckOutAnalogic() {
                       placeholder="Ej. Rosario"
                       className={
                         singUpForm.touched.city && singUpForm.errors.city
-                          ? "input-error"
-                          : ""
+                          ? 'input-error'
+                          : ''
                       }
                     />
                     {singUpForm.touched.city && singUpForm.errors.city && (
@@ -761,8 +747,8 @@ function CheckOutAnalogic() {
                       placeholder="Ej. Santa Fe"
                       className={
                         singUpForm.touched.state && singUpForm.errors.state
-                          ? "input-error"
-                          : ""
+                          ? 'input-error'
+                          : ''
                       }
                     />
                     {singUpForm.touched.state && singUpForm.errors.state && (
@@ -785,8 +771,8 @@ function CheckOutAnalogic() {
                       placeholder="Ej. Argentina"
                       className={
                         singUpForm.touched.country && singUpForm.errors.country
-                          ? "input-error"
-                          : ""
+                          ? 'input-error'
+                          : ''
                       }
                     />
                     {singUpForm.touched.country &&
@@ -808,8 +794,8 @@ function CheckOutAnalogic() {
                       className={
                         singUpForm.touched.postalCode &&
                         singUpForm.errors.postalCode
-                          ? "input-error"
-                          : ""
+                          ? 'input-error'
+                          : ''
                       }
                     />
                     {singUpForm.touched.postalCode &&
@@ -830,8 +816,8 @@ function CheckOutAnalogic() {
                   placeholder="Ej. +54 9 342 6544569"
                   className={
                     singUpForm.touched.phone && singUpForm.errors.phone
-                      ? "input-error"
-                      : ""
+                      ? 'input-error'
+                      : ''
                   }
                 />
                 {singUpForm.touched.phone && singUpForm.errors.phone && (
@@ -874,7 +860,7 @@ function CheckOutAnalogic() {
 
               <div className="checkout-form">
                 <div className="checkout-facturacion-container">
-                  {singUpForm.values.country.toLowerCase() === "mexico" && (
+                  {singUpForm.values.country.toLowerCase() === 'mexico' && (
                     <div className="facturacion-checkbox">
                       <label htmlFor="">
                         Si requieres factura fiscal, marque la casilla y
@@ -904,8 +890,8 @@ function CheckOutAnalogic() {
                           className={
                             singUpForm.touched.billingName &&
                             singUpForm.errors.billingName
-                              ? "input-error"
-                              : ""
+                              ? 'input-error'
+                              : ''
                           }
                         />
                         {singUpForm.touched.billingName &&
@@ -928,8 +914,8 @@ function CheckOutAnalogic() {
                           className={
                             singUpForm.touched.billingLastname &&
                             singUpForm.errors.billingLastname
-                              ? "input-error"
-                              : ""
+                              ? 'input-error'
+                              : ''
                           }
                         />
                         {singUpForm.touched.billingLastname &&
@@ -952,8 +938,8 @@ function CheckOutAnalogic() {
                       className={
                         singUpForm.touched.billingRfc &&
                         singUpForm.errors.billingRfc
-                          ? "input-error"
-                          : ""
+                          ? 'input-error'
+                          : ''
                       }
                     />
                     {singUpForm.touched.billingRfc &&
@@ -973,8 +959,8 @@ function CheckOutAnalogic() {
                       className={
                         singUpForm.touched.billingLegalName &&
                         singUpForm.errors.billingRfc
-                          ? "input-error"
-                          : ""
+                          ? 'input-error'
+                          : ''
                       }
                     />
                     {singUpForm.touched.billingLegalName &&
@@ -994,17 +980,16 @@ function CheckOutAnalogic() {
                       className={
                         singUpForm.touched.billingTaxRegime &&
                         singUpForm.errors.billingTaxRegime
-                          ? "billing-taxRegime input-error"
-                          : "billing-taxRegime"
+                          ? 'billing-taxRegime input-error'
+                          : 'billing-taxRegime'
                       }
                       style={{
                         color: !singUpForm.values.billingTaxRegime
-                          ? "gray"
-                          : "",
-                      }}
-                    >
+                          ? 'gray'
+                          : '',
+                      }}>
                       <option value="">Régimen Fiscal</option>
-                      {taxRegimeOptions.map((item) => {
+                      {taxRegimeOptions.map(item => {
                         return <option value={item}>{item}</option>;
                       })}
                     </select>
@@ -1027,7 +1012,7 @@ function CheckOutAnalogic() {
                           type="radio"
                           name="mercadoPago"
                           value="mercadoPago"
-                          checked={paymetType === "mercadoPago"}
+                          checked={paymetType === 'mercadoPago'}
                         />
                         <MercadoPagoIcon />
                       </label>
@@ -1041,7 +1026,7 @@ function CheckOutAnalogic() {
                           type="radio"
                           name="paypal"
                           value="paypal"
-                          checked={paymetType === "paypal"}
+                          checked={paymetType === 'paypal'}
                         />
                         <PayPalIcon />
                       </label>
@@ -1051,11 +1036,11 @@ function CheckOutAnalogic() {
                 <div className="checkout-siteTerms-container">
                   <div className="siteTerms-checkbox">
                     <label htmlFor="">
-                      Acepto los{" "}
+                      Acepto los{' '}
                       <Link to="/terminos-y-condiciones">
                         Términos y condiciones
-                      </Link>{" "}
-                      y{" "}
+                      </Link>{' '}
+                      y{' '}
                       <Link to="/politica-de-privacidad">
                         Políticas de privacidad
                       </Link>
@@ -1067,14 +1052,14 @@ function CheckOutAnalogic() {
                     />
                   </div>
                 </div>
-                {paymetType === "paypal" && !errorWarning ? (
+                {paymetType === 'paypal' && !errorWarning ? (
                   <div className="complementary-info-payment-container">
                     <p>
                       Para completar la transacción, te enviaremos a los
                       servidores seguros de PayPal.
                     </p>
                   </div>
-                ) : paymetType === "mercadoPago" && !errorWarning ? (
+                ) : paymetType === 'mercadoPago' && !errorWarning ? (
                   <div className="complementary-info-payment-container">
                     <p>
                       Para completar la transacción, te enviaremos a los
@@ -1084,7 +1069,7 @@ function CheckOutAnalogic() {
                 ) : (
                   <></>
                 )}
-                {errorWarning === "validationErrors" ||
+                {errorWarning === 'validationErrors' ||
                 Object.values(singUpForm.errors).length > 0 ? (
                   <div className="complementary-info-payment-container error">
                     <p>
@@ -1092,15 +1077,15 @@ function CheckOutAnalogic() {
                       CAMPOS
                     </p>
                   </div>
-                ) : errorWarning === "missing-payment-type" ? (
+                ) : errorWarning === 'missing-payment-type' ? (
                   <div className="complementary-info-payment-container error">
                     <p>DEBER SELECCIONAR UN MÉTODO DE PAGO.</p>
                   </div>
-                ) : errorWarning === "empty-cart" ? (
+                ) : errorWarning === 'empty-cart' ? (
                   <div className="complementary-info-payment-container error">
                     <p>NO HAY PRODUCTOS AÑADIDOS AL CARRITO DE COMPRA.</p>
                   </div>
-                ) : errorWarning === "site-terms" ? (
+                ) : errorWarning === 'site-terms' ? (
                   <div className="complementary-info-payment-container error">
                     <p>
                       PARA REALIZAR LA COMPRA DEBE ACEPTAR TÉRMINOS Y
@@ -1113,9 +1098,9 @@ function CheckOutAnalogic() {
 
                 <button type="submit">
                   {isLoading && !errorWarning ? (
-                    <BeatLoader color={"white"} speedMultiplier={0.4} />
+                    <BeatLoader color={'white'} speedMultiplier={0.4} />
                   ) : (
-                    "Ir a pagar"
+                    'Ir a pagar'
                   )}
                 </button>
               </div>
@@ -1126,7 +1111,7 @@ function CheckOutAnalogic() {
               <h3>Resumen de pedido</h3>
             </div>
             <div className="checkout-botton-right-center-container">
-              {shopingCartItems.map((item) => {
+              {shopingCartItems.map(item => {
                 return <CheckOutCard key={item.id} {...item} />;
               })}
             </div>

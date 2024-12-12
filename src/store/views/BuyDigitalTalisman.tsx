@@ -8,7 +8,7 @@ import {PopUp} from '../../ui/components/PopUp';
 import {ejDigitalTalisman} from '../assets/ejDigitalTalisman';
 import talismanDigital from '../assets/ejemplo1_talisman_digital.png';
 
-const precio = '15,00';
+const precio = '10,00';
 
 function BuyDigitalTalisman() {
   window.scrollTo(0, 0);
