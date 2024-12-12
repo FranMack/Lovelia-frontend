@@ -392,7 +392,7 @@ function CheckOutAnalogic() {
               items: needDelivery
                 ? [...shopingCartMP, delivery]
                 : [...shopingCartMP],
-              email: email,
+                buyerInfo,
               productDetails,
               deliveryDetails,
               billingDetails: billing ? billingDetails : undefined,
@@ -401,7 +401,7 @@ function CheckOutAnalogic() {
             { withCredentials: true }
           )
           .then((response) => {
-            //localStorage.removeItem("shopingCart");
+            localStorage.removeItem("shopingCart");
             setShopingCartItems([]);
             window.location.href = response.data.link_de_pago;
             setIsLoading(false);

@@ -58,6 +58,7 @@ export function Slider({ sliderInfo }: SliderOptions) {
     }
   };
 
+
   return (
     <div className="wrapper">
       <div
@@ -87,8 +88,7 @@ export function Slider({ sliderInfo }: SliderOptions) {
           return (
             <SliderCard
               key={i}
-              image={slide.image}
-              title={slide.title}
+           {...slide}
             />
           );
         })}

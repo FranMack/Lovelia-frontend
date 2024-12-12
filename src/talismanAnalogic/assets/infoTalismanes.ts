@@ -1,6 +1,7 @@
-import aura from "./modelo_aura.png";
-import bindu from "./modelo_bindu.png";
-import halo from "./modelo_halo.png"
+import aura from "./productos/modelo_aura.webp";
+import bindu from "./productos/modelo_bindu.webp";
+import halo from "./productos/modelo_halo.webp"
+import pulsera from "./productos/pulsera_oro.webp"
 
 export const infoTalismans = [
   {
@@ -16,6 +17,11 @@ export const infoTalismans = [
   {
     image: bindu,
     title: "Talismán Bindu",
+    text: "La intuición es la guía del Alma",
+  },
+  {
+    image: pulsera,
+    title: "Pulsera Nova ",
     text: "La intuición es la guía del Alma",
   },
 ];

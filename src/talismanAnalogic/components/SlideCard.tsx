@@ -1,14 +1,21 @@
+import { useNavigate } from "react-router";
 import { LazyImage } from "../../ui/components";
 
 export interface SliderCardOptions {
   image: string;
   title: string;
+  path?:string
  
 }
 
-export function SliderCard({ image, title}: SliderCardOptions) {
+export function SliderCard({ image, title,path}: SliderCardOptions) {
+  const navigate=useNavigate();
+  const linkTo=(path:string)=>{
+    navigate(path)
+  }
+  console.log("title",path)
   return (
-    <li className="card">
+    <li onClick={path ? ()=>{linkTo(path)} :()=>{}} className="card">
       <div className="image">
         <LazyImage src={image} alt={title} draggable={false} />
       </div>

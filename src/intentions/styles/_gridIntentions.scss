@@ -30,6 +30,11 @@
             position:absolute;
             z-index: 10;
             height: 14%;
+
+            transition: transform 0.5s;
+            &:hover{
+                transform: scale(1.1);
+            }
      
         }
 

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {useContext, useEffect, useState} from 'react';
+import {useSearchParams} from 'react-router-dom';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {RightNextIcon} from '../../assets/icons/icons';
@@ -9,57 +10,14 @@ import {TalismanModelContext} from '../../context/talismanModelContext';
 import {TimerContext} from '../../context/timerContext';
 import {useOpenModal} from '../../hooks/useOpenModal';
 import {Button} from '../../ui/components/Button';
-import {DropdownMenu, DropdownMenuOptions} from '../components/DropdownMenu';
-
-const modelOptions: DropdownMenuOptions = {
-  title: 'Modelo',
-  options: [
-    {option: 'Aura', price: 3},
-    {option: 'Halo', price: 4},
-    {option: 'Bindu', price: 5},
-  ],
-};
-const materialOptions: DropdownMenuOptions = {
-  title: 'Metal',
-  options: [
-    {option: 'Aleación bañada en oro', price: 1},
-    {option: 'Plata 925', price: 2},
-  ],
-};
-
-const piedraOptions: DropdownMenuOptions = {
-  title: 'Piedra',
-  options: [
-    {option: 'Lapislázuli', price: 1},
-    {option: 'Labradorita', price: 1},
-    {option: 'Turquesa', price: 2},
-    {option: 'Onix Negro', price: 3},
-    {option: 'Rodocrosita', price: 4},
-    {option: 'Onix Blanco', price: 2},
-  ],
-};
-
-const chainOptions: DropdownMenuOptions = {
-  title: 'Colgante',
-  options: [
-    {option: 'Cadena', price: 2},
-    {option: 'Tiento', price: 1},
-  ],
-};
-
-const intencionOptions: DropdownMenuOptions = {
-  title: 'Intención',
-  options: [
-    {option: 'Abundancia', price: 0},
-    {option: 'Amor incondicional', price: 0},
-    {option: 'Aquí y ahora', price: 0},
-    {option: 'Coraje', price: 0},
-    {option: 'Gratitud', price: 0},
-    {option: 'Potencial infinito', price: 0},
-    {option: 'Sabiduría de la incertidumbre', price: 0},
-    {option: 'Yo verdadero', price: 0},
-  ],
-};
+import {
+  chainOptions,
+  intencionOptions,
+  materialOptions,
+  modelOptions,
+  piedraOptions,
+} from '../assets/buyAnalogTalismanInfo';
+import {DropdownMenu} from '../components/DropdownMenu';
 
 interface Product {
   model: string;
@@ -72,18 +30,24 @@ interface Product {
   id: string; // Identificador único (asumimos que es un string)
 }
 
-const initialValue: Product = {
-  model: '',
-  metal: '',
-  rock: '',
-  chain: '',
-  price: 0,
-  stock: 0,
-  images: [],
-  id: '',
-};
+
 
 function BuyAnalogTalisman() {
+
+
+    const [searchParams] = useSearchParams();
+
+  const initialValue: Product = {
+    model: searchParams.get("model") ?? "",
+    metal: '',
+    rock: '',
+    chain: '',
+    price: 0,
+    stock: 0,
+    images: [],
+    id: '',
+  };
+
   const {toggleMenu, setShopingCartItems} = useContext(ShopingCartContext);
 
   const [index, setIndex] = useState<number>(0);
@@ -106,86 +70,86 @@ function BuyAnalogTalisman() {
   const dropdownIntensiones = useOpenModal();
 
   const {
-    priceModel,
     optionModel,
-    priceMaterial,
     optionMaterial,
-    priceRock,
     optionRock,
-    priceChain,
     optionChain,
     optionIntention,
     setOptionModel,
-    setPriceModel,
     setOptionMaterial,
-    setPriceMaterial,
     setOptioChain,
-    setPriceChain,
     setOptionRock,
-    setPriceRock,
     setOptionIntention,
-    setPriceIntention,
   } = useContext(TalismanModelContext);
 
   const addToShopingCart = () => {
-    if (
+    const shopingCartJSON = localStorage.getItem('shopingCart') || '[]';
+    const shopingCart = JSON.parse(shopingCartJSON);
+
+    const isPulsera =
+      optionModel === 'Pulsera' && optionMaterial && optionIntention;
+    const isTalisman =
       optionModel &&
       optionMaterial &&
       optionRock &&
       optionChain &&
-      optionIntention
-    ) {
-      const shopingCartJSON = localStorage.getItem('shopingCart') || '[]';
-      const shopingCart = JSON.parse(shopingCartJSON);
+      optionIntention;
+
+    if (isPulsera || isTalisman) {
       const shopingCartNewItem = {
         id: Math.round(Math.random() * 10000000),
-        product: 'Talismán analógico',
+        product: isPulsera ? 'Pulsera' : 'Talismán analógico',
         model: optionModel,
         material: optionMaterial,
-        rock: optionRock,
-        chain: optionChain,
+        rock: isPulsera ? '' : optionRock,
+        chain: isPulsera ? '' : optionChain,
         intention: optionIntention,
         image: product.images[0],
-        price: priceModel + priceMaterial + priceRock + priceChain,
+        price: product.price,
         quantity: 1,
       };
+
       const shopingCartUpdate = [shopingCartNewItem, ...shopingCart];
       localStorage.setItem('shopingCart', JSON.stringify(shopingCartUpdate));
       setShopingCartItems(shopingCartUpdate);
 
-      toggleMenu();
-      setOptionModel('');
-      setPriceModel(0);
-      setOptionMaterial('');
-      setPriceMaterial(0);
-      setOptioChain('');
-      setPriceChain(0);
-      setOptionRock('');
-      setPriceRock(0);
-      setOptionIntention('');
-      setPriceIntention(0);
-      setAddedToCart(false);
-      setProduct(listOfProducts[0]);
-
-      return;
-    } else {
-      setWarnings({
-        model: !optionModel,
-        rock: !optionRock,
-        chain: !optionChain,
-        metal: !optionMaterial,
-        intention: !optionIntention,
-      });
-      setAddedToCart(true);
-      //agregar un pop up
-      toast.warning('Debe completar todos los campos del talismán');
+      // Reset form fields
+      resetForm();
       return;
     }
+
+    // Handle validation warnings
+    setWarnings({
+      model: !optionModel,
+      rock: !optionRock,
+      chain: !optionChain,
+      metal: !optionMaterial,
+      intention: !optionIntention,
+    });
+    setAddedToCart(true);
+    toast.warning('Debe completar todos los campos del talismán');
+  };
+
+  const resetForm = () => {
+    setOptionModel('');
+    setOptionMaterial('');
+    setOptioChain('');
+    setOptionRock('');
+    setOptionIntention('');
+    toggleMenu();
+    setAddedToCart(false);
+    setProduct(listOfProducts[0]);
+    setWarnings({
+      model: false,
+      rock: false,
+      chain: false,
+      metal: false,
+      intention: false,
+    });
   };
 
   const {activatedAlarm} = useContext(TimerContext);
   const {shopingCartOpen} = useContext(ShopingCartContext);
-
   const [product, setProduct] = useState<Product>(initialValue);
   const [listOfProducts, setListOfProducts] = useState<Product[]>([]);
 
@@ -201,6 +165,8 @@ function BuyAnalogTalisman() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    setOptionModel(searchParams.get("model") ?? "")
     axios
       .get(`${envs.API_DOMAIN}/api/v1/product/get-list-of-products`)
       .then(response => {
@@ -210,14 +176,35 @@ function BuyAnalogTalisman() {
       .catch(error => {
         console.log(error);
       });
-  }, []);
+  }, [searchParams]);
 
   useEffect(() => {
-    if (optionModel || optionRock || optionChain || optionMaterial) {
+
+    if (optionModel === 'Pulsera') {
+      const metal = optionMaterial ? optionMaterial : 'Aleación bañada en oro';
+      const filter = listOfProducts.find(item => {
+        if (validationError) {
+          setWarnings({
+            model: !optionModel,
+            rock: !optionRock,
+            chain: !optionChain,
+            metal: !optionMaterial,
+            intention: !optionIntention,
+          });
+        }
+        if (item.model === 'Pulsera' && item.metal === metal) {
+          return item;
+        }
+      });
+
+      if (filter) {
+        setProduct(filter);
+      }
+    } else if (optionModel || optionRock || optionChain || optionMaterial) {
       const model = optionModel ? optionModel : 'Aura';
+      const metal = optionMaterial ? optionMaterial : 'Aleación bañada en oro';
       const rock = optionRock ? optionRock : 'Labradorita';
       const chain = optionChain ? optionChain : 'Cadena';
-      const metal = optionMaterial ? optionMaterial : 'Aleación bañada en oro';
 
       if (validationError) {
         setWarnings({
@@ -239,6 +226,8 @@ function BuyAnalogTalisman() {
           return item;
         }
       });
+
+      
       if (filter) {
         setProduct(filter!);
       }
@@ -247,6 +236,45 @@ function BuyAnalogTalisman() {
     }
   }, [optionModel, optionRock, optionChain, optionMaterial, optionIntention]);
 
+
+
+  // para renderizar el producto correspondiente a las query params
+  useEffect(() => {
+    if (listOfProducts.length === 0) return;
+
+    // Leer los valores de las query params
+    const queryModel = searchParams.get('model');
+    const queryMaterial = searchParams.get('metal');
+    const queryRock = searchParams.get('rock');
+    const queryChain = searchParams.get('chain');
+
+    // Filtrar el producto basado en las query params
+    const filteredProduct = listOfProducts.find((item) => {
+      return (
+        (!queryModel || item.model === queryModel) &&
+        (!queryMaterial || item.metal === queryMaterial) &&
+        (!queryRock || item.rock === queryRock) &&
+        (!queryChain || item.chain === queryChain)
+      );
+    });
+
+    if (filteredProduct) {
+      setProduct(filteredProduct);
+
+      // Actualizar valores en el contexto
+      setOptionModel(filteredProduct.model);
+      setOptionMaterial(filteredProduct.metal);
+      setOptionRock(filteredProduct.rock);
+      setOptioChain(filteredProduct.chain);
+    } else {
+      toast.warning('No se encontraron productos con las opciones seleccionadas');
+    }
+  }, [searchParams, listOfProducts]);
+
+
+
+
+console.log("xxxxxxxxxxxxproduct",optionModel)
   return (
     <main
       className={
@@ -301,23 +329,30 @@ function BuyAnalogTalisman() {
 
             <div className="options-container">
               <DropdownMenu
-                {...{...modelOptions, validationError: warnings.model}}
+                {...{...modelOptions, validationError: warnings.model,initialValue:searchParams.get('model')??""}}
               />
 
               <DropdownMenu
-                {...{...materialOptions, validationError: warnings.metal}}
+                {...{...materialOptions, validationError: warnings.metal,initialValue:searchParams.get('metal')??""}}
               />
 
-              <DropdownMenu
-                {...{...piedraOptions, validationError: warnings.rock}}
-              />
+              {optionModel !== 'Pulsera' && (
+                <DropdownMenu
+                  {...{...piedraOptions, validationError: warnings.rock,initialValue:searchParams.get('rock')??""}}
+                />
+              )}
+
+              {optionModel !== 'Pulsera' && (
+                <DropdownMenu
+                  {...{...chainOptions, validationError: warnings.chain,initialValue:searchParams.get('chain')??""}}
+                />
+              )}
 
               <DropdownMenu
-                {...{...chainOptions, validationError: warnings.chain}}
-              />
-
-              <DropdownMenu
-                {...{...intencionOptions, validationError: warnings.intention}}
+                {...{
+                  ...intencionOptions,
+                  validationError: warnings.intention,
+                }}
               />
             </div>
 

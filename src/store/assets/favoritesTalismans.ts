@@ -1,38 +1,54 @@
-import imagen1 from "../assets/TD-EJEMPLO-1.webp";
-import imagen2 from "../assets/TD-EJEMPLO-2.webp";
-import imagen3 from "../assets/TD-EJEMPLO-3.webp";
-import imagen4 from "../assets/TD-EJEMPLO-4.webp";
-import imagen5 from"../assets/ejemplo1_talisman_digital.png"
-import imagen6 from"../assets/ejemplo2_talisman_digital.png"
-import imagen7 from"../assets/ejemplo3_talisman_digital.png"
-import imagen8 from"../assets/ejemplo4_talisman_digital.png"
+import imagen1 from '../assets/ejemplo1_talisman_digital.png';
+import imagen2 from '../assets/ejemplo2_talisman_digital.png';
+import imagen3 from '../assets/ejemplo3_talisman_digital.png';
+import imagen4 from '../assets/ejemplo4_talisman_digital.png';
 
+import analogic1 from '../../talismanAnalogic/assets/productos/aura_oro.webp';
+import analogic2 from '../../talismanAnalogic/assets/productos/modelo_bindu.webp';
+import analogic3 from '../../talismanAnalogic/assets/productos/modelo_halo.webp'
+import analogic4 from '../../talismanAnalogic/assets/productos/pulsera_plata.webp';
+export const favoritesTD = [
+  {
+    image: imagen1,
+    title: 'Lady Gagga',
+    text: 'La intuición es la guía del Alma.',
+  },
+  {
+    image: imagen2,
+    title: 'Michael Jackson',
+    text: 'La intuición es la guía del Alma',
+  },
+  {
+    image: imagen3,
+    title: 'Lionel Messi',
+    text: 'La intuición es la guía del Alma',
+  },
+  {
+    image: imagen4,
+    title: 'Max Verstapen',
+    text: 'La intuición es la guía del Alma',
+  },
+];
 
-import analogic1 from "../assets/bindu_labradorita.webp"
-import analogic2 from "../assets/bindu_lapislazuli.webp";
-import analogic3 from "../assets/bindu_obsidiana.webp";
-import analogic4 from "../assets/bindu_turquesa.webp";
-
-
-
-export const favoritesTD=[
-    {image:imagen5,title:"Lady Gagga",text:"La intuición es la guía del Alma."},
-    {image:imagen6,title:"Michael Jackson",text:"La intuición es la guía del Alma"},
-    {image:imagen7,title:"Lionel Messi",text:"La intuición es la guía del Alma"},
-{image:imagen8,title:"Max Verstapen",text:"La intuición es la guía del Alma"},
-    {image:imagen1,title:"Lady Gagga",text:"La intuición es la guía del Alma."},
-    {image:imagen2,title:"Michael Jackson",text:"La intuición es la guía del Alma"},
-    {image:imagen3,title:"Lionel Messi",text:"La intuición es la guía del Alma"},
-{image:imagen4,title:"Max Verstapen",text:"La intuición es la guía del Alma"},
-
-
-]
-
-export const favoritesTA=[
-    {image:analogic1,title:"Talismán Aura",text:"La intuición es la guía del Alma."},
-{image:analogic2,title:"Talismán Halo",text:"La intuición es la guía del Alma"},
-{image:analogic3,title:"Talismán Bindu",text:"La intuición es la guía del Alma"},
-{image:analogic4,title:"Talismán Bindu",text:"La intuición es la guía del Alma"},
-
-
-]
+export const favoritesTA = [
+  {
+    image: analogic1,
+    title: 'Aura',
+  path: "/buy-analogic?model=Aura&metal=Aleación bañada en oro&rock=Onix Blanco&chain=Cadena"
+  },
+  {
+    image: analogic2,
+    title: 'Bindu',
+      path: "/buy-analogic?model=Bindu&metal=Aleación bañada en oro&rock=Turquesa&chain=Cadena"
+  },
+  {
+    image: analogic3,
+    title: 'Halo',
+    path: "/buy-analogic?model=Halo&metal=Aleación bañada en oro&rock=Labradorita&chain=Cadena"
+  },
+  {
+    image: analogic4,
+    title: 'Pulsera de Plata',
+    path:"/buy-analogic?model=Pulsera&metal=Plata 925"
+  },
+];

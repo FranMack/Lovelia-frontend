@@ -6,7 +6,7 @@ import {TimerContext} from '../../context/timerContext';
 import {Button} from '../../ui/components/Button';
 import {PopUp} from '../../ui/components/PopUp';
 import {ejDigitalTalisman} from '../assets/ejDigitalTalisman';
-import talismanDigital from '../assets/TD-EJEMPLO-1.webp';
+import talismanDigital from '../assets/ejemplo1_talisman_digital.png';
 
 const precio = '15,00';
 

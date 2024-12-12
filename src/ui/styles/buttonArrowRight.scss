@@ -7,6 +7,7 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  transition: transform 0.5s;
 
   p {
     font-size: 1.8rem;
@@ -18,5 +19,8 @@
   }
   svg {
     height: 2.4rem;
+  }
+  &:hover{
+    transform: scale(1.05);
   }
 }

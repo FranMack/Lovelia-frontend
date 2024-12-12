@@ -90,13 +90,16 @@
 }
 
 .card-info-container {
+  position: relative;
   width: 100%;
   height: 100%;
   padding-left: 3%;
   display: flex;
   flex-direction: column;
   align-items: start;
-  justify-content: space-between;
+  justify-content: center;
+  row-gap: 0.5rem;
+
 
 
   > .card-td {
@@ -104,10 +107,19 @@
     align-items: center;
     justify-content: space-between;
     width: 95%;
-
+    font-size: 1.2rem;
     p {
       font-size: 1.2rem;
     }
+   
+  }
+
+  >.card-td.price{
+    width: 92%;
+  position: absolute;
+  bottom: 0%;
+   
+    strong{  font-size: 1.5rem;}
     span {
       font-weight: 600;
       font-size: 2rem;
@@ -115,7 +127,9 @@
   }
 
   .card-title {
-    width: 100%;
+    position: absolute;
+    top: 0%;
+    width: 95%;
     margin-top: 2%;
     display: flex;
     justify-content: space-between;
@@ -263,7 +277,7 @@
       display: flex;
       flex-direction: column;
       align-items: start;
-      justify-content: space-between;
+      justify-content: center;
 
    
 
@@ -283,8 +297,22 @@
         }
       }
 
+      >.card-td.price{
+        position: absolute;
+        width: 92%;
+        bottom: 0%;
+        flex-direction: row;
+        p {
+          font-size: 1.2rem;
+        }
+        strong {
+      
+          font-size: 1.5rem;
+        }
+      }
+
       .card-title {
-        width: 100%;
+        width: 92%;
         margin-top: 2%;
         display: flex;
         justify-content: space-between;

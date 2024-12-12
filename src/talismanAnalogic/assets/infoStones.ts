@@ -1,9 +1,9 @@
-import stone1 from "./Lapislazuli.webp";
-import stone2 from "./Turquesa.webp";
-import stone3 from "./Labradorita.webp";
-import stone4 from "./Obsidiana.webp";
-import stone5 from "./Rodocrosita.webp";
-import stone6 from "./Onix.webp";
+import stone1 from "./piedras/Lapislazuli.webp";
+import stone2 from "./piedras/Turquesa.webp";
+import stone3 from "./piedras/Labradorita.webp";
+import stone4 from "./piedras/Obsidiana.webp";
+import stone5 from "./piedras/Rodocrosita.webp";
+import stone6 from "./piedras/Onix.webp";
 
 
 export const infoStones=[

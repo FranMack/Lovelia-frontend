@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import {ObliqueArrow} from '../../assets/icons/icons';
 import {ButtonTransparent, LazyImage} from '../../ui/components';
 import bindus from '../assets/Bindus 9.webp';
-import talismanDigital from '../assets/home_td.webp';
+import talismanDigital from '../../store/assets/ejemplo1_talisman_digital.png';
 
 export const Home4 = () => {
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ export const Home4 = () => {
             <div
               onClick={handleSelectedTalisman}
               className={
-                selectedTalisman === 'digital' ? 'focus-talisman' : ''
+                `section4-home-option-container ${selectedTalisman === 'digital' ? 'focus-talisman' : ''}`
               }>
               <h3>
                 <div className="icon-container">
@@ -60,9 +60,9 @@ export const Home4 = () => {
             </div>
 
             <div
-              className={
-                selectedTalisman === 'analogic' ? 'focus-talisman' : ''
-              }>
+             className={
+              `section4-home-option-container ${selectedTalisman === 'analogic' ? 'focus-talisman' : ''}`
+            }>
               <h3 onClick={handleSelectedTalisman}>
                 <div className="icon-container">
                   <ObliqueArrow

@@ -41,6 +41,21 @@
       width: 50%;
       display: flex;
       justify-content: end;
+
+      &:hover{
+        button{
+
+          border-color: $color_yellow;
+          color:$color_yellow
+        }
+      }
+      &:active{
+        button{
+
+          border-color: #ffff;
+          color:#ffff
+        }
+      }
     }
   }
 
@@ -68,6 +83,14 @@
       > .icon-container {
         height: 75px;
         display: flex;
+      }
+    }
+
+    .section4-home-option-container {
+      transition: transform 0.5s; // Aplica la animación a la propiedad "transform"
+      
+      &:hover {
+        transform: scale(1.02); // Escala el elemento al pasar el mouse
       }
     }
     .focus-talisman {

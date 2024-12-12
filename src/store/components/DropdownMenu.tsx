@@ -1,18 +1,23 @@
-import { useEffect, useState, useContext } from "react";
-import { TalismanModelContext } from "../../context/talismanModelContext";
+import {useContext, useEffect, useState} from 'react';
+import {TalismanModelContext} from '../../context/talismanModelContext';
 
 interface Options {
   option: string;
-  price: number;
 }
 
 export interface DropdownMenuOptions {
   title: string;
   options: Options[];
-  validationError?:boolean
+  validationError?: boolean;
+  initialValue?:string
 }
 
-export function DropdownMenu({ title, options,validationError }: DropdownMenuOptions) {
+export function DropdownMenu({
+  title,
+  options,
+  validationError,
+  initialValue=""
+}: DropdownMenuOptions) {
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -23,102 +28,108 @@ export function DropdownMenu({ title, options,validationError }: DropdownMenuOpt
     optionModel,
     optionMaterial,
     optionChain,
-    priceChain,
     optionRock,
     optionIntention,
-    setPriceModel,
     setOptionModel,
-    setPriceMaterial,
     setOptionMaterial,
-    setPriceRock,
     setOptionRock,
-    setPriceChain,
     setOptioChain,
     setOptionIntention,
   } = useContext(TalismanModelContext);
+
+
+
+ 
 
   useEffect(() => {
     if (
       !optionModel &&
       !optionMaterial &&
       !optionChain &&
-      !priceChain &&
       !optionRock &&
       !optionIntention
     ) {
-      setSelectedOption("");
+      setSelectedOption('');
     }
   }, [optionModel]);
 
   useEffect(() => {
-    if (title === "Modelo") {
+
+    if(!selectedOption){
+      setSelectedOption(initialValue)
+    }
+ 
+
+    if (title === 'Modelo') {
+
       if (selectedOption) {
-        let optionContex = options.find((item) => {
+        const optionContex = options.find(item => {
           return item.option === selectedOption;
         });
-        setOptionModel(optionContex?.option!);
-        setPriceModel(optionContex?.price!);
+        setOptionModel(optionContex!.option!);
       } else {
-        setOptionModel("");
-        setPriceModel(0);
+        setOptionModel('');
       }
     }
-    if (title === "Metal") {
+    if (title === 'Metal') {
+   
       if (selectedOption) {
-        let optionContex = options.find((item) => {
+        const optionContex = options.find(item => {
           return item.option === selectedOption;
         });
-        setOptionMaterial(optionContex?.option!);
-        setPriceMaterial(optionContex?.price!);
+        setOptionMaterial(optionContex!.option!);
       } else {
-        setOptionMaterial("");
-        setPriceMaterial(0);
+        setOptionMaterial('');
       }
     }
 
-    if (title === "Piedra") {
+    if (title === 'Piedra') {
+
       if (selectedOption) {
-        let optionContex = options.find((item) => {
+        const optionContex = options.find(item => {
           return item.option === selectedOption;
         });
-        setOptionRock(optionContex?.option!);
-        setPriceRock(optionContex?.price!);
+        setOptionRock(optionContex!.option!);
       } else {
-        setOptionRock("");
-        setPriceRock(0);
+        setOptionRock('');
       }
     }
-    if (title === "Colgante") {
+    if (title === 'Colgante') {
+     
       if (selectedOption) {
-        let optionContex = options.find((item) => {
+        const optionContex = options.find(item => {
           return item.option === selectedOption;
         });
-        setOptioChain(optionContex?.option!);
-        setPriceChain(optionContex?.price!);
+        setOptioChain(optionContex!.option!);
       } else {
-        setOptioChain("");
-        setPriceChain(0);
+        setOptioChain('');
       }
     }
-    if (title === "Intención") {
+    if (title === 'Intención') {
+      
       if (selectedOption) {
-        let optionContex = options.find((item) => {
+        const optionContex = options.find(item => {
           return item.option === selectedOption;
         });
-        setOptionIntention(optionContex?.option!);
+        setOptionIntention(optionContex!.option!);
       } else {
-        setOptionIntention("");
+        setOptionIntention('');
       }
     }
   }, [selectedOption]);
 
-  const optionsArray = options.map((item) => {
+  const optionsArray = options.map(item => {
     return item.option;
   });
 
+
+
   return (
-    <div className={`dropdown-container ${validationError ? "dropdown-error":""}`}>
-      <select  value={selectedOption} onChange={handleSelectChange}>
+    <div
+      className={`dropdown-container ${
+        validationError ? 'dropdown-error' : ''
+      }`}>
+      <select value={selectedOption} onChange={handleSelectChange}>
         <option value="">{title}</option>
         {optionsArray.map((item, i) => {
           return (

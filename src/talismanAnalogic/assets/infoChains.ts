@@ -1,6 +1,6 @@
-import aura_cadena_oro from "./aura_cadena_oro.png";
-import aura_cadena_plata from "./aura_cadena_plata.png";
-import aura_tiento_oro from "./aura_tiento_oro.png";
+import aura_cadena_oro from "./productos/aura_cadena_oro.webp";
+import aura_cadena_plata from "./productos/aura_cadena_plata.webp";
+import aura_tiento_oro from "./productos/aura_tiento_oro.webp";
 
 export const infoChains = [
   {
