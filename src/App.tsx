@@ -112,8 +112,8 @@ function App() {
         {PrivatesRoutesCollection()}
       </Routes>
 
-      {windowSize >= 1024 && <Footer />}
-      {windowSize < 1024 && <MobileFooter />}
+      {location !== '/myTalisman' && windowSize >= 1024 && <Footer />}
+      {location !== '/myTalisman' && windowSize < 1024 && <MobileFooter />}
     </>
   );
 }
