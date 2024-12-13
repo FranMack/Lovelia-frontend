@@ -3,6 +3,7 @@ import {ChangeEvent, useContext, useEffect, useRef, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {
   ActivationIcon,
+  //ChatIcon,
   ClockIcon,
   EyeClose,
   EyeOpen,
@@ -294,6 +295,13 @@ export const ThreeJsFrame = () => {
         handleButtonFocus('timer');
       },
     },
+    /* {
+      title: 'Chatbot',
+      icon: ChatIcon,
+      function: () => {
+        handleButtonFocus('chatbot');
+      },
+    }, */
   ];
 
   const initialAstrologicalData: AstrologicalDataProps = {

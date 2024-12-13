@@ -1,7 +1,7 @@
 .chat-container {
   position: fixed;
-  bottom: 20px;
-  right: 60px;
+  bottom: 13%;
+  right: 8%;
   width: 350px;
   height: 500px;
   border: 1px solid #ddd;
@@ -15,6 +15,8 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background: #ffffff4d;
+  backdrop-filter: blur(5.6999998093px);
 }
 
 .chat-minimize {
@@ -97,8 +99,8 @@
 
 .chat-bubble {
   position: fixed;
-  bottom: 50px;
-  right: 60px;
+  bottom: 13%;
+  right: 7%;
   width: 50px;
   height: 50px;
   background-color: #662a80;
