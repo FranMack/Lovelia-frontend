@@ -6,7 +6,6 @@ import {TimerContext} from '../../context/timerContext';
 import {Button} from '../../ui/components/Button';
 import {PopUp} from '../../ui/components/PopUp';
 import {ejDigitalTalisman} from '../assets/ejDigitalTalisman';
-import talismanDigital from '../assets/ejemplo1_talisman_digital.png';
 
 const precio = '10,00';
 
@@ -50,11 +49,7 @@ function BuyDigitalTalisman() {
       id: Math.round(Math.random() * 10000000),
       product: 'Talismán digital',
       model: 'Digital',
-      material: '-',
-      rock: '-',
-      chain: '-',
-      intention: '-',
-      image: talismanDigital,
+      image: ejDigitalTalisman[0].image,
       price: 10,
       quantity: 1,
     };

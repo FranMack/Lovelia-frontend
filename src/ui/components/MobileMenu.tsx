@@ -115,7 +115,7 @@ export const MobileMenu = () => {
   };
 
   const { toggleMenu, menuRef } = useContext(MobileMenuContext);
-  const{email,setEmail, setId, setName, setLastname,subscription,setSuscription,setToken}=useContext(UserContext)
+  const{email,setEmail, setId, setName, setLastname,subscription,talismanActivated,setSuscription,setToken}=useContext(UserContext)
 
 
   const handlerLogout = () => {
@@ -160,7 +160,7 @@ export const MobileMenu = () => {
         {sections.map((item, i) => {
           return <DropDownMobileMenu key={i} {...item} />;
         })}
-         {subscription && <li className="myTalisman" onClick={()=>{linkTo("myTalisman")}}>Mi Talismán</li>}
+         {(email && subscription && talismanActivated )&& <li className="myTalisman" onClick={()=>{linkTo("myTalisman")}}>Mi Talismán</li>}
         {email && <li onClick={handlerLogout}>Logout</li>}
       </ul>
       

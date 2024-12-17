@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { LazyImage } from "../../ui/components";
 import image1 from "../assets/imagen-colgante.webp";
-import image2 from "../assets/imagen-colgante2.webp";
+import image2 from "../assets/Lu-Bindu Plata Rodo 4.webp";
 
 export const Home5 = () => {
   const navigate = useNavigate();

@@ -30,11 +30,9 @@ import {Chronometer} from './Chronometer';
 import {MyADN} from './MyADN';
 import {Playlist} from './Playlist';
 import {Timer} from './Timer';
-//import { TalismanBox } from "./TalismanBox";
-//import { IntentionContext } from "../../context";
-//import { ConstelationBox } from "./ConstelationBox";
-//import { TalismanBox } from "./TalismanBox";
-//import { ConstelationBox } from "./ConstelationBox";
+import { TalismanBox } from "./TalismanBox";
+import { IntentionContext } from "../../context";
+import { ConstelationBox } from "./ConstelationBox";
 import {AstrologicalDataProps} from '../interface/myAdn.interface';
 import {ChatBot} from './ChatBot';
 
@@ -160,9 +158,9 @@ export const ThreeJsFrame = () => {
 
   const timerSoundRefs = useRef<HTMLAudioElement[]>([]);
 
-  {
-    /* const { intention, setIntention } = useContext(IntentionContext);*/
-  }
+ 
+    const { intention, setIntention } = useContext(IntentionContext);
+
 
   const buttonsLeft = [
     {
@@ -382,12 +380,12 @@ export const ThreeJsFrame = () => {
             {withCredentials: true},
           );
 
-          {
-            /* const userIntention = await axios.get(
+      
+           const userIntention = await axios.get(
             `${envs.API_DOMAIN}/api/v1/user/my-intention/${email}`,
             { withCredentials: true }
-          );*/
-          }
+          );
+    
 
           if (userInfo.data) {
             setAstrologicalData(userInfo.data);
@@ -403,9 +401,9 @@ export const ThreeJsFrame = () => {
           }
 
           {
-            /*  if (userIntention) {
+             if (userIntention) {
             setIntention(userIntention.data);
-          }*/
+          }
           }
 
           setTimeout(() => {
@@ -721,7 +719,7 @@ export const ThreeJsFrame = () => {
     <>
       {astrologicalInfo ? (
         <>
-          {/*{
+        
             <TalismanBox
               numerologySymbol={astrologicalData.numerologySymbol}
               solarSailSymbol={astrologicalData.solarSailSymbol}
@@ -729,8 +727,8 @@ export const ThreeJsFrame = () => {
               phrase={intention}
               chineseSymbol={astrologicalData.chinseseSymbol}
             />
-          }
-          <ConstelationBox constellation={astrologicalData.constellation} />*/}
+          
+          <ConstelationBox constellation={astrologicalData.constellation} />
           <iframe
             className="threejs-container"
             title="Modelo 3D"
@@ -865,11 +863,11 @@ export const ThreeJsFrame = () => {
           )}
           {buttonFocusPosition === 'timer' && <Timer sounds={sounds} />}
 
-          {/*intention && (
+          {intention && (
             <div className="myTalisman-intention-container efectoReveal">
               <p>{intention}</p>
             </div>
-          )*/}
+          )}
           <ChatBot astroData={astrologicalData} />
         </>
       ) : (
@@ -909,4 +907,5 @@ export const ThreeJsFrame = () => {
       })}
     </>
   );
-};
+}
+

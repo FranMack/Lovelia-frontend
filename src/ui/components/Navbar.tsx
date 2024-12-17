@@ -11,7 +11,7 @@ import { NavbarDropDown } from "./NavbarDropDown";
 export function Navbar() {
   const { shopingCartOpen, toggleMenu,shopingCartItems } =
     useContext(ShopingCartContext);
-  const { email, name, lastname, subscription } = useContext(UserContext);
+  const { email, name, lastname, subscription,talismanActivated } = useContext(UserContext);
 
  
 
@@ -114,7 +114,7 @@ export function Navbar() {
     ],
   };
 
-  if (email && subscription) {
+  if (email && subscription && talismanActivated) {
     navbarButtons[1].buttonOptions.unshift({
       buttonName: "Mi talisman",
       path: "myTalisman",

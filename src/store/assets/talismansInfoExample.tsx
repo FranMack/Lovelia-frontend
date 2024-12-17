@@ -2,7 +2,7 @@ import talisman1 from "../../talismanAnalogic/assets/productos/aura_oro.webp";
 import talisman2 from "../../talismanAnalogic/assets/productos/modelo_halo.webp";
 import talisman3 from "../../talismanAnalogic/assets/productos/modelo_bindu.webp";
 import pulsera from "../../talismanAnalogic/assets/productos/pulsera_oro.webp"
-import talismanDigital from "../../home/assets/home_td.webp";
+import talismanDigital from "./ejemplo1_talisman_digital.webp";
 
 interface TalismanOptions {
   image: string;

@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import {ObliqueArrow} from '../../assets/icons/icons';
 import {ButtonTransparent, LazyImage} from '../../ui/components';
 import bindus from '../assets/Bindus 9.webp';
-import talismanDigital from '../../store/assets/ejemplo1_talisman_digital.png';
+import talismanDigital from '../../store/assets/ejemplo1_talisman_digital.webp';
 
 export const Home4 = () => {
   const navigate = useNavigate();

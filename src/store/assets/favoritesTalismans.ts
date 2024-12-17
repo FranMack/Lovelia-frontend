@@ -1,7 +1,7 @@
-import imagen1 from '../assets/ejemplo1_talisman_digital.png';
-import imagen2 from '../assets/ejemplo2_talisman_digital.png';
-import imagen3 from '../assets/ejemplo3_talisman_digital.png';
-import imagen4 from '../assets/ejemplo4_talisman_digital.png';
+import imagen1 from '../assets/ejemplo1_talisman_digital.webp';
+import imagen2 from '../assets/ejemplo2_talisman_digital.webp';
+import imagen3 from '../assets/ejemplo3_talisman_digital.webp';
+import imagen4 from '../assets/ejemplo4_talisman_digital.webp';
 
 import analogic1 from '../../talismanAnalogic/assets/productos/aura_oro.webp';
 import analogic2 from '../../talismanAnalogic/assets/productos/modelo_bindu.webp';

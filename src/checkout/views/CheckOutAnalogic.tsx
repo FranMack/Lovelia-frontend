@@ -384,7 +384,7 @@ function CheckOutAnalogic() {
                 : [...shopingCartMP],
               buyerInfo,
               productDetails,
-              deliveryDetails,
+              deliveryDetails: needDelivery ? deliveryDetails : undefined,
               billingDetails: billing ? billingDetails : undefined,
               talismanDigitalOwners: talismanDigitalOwners,
             },
@@ -434,7 +434,7 @@ function CheckOutAnalogic() {
               : [...shopingCartPaypal],
             buyerInfo,
             productDetails,
-            deliveryDetails,
+            deliveryDetails: needDelivery ? deliveryDetails : undefined,
             billingDetails: billing ? billingDetails : undefined,
             talismanDigitalOwners: talismanDigitalOwners,
           })

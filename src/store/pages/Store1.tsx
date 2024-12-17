@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ObliqueArrow } from "../../assets/icons/icons";
-import bindus from "../../home/assets/aura_oro_onix.jpg";
-import talismanDigital from "../assets/ejemplo3_talisman_digital.png";
+import aura from "../assets/Lu-Aura Oro Onix N 3.webp";
+import talismanDigital from "../assets/ejemplo3_talisman_digital.webp";
 
 export const Store1 = () => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ export const Store1 = () => {
         </div>
       </div>
       <div className="section1-store-internal-contaner">
-        <img src={bindus} alt="talisman analogico" />
+        <img src={aura} alt="talisman analogico" />
         <div className="section1-store-text-container">
           <div className="icon-container">
           <ObliqueArrow color="#662A80" />

@@ -22,7 +22,7 @@ function Profile() {
   };
 
   // const { shopingCartOpen } = useContext(ShopingCartContext);
-  const { name, lastname, email, subscription, talismanActivated } =
+  const { name, lastname, email, subscription, talismanActivated,setSuscription,setTalismanActivated } =
     useContext(UserContext);
 
   const [shopingHistory, setShopingHistory] = useState<ShopingHistoryProp>([]);
@@ -31,11 +31,13 @@ function Profile() {
     window.scrollTo(0, 0);
     if (email) {
       axios
-        .get(`${envs.API_DOMAIN}/api/v1/product/list/${email}`, {
+        .get(`${envs.API_DOMAIN}/api/v1/sold-product/list/${email}`, {
           withCredentials: true,
         })
         .then((response) => {
-          setShopingHistory(response.data.reverse());
+          setShopingHistory(response.data.combinedArray.reverse());
+          setSuscription(response.data.talismanDigitalStatus.subscription)
+          setTalismanActivated(response.data.talismanDigitalStatus.activated)
         })
         .catch((error) => {
           console.log(error);
@@ -46,6 +48,8 @@ function Profile() {
   const { activatedAlarm } = useContext(TimerContext);
   const { shopingCartOpen } = useContext(ShopingCartContext);
 
+
+console.log("xxxxxxxxxxxx",talismanActivated)
   return (
     <main
       className={activatedAlarm || shopingCartOpen ? "viewport-background" : ""}
