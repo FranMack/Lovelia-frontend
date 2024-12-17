@@ -21,11 +21,11 @@
 
 .chat-minimize {
   position: absolute; /* Absolute positioning within the container */
-  right: 20px; /* Adjust distance from the right */
-  top: -10px; /* Adjust distance from the top */
+  right: 10px; /* Adjust distance from the right */
+  top: -15px; /* Adjust distance from the top */
   background: none;
   border: none;
-  color: gray;
+  color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
   font-size: 40px; /* Adjust size as needed */
   z-index: 10; /* Ensure it's above other elements */
@@ -45,6 +45,30 @@
   padding-top: 20px;
 }
 
+/* Personalización del scrollbar para Webkit (Chrome, Safari, Edge) */
+.chat-window::-webkit-scrollbar {
+  width: 7px; /* Ancho de la barra */
+  border-radius: 10px;
+}
+
+.chat-window::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Color del fondo de la barra */
+  border-radius: 10px;
+}
+
+.chat-window::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ece976, #ece076); /* Color del "thumb" */
+  border-radius: 10px;
+}
+
+.chat-window::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    #a383e0,
+    #8a6fc5
+  ); /* Color al pasar el mouse */
+}
+
 .chat-message {
   display: inline-block;
   margin: 5px 10px; /* Add space between messages */
@@ -57,9 +81,10 @@
 }
 
 .user-message {
-  background-color: #d9fdd3; /* Light green for user */
+  background-color: #ece976; /* Light green for user */
   align-self: flex-end; /* Align to the right */
   text-align: right; /* Align text within the bubble */
+  color: #662a80;
 }
 
 .bot-message {
@@ -71,8 +96,8 @@
 .chat-input {
   display: flex;
   padding: 10px;
-  //border-top: 1px solid #ddd;
-  background-color: lightgray;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(13.1333332062px);
 }
 
 .chat-input input {
@@ -86,7 +111,8 @@
 
 .chat-input button {
   padding: 10px 20px;
-  background-color: #662a80;
+  background-color: rgba(102, 42, 128, 0.4);
+  backdrop-filter: blur(7px);
   color: white;
   border: none;
   border-radius: 5px;
@@ -94,7 +120,7 @@
 }
 
 .chat-input button:hover {
-  background-color: #6200ee;
+  background-color: rgba(102, 42, 128, 0.8);
 }
 
 .chat-bubble {
