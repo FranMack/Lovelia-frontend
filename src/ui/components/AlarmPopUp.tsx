@@ -1,30 +1,27 @@
-import { useRef, useEffect, useState, useContext } from "react";
-import { CloseIcon } from "../../assets/icons/icons";
-import background from "../assets/alarma.webp";
-import { Button } from "./Button";
-import { TimerContext } from "../../context/timerContext";
+import {useContext, useEffect, useRef, useState} from 'react';
+import {CloseIcon} from '../../assets/icons/icons';
+import {TimerContext} from '../../context/timerContext';
+import {Button} from './Button';
 
 interface AlarmPopUpOptions {
   alarmUrl: string;
-
 }
 
-export const AlarmPopUp = ({ alarmUrl }: AlarmPopUpOptions) => {
+export const AlarmPopUp = ({alarmUrl}: AlarmPopUpOptions) => {
   const alarmSoundRef = useRef<HTMLAudioElement | null>(null);
   const [alarmPath, setAlarmPath] = useState(alarmUrl);
-  
-  const{handleActivatedAlarm}=useContext(TimerContext)
+
+  const {handleActivatedAlarm} = useContext(TimerContext);
 
   useEffect(() => {
     setAlarmPath(alarmUrl);
   }, [alarmUrl]);
 
-const playAlarm=()=>{
-
-  if(alarmSoundRef.current){
-    alarmSoundRef.current.play()
-  }
-}
+  const playAlarm = () => {
+    if (alarmSoundRef.current) {
+      alarmSoundRef.current.play();
+    }
+  };
 
   useEffect(() => {
     if (alarmPath) {
@@ -35,7 +32,7 @@ const playAlarm=()=>{
   return (
     <div className="alarm-popUp-container efectoReveal">
       <audio
-      preload="metadata"
+        preload="metadata"
         ref={alarmSoundRef}
         src={`https://lovelia.org/public/userSounds/${alarmPath}`}
       />
