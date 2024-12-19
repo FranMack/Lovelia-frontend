@@ -9,13 +9,8 @@
   > .button-container {
     width: 70%;
     button {
-      background-color: $color_primary;
       border: none;
-          transition: color 0.5s, background-color 0.5s;
-    &:hover{
-        color:$color_darkPurple;
-        background-color: $color_yellow;
-    }
+  
 
     &:active{
         background-color: $color_primary;

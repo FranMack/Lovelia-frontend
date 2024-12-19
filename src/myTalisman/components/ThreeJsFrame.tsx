@@ -871,11 +871,7 @@ export const ThreeJsFrame = () => {
           )}
           {buttonFocusPosition === 'timer' && <Timer sounds={sounds} />}
 
-          {intention && (
-            <div className="myTalisman-intention-container efectoReveal">
-              <p>{intention}</p>
-            </div>
-          )}
+       
           <ChatBot astroData={astrologicalData} />
         </>
       ) : (

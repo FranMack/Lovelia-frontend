@@ -184,30 +184,7 @@
 
 
 
-    .myTalisman-intention-container{
-        position: absolute;
-        top: 0%;
-        width: 50%;
-        height: 18%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index:0;
-        >p{
-            font-size: 5rem;
-            font-weight: 500;
-            font-family: $font_titles;
-            color:$color_text1;
-            text-transform: uppercase;
-            text-shadow: 
-                0 0 5px #e7e0dc,   /* Sombra blanca pequeña */
-                0 0 10px #e7e0dc,  /* Sombra blanca mediana */
-                0 0 15px #e7e0dc,  /* Sombra blanca más grande */
-                0 0 20px #e7e0dc, /* Sombra de color (rosa en este caso) */
-                0 0 30px #e7e0dc, /* Sombra de color más grande */
-                0 0 40px #e7e0dc; /* Sombra de color más grande aún */
-        }
-    }
+
 
     .subtitles-container{
         position: absolute;

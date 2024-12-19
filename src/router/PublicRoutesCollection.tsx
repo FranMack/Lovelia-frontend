@@ -50,6 +50,7 @@ const ValidateEmailTokenExpired = lazy(
 const ActivationAnalogic = lazy(
   () => import('../talismanAnalogic/views/ActivationAnalogic.tsx'),
 );
+const ThanksForBuying = lazy(() => import('../wellcome/views/ThanksForBuying.tsx'));
 
 
 const publicRoutes = [
@@ -74,6 +75,7 @@ const publicRoutes = [
   {path: '/mantenimiento-talismanes', component: <MainteneneTalisman />},
   {path: '/tiempo-validacion-expiro', component: <ValidateEmailTokenExpired />},
   {path: '/correo-validado', component: <WelcomeRegister />},
+  {path: '/thanks-for-buying', component: <ThanksForBuying />},
 ];
 
 export const PublicRoutesCollection = () =>

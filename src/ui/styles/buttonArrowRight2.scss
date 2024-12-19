@@ -14,9 +14,14 @@
  padding-bottom: 2.5%;
  padding-inline: 3%;
   cursor: pointer;
+  transition: transform 0.5s;
   >.icon-wrapper{
     svg {
       height: 2.4rem;
     }
+  }
+
+  &:hover{
+    transform: scale(1.05);
   }
 }

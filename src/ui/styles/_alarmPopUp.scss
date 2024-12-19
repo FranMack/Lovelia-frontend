@@ -12,6 +12,7 @@
     justify-content: space-between;
     align-items: center;
     border-radius: 30px;
+    background: rgba($color: $color_darkPurple, $alpha: 0.4);
     >.close-icon-container{
         width: 100%;
         display: flex;
@@ -36,13 +37,20 @@
 
     >span{
         color:#ffff;
-        font-size: 3rem;
+        font-size: 3.2rem;
         line-height: 4rem;
         font-family: $font_paragrahp;
         text-align: center;
-        width: 80%;
+        width: 85%;
         margin-top: 20vh;
         font-weight: 300;
+        text-shadow: 
+        0 0 5px #e7e0dc,   /* Sombra blanca pequeña */
+        0 0 10px #e7e0dc,  /* Sombra blanca mediana */
+        0 0 15px #e7e0dc,  /* Sombra blanca más grande */
+        0 0 20px #e7e0dc, /* Sombra de color (rosa en este caso) */
+        0 0 30px #e7e0dc, /* Sombra de color más grande */
+        0 0 40px #e7e0dc; /* Sombra de color más grande aún */
     }
     >button{
         margin-bottom: 10vh;

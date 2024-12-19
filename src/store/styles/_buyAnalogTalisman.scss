@@ -148,31 +148,16 @@
   border: none;
 
   button {
-    font-size: 16px;
-    font-style: normal;
+    color: $color_primary;
+    font-size: 14px;
+    background-color: transparent;
     font-weight: 700;
     line-height: normal;
     border: solid 2px $color_primary;
   }
-  > :first-child {
-    color: $color_primary;
-    font-size: 14px;
-    background-color: transparent;
-  }
 
-  .auxiliar-buttons-container {
-    border: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 1rem;
-    div {
-      border: none;
-      svg {
-        border: none;
-      }
-    }
-  }
+
+  
 }
 
 @media screen and (max-width: 678px) {
@@ -255,9 +240,7 @@
 
       width: 100%;
     }
-    > :first-child {
-      font-size: 1.6rem;
-    }
+    
 
     .auxiliar-buttons-container {
       width: 100%;

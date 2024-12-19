@@ -19,15 +19,31 @@
 }
 
 .section2-grid-item {
+  position: relative;
   width: 100%;
   aspect-ratio: 0.83;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  transition: 1s;
+  transition: transform 1s;
   cursor: pointer;
+  
+
+  .shadow-container {
+    display: flex; /* Aseguramos que esté presente para aplicar flexbox */
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0; /* Inicialmente invisible */
+    visibility: hidden; /* Oculta completamente cuando no está visible */
+    transition: opacity 1s, visibility 1s; /* Transición para ambas propiedades */
+  }
 
   h4 {
     text-align: center;
@@ -35,17 +51,44 @@
     font-weight: 400;
     color: $color_primary;
   }
+
+  >figure{
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+  }
+
   img {
     object-fit: cover;
     width: 100%;
     aspect-ratio: 1;
-    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s;
+  }
+
+  &:hover {
+ 
+
+    img{
+      transform: scale(1.3);
+    }
+    .shadow-container {
+      opacity: 1; /* Hace visible el contenedor */
+      visibility: visible; /* Se asegura de que sea interactivo */
+      z-index: 10;
+      
+      button {
+        background-color: rgba(0, 0, 0, 0.4);
+        transition: background-color 0.5s;
+
+        &:hover {
+          background-color: rgba($color_darkPurple, 0.5);
+        }
+      }
+    }
   }
 }
-.section2-grid-item:hover {
-  transform: scale(1.1);
-  z-index: 10;
-}
+
 
 .section2-grid-item .item1 {
   grid-column: 1;

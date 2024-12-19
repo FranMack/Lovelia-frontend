@@ -144,9 +144,9 @@ function BuyDigitalTalisman() {
           </div>
 
           <div className="buttons-container">
-            <div className="auxiliar-buttons-container">
+         
               <Button onClick={handleBuyTalisman} text={`Agregar al carrito`} />
-            </div>
+         
           </div>
         </div>
       </section>

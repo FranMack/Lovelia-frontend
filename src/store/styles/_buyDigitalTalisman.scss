@@ -71,7 +71,7 @@
   align-items: center;
   justify-content: start;
 
-  .buttons-container {
+  >.buttons-container {
     margin: 0 auto;
     margin-top: 3%;
     width: 75%;
@@ -84,25 +84,10 @@
       font-style: normal;
       font-weight: 700;
       line-height: normal;
-      background-color: transparent;
       border: solid 2px $color_primary;
       color:$color_primary
     }
  
-
-    .auxiliar-buttons-container {
-      border: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      row-gap: 1rem;
-      div {
-        border: none;
-        svg {
-          border: none;
-        }
-      }
-    }
   }
 }
 

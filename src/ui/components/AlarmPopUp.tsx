@@ -42,9 +42,9 @@ const playAlarm=()=>{
       <div className="close-icon-container">
         <CloseIcon onClick={handleActivatedAlarm} />
       </div>
-      <img src={background} alt="alarm background" />
-      <span>Respira profundo, es hora de meditar</span>
-      <Button text="Cancelar" onClick={handleActivatedAlarm} />
+
+      <span>Respira, conecta con tu intención, y deja que guie tu día.</span>
+      <Button text="Continuar" onClick={handleActivatedAlarm} />
     </div>
   );
 };

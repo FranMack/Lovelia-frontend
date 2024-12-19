@@ -1,4 +1,4 @@
-@import "../../styles//variables.scss";
+@import '../../styles//variables.scss';
 
 .timer-container {
   position: absolute;
@@ -24,10 +24,9 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 4%;
-  
+
     border-radius: 30px;
 
-   
     ul {
       list-style: none;
       display: flex;
@@ -46,7 +45,6 @@
       align-items: center;
       height: 100%;
       padding-inline: 7%;
-    
     }
     .button-focus-style {
       background-color: $color_yellow;
@@ -66,8 +64,7 @@
     align-items: center;
     justify-content: space-evenly;
 
-
-    .alarm-state-container{
+    .alarm-state-container {
       height: 8%;
       width: 100%;
       display: flex;
@@ -76,23 +73,21 @@
       column-gap: 5%;
       margin-bottom: 10%;
       z-index: 10;
-      >p{
+      > p {
         font-size: 2rem;
       }
-      >input{
+      > input {
         height: 50%;
         aspect-ratio: 1;
       }
-   
     }
 
-    >.warning{
+    > .warning {
       font-size: 2rem;
       font-weight: 400;
-      color:$color_yellow
-  }
+      color: $color_yellow;
+    }
     button {
-   
       background-color: $color_yellow;
       color: $color_darkPurple;
       z-index: 10;
@@ -106,9 +101,6 @@
       width: 50%;
       height: fit-content;
       background-color: transparent;
-      
-
-   
 
       .clock-container {
         display: flex;
@@ -119,9 +111,9 @@
           cursor: pointer;
           height: 40px;
         }
-        small{
+        small {
           margin-top: 8%;
-font-size: 1.2rem;
+          font-size: 1.2rem;
         }
       }
       p {
@@ -134,9 +126,9 @@ font-size: 1.2rem;
       position: absolute;
       object-fit: cover;
       height: 100%;
+      z-index: -1;
     }
   }
-  
 
   .timer-dropdown-container {
     width: 70%;
@@ -148,10 +140,10 @@ font-size: 1.2rem;
       font-size: 1.7rem;
       margin-bottom: 4%;
     }
-    select {
+    > select {
       background-color: $color_background1;
       height: 73%;
-      color:gray;
+      color: gray;
       font-size: 1.4rem;
     }
   }
@@ -180,7 +172,6 @@ font-size: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
 
   border-radius: 30px;
   ul {
@@ -220,7 +211,7 @@ font-size: 1.2rem;
 
   width: 100%;
   height: 5vh;
-  >.icon-container {
+  > .icon-container {
     margin-right: 2%;
     position: static;
     width: 15px;
@@ -239,9 +230,7 @@ font-size: 1.2rem;
   }
 }
 
-
 @media screen and (max-width: 678px) {
-
   .timer-container {
     position: absolute;
     top: 5%;
@@ -255,7 +244,7 @@ font-size: 1.2rem;
     color: $color_text1;
     z-index: 10;
     border-radius: 20px;
-  
+
     .timer-top-container {
       margin: 0 auto;
       margin-top: 5%;
@@ -266,10 +255,9 @@ font-size: 1.2rem;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 4%;
-    
+
       border-radius: 30px;
-  
-     
+
       ul {
         list-style: none;
         display: flex;
@@ -288,7 +276,6 @@ font-size: 1.2rem;
         align-items: center;
         height: 100%;
         padding-inline: 7%;
-      
       }
       .button-focus-style {
         background-color: $color_yellow;
@@ -297,7 +284,7 @@ font-size: 1.2rem;
         color: $color_darkPurple;
       }
     }
-  
+
     .timer-section-container {
       margin: 0 auto;
       position: relative;
@@ -308,9 +295,8 @@ font-size: 1.2rem;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-  
-  
-      .alarm-state-container{
+
+      .alarm-state-container {
         margin-top: 2vh;
         height: 8%;
         width: 100%;
@@ -320,28 +306,27 @@ font-size: 1.2rem;
         column-gap: 5%;
         margin-bottom: 10%;
         z-index: 10;
-        >p{
+        > p {
           font-size: 2rem;
         }
-        >input{
+        > input {
           height: 50%;
           aspect-ratio: 1;
         }
-     
       }
-  
-      >.warning{
+
+      > .warning {
         font-size: 2rem;
         font-weight: 400;
-        color:$color_yellow
-    }
+        color: $color_yellow;
+      }
       button {
         margin-top: 2vh;
         background-color: $color_yellow;
         color: $color_darkPurple;
         z-index: 10;
       }
-  
+
       .timer-top-container {
         display: flex;
         justify-content: center;
@@ -350,10 +335,7 @@ font-size: 1.2rem;
         width: 50%;
         height: fit-content;
         background-color: transparent;
-        
-  
-     
-  
+
         .clock-container {
           display: flex;
           flex-direction: column;
@@ -363,9 +345,9 @@ font-size: 1.2rem;
             cursor: pointer;
             height: 40px;
           }
-          small{
+          small {
             margin-top: 8%;
-  font-size: 1.2rem;
+            font-size: 1.2rem;
           }
         }
         p {
@@ -373,15 +355,14 @@ font-size: 1.2rem;
           font-weight: lighter;
         }
       }
-  
+
       img {
         position: absolute;
         object-fit: cover;
         height: 100%;
       }
     }
-    
-  
+
     .timer-dropdown-container {
       width: 70%;
       height: fit-content;
@@ -398,5 +379,4 @@ font-size: 1.2rem;
       }
     }
   }
-
 }

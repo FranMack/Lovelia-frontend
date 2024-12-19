@@ -15,7 +15,15 @@
     border-radius: 30px;
     border: none;
     cursor: pointer;
-    user-select:none
+    user-select:none;
+    
+
+    transition: color 0.5s, background-color 0.5s;
+
+    &:hover{
+        color:$color_darkPurple;
+        background-color: $color_yellow;
+    }
 
 
 }
