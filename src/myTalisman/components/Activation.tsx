@@ -64,7 +64,7 @@ export function Activation({ handleActivation, pauseTrack }: PopUpOptions) {
         {step === "Paso 1" && (
           <div className="activation-center-container">
             {intention ? (
-              <h4>{`Hola ${name}, Quieres modificar tu intensión?`}</h4>
+              <h4>{`Hola ${name}, Quieres modificar tu intención?`}</h4>
             ) : (
               <h4>{`Hola ${name}, Quieres activar tu talismán?`}</h4>
             )}
@@ -138,6 +138,8 @@ export function Activation({ handleActivation, pauseTrack }: PopUpOptions) {
                     setWarning(true);
                     return;
                   }
+                  handleSubmitIntention();
+                  handleActivation();
                   setStep("Paso 5");
                 }}
                 text="Continuar"
@@ -151,18 +153,18 @@ export function Activation({ handleActivation, pauseTrack }: PopUpOptions) {
             <ol>
               <li>
                 Te invito a que mires tu talismán con detenimiento, tocando
-                ahora el botón de tu sonido (el sonido se repite 3 veces), y
+                ahora el botón de tu sonido, y
                 llevando una de tus manos al corazón.
               </li>
             </ol>
             <div className="button-auxiliar-container">
               <Button
                 onClick={() => {
-                  handleSubmitIntention();
+                 
                   handleButtonFocus("");
-                  handleActivation();
+              
                 }}
-                text="Activar Talismán"
+                text="Continuar"
               />
             </div>
           </div>

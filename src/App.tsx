@@ -69,13 +69,16 @@ function App() {
   const {menuOpen, toggleMenu, menuRef} = useContext(MobileMenuContext);
 
   const handleClickOutside = (event: MouseEvent) => {
-    const target = event.target as HTMLElement; // Convertir event.target a HTMLElement
-
+    const target = event.target as HTMLElement;
+  
+    console.log("Elemento clickeado:", target);
+  
+    // Comprueba si el clic fue dentro del menú o en el ícono
     if (
       menuOpen &&
       menuRef!.current &&
-      target.id !== 'menu-hamburguesa-icon' &&
-      !menuRef!.current.contains(target)
+      !menuRef!.current.contains(target) &&
+      !target.closest('#menu-hamburguesa-icon') // Verifica si el clic ocurrió en el SVG o sus hijos
     ) {
       toggleMenu();
     }

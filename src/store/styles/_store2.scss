@@ -82,7 +82,9 @@
         transition: background-color 0.5s;
 
         &:hover {
-          background-color: rgba($color_darkPurple, 0.5);
+          background-color: rgba($color_yellow, 0.5);
+          
+          
         }
       }
     }
@@ -158,6 +160,11 @@
   }
 }
 
+
+
+
+
+
 @media screen and (max-width: 678px) {
   .section2-store-container {
     padding-bottom: 10vh;
@@ -167,7 +174,7 @@
     width: 90%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    row-gap: 10vh;
+    row-gap: 5vh;
     column-gap: 2vw;
   }
 
@@ -178,19 +185,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    row-gap: 1vh;
 
     h4 {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 400;
       color: $color_primary;
     }
-    img {
-      object-fit: cover;
+    figure{
       width: 90%;
-      aspect-ratio: 1;
-      box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
+      img {
+        object-fit: cover;
+        width: 100%;
+        aspect-ratio: 1;
+        box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
+      }
     }
+    
   }
 
   .section2-grid-item .item1 {

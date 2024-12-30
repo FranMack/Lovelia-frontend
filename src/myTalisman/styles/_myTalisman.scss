@@ -188,18 +188,12 @@
 
     .subtitles-container{
         position: absolute;
-        font-size: 4.5rem;
+        font-size: 3.5rem;
         color:$color_text1;
         opacity: 0.8;
         bottom:30%;
 
-        text-shadow: 
-        0 0 5px $color_yellow,   /* Sombra blanca pequeña */
-        0 0 10px $color_yellow,  /* Sombra blanca mediana */
-        0 0 15px $color_yellow,  /* Sombra blanca más grande */
-        0 0 20px $color_yellow, /* Sombra de color (rosa en este caso) */
-        0 0 30px $color_yellow, /* Sombra de color más grande */
-        0 0 40px $color_yellow; /* Sombra de color más grande aún */
+    
 }
     
 

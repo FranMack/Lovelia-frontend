@@ -37,7 +37,7 @@ export const infoIntenciones: InfoIntenciones[] = [
       "La incertidumbre nos invita a la experiencia de vivir, abriendo nuestro corazón a la emoción, a la aventura, al misterio.  Relajar nuestra mente de este modo nos permite regocijarnos ante nuestra propia transformación.",
       "Tras la ilusión de seguridad existe un mundo por conocer en que la naturaleza de las cosas se irá revelando a medida que entremos en alquimia con la experiencia de vivir y en ese contacto florecerá nuestra intuición.",
       "La intuición es la guía del alma.",
-    ],meditationURL:"https://lovelia.org/public/activation/activationExample.mp4",
+    ],meditationURL:"https://storage.googleapis.com/threejs-api/public/meditations/Meditaci%C3%B3n%20Sabidur%C3%ADa%20de%20la%20Incertidumbre.mp3",
     activation:
       "Decreto navegar las aguas de la incertidumbre, de lo desconocido, de lo que no tiene garantías, permitiéndome ampliar mi mente y entrar en el mundo de todas las posibilidades. Acepto fluir con la vida y agradezco con amor el aprendizaje que me depara mi camino.",
   },
@@ -61,7 +61,7 @@ export const infoIntenciones: InfoIntenciones[] = [
       "Celebremos nuestra unidad con la vida sabiendo que todos somos uno. Donde desaparece la noción de competencia para dar lugar a la colaboración y a la conciencia de unidad, reemplazando nuestro yo individual por uno universal.",
       "La energía del amor responde a las leyes del infinito porque incluso cuando parece que lo estamos dando, nos llenamos de él.",
       "El amor es la gran fuerza creativa, y es siempre el mejor camino. Todo lo que surja desde el amor, trasciende y se expande a nuestro alrededor y al planeta.",
-    ],meditationURL:"https://lovelia.org/public/activation/activationExample.mp4",
+    ],meditationURL:"https://storage.googleapis.com/threejs-api/public/meditations/Meditaci%C3%B3n%20Amor%20Incondicional.mp3",
     activation: "Decreto abrir mi conciencia y mi corazón para conectar con la energía del amor incondicional. Declaro vibrar en amor para atraer los aspectos más elevados de esta energía permitiendo que fluya en mi vida la conciencia de unidad.",
   },
   {
@@ -85,7 +85,7 @@ export const infoIntenciones: InfoIntenciones[] = [
       "La abundancia, nuestra capacidad de conexión con todo lo que es, lo que hay, lo que somos y lo que podemos llegar a crear en este mundo, se encuentra siempre disponible para que elijamos relacionarnos con ella.",
       "Cada momento de cada día podemos elegir conectar con la plenitud de la vida y vivir abundantemente.",
     ],
-    meditationURL:"https://lovelia.org/public/activation/activationExample.mp4",
+    meditationURL:"https://storage.googleapis.com/threejs-api/public/meditations/Meditaci%C3%B3n%20Abundancia.mp3",
     activation: "Decreto conectarme con la abundancia, con todo lo que es, lo que hay, lo que soy y lo que puedo llegar a crear en este mundo. Elijo vivir en abundancia e ir en dirección hacia la iluminación y hacia la conciencia de unidad.",
   },
 
@@ -107,7 +107,7 @@ export const infoIntenciones: InfoIntenciones[] = [
       "Cada una de las situaciones de tu vida es una oportunidad para aprender a estar en ella, con toda tu atención en vivir esa experiencia.",
       "Y si, como suele ocurrir a las personas, llegaras a olvidarlo por un pequeño momento es importante recordar que serás bienvenido a reconectar con el aquí y ahora, porque el presente será tu hogar.",
     ],
-    meditationURL:"https://lovelia.org/public/activation/activationExample.mp4",
+    meditationURL:"https://storage.googleapis.com/threejs-api/public/meditations/Meditaci%C3%B3n%20Aqu%C3%AD%20y%20%20Ahora.mp3",
     activation: "Yo ............................................ decreto, vivir en el Aquí y en el Ahora, aceptando plenamente este momento, conectando conmigo, con los otros y con el mundo que me rodea. Aceptando vivir de manera consciente mis experiencias, mis sentimientos, emociones y pensamientos.",
   },
   {
@@ -128,7 +128,7 @@ export const infoIntenciones: InfoIntenciones[] = [
       "Para poner en práctica la ley de potencialidad pura, puedo permitirme desear para que, con una intención clara y un objetivo en mente, pueda compromprometerme a pasar un instante en silencio, un momento con la naturaleza, un tiempo libre de la necesidad de juzgar a quien tenga atrás o adelante y decirme: “Mediante la ley de la potencialidad pura yo puedo crear lo que sea, cuando sea, donde sea”.",
       "Y entramos al campo de las infinitas posibilidades.",
     ],
-    meditationURL:"https://lovelia.org/public/activation/activationExample.mp4",
+    meditationURL:"https://storage.googleapis.com/threejs-api/public/meditations/Meditaci%C3%B3n%20Potencial%20Infinito.mp3",
     activation: "Decreto entrar en el campo de las infinitas posibilidades. Y a través de mi potencial, cocrear la realidad que deseo para mi. Con intención y atención, declaro poner en funcionamiento el orden universal.",
   },
   {
@@ -149,7 +149,7 @@ export const infoIntenciones: InfoIntenciones[] = [
       `Cuando abrazamos el coraje, no solo estamos dispuestos a desafiar obstáculos, sino que también estamos comprometidos con una causa mayor. El propósito que guía nuestro coraje le confiere significado a nuestras acciones, convirtiéndolas en expresiones auténticas de nuestra esencia más profunda. Así, se manifiesta en nuestra vida como una poderosa fuerza al servicio del amor y la consciencia que nos impulsa cuando creemos fervientemente en la importancia de lo que queremos crear, cambiar y construir.`,
       `Nuestros deseos y nuestro coraje van a ir siempre de la mano. El deseo nos invita a crecer y el coraje nos permite hacerlo. El primero es semilla, es potencia, es idea; el segundo es acción, transformación, realidad. La interacción de nuestros deseos y nuestro coraje nos transforma, transforma nuestra vida y la de las personas con las que vivimos.`,
     ],
-    meditationURL:"https://lovelia.org/public/activation/activationExample.mp4",
+    meditationURL:"https://storage.googleapis.com/threejs-api/public/meditations/Meditaci%C3%B3n%20Coraje.mp34",
     activation: "Decreto entregarme a la vida con la fuerza del amor para que surja la persona que quiero y necesito ser para lograr lo que deseo crear, cambiar y construir. Acepto desafiar obstáculos y atreverme a avanzar trascendiendo mis propias limitaciones y miedos.",
   },
   {
@@ -171,7 +171,7 @@ export const infoIntenciones: InfoIntenciones[] = [
       `Este proceso de vivir en congruencia con nuestro verdadero Ser despliega, en nuestro interior, una sensación de plenitud y conexión, creando una experiencia en la que nuestro camino se fusiona de manera armoniosa con nuestra identidad más auténtica.`,
       `Pero más allá de nuestros miedos, nuestros demonios y nuestras heridas, más allá de lo más profundo de nuestro interior, se encuentra nuestro tesoro que no es nada más (ni nada menos) que el disfrute de ser quienes somos.`,
       `Cuando alcanzamos nuestro yo verdadero es como si el sentido de nuestra vida nos encontrara.`,
-    ],meditationURL:"https://lovelia.org/public/activation/activationExample.mp4",
+    ],meditationURL:"https://storage.googleapis.com/threejs-api/public/meditations/Meditaci%C3%B3n%20Yo%20Verdadero.mp3",
     activation: "Decreto conectarme con mi Yo verdadero, para habitar mi esencia más auténtica y fundamental. Me comprometo a desplegar mi identidad dejando que mi sabiduría interior me guíe y así encontrar mi sentido de vida.",
   },
 
@@ -193,7 +193,7 @@ export const infoIntenciones: InfoIntenciones[] = [
       "Aunque no podamos controlar muchas circunstancias, la práctica de la gratitud devela una dimensión de la experiencia que llena de placer y disfrute nuestra vida cotidiana, encaminándonos hacia una vida en la que cada día nos alegremos de haber vivido.",
       "Aprender a reconocer aquellas cosas por las que sentimos gratitud es una elección. A medida que sostenemos esa práctica, aparecerá en nuestro corazón un placer por lo cotidiano y por la existencia, que suele rebalsar en el deseo natural de regalarla a otros a través del compartir, del conectar o del servicio.",
       "La atención a los regalos, la llave de la gratitud, se encuentra siempre entre tus manos.",
-    ],meditationURL:"https://lovelia.org/public/activation/activationExample.mp4",
+    ],meditationURL:"https://storage.googleapis.com/threejs-api/public/meditations/Meditaci%C3%B3n%20Gratitud.mp3",
     activation: "Decreto conectarme con la gratitud, recibiendo con amor los regalos de la vida. Declaro practicar la gratitud, soltando el control y experimentando conscientemente el placer por lo cotidiano y por la existencia misma.",
   },
 ];

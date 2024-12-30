@@ -74,37 +74,42 @@
         display: flex;
         justify-content: center;
         overflow: hidden;
-
+        position: relative;
+      
         img{
-        
+             position: absolute;
             object-fit: cover;
             height: 100%;
          
-            object-position: bottom;
+            bottom: -30%;
 
         }
     }
 
     .solarSail-auxiliar{
-        width: 80%;;
+       
+        width: 100%;
         aspect-ratio: 1.2;
         overflow: hidden;
         display: flex;
         align-items: center;
         justify-content: center;
+      
+       
         .solarSail-icon-container{
-          
-            height: 100%;
-            aspect-ratio: 1.2;
+            position:relative;
+            height: 300%;
+            aspect-ratio: 1;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             img{
+                position:absolute;
+                top:-6%;
                 object-fit: cover;
-                object-position: center;
                 height:100%;
-                aspect-ratio: 4;
+                aspect-ratio:1;
                 background-color: transparent;       
             }
         }

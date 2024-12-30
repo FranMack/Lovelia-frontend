@@ -73,7 +73,10 @@ export const TalismanAnalogic3 = () => {
       <div className="section3-talismanAnlaogic-center-container">
         {activeData && <Slider sliderInfo={activeData} />}
       </div>
+      <div className="button-wrapper">
+
   <Button text="QUIERO MI TALISMÁN" onClick={linkTo}/>
+      </div>
     </section>
   );
 };

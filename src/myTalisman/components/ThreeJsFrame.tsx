@@ -98,7 +98,7 @@ export const ThreeJsFrame = () => {
       activationSoundRef.current.currentTime = 0;
 
       let playCount = 0;
-      const maxPlays = 3;
+      const maxPlays = 1;
 
       const playUserSoundWithCount = (): Promise<void> => {
         return new Promise<void>(resolve => {
@@ -106,7 +106,7 @@ export const ThreeJsFrame = () => {
             userSoundRef.current.currentTime = 0;
             userSoundRef.current.volume = volume;
             userSoundRef.current.play();
-
+            handleButtonFocus("")
             userSoundRef.current.addEventListener('ended', function handler() {
               playCount++;
               userSoundRef.current!.removeEventListener('ended', handler);
@@ -122,6 +122,7 @@ export const ThreeJsFrame = () => {
           await playUserSoundWithCount();
         }
 
+       
         // Continuar con el resto del código después de reproducir 3 veces
         activationSoundRef.current!.play();
         setSeconds(0);

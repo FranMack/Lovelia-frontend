@@ -607,8 +607,6 @@ function CheckOutAnalogic() {
                   onClick={async () => {
                     const checkAcounts = await checkTalismanAcount();
 
-                    console.log('xxxxxxxxxxxxxxx', checkAcounts);
-
                     if (checkAcounts) {
                       setButttonFocusPosition(sections[sections.length - 1]);
                     }

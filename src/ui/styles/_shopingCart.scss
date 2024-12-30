@@ -184,27 +184,13 @@
       background-color: transparent;
       color: $color_primary;
       border: solid 2px $color_primary;
+      &:hover{
+        background-color: $color_yellow;
+      }
     }
   }
 
-  .shoping-cart-button-help-container {
-    margin: 0 auto;
-    width: 85%;
-    display: flex;
-    justify-content: space-between;
 
-    strong {
-      font-size: 1.6rem;
-      font-weight: 700;
-    }
-
-    p {
-      font-size: 1.4rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-    }
-  }
 }
 
 

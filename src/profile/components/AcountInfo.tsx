@@ -69,7 +69,8 @@ export const AcountInfo = ({
             <div className="auxiliar-button-container">
               {subscription && talismanActivated ? (
                 <ButtonArrowRight2
-                  color="#ffff"
+                  className="button-animation"
+                  color="#662A80"
                   text="IR A MI TALISMÁN"
                   onClick={() => {
                     linkTo('myTalisman');
@@ -86,10 +87,11 @@ export const AcountInfo = ({
                 />
               ) : (
                 <ButtonArrowRight2
-                  color="#ffff"
-                  text="IR A TIENDA"
+                  className="button-animation"
+                  color="#662A80"
+                  text="QUIERO MI TALISMÁN"
                   onClick={() => {
-                    linkTo('tienda');
+                    linkTo('buy-digital');
                   }}
                 />
               )}
