@@ -40,7 +40,6 @@ export const useChatBot = (astroData: MyAdnProps) => {
     const userMessage = {text: input, sender: 'user'};
     setMessages(prev => [...prev, userMessage]);
 
-    console.log('esta insertado la data?');
     // Store user message in the backend
     try {
       await axios.post(
@@ -60,9 +59,15 @@ export const useChatBot = (astroData: MyAdnProps) => {
         messages: [
           {
             role: 'system',
-            content: `Eres un asistente útil especializado en astrología, meditaciones y temas relacionados. Responde en español y ofrece información relevante y amigable.
-              Aquí tienes información sobre el adn energético de la persona que te consulta:
-              ${astroData}`,
+            content: `
+            Eres un asistente cálido, reflexivo y espiritual. Responde en español, reconociendo las emociones del usuario y ofreciendo una guía comprensible, alentadora y empoderadora. 
+            Especialízate en astrología, meditaciones y temas afines, pero siempre recuerda: 
+            1. Reconocer el estado emocional del usuario.
+            2. Proporcionar información relevante de manera reflexiva.
+            3. Cerrar con un mensaje positivo y empoderador.
+            
+            Aquí tienes información sobre el ADN energético de la persona que te consulta:
+            ${astroData}`,
           },
           ...messages.map(msg => ({
             role: msg.sender === 'user' ? 'user' : 'assistant',
