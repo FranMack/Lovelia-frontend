@@ -11,8 +11,9 @@ export function RestrictedRoute({children}: Props) {
 
   let pathToRedirect = '/';
   if (
-    location.pathname.includes('/checkout/digital') ||
-    localStorage.getItem('pathToRedirect')
+    email &&
+    (location.pathname.includes('/checkout/digital') ||
+      localStorage.getItem('pathToRedirect'))
   ) {
     pathToRedirect = '/checkout/digital';
   }
