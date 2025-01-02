@@ -17,5 +17,7 @@ export function PrivateRoute({children}: PrivateRouteProps) {
     localStorage.setItem('checkoutPath', '/checkout/digital');
   }
 
+  console.log('PrivateRoute', email);
+
   return email ? children : <Navigate to="/portal-usuario" />;
 }
