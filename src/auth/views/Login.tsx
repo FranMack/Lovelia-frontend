@@ -94,7 +94,7 @@ function Login() {
           setIsLoading(false);
 
           const checkoutPath = localStorage.getItem('checkoutPath');
-          if (checkoutPath) {
+          if (checkoutPath && data.subscription && !data.talismanActivated) {
             navigatge(checkoutPath);
             localStorage.removeItem('checkoutPath');
           } else {
