@@ -1,15 +1,15 @@
-import axios from "axios";
-import { useFormik } from "formik";
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { BeatLoader } from "react-spinners";
-import * as Yup from "yup";
-import { EyeClose, EyeOpen } from "../../assets/icons/icons";
-import { envs } from "../../config/envs";
-import { ShopingCartContext } from "../../context";
-import { TimerContext } from "../../context/timerContext";
-import { UserContext } from "../../context/userContext";
-import { BackgroundVideo } from "../../ui/components";
+import axios from 'axios';
+import {useFormik} from 'formik';
+import {useContext, useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {BeatLoader} from 'react-spinners';
+import * as Yup from 'yup';
+import {EyeClose, EyeOpen} from '../../assets/icons/icons';
+import {envs} from '../../config/envs';
+import {ShopingCartContext} from '../../context';
+import {TimerContext} from '../../context/timerContext';
+import {UserContext} from '../../context/userContext';
+import {BackgroundVideo} from '../../ui/components';
 
 function Login() {
   useEffect(() => {
@@ -42,22 +42,22 @@ function Login() {
   };
 
   //other errors
-  const [errorsFromAPI, setErrorsFromAPI] = useState<string>("");
+  const [errorsFromAPI, setErrorsFromAPI] = useState<string>('');
 
-  const { activatedAlarm } = useContext(TimerContext);
-  const { shopingCartOpen } = useContext(ShopingCartContext);
+  const {activatedAlarm} = useContext(TimerContext);
+  const {shopingCartOpen} = useContext(ShopingCartContext);
 
   const singUpForm = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
     validationSchema: Yup.object({
-      email: Yup.string().required("Campo requerido").email("Email no valido"),
-      password: Yup.string().required("Campo requerido"),
+      email: Yup.string().required('Campo requerido').email('Email no valido'),
+      password: Yup.string().required('Campo requerido'),
     }),
 
-    onSubmit: (values) => {
+    onSubmit: values => {
       if (isLoading) {
         return;
       }
@@ -69,9 +69,9 @@ function Login() {
             email: values.email,
             password: values.password,
           },
-          { withCredentials: true }
+          {withCredentials: true},
         )
-        .then(({ data }) => {
+        .then(({data}) => {
           console.log(data);
           setEmail(data.email);
           setId(data.id);
@@ -81,20 +81,27 @@ function Login() {
           setSuscription(data.subscription);
           setTalismanActivated(data.talismanActivated);
           localStorage.setItem(
-            "subscriptionActive",
-            JSON.stringify(data.subscription ? true : false)
+            'subscriptionActive',
+            JSON.stringify(data.subscription ? true : false),
           );
           localStorage.setItem(
-            "talismanActivated",
-            JSON.stringify(data.talismanActivated ? true : false)
+            'talismanActivated',
+            JSON.stringify(data.talismanActivated ? true : false),
           );
 
-          sessionStorage.setItem("userInfo", JSON.stringify(data.email));
+          sessionStorage.setItem('userInfo', JSON.stringify(data.email));
           singUpForm.resetForm();
           setIsLoading(false);
-          navigatge("/profile");
+
+          const checkoutPath = localStorage.getItem('checkoutPath');
+          if (checkoutPath) {
+            navigatge(checkoutPath);
+            localStorage.removeItem('checkoutPath');
+          } else {
+            navigatge('/profile');
+          }
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
           setIsLoading(false);
           setErrorsFromAPI(error.response.data.error);
@@ -104,24 +111,23 @@ function Login() {
 
   return (
     <main
-      className={activatedAlarm || shopingCartOpen ? "viewport-background" : ""}
-    >
+      className={
+        activatedAlarm || shopingCartOpen ? 'viewport-background' : ''
+      }>
       <section className="login-container efectoReveal">
         <BackgroundVideo />
         <form
           onSubmit={singUpForm.handleSubmit}
           className="login-form"
-          action=""
-        >
+          action="">
           <h3>MI CUENTA</h3>
           <h4>Iniciar sesión</h4>
           <h6>
-            Si aún no tienes una cuenta,{" "}
+            Si aún no tienes una cuenta,{' '}
             <strong
               onClick={() => {
-                linkTo("register");
-              }}
-            >
+                linkTo('register');
+              }}>
               Haz click aquí.
             </strong>
           </h6>
@@ -136,8 +142,8 @@ function Login() {
             className={
               (singUpForm.touched.email && singUpForm.errors.email) ||
               errorsFromAPI
-                ? "input-error"
-                : ""
+                ? 'input-error'
+                : ''
             }
           />
           {singUpForm.touched.email && singUpForm.errors.email && (
@@ -150,16 +156,15 @@ function Login() {
             className={` ${
               (singUpForm.touched.password && singUpForm.errors.password) ||
               errorsFromAPI
-                ? "password-input-wrapper-error "
-                : "password-input-wrapper"
-            }`}
-          >
+                ? 'password-input-wrapper-error '
+                : 'password-input-wrapper'
+            }`}>
             <input
               value={singUpForm.values.password}
               onChange={singUpForm.handleChange}
               onBlur={singUpForm.handleBlur}
               name="password"
-              type={showPassword ? "text" : "password"}
+              type={showPassword ? 'text' : 'password'}
               placeholder="Contraseña"
             />
             <span onClick={handleShowPassword}>
@@ -179,9 +184,8 @@ function Login() {
             <p>
               <span
                 onClick={() => {
-                  linkTo("forget-password");
-                }}
-              >
+                  linkTo('forget-password');
+                }}>
                 ¿Has olvidado tu contraseña?
               </span>
             </p>
@@ -195,9 +199,9 @@ function Login() {
 
           <button type="submit">
             {isLoading ? (
-              <BeatLoader color={"white"} speedMultiplier={0.4} />
+              <BeatLoader color={'white'} speedMultiplier={0.4} />
             ) : (
-              "ACCEDER"
+              'ACCEDER'
             )}
           </button>
         </form>

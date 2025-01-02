@@ -1,15 +1,15 @@
-import axios from "axios";
-import { useFormik } from "formik";
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import BeatLoader from "react-spinners/BeatLoader";
-import * as Yup from "yup";
-import { EyeClose, EyeOpen } from "../../assets/icons/icons";
-import { envs } from "../../config";
-import { ShopingCartContext } from "../../context";
-import { TimerContext } from "../../context/timerContext";
-import { BackgroundVideo } from "../../ui/components";
-import { Button } from "../../ui/components/Button";
+import axios from 'axios';
+import {useFormik} from 'formik';
+import {useContext, useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import BeatLoader from 'react-spinners/BeatLoader';
+import * as Yup from 'yup';
+import {EyeClose, EyeOpen} from '../../assets/icons/icons';
+import {envs} from '../../config';
+import {ShopingCartContext} from '../../context';
+import {TimerContext} from '../../context/timerContext';
+import {BackgroundVideo} from '../../ui/components';
+import {Button} from '../../ui/components/Button';
 
 function Register() {
   useEffect(() => {
@@ -39,7 +39,7 @@ function Register() {
 
   const linkToLogin = () => {
     handleMessage();
-    navigatge("/login");
+    navigatge('/login');
   };
 
   //validation errors
@@ -48,54 +48,54 @@ function Register() {
     useState<boolean>(false);
 
   //other errors
-  const [errorsFromAPI, setErrorsFromAPI] = useState<string>("");
+  const [errorsFromAPI, setErrorsFromAPI] = useState<string>('');
 
-  const { activatedAlarm } = useContext(TimerContext);
-  const { shopingCartOpen } = useContext(ShopingCartContext);
+  const {activatedAlarm} = useContext(TimerContext);
+  const {shopingCartOpen} = useContext(ShopingCartContext);
 
-  const [confirmedAcount,setConfirmedAcount]=useState<boolean>(false)
+  const [confirmedAcount, setConfirmedAcount] = useState<boolean>(false);
 
   const singUpForm = useFormik({
     initialValues: {
-      name: "",
-      lastname: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
+      name: '',
+      lastname: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
     },
     validationSchema: Yup.object({
-      name: Yup.string().required("Campo requerido"),
-      lastname: Yup.string().required("Campo requerido"),
-      email: Yup.string().required("Campo requerido").email("Email no valido"),
+      name: Yup.string().required('Campo requerido'),
+      lastname: Yup.string().required('Campo requerido'),
+      email: Yup.string().required('Campo requerido').email('Email no valido'),
       password: Yup.string()
-        .min(8, "El password debe contener al menos 8 caracteres")
+        .min(8, 'El password debe contener al menos 8 caracteres')
         .matches(
           /^(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
-          "El password debe contener al menos un caracter especial"
+          'El password debe contener al menos un caracter especial',
         )
-        .matches(/\d/, "El password debe contener al menos un número")
+        .matches(/\d/, 'El password debe contener al menos un número')
         .matches(
           /[a-z]/,
-          "El password debe contener al menos una letra en minúscula"
+          'El password debe contener al menos una letra en minúscula',
         )
         .matches(
           /[A-Z]/,
-          "El password debe contener al menos una letra en mayúscula"
+          'El password debe contener al menos una letra en mayúscula',
         )
-        .required("Campo requerido"),
+        .required('Campo requerido'),
 
-      confirmPassword: Yup.string().required("Campo requerido"),
+      confirmPassword: Yup.string().required('Campo requerido'),
     }),
 
-    onSubmit: (values) => {
-      console.log("Wrong confirmed password");
+    onSubmit: values => {
+      console.log('Wrong confirmed password');
 
       if (isLoading) {
         return;
       }
 
       if (values.confirmPassword !== values.password) {
-        console.log("Wrong confirmed password");
+        console.log('Wrong confirmed password');
         setConfirmPasswordError(true);
 
         return;
@@ -110,19 +110,22 @@ function Register() {
           email: values.email,
           password: values.password,
         })
-        .then((response) => {
+        .then(response => {
           console.log(response);
           singUpForm.resetForm();
           setIsLoading(false);
           window.scrollTo(0, 0);
           if (response.data.acountConfirmed) {
-            setConfirmedAcount(true)
-          } 
+            setConfirmedAcount(true);
+
+            // If user comes with confirmedAccount = true, we redirect to login but we need to redirect to /checkout/digital
+            localStorage.setItem('checkoutPath', '/checkout/digital');
+          }
 
           handleMessage();
         })
 
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
           setIsLoading(false);
           setErrorsFromAPI(error.response.data.error);
@@ -132,16 +135,20 @@ function Register() {
 
   return (
     <main
-      className={activatedAlarm || shopingCartOpen ? "viewport-background" : ""}
-    >
+      className={
+        activatedAlarm || shopingCartOpen ? 'viewport-background' : ''
+      }>
       <section className="login-container efectoReveal">
         <BackgroundVideo />
 
         {openMessage && (
           <div className="login-message-container efectoReveal">
             <h4>Su cuenta ha sido registrada.</h4>
-           {confirmedAcount? <p>Haz click en continuar para iniciar sesíon</p>:
-          <p>Recibirás un mail que te permitirá activarla</p> }
+            {confirmedAcount ? (
+              <p>Haz click en continuar para iniciar sesíon</p>
+            ) : (
+              <p>Recibirás un mail que te permitirá activarla</p>
+            )}
             <Button text="Continuar" onClick={linkToLogin} />
           </div>
         )}
@@ -150,12 +157,11 @@ function Register() {
           <form
             onSubmit={singUpForm.handleSubmit}
             className="login-form"
-            action=""
-          >
+            action="">
             <h3>CREA TU CUENTA</h3>
             <h4>Ingresa tus datos para registrarte en lovelia</h4>
             <h6>
-              Si ya estás registrado en lovelia,{" "}
+              Si ya estás registrado en lovelia,{' '}
               <strong onClick={linkToLogin}>Haz click aquí</strong>
             </h6>
             <label htmlFor="name">Nombre</label>
@@ -169,8 +175,8 @@ function Register() {
               className={
                 (singUpForm.touched.name && singUpForm.errors.name) ||
                 errorsFromAPI
-                  ? "input-error"
-                  : ""
+                  ? 'input-error'
+                  : ''
               }
             />
             {singUpForm.touched.name && singUpForm.errors.name && (
@@ -189,8 +195,8 @@ function Register() {
               className={
                 (singUpForm.touched.lastname && singUpForm.errors.lastname) ||
                 errorsFromAPI
-                  ? "input-error"
-                  : ""
+                  ? 'input-error'
+                  : ''
               }
             />
             {singUpForm.touched.lastname && singUpForm.errors.lastname && (
@@ -209,8 +215,8 @@ function Register() {
               className={
                 (singUpForm.touched.email && singUpForm.errors.email) ||
                 errorsFromAPI
-                  ? "input-error"
-                  : ""
+                  ? 'input-error'
+                  : ''
               }
             />
             {singUpForm.touched.email && singUpForm.errors.email && (
@@ -223,16 +229,15 @@ function Register() {
               className={` ${
                 (singUpForm.touched.password && singUpForm.errors.password) ||
                 errorsFromAPI
-                  ? "password-input-wrapper-error "
-                  : "password-input-wrapper"
-              }`}
-            >
+                  ? 'password-input-wrapper-error '
+                  : 'password-input-wrapper'
+              }`}>
               <input
                 value={singUpForm.values.password}
                 onChange={singUpForm.handleChange}
                 onBlur={singUpForm.handleBlur}
                 name="password"
-                type={showPassword ? "text" : "password"}
+                type={showPassword ? 'text' : 'password'}
                 placeholder="Contraseña"
               />
 
@@ -254,16 +259,15 @@ function Register() {
               className={` ${
                 (singUpForm.touched.password && singUpForm.errors.password) ||
                 errorsFromAPI
-                  ? "password-input-wrapper-error "
-                  : "password-input-wrapper"
-              }`}
-            >
+                  ? 'password-input-wrapper-error '
+                  : 'password-input-wrapper'
+              }`}>
               <input
                 value={singUpForm.values.confirmPassword}
                 onChange={singUpForm.handleChange}
                 onBlur={singUpForm.handleBlur}
                 name="confirmPassword"
-                type={showConfirmPassword ? "text" : "password"}
+                type={showConfirmPassword ? 'text' : 'password'}
                 placeholder="Confirmar contraseña"
               />
               <span onClick={handleShowConfirmPassword}>
@@ -281,7 +285,7 @@ function Register() {
               </span>
             ) : !singUpForm.errors.confirmPassword && confirmPasswordError ? (
               <span className="input-helpers-error">
-                {"La confirmación de contraseña es incorrecta"}
+                {'La confirmación de contraseña es incorrecta'}
               </span>
             ) : null}
             <div className="login-button-container">
@@ -301,9 +305,9 @@ function Register() {
             </div>
             <button type="submit">
               {isLoading ? (
-                <BeatLoader color={"white"} speedMultiplier={0.4} />
+                <BeatLoader color={'white'} speedMultiplier={0.4} />
               ) : (
-                "REGISTRARME"
+                'REGISTRARME'
               )}
             </button>
           </form>
