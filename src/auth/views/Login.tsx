@@ -89,7 +89,7 @@ function Login() {
             JSON.stringify(data.talismanActivated ? true : false),
           );
 
-          sessionStorage.setItem('userInfo', JSON.stringify(data.email));
+          localStorage.setItem('userInfo', JSON.stringify(data.email));
           singUpForm.resetForm();
           setIsLoading(false);
 

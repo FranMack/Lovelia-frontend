@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {ReactNode, createContext, useState} from 'react';
-import { envs } from '../config';
+import {envs} from '../config';
 
 interface UserContextValue {
   id: string;
@@ -9,14 +9,14 @@ interface UserContextValue {
   name: string;
   lastname: string;
   subscription: boolean;
-  talismanActivated:boolean
+  talismanActivated: boolean;
   setId: (id: string) => void;
   setEmail: (email: string) => void;
   setToken: (token: string) => void;
   setName: (name: string) => void;
   setLastname: (name: string) => void;
   setSuscription: (subscription: boolean) => void;
-  setTalismanActivated: (talismanActivated: boolean) => void
+  setTalismanActivated: (talismanActivated: boolean) => void;
   refreshME: () => void;
 }
 
@@ -39,7 +39,7 @@ const userContextDefaultValue: UserContextValue = {
   setLastname: () => {},
   setSuscription: () => {},
   setTalismanActivated: () => {},
-  refreshME:()=>{}
+  refreshME: () => {},
 };
 
 export const UserContext = createContext<UserContextValue>(
@@ -49,7 +49,7 @@ export const UserContext = createContext<UserContextValue>(
 export const UserContextProvider = ({children}: UserContextProviderProps) => {
   const [id, setId] = useState<string>('');
   const [email, setEmail] = useState(() => {
-    const savedEmail = sessionStorage.getItem('userInfo');
+    const savedEmail = localStorage.getItem('userInfo');
     return savedEmail ? JSON.parse(savedEmail) : '';
   });
   const [token, setToken] = useState<string>('');
@@ -58,7 +58,7 @@ export const UserContextProvider = ({children}: UserContextProviderProps) => {
   const [subscription, setSuscription] = useState<boolean>(false);
   const [talismanActivated, setTalismanActivated] = useState<boolean>(false);
 
-  const refreshME=async()=>{
+  const refreshME = async () => {
     const fcmToken = localStorage.getItem('fcmToken');
     axios
       .get(`${envs.API_DOMAIN}/api/v1/user/me/${fcmToken}`, {
@@ -74,17 +74,16 @@ export const UserContextProvider = ({children}: UserContextProviderProps) => {
         );
 
         const talismanActivated = JSON.parse(
-          localStorage.getItem("talismanActivated") || "false"
+          localStorage.getItem('talismanActivated') || 'false',
         );
 
         setSuscription(subscription);
-        setTalismanActivated(talismanActivated)
+        setTalismanActivated(talismanActivated);
       })
       .catch(error => {
         console.log(error);
       });
-
-  }
+  };
 
   const value: UserContextValue = {
     id,
@@ -101,7 +100,7 @@ export const UserContextProvider = ({children}: UserContextProviderProps) => {
     setLastname,
     setSuscription,
     setTalismanActivated,
-    refreshME
+    refreshME,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

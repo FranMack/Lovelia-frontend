@@ -1,26 +1,9 @@
 import {useContext, useEffect} from 'react';
-import {useNavigate} from 'react-router';
 import {ShopingCartContext} from '../../context';
 import {TimerContext} from '../../context/timerContext';
 import {Home1, Home2, Home3, Home4, Home5, Home6} from '../pages';
 
 const Home = () => {
-  const navigation = useNavigate();
-
-  useEffect(() => {
-    const waitFor = async () => {
-      setTimeout(() => {
-        localStorage.removeItem('checkoutPath');
-      }, 1000);
-    };
-
-    if (localStorage.getItem('checkoutPath')) {
-      localStorage.removeItem('checkoutPath');
-      waitFor();
-      navigation('/checkout/digital');
-    }
-  }, []);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
