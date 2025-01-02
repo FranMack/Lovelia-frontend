@@ -9,8 +9,8 @@ const Home = () => {
 
   useEffect(() => {
     if (localStorage.getItem('checkoutPath')) {
-      navigation('/checkout/digital');
       localStorage.removeItem('checkoutPath');
+      navigation('/checkout/digital');
     }
   }, []);
 
