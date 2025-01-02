@@ -1,13 +1,21 @@
-import { ReactNode, useContext } from "react";
-import { Navigate } from "react-router-dom";
-import { UserContext } from "../context";
-
+import {ReactNode, useContext} from 'react';
+import {Navigate} from 'react-router-dom';
+import {UserContext} from '../context';
 
 interface Props {
   children: ReactNode;
 }
 
-export function RestrictedRoute({ children }: Props) {
-  const {email}=useContext(UserContext)
-  return !email ? children : <Navigate to="/" />;
+export function RestrictedRoute({children}: Props) {
+  const {email} = useContext(UserContext);
+
+  let pathToRedirect = '/';
+  if (
+    location.pathname.includes('/checkout/digital') ||
+    localStorage.getItem('pathToRedirect')
+  ) {
+    pathToRedirect = '/checkout/digital';
+  }
+
+  return !email ? children : <Navigate to={pathToRedirect} />;
 }

@@ -105,14 +105,14 @@ function App() {
       {activatedAlarm && <AlarmPopUp alarmUrl={alarmUrl} />}
 
       <Routes>
-        {/*RUTAS PRIVADAS*/}
-        {PrivatesRoutesCollection()}
-
         {/*RUTAS PÚBLICAS*/}
         {PublicRoutesCollection()}
 
         {/*RUTAs ACCESIBLES PARA USUARIOS  NO LOGUEADOS*/}
         {RestrictedRoutesCollection()}
+
+        {/*RUTAS PRIVADAS*/}
+        {PrivatesRoutesCollection()}
       </Routes>
 
       {location !== '/myTalisman' && windowSize >= 1024 && <Footer />}
