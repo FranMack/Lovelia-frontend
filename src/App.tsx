@@ -70,9 +70,9 @@ function App() {
 
   const handleClickOutside = (event: MouseEvent) => {
     const target = event.target as HTMLElement;
-  
-    console.log("Elemento clickeado:", target);
-  
+
+    console.log('Elemento clickeado:', target);
+
     // Comprueba si el clic fue dentro del menú o en el ícono
     if (
       menuOpen &&
@@ -105,14 +105,14 @@ function App() {
       {activatedAlarm && <AlarmPopUp alarmUrl={alarmUrl} />}
 
       <Routes>
+        {/*RUTAS PRIVADAS*/}
+        {PrivatesRoutesCollection()}
+
         {/*RUTAS PÚBLICAS*/}
         {PublicRoutesCollection()}
 
         {/*RUTAs ACCESIBLES PARA USUARIOS  NO LOGUEADOS*/}
         {RestrictedRoutesCollection()}
-
-        {/*RUTAS PRIVADAS*/}
-        {PrivatesRoutesCollection()}
       </Routes>
 
       {location !== '/myTalisman' && windowSize >= 1024 && <Footer />}

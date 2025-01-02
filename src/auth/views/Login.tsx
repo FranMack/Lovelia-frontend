@@ -96,10 +96,11 @@ function Login() {
           const checkoutPath = localStorage.getItem('checkoutPath');
           if (checkoutPath && data.subscription && !data.talismanActivated) {
             navigatge(checkoutPath);
-            localStorage.removeItem('checkoutPath');
           } else {
             navigatge('/profile');
           }
+
+          localStorage.removeItem('checkoutPath');
         })
         .catch(error => {
           console.log(error);
