@@ -8,8 +8,15 @@ const Home = () => {
   const navigation = useNavigate();
 
   useEffect(() => {
+    const waitFor = async () => {
+      setTimeout(() => {
+        localStorage.removeItem('checkoutPath');
+      }, 1000);
+    };
+
     if (localStorage.getItem('checkoutPath')) {
       localStorage.removeItem('checkoutPath');
+      waitFor();
       navigation('/checkout/digital');
     }
   }, []);
