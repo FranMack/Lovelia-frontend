@@ -41,7 +41,7 @@ export function NavbarDropDown({
         setName("");
         setLastname("");
         setSuscription(false)
-        sessionStorage.removeItem("userInfo")
+        localStorage.removeItem("userInfo")
         localStorage.removeItem("subscriptionActive")
         localStorage.removeItem("talismanActivated")
         setToken("")

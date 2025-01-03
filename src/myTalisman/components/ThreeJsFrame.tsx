@@ -724,6 +724,8 @@ export const ThreeJsFrame = () => {
     fetchData();
   }, []);
 
+  console.log("xxxxxxxxxxxx",intention)
+
   return (
     <>
       {astrologicalInfo ? (
@@ -808,9 +810,12 @@ export const ThreeJsFrame = () => {
                   return (
                     <button
                       className={
-                        i === 0 && readyForActivation
+                        `${i === 0 && readyForActivation
                           ? 'soundButton-motion'
-                          : ''
+                          : ''} ${i === 1 && !intention
+                            ? 'soundButton-motion'
+                            : ''}   `
+
                       }
                       key={item.title}
                       title={item.title}

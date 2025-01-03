@@ -131,7 +131,7 @@ export const MobileMenu = () => {
         setLastname('');
         setToken('');
         setSuscription(false);
-        sessionStorage.removeItem('userInfo');
+        localStorage.removeItem('userInfo');
         localStorage.removeItem('subscriptionActive');
         localStorage.removeItem('talismanActivated');
         toggleMenu();
