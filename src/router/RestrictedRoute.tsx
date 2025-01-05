@@ -9,8 +9,6 @@ interface Props {
 export function RestrictedRoute({children}: Props) {
   const {email} = useContext(UserContext);
 
-  console.log('RestrictedRoute', email);
-
   let pathToRedirect = '/';
   if (
     email &&

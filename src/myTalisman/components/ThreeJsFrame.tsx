@@ -20,22 +20,22 @@ import {
   TalismanSoundIcon,
 } from '../../assets/icons/icons';
 import {envs} from '../../config/envs';
+import {IntentionContext} from '../../context';
 import {ActivationStepsContex} from '../../context/activationStepsContext';
 import {TalismanAudioContext} from '../../context/talismanAudioContext';
 import {TalismanButtonFocusContext} from '../../context/talismanButtonFocusContext';
 import {UserContext} from '../../context/userContext';
 import {audioDurationTransform} from '../helpers/audioDurationTransform';
 import {lineSubtitle} from '../helpers/subtitles';
+import {AstrologicalDataProps} from '../interface/myAdn.interface';
 import {Activation} from './Activation';
+import {ChatBot} from './ChatBot';
 import {Chronometer} from './Chronometer';
+import {ConstelationBox} from './ConstelationBox';
 import {MyADN} from './MyADN';
 import {Playlist} from './Playlist';
+import {TalismanBox} from './TalismanBox';
 import {Timer} from './Timer';
-import { TalismanBox } from "./TalismanBox";
-import { IntentionContext } from "../../context";
-import { ConstelationBox } from "./ConstelationBox";
-import {AstrologicalDataProps} from '../interface/myAdn.interface';
-import {ChatBot} from './ChatBot';
 
 interface MeditationsOptions {
   name: string;
@@ -106,7 +106,7 @@ export const ThreeJsFrame = () => {
             userSoundRef.current.currentTime = 0;
             userSoundRef.current.volume = volume;
             userSoundRef.current.play();
-            handleButtonFocus("")
+            handleButtonFocus('');
             userSoundRef.current.addEventListener('ended', function handler() {
               playCount++;
               userSoundRef.current!.removeEventListener('ended', handler);
@@ -122,7 +122,6 @@ export const ThreeJsFrame = () => {
           await playUserSoundWithCount();
         }
 
-       
         // Continuar con el resto del código después de reproducir 3 veces
         activationSoundRef.current!.play();
         setSeconds(0);
@@ -160,9 +159,7 @@ export const ThreeJsFrame = () => {
 
   const timerSoundRefs = useRef<HTMLAudioElement[]>([]);
 
- 
-    const { intention, setIntention } = useContext(IntentionContext);
-
+  const {intention, setIntention} = useContext(IntentionContext);
 
   const buttonsLeft = [
     {
@@ -389,12 +386,10 @@ export const ThreeJsFrame = () => {
             {withCredentials: true},
           );
 
-      
-           const userIntention = await axios.get(
+          const userIntention = await axios.get(
             `${envs.API_DOMAIN}/api/v1/user/my-intention/${email}`,
-            { withCredentials: true }
+            {withCredentials: true},
           );
-    
 
           if (userInfo.data) {
             setAstrologicalData(userInfo.data);
@@ -410,9 +405,9 @@ export const ThreeJsFrame = () => {
           }
 
           {
-             if (userIntention) {
-            setIntention(userIntention.data);
-          }
+            if (userIntention) {
+              setIntention(userIntention.data);
+            }
           }
 
           setTimeout(() => {
@@ -724,21 +719,18 @@ export const ThreeJsFrame = () => {
     fetchData();
   }, []);
 
-  console.log("xxxxxxxxxxxx",intention)
-
   return (
     <>
       {astrologicalInfo ? (
         <>
-        
-            <TalismanBox
-              numerologySymbol={astrologicalData.numerologySymbol}
-              solarSailSymbol={astrologicalData.solarSailSymbol}
-              toneSymbol={astrologicalData.toneSymbol}
-              phrase={intention}
-              chineseSymbol={astrologicalData.chinseseSymbol}
-            />
-          
+          <TalismanBox
+            numerologySymbol={astrologicalData.numerologySymbol}
+            solarSailSymbol={astrologicalData.solarSailSymbol}
+            toneSymbol={astrologicalData.toneSymbol}
+            phrase={intention}
+            chineseSymbol={astrologicalData.chinseseSymbol}
+          />
+
           <ConstelationBox constellation={astrologicalData.constellation} />
           <iframe
             className="threejs-container"
@@ -809,14 +801,13 @@ export const ThreeJsFrame = () => {
                 {buttonsRight.map((item, i) => {
                   return (
                     <button
-                      className={
-                        `${i === 0 && readyForActivation
+                      className={`${
+                        i === 0 && readyForActivation
                           ? 'soundButton-motion'
-                          : ''} ${i === 1 && !intention
-                            ? 'soundButton-motion'
-                            : ''}   `
-
-                      }
+                          : ''
+                      } ${
+                        i === 1 && !intention ? 'soundButton-motion' : ''
+                      }   `}
                       key={item.title}
                       title={item.title}
                       onClick={
@@ -877,7 +868,6 @@ export const ThreeJsFrame = () => {
           )}
           {buttonFocusPosition === 'timer' && <Timer sounds={sounds} />}
 
-       
           <ChatBot astroData={astrologicalData} />
         </>
       ) : (
@@ -917,5 +907,4 @@ export const ThreeJsFrame = () => {
       })}
     </>
   );
-}
-
+};
