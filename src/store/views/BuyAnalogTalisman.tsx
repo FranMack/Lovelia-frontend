@@ -112,7 +112,6 @@ function BuyAnalogTalisman() {
         ? await addProductToShoppingCartDB(shopingCartNewItem)
         : await addProductToShoppingCart(shopingCartNewItem);
 
-      console.log('newProduct==========>', newProduct);
       const shopingCartUpdate = [newProduct, ...shopingCart];
 
       setShopingCartItems(shopingCartUpdate);

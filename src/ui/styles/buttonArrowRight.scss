@@ -24,3 +24,22 @@
     transform: scale(1.05);
   }
 }
+
+
+
+@media screen and (max-width: 1024px) {
+  .arrowRight-button {
+   
+    p {
+      font-size: 1.6rem;
+   
+      margin: 0;
+    
+    }
+    svg {
+      height: 2rem;
+    }
+ 
+  }
+
+}

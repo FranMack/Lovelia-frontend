@@ -53,19 +53,21 @@ function App() {
       }
     });
 
-    //actualiza el shopingCartContext
-    const shopingCartJSON = localStorage.getItem('shopingCart') || '[]';
-
-    setShopingCartItems(JSON.parse(shopingCartJSON));
-
-    //actualiza el carrito de compras con la db
-    refreshShoppingCart(email);
-
     return () => {
       unsubscribe();
       window.removeEventListener('resize', handleWindowSize);
     };
   }, []);
+  
+
+  useEffect(() => {
+    if (email) {
+      refreshShoppingCart(); // Si el usuario está logueado, sincroniza con la base de datos
+    } else {
+      const shopingCartJSON = localStorage.getItem('shopingCart') || '[]';
+      setShopingCartItems(JSON.parse(shopingCartJSON)); // Si no está logueado, sincroniza con el localStorage
+    }
+  }, [email]);
 
   const {menuOpen, toggleMenu, menuRef} = useContext(MobileMenuContext);
 

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { ReactNode, createContext, useState, useEffect } from 'react';
 import { envs } from '../config';
 
+
 interface UserContextValue {
   id: string;
   email: string;
@@ -55,6 +56,8 @@ export const UserContextProvider = ({ children }: UserContextProviderProps) => {
   const [subscription, setSuscription] = useState<boolean>(false);
   const [talismanActivated, setTalismanActivated] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true); // Estado de carga
+
+  
 
   const refreshME = async () => {
     setLoading(true); // Iniciar carga de datos

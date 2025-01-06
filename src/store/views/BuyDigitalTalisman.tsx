@@ -1,11 +1,15 @@
 import {useContext, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {RightNextIcon} from '../../assets/icons/icons';
-import {ShopingCartContext} from '../../context';
+import {ShopingCartContext, UserContext} from '../../context';
 import {TimerContext} from '../../context/timerContext';
 import {Button} from '../../ui/components/Button';
 import {PopUp} from '../../ui/components/PopUp';
 import {ejDigitalTalisman} from '../assets/ejDigitalTalisman';
+import {
+  addProductToShoppingCart,
+  addProductToShoppingCartDB,
+} from '../helpers/shoppingCartFunctions';
 
 const precio = '10,00';
 
@@ -39,22 +43,29 @@ function BuyDigitalTalisman() {
     navigate('/portal-usuario');
   };
 
-  const {shopingCartOpen, toggleMenu, setShopingCartItems} =
+  const {shopingCartOpen, toggleMenu,shopingCartItems, setShopingCartItems} =
     useContext(ShopingCartContext);
 
-  const handleBuyTalisman = () => {
-    const shopingCartJSON = localStorage.getItem('shopingCart') || '[]';
-    const shopingCart = JSON.parse(shopingCartJSON);
+  const {email} = useContext(UserContext);
+
+  const handleBuyTalisman = async () => {
+    
     const shopingCartNewItem = {
-      id: Math.round(Math.random() * 10000000),
-      product: 'Talismán digital',
       model: 'Digital',
+      metal:"Digital",
+      rock:"Digital",
+      chain:"Digital",
+      intention:"Digital",
       image: ejDigitalTalisman[0].image,
-      price: 10,
       quantity: 1,
     };
-    const shopingCartUpdate = [shopingCartNewItem, ...shopingCart];
-    localStorage.setItem('shopingCart', JSON.stringify(shopingCartUpdate));
+
+    const newProduct = email
+      ? await addProductToShoppingCartDB(shopingCartNewItem)
+      : await addProductToShoppingCart(shopingCartNewItem);
+
+    const shopingCartUpdate = [newProduct, ...shopingCartItems];
+
     setShopingCartItems(shopingCartUpdate);
 
     toggleMenu();
@@ -144,9 +155,7 @@ function BuyDigitalTalisman() {
           </div>
 
           <div className="buttons-container">
-         
-              <Button onClick={handleBuyTalisman} text={`Agregar al carrito`} />
-         
+            <Button onClick={handleBuyTalisman} text={`Agregar al carrito`} />
           </div>
         </div>
       </section>

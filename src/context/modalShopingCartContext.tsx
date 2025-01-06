@@ -6,12 +6,12 @@ export interface ShopingCartItemOptions {
   shoppingCartItem_id: number | string;
   quantity: number;
   model: string;
-  metal: string;
-  chain: string;
-  intention: string;
+  metal?: string;
+  chain?: string;
+  intention?: string;
   image: string;
   price: number;
-  rock: string;
+  rock?: string;
 }
 
 interface ShopingCartContextValue {
@@ -19,7 +19,7 @@ interface ShopingCartContextValue {
   shopingCartItems: ShopingCartItemOptions[];
   toggleMenu: () => void | null;
   setShopingCartItems: (items: ShopingCartItemOptions[]) => void;
-  refreshShoppingCart: (email: string) => void;
+  refreshShoppingCart: () => void;
   cleanShoppingCart: (email: string) => void;
 }
 
@@ -46,11 +46,10 @@ export const ShopingCartContextProvider = ({
     ShopingCartItemOptions[]
   >([]);
 
-  const refreshShoppingCart = async (email: string) => {
-    if (!email) {
-      return;
-    }
-    axios
+  const refreshShoppingCart = async () => {
+
+    
+         axios
       .get(`${envs.API_DOMAIN}/api/v1/shopping-cart/list`, {
         withCredentials: true,
       })
@@ -60,10 +59,17 @@ export const ShopingCartContextProvider = ({
       .catch(error => {
         console.log(error);
       });
+    
+  
+ 
+ 
   };
 
   const cleanShoppingCart=async (email: string)=>{
     if(!email){
+      const shopingCartJSON = localStorage.getItem('shopingCart') || '[]';
+
+      setShopingCartItems(JSON.parse(shopingCartJSON));
       return
     }
     axios
