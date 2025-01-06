@@ -3,7 +3,7 @@ import {ReactNode, createContext, useState} from 'react';
 interface TalismanModelContextValue {
   optionModel: string;
 
-  optionMaterial: string;
+  optionMetal: string;
 
   optionChain: string;
 
@@ -13,7 +13,7 @@ interface TalismanModelContextValue {
 
   setOptionModel: (option: string) => void;
 
-  setOptionMaterial: (option: string) => void;
+  setOptionMetal: (option: string) => void;
 
   setOptioChain: (option: string) => void;
 
@@ -29,7 +29,7 @@ interface TalismanModelContextProviderProps {
 const talismanModelContextDefaultValue: TalismanModelContextValue = {
   optionModel: '',
 
-  optionMaterial: '',
+  optionMetal: '',
 
   optionChain: '',
 
@@ -39,7 +39,7 @@ const talismanModelContextDefaultValue: TalismanModelContextValue = {
 
   setOptionModel: () => {},
 
-  setOptionMaterial: () => {},
+  setOptionMetal: () => {},
 
   setOptioChain: () => {},
 
@@ -56,23 +56,22 @@ export const TalismanModelContextProvider = ({
   children,
 }: TalismanModelContextProviderProps) => {
   const [optionModel, setOptionModel] = useState<string>('');
-  const [optionMaterial, setOptionMaterial] = useState<string>('');
+  const [optionMetal, setOptionMetal] = useState<string>('');
   const [optionChain, setOptioChain] = useState<string>('');
   const [optionRock, setOptionRock] = useState<string>('');
   const [optionIntention, setOptionIntention] = useState<string>('');
 
-
   const value: TalismanModelContextValue = {
     optionModel,
-    optionMaterial,
+    optionMetal,
     optionChain,
     optionRock,
     optionIntention,
     setOptionModel,
-    setOptionMaterial,
+    setOptionMetal,
     setOptionIntention,
     setOptioChain,
-    setOptionRock
+    setOptionRock,
   };
 
   return (

@@ -1,11 +1,12 @@
-import abundancia from "./intenciones/intencion_abundancia.png"
-import gratitud from "./intenciones/intencion_gratitud.png"
-import petencialInfinito from "./intenciones/intencion_potencial_infinito.png"
-import coraje from "./intenciones/intencion_coraje.png"
-import yoVerdadero from "./intenciones/intencion_yo_verdadero.png"
-import aquiYahora from "./intenciones/intencion_aqui_y_ahora.png"
-import sabiduria from "./intenciones/intencion_sabiduria.png"
-import amorIncondicional from "./intenciones/intencion_amor_incondicional.png"
+import abundancia from "./intentions/abundancia.webp"
+import coraje from "./intentions/coraje.webp"
+import amorIncondicional from "./intentions/amor_incondicional.webp"
+import petencialInfinito from "./intentions/potencial_infinito.webp"
+import sabiduria from "./intentions/sabiduria.webp"
+import aquiYahora from "./intentions/aqui_ahora.webp"
+import yoVerdadero from "./intentions/yo_verdadero.webp"
+import gratitud from "./intentions/gratitud.webp"
+
 
 interface InfoIntenciones {
   id: number;
@@ -16,17 +17,19 @@ interface InfoIntenciones {
 }
 
 export const infoIntenciones:InfoIntenciones[] = [
+
   {
     id: 1,
-    image: sabiduria,
-    title: "Sabiduría de la incertidumbre",
-    text:"La intuición es la guía del Alma.",
-  },
-  {
-    id: 2,
     image: amorIncondicional,
     title: "Amor Incondicional",
     text:"Todos somos UNO.",
+   
+  },
+  {
+    id: 2,
+    image: aquiYahora,
+    title: "Aquí y Ahora",
+    text:"Lo único real es el Presente.",
    
   },
   {
@@ -36,33 +39,33 @@ export const infoIntenciones:InfoIntenciones[] = [
     text:"Somos el Universo.",
   },
 
+
   {
     id: 4,
-    image: aquiYahora,
-    title: "Aquí y Ahora",
-    text:"Lo único real es el Presente.",
-   
-  },
-  {
-    id: 5,
     image: petencialInfinito,
     title: "Potencial Infinito",
     text:"Somos Seres Energía con el poder de cocrear nuestra realidad.",
   
   },
   {
-    id: 6,
+    id: 5,
     image: coraje,
     title: "Coraje",
     text:"Valentía en mi corazón.",
    
   },
   {
-    id: 7,
+    id: 6,
     image: yoVerdadero,
     title: "Yo verdadero",
     text:"Ser quién uno es.",
   
+  },
+  {
+    id: 7,
+    image: sabiduria,
+    title: "Sabiduría de la incertidumbre",
+    text:"La intuición es la guía del Alma.",
   },
 
   {
@@ -72,4 +75,5 @@ export const infoIntenciones:InfoIntenciones[] = [
     text:"Aceptar la realidad con amor.",
   
   },
+
 ];

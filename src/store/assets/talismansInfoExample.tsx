@@ -1,8 +1,8 @@
-import talisman1 from "../../talismanAnalogic/assets/productos/aura_oro.webp";
-import talisman2 from "../../talismanAnalogic/assets/productos/modelo_halo.webp";
-import talisman3 from "../../talismanAnalogic/assets/productos/modelo_bindu.webp";
-import pulseraOro from "../../talismanAnalogic/assets/productos/pulsera_oro.webp"
-import pulseraPlata from "../../talismanAnalogic/assets/productos/pulsera_plata.webp"
+import talisman1 from "../assets/tienda_aura.webp";
+import talisman2 from "../assets/tienda_halo.webp";
+import talisman3 from "../assets/tienda_bindu.webp";
+import pulseraOro from "../assets/tienda_pulsera_oro.webp"
+import pulseraPlata from "../assets/tienda_pulsera_plata.webp"
 import talismanDigital from "./ejemplo1_talisman_digital.webp";
 
 interface TalismanOptions {

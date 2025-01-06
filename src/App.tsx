@@ -26,12 +26,13 @@ import {
 import {ShopingCart} from './ui/components/ShopingCart.tsx';
 
 function App() {
+  const {email} = useContext(UserContext);
   const location = useLocation().pathname;
 
   const [windowSize, setWindowSize] = useState(window.innerWidth);
 
-  const {shopingCartOpen, setShopingCartItems} = useContext(ShopingCartContext);
-  const {refreshME} = useContext(UserContext);
+  const {shopingCartOpen, setShopingCartItems, refreshShoppingCart} =
+    useContext(ShopingCartContext);
 
   const {activatedAlarm, setActivatedAlarm} = useContext(TimerContext);
 
@@ -57,8 +58,8 @@ function App() {
 
     setShopingCartItems(JSON.parse(shopingCartJSON));
 
-    //actualiza el userContext - endpont /me
-    refreshME();
+    //actualiza el carrito de compras con la db
+    refreshShoppingCart(email);
 
     return () => {
       unsubscribe();

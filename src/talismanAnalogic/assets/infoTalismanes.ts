@@ -1,7 +1,7 @@
-import aura from "./productos/modelo_aura.webp";
-import bindu from "./productos/modelo_bindu.webp";
-import halo from "./productos/modelo_halo.webp"
-import pulsera from "./productos/pulsera_oro.webp"
+import aura from "./models/modelo_Aura- .webp";
+import bindu from "./models/modelo_bindu.webp";
+import halo from "./models/modelo_Halo.webp"
+import pulsera from "./models/modelo_lumis.webp"
 
 export const infoTalismans = [
   {

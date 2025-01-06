@@ -1,43 +1,34 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { CloseIcon } from "../../assets/icons/icons";
-import { ShopingCartContext } from "../../context/modalShopingCartContext";
-import { Button } from "./Button";
-import { ShopingCartCard } from "./ShopingCartCard";
+import {useContext} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {CloseIcon} from '../../assets/icons/icons';
+import {ShopingCartContext} from '../../context/modalShopingCartContext';
+import {Button} from './Button';
+import {ShopingCartCard} from './ShopingCartCard';
 
 
-export interface ProductosOptions {
-  id: number;
-  product: string;
-  quantity: number;
-  model: string;
-  material: string;
-  chain: string;
-  intention: string;
-  image: string;
-  price: number;
-}
 
 export function ShopingCart() {
   const navigate = useNavigate();
 
-  const { toggleMenu, shopingCartItems } =
-    useContext(ShopingCartContext);
+
+  
+  const {toggleMenu, shopingCartItems} = useContext(ShopingCartContext);
+
+
+  console.log("shoppingCart",shopingCartItems)
 
   const totalPrice = () => {
     return shopingCartItems.reduce((acc, item) => acc + item.price, 0);
   };
 
-  
-
   const linkToCheckOut = () => {
     if (shopingCartItems.length > 0) {
-      navigate("checkout/store");
+      navigate('checkout/store');
       toggleMenu();
     } else {
-      toast.warning("No hay productos en el carrito de compra");
+      toast.warning('No hay productos en el carrito de compra');
       return;
     }
   };
@@ -55,10 +46,8 @@ export function ShopingCart() {
       </div>
 
       <div className="shoping-cart-center-container">
-        {shopingCartItems.map((item) => {
-          return (
-          <ShopingCartCard key={item.id} {...item}/>
-          );
+        {shopingCartItems.map(item => {
+          return <ShopingCartCard key={item.shoppingCartItem_id} {...item} />;
         })}
       </div>
 
@@ -73,7 +62,6 @@ export function ShopingCart() {
           <Button onClick={toggleMenu} text="SEGUIR COMPRANDO" />
         </div>
 
-       
         <hr />
       </div>
     </div>

@@ -14,6 +14,7 @@
     padding-top: 15vh;
     display: flex;
     flex-direction: column;
+    row-gap: 5vh;
     align-items: center;
     justify-content: start;
     .contact-text-container{
@@ -53,6 +54,16 @@
         line-height: 3rem;
       }
 
+    }
+
+    >.image-container{
+      width: 90%;
+      aspect-ratio: 3;
+      >img{
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
     }
 
   }
@@ -331,6 +342,12 @@ textarea{
           text-align: center;
         }
         
+      }
+
+      >.image-container{
+        width: 90%;
+        aspect-ratio: 2;
+    
       }
     }
   }

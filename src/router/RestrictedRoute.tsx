@@ -1,24 +1,30 @@
-import {ReactNode, useContext} from 'react';
-import {Navigate} from 'react-router-dom';
-import {UserContext} from '../context';
+import { ReactNode, useContext } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
+import { UserContext } from '../context';
 
 interface Props {
   children: ReactNode;
 }
 
-export function RestrictedRoute({children}: Props) {
-  const {email} = useContext(UserContext);
+export function RestrictedRoute({ children }: Props) {
+  const { email } = useContext(UserContext);
+  const location = useLocation(); // Importante: se necesita useLocation para obtener location.pathname
+
+  const userSessionCookie = document.cookie.includes("token");
 
   console.log('RestrictedRoute', email);
 
   let pathToRedirect = '/';
+
+  // Lógica de redirección
   if (
-    email &&
-    (location.pathname.includes('/checkout/digital') ||
+    userSessionCookie &&
+    (location.pathname.includes('/checkout/digital') || 
       localStorage.getItem('pathToRedirect'))
   ) {
     pathToRedirect = '/checkout/digital';
   }
 
-  return !email ? children : <Navigate to={pathToRedirect} />;
+  // Si no hay token, muestra los hijos (contenido restringido)
+  return !userSessionCookie ? children : <Navigate to={pathToRedirect} />;
 }

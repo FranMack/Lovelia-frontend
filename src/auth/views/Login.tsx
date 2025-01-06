@@ -45,7 +45,7 @@ function Login() {
   const [errorsFromAPI, setErrorsFromAPI] = useState<string>('');
 
   const {activatedAlarm} = useContext(TimerContext);
-  const {shopingCartOpen} = useContext(ShopingCartContext);
+  const {shopingCartOpen,refreshShoppingCart} = useContext(ShopingCartContext);
 
   const singUpForm = useFormik({
     initialValues: {
@@ -88,10 +88,11 @@ function Login() {
             'talismanActivated',
             JSON.stringify(data.talismanActivated ? true : false),
           );
-
-          localStorage.setItem('userInfo', JSON.stringify(data.email));
+          
           singUpForm.resetForm();
           setIsLoading(false);
+
+          refreshShoppingCart(data.email)
 
           const checkoutPath = localStorage.getItem('checkoutPath');
           if (checkoutPath && data.subscription && !data.talismanActivated) {

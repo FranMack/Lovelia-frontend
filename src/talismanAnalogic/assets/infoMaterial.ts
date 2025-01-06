@@ -1,7 +1,7 @@
-import gold from "./productos/aura_oro.webp";
-import silver from "./productos/bindu_plata.webp";
-import pulseraOro from "./productos/pulsera_oro.webp"
-import pulseraPlata from "./productos/pulsera_plata.webp"
+import gold from "./metal/aura_oro.webp";
+import silver from "./metal/bindu_plata.webp";
+import pulseraOro from "./metal/lumis_oro.webp"
+import pulseraPlata from "./metal/lumis_plata.webp"
 export const infoMaterials = [
   {
     image: gold,

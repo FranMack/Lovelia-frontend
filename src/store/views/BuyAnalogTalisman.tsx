@@ -5,7 +5,7 @@ import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {RightNextIcon} from '../../assets/icons/icons';
 import {envs} from '../../config';
-import {ShopingCartContext} from '../../context';
+import {ShopingCartContext, UserContext} from '../../context';
 import {TalismanModelContext} from '../../context/talismanModelContext';
 import {TimerContext} from '../../context/timerContext';
 import {useOpenModal} from '../../hooks/useOpenModal';
@@ -13,11 +13,15 @@ import {Button} from '../../ui/components/Button';
 import {
   chainOptions,
   intencionOptions,
-  materialOptions,
+  metalOptions,
   modelOptions,
   piedraOptions,
 } from '../assets/buyAnalogTalismanInfo';
 import {DropdownMenu} from '../components/DropdownMenu';
+import {
+  addProductToShoppingCart,
+  addProductToShoppingCartDB,
+} from '../helpers/shoppingCartFunctions';
 
 interface Product {
   model: string;
@@ -44,7 +48,9 @@ function BuyAnalogTalisman() {
     id: '',
   };
 
-  const {toggleMenu, setShopingCartItems} = useContext(ShopingCartContext);
+  const {email} = useContext(UserContext);
+  const {toggleMenu, setShopingCartItems, shopingCartItems} =
+    useContext(ShopingCartContext);
 
   const [index, setIndex] = useState<number>(0);
 
@@ -67,46 +73,48 @@ function BuyAnalogTalisman() {
 
   const {
     optionModel,
-    optionMaterial,
+    optionMetal,
     optionRock,
     optionChain,
     optionIntention,
     setOptionModel,
-    setOptionMaterial,
+    setOptionMetal,
     setOptioChain,
     setOptionRock,
     setOptionIntention,
   } = useContext(TalismanModelContext);
 
-  const addToShopingCart = () => {
-    const shopingCartJSON = localStorage.getItem('shopingCart') || '[]';
-    const shopingCart = JSON.parse(shopingCartJSON);
+  const addToShopingCart = async () => {
+    //const shopingCartJSON = localStorage.getItem('shopingCart') || '[]';
+    const shopingCart = shopingCartItems;
 
     const isPulsera =
-      optionModel === 'Pulsera' && optionMaterial && optionIntention;
+      optionModel === 'Pulsera' && optionMetal && optionIntention;
     const isTalisman =
       optionModel &&
-      optionMaterial &&
+      optionMetal &&
       optionRock &&
       optionChain &&
       optionIntention;
 
     if (isPulsera || isTalisman) {
       const shopingCartNewItem = {
-        id: Math.round(Math.random() * 10000000),
-        product: isPulsera ? 'Pulsera' : 'Talismán analógico',
         model: optionModel,
-        material: optionMaterial,
+        metal: optionMetal,
         rock: isPulsera ? '' : optionRock,
         chain: isPulsera ? '' : optionChain,
         intention: optionIntention,
         image: product.images[0],
-        price: product.price,
         quantity: 1,
       };
 
-      const shopingCartUpdate = [shopingCartNewItem, ...shopingCart];
-      localStorage.setItem('shopingCart', JSON.stringify(shopingCartUpdate));
+      const newProduct = email
+        ? await addProductToShoppingCartDB(shopingCartNewItem)
+        : await addProductToShoppingCart(shopingCartNewItem);
+
+      console.log('newProduct==========>', newProduct);
+      const shopingCartUpdate = [newProduct, ...shopingCart];
+
       setShopingCartItems(shopingCartUpdate);
 
       // Reset form fields
@@ -119,7 +127,7 @@ function BuyAnalogTalisman() {
       model: !optionModel,
       rock: !optionRock,
       chain: !optionChain,
-      metal: !optionMaterial,
+      metal: !optionMetal,
       intention: !optionIntention,
     });
     setAddedToCart(true);
@@ -128,7 +136,7 @@ function BuyAnalogTalisman() {
 
   const resetForm = () => {
     setOptionModel('');
-    setOptionMaterial('');
+    setOptionMetal('');
     setOptioChain('');
     setOptionRock('');
     setOptionIntention('');
@@ -176,14 +184,14 @@ function BuyAnalogTalisman() {
 
   useEffect(() => {
     if (optionModel === 'Pulsera') {
-      const metal = optionMaterial ? optionMaterial : 'Aleación bañada en oro';
+      const metal = optionMetal ? optionMetal : 'Aleación bañada en oro';
       const filter = listOfProducts.find(item => {
         if (validationError) {
           setWarnings({
             model: !optionModel,
             rock: !optionRock,
             chain: !optionChain,
-            metal: !optionMaterial,
+            metal: !optionMetal,
             intention: !optionIntention,
           });
         }
@@ -195,9 +203,9 @@ function BuyAnalogTalisman() {
       if (filter) {
         setProduct(filter);
       }
-    } else if (optionModel || optionRock || optionChain || optionMaterial) {
+    } else if (optionModel || optionRock || optionChain || optionMetal) {
       const model = optionModel ? optionModel : 'Aura';
-      const metal = optionMaterial ? optionMaterial : 'Aleación bañada en oro';
+      const metal = optionMetal ? optionMetal : 'Aleación bañada en oro';
       const rock = optionRock ? optionRock : 'Labradorita';
       const chain = optionChain ? optionChain : 'Cadena';
 
@@ -206,7 +214,7 @@ function BuyAnalogTalisman() {
           model: !optionModel,
           rock: !optionRock,
           chain: !optionChain,
-          metal: !optionMaterial,
+          metal: !optionMetal,
           intention: !optionIntention,
         });
       }
@@ -228,7 +236,7 @@ function BuyAnalogTalisman() {
 
       return;
     }
-  }, [optionModel, optionRock, optionChain, optionMaterial, optionIntention]);
+  }, [optionModel, optionRock, optionChain, optionMetal, optionIntention]);
 
   // para renderizar el producto correspondiente a las query params
   useEffect(() => {
@@ -236,7 +244,7 @@ function BuyAnalogTalisman() {
 
     // Leer los valores de las query params
     const queryModel = searchParams.get('model');
-    const queryMaterial = searchParams.get('metal');
+    const queryMetal = searchParams.get('metal');
     const queryRock = searchParams.get('rock');
     const queryChain = searchParams.get('chain');
 
@@ -244,7 +252,7 @@ function BuyAnalogTalisman() {
     const filteredProduct = listOfProducts.find(item => {
       return (
         (!queryModel || item.model === queryModel) &&
-        (!queryMaterial || item.metal === queryMaterial) &&
+        (!queryMetal || item.metal === queryMetal) &&
         (!queryRock || item.rock === queryRock) &&
         (!queryChain || item.chain === queryChain)
       );
@@ -306,7 +314,7 @@ function BuyAnalogTalisman() {
 
             <h3>Talismán Analógico</h3>
             <h5>
-              {optionModel && optionRock && optionChain && optionMaterial
+              {optionModel && optionRock && optionChain && optionMetal
                 ? `$${product.price.toFixed(2)}`
                 : 'Para ver el precio, arma tu talismán '}
             </h5>
@@ -322,7 +330,7 @@ function BuyAnalogTalisman() {
 
               <DropdownMenu
                 {...{
-                  ...materialOptions,
+                  ...metalOptions,
                   validationError: warnings.metal,
                   initialValue: searchParams.get('metal') ?? '',
                 }}

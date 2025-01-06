@@ -9,16 +9,16 @@ export interface DropdownMenuOptions {
   title: string;
   options: Options[];
   validationError?: boolean;
-  initialValue?:string
+  initialValue?: string;
 }
 
 export function DropdownMenu({
   title,
   options,
   validationError,
-  initialValue=""
+  initialValue = '',
 }: DropdownMenuOptions) {
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState('');
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedOption(event.target.value);
@@ -26,25 +26,21 @@ export function DropdownMenu({
 
   const {
     optionModel,
-    optionMaterial,
+    optionMetal,
     optionChain,
     optionRock,
     optionIntention,
     setOptionModel,
-    setOptionMaterial,
+    setOptionMetal,
     setOptionRock,
     setOptioChain,
     setOptionIntention,
   } = useContext(TalismanModelContext);
 
-
-
- 
-
   useEffect(() => {
     if (
       !optionModel &&
-      !optionMaterial &&
+      !optionMetal &&
       !optionChain &&
       !optionRock &&
       !optionIntention
@@ -54,14 +50,11 @@ export function DropdownMenu({
   }, [optionModel]);
 
   useEffect(() => {
-
-    if(!selectedOption){
-      setSelectedOption(initialValue)
+    if (!selectedOption) {
+      setSelectedOption(initialValue);
     }
- 
 
     if (title === 'Modelo') {
-
       if (selectedOption) {
         const optionContex = options.find(item => {
           return item.option === selectedOption;
@@ -72,19 +65,17 @@ export function DropdownMenu({
       }
     }
     if (title === 'Metal') {
-   
       if (selectedOption) {
         const optionContex = options.find(item => {
           return item.option === selectedOption;
         });
-        setOptionMaterial(optionContex!.option!);
+        setOptionMetal(optionContex!.option!);
       } else {
-        setOptionMaterial('');
+        setOptionMetal('');
       }
     }
 
     if (title === 'Piedra') {
-
       if (selectedOption) {
         const optionContex = options.find(item => {
           return item.option === selectedOption;
@@ -95,7 +86,6 @@ export function DropdownMenu({
       }
     }
     if (title === 'Colgante') {
-     
       if (selectedOption) {
         const optionContex = options.find(item => {
           return item.option === selectedOption;
@@ -106,7 +96,6 @@ export function DropdownMenu({
       }
     }
     if (title === 'Intención') {
-      
       if (selectedOption) {
         const optionContex = options.find(item => {
           return item.option === selectedOption;
@@ -121,8 +110,6 @@ export function DropdownMenu({
   const optionsArray = options.map(item => {
     return item.option;
   });
-
-
 
   return (
     <div

@@ -13,6 +13,8 @@ import logoDhl from '../assets/logo-dhl.png';
 import {CheckOutCard} from '../components/CheckOutCard';
 import {CheckOutNavbar} from '../components/CheckOutNavbar';
 import {taxRegimeOptions} from '../helpers/taxRegimeOptions';
+import { UserContext } from '../../context';
+
 
 //el precio del envío me lo devería dar la api de correos
 const deliveryPrice = 1;
@@ -29,8 +31,10 @@ function CheckOutAnalogic() {
     setButttonFocusPosition(buttonName);
   };
 
-  const {shopingCartOpen, shopingCartItems, setShopingCartItems} =
+  const {shopingCartOpen, shopingCartItems, setShopingCartItems,cleanShoppingCart} =
     useContext(ShopingCartContext);
+
+    const userContextInfo=useContext(UserContext)
 
   const [billing, setBilling] = useState<boolean>(false);
   const handleBilling = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -387,6 +391,7 @@ function CheckOutAnalogic() {
               deliveryDetails: needDelivery ? deliveryDetails : undefined,
               billingDetails: billing ? billingDetails : undefined,
               talismanDigitalOwners: talismanDigitalOwners,
+              user_id:userContextInfo.id || null
             },
             {withCredentials: true},
           )
@@ -396,9 +401,7 @@ function CheckOutAnalogic() {
             window.location.href = response.data.link_de_pago;
             setIsLoading(false);
           })
-          .then(() => {
-            setIsLoading(false);
-          })
+         
           .catch(error => {
             console.log(error);
           });
@@ -437,14 +440,12 @@ function CheckOutAnalogic() {
             deliveryDetails: needDelivery ? deliveryDetails : undefined,
             billingDetails: billing ? billingDetails : undefined,
             talismanDigitalOwners: talismanDigitalOwners,
+            user_id:userContextInfo.id || null
           })
           .then(response => {
             localStorage.removeItem('shopingCart');
             setShopingCartItems([]);
             window.location.href = response.data.link_de_pago;
-          })
-          .then(() => {
-            setIsLoading(false);
           })
           .catch(error => {
             console.log(error);
@@ -1110,7 +1111,9 @@ function CheckOutAnalogic() {
             </div>
             <div className="checkout-botton-right-center-container">
               {shopingCartItems.map(item => {
-                return <CheckOutCard key={item.id} {...item} />;
+                return (
+                  <CheckOutCard key={item.shoppingCartItem_id} {...item} />
+                );
               })}
             </div>
 

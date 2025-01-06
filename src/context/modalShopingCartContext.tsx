@@ -1,47 +1,81 @@
-import{ useState, createContext, ReactNode } from "react";
-
-
+import axios from 'axios';
+import {createContext, ReactNode, useState} from 'react';
+import {envs} from '../config';
 
 export interface ShopingCartItemOptions {
-  id: number;
-  product: string;
+  shoppingCartItem_id: number | string;
   quantity: number;
   model: string;
-  material: string;
+  metal: string;
   chain: string;
   intention: string;
   image: string;
   price: number;
-  rock:string
+  rock: string;
 }
 
 interface ShopingCartContextValue {
   shopingCartOpen: boolean;
-  shopingCartItems:ShopingCartItemOptions[],
+  shopingCartItems: ShopingCartItemOptions[];
   toggleMenu: () => void | null;
-  setShopingCartItems: (items:ShopingCartItemOptions[]) => void ;
+  setShopingCartItems: (items: ShopingCartItemOptions[]) => void;
+  refreshShoppingCart: (email: string) => void;
+  cleanShoppingCart: (email: string) => void;
 }
 
 interface ShopingCartContextProviderProps {
   children: ReactNode;
 }
 
-const shopingCartContextDefaultValue: ShopingCartContextValue = {
+export const shopingCartContextDefaultValue: ShopingCartContextValue = {
   shopingCartOpen: false,
-  shopingCartItems:[],
+  shopingCartItems: [],
   toggleMenu: () => null,
   setShopingCartItems: () => {},
+  refreshShoppingCart: () => {},
+  cleanShoppingCart: () => {},
 };
 
 export const ShopingCartContext = createContext(shopingCartContextDefaultValue);
 
-
-
-export const ShopingCartContextProvider = ({ children }: ShopingCartContextProviderProps) => {
+export const ShopingCartContextProvider = ({
+  children,
+}: ShopingCartContextProviderProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [shopingCartItems, setShopingCartItems] = useState<ShopingCartItemOptions[]>(
-    []
-  );
+  const [shopingCartItems, setShopingCartItems] = useState<
+    ShopingCartItemOptions[]
+  >([]);
+
+  const refreshShoppingCart = async (email: string) => {
+    if (!email) {
+      return;
+    }
+    axios
+      .get(`${envs.API_DOMAIN}/api/v1/shopping-cart/list`, {
+        withCredentials: true,
+      })
+      .then(response => {
+        setShopingCartItems(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  const cleanShoppingCart=async (email: string)=>{
+    if(!email){
+      return
+    }
+    axios
+    .delete(`${envs.API_DOMAIN}/api/v1/shopping-cart/clean`, {
+      withCredentials: true,
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
+
+
 
   const togleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -50,13 +84,15 @@ export const ShopingCartContextProvider = ({ children }: ShopingCartContextProvi
   const value: ShopingCartContextValue = {
     shopingCartOpen: menuOpen,
     toggleMenu: togleMenu,
-    shopingCartItems:shopingCartItems,
-    setShopingCartItems:setShopingCartItems
+    shopingCartItems: shopingCartItems,
+    setShopingCartItems: setShopingCartItems,
+    refreshShoppingCart: refreshShoppingCart,
+    cleanShoppingCart:cleanShoppingCart
   };
 
   return (
-    <ShopingCartContext.Provider value={value}>{children}</ShopingCartContext.Provider>
+    <ShopingCartContext.Provider value={value}>
+      {children}
+    </ShopingCartContext.Provider>
   );
 };
-
-
