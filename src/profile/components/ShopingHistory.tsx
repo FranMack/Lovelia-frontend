@@ -3,7 +3,7 @@ import talismanDigital from '../assets/talisman-wallpaper.png';
 
 interface Product {
   model: string;
-  material: string;
+  metal: string;
   rock: string;
   chain: string;
   intention: string;
@@ -124,7 +124,7 @@ export const ShopingHistory = ({shopingHistory}: ShopingHistoryProps) => {
                   <thead>
                     <tr>
                       <th className="table-title">
-                        Producto <span>(Material - Piedra - Cadena)</span>
+                        Producto <span>(Metal - Piedra - Cadena)</span>
                       </th>
                       <th className="table-title">Precio</th>
                     </tr>
@@ -136,9 +136,9 @@ export const ShopingHistory = ({shopingHistory}: ShopingHistoryProps) => {
                           {item.model === 'Digital' ? (
                             <td>{`Talismán ${item.model}`}</td>
                           ) : item.model === 'Pulsera' ? (
-                            <td>{`${item.model} (${item.material})`}</td>
+                            <td>{`${item.model} (${item.metal})`}</td>
                           ) : (
-                            <td>{`${item.model} (${item.material} - ${item.rock} - ${item.chain})`}</td>
+                            <td>{`${item.model} (${item.metal} - ${item.rock} - ${item.chain})`}</td>
                           )}
 
                           <td>{`$ ${item.price}`}</td>

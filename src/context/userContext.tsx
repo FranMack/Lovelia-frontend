@@ -1,6 +1,7 @@
 import axios from 'axios';
-import {ReactNode, createContext, useState} from 'react';
-import {envs} from '../config';
+import { ReactNode, createContext, useState, useEffect } from 'react';
+import { envs } from '../config';
+
 
 interface UserContextValue {
   id: string;
@@ -10,6 +11,7 @@ interface UserContextValue {
   lastname: string;
   subscription: boolean;
   talismanActivated: boolean;
+  loading: boolean; // Estado de carga
   setId: (id: string) => void;
   setEmail: (email: string) => void;
   setToken: (token: string) => void;
@@ -32,6 +34,7 @@ const userContextDefaultValue: UserContextValue = {
   lastname: '',
   subscription: false,
   talismanActivated: false,
+  loading: true, // Inicialmente en carga
   setId: () => {},
   setEmail: () => {},
   setToken: () => {},
@@ -42,48 +45,52 @@ const userContextDefaultValue: UserContextValue = {
   refreshME: () => {},
 };
 
-export const UserContext = createContext<UserContextValue>(
-  userContextDefaultValue,
-);
+export const UserContext = createContext<UserContextValue>(userContextDefaultValue);
 
-export const UserContextProvider = ({children}: UserContextProviderProps) => {
+export const UserContextProvider = ({ children }: UserContextProviderProps) => {
   const [id, setId] = useState<string>('');
-  const [email, setEmail] = useState(() => {
-    const savedEmail = localStorage.getItem('userInfo');
-    return savedEmail ? JSON.parse(savedEmail) : '';
-  });
+  const [email, setEmail] = useState('');
   const [token, setToken] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [lastname, setLastname] = useState<string>('');
   const [subscription, setSuscription] = useState<boolean>(false);
   const [talismanActivated, setTalismanActivated] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true); // Estado de carga
+
+  
 
   const refreshME = async () => {
+    setLoading(true); // Iniciar carga de datos
+
     const fcmToken = localStorage.getItem('fcmToken');
-    axios
-      .get(`${envs.API_DOMAIN}/api/v1/user/me/${fcmToken}`, {
+
+    try {
+      const { data } = await axios.get(`${envs.API_DOMAIN}/api/v1/user/me/${fcmToken}`, {
         withCredentials: true,
-      })
-      .then(({data}) => {
-        setEmail(data.email);
-        setId(data.id);
-        setName(data.name);
-        setLastname(data.lastname);
-        const subscription = JSON.parse(
-          localStorage.getItem('subscriptionActive') || 'false',
-        );
-
-        const talismanActivated = JSON.parse(
-          localStorage.getItem('talismanActivated') || 'false',
-        );
-
-        setSuscription(subscription);
-        setTalismanActivated(talismanActivated);
-      })
-      .catch(error => {
-        console.log(error);
       });
+
+      setEmail(data.email);
+      setId(data.id);
+      setName(data.name);
+      setLastname(data.lastname);
+
+      const subscription = JSON.parse(localStorage.getItem('subscriptionActive') || 'false');
+      const talismanActivated = JSON.parse(localStorage.getItem('talismanActivated') || 'false');
+
+      setSuscription(subscription);
+      setTalismanActivated(talismanActivated);
+
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false); // Termina carga de datos
+    }
   };
+
+  // Intentar cargar los datos al iniciar
+  useEffect(() => {
+    refreshME();
+  }, []);
 
   const value: UserContextValue = {
     id,
@@ -93,6 +100,7 @@ export const UserContextProvider = ({children}: UserContextProviderProps) => {
     lastname,
     subscription,
     talismanActivated,
+    loading, // Proveer estado de carga
     setId,
     setEmail,
     setToken,

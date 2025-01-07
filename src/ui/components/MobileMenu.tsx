@@ -131,10 +131,10 @@ export const MobileMenu = () => {
         setLastname('');
         setToken('');
         setSuscription(false);
-        localStorage.removeItem('userInfo');
         localStorage.removeItem('subscriptionActive');
         localStorage.removeItem('talismanActivated');
         toggleMenu();
+        shopingCart.setShopingCartItems([]);
         navigate('/');
       })
       .catch(error => {

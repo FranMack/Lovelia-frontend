@@ -9,6 +9,7 @@ import logo from "../assets/logoSimple.png";
 import { MessageSend } from "../components/MessageSend";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import contactImage from "../assets/Contacto para WEB.webp"
 
 function Contact() {
   useEffect(() => {
@@ -86,6 +87,9 @@ function Contact() {
               Si tienes alguna duda, comentario o sugerencia, escríbenos a
               través de este formulario de contacto.
             </p>
+          </div>
+          <div className="image-container">
+           <img src={contactImage} alt="contact picture" />
           </div>
         </div>
         <div className="contact-internal-container revealLogo">

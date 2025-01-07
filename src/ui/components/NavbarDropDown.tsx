@@ -1,8 +1,9 @@
-import axios from "axios";
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { envs } from "../../config/envs";
-import { UserContext } from "../../context/userContext";
+import axios from 'axios';
+import {useContext} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {envs} from '../../config/envs';
+import {ShopingCartContext} from '../../context';
+import {UserContext} from '../../context/userContext';
 
 // Define the NavbarDropDownOptions interface
 interface NavbarDropDownOptions {
@@ -23,8 +24,9 @@ export function NavbarDropDown({
   handleMouseLeave,
 }: NavbarDropDownProps) {
   const navigate = useNavigate();
-  const { setEmail, setId, setName, setLastname,setSuscription,setToken } = useContext(UserContext);
-
+  const {setEmail, setId, setName, setLastname, setSuscription, setToken} =
+    useContext(UserContext);
+  const {setShopingCartItems} = useContext(ShopingCartContext);
   const linkTo = (linkPath: string) => {
     navigate(linkPath);
     return;
@@ -36,24 +38,24 @@ export function NavbarDropDown({
         withCredentials: true,
       })
       .then(() => {
-        setEmail("");
-        setId("");
-        setName("");
-        setLastname("");
-        setSuscription(false)
-        localStorage.removeItem("userInfo")
-        localStorage.removeItem("subscriptionActive")
-        localStorage.removeItem("talismanActivated")
-        setToken("")
-        navigate("/");
+        setEmail('');
+        setId('');
+        setName('');
+        setLastname('');
+        setSuscription(false);
+        localStorage.removeItem('subscriptionActive');
+        localStorage.removeItem('talismanActivated');
+        setToken('');
+        setShopingCartItems([]);
+        navigate('/');
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
       });
   };
 
   const handlerLink = (linkPath: string) => {
-    if (linkPath !== "logout") {
+    if (linkPath !== 'logout') {
       linkTo(linkPath);
     } else {
       handlerLogout();
@@ -65,8 +67,7 @@ export function NavbarDropDown({
       <div
         className="dropDown-container"
         onMouseEnter={handleMouseOver}
-        onMouseLeave={handleMouseLeave}
-      >
+        onMouseLeave={handleMouseLeave}>
         <ul>
           {buttonOptions.map((item, i) => {
             return (
@@ -74,8 +75,7 @@ export function NavbarDropDown({
                 key={i}
                 onClick={() => {
                   handlerLink(item.path);
-                }}
-              >
+                }}>
                 {item.buttonName}
               </li>
             );

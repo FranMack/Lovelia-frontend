@@ -1,13 +1,13 @@
-import { useContext } from "react";
-import { GarbageCan } from "../../assets/icons/icons";
-import { ShopingCartContext } from "../../context";
+import {useContext} from 'react';
+import {GarbageCan} from '../../assets/icons/icons';
+import {ShopingCartContext} from '../../context';
 
 interface ShopingCartCardOptions {
   id: number;
   image: string;
   product: string;
   model: string;
-  material?: string;
+  metal?: string;
   rock?: string;
   chain?: string;
   intention?: string;
@@ -19,31 +19,30 @@ export const CheckOutCard = ({
   image,
   product,
   model,
-  material,
+  metal,
   rock,
   chain,
   intention,
   price,
 }: ShopingCartCardOptions) => {
-  const { setShopingCartItems, shopingCartItems } =
+  const {setShopingCartItems, shopingCartItems} =
     useContext(ShopingCartContext);
 
   const deleteShopingCartItem = (id: number) => {
-    const shopingCartUpdated = shopingCartItems.filter((item) => {
-      if (item.id !== id) {
+    const shopingCartUpdated = shopingCartItems.filter(item => {
+      if (item.shoppingCartItem_id !== id) {
         return item;
       }
     });
-    localStorage.setItem("shopingCart", JSON.stringify(shopingCartUpdated));
+    localStorage.setItem('shopingCart', JSON.stringify(shopingCartUpdated));
     setShopingCartItems(shopingCartUpdated);
   };
   return (
     <>
-      {model === "Digital" ? (
+      {model === 'Digital' ? (
         <div key={id} className="checkout-card-container">
-  
-            <img src={image} alt={product} />
-   
+          <img src={image} alt={product} />
+
           <div className="checkout-card-info-container">
             <div className="card-title">
               <h4>{`Talismán ${model}`}</h4>
@@ -79,9 +78,8 @@ export const CheckOutCard = ({
         </div>
       ) : (
         <div key={id} className="checkout-card-container">
+          <img src={image} alt={product} />
 
-            <img src={image} alt={product} />
-    
           <div className="checkout-card-info-container">
             <div className="card-title">
               <h4>{`Talismán ${model}`}</h4>
@@ -94,7 +92,7 @@ export const CheckOutCard = ({
 
             <div className="card-td">
               <strong>Metal:</strong>
-              <p>{material}</p>
+              <p>{metal}</p>
             </div>
             <div className="card-td">
               <strong>Piedra:</strong>

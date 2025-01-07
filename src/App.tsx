@@ -26,12 +26,13 @@ import {
 import {ShopingCart} from './ui/components/ShopingCart.tsx';
 
 function App() {
+  const {email} = useContext(UserContext);
   const location = useLocation().pathname;
 
   const [windowSize, setWindowSize] = useState(window.innerWidth);
 
-  const {shopingCartOpen, setShopingCartItems} = useContext(ShopingCartContext);
-  const {refreshME} = useContext(UserContext);
+  const {shopingCartOpen, setShopingCartItems, refreshShoppingCart} =
+    useContext(ShopingCartContext);
 
   const {activatedAlarm, setActivatedAlarm} = useContext(TimerContext);
 
@@ -52,19 +53,21 @@ function App() {
       }
     });
 
-    //actualiza el shopingCartContext
-    const shopingCartJSON = localStorage.getItem('shopingCart') || '[]';
-
-    setShopingCartItems(JSON.parse(shopingCartJSON));
-
-    //actualiza el userContext - endpont /me
-    refreshME();
-
     return () => {
       unsubscribe();
       window.removeEventListener('resize', handleWindowSize);
     };
   }, []);
+  
+
+  useEffect(() => {
+    if (email) {
+      refreshShoppingCart(); // Si el usuario está logueado, sincroniza con la base de datos
+    } else {
+      const shopingCartJSON = localStorage.getItem('shopingCart') || '[]';
+      setShopingCartItems(JSON.parse(shopingCartJSON)); // Si no está logueado, sincroniza con el localStorage
+    }
+  }, [email]);
 
   const {menuOpen, toggleMenu, menuRef} = useContext(MobileMenuContext);
 
