@@ -1,29 +1,27 @@
-import logo from "../assets/lovelia-logo.webp";
-import logoYellow from "../assets/logo-lovelia-yellow.webp";
-import { LoginIcon, ShopingIcon } from "../../assets/icons/icons";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useContext } from "react";
-import { ShopingCartContext } from "../../context/modalShopingCartContext";
-import { UserContext } from "../../context/userContext";
-import { NavbarDropDown } from "./NavbarDropDown";
+import {useContext, useEffect, useState} from 'react';
+import {useLocation, useNavigate} from 'react-router-dom';
+import {LoginIcon, ShopingIcon} from '../../assets/icons/icons';
+import {ShopingCartContext} from '../../context/modalShopingCartContext';
+import {UserContext} from '../../context/userContext';
+import logoYellow from '../assets/logo-lovelia-yellow.webp';
+import logo from '../assets/lovelia-logo.webp';
+import {NavbarDropDown} from './NavbarDropDown';
 
 export function Navbar() {
-  const { shopingCartOpen, toggleMenu,shopingCartItems } =
+  const {shopingCartOpen, toggleMenu, shopingCartItems} =
     useContext(ShopingCartContext);
-  const { email, name, lastname, subscription,talismanActivated } = useContext(UserContext);
-
- 
+  const {email, name, lastname, subscription, talismanActivated} =
+    useContext(UserContext);
 
   const navigate = useNavigate();
 
   const linkToHome = () => {
-    navigate("/");
+    navigate('/');
   };
 
   const linkToSection = (
     sectionPath: string,
-    event: React.MouseEvent<HTMLDivElement | HTMLLIElement>
+    event: React.MouseEvent<HTMLDivElement | HTMLLIElement>,
   ) => {
     event.stopPropagation();
     navigate(sectionPath);
@@ -31,12 +29,12 @@ export function Navbar() {
 
   const location = useLocation().pathname.slice(1);
 
-  const [buttonFocusPosition, setButttonFocusPosition] = useState("");
+  const [buttonFocusPosition, setButttonFocusPosition] = useState('');
   useEffect(() => {
     setButttonFocusPosition(location);
   }, [location]);
 
-  const [hoverPosition, setHoverPosition] = useState("");
+  const [hoverPosition, setHoverPosition] = useState('');
 
   const handleMouseOver = (hoverPosition: string) => {
     setHoverPosition(hoverPosition);
@@ -44,80 +42,80 @@ export function Navbar() {
 
   const handleMouseLeave = () => {
     setTimeout(() => {
-      setHoverPosition("");
+      setHoverPosition('');
     }, 500);
   };
 
   const navbarButtons = [
     {
-      title: "Home",
-      path: [""],
+      title: 'Home',
+      path: [''],
       buttonOptions: [],
     },
     {
-      title: "Talismán",
-      path: ["talisman-landing", "talisman-digital", "talisman-analogico"],
+      title: 'Talismán',
+      path: ['talisman-landing', 'talisman-digital', 'talisman-analogico'],
       buttonOptions: [
-        { buttonName: "Talismán Digital", path: "talisman-digital" },
-        { buttonName: "Talismán Analógico", path: "talisman-analogico" },
+        {buttonName: 'Talismán Digital', path: 'talisman-digital'},
+        {buttonName: 'Talismán Analógico', path: 'talisman-analogico'},
       ],
     },
     {
-      title: "Meditaciones",
-      path: ["meditations"],
+      title: 'Meditaciones',
+      path: ['meditations'],
       buttonOptions: [],
     },
     {
-      title: "Intenciones",
-      path: ["intenciones"],
+      title: 'Intenciones',
+      path: ['intenciones'],
       buttonOptions: [
-        { buttonName: "Amor incondicional", path: "intenciones/2" },
-        { buttonName: "Abundancia", path: "intenciones/3" },
-        { buttonName: "Aquí y ahora", path: "intenciones/4" },
-        { buttonName: "Potencial infinito", path: "intenciones/5" },
-        { buttonName: "Coraje", path: "intenciones/6" },
-        { buttonName: "Yo verdadero", path: "intenciones/7" },
-        { buttonName: "Gratitud", path: "intenciones/8" },
-        { buttonName: "Sabiduría de la Incertidumbre", path: "intenciones/1" },
+        {buttonName: 'Amor incondicional', path: 'intenciones/2'},
+        {buttonName: 'Abundancia', path: 'intenciones/3'},
+        {buttonName: 'Aquí y ahora', path: 'intenciones/4'},
+        {buttonName: 'Potencial infinito', path: 'intenciones/5'},
+        {buttonName: 'Coraje', path: 'intenciones/6'},
+        {buttonName: 'Yo verdadero', path: 'intenciones/7'},
+        {buttonName: 'Gratitud', path: 'intenciones/8'},
+        {buttonName: 'Sabiduría de la Incertidumbre', path: 'intenciones/1'},
       ],
     },
     {
-      title: "Tienda",
+      title: 'Tienda',
       path: [
-        "tienda",
-        "comprar-talisman-digital",
-        "comprar-talisman-analogico",
+        'tienda',
+        'comprar-talisman-digital',
+        'comprar-talisman-analogico',
       ],
       buttonOptions: [
-        { buttonName: "Talismán Digital", path: "buy-digital" },
-        { buttonName: "Talismán Analógico", path: "buy-analogic" },
+        {buttonName: 'Talismán Digital', path: 'buy-digital'},
+        {buttonName: 'Talismán Analógico', path: 'buy-analogic'},
       ],
     },
     {
-      title: "Blog",
-      path: ["blog"],
+      title: 'Blog',
+      path: ['blog'],
       buttonOptions: [],
     },
     {
-      title: "Contacto",
-      path: ["contacto"],
+      title: 'Contacto',
+      path: ['contacto'],
       buttonOptions: [],
     },
   ];
 
   const userButton = {
-    title: "Contacto",
-    path: ["contacto"],
+    title: 'Contacto',
+    path: ['contacto'],
     buttonOptions: [
-      { buttonName: "Profile", path: "profile" },
-      { buttonName: "Logout", path: "logout" },
+      {buttonName: 'Perfil', path: 'profile'},
+      {buttonName: 'Salir', path: 'logout'},
     ],
   };
 
   if (email && subscription && talismanActivated) {
     navbarButtons[1].buttonOptions.unshift({
-      buttonName: "Mi talisman",
-      path: "myTalisman",
+      buttonName: 'Mi talisman',
+      path: 'myTalisman',
     });
   }
 
@@ -127,21 +125,20 @@ export function Navbar() {
     setScrollPosition(window.scrollY);
   };
 
-  window.addEventListener("scroll", handleScroll);
+  window.addEventListener('scroll', handleScroll);
 
   const sectionWithYellowLogo = [
-    "intenciones",
-    "portal-usuario",
-    ...Array.from({ length: 8 }, (_, i) => `activacion/${i + 1}`)
+    'intenciones',
+    'portal-usuario',
+    ...Array.from({length: 8}, (_, i) => `activacion/${i + 1}`),
   ];
-  
+
   return (
     <nav
       onMouseLeave={() => handleMouseLeave()}
-      className={`navbar-container ${scrollPosition > 10 && "navbar-move"} ${
-        shopingCartOpen ? "viewport-background" : ""
-      }`}
-    >
+      className={`navbar-container ${scrollPosition > 10 && 'navbar-move'} ${
+        shopingCartOpen ? 'viewport-background' : ''
+      }`}>
       <div onClick={linkToHome} className="navbar-logo-container">
         <img
           src={sectionWithYellowLogo.includes(location) ? logoYellow : logo}
@@ -152,23 +149,21 @@ export function Navbar() {
         {navbarButtons.map((button, i) => {
           return (
             <div
-            key={i}
+              key={i}
               className="navbar-button-menu-container"
               onMouseEnter={() => {
                 handleMouseOver(button.path[0]);
-              }}
-            >
+              }}>
               {button.path.includes(buttonFocusPosition) ? (
                 <>
                   <li
-                    onClick={(event) => linkToSection(button.path[0], event)}
+                    onClick={event => linkToSection(button.path[0], event)}
                     className={
                       button.path.includes(buttonFocusPosition)
-                        ? "navbar-button-focus-style"
-                        : "navbar-button-style"
+                        ? 'navbar-button-focus-style'
+                        : 'navbar-button-style'
                     }
-                    key={i}
-                  >
+                    key={i}>
                     {button.title}
                   </li>
                   {hoverPosition === button.path[0] && (
@@ -184,14 +179,13 @@ export function Navbar() {
               ) : (
                 <>
                   <li
-                    onClick={(event) => linkToSection(button.path[0], event)}
+                    onClick={event => linkToSection(button.path[0], event)}
                     className={
                       button.path.includes(buttonFocusPosition)
-                        ? "navbar-button-focus-style"
-                        : "navbar-button-style"
+                        ? 'navbar-button-focus-style'
+                        : 'navbar-button-style'
                     }
-                    key={i}
-                  >
+                    key={i}>
                     {button.title}
                   </li>
                   {hoverPosition === button.path[0] && (
@@ -213,8 +207,7 @@ export function Navbar() {
           onClick={() => {
             toggleMenu();
           }}
-          className="navbar-menu-icon shoping-icon"
-        >
+          className="navbar-menu-icon shoping-icon">
           <ShopingIcon />
           {shopingCartItems.length > 0 && (
             <div className="number-items-container">
@@ -224,42 +217,40 @@ export function Navbar() {
         </li>
         {!name ? (
           <li
-            onClick={(event) => linkToSection("portal-usuario", event)}
+            onClick={event => linkToSection('portal-usuario', event)}
             className={
-              buttonFocusPosition === "portal-usuario" ||
-              buttonFocusPosition === "forget-password" ||
-              buttonFocusPosition === "login" ||
-              buttonFocusPosition === "register" ||
-              buttonFocusPosition === "profile"
-                ? "navbar-svg-focus-style navbar-menu-icon"
-                : "navbar-menu-icon"
-            }
-          >
+              buttonFocusPosition === 'portal-usuario' ||
+              buttonFocusPosition === 'forget-password' ||
+              buttonFocusPosition === 'login' ||
+              buttonFocusPosition === 'register' ||
+              buttonFocusPosition === 'profile'
+                ? 'navbar-svg-focus-style navbar-menu-icon'
+                : 'navbar-menu-icon'
+            }>
             <LoginIcon />
           </li>
         ) : (
           <div>
             <div
               onMouseMove={() => {
-                handleMouseOver("login");
+                handleMouseOver('login');
               }}
-              onClick={(event) => linkToSection("login", event)}
+              onClick={event => linkToSection('login', event)}
               className={
-                buttonFocusPosition === "login" ||
-                buttonFocusPosition === "register" ||
-                buttonFocusPosition === "profile"
-                  ? "navbar-user-avatar-focus-style navbar-user-avatar"
-                  : "navbar-user-avatar"
-              }
-            >
-              <li onClick={(event) => linkToSection("profile", event)}>
+                buttonFocusPosition === 'login' ||
+                buttonFocusPosition === 'register' ||
+                buttonFocusPosition === 'profile'
+                  ? 'navbar-user-avatar-focus-style navbar-user-avatar'
+                  : 'navbar-user-avatar'
+              }>
+              <li onClick={event => linkToSection('profile', event)}>
                 {<h5>{`${name[0]}${lastname[0]}`.toUpperCase()}</h5>}
               </li>
             </div>
-            {hoverPosition === "login" && (
+            {hoverPosition === 'login' && (
               <NavbarDropDown
                 buttonOptions={userButton.buttonOptions}
-                handleMouseOver={() => handleMouseOver("login")}
+                handleMouseOver={() => handleMouseOver('login')}
                 handleMouseLeave={() => {
                   handleMouseLeave();
                 }}
