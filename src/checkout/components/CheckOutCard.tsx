@@ -1,34 +1,23 @@
 import {useContext} from 'react';
 import {GarbageCan} from '../../assets/icons/icons';
 import {ShopingCartContext} from '../../context';
+import { ShopingCartItemOptions } from '../../context';
 
-interface ShopingCartCardOptions {
-  id: number;
-  image: string;
-  product: string;
-  model: string;
-  metal?: string;
-  rock?: string;
-  chain?: string;
-  intention?: string;
-  price: number;
-}
 
 export const CheckOutCard = ({
-  id,
+  shoppingCartItem_id,
   image,
-  product,
   model,
   metal,
   rock,
   chain,
   intention,
   price,
-}: ShopingCartCardOptions) => {
+}: ShopingCartItemOptions) => {
   const {setShopingCartItems, shopingCartItems} =
     useContext(ShopingCartContext);
 
-  const deleteShopingCartItem = (id: number) => {
+  const deleteShopingCartItem = (id: number |string) => {
     const shopingCartUpdated = shopingCartItems.filter(item => {
       if (item.shoppingCartItem_id !== id) {
         return item;
@@ -40,15 +29,15 @@ export const CheckOutCard = ({
   return (
     <>
       {model === 'Digital' ? (
-        <div key={id} className="checkout-card-container">
-          <img src={image} alt={product} />
+        <div key={shoppingCartItem_id} className="checkout-card-container">
+          <img src={image} alt={model} />
 
           <div className="checkout-card-info-container">
             <div className="card-title">
               <h4>{`Talismán ${model}`}</h4>
               <GarbageCan
                 onClick={() => {
-                  deleteShopingCartItem(id);
+                  deleteShopingCartItem(shoppingCartItem_id);
                 }}
               />
             </div>
@@ -77,15 +66,15 @@ export const CheckOutCard = ({
           </div>
         </div>
       ) : (
-        <div key={id} className="checkout-card-container">
-          <img src={image} alt={product} />
+        <div key={shoppingCartItem_id} className="checkout-card-container">
+          <img src={image} alt={model} />
 
           <div className="checkout-card-info-container">
             <div className="card-title">
               <h4>{`Talismán ${model}`}</h4>
               <GarbageCan
                 onClick={() => {
-                  deleteShopingCartItem(id);
+                  deleteShopingCartItem(shoppingCartItem_id);
                 }}
               />
             </div>
