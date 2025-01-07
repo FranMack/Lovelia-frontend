@@ -47,9 +47,7 @@ export const ShopingCartContextProvider = ({
   >([]);
 
   const refreshShoppingCart = async () => {
-
-    
-         axios
+    axios
       .get(`${envs.API_DOMAIN}/api/v1/shopping-cart/list`, {
         withCredentials: true,
       })
@@ -59,29 +57,23 @@ export const ShopingCartContextProvider = ({
       .catch(error => {
         console.log(error);
       });
-    
-  
- 
- 
   };
 
-  const cleanShoppingCart=async (email: string)=>{
-    if(!email){
+  const cleanShoppingCart = async (email: string) => {
+    if (!email) {
       const shopingCartJSON = localStorage.getItem('shopingCart') || '[]';
 
       setShopingCartItems(JSON.parse(shopingCartJSON));
-      return
+      return;
     }
     axios
-    .delete(`${envs.API_DOMAIN}/api/v1/shopping-cart/clean`, {
-      withCredentials: true,
-    })
-    .catch(error => {
-      console.log(error);
-    });
-  }
-
-
+      .delete(`${envs.API_DOMAIN}/api/v1/shopping-cart/clean`, {
+        withCredentials: true,
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   const togleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -93,7 +85,7 @@ export const ShopingCartContextProvider = ({
     shopingCartItems: shopingCartItems,
     setShopingCartItems: setShopingCartItems,
     refreshShoppingCart: refreshShoppingCart,
-    cleanShoppingCart:cleanShoppingCart
+    cleanShoppingCart: cleanShoppingCart,
   };
 
   return (
