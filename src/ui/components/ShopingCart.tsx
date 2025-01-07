@@ -7,17 +7,10 @@ import {ShopingCartContext} from '../../context/modalShopingCartContext';
 import {Button} from './Button';
 import {ShopingCartCard} from './ShopingCartCard';
 
-
-
 export function ShopingCart() {
   const navigate = useNavigate();
 
-
-  
   const {toggleMenu, shopingCartItems} = useContext(ShopingCartContext);
-
-
-  console.log("shoppingCart",shopingCartItems)
 
   const totalPrice = () => {
     return shopingCartItems.reduce((acc, item) => acc + item.price, 0);

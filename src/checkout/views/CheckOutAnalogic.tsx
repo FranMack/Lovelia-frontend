@@ -6,15 +6,17 @@ import BeatLoader from 'react-spinners/BeatLoader';
 import * as Yup from 'yup';
 import {MercadoPagoIcon, PayPalIcon} from '../../assets//icons/icons';
 import {envs} from '../../config/envs';
-import {ShopingCartContext} from '../../context/modalShopingCartContext';
+import {UserContext} from '../../context';
+import {
+  ShopingCartContext,
+  ShopingCartItemOptions,
+} from '../../context/modalShopingCartContext';
 import {BackgroundVideo} from '../../ui/components';
-import {ProductosOptions} from '../../ui/components/ShopingCart';
+
 import logoDhl from '../assets/logo-dhl.png';
 import {CheckOutCard} from '../components/CheckOutCard';
 import {CheckOutNavbar} from '../components/CheckOutNavbar';
 import {taxRegimeOptions} from '../helpers/taxRegimeOptions';
-import { UserContext } from '../../context';
-
 
 //el precio del envío me lo devería dar la api de correos
 const deliveryPrice = 1;
@@ -31,10 +33,10 @@ function CheckOutAnalogic() {
     setButttonFocusPosition(buttonName);
   };
 
-  const {shopingCartOpen, shopingCartItems, setShopingCartItems,cleanShoppingCart} =
+  const {shopingCartOpen, shopingCartItems, setShopingCartItems} =
     useContext(ShopingCartContext);
 
-    const userContextInfo=useContext(UserContext)
+  const userContextInfo = useContext(UserContext);
 
   const [billing, setBilling] = useState<boolean>(false);
   const handleBilling = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -363,14 +365,16 @@ function CheckOutAnalogic() {
         : undefined;
 
       if (paymetType === 'mercadoPago') {
-        const shopingCartMP = shopingCartItems.map((item: ProductosOptions) => {
-          return {
-            title: item.model,
-            quantity: item.quantity,
-            unit_price: item.price,
-            currency_id: 'USD',
-          };
-        });
+        const shopingCartMP = shopingCartItems.map(
+          (item: ShopingCartItemOptions) => {
+            return {
+              title: item.model,
+              quantity: item.quantity,
+              unit_price: item.price,
+              currency_id: 'USD',
+            };
+          },
+        );
 
         const delivery = {
           title: 'Envío',
@@ -391,7 +395,7 @@ function CheckOutAnalogic() {
               deliveryDetails: needDelivery ? deliveryDetails : undefined,
               billingDetails: billing ? billingDetails : undefined,
               talismanDigitalOwners: talismanDigitalOwners,
-              user_id:userContextInfo.id || null
+              user_id: userContextInfo.id || null,
             },
             {withCredentials: true},
           )
@@ -401,7 +405,7 @@ function CheckOutAnalogic() {
             window.location.href = response.data.link_de_pago;
             setIsLoading(false);
           })
-         
+
           .catch(error => {
             console.log(error);
           });
@@ -409,7 +413,7 @@ function CheckOutAnalogic() {
 
       if (paymetType === 'paypal') {
         const shopingCartPaypal = shopingCartItems.map(
-          (item: ProductosOptions) => {
+          (item: ShopingCartItemOptions) => {
             return {
               title: item.model,
               quantity: item.quantity,
@@ -440,7 +444,7 @@ function CheckOutAnalogic() {
             deliveryDetails: needDelivery ? deliveryDetails : undefined,
             billingDetails: billing ? billingDetails : undefined,
             talismanDigitalOwners: talismanDigitalOwners,
-            user_id:userContextInfo.id || null
+            user_id: userContextInfo.id || null,
           })
           .then(response => {
             localStorage.removeItem('shopingCart');
