@@ -52,6 +52,8 @@ function Profile() {
   const {activatedAlarm} = useContext(TimerContext);
   const {shopingCartOpen} = useContext(ShopingCartContext);
 
+
+
   return (
     <main
       className={

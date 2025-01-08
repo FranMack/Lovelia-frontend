@@ -1,316 +1,352 @@
-@import "../../styles//variables.scss";
+@import '../../styles//variables.scss';
 
-
-.myTalisman-pre-loading{
-    width: 100vw;
-    height: 100vh;
-    background-color: black;
-    color:white;
-    font-size: 3.4rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.myTalisman-pre-loading {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  color: white;
+  font-size: 3.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.myTalisman-container{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    width: 100vw;
-    height: 100vh;
-    
-
+.myTalisman-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
 }
 
-.threejs-container{
-    width: 100%;
+.threejs-container {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  width: '100%';
+  height: '100%';
+  border: 'none';
+}
+
+.myTalisman-controls-container {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  height: 7%;
+  bottom: 5%;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+}
+
+.myTalisman-controls-internal-container {
+  height: 100%;
+  button {
+    background-color: transparent;
     height: 100%;
-    pointer-events: none;
-    width: "100%"; height: "100%"; border: "none"
-
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+  }
+  button:hover {
+    background-color: rgba($color: $color_darkPurple, $alpha: 0.5);
+  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5%;
 }
 
+.myTalisman-controls-internal-container.left {
+  width: 20%;
 
+  justify-content: start;
+  button {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5.699999809265137px);
+    transition: background-color 0.5s ease;
+    svg {
+      height: 52%;
+    }
+  }
+  button:hover {
+    background-color: rgba($color: $color_darkPurple, $alpha: 0.5);
+  }
+}
 
+.myTalisman-audio-controls-container {
+  width: 30%;
+  height: 130%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5%;
+  .audio-range-bar-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    column-gap: 2%;
+    .progress-bar {
+      width: 80%;
+    }
+    p {
+      font-size: 1.2rem;
+      color: $color_text1;
+    }
+  }
+}
 
-    .myTalisman-controls-container{
-        position: absolute;
-        display: flex ;
-        justify-content: space-between;
-        width: 85%;
-        height: 7%;
-        bottom:5%;
+.myTalisman-controls-internal-container.center {
+  width: 100%;
+
+  justify-content: center;
+  button {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5.699999809265137px);
+    transition: background-color 0.5s ease;
+    > .icon-container {
+      height: 25px;
+    }
+  }
+  button:hover {
+    background-color: rgba($color: $color_darkPurple, $alpha: 0.5);
+  }
+}
+
+.myTalisman-controls-internal-container.right {
+  width: fit-content;
+  min-width: 32%;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5.699999809265137px);
+  border-radius: 100px;
+  column-gap: 0%;
+  justify-content: space-between;
+
+  svg {
+    height: 55%;
+    path {
+      fill: #f2f2f2;
+    }
+  }
+
+  .soundButton-motion {
+    background-color: #ecea60;
+    animation: pulse-animation 2s infinite;
+    svg {
+      path {
+        fill: $color_darkPurple;
+      }
+    }
+  }
+}
+
+@keyframes pulse-animation {
+  0% {
+    background-color: #ecea60;
+    box-shadow: 0 0 0 0 rgba(236, 234, 96, 0.7);
+  }
+  50% {
+    background-color: #f7f5a5;
+    box-shadow: 0 0 20px 10px rgba(236, 234, 96, 0.7);
+  }
+  100% {
+    background-color: #ecea60;
+    box-shadow: 0 0 0 0 rgba(236, 234, 96, 0.7);
+  }
+}
+
+.subtitles-container {
+  position: absolute;
+  font-size: 3.5rem;
+  color: $color_text1;
+  opacity: 0.8;
+  bottom: 30%;
+}
+
+@media screen and (max-width: 1024px) and (orientation: portrait) {
+  .myTalisman-controls-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 95%;
+    height: fit-content;
+    row-gap: 3vh;
+    bottom: 2%;
+    padding-left: 0%;
+    padding-right: 0%;
+  }
+
+  .myTalisman-controls-internal-container {
+    height: 100%;
+
+    button {
+      height: 7vh;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 0%;
+  }
+
+  .myTalisman-controls-internal-container.left {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+
+    flex-direction: column;
+    justify-content: start;
+    row-gap: 1vh;
+
+    button {
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(5.699999809265137px);
     }
 
-    .myTalisman-controls-internal-container{
-        height: 100%;
-        button{
-           background-color: transparent;
-            height: 100%;
-            aspect-ratio: 1;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.5s ease;
-            
-        }
-        button:hover{
-        
-            background-color:rgba($color: $color_darkPurple, $alpha: 0.5);
-        }
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        column-gap: 5%;
+    > input {
+      position: absolute;
+      bottom: 10%;
+      left: 120%;
+    }
+  }
+
+  .myTalisman-audio-controls-container {
+    margin: 0 auto;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    row-gap: 2vh;
+    .audio-range-bar-container {
+      width: 100%;
+      column-gap: 5%;
+      .progress-bar {
+        width: 80%;
+      }
+      p {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .myTalisman-controls-internal-container.center {
+    column-gap: 5%;
+  }
+
+  .myTalisman-controls-internal-container.right {
+    width: 100%;
+    height: 8vh;
+    background: rgba(255, 255, 255, 0.3);
+    justify-content: space-around;
+    backdrop-filter: blur(5.699999809265137px);
+    border-radius: 100px;
+
+    button {
+      height: 70%;
     }
 
-    .myTalisman-controls-internal-container.left{
-        width: 20%;
-       
-        
-        justify-content: start;
-        button{
-            background: rgba(255, 255, 255, 0.30);
-            backdrop-filter: blur(5.699999809265137px);
-            transition: background-color 0.5s ease;
-            svg{
-                height: 52%;
-
-            }
-        }
-        button:hover{
-        
-            background-color:rgba($color: $color_darkPurple, $alpha: 0.5);
-         }
-        
+    svg {
+      height: 70%;
     }
 
-    .myTalisman-audio-controls-container{
-        width: 30%;
-        height: 130%;
-        display: flex;
-        flex-direction: column;
-        row-gap: 5%;
-        .audio-range-bar-container{
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            column-gap: 2%;
-            .progress-bar{
-                width: 80%;
-            }
-            p{
-                font-size: 1.2rem;
-                color:$color_text1;
-            }
-        }
-      
-    }
-
-    .myTalisman-controls-internal-container.center{
-        width: 100%;
-    
-        
-        
-        justify-content: center;
-        button{
-            background: rgba(255, 255, 255, 0.30);
-            backdrop-filter: blur(5.699999809265137px);
-            transition: background-color 0.5s ease;
-            >.icon-container{
-                height: 25px;
-            }
-        }
-        button:hover{
-        
-            background-color:rgba($color: $color_darkPurple, $alpha: 0.5);
-         }
-        
-    }
-
-
-    .myTalisman-controls-internal-container.right{
-        width: fit-content;
-        min-width: 32%;
-        background: rgba(255, 255, 255, 0.30);
-        backdrop-filter: blur(5.699999809265137px);
-        border-radius: 100px;
-        column-gap: 0%;
-        justify-content: space-between;
-        
-
-        svg{
-            height: 55%;
-            path{
-                fill:#F2F2F2;
-           
-            }
-        }
-
-
-       
-
-        .soundButton-motion{
-            background-color: #ECEA60;
-            animation: pulse-animation 2s infinite;
-            svg{
-                path{
-                    fill:$color_darkPurple;
-                }
-            }
-        }
-
-       
-    }
-
-
-    @keyframes pulse-animation {
-        0% {
-          background-color: #ECEA60;
-          box-shadow: 0 0 0 0 rgba(236, 234, 96, 0.7);
-        }
-        50% {
-          background-color: #f7f5a5;
-          box-shadow: 0 0 20px 10px rgba(236, 234, 96, 0.7);
-        }
-        100% {
-          background-color: #ECEA60;
-          box-shadow: 0 0 0 0 rgba(236, 234, 96, 0.7);
+    .soundButton-motion {
+      background-color: #ecea60;
+      animation: pulse-animation 2s infinite;
+      svg {
+        path {
+          fill: $color_darkPurple;
         }
       }
-
-
-
-
-
-
-    .subtitles-container{
-        position: absolute;
-        font-size: 3.5rem;
-        color:$color_text1;
-        opacity: 0.8;
-        bottom:30%;
-
-    
-}
-    
-
-
-
-@media screen and (max-width: 678px) {
-
-    .myTalisman-controls-container{
-        position: absolute;
-        display: flex ;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 95%;
-        height: fit-content;
-        row-gap: 3vh;
-        bottom: 2%;
-    
     }
-    
-    .myTalisman-controls-internal-container{
-        height: 100%;
-        
-        button{
-            height:7vh;
-            aspect-ratio: 1;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-          
-            
-        }
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        column-gap: 0%;
-    }
-    
-    .myTalisman-controls-internal-container.left{
-        position: relative;
-        width: fit-content;
-        height:fit-content;
-        
-        flex-direction: column;
-        justify-content: start;
-        row-gap: 1vh;
-      
-        button{
-            background: rgba(255, 255, 255, 0.30);
-            backdrop-filter: blur(5.699999809265137px);
-        }
-
-        >input{
-            position: absolute;
-            background-color: red;
-            bottom: 10%;
-            left: 120%;
-        }
-        
-    }
-    
-    .myTalisman-audio-controls-container{
-        margin:  0 auto;
-        width: 95%;
-        height: 100%;
-        display: flex;
-        row-gap: 2vh;
-        .audio-range-bar-container{
-            width: 100%;
-            column-gap: 5%;
-            .progress-bar{
-                width: 80%;
-            }
-            p{
-                font-size: 1.5rem;
-            }
-        }
-      
-    }
-    
-    .myTalisman-controls-internal-container.center{
- 
-        column-gap: 5%;
-    
-        }
-      
-    
-    
-    .myTalisman-controls-internal-container.right{
-        width: 100%;
-        height: 8vh;
-        background: rgba(255, 255, 255, 0.30);
-        justify-content: space-around;
-        backdrop-filter: blur(5.699999809265137px);
-        border-radius: 100px;
-
-        button{
-         
-            height: 70%;
-        }
-
-        svg{
-            height: 70%;
-        }
-  
-
-    
-        .soundButton-motion{
-            background-color: #ECEA60;
-            animation: pulse-animation 2s infinite;
-            svg{
-                path{
-                    fill:$color_darkPurple;
-                }
-            }
-        }
-    
-       
-    }
+  }
 }
 
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+  .myTalisman-controls-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 85%;
+    height: fit-content;
+    row-gap: 3vh;
+    bottom: 2%;
+   
+  }
+
+  .myTalisman-controls-internal-container {
+    height: 100%;
+
+    button {
+      height: 9vh;
+    }
+
+    column-gap: 0%;
+  }
+
+  .myTalisman-controls-internal-container.left {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+
+    flex-direction: column;
+    justify-content: start;
+    row-gap: 1vh;
+
+    button {
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(5.699999809265137px);
+    }
+
+    > input {
+      position: absolute;
+      bottom: 10%;
+      left: 120%;
+    }
+  }
+
+  .myTalisman-audio-controls-container {
+    margin: 0 auto;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    row-gap: 2vh;
+    .audio-range-bar-container {
+      width: 100%;
+      column-gap: 5%;
+      .progress-bar {
+        width: 80%;
+      }
+      p {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .myTalisman-controls-internal-container.center {
+    column-gap: 5%;
+  }
+
+  .myTalisman-controls-internal-container.right {
+    width: 100%;
+    height: 10vh;
+    background: rgba(255, 255, 255, 0.3);
+    justify-content: space-around;
+    backdrop-filter: blur(5.699999809265137px);
+    border-radius: 100px;
+
+    button {
+      height: 70%;
+    }
+
+    svg {
+      height: 70%;
+    }
+  }
+}

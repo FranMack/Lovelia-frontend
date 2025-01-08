@@ -52,6 +52,8 @@ interface ShopingHistoryProps {
   shopingHistory: ShopingHistoryProp;
 }
 
+
+
 export const ShopingHistory = ({shopingHistory}: ShopingHistoryProps) => {
   const [index, setIndex] = useState<number>(0);
 
@@ -74,6 +76,8 @@ export const ShopingHistory = ({shopingHistory}: ShopingHistoryProps) => {
     }
     return 0;
   }
+
+  
   return (
     <div className="profile-historial-container">
       {shopingHistory.length <= 0 ? (

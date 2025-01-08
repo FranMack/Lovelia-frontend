@@ -1,4 +1,4 @@
-@import "../../styles//variables.scss";
+@import '../../styles//variables.scss';
 
 .playlist-container {
   position: absolute;
@@ -35,14 +35,11 @@
     width: 20px;
   }
 
-  
-
   .playlist-section-container {
     margin: 0 auto;
     width: 70%;
     height: 80%;
     overflow-y: scroll;
-
   }
 
   .playlist-title-wrapper {
@@ -61,10 +58,9 @@
   }
 }
 
-
 .playlist-button-container {
   margin-left: 0%;
-  
+
   display: flex;
   justify-content: end;
   align-items: center;
@@ -91,15 +87,12 @@
   }
 }
 
-
-
 .playlist-sounds-table {
   width: 98%;
   max-height: 50vh;
   overflow-y: scroll;
   border-collapse: collapse;
   overflow-y: scroll;
-  
 
   thead th {
     font-size: 1.8rem;
@@ -138,7 +131,7 @@
     }
     p {
       margin-left: 5%;
-      color: $color_text2;
+      color: $color_text1;
       font-family: $font_titles;
       font-weight: 400;
     }
@@ -155,7 +148,6 @@
     background-color: rgba(
       $color: rgba($color: $color_yellow, $alpha: 0.3),
       $alpha: 0.5
-      
     );
     p {
       color: $color_text2;
@@ -163,56 +155,23 @@
   }
 }
 
-
-@media screen and (max-width: 678px) {
-  
-
+@media screen and (max-width: 1024px) {
   .playlist-container {
- 
     top: 2%;
-    width: 95%;
-    margin: 0 auto;
+    width: 70%;
     height: 85%;
-    background: rgba($color: $color_darkPurple, $alpha: 0.4);
-    backdrop-filter: blur(7px);
-    color: $color_text1;
-    z-index: 10;
     border-radius: 20px;
 
-   
-  
-    
-  
-    .playlist-section-container {
-      margin: 0 auto;
-      width: 95%;
-      height: 80%;
-      overflow-y: scroll;
-  
-    }
-  
     .playlist-title-wrapper {
-   
-      margin-top: 2%;
-      margin-bottom: 2%;
-      width: 80%;
       h3 {
-    
-        font-size: 2.5rem;
-       
+        font-size: 2.2rem;
       }
     }
   }
-  
-  
+
   .playlist-button-container {
-    margin-left: 0%;
-    
-    display: flex;
-    justify-content: end;
-    align-items: center;
     bottom: 5%;
-  
+
     width: 100%;
     height: 5vh;
     .icon-container {
@@ -221,88 +180,90 @@
       position: static;
       width: 15px;
       aspect-ratio: 1;
-      svg {
-        path {
-          fill: white;
-        }
+    }
+  }
+
+  .playlist-sounds-table {
+    width: 98%;
+    max-height: 50vh;
+
+    thead th {
+      font-size: 1.6rem;
+    }
+
+    tr {
+      height: 10vh;
+      font-size: 1.6rem;
+    }
+    td {
+      height: 10vh;
+      font-size: 1.3rem;
+
+      .play-icon-container {
+        height: 30%;
+        aspect-ratio: 1;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 678px) {
+  .playlist-container {
+    top: 2%;
+    width: 95%;
+    margin: 0 auto;
+    height: 85%;
+
+    .playlist-section-container {
+      width: 95%;
+      height: 80%;
+    }
+
+    .playlist-title-wrapper {
+      h3 {
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  .playlist-button-container {
+    margin-left: 0%;
+
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    bottom: 5%;
+
+    width: 100%;
+    height: 5vh;
+    .icon-container {
+      margin-right: 3%;
+      margin-top: 3%;
+      position: static;
+      width: 15px;
+      aspect-ratio: 1;
     }
     p {
       font-family: $font_titles;
       font-size: 14px;
       margin-left: 2%;
+      color:red;
     }
   }
-  
-  
-  
+
   .playlist-sounds-table {
-    width: 98%;
-    max-height: 50vh;
-    overflow-y: scroll;
-    border-collapse: collapse;
-    overflow-y: scroll;
-    
-  
     thead th {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
     }
-  
+
     tr {
-      height: 6vh;
+      height: 7vh;
       font-size: 1.6rem;
     }
     td {
-      margin: 0 auto;
-      text-align: center;
       height: 7vh;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       user-select: none;
-  
-      .play-icon-container {
-        margin: 0 auto;
-        height: 30%;
-        aspect-ratio: 1;
-      }
-    }
-    .th-trackname-column {
-      text-align: start;
-      strong {
-        margin-left: 5%;
-      }
-    }
-    .td-trackname-column {
-      text-align: start;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      strong {
-        margin-left: 5%;
-      }
-      p {
-        margin-left: 5%;
-        color: $color_text2;
-        font-family: $font_titles;
-        font-weight: 400;
-      }
-    }
-  
-    tbody tr:hover {
-      background-color: rgba($color: $color_text1, $alpha: 0.1);
-      p {
-        color: $color_text1;
-      }
-    }
-  
-    .selected-track {
-      background-color: rgba(
-        $color: rgba($color: $color_yellow, $alpha: 0.3),
-        $alpha: 0.5
-        
-      );
-      p {
-        color: $color_text2;
-      }
     }
   }
 }

@@ -719,6 +719,13 @@ export const ThreeJsFrame = () => {
     fetchData();
   }, []);
 
+
+
+  
+
+
+
+
   return (
     <>
       {astrologicalInfo ? (

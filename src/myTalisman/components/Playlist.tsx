@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
-import { CloseIcon, PlayIcon, StopIcon } from "../../assets/icons/icons";
-import { TalismanButtonFocusContext } from "../../context/talismanButtonFocusContext";
+import {useContext, useState} from 'react';
+import {CloseIcon, PlayIcon, StopIcon} from '../../assets/icons/icons';
+import {TalismanButtonFocusContext} from '../../context/talismanButtonFocusContext';
 
 export type SoundsType = {
   name: string;
   url: string;
-  duration?:string
+  duration?: string;
 };
 
 export interface DropdownOptions {
@@ -27,25 +27,23 @@ export function Playlist({
   restartTrack,
   playing,
 }: DropdownOptions) {
-  const { buttonFocusPosition, handleButtonFocus } = useContext(
-    TalismanButtonFocusContext
+  const {buttonFocusPosition, handleButtonFocus} = useContext(
+    TalismanButtonFocusContext,
   );
 
   const [tableFocus, setTableFocus] = useState(0);
 
-
-  console.log("tableFocus",tableFocus)
-  console.log("buttonFocusPosition",buttonFocusPosition)
-  console.log("audioType",audioType)
-
+  console.log('tableFocus', tableFocus);
+  console.log('buttonFocusPosition', buttonFocusPosition);
+  console.log('audioType', audioType);
 
   return (
     <div className="playlist-container">
       <div className="playlist-button-container">
-        <div onClick={() => handleButtonFocus("")} className="icon-container">
+        <div onClick={() => handleButtonFocus('')} className="icon-container">
           <CloseIcon
             onClick={() => {
-              handleButtonFocus("");
+              handleButtonFocus('');
             }}
           />
         </div>
@@ -66,54 +64,53 @@ export function Playlist({
               <th>Duración</th>
             </tr>
           </thead>
-          {buttonFocusPosition === "sonidos lovelia" &&
+          {buttonFocusPosition === 'sonidos lovelia' &&
             sounds.map((item, i) => {
               return (
                 <tbody>
                   <tr
                     title="Doble click para reproducir."
                     className={
-                      trackIndex === i && audioType === "sound"
-                        ? "selected-track"
-                        : ""
+                      trackIndex === i && audioType === 'sound'
+                        ? 'selected-track'
+                        : ''
                     }
                     key={i}
                     onDoubleClick={() => {
-                      restartTrack(i, "sound");
+                      restartTrack(i, 'sound');
                     }}
                     onMouseEnter={() => {
                       setTableFocus(i + 1);
                     }}
                     onMouseLeave={() => {
                       setTableFocus(0);
-                    }}
-                  >
+                    }}>
                     <td>
                       {tableFocus === i + 1 ? (
                         <div className="play-icon-container">
                           {trackIndex === i &&
-                          audioType === "sound" &&
+                          audioType === 'sound' &&
                           playing ? (
                             <StopIcon
                               onClick={() => {
-                                pauseTrack("sound");
+                                pauseTrack('sound');
                               }}
                             />
                           ) : (
                             <PlayIcon
                               onClick={() => {
-                                playTrack(i, "sound");
+                                playTrack(i, 'sound');
                               }}
                             />
                           )}
                         </div>
                       ) : trackIndex === i &&
-                        audioType === "sound" &&
+                        audioType === 'sound' &&
                         playing ? (
                         <div className="play-icon-container">
                           <StopIcon
                             onClick={() => {
-                              pauseTrack("sound");
+                              pauseTrack('sound');
                             }}
                           />
                         </div>
@@ -131,50 +128,51 @@ export function Playlist({
               );
             })}
 
-          {buttonFocusPosition === "meditaciones lovelia" &&
+          {buttonFocusPosition === 'meditaciones lovelia' &&
             sounds.map((item, i) => {
               return (
                 <tbody>
                   <tr
-                  title="Doble click para reproducir."
+                    title="Doble click para reproducir."
                     className={
-                      trackIndex === i && audioType === "meditation"
-                        ? "selected-track"
-                        : ""
+                      trackIndex === i && audioType === 'meditation'
+                        ? 'selected-track'
+                        : ''
                     }
                     key={i}
                     onDoubleClick={() => {
-                      restartTrack(i, "meditation");
+                      restartTrack(i, 'meditation');
                     }}
                     onMouseEnter={() => {
                       setTableFocus(i + 1);
                     }}
                     onMouseLeave={() => {
                       setTableFocus(0);
-                    }}
-                  >
+                    }}>
                     <td>
                       {tableFocus === i + 1 ? (
                         <div className="play-icon-container">
-                          {trackIndex === i && audioType === "meditation" && playing ? (
+                          {trackIndex === i &&
+                          audioType === 'meditation' &&
+                          playing ? (
                             <StopIcon
                               onClick={() => {
-                                pauseTrack("meditation");
+                                pauseTrack('meditation');
                               }}
                             />
                           ) : (
                             <PlayIcon
                               onClick={() => {
-                                playTrack(i, "meditation");
+                                playTrack(i, 'meditation');
                               }}
                             />
                           )}
                         </div>
-                      ) : trackIndex === i && audioType === "meditation" ? (
+                      ) : trackIndex === i && audioType === 'meditation' ? (
                         <div className="play-icon-container">
                           <StopIcon
                             onClick={() => {
-                              pauseTrack("meditation");
+                              pauseTrack('meditation');
                             }}
                           />
                         </div>
@@ -183,7 +181,6 @@ export function Playlist({
                       )}
                     </td>
                     <td className="td-trackname-column">
-                      <strong>{item.name}</strong>
                       <p>{item.name}</p>
                     </td>
                     <td>{item.duration}</td>
