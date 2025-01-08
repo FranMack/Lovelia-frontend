@@ -1,47 +1,78 @@
-@import "../../styles//variables.scss";
+@import '../../styles//variables.scss';
 
+.constelationBox-container {
+  position: absolute;
+  top: -6%;
+  right: 20%;
+  width: 20vw;
+  aspect-ratio: 1;
 
-.constelationBox-container{
-    position: absolute;
-    top: -6%;
-    right: 25%;
-width: 20vw;
-aspect-ratio: 1;
-
-    img{
-        object-fit: cover;
-        height: 100%;
-        aspect-ratio: 1;
-    }
+  img {
+    object-fit: cover;
+    height: 100%;
+    aspect-ratio: 1;
+  }
 }
 
-
-
-
-@media screen and (max-width: 678px) {
-
-
-
-    .constelationBox-container{
-        position: absolute;
-        top: 0%;
-        right: 0;
-    width: 50vw;
+@media screen and (max-width: 1024px) and (orientation: portrait) {
+  .constelationBox-container {
+    position: absolute;
+    top: 0%;
+    right: 7.5%;
+    width: 25vw;
     aspect-ratio: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    
-        img{
-            object-fit: cover;
-            object-position: center;
-            height: 130%;
-            aspect-ratio: 1;
-   
-        }
+
+    img {
+      object-fit: cover;
+      object-position: center;
+      height: 120%;
+      aspect-ratio: 1;
     }
+  }
+}
 
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+  .constelationBox-container {
+    position: absolute;
+    top: 0%;
+    right: 22%;
+    width: 12vw;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 
+    img {
+      object-fit: cover;
+      object-position: center;
+      height: 150%;
+      aspect-ratio: 1;
+    }
+  }
+}
 
+@media screen and (max-width: 678px) {
+  .constelationBox-container {
+    position: absolute;
+    top: 0%;
+    right: 0;
+    width: 30vw;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    img {
+      object-fit: cover;
+      object-position: center;
+      height: 150%;
+      aspect-ratio: 1;
+    }
+  }
 }

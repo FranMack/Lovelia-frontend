@@ -1,242 +1,177 @@
-@import "../../styles//variables.scss";
+@import '../../styles//variables.scss';
 
-.talismanBox-container{
-    position: absolute;
-    height: 50vh;
-    width: 25%;
-    top: 5%;
-    left:7.5%;
-    display: flex;
-
-
+.talismanBox-container {
+  position: absolute;
+  height: 50vh;
+  width: 25%;
+  top: 5%;
+  left: 7.5%;
+  display: flex;
 }
 
-.talismanBox-top-container{
+.talismanBox-top-container {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.talismanBox-bottom-container {
+  height: 100%;
+  width: 80%;
 
-    width: 20%;
+  > input {
+    margin-bottom: 0vh;
+    width: 70%;
+    height: 4vh;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 2px solid #ffff;
+    color: #ffff;
+    background-color: transparent;
+    font-family: $font_titles;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.5rem;
+  }
+
+  .symbols-container {
+    width: 35%;
     height: 100%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.talismanBox-bottom-container{
+  }
 
+  .chinese-icon-container {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      object-fit: cover;
+      object-position: center;
+      height: 220%;
+      aspect-ratio: 1;
+    }
+  }
+
+  .cosmicTone-icon-container {
+    width: 100%;
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      position: absolute;
+      object-fit: cover;
+      height: 100%;
+
+      bottom: -30%;
+    }
+  }
+
+  .solarSail-auxiliar {
+    width: 100%;
+    aspect-ratio: 1.2;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .solarSail-icon-container {
+      position: relative;
+      height: 300%;
+      aspect-ratio: 1;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        position: absolute;
+        top: -6%;
+        object-fit: cover;
+        height: 100%;
+        aspect-ratio: 1;
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) and (orientation: portrait) {
+  .talismanBox-container {
+    height: 50vh;
+    width: 50%;
+    top: 5%;
+    left: 0%;
+  }
+
+  .talismanBox-bottom-container {
+    > input {
+      margin-bottom: 0vh;
+      width: 70%;
+      height: 4vh;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+  .talismanBox-container {
+    height: 50vh;
+    width: 30%;
+    top: 5%;
+    left: 7.5%;
+  }
+
+  .talismanBox-bottom-container {
+    > input {
+      width: 80%;
+      height: 3.5vh;
+      padding: 1rem;
+      border-radius: 5px;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 678px) {
+  .talismanBox-container {
+    position: absolute;
+    height: 50vh;
+    width: 50%;
+    top: 2%;
+    left: 0%;
+    display: flex;
+  }
+
+  .talismanBox-bottom-container {
     height: 100%;
     width: 80%;
 
+    > input {
+      margin-bottom: 0vh;
+      width: 100%;
+      height: 3.5vh;
+      padding: 1rem;
+      border-radius: 5px;
 
-    >input{
-        margin-bottom: 0vh;
-        width: 70%;
-        height: 4vh;
-        padding: 1rem;
-        border-radius: 5px;
-        border: 2px solid #ffff;
-        color:#ffff;
-        background-color: transparent;
-        font-family: $font_titles;
-        font-style: italic;
-        font-weight: 500;
-        font-size: 1.5rem;
+      font-size: 1.5rem;
     }
 
-    .symbols-container{
-        width: 35%;
-        height: 100%;
+    .symbols-container {
+      width: 50%;
+      height: 100%;
 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-
-
-
-    .chinese-icon-container{
-        width: 100%;;
-        aspect-ratio: 1;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        img{
-            object-fit: cover;
-            object-position: center;
-            height: 220%;
-            aspect-ratio: 1;
-
-        }
-    }
-
-    .cosmicTone-icon-container{
-        
-        width: 100%;;
-        height: 8%;
-        display: flex;
-        justify-content: center;
-        overflow: hidden;
-        position: relative;
-      
-        img{
-             position: absolute;
-            object-fit: cover;
-            height: 100%;
-         
-            bottom: -30%;
-
-        }
-    }
-
-    .solarSail-auxiliar{
-       
-        width: 100%;
-        aspect-ratio: 1.2;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      
-       
-        .solarSail-icon-container{
-            position:relative;
-            height: 300%;
-            aspect-ratio: 1;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            img{
-                position:absolute;
-                top:-6%;
-                object-fit: cover;
-                height:100%;
-                aspect-ratio:1;
-                background-color: transparent;       
-            }
-        }
-
-    }
-  
-}
-
-
-
-@media screen and (max-width: 678px) {
-
-
-    .talismanBox-container{
-        position: absolute;
-        height: 50vh;
-        width: 50%;
-        top: 2%;
-        left:0%;
-        display: flex;
-    
-    
-    }
-    
-    .talismanBox-top-container{
-    
-        width: 20%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .talismanBox-bottom-container{
-    
-        height: 100%;
-        width: 80%;
-    
-    
-        >input{
-            margin-bottom: 0vh;
-            width: 100%;
-            height: 3.5vh;
-            padding: 1rem;
-            border-radius: 5px;
-            border: 2px solid #ffff;
-            color:#ffff;
-            background-color: transparent;
-            font-family: $font_titles;
-            font-style: italic;
-            font-weight: 500;
-            font-size: 1.5rem;
-        }
-    
-        .symbols-container{
-            width: 50%;
-            height: 100%;
-    
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-    
-    
-    
-        .chinese-icon-container{
-            width: 100%;;
-            aspect-ratio: 1;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            img{
-                object-fit: cover;
-                object-position: center;
-                height: 220%;
-                aspect-ratio: 1;
-    
-            }
-        }
-    
-        .cosmicTone-icon-container{
-            
-            width: 100%;;
-            height: 8%;
-            display: flex;
-            justify-content: center;
-            overflow: hidden;
-    
-            img{
-            
-                object-fit: cover;
-                height: 100%;
-             
-                object-position: bottom;
-    
-            }
-        }
-    
-        .solarSail-auxiliar{
-            width: 80%;;
-            aspect-ratio: 1.2;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            .solarSail-icon-container{
-              
-                height: 100%;
-                aspect-ratio: 1.2;
-                overflow: hidden;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                img{
-                    object-fit: cover;
-                    object-position: center;
-                    height:100%;
-                    aspect-ratio: 4;
-                    background-color: transparent;       
-                }
-            }
-    
-        }
-      
-    }
-    
-    
-
-
+  }
 }

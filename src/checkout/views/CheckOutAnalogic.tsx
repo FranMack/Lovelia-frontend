@@ -467,6 +467,8 @@ function CheckOutAnalogic() {
     }
   }, [singUpForm.errors]);
 
+
+
   return (
     <main className={shopingCartOpen ? 'viewport-background' : ''}>
       <section className="checkout-container efectoReveal">

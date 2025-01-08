@@ -1,4 +1,4 @@
-@import "../../styles//variables.scss";
+@import '../../styles//variables.scss';
 
 .dropDownMyTalisman-container {
   position: absolute;
@@ -60,13 +60,14 @@
 
 .dropDownMyTalisman-top-container {
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.6 );
+  background: rgba(255, 255, 255, 0.6);
   width: 70%;
   height: 7vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 4%;
+  
 
   border-radius: 30px;
   ul {
@@ -75,7 +76,7 @@
     justify-content: space-between;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.30);
+    background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(13.133333206176758px);
     border-radius: 30px;
   }
@@ -99,7 +100,7 @@
 
 .dropDownMyTalisman-button-container {
   margin-left: 0%;
-  
+
   display: flex;
   justify-content: end;
   align-items: center;
@@ -211,50 +212,44 @@
   }
 }
 
-
-
 @media screen and (max-width: 678px) {
   .dropDownMyTalisman-container {
     position: absolute;
     top: 2%;
-    width:95%;
+    width: 95%;
     margin: 0 auto;
     height: 85%;
     border-radius: 20px;
-  
-   
-  
+
     .dropDownMyTalisman-section-container {
       margin: 0 auto;
       height: 65%;
       width: 95%;
       overflow-y: scroll;
     }
-  
+
     .dropDownMyTalisman-title-wrapper {
       margin: 0 auto;
       margin-top: 2%;
       margin-bottom: 2%;
       width: 95%;
       h3 {
-       
         font-size: 2.5rem;
-       margin-bottom: 4vh;
+        margin-bottom: 4vh;
       }
     }
   }
 
-
   .dropDownMyTalisman-top-container {
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.6 );
+    background: rgba(255, 255, 255, 0.6);
     width: 95%;
     height: 7vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 4%;
-  
+
     border-radius: 30px;
     ul {
       list-style: none;
@@ -262,7 +257,7 @@
       justify-content: space-between;
       width: 100%;
       height: 100%;
-      background: rgba(255, 255, 255, 0.30);
+      background: rgba(255, 255, 255, 0.3);
       backdrop-filter: blur(13.133333206176758px);
       border-radius: 30px;
     }
@@ -285,18 +280,12 @@
   }
 
   .dropDownMyTalisman-card-container {
-   
     > h5 {
-    
       font-size: 1.6rem;
-
-  
     }
     > p {
-   
       font-size: 1.5rem;
       line-height: 2.5rem; /* 142.857% */
     }
   }
-
 }
