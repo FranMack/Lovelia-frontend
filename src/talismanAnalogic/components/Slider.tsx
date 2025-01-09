@@ -1,14 +1,12 @@
-import { MouseEvent, useRef, useState } from "react";
-import { LeftArrowIcon, RightArrowIcon } from "../../assets/icons/icons";
-import { SliderCard } from "./SlideCard";
-import { SliderCardOptions } from "./SlideCard";
-
+import {MouseEvent, useRef, useState} from 'react';
+import {LeftArrowIcon, RightArrowIcon} from '../../assets/icons/icons';
+import {SliderCard, SliderCardOptions} from './SlideCard';
 
 export interface SliderOptions {
   sliderInfo: SliderCardOptions[];
 }
 
-export function Slider({ sliderInfo }: SliderOptions) {
+export function Slider({sliderInfo}: SliderOptions) {
   const slider = useRef<HTMLUListElement>(null);
 
   const [isDragging, setIsDragging] = useState<boolean>(false);
@@ -19,7 +17,7 @@ export function Slider({ sliderInfo }: SliderOptions) {
     const currentSlider = slider.current;
     if (currentSlider) {
       setIsDragging(true);
-      currentSlider?.classList.add("dragging");
+      currentSlider?.classList.add('dragging');
       setStartX(e.pageX);
       setStartScrollLeft(currentSlider.scrollLeft);
     }
@@ -30,7 +28,7 @@ export function Slider({ sliderInfo }: SliderOptions) {
     if (currentSlider) {
       const currentSlider = slider.current;
       e.preventDefault();
-      currentSlider?.classList.remove("dragging");
+      currentSlider?.classList.remove('dragging');
       setIsDragging(false);
     }
   };
@@ -48,33 +46,30 @@ export function Slider({ sliderInfo }: SliderOptions) {
     const currentSlider = slider.current;
 
     if (currentSlider) {
-      const cardElement = currentSlider.querySelector(".card");
+      const cardElement = currentSlider.querySelector('.card');
       if (cardElement) {
         const firstCarWidth = cardElement.clientWidth;
 
         currentSlider.scrollLeft +=
-          direction === "left" ? -firstCarWidth : firstCarWidth;
+          direction === 'left' ? -firstCarWidth : firstCarWidth;
       }
     }
   };
-
 
   return (
     <div className="wrapper">
       <div
         className="btn-previous"
         onClick={() => {
-          handleScroll("left");
-        }}
-      >
+          handleScroll('left');
+        }}>
         <LeftArrowIcon color="#fff" />
       </div>
       <div
         className="btn-next"
         onClick={() => {
-          handleScroll("right");
-        }}
-      >
+          handleScroll('right');
+        }}>
         <RightArrowIcon color="#fff" />
       </div>
       <ul
@@ -82,15 +77,9 @@ export function Slider({ sliderInfo }: SliderOptions) {
         className="slider"
         onMouseDown={dragStart}
         onMouseUp={dragStop}
-        onMouseMove={dragging}
-      >
+        onMouseMove={dragging}>
         {sliderInfo.map((slide, i) => {
-          return (
-            <SliderCard
-              key={i}
-           {...slide}
-            />
-          );
+          return <SliderCard key={i} {...slide} />;
         })}
       </ul>
     </div>

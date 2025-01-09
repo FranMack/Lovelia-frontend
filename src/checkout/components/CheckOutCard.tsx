@@ -1,8 +1,4 @@
-import {useContext} from 'react';
-import {GarbageCan} from '../../assets/icons/icons';
-import {ShopingCartContext} from '../../context';
-import { ShopingCartItemOptions } from '../../context';
-
+import {ShopingCartItemOptions} from '../../context';
 
 export const CheckOutCard = ({
   shoppingCartItem_id,
@@ -14,18 +10,6 @@ export const CheckOutCard = ({
   intention,
   price,
 }: ShopingCartItemOptions) => {
-  const {setShopingCartItems, shopingCartItems} =
-    useContext(ShopingCartContext);
-
-  const deleteShopingCartItem = (id: number |string) => {
-    const shopingCartUpdated = shopingCartItems.filter(item => {
-      if (item.shoppingCartItem_id !== id) {
-        return item;
-      }
-    });
-    localStorage.setItem('shopingCart', JSON.stringify(shopingCartUpdated));
-    setShopingCartItems(shopingCartUpdated);
-  };
   return (
     <>
       {model === 'Digital' ? (
@@ -35,11 +19,6 @@ export const CheckOutCard = ({
           <div className="checkout-card-info-container">
             <div className="card-title">
               <h4>{`Talismán ${model}`}</h4>
-              <GarbageCan
-                onClick={() => {
-                  deleteShopingCartItem(shoppingCartItem_id);
-                }}
-              />
             </div>
 
             <div className="card-td">
@@ -72,11 +51,6 @@ export const CheckOutCard = ({
           <div className="checkout-card-info-container">
             <div className="card-title">
               <h4>{`Talismán ${model}`}</h4>
-              <GarbageCan
-                onClick={() => {
-                  deleteShopingCartItem(shoppingCartItem_id);
-                }}
-              />
             </div>
 
             <div className="card-td">

@@ -33,7 +33,7 @@ function CheckOutAnalogic() {
     setButttonFocusPosition(buttonName);
   };
 
-  const {shopingCartOpen, shopingCartItems, setShopingCartItems} =
+  const {shopingCartOpen, shopingCartItems} =
     useContext(ShopingCartContext);
 
   const userContextInfo = useContext(UserContext);
@@ -400,8 +400,7 @@ function CheckOutAnalogic() {
             {withCredentials: true},
           )
           .then(response => {
-            localStorage.removeItem('shopingCart');
-            setShopingCartItems([]);
+        
             window.location.href = response.data.link_de_pago;
             setIsLoading(false);
           })
@@ -447,8 +446,7 @@ function CheckOutAnalogic() {
             user_id: userContextInfo.id || null,
           })
           .then(response => {
-            localStorage.removeItem('shopingCart');
-            setShopingCartItems([]);
+        
             window.location.href = response.data.link_de_pago;
           })
           .catch(error => {
@@ -605,9 +603,16 @@ function CheckOutAnalogic() {
                           Correo ya registrado
                         </span>
                       )}
+
+
+                      
                     </>
                   );
                 })}
+                
+
+
+                
 
                 <button
                   type="button"
