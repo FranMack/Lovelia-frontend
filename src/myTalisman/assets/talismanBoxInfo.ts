@@ -102,7 +102,7 @@ export const stamps = [
     { stamp: "eagle", path: aguilaAzul },
     { stamp: "warrior", path: guerreroAmarillo },
     { stamp: "earth", path: tierraRoja },
-    { stamp: "mirror", path: espejoBlanco },
+    { stamp: "mirrow", path: espejoBlanco },
     { stamp: "storm", path: tormentaAzul },
     { stamp: "sun", path: solAmarillo },
 ];

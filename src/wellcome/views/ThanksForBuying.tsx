@@ -2,11 +2,16 @@ import { BackgroundVideo } from "../../ui/components";
 import { Button } from "../../ui/components/Button";
 import lovelia from "../../contact/assets/logoSimple.png";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { ShopingCartContext } from "../../context";
 
  const ThanksForBuying = () => {
+
+  const {setShopingCartItems}=useContext(ShopingCartContext)
   useEffect(() => {
     window.scrollTo(0, 0);
+    localStorage.removeItem('shopingCart');
+    setShopingCartItems([]);
   }, []);
 
   const navigate = useNavigate();
