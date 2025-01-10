@@ -7,10 +7,7 @@ import * as Yup from 'yup';
 import {MercadoPagoIcon, PayPalIcon} from '../../assets//icons/icons';
 import {envs} from '../../config/envs';
 import {UserContext} from '../../context';
-import {
-  ShopingCartContext,
-  ShopingCartItemOptions,
-} from '../../context/modalShopingCartContext';
+import {ShopingCartContext} from '../../context/modalShopingCartContext';
 import {BackgroundVideo} from '../../ui/components';
 
 import logoDhl from '../assets/logo-dhl.png';
@@ -33,8 +30,7 @@ function CheckOutAnalogic() {
     setButttonFocusPosition(buttonName);
   };
 
-  const {shopingCartOpen, shopingCartItems} =
-    useContext(ShopingCartContext);
+  const {shopingCartOpen, shopingCartItems} = useContext(ShopingCartContext);
 
   const userContextInfo = useContext(UserContext);
 
@@ -348,7 +344,9 @@ function CheckOutAnalogic() {
 
       const productDetails = shopingCartItems.map(item => {
         return {
-          ...item,
+          product_id: item.product_id,
+          quantity: item.quantity,
+          intention: item.intention,
         };
       });
 
@@ -365,32 +363,12 @@ function CheckOutAnalogic() {
         : undefined;
 
       if (paymetType === 'mercadoPago') {
-        const shopingCartMP = shopingCartItems.map(
-          (item: ShopingCartItemOptions) => {
-            return {
-              title: item.model,
-              quantity: item.quantity,
-              unit_price: item.price,
-              currency_id: 'USD',
-            };
-          },
-        );
-
-        const delivery = {
-          title: 'Envío',
-          quantity: 1,
-          unit_price: deliveryPrice,
-          currency_id: 'USD',
-        };
-
         axios
           .post(
             `${envs.API_DOMAIN}/api/v1/payment-mercadopago/create-order`,
             {
-              items: needDelivery
-                ? [...shopingCartMP, delivery]
-                : [...shopingCartMP],
               buyerInfo,
+              deliveryPrice: 1,
               productDetails,
               deliveryDetails: needDelivery ? deliveryDetails : undefined,
               billingDetails: billing ? billingDetails : undefined,
@@ -400,7 +378,6 @@ function CheckOutAnalogic() {
             {withCredentials: true},
           )
           .then(response => {
-        
             window.location.href = response.data.link_de_pago;
             setIsLoading(false);
           })
@@ -411,34 +388,10 @@ function CheckOutAnalogic() {
       }
 
       if (paymetType === 'paypal') {
-        const shopingCartPaypal = shopingCartItems.map(
-          (item: ShopingCartItemOptions) => {
-            return {
-              title: item.model,
-              quantity: item.quantity,
-              unit_amount: {
-                currency_code: 'USD',
-                value: item.price,
-              },
-            };
-          },
-        );
-
-        const delivery = {
-          title: 'Envío',
-          quantity: 1,
-          unit_amount: {
-            currency_code: 'USD',
-            value: deliveryPrice,
-          },
-        };
-
         axios
           .post(`${envs.API_DOMAIN}/api/v1/payment-paypal/create-order`, {
-            items: needDelivery
-              ? [...shopingCartPaypal, delivery]
-              : [...shopingCartPaypal],
             buyerInfo,
+            deliveryPrice: 1,
             productDetails,
             deliveryDetails: needDelivery ? deliveryDetails : undefined,
             billingDetails: billing ? billingDetails : undefined,
@@ -446,7 +399,6 @@ function CheckOutAnalogic() {
             user_id: userContextInfo.id || null,
           })
           .then(response => {
-        
             window.location.href = response.data.link_de_pago;
           })
           .catch(error => {
@@ -464,8 +416,6 @@ function CheckOutAnalogic() {
       setErrorWarning('');
     }
   }, [singUpForm.errors]);
-
-
 
   return (
     <main className={shopingCartOpen ? 'viewport-background' : ''}>
@@ -603,16 +553,9 @@ function CheckOutAnalogic() {
                           Correo ya registrado
                         </span>
                       )}
-
-
-                      
                     </>
                   );
                 })}
-                
-
-
-                
 
                 <button
                   type="button"
