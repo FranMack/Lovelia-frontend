@@ -4,6 +4,7 @@ import {envs} from '../config';
 
 export interface ShopingCartItemOptions {
   shoppingCartItem_id: number | string;
+  product_id: string;
   quantity: number;
   model: string;
   metal?: string;

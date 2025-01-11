@@ -2,6 +2,8 @@ import axios from 'axios';
 import {useContext, useEffect, useState} from 'react';
 import {useNavigate} from 'react-router';
 import {BeatLoader} from 'react-spinners';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {envs} from '../../config/envs';
 import {UserContext} from '../../context';
 import {ShopingCartContext} from '../../context/modalShopingCartContext';
@@ -187,6 +189,10 @@ function CheckOutDigital() {
       })
       .catch(error => {
         console.log(error);
+        if (error) {
+          setIsLoading(false);
+          toast.error('Algo salio mal');
+        }
       });
   };
 
@@ -197,7 +203,7 @@ function CheckOutDigital() {
 
         <div className="checkoutDigital-botton-left-container">
           <div className="checkoutDigital-title-container">
-            <h3>Datos de nacimiento</h3>
+            <h3>Activa tu Talismán Digital</h3>
             <h6>
               Los siguientes datos son necesarios para la creación de tu
               talismán.
