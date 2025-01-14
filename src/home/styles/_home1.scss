@@ -1,149 +1,131 @@
-@import "../../styles//variables.scss";
+@import '../../styles//variables.scss';
 
-.section1-home-container{
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    >img{
-        position: absolute;
-        object-fit: cover;
-        height: 100%;
-        width: 100%;
-        z-index: -10;
-    }
+.section1-home-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  > img {
+    position: absolute;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    z-index: -10;
+  }
 }
 
-.section1-home-logo-container{
-    width: 80%;
-    img{
-        width: 100%;
-        object-fit: cover;
-        
-    }
+.section1-home-logo-container {
+  width: 80%;
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
 }
 
-.section1-home-slogan-container{
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    margin-top: 3%;
-    p{
-        font-size: 3.2rem;
-        color:$color_primary;
-        font-weight: 400;
-    }
+.section1-home-slogan-container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  margin-top: 3%;
+  p {
+    font-size: 3.2rem;
+    color: $color_primary;
+    font-weight: 400;
+  }
 }
 
 .revealLogo {
-    animation-name: revealLogo;
-    animation-duration: 2s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
-  }
-  
-  @keyframes revealLogo {
-    from {
-      opacity: 0;
-      transform: translateX(-100px);
-      filter: blur(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-      filter: blur(0);
-    }
-  }
-
-
-
-  @media screen and (max-width: 1024px) {
-
-    .section1-home-container{
-   
-      min-height: 100vh;
-      padding-top: 12vh;
-      height: auto;
-    
-  }
-
-  .section1-home-logo-container{
-    width: 70%;
-    img{
-        width: 100%;
-        object-fit: cover;
-        
-    }
+  animation-name: revealLogo;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
 }
 
-.section1-home-slogan-container{
+@keyframes revealLogo {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .section1-home-container {
+    min-height: 100vh;
+    padding-top: 12vh;
+    height: auto;
+  }
+
+  .section1-home-logo-container {
+    width: 70%;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .section1-home-slogan-container {
     width: 70%;
     display: flex;
     flex-direction: column;
     align-items: end;
     margin-top: 2%;
-    p{
-        font-size: 2.2rem;
- 
+    p {
+      font-size: 2.2rem;
     }
+  }
 }
 
-
-
-  }
-
-  @media screen and (max-width: 678px) {
-
-    .section1-home-container{
+@media screen and (max-width: 678px) {
+  .section1-home-container {
     padding-top: 10vh;
-    }
-    .section1-home-slogan-container{
-
-      p{
-          font-size: 2rem;
-         
-      }
   }
-  }
-
-
-  .revealLogo2 {
-    animation-name: revealLogo2;
-    animation-duration: 3s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
-  }
-  
-  @keyframes revealLogo2 {
-    from {
-      opacity: 0;
-     
-      filter: blur(10px);
-    }
-    to {
-      opacity: 1;
-      
-      transform: scale(1);
-      filter: blur(0);
+  .section1-home-slogan-container {
+    p {
+      font-size: 2rem;
     }
   }
+}
 
-  @media screen and (max-width: 678px) {
+.revealLogo2 {
+  animation-name: revealLogo2;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
 
-    .section1-home-container{
+@keyframes revealLogo2 {
+  from {
+    opacity: 0;
+
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@media screen and (max-width: 678px) {
+  .section1-home-container {
     padding-top: 10vh;
-    }
-    .section1-home-slogan-container{
-      width: 85%;
+  }
+  .section1-home-slogan-container {
+    width: 85%;
 
-      p{
-          font-size: 2rem;
-         
-         
-      }
+    p {
+      font-size: 2rem;
+    }
   }
-  }
+}

@@ -3,6 +3,7 @@ import {Navigate, useLocation} from 'react-router-dom';
 import {UserContext} from '../context';
 import {Loader} from '../ui/pages/Loader';
 
+
 interface PrivateRouteProps {
   children: ReactNode;
 }

@@ -10,10 +10,15 @@ import {UserContext} from '../../context';
 import {ShopingCartContext} from '../../context/modalShopingCartContext';
 import {BackgroundVideo} from '../../ui/components';
 
-import logoDhl from '../assets/logo-dhl.png';
 import {CheckOutCard} from '../components/CheckOutCard';
 import {CheckOutNavbar} from '../components/CheckOutNavbar';
-import {taxRegimeOptions} from '../helpers/taxRegimeOptions';
+
+import {
+  BillingForm,
+  BuyerInfoForm,
+  ShippingInfoForm,
+  TalismanAcountsForm,
+} from '../components/form';
 
 //el precio del envío me lo devería dar la api de correos
 const deliveryPrice = 1;
@@ -55,29 +60,6 @@ function CheckOutAnalogic() {
     useState<number>(0);
 
   const [talismanDigitalAcounts, setTalismanDigitalAcounts] = useState(['']);
-  const [talismanDigitalAcountsErrors, setTalismanDigitalAcountsErrors] =
-    useState<string[]>([]);
-
-  const talismanDigitalAcountsHandleBlur = (index: number) => {
-    const updatedErrors = [...talismanDigitalAcountsErrors];
-    if (!talismanDigitalAcounts[index]) {
-      updatedErrors[index] = 'Campo requerido';
-      setTalismanDigitalAcountsErrors(updatedErrors);
-      return;
-    }
-    if (
-      talismanDigitalAcounts[index] &&
-      !talismanDigitalAcounts[index].includes('@')
-    ) {
-      updatedErrors[index] = 'Email no valido';
-      setTalismanDigitalAcountsErrors(updatedErrors);
-      return;
-    } else {
-      updatedErrors.splice(index), 1;
-      setTalismanDigitalAcountsErrors(updatedErrors);
-      return;
-    }
-  };
 
   // Manejar el cambio en cada input
   const handleTalismanDigitalInput = (index: number, value: string) => {
@@ -152,9 +134,7 @@ function CheckOutAnalogic() {
 
   //chequear si la el correo del talismán existe
 
-  const [talismanAcounts, setTalismanAcounts] = useState<Array<string | null>>(
-    [],
-  );
+  const [talismanAcounts, setTalismanAcounts] = useState<Array<string>>([]);
 
   const checkTalismanAcount = async () => {
     try {
@@ -180,9 +160,9 @@ function CheckOutAnalogic() {
 
   const singUpForm = useFormik({
     initialValues: {
-      name: '',
-      lastname: '',
-      email: '',
+      name: userContextInfo.name,
+      lastname: userContextInfo.lastname,
+      email: userContextInfo.email,
       phone: '',
       receiver: '',
       street: '',
@@ -197,7 +177,9 @@ function CheckOutAnalogic() {
       billingRfc: '',
       billingLegalName: '',
       billingTaxRegime: '',
+      talismanDigitalAcounts: talismanAcounts || [''],
     },
+
     validationSchema: Yup.object({
       name: Yup.string()
         .required('Campo requerido')
@@ -258,6 +240,17 @@ function CheckOutAnalogic() {
       billingTaxRegime: billing
         ? Yup.string().required('Campo requerido')
         : Yup.string(),
+
+      talismanDigitalAcounts:
+        numberOfDigitalTalisman > 0
+          ? Yup.array()
+              .of(
+                Yup.string()
+                  .email('Email no valido')
+                  .required('Campo requerido'),
+              )
+              .min(1, 'Email es requerido')
+          : Yup.array(),
     }),
 
     onSubmit: async values => {
@@ -286,14 +279,6 @@ function CheckOutAnalogic() {
       }
 
       if (numberOfDigitalTalisman > 0) {
-        talismanDigitalAcounts.map((_, index) => {
-          talismanDigitalAcountsHandleBlur(index);
-        });
-
-        if (talismanDigitalAcountsErrors.length > 0) {
-          setErrorWarning('validationErrors');
-          return;
-        }
         if (talismanAcounts.length > 0) {
           const checkedAcounts = await checkTalismanAcount();
           if (!checkedAcounts) {
@@ -417,6 +402,8 @@ function CheckOutAnalogic() {
     }
   }, [singUpForm.errors]);
 
+  console.log('touched', singUpForm.touched);
+
   return (
     <main className={shopingCartOpen ? 'viewport-background' : ''}>
       <section className="checkout-container efectoReveal">
@@ -432,378 +419,70 @@ function CheckOutAnalogic() {
           onSubmit={singUpForm.handleSubmit}
           className="checkout-botton-container">
           {buttonFocusPosition.includes('Identificación') ? (
-            <div className="checkout-botton-left-container">
-              <div className="checkout-title-container">
-                <h3>Identificación</h3>
-                <h6>Datos del cliente</h6>
-              </div>
-
-              <div className="checkout-form">
-                <div className="checkout-form-names-container">
-                  <div className="checkout-form-names-internal-container">
-                    <label htmlFor="name">Nombre</label>
-                    <input
-                      value={singUpForm.values.name}
-                      onChange={singUpForm.handleChange}
-                      onBlur={singUpForm.handleBlur}
-                      name="name"
-                      type="text"
-                      placeholder="Ej. John"
-                      className={
-                        singUpForm.touched.name && singUpForm.errors.name
-                          ? 'input-error'
-                          : ''
-                      }
-                    />
-                    {singUpForm.touched.name && singUpForm.errors.name && (
-                      <span className="checkOut-helpers-error">
-                        {singUpForm.errors.name}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="checkout-form-names-internal-container">
-                    <label htmlFor="lastname">Apellido</label>
-                    <input
-                      value={singUpForm.values.lastname}
-                      onChange={singUpForm.handleChange}
-                      onBlur={singUpForm.handleBlur}
-                      name="lastname"
-                      type="text"
-                      placeholder="Ej. Doe"
-                      className={
-                        singUpForm.touched.lastname &&
-                        singUpForm.errors.lastname
-                          ? 'input-error'
-                          : ''
-                      }
-                    />
-                    {singUpForm.touched.lastname &&
-                      singUpForm.errors.lastname && (
-                        <span className="checkOut-helpers-error">
-                          {singUpForm.errors.lastname}
-                        </span>
-                      )}
-                  </div>
-                </div>
-                <label htmlFor="email">Email</label>
-                <input
-                  value={singUpForm.values.email}
-                  onChange={singUpForm.handleChange}
-                  onBlur={singUpForm.handleBlur}
-                  name="email"
-                  type="email"
-                  placeholder="ejemplo@gmail.com"
-                  className={
-                    singUpForm.touched.email && singUpForm.errors.email
-                      ? 'input-error'
-                      : ''
-                  }
-                />
-                {singUpForm.touched.email && singUpForm.errors.email && (
-                  <span className="checkOut-helpers-error">
-                    {singUpForm.errors.email}
-                  </span>
-                )}
-
-                <button onClick={() => setButttonFocusPosition(sections[1])}>
-                  Continuar
-                </button>
-              </div>
-            </div>
+            <BuyerInfoForm
+              values={singUpForm.values}
+              handleChange={singUpForm.handleChange}
+              handleBlur={singUpForm.handleBlur}
+              errors={singUpForm.errors}
+              touched={singUpForm.touched}
+              section={sections}
+              handleButtonFocus={handleButtonFocus}
+              validation={
+                singUpForm.values.email &&
+                singUpForm.values.name &&
+                singUpForm.values.lastname &&
+                !singUpForm.errors.email &&
+                !singUpForm.errors.name &&
+                !singUpForm.errors.lastname
+                  ? true
+                  : false
+              }
+            />
           ) : buttonFocusPosition.includes('Talismán Digital') ? (
-            <div className="checkout-botton-left-container">
-              <div className="checkout-title-container">
-                <h3>Talismán digital</h3>
-                <h6>Introduzca los correos de activación</h6>
-              </div>
-
-              <div className="checkout-form">
-                {[...Array(numberOfDigitalTalisman)].map((_, i) => {
-                  return (
-                    <>
-                      <label htmlFor="email">Email</label>
-                      <input
-                        value={talismanDigitalAcounts[i]}
-                        onChange={e =>
-                          handleTalismanDigitalInput(i, e.target.value)
-                        }
-                        onBlur={() => talismanDigitalAcountsHandleBlur(i)}
-                        name={`email${i}`}
-                        type={`email${i}`}
-                        placeholder="ejemplo@gmail.com"
-                        className={
-                          talismanDigitalAcountsErrors[i] ||
-                          talismanAcounts[i] ||
-                          (errorWarning === 'validationErrors' &&
-                            !talismanDigitalAcounts[i])
-                            ? 'input-error'
-                            : ''
-                        }
-                      />
-                      {(talismanDigitalAcountsErrors[i] ||
-                        (errorWarning === 'validationErrors' &&
-                          !talismanDigitalAcounts[i])) && (
-                        <span className="checkOut-helpers-error">
-                          {talismanDigitalAcountsErrors[i] || 'Campo requerido'}
-                        </span>
-                      )}
-                      {talismanAcounts[i] && (
-                        <span className="checkOut-helpers-error">
-                          Correo ya registrado
-                        </span>
-                      )}
-                    </>
-                  );
-                })}
-
-                <button
-                  type="button"
-                  onClick={async () => {
-                    const checkAcounts = await checkTalismanAcount();
-
-                    if (checkAcounts) {
-                      setButttonFocusPosition(sections[sections.length - 1]);
-                    }
-                  }}>
-                  Continuar
-                </button>
-              </div>
-            </div>
+            <TalismanAcountsForm
+              touched={singUpForm.touched}
+              values={singUpForm.values}
+              errors={singUpForm.errors}
+              handleBlur={singUpForm.handleBlur}
+              section={sections}
+              handleButtonFocus={handleButtonFocus}
+              numberOfDigitalTalisman={numberOfDigitalTalisman}
+              talismanAcounts={talismanAcounts}
+              setFieldValue={singUpForm.setFieldValue}
+              handleTalismanDigitalInput={handleTalismanDigitalInput}
+              checkTalismanAcount={() => checkTalismanAcount()}
+            />
           ) : buttonFocusPosition.includes('Envío') ? (
-            <div className="checkout-botton-left-container">
-              <div className="checkout-title-container">
-                <h3>Detalle de envío</h3>
-                <h6>Ingresa los datos envío.</h6>
-              </div>
-
-              <div className="checkout-form">
-                <label htmlFor="receiver">Destinatario</label>
-                <input
-                  value={singUpForm.values.receiver}
-                  onChange={singUpForm.handleChange}
-                  onBlur={singUpForm.handleBlur}
-                  name="receiver"
-                  type="text"
-                  placeholder="Ej. John Doe"
-                  className={
-                    singUpForm.touched.receiver && singUpForm.errors.receiver
-                      ? 'input-error'
-                      : ''
-                  }
-                />
-                {singUpForm.touched.receiver && singUpForm.errors.receiver && (
-                  <span className="checkOut-helpers-error">
-                    {singUpForm.errors.receiver}
-                  </span>
-                )}
-
-                <div className="checkout-form-names-container">
-                  <div className="checkout-form-names-internal-container">
-                    <label htmlFor="receiver">Calle</label>
-                    <input
-                      value={singUpForm.values.street}
-                      onChange={singUpForm.handleChange}
-                      onBlur={singUpForm.handleBlur}
-                      name="street"
-                      type="text"
-                      placeholder="Ej. Av. Las Américas"
-                      className={
-                        singUpForm.touched.street && singUpForm.errors.street
-                          ? 'input-error'
-                          : ''
-                      }
-                    />
-                    {singUpForm.touched.street && singUpForm.errors.street && (
-                      <span className="checkOut-helpers-error">
-                        {singUpForm.errors.street}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="checkout-form-names-internal-container">
-                    <label htmlFor="streetNumber">Número</label>
-                    <input
-                      value={singUpForm.values.streetNumber}
-                      onChange={singUpForm.handleChange}
-                      onBlur={singUpForm.handleBlur}
-                      name="streetNumber"
-                      type="text"
-                      placeholder="Ej. 2030"
-                      className={
-                        singUpForm.touched.streetNumber &&
-                        singUpForm.errors.street
-                          ? 'input-error'
-                          : ''
-                      }
-                    />
-                    {singUpForm.touched.streetNumber &&
-                      singUpForm.errors.streetNumber && (
-                        <span className="checkOut-helpers-error">
-                          {singUpForm.errors.streetNumber}
-                        </span>
-                      )}
-                  </div>
-                </div>
-                <label htmlFor="apartmentNumber">Departamento</label>
-                <input
-                  value={singUpForm.values.apartmentNumber}
-                  onChange={singUpForm.handleChange}
-                  onBlur={singUpForm.handleBlur}
-                  name="apartmentNumber"
-                  type="text"
-                  placeholder="Ej. 8A"
-                  className={
-                    singUpForm.touched.apartmentNumber &&
-                    singUpForm.errors.apartmentNumber
-                      ? 'input-error'
-                      : ''
-                  }
-                />
-                {singUpForm.touched.apartmentNumber &&
-                  singUpForm.errors.apartmentNumber && (
-                    <span className="checkOut-helpers-error">
-                      {singUpForm.errors.apartmentNumber}
-                    </span>
-                  )}
-
-                <div className="checkout-form-names-container">
-                  <div className="checkout-form-names-internal-container">
-                    <label htmlFor="city">Ciudad</label>
-                    <input
-                      value={singUpForm.values.city}
-                      onChange={singUpForm.handleChange}
-                      onBlur={singUpForm.handleBlur}
-                      name="city"
-                      type="text"
-                      placeholder="Ej. Rosario"
-                      className={
-                        singUpForm.touched.city && singUpForm.errors.city
-                          ? 'input-error'
-                          : ''
-                      }
-                    />
-                    {singUpForm.touched.city && singUpForm.errors.city && (
-                      <span className="checkOut-helpers-error">
-                        {singUpForm.errors.city}
-                      </span>
-                    )}
-                  </div>
-                  <div className="checkout-form-names-internal-container">
-                    <label htmlFor="state">Provincia/Estado</label>
-                    <input
-                      value={singUpForm.values.state}
-                      onChange={singUpForm.handleChange}
-                      onBlur={singUpForm.handleBlur}
-                      name="state"
-                      type="text"
-                      placeholder="Ej. Santa Fe"
-                      className={
-                        singUpForm.touched.state && singUpForm.errors.state
-                          ? 'input-error'
-                          : ''
-                      }
-                    />
-                    {singUpForm.touched.state && singUpForm.errors.state && (
-                      <span className="checkOut-helpers-error">
-                        {singUpForm.errors.state}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                <div className="checkout-form-names-container">
-                  <div className="checkout-form-names-internal-container">
-                    <label htmlFor="country">País</label>
-                    <input
-                      value={singUpForm.values.country}
-                      onChange={singUpForm.handleChange}
-                      onBlur={singUpForm.handleBlur}
-                      name="country"
-                      type="text"
-                      placeholder="Ej. Argentina"
-                      className={
-                        singUpForm.touched.country && singUpForm.errors.country
-                          ? 'input-error'
-                          : ''
-                      }
-                    />
-                    {singUpForm.touched.country &&
-                      singUpForm.errors.country && (
-                        <span className="checkOut-helpers-error">
-                          {singUpForm.errors.country}
-                        </span>
-                      )}
-                  </div>
-                  <div className="checkout-form-names-internal-container">
-                    <label htmlFor="postalCode">Codigo postal</label>
-                    <input
-                      value={singUpForm.values.postalCode}
-                      onChange={singUpForm.handleChange}
-                      onBlur={singUpForm.handleBlur}
-                      name="postalCode"
-                      type="text"
-                      placeholder="Ej. 2000"
-                      className={
-                        singUpForm.touched.postalCode &&
-                        singUpForm.errors.postalCode
-                          ? 'input-error'
-                          : ''
-                      }
-                    />
-                    {singUpForm.touched.postalCode &&
-                      singUpForm.errors.postalCode && (
-                        <span className="checkOut-helpers-error">
-                          {singUpForm.errors.postalCode}
-                        </span>
-                      )}
-                  </div>
-                </div>
-                <label htmlFor="phone">Telefóno</label>
-                <input
-                  value={singUpForm.values.phone}
-                  onChange={singUpForm.handleChange}
-                  onBlur={singUpForm.handleBlur}
-                  name="phone"
-                  type="text"
-                  placeholder="Ej. +54 9 342 6544569"
-                  className={
-                    singUpForm.touched.phone && singUpForm.errors.phone
-                      ? 'input-error'
-                      : ''
-                  }
-                />
-                {singUpForm.touched.phone && singUpForm.errors.phone && (
-                  <span className="checkOut-helpers-error">
-                    {singUpForm.errors.phone}
-                  </span>
-                )}
-                {singUpForm.values.city &&
-                  singUpForm.values.state &&
-                  singUpForm.values.streetNumber &&
-                  singUpForm.values.street &&
-                  singUpForm.values.country &&
-                  singUpForm.values.postalCode && (
-                    <>
-                      <h6>Método de entrega</h6>
-
-                      <div className="complementary-info-payment-container">
-                        <div>
-                          <div className="logo-container">
-                            <img src={logoDhl} alt="logo-dhl" />
-                          </div>
-                          <p>Miercoles 14 de agosto</p>
-                        </div>
-                        <strong>{`$${deliveryPrice}`}</strong>
-                      </div>
-                    </>
-                  )}
-
-                <button onClick={() => setButttonFocusPosition(sections[2])}>
-                  Continuar
-                </button>
-              </div>
-            </div>
+            <ShippingInfoForm
+              values={singUpForm.values}
+              handleChange={singUpForm.handleChange}
+              handleBlur={singUpForm.handleBlur}
+              errors={singUpForm.errors}
+              touched={singUpForm.touched}
+              section={sections}
+              handleButtonFocus={handleButtonFocus}
+              deliveryPrice={deliveryPrice}
+              validation={
+                singUpForm.values.street &&
+                singUpForm.values.streetNumber &&
+                singUpForm.values.receiver &&
+                singUpForm.values.city &&
+                singUpForm.values.state &&
+                singUpForm.values.country &&
+                singUpForm.values.postalCode &&
+                singUpForm.values.phone &&
+                !singUpForm.errors.street &&
+                !singUpForm.errors.streetNumber &&
+                !singUpForm.errors.receiver &&
+                !singUpForm.errors.city &&
+                !singUpForm.errors.state &&
+                !singUpForm.errors.country &&
+                !singUpForm.errors.postalCode &&
+                !singUpForm.errors.phone
+                  ? true
+                  : false
+              }
+            />
           ) : (
             <div className="checkout-botton-left-container">
               <div className="checkout-title-container">
@@ -829,130 +508,13 @@ function CheckOutAnalogic() {
                 </div>
 
                 {billing && (
-                  <>
-                    <div className="checkout-form-names-container">
-                      <div className="checkout-form-names-internal-container">
-                        <label htmlFor="billingName">Nombre</label>
-                        <input
-                          value={singUpForm.values.billingName}
-                          onChange={singUpForm.handleChange}
-                          onBlur={singUpForm.handleBlur}
-                          name="billingName"
-                          type="text"
-                          placeholder="Ej. John"
-                          className={
-                            singUpForm.touched.billingName &&
-                            singUpForm.errors.billingName
-                              ? 'input-error'
-                              : ''
-                          }
-                        />
-                        {singUpForm.touched.billingName &&
-                          singUpForm.errors.billingName && (
-                            <span className="checkOut-helpers-error">
-                              {singUpForm.errors.billingName}
-                            </span>
-                          )}
-                      </div>
-
-                      <div className="checkout-form-names-internal-container">
-                        <label htmlFor="billingLastname">Apellido</label>
-                        <input
-                          value={singUpForm.values.billingLastname}
-                          onChange={singUpForm.handleChange}
-                          onBlur={singUpForm.handleBlur}
-                          name="billingLastname"
-                          type="text"
-                          placeholder="Ej. Doe"
-                          className={
-                            singUpForm.touched.billingLastname &&
-                            singUpForm.errors.billingLastname
-                              ? 'input-error'
-                              : ''
-                          }
-                        />
-                        {singUpForm.touched.billingLastname &&
-                          singUpForm.errors.billingLastname && (
-                            <span className="checkOut-helpers-error">
-                              {singUpForm.errors.billingLastname}
-                            </span>
-                          )}
-                      </div>
-                    </div>
-
-                    <label htmlFor="billingRfc">RFC</label>
-                    <input
-                      value={singUpForm.values.billingRfc}
-                      onChange={singUpForm.handleChange}
-                      onBlur={singUpForm.handleBlur}
-                      name="billingRfc"
-                      type="text"
-                      placeholder="RFC"
-                      className={
-                        singUpForm.touched.billingRfc &&
-                        singUpForm.errors.billingRfc
-                          ? 'input-error'
-                          : ''
-                      }
-                    />
-                    {singUpForm.touched.billingRfc &&
-                      singUpForm.errors.billingRfc && (
-                        <span className="checkOut-helpers-error">
-                          {singUpForm.errors.billingRfc}
-                        </span>
-                      )}
-                    <label htmlFor="billingLegalName">Razón social</label>
-                    <input
-                      value={singUpForm.values.billingLegalName}
-                      onChange={singUpForm.handleChange}
-                      onBlur={singUpForm.handleBlur}
-                      name="billingLegalName"
-                      type="text"
-                      placeholder="Razón social"
-                      className={
-                        singUpForm.touched.billingLegalName &&
-                        singUpForm.errors.billingRfc
-                          ? 'input-error'
-                          : ''
-                      }
-                    />
-                    {singUpForm.touched.billingLegalName &&
-                      singUpForm.errors.billingLegalName && (
-                        <span className="checkOut-helpers-error">
-                          {singUpForm.errors.billingLegalName}
-                        </span>
-                      )}
-
-                    <label htmlFor="billingTaxRegime">Régimen Fiscal</label>
-
-                    <select
-                      name="billingTaxRegime"
-                      value={singUpForm.values.billingTaxRegime}
-                      onChange={singUpForm.handleChange}
-                      onBlur={singUpForm.handleBlur}
-                      className={
-                        singUpForm.touched.billingTaxRegime &&
-                        singUpForm.errors.billingTaxRegime
-                          ? 'billing-taxRegime input-error'
-                          : 'billing-taxRegime'
-                      }
-                      style={{
-                        color: !singUpForm.values.billingTaxRegime
-                          ? 'gray'
-                          : '',
-                      }}>
-                      <option value="">Régimen Fiscal</option>
-                      {taxRegimeOptions.map(item => {
-                        return <option value={item}>{item}</option>;
-                      })}
-                    </select>
-                    {singUpForm.touched.billingTaxRegime &&
-                      singUpForm.errors.billingTaxRegime && (
-                        <span className="checkOut-helpers-error">
-                          {singUpForm.errors.billingTaxRegime}
-                        </span>
-                      )}
-                  </>
+                  <BillingForm
+                    values={singUpForm.values}
+                    handleChange={singUpForm.handleChange}
+                    handleBlur={singUpForm.handleBlur}
+                    errors={singUpForm.errors}
+                    touched={singUpForm.touched}
+                  />
                 )}
 
                 <div className="checkout-tipo-envio-container">

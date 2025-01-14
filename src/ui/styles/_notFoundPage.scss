@@ -1,0 +1,73 @@
+@import '../../styles/variables.scss';
+
+.notFound-page-container {
+  background-color: $color_yellow;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5vh;
+  justify-content: center;
+  align-items: center;
+  color: $color_primary;
+  text-align: center;
+
+  .notFound-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    > h1 {
+      font-size: 15rem;
+    }
+    > h2 {
+      font-size: 4rem;
+    }
+
+    > h3 {
+      margin-top: 5vh;
+      font-size: 2.5rem;
+    }
+  }
+
+  > button {
+    transition: transform 0.5s;
+    &:hover {
+      background-color: $color_primary;
+      color: $color_yellow;
+      transform: scale(1.05);
+    }
+  }
+}
+
+@media screen and (max-width: 678px) {
+  .notFound-page-container {
+    row-gap: 5vh;
+
+    > h1 {
+      font-size: 3.5rem;
+    }
+    > h2 {
+      font-size: 2rem;
+    }
+
+    > .image-container {
+      width: 25%;
+      aspect-ratio: 1;
+      > svg {
+        path {
+          fill: $color_primary;
+        }
+      }
+    }
+
+    > button {
+      transition: transform 0.5s;
+      &:hover {
+        background-color: $color_primary;
+        color: $color_yellow;
+        transform: scale(1.05);
+      }
+    }
+  }
+}

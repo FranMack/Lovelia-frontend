@@ -1,9 +1,9 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {ObliqueArrow} from '../../assets/icons/icons';
+import talismanDigital from '../../store/assets/ejemplo1_talisman_digital.webp';
 import {ButtonTransparent, LazyImage} from '../../ui/components';
 import talismanAnalogico from '../assets/intencionaConNuestrosTalismanes.webp';
-import talismanDigital from '../../store/assets/ejemplo1_talisman_digital.webp';
 
 export const Home4 = () => {
   const navigate = useNavigate();
@@ -45,9 +45,9 @@ export const Home4 = () => {
 
             <div
               onClick={handleSelectedTalisman}
-              className={
-                `section4-home-option-container ${selectedTalisman === 'digital' ? 'focus-talisman' : ''}`
-              }>
+              className={`section4-home-option-container ${
+                selectedTalisman === 'digital' ? 'focus-talisman' : ''
+              }`}>
               <h3>
                 <div className="icon-container">
                   <ObliqueArrow
@@ -60,9 +60,9 @@ export const Home4 = () => {
             </div>
 
             <div
-             className={
-              `section4-home-option-container ${selectedTalisman === 'analogic' ? 'focus-talisman' : ''}`
-            }>
+              className={`section4-home-option-container ${
+                selectedTalisman === 'analogic' ? 'focus-talisman' : ''
+              }`}>
               <h3 onClick={handleSelectedTalisman}>
                 <div className="icon-container">
                   <ObliqueArrow
@@ -80,7 +80,11 @@ export const Home4 = () => {
         <div className="section4-home-internal-container">
           <div className="section4-home-internal-image-container">
             <LazyImage
-              src={selectedTalisman === 'digital' ? talismanDigital : talismanAnalogico}
+              src={
+                selectedTalisman === 'digital'
+                  ? talismanDigital
+                  : talismanAnalogico
+              }
               alt="digital-talisman"
             />
             <div className="button-wrapper">
