@@ -6,6 +6,7 @@ import { ButtonArrowRight2 } from "../../ui/components/ButtonArrowRight2";
 import { OptionsArrowRight2 } from "../../ui/components/ButtonArrowRight2";
 import { ObliqueArrow } from "../../assets/icons/icons";
 import { useNavigate } from "react-router-dom";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 const templateOptions: Template1Options = {
   image: talismanDigital,
@@ -26,9 +27,11 @@ export const TalismanInfo4 = () => {
     onClick: linkToTalismanDigital,
   };
 
+  const animationRef = useScrollReveal<HTMLDivElement>("topReveal");
+
   return (
     <Template1 {...templateOptions}>
-      <div className="talismanInfo3-internal-container right">
+      <div ref={animationRef} className="talismanInfo3-internal-container right">
         <div className="talismanInfo3-internal-text-container">
           <h2>
             <div className="icon-container">

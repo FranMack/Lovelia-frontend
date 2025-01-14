@@ -2,6 +2,7 @@ import {Suspense, lazy} from 'react';
 import {Route} from 'react-router-dom';
 import {Loader} from '../ui/pages/Loader.tsx';
 import {RestrictedRoute} from './RestrictedRoute.tsx';
+import ErrorBoundary from './ErrorBoundary.tsx';
 
 const Register = lazy(() => import('../auth/views/Register.tsx'));
 const Login = lazy(() => import('../auth/views/Login.tsx'));
@@ -24,7 +25,9 @@ export const RestrictedRoutesCollection = () =>
       path={item.path}
       element={
         <RestrictedRoute>
+          <ErrorBoundary>
           <Suspense fallback={<Loader />}>{item.component}</Suspense>
+          </ErrorBoundary>
         </RestrictedRoute>
       }
     />

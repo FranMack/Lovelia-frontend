@@ -1,3 +1,4 @@
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { ButtonArrowRight, LazyImage } from "../../ui/components";
 
 export interface FrontPage1Options {
@@ -24,10 +25,12 @@ export const FrontPage1 = ({
     onClick: handleLink,
   };
 
+   const animationRef = useScrollReveal<HTMLDivElement>("topReveal");
+
   return (
-    <section className="frontPage1-container">
+    <section  className="frontPage1-container">
       <LazyImage src={image} alt="wallpaper" />
-      <div className="frontPage1-center-container">
+      <div ref={animationRef} className="frontPage1-center-container">
         <div className="frontPage1-text-container" style={{ color: color }}>
         <p>{text}</p>
         </div>

@@ -4,6 +4,7 @@ import { Template1 } from "../../ui/pages/Template1";
 import { Template1Options } from "../../ui/pages/Template1";
 import { Position } from "../../ui/pages/Template1";
 import { useNavigate } from "react-router-dom";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 const templateOptions: Template1Options = {
   image: intention,
@@ -21,11 +22,15 @@ export const Home3 = () => {
     onClick: () => {
       navigate("/blog/nota/1");
     },
+
+
   };
+
+  const animationRef = useScrollReveal<HTMLDivElement>("topReveal");
 
   return (
     <Template1 {...templateOptions}>
-      <div className="section3-home-internal-container right">
+      <div ref={animationRef}   className="section3-home-internal-container right">
         <div className="section3-home-internal-text-container">
           <h2>
             EL PODER

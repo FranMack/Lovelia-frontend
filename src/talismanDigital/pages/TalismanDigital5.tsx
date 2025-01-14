@@ -4,6 +4,7 @@ import { Template1Options } from "../../ui/pages/Template1";
 import { Position } from "../../ui/pages/Template1";
 import { useNavigate } from "react-router";
 import { Button } from "../../ui/components";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 
 const templateOptions: Template1Options = {
@@ -18,9 +19,11 @@ export const TalismanDigital5 = () => {
   const linkTo = () => {
     navigate("/buy-digital");
   };
+
+   const animationRef = useScrollReveal<HTMLDivElement>('topReveal');
   return (
     <Template1 {...templateOptions}>
-      <div className="talismanDigitalTemplate-container right">
+      <div ref={animationRef} className="talismanDigitalTemplate-container right">
         <div className="talismanDigitalTemplate-internal-text-container">
           <h2>(4)<br/>MEDITACIONES LOVELIA</h2>
           <p>

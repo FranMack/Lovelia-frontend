@@ -1,5 +1,5 @@
 import {onMessage} from 'firebase/messaging';
-import {Routes, useLocation} from 'react-router-dom';
+import {Route, Routes, useLocation} from 'react-router-dom';
 import {messaging} from './config/firebase.ts'; // Import the messaging object
 import {AlarmPopUp} from './ui/components/AlarmPopUp.tsx';
 
@@ -24,6 +24,7 @@ import {
   RestrictedRoutesCollection,
 } from './router';
 import {ShopingCart} from './ui/components/ShopingCart.tsx';
+import {NotFoundPage} from './ui/pages/NotFound.tsx';
 
 function App() {
   const {email} = useContext(UserContext);
@@ -58,7 +59,6 @@ function App() {
       window.removeEventListener('resize', handleWindowSize);
     };
   }, []);
-  
 
   useEffect(() => {
     if (email) {
@@ -116,6 +116,7 @@ function App() {
 
         {/*RUTAS PRIVADAS*/}
         {PrivatesRoutesCollection()}
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
       {location !== '/myTalisman' && windowSize >= 1024 && <Footer />}

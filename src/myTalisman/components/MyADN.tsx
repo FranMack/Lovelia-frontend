@@ -26,6 +26,8 @@ export const MyADN = ({
     setSectionPosition(item);
   };
 
+  console.log("xxxxxxxxxxxkingMayaUserInfo",tonesUserInfo)
+
   return (
     <div className="dropDownMyTalisman-container">
       <div className="dropDownMyTalisman-button-container">

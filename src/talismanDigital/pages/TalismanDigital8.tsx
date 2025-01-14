@@ -6,6 +6,7 @@ import {
   Template1Options,
 } from "../../ui/pages/Template1";
 import sounds from "../assets/talisman_banco_sonidos.webp";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 const templateOptions: Template1Options = {
   image: sounds,
@@ -19,9 +20,11 @@ export const TalismanDigital8 = () => {
   const linkTo = () => {
     navigate("/buy-digital");
   };
+
+    const animationRef = useScrollReveal<HTMLDivElement>('topReveal');
   return (
     <Template1 {...templateOptions}>
-      <div className="talismanDigitalTemplate-container right">
+      <div ref={animationRef} className="talismanDigitalTemplate-container right">
         <div className="talismanDigitalTemplate-internal-text-container">
           <h2>
             (7)

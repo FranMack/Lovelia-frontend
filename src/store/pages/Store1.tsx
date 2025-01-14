@@ -12,7 +12,7 @@ export const Store1 = () => {
     navigate("/buy-analogic");
   };
   return (
-    <section className="section1-store-container">
+    <section className="section1-store-container efectoReveal">
       <div className="section1-store-internal-contaner">
         <img src={talismanDigital} alt="talisman digital" />
         <div className="section1-store-text-container">

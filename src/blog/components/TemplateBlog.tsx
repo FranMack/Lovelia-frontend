@@ -1,5 +1,6 @@
 import { ButtonArrowRight2 } from "../../ui/components/ButtonArrowRight2";
 import { LazyImage } from "../../ui/components";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 export interface TemplateBlogOptions {
   image: string;
@@ -16,9 +17,14 @@ export function TemplateBlog({
   description,
   arrowRightButton,
   onClick,
+  direction
 }: TemplateBlogOptions) {
+
+
+   const animationRefLeft = useScrollReveal<HTMLDivElement>('leftReveal');
+    const animationRefRight = useScrollReveal<HTMLDivElement>('rightReveal');
   return (
-    <div className="templateBlog-container">
+    <div ref={direction==="left"?animationRefLeft:animationRefRight } className="templateBlog-container">
       <div className="templateBlog-image-container">
         <LazyImage src={image} alt="Tallisman-fisico" />
       </div>

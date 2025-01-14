@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { PlayIcon,StopIcon } from "../../assets/icons/icons";
 import { LazyImage } from "../../ui/components";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 interface MeditationOptions {
   color: string;
@@ -56,9 +57,10 @@ export const GridMeditations = ({ meditations }: Meditations) => {
 
 
 
+  const animationRef = useScrollReveal<HTMLDivElement>("topReveal");
 
   return (
-    <div className="grid-meditations-container">
+    <div ref={animationRef} className="grid-meditations-container">
     
       {meditations.map((item, i) => {
         return (

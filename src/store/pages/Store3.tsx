@@ -1,3 +1,4 @@
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 import {
   Position,
   Template1,
@@ -13,9 +14,11 @@ const templateOptions: Template1Options = {
 };
 
 export const Store3 = () => {
+
+   const animationRef = useScrollReveal<HTMLDivElement>('topReveal');
   return (
     <Template1 {...templateOptions}>
-      <div className="section3-store-internal-container right">
+      <div ref={animationRef} className="section3-store-internal-container right">
         <div className="section3-store-internal-text-container">
           <div className="title-container">
             <h2>REGALA UN TALISMÁN</h2>
