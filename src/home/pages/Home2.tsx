@@ -3,6 +3,7 @@ import { FrontPage1 } from "../../ui/pages/FrontPage1";
 import { FrontPage1Options } from "../../ui/pages/FrontPage1";
 import { useNavigate } from "react-router-dom";
 
+
 const frontPageInfo: FrontPage1Options = {
   image: wallpaper,
   text: "↘ CUANDO USO UN TALISMÁN, ESTOY RECORDANDO QUE QUIERO PARA MÍ, CONECTANDO CON MI SABIDURÍA INTERNA.",

@@ -1,15 +1,19 @@
 import { articlesBlog } from "../assets/infoArticulos";
 import { LazyImage } from "../../ui/components";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 export const Blog3 = () => {
+
+
+     const animationRef = useScrollReveal<HTMLDivElement>('topReveal');
   return (
-    <section className="section3-blog-container">
+    <section  className="section3-blog-container">
       <div className="section3-blog-title-container">
         <h3>Todos los artículos</h3>
      
       </div>
 
-      <div className="blog-historias-container">
+      <div ref={animationRef} className="blog-historias-container">
         {articlesBlog.map((articulo, i) => {
           return (
             <div className={`blog-historias-card card${i}`} key={i}>

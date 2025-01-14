@@ -1,26 +1,22 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { infoIntenciones } from "../assets/infoIntentions";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { ButtonArrowRight } from "../../ui/components/ButtonArrowRight";
-import { PlayIcon, StopIcon } from "../../assets/icons/icons";
-import { TimerContext } from "../../context/timerContext";
-import { ShopingCartContext } from "../../context";
+import {useContext, useEffect, useRef, useState} from 'react';
+import {useNavigate, useParams} from 'react-router-dom';
+import {PlayIcon, StopIcon} from '../../assets/icons/icons';
+import {ShopingCartContext} from '../../context';
+import {TimerContext} from '../../context/timerContext';
+import {ButtonArrowRight} from '../../ui/components/ButtonArrowRight';
+import {infoIntenciones} from '../assets/infoIntentions';
 
 function IntentionInfo() {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const {id} = useParams();
 
   const [page, setPage] = useState<number>(1);
 
-
-  useEffect(()=>{
-
+  useEffect(() => {
     window.scrollTo(0, 0);
-  },[])
+  }, []);
 
   useEffect(() => {
-  
     if (id) {
       setPage(parseInt(id));
     }
@@ -30,12 +26,10 @@ function IntentionInfo() {
       meditationRef.current.pause();
       setIsPlaying(false);
     }
-
-   
   }, [id]);
 
   const handlerPage = (direction: string) => {
-    if (direction === "next") {
+    if (direction === 'next') {
       if (page < infoIntenciones.length) {
         navigate(`/intenciones/${page + 1}`);
       }
@@ -46,8 +40,8 @@ function IntentionInfo() {
     }
   };
 
-  const { activatedAlarm } = useContext(TimerContext);
-  const { shopingCartOpen } = useContext(ShopingCartContext);
+  const {activatedAlarm} = useContext(TimerContext);
+  const {shopingCartOpen} = useContext(ShopingCartContext);
 
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
@@ -83,27 +77,32 @@ function IntentionInfo() {
     <>
       <main
         className={
-          activatedAlarm || shopingCartOpen ? "viewport-background" : ""
-        }
-      >
+          activatedAlarm || shopingCartOpen ? 'viewport-background' : ''
+        }>
         <audio
           preload="metadata"
           src={infoIntenciones[page - 1].meditationURL}
           ref={meditationRef}
         />
-        <section className="intencionesDescription-container efectoReveal">
-          <div className="intencionesDescription-info-container">
+        <section className="intencionesDescription-container">
+          <div className="intencionesDescription-info-container leftReveal">
             <div className="intencionesDescription-top-buttons-container">
-           {page>1?   <ButtonArrowRight
-                text="Atras"
-                color="#6f3289"
-                onClick={() => handlerPage("previous")}
-              />:<div></div>}
-            { page<8 && <ButtonArrowRight
-                text="Siguiente"
-                color="#6f3289"
-                onClick={() => handlerPage("next")}
-              />}
+              {page > 1 ? (
+                <ButtonArrowRight
+                  text="Atras"
+                  color="#6f3289"
+                  onClick={() => handlerPage('previous')}
+                />
+              ) : (
+                <div></div>
+              )}
+              {page < 8 && (
+                <ButtonArrowRight
+                  text="Siguiente"
+                  color="#6f3289"
+                  onClick={() => handlerPage('next')}
+                />
+              )}
             </div>
             <article>
               <h3>{page && infoIntenciones[page - 1].title}</h3>
@@ -118,8 +117,7 @@ function IntentionInfo() {
                 <button
                   title="Doble click para reiniciar"
                   onClick={stopMeditation}
-                  onDoubleClick={restartMeditation}
-                >
+                  onDoubleClick={restartMeditation}>
                   <div className="icon-container">{<StopIcon />}</div> Pausar
                   meditación
                 </button>
@@ -127,17 +125,16 @@ function IntentionInfo() {
                 <button
                   title="Doble click para reiniciar"
                   onClick={playMeditation}
-                  onDoubleClick={restartMeditation}
-                >
-                  <div className="icon-container">{<PlayIcon />}</div>{" "}
+                  onDoubleClick={restartMeditation}>
+                  <div className="icon-container">{<PlayIcon />}</div>{' '}
                   {timeProgress && !isPlaying
-                    ? "Continuar meditación"
-                    : "Iniciar meditación"}
+                    ? 'Continuar meditación'
+                    : 'Iniciar meditación'}
                 </button>
               )}
             </div>
           </div>
-          <div className="intencionesDescription-image-container">
+          <div className="intencionesDescription-image-container rightReveal">
             {page && <img src={infoIntenciones[page - 1].image} alt="" />}
           </div>
         </section>

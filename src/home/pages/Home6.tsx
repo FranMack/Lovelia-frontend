@@ -1,6 +1,7 @@
 import proposito from "../assets/home_proposito.webp";
 import { Position, Template1 } from "../../ui/pages/Template1";
 import { Template1Options } from "../../ui/pages/Template1";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 const templateOptions: Template1Options = {
   image: proposito,
@@ -10,9 +11,11 @@ const templateOptions: Template1Options = {
 };
 
 export const Home6 = () => {
+
+  const animationRef = useScrollReveal<HTMLDivElement>("topReveal");
   return (
     <Template1 {...templateOptions}>
-      <div className="section6-home-internal-container left">
+      <div ref={animationRef} className="section6-home-internal-container left">
         <div className="section6-home-internal-text-container">
           <p>
             Somos un espacio de vanguardia

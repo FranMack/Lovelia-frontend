@@ -1,5 +1,5 @@
-import { GridMeditations } from "../components/GridMeditations";
-import { meditationsInfo } from "../assets/meditationsInfo";
+import {meditationsInfo} from '../assets/meditationsInfo';
+import {GridMeditations} from '../components/GridMeditations';
 export const Meditations3 = () => {
   return (
     <section className="section3-meditations-container">

@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { LazyImage } from "../components";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 export enum Position {
   Left = "left",
@@ -21,8 +22,12 @@ export const Template1 = ({
   color,
   backgroundColor,
 }: Template1Options) => {
+
+  const animationRefLeft = useScrollReveal<HTMLDivElement>("leftReveal");
+  const animationRefRight = useScrollReveal<HTMLDivElement>("rightReveal");
   return (
     <section
+    
       className="template1-container"
       style={{ backgroundColor: backgroundColor, color: color }}
     >
@@ -33,7 +38,7 @@ export const Template1 = ({
             : "template1-center-container-reverse"
         }
       >
-        <div className="template1-internal-container">
+        <div ref={position === "left" ? animationRefLeft:animationRefRight} className="template1-internal-container">
           <LazyImage src={image} alt="intention-image" />
         </div>
 
