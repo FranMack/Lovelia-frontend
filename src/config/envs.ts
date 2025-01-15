@@ -1,6 +1,6 @@
 export const envs = {
-  API_DOMAIN: 'http://localhost:3000',
- // API_DOMAIN: 'https://api.lovelia.me',
+  //API_DOMAIN: 'http://localhost:3000',
+  API_DOMAIN: 'https://api.lovelia.me',
 
   // Firebase credentials
   FIREBASE_API_KEY: 'AIzaSyAb__3b4qmoMjUyiL01SvT6FAM25Ggbojo',
