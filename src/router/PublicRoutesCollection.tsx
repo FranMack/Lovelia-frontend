@@ -81,7 +81,7 @@ const publicRoutes = [
 ];
 
 export const PublicRoutesCollection = () =>
-  console.log("xxx")
+ 
   publicRoutes.map(item => (
    
     <Route
