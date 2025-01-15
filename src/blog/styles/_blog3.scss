@@ -1,27 +1,24 @@
-@import "../../styles//variables.scss";
+@import '../../styles//variables.scss';
 
-.section3-blog-container{
-    width: 100vw;
-    >.section3-blog-title-container{
-        margin: 0 auto;
-        margin-bottom: 3%;
-        width: 80%;
-        h3{
-
-            font-size: 2.6rem;
-            color:$color_primary;
-            font-weight: 300;
-            margin-bottom:5%;
-          }
-
-          h4{
-            font-size: 2.2rem;
-            color:$color_text2;
-            font-weight: 300;
-          }
+.section3-blog-container {
+  width: 100vw;
+  > .section3-blog-title-container {
+    margin: 0 auto;
+    margin-bottom: 3%;
+    width: 80%;
+    h3 {
+      font-size: 2.6rem;
+      color: $color_primary;
+      font-weight: 300;
+      margin-bottom: 5%;
     }
 
-   
+    h4 {
+      font-size: 2.2rem;
+      color: $color_text2;
+      font-weight: 300;
+    }
+  }
 }
 
 .blog-historias-container {
@@ -32,7 +29,6 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   justify-items: center;
-
 }
 
 .blog-historias-card {
@@ -58,7 +54,7 @@
     line-height: normal;
   }
   p {
-    font-family: "Marlin Geo", "sans-serif";
+    font-family: 'Marlin Geo', 'sans-serif';
     font-size: 14px;
     font-style: italic;
     font-weight: 400;
@@ -86,97 +82,80 @@
   }
 }
 
-
 @media screen and (max-width: 1024px) {
-
-  .section3-blog-container{
+  .section3-blog-container {
     width: 100vw;
-    >.section3-blog-title-container{
-        margin: 0 auto;
-        margin-bottom: 3%;
-        width: 80%;
-        h3{
+    > .section3-blog-title-container {
+      margin: 0 auto;
+      margin-bottom: 3%;
+      width: 80%;
+      h3 {
+        font-size: 2.5rem;
 
-            font-size: 2.5rem;
-          
-            margin-bottom: 5%;
-          }
+        margin-bottom: 5%;
+      }
 
-          h4{
-            font-size: 2.2rem;
-            color:$color_text2;
-            font-weight: 300;
-          }
+      h4 {
+        font-size: 2.2rem;
+        color: $color_text2;
+        font-weight: 300;
+      }
     }
+  }
 
-   
-}
+  .blog-historias-container {
+    margin: 0 auto;
+    margin-bottom: 10vh;
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    justify-items: center;
+  }
 
-.blog-historias-container {
-  margin: 0 auto;
-  margin-bottom: 10vh;
-  width: 80%;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  justify-items: center;
-
-}
-
-.blog-historias-card {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  row-gap: 0.5rem;
-  img {
+  .blog-historias-card {
     width: 100%;
-    height: 35vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0.5rem;
+    img {
+      width: 100%;
+      height: 35vh;
+    }
+    h6 {
+      font-size: 1.4rem;
+    }
+    h4 {
+      font-size: 1.5rem;
+    }
+    p {
+      font-size: 1.4rem;
+    }
   }
-  h6 {
-    font-size: 1.4rem;
 
+  .blog-historias-card.card4,
+  .blog-historias-card.card10,
+  .blog-historias-card.card16 {
+    grid-column-start: 1;
+    grid-column-end: 3;
   }
-  h4 {
-    font-size: 1.5rem;
 
+  .blog-historias-card.card9,
+  .blog-historias-card.card15,
+  .blog-historias-card.card21 {
+    grid-column-start: 3;
+    grid-column-end: 5;
 
+    img {
+      width: 100%;
+      aspect-ratio: 2.2;
+      object-fit: cover;
+    }
   }
-  p {
-
-    font-size: 1.4rem;
-
-
-  }
-}
-
-.blog-historias-card.card4,
-.blog-historias-card.card10,
-.blog-historias-card.card16 {
-  grid-column-start: 1;
-  grid-column-end: 3;
-}
-
-.blog-historias-card.card9,
-.blog-historias-card.card15,
-.blog-historias-card.card21 {
-  grid-column-start: 3;
-  grid-column-end: 5;
-
-  img {
-    width: 100%;
-    aspect-ratio: 2.2;
-    object-fit: cover;
-  }
-}
-
-
-
-
 }
 
 @media screen and (max-width: 678px) {
-
   .blog-historias-container {
     margin: 0 auto;
     margin-bottom: 10vh;
@@ -185,21 +164,19 @@
     grid-template-columns: repeat(1, 1fr);
     gap: 20px;
     justify-items: center;
-  
   }
 
   .blog-historias-card.card4,
-.blog-historias-card.card10,
-.blog-historias-card.card16 {
-  grid-column-start: 1;
-  grid-column-end: 2;
-}
+  .blog-historias-card.card10,
+  .blog-historias-card.card16 {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
 
-.blog-historias-card.card9,
-.blog-historias-card.card15,
-.blog-historias-card.card21 {
-  grid-column-start: 1;
-  grid-column-end: 2;
+  .blog-historias-card.card9,
+  .blog-historias-card.card15,
+  .blog-historias-card.card21 {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
 }
-}
-

@@ -595,10 +595,11 @@ justify-content: space-between;
     }
   }
   .checkout-top-container {
+   
     background-color: $color_background1;
     width: 90%;
     height: 8vh;
-    display: flex;
+    display: none;
     align-items: center;
     margin-top: 8%;
     margin-bottom: 5%;

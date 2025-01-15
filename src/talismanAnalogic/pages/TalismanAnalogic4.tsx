@@ -2,6 +2,7 @@ import activation from "../assets/talisman_analog_activacion.webp";
 import { Template1 } from "../../ui/pages/Template1";
 import { Template1Options } from "../../ui/pages/Template1";
 import { Position } from "../../ui/pages/Template1";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 const templateOptions: Template1Options = {
   image: activation,
@@ -11,9 +12,11 @@ const templateOptions: Template1Options = {
 };
 
 export const TalismanAnalogic4 = () => {
+
+   const animationRef = useScrollReveal<HTMLDivElement>("topReveal");
   return (
     <Template1 {...templateOptions}>
-      <div className="section4-talismanAnalogic-internal-container right">
+      <div ref={animationRef} className="section4-talismanAnalogic-internal-container right">
         <div className="section4-talismanAnalogic-internal-text-container">
           <h2>ACTIVA TU TALISMÁN</h2>
 
