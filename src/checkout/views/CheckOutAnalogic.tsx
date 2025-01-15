@@ -80,7 +80,9 @@ function CheckOutAnalogic() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, [buttonFocusPosition]);
 
+  useEffect(() => {
     const hasTalismanDigital = shopingCartItems.some(item => {
       return item.model === 'Digital';
     });

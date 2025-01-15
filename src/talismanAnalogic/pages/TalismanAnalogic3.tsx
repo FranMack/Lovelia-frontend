@@ -11,6 +11,7 @@ import {
 import { infoIntenciones } from "../assets/infoIntentions";
 import background from "../assets/talisman_analog_options.webp";
 import { useNavigate } from "react-router";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 // Definir las opciones de botones y sus datos relacionados
 const OPTIONS = [
@@ -53,6 +54,7 @@ export const TalismanAnalogic3 = () => {
     navigate("/buy-analogic")
   }
 
+   const animationRef = useScrollReveal<HTMLDivElement>("topReveal");
   return (
     <section className="section3-talismanAnalogic-container">
       <img src={background} alt="pink sky" />
@@ -70,7 +72,7 @@ export const TalismanAnalogic3 = () => {
           ))}
         </div>
       </div>
-      <div className="section3-talismanAnlaogic-center-container">
+      <div  ref={animationRef}className="section3-talismanAnlaogic-center-container">
         {activeData && <Slider sliderInfo={activeData} />}
       </div>
       <div className="button-wrapper">
