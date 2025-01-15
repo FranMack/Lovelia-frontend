@@ -81,7 +81,9 @@ const publicRoutes = [
 ];
 
 export const PublicRoutesCollection = () =>
+  console.log("xxx")
   publicRoutes.map(item => (
+   
     <Route
       key={item.path} // Agrega una key para evitar advertencias de React
       path={item.path}
