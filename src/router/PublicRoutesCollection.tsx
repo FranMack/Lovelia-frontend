@@ -1,6 +1,7 @@
 import {Suspense, lazy} from 'react';
 import {Route} from 'react-router-dom';
 import {Loader} from '../ui/pages/Loader.tsx';
+import ErrorBoundary from './ErrorBoundary.tsx';
 
 const Home = lazy(() => import('../home/views/Home'));
 const TalismanInfo = lazy(() => import('../talisman/views/TalismanInfo.tsx'));
@@ -50,8 +51,9 @@ const ValidateEmailTokenExpired = lazy(
 const ActivationAnalogic = lazy(
   () => import('../talismanAnalogic/views/ActivationAnalogic.tsx'),
 );
-const ThanksForBuying = lazy(() => import('../wellcome/views/ThanksForBuying.tsx'));
-
+const ThanksForBuying = lazy(
+  () => import('../wellcome/views/ThanksForBuying.tsx'),
+);
 
 const publicRoutes = [
   {path: '/', component: <Home />},
@@ -83,6 +85,10 @@ export const PublicRoutesCollection = () =>
     <Route
       key={item.path} // Agrega una key para evitar advertencias de React
       path={item.path}
-      element={<Suspense fallback={<Loader />}>{item.component}</Suspense>}
+      element={
+        <ErrorBoundary>
+          <Suspense fallback={<Loader />}>{item.component}</Suspense>
+        </ErrorBoundary>
+      }
     />
   ));
