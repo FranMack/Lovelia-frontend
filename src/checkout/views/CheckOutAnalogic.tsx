@@ -13,6 +13,8 @@ import {BackgroundVideo} from '../../ui/components';
 import {CheckOutCard} from '../components/CheckOutCard';
 import {CheckOutNavbar} from '../components/CheckOutNavbar';
 
+import {CheckOutNavbarMobile} from '../components/CheckOutNavbarMobile';
+
 import {
   BillingForm,
   BuyerInfoForm,
@@ -410,6 +412,12 @@ function CheckOutAnalogic() {
         <BackgroundVideo />
 
         <CheckOutNavbar
+          sections={sections}
+          buttonFocusPosition={buttonFocusPosition}
+          handleButtonFocus={handleButtonFocus}
+        />
+
+        <CheckOutNavbarMobile
           sections={sections}
           buttonFocusPosition={buttonFocusPosition}
           handleButtonFocus={handleButtonFocus}

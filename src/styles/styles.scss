@@ -65,6 +65,7 @@
 @import '../profile//styles/acountInfo';
 @import '../checkout/styles//checkoutAnalogic';
 @import '../checkout/styles/checkoutDigital';
+@import '../checkout/styles/checkoutNavbarMobile';
 @import '../wellcome/styles/welcomeDigital';
 @import '../myTalisman/styles//myTalisman';
 @import '../myTalisman/styles/dropDownMyTalisman';
@@ -91,6 +92,11 @@ html {
   font-family: $font_titles;
   overflow-x: hidden;
   scroll-behavior: smooth;
+}
+
+main{
+
+  overflow-x: hidden;
 }
 
 .efectoReveal {
