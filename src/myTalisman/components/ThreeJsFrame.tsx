@@ -146,7 +146,7 @@ export const ThreeJsFrame = () => {
           setSeconds(0);
           handlePlaying(false);
           setAudioType('');
-          setStep('Paso 6');
+          setStep('Paso 5');
           handleButtonFocus('activation');
         });
 

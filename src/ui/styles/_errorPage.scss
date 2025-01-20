@@ -27,7 +27,8 @@
     border-radius: 50%;
     > svg {
       path {
-        fill: $color_primary;
+        fill: transparent;
+        stroke:$color_primary; ;
       }
     }
   }
@@ -58,11 +59,7 @@
     > .image-container {
       width: 25%;
       aspect-ratio: 1;
-      > svg {
-        path {
-          fill: $color_primary;
-        }
-      }
+  
     }
 
     > button {

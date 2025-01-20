@@ -21,6 +21,7 @@ import {
   ShippingInfoForm,
   TalismanAcountsForm,
 } from '../components/form';
+import { EmptyCar } from './EmptyCar';
 
 //el precio del envío me lo devería dar la api de correos
 const deliveryPrice = 1;
@@ -407,6 +408,10 @@ function CheckOutAnalogic() {
   }, [singUpForm.errors]);
 
   console.log('touched', singUpForm.touched);
+
+  if(shopingCartItems.length<1){
+    return <EmptyCar/>
+  }
 
   return (
     <main className={shopingCartOpen ? 'viewport-background' : ''}>

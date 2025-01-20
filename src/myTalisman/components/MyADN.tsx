@@ -1,11 +1,15 @@
-import { useContext, useState } from "react";
-import { CloseIcon } from "../../assets/icons/icons";
-import { TalismanButtonFocusContext } from "../../context";
-import { ArticleMyADN } from "./ArticleMyADN";
-import { MyAdnProps } from "../interface/myAdn.interface";
+import {useContext, useState} from 'react';
+import {CloseIcon} from '../../assets/icons/icons';
+import {TalismanButtonFocusContext} from '../../context';
+import {MyAdnProps} from '../interface/myAdn.interface';
+import {ArticleMyADN} from './ArticleMyADN';
 
-
-const sections = ["Números", "Astros", "Naturaleza", "Mayas"];
+const sections = [
+  {section: 'Números', title: 'Energía de los Números'},
+  {section: 'Astros', title: 'Energía de los Astros'},
+  {section: 'H. Chino', title: 'Energía de la Naturaleza'},
+  {section: 'Kin Maya', title: 'Energía de los Mayas'},
+];
 
 export const MyADN = ({
   kingMayaUserInfo,
@@ -19,14 +23,12 @@ export const MyADN = ({
   aspectsAndPlanetsUserInfo,
   numberUserInfo,
 }: MyAdnProps) => {
-  const { handleButtonFocus } = useContext(TalismanButtonFocusContext);
+  const {handleButtonFocus} = useContext(TalismanButtonFocusContext);
 
-  const [sectionPosition, setSectionPosition] = useState<string>("Números");
+  const [sectionPosition, setSectionPosition] = useState<string>('Números');
   const handleSectionPosition = (item: string) => {
     setSectionPosition(item);
   };
-
-  console.log("xxxxxxxxxxxkingMayaUserInfo",tonesUserInfo)
 
   return (
     <div className="dropDownMyTalisman-container">
@@ -34,7 +36,7 @@ export const MyADN = ({
         <div className="icon-container">
           <CloseIcon
             onClick={() => {
-              handleButtonFocus("");
+              handleButtonFocus('');
             }}
           />
         </div>
@@ -42,9 +44,9 @@ export const MyADN = ({
 
       <div className="dropDownMyTalisman-title-wrapper">
         <h3>
-          {sectionPosition === "Naturaleza"
-            ? `Energía de la ${sectionPosition}`
-            : `Energía de los ${sectionPosition}`}
+          {sections.find(item => {
+            return item.section === sectionPosition;
+          })?.title ?? sections[0].title}
         </h3>
       </div>
 
@@ -53,18 +55,19 @@ export const MyADN = ({
           {sections.map((item, i) => {
             return (
               <li
-                onClick={() => handleSectionPosition(item)}
-                className={sectionPosition === item ? "button-focus-style" : ""}
-                key={i}
-              >
-                {item}
+                onClick={() => handleSectionPosition(item.section)}
+                className={
+                  sectionPosition === item.section ? 'button-focus-style' : ''
+                }
+                key={i}>
+                {item.section}
               </li>
             );
           })}
         </ul>
       </div>
 
-      {sectionPosition === "Números" && (
+      {sectionPosition === 'Números' && (
         <div className="dropDownMyTalisman-section-container">
           <ArticleMyADN
             title={numberUserInfo.title}
@@ -73,9 +76,9 @@ export const MyADN = ({
         </div>
       )}
 
-      {sectionPosition === "Astros" && (
+      {sectionPosition === 'Astros' && (
         <div className="dropDownMyTalisman-section-container">
-            <ArticleMyADN title={sunUserInfo.title} text={sunUserInfo.text} />
+          <ArticleMyADN title={sunUserInfo.title} text={sunUserInfo.text} />
           <br />
           <ArticleMyADN title={moonUserInfo.title} text={moonUserInfo.text} />
           <br />
@@ -94,7 +97,7 @@ export const MyADN = ({
             text={moonHouseUserInfo.text}
           />
           <br />
-        
+
           {aspectsAndPlanetsUserInfo && (
             <>
               <div className="dropDownMyTalisman-card-container">
@@ -122,7 +125,7 @@ export const MyADN = ({
           )}
         </div>
       )}
-      {sectionPosition === "Naturaleza" && (
+      {sectionPosition === 'H. Chino' && (
         <div className="dropDownMyTalisman-section-container">
           <ArticleMyADN
             title={chineseUserInfo.commonInfo.title}
@@ -136,7 +139,7 @@ export const MyADN = ({
         </div>
       )}
 
-      {sectionPosition === "Mayas" && (
+      {sectionPosition === 'Kin Maya' && (
         <div className="dropDownMyTalisman-section-container">
           <ArticleMyADN
             title={kingMayaUserInfo.title}

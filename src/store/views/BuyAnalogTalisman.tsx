@@ -17,6 +17,7 @@ import {
   modelOptions,
   piedraOptions,
 } from '../assets/buyAnalogTalismanInfo';
+import soldOuT from '../assets/soldout.png';
 import {DropdownMenu} from '../components/DropdownMenu';
 import {
   addProductToShoppingCart,
@@ -86,6 +87,10 @@ function BuyAnalogTalisman() {
 
   const addToShopingCart = async () => {
     //const shopingCartJSON = localStorage.getItem('shopingCart') || '[]';
+    if (!hasStock) {
+      toast.warning('Producto no disponible');
+      return;
+    }
     const shopingCart = shopingCartItems;
 
     const isPulsera =
@@ -156,6 +161,23 @@ function BuyAnalogTalisman() {
   const [product, setProduct] = useState<Product>(initialValue);
   const [listOfProducts, setListOfProducts] = useState<Product[]>([]);
 
+  const [hasStock, setHasStock] = useState(true);
+
+  const handleHasStock = async ({
+    model,
+    metal,
+    rock,
+    chain,
+  }: Omit<Product, 'price' | 'stock' | 'id' | 'images'>) => {
+    const product = await axios.post(
+      `${envs.API_DOMAIN}/api/v1/product/has-stock`,
+      {model, metal, rock, chain},
+    );
+
+    console.log('xxxxxxxxxxxx', hasStock);
+    setHasStock(product.data);
+  };
+
   //validaciones
   const [validationError, setAddedToCart] = useState(false);
   const [warnings, setWarnings] = useState({
@@ -195,6 +217,12 @@ function BuyAnalogTalisman() {
           });
         }
         if (item.model === 'Pulsera' && item.metal === metal) {
+          handleHasStock({
+            model: item.model,
+            metal: item.metal,
+            rock: '',
+            chain: '',
+          });
           return item;
         }
       });
@@ -225,6 +253,12 @@ function BuyAnalogTalisman() {
           item.chain === chain &&
           item.metal === metal
         ) {
+          handleHasStock({
+            model: item.model,
+            metal: item.metal,
+            rock: item.rock,
+            chain: item.chain,
+          });
           return item;
         }
       });
@@ -266,6 +300,9 @@ function BuyAnalogTalisman() {
     }
   }, [searchParams, listOfProducts]);
 
+
+  console.log("xxxxxxxxxx",product)
+
   return (
     <main
       className={
@@ -273,6 +310,11 @@ function BuyAnalogTalisman() {
       }>
       <section className="custonTalisman-container efectoReveal">
         <div className="custonTalisman-internal-container left">
+          {!hasStock && (
+            <div className="sold-out-container efectoReveal">
+              <img src={soldOuT} alt="sold-out" />
+            </div>
+          )}
           <img src={product.images[index]} alt={product.model} />
 
           <div className="custonTalisman-internal-bullet-container">

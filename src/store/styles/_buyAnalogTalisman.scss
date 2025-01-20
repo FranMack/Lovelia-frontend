@@ -38,6 +38,16 @@
       margin-bottom: 5%;
     }
   }
+
+  .sold-out-container{
+    position: absolute;
+    width: 70%;
+    z-index: 50;
+    img{
+      object-fit: cover;
+      width: 100%;
+    }
+  }
 }
 
 .custonTalisman-internal-bullet-container {
