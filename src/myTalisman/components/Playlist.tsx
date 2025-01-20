@@ -119,7 +119,6 @@ export function Playlist({
                       )}
                     </td>
                     <td className="td-trackname-column">
-                      <strong>{item.name}</strong>
                       <p>{item.name}</p>
                     </td>
                     <td>{item.duration}</td>
