@@ -9,6 +9,7 @@ export const CheckOutCard = ({
   chain,
   intention,
   price,
+  quantity
 }: ShopingCartItemOptions) => {
   return (
     <>
@@ -37,10 +38,14 @@ export const CheckOutCard = ({
               <strong>Y más</strong>
               <p>Timer, alarma, activación, ...</p>
             </div>
+            <div className="card-td">
+              <strong>Cantidad:</strong>
+              <p>{quantity}</p>
+            </div>
 
             <div className="card-td">
-              <strong>Precio unitario:</strong>
-              <span>{`$ ${price}`}</span>
+              <strong>Subtotal:</strong>
+              <span>{`$ ${price * quantity}`}</span>
             </div>
           </div>
         </div>
@@ -69,10 +74,15 @@ export const CheckOutCard = ({
               <strong>Intención:</strong>
               <p>{intention}</p>
             </div>
+            <div className="card-td">
+              <strong>Cantidad:</strong>
+              <p>{quantity}</p>
+            </div>
+            
 
             <div className="card-td">
-              <strong>Precio unitario:</strong>
-              <span>{`$ ${price}`}</span>
+            <strong>Subtotal:</strong>
+            <span>{`$ ${price * quantity}`}</span>
             </div>
           </div>
         </div>

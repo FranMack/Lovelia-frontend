@@ -50,7 +50,7 @@ function BuyAnalogTalisman() {
   };
 
   const {email} = useContext(UserContext);
-  const {toggleMenu, setShopingCartItems, shopingCartItems} =
+  const {toggleMenu, addItemToCart} =
     useContext(ShopingCartContext);
 
   const [index, setIndex] = useState<number>(0);
@@ -86,12 +86,10 @@ function BuyAnalogTalisman() {
   } = useContext(TalismanModelContext);
 
   const addToShopingCart = async () => {
-    //const shopingCartJSON = localStorage.getItem('shopingCart') || '[]';
     if (!hasStock) {
       toast.warning('Producto no disponible');
       return;
     }
-    const shopingCart = shopingCartItems;
 
     const isPulsera =
       optionModel === 'Pulsera' && optionMetal && optionIntention;
@@ -117,9 +115,7 @@ function BuyAnalogTalisman() {
         ? await addProductToShoppingCartDB(shopingCartNewItem)
         : await addProductToShoppingCart(shopingCartNewItem);
 
-      const shopingCartUpdate = [newProduct, ...shopingCart];
-
-      setShopingCartItems(shopingCartUpdate);
+      addItemToCart(newProduct);
 
       // Reset form fields
       resetForm();
@@ -163,18 +159,12 @@ function BuyAnalogTalisman() {
 
   const [hasStock, setHasStock] = useState(true);
 
-  const handleHasStock = async ({
-    model,
-    metal,
-    rock,
-    chain,
-  }: Omit<Product, 'price' | 'stock' | 'id' | 'images'>) => {
+  const handleHasStock = async (product_id: string) => {
     const product = await axios.post(
       `${envs.API_DOMAIN}/api/v1/product/has-stock`,
-      {model, metal, rock, chain},
+      {product_id},
     );
 
-    console.log('xxxxxxxxxxxx', hasStock);
     setHasStock(product.data);
   };
 
@@ -217,12 +207,7 @@ function BuyAnalogTalisman() {
           });
         }
         if (item.model === 'Pulsera' && item.metal === metal) {
-          handleHasStock({
-            model: item.model,
-            metal: item.metal,
-            rock: '',
-            chain: '',
-          });
+          handleHasStock(item.id);
           return item;
         }
       });
@@ -253,12 +238,7 @@ function BuyAnalogTalisman() {
           item.chain === chain &&
           item.metal === metal
         ) {
-          handleHasStock({
-            model: item.model,
-            metal: item.metal,
-            rock: item.rock,
-            chain: item.chain,
-          });
+          handleHasStock(item.id);
           return item;
         }
       });
@@ -299,9 +279,6 @@ function BuyAnalogTalisman() {
       );
     }
   }, [searchParams, listOfProducts]);
-
-
-  console.log("xxxxxxxxxx",product)
 
   return (
     <main

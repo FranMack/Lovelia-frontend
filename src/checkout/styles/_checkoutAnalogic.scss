@@ -497,15 +497,15 @@ justify-content: space-between;
 }
 
 .checkout-card-container {
-  width: 80%;
-  height: 20vh;
+  width: 90%;
+  height: 21vh;
   margin: 0 auto;
   display: flex;
   align-items: center;
   padding-bottom: 1%;
   background-color: $color_background2;
   img {
-    width: 30%;
+    height: 100%;
     aspect-ratio: 1;
   }
 
