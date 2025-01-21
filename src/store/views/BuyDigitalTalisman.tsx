@@ -43,7 +43,7 @@ function BuyDigitalTalisman() {
     navigate('/portal-usuario');
   };
 
-  const {shopingCartOpen, toggleMenu,shopingCartItems, setShopingCartItems} =
+  const {shopingCartOpen, toggleMenu,addItemToCart} =
     useContext(ShopingCartContext);
 
   const {email} = useContext(UserContext);
@@ -64,9 +64,9 @@ function BuyDigitalTalisman() {
       ? await addProductToShoppingCartDB(shopingCartNewItem)
       : await addProductToShoppingCart(shopingCartNewItem);
 
-    const shopingCartUpdate = [newProduct, ...shopingCartItems];
 
-    setShopingCartItems(shopingCartUpdate);
+
+    addItemToCart(newProduct)
 
     toggleMenu();
 

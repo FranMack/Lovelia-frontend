@@ -13,7 +13,7 @@ export function ShopingCart() {
   const {toggleMenu, shopingCartItems} = useContext(ShopingCartContext);
 
   const totalPrice = () => {
-    return shopingCartItems.reduce((acc, item) => acc + item.price, 0);
+    return shopingCartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   };
 
   const linkToCheckOut = () => {

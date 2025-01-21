@@ -22,6 +22,7 @@ interface ShopingCartContextValue {
   setShopingCartItems: (items: ShopingCartItemOptions[]) => void;
   refreshShoppingCart: () => void;
   cleanShoppingCart: (email: string) => void;
+  addItemToCart:(product:ShopingCartItemOptions)=>void
 }
 
 interface ShopingCartContextProviderProps {
@@ -35,6 +36,7 @@ export const shopingCartContextDefaultValue: ShopingCartContextValue = {
   setShopingCartItems: () => {},
   refreshShoppingCart: () => {},
   cleanShoppingCart: () => {},
+  addItemToCart:()=>{}
 };
 
 export const ShopingCartContext = createContext(shopingCartContextDefaultValue);
@@ -76,6 +78,30 @@ export const ShopingCartContextProvider = ({
       });
   };
 
+  const addItemToCart=(product:ShopingCartItemOptions)=>{
+
+    if(shopingCartItems.some((item)=>{return item.product_id===product.product_id && item.intention===product.intention})){
+      const shoppingCart=shopingCartItems.map((item)=>{
+        if(item.product_id===product.product_id) {
+          return {...item,quantity:item.quantity+1}
+        }
+        return item
+      })
+  
+      setShopingCartItems(shoppingCart)
+    }
+
+    else{
+      const shopingCartUpdate = [product, ...shopingCartItems];
+
+      setShopingCartItems(shopingCartUpdate);
+    }
+   
+
+  }
+
+
+
   const togleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -87,6 +113,7 @@ export const ShopingCartContextProvider = ({
     setShopingCartItems: setShopingCartItems,
     refreshShoppingCart: refreshShoppingCart,
     cleanShoppingCart: cleanShoppingCart,
+    addItemToCart:addItemToCart
   };
 
   return (
