@@ -14,6 +14,10 @@ export const addProductToShoppingCartDB = async (
         {...product},
         {withCredentials: true},
       );
+
+      const cart = JSON.parse(localStorage.getItem('shopingCart') || '[]');
+      const updatedCart = [{...newProduct.data, image: product.image}, ...cart];
+      localStorage.setItem('shopingCart', JSON.stringify(updatedCart));
       return {...newProduct.data, image: product.image};
     } catch (error) {
       console.log(error);

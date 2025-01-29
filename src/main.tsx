@@ -1,7 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import App from "./App.tsx";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import {BrowserRouter} from 'react-router-dom';
+import App from './App.tsx';
 import {
   IntentionContextProvider,
   MobileMenuContextProvider,
@@ -10,13 +10,14 @@ import {
   TalismanModelContextProvider,
   UserContextProvider,
   VolumeContextProvider,
-} from "./context/";
-import { ActivationStepsContextProvider } from "./context/activationStepsContext.tsx";
-import { TalismanAudioContextProvider } from "./context/talismanAudioContext.tsx";
-import { TimerContextProvider } from "./context/timerContext.tsx";
-import "./styles/styles.scss";
+} from './context/';
+import {ActivationStepsContextProvider} from './context/activationStepsContext.tsx';
+import {CheckoutAddressContextProvider} from './context/checkoutAddressContext.tsx';
+import {TalismanAudioContextProvider} from './context/talismanAudioContext.tsx';
+import {TimerContextProvider} from './context/timerContext.tsx';
+import './styles/styles.scss';
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
       <UserContextProvider>
@@ -29,7 +30,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
                     <TalismanAudioContextProvider>
                       <ActivationStepsContextProvider>
                         <MobileMenuContextProvider>
-                          <App />
+                          <CheckoutAddressContextProvider>
+                            <App />
+                          </CheckoutAddressContextProvider>
                         </MobileMenuContextProvider>
                       </ActivationStepsContextProvider>
                     </TalismanAudioContextProvider>
@@ -41,39 +44,47 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         </ShopingCartContextProvider>
       </UserContextProvider>
     </BrowserRouter>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
 // Register the service worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js').then((registration) => {
-      console.log('Service Worker registered with scope:', registration.scope);
+    navigator.serviceWorker
+      .register('/service-worker.js')
+      .then(registration => {
+        console.log(
+          'Service Worker registered with scope:',
+          registration.scope,
+        );
 
-      // Listen for updates found
-      registration.onupdatefound = () => {
-        const newWorker = registration.installing;
-        if (newWorker) {
-          newWorker.onstatechange = () => {
-            if (newWorker.state === 'installed') {
-              if (navigator.serviceWorker.controller) {
-                // New update available, prompt user or handle logic
-                console.log('New service worker available.');
+        // Listen for updates found
+        registration.onupdatefound = () => {
+          const newWorker = registration.installing;
+          if (newWorker) {
+            newWorker.onstatechange = () => {
+              if (newWorker.state === 'installed') {
+                if (navigator.serviceWorker.controller) {
+                  // New update available, prompt user or handle logic
+                  console.log('New service worker available.');
 
-                // Optional: Notify user for manual reload
-                if (confirm('New version available. Would you like to refresh?')) {
-                  window.location.reload();
+                  // Optional: Notify user for manual reload
+                  if (
+                    confirm('New version available. Would you like to refresh?')
+                  ) {
+                    window.location.reload();
+                  }
+                } else {
+                  // Service worker is installed for the first time
+                  console.log('Service Worker installed for the first time.');
                 }
-              } else {
-                // Service worker is installed for the first time
-                console.log('Service Worker installed for the first time.');
               }
-            }
-          };
-        }
-      };
-    }).catch((error) => {
-      console.log('Service Worker registration failed:', error);
-    });
+            };
+          }
+        };
+      })
+      .catch(error => {
+        console.log('Service Worker registration failed:', error);
+      });
   });
 }

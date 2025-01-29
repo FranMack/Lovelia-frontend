@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import logoDhl from '../../assets/logo-dhl.png';
+import { FormikErrors, FormikTouched } from 'formik';
+import { InitialValues } from '../../interfaces/checkoutInterfaces';
 
 interface Props {
   values: {
@@ -17,12 +19,8 @@ interface Props {
   deliveryPrice: number;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-  errors: {
-    [key: string]: string | undefined | string[];
-  };
-  touched: {
-    [key: string]: boolean | undefined;
-  };
+ errors: FormikErrors<InitialValues>;
+  touched:FormikTouched<InitialValues>;
   section: string[];
 
   handleButtonFocus: (section: string) => void;
@@ -40,6 +38,16 @@ export const ShippingInfoForm = ({
   validation,
 }: Props) => {
   const [warning, setWarning] = useState(false);
+
+  const nextStep=()=>{
+    if(!validation){
+      setWarning(true)
+      return
+    }
+
+    localStorage.setItem("checkout-address",JSON.stringify(values))
+    handleButtonFocus(section[2])
+  }
 
   return (
     <div className="checkout-botton-left-container">
@@ -282,9 +290,7 @@ export const ShippingInfoForm = ({
 
         <button
           type="button"
-          onClick={() => {
-            validation ? handleButtonFocus(section[2]) : setWarning(true);
-          }}>
+          onClick={nextStep}>
           Continuar
         </button>
       </div>

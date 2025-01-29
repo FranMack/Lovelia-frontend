@@ -3,7 +3,6 @@ import {ChangeEvent, useContext, useEffect, useRef, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {
   ActivationIcon,
-  //ChatIcon,
   ClockIcon,
   EyeClose,
   EyeOpen,
@@ -410,13 +409,13 @@ export const ThreeJsFrame = () => {
             }
           }
 
-          setTimeout(() => {
+          /*setTimeout(() => {
             axios.post(
               `${envs.API_DOMAIN}/api/v1/user/cleanUserJSON`,
               {email},
               {withCredentials: true},
             );
-          }, 12000000);
+          }, 12000000);*/
 
           return;
         }

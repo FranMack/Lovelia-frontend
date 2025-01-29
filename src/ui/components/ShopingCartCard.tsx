@@ -1,8 +1,8 @@
+import axios from 'axios';
 import {useContext} from 'react';
 import {GarbageCan} from '../../assets/icons/icons';
+import {envs} from '../../config';
 import {ShopingCartContext, UserContext} from '../../context';
-import axios from 'axios';
-import { envs } from '../../config';
 
 interface ShopingCartCardOptions {
   shoppingCartItem_id: number | string;
@@ -13,7 +13,7 @@ interface ShopingCartCardOptions {
   chain?: string;
   intention?: string;
   price: number;
-  quantity:number
+  quantity: number;
 }
 
 export const ShopingCartCard = ({
@@ -25,44 +25,36 @@ export const ShopingCartCard = ({
   chain,
   intention,
   price,
-  quantity
+  quantity,
 }: ShopingCartCardOptions) => {
-
-  const {email}=useContext(UserContext)
+  const {email} = useContext(UserContext);
   const {setShopingCartItems, shopingCartItems} =
     useContext(ShopingCartContext);
 
   const deleteShopingCartItem = async (
     shoppingCartItem_id: number | string,
   ) => {
-
-    try{
-
+    try {
       const shopingCartUpdated = shopingCartItems.filter(item => {
         if (item.shoppingCartItem_id !== shoppingCartItem_id) {
           return item;
         }
       });
 
-      if(email){await axios.delete(`${envs.API_DOMAIN}/api/v1/shopping-cart/delete/${shoppingCartItem_id}`,{withCredentials:true})}
-
-      else{
-
+      if (email) {
+        await axios.delete(
+          `${envs.API_DOMAIN}/api/v1/shopping-cart/delete/${shoppingCartItem_id}`,
+          {withCredentials: true},
+        );
+        localStorage.setItem('shopingCart', JSON.stringify(shopingCartUpdated));
+      } else {
         localStorage.setItem('shopingCart', JSON.stringify(shopingCartUpdated));
       }
-    
+
       setShopingCartItems(shopingCartUpdated);
-
+    } catch (error) {
+      console.log(error);
     }
-
-
-    catch(error){
-      console.log(error)
-    }
-
-
-
-   
   };
   return (
     <>

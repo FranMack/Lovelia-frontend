@@ -97,9 +97,9 @@ function CheckOutAnalogic() {
         '3. Talismán Digital',
         '4. Pago',
       ]);
-      const numberOfTalismans = shopingCartItems.filter(item => {
+      const numberOfTalismans = shopingCartItems.find(item => {
         return item.model === 'Digital';
-      }).length;
+      })?.quantity || 0;
 
       setNumberOfDigitalTalisman(numberOfTalismans);
 
@@ -163,20 +163,61 @@ function CheckOutAnalogic() {
     }
   };
 
+
+
+  const getInitialDataAddress = () => {
+    try {
+      const data = JSON.parse(localStorage.getItem("checkout-address") || "{}");
+      return {
+        phone: data.phone || "",
+        receiver: data.receiver || "",
+        street: data.street || "",
+        streetNumber: data.streetNumber || "",
+        apartmentNumber: data.apartmentNumber || "",
+        state: data.state || "",
+        city: data.city || "",
+        country: data.country || "",
+        postalCode: data.postalCode || "",
+      };
+    } catch {
+      // Si hay algún error en el formato, retornar valores predeterminados
+      return {
+        phone: "",
+        receiver: "",
+        street: "",
+        streetNumber: "",
+        apartmentNumber: "",
+        state: "",
+        city: "",
+        country: "",
+        postalCode: "",
+      };
+    }
+  };
+
+  const [initialDataAddress]=useState(getInitialDataAddress())
+
+
+
+
+
+  
+
   const singUpForm = useFormik({
+    enableReinitialize: true, 
     initialValues: {
       name: userContextInfo.name,
       lastname: userContextInfo.lastname,
       email: userContextInfo.email,
-      phone: '',
-      receiver: '',
-      street: '',
-      streetNumber: '',
-      apartmentNumber: '',
-      state: '',
-      city: '',
-      country: '',
-      postalCode: '',
+      phone: initialDataAddress.phone,
+      receiver: initialDataAddress.receiver,
+      street:initialDataAddress.street,
+      streetNumber: initialDataAddress.streetNumber,
+      apartmentNumber: initialDataAddress.apartmentNumber,
+      state: initialDataAddress.state,
+      city: initialDataAddress.city,
+      country: initialDataAddress.city,
+      postalCode: initialDataAddress.postalCode,
       billingName: '',
       billingLastname: '',
       billingRfc: '',
@@ -408,6 +449,9 @@ function CheckOutAnalogic() {
   }, [singUpForm.errors]);
 
   console.log('touched', singUpForm.touched);
+
+
+ 
 
   if (shopingCartItems.length < 1) {
     return <EmptyCar />;
