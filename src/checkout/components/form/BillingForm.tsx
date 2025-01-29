@@ -1,4 +1,6 @@
+import { FormikErrors, FormikTouched } from 'formik';
 import {taxRegimeOptions} from '../../helpers/taxRegimeOptions';
+import { InitialValues } from '../../interfaces/checkoutInterfaces';
 
 interface Props {
   values: {
@@ -15,12 +17,8 @@ interface Props {
   handleBlur: (
     e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>,
   ) => void;
-  errors: {
-    [key: string]: string | undefined | string[];
-  };
-  touched: {
-    [key: string]: boolean | undefined;
-  };
+  errors: FormikErrors<InitialValues>;
+   touched:FormikTouched<InitialValues>;
 }
 
 export const BillingForm = ({

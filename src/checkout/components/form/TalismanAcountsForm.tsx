@@ -1,4 +1,6 @@
+import { FormikErrors, FormikTouched } from 'formik';
 import React, {useState} from 'react';
+import { InitialValues } from '../../interfaces/checkoutInterfaces';
 
 interface Props {
   values: {
@@ -7,12 +9,8 @@ interface Props {
     // Agrega otros campos de Formik aquí según lo necesites
   };
   handleBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-  errors: {
-    [key: string]: string | undefined | string[];
-  };
-  touched?: {
-    [key: string]: boolean | undefined;
-  };
+ errors: FormikErrors<InitialValues>;
+  touched:FormikTouched<InitialValues>;
   section: string[];
 
   handleButtonFocus: (section: string) => void;

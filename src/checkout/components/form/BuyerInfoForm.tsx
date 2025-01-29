@@ -1,4 +1,7 @@
+import { FormikErrors,FormikTouched  } from "formik";
 import { useState } from "react";
+import { InitialValues } from "../../interfaces/checkoutInterfaces";
+
 
 
 interface Props {
@@ -11,12 +14,8 @@ interface Props {
   validation:boolean
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-  errors: {
-    [key: string]: string | undefined | string[];
-  };
-  touched: {
-    [key: string]: boolean | undefined;
-  };
+  errors: FormikErrors<InitialValues>;
+  touched:FormikTouched<InitialValues>;
   section:string[],
 
   handleButtonFocus:(section:string)=>void

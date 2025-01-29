@@ -6,6 +6,7 @@ import {CloseIcon} from '../../assets/icons/icons';
 import {ShopingCartContext} from '../../context/modalShopingCartContext';
 import {Button} from './Button';
 import {ShopingCartCard} from './ShopingCartCard';
+import { numberOfProducts } from '../../utils/numberOfProducts';
 
 export function ShopingCart() {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ export function ShopingCart() {
         <div className="shoping-cart-title">
           <h4>
             Carrito de compras
-            {shopingCartItems.length > 0 && ` (${shopingCartItems.length})`}
+            {shopingCartItems.length > 0 && ` (${numberOfProducts(shopingCartItems)})`}
           </h4>
           <CloseIcon onClick={toggleMenu} />
         </div>
