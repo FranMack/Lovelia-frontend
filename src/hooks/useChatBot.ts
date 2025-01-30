@@ -67,7 +67,10 @@ export const useChatBot = (astroData: MyAdnProps) => {
             3. Cerrar con un mensaje positivo y empoderador.
             
             Aquí tienes información sobre el ADN energético de la persona que te consulta:
-            ${astroData}`,
+            ${astroData}
+            
+            Usa esta información para responder preguntas relacionadas con astrología, ascendente, signos y cualquier consulta sobre la energía personal del usuario. No pidas nuevamente datos si ya están en ${astroData}.
+            Si falta información específica para calcular algo, pídele amablemente al usuario los datos que faltan.`,
           },
           ...messages.map(msg => ({
             role: msg.sender === 'user' ? 'user' : 'assistant',
