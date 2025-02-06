@@ -361,6 +361,9 @@ export const ThreeJsFrame = () => {
             title: '',
             text: [],
           },
+          aspectingPlanet:{
+            title:''
+          },
         },
       ],
       filterAspects: [],
@@ -723,7 +726,7 @@ export const ThreeJsFrame = () => {
   
 
 
-
+//console.log("astrodata-Chat",astrologicalData)
 
   return (
     <>

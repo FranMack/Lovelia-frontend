@@ -204,7 +204,7 @@ function CheckOutAnalogic() {
   
 
   const singUpForm = useFormik({
-    enableReinitialize: true, 
+    //enableReinitialize: true, 
     initialValues: {
       name: userContextInfo.name,
       lastname: userContextInfo.lastname,

@@ -116,7 +116,7 @@ export const MyADN = ({
                 return (
                   <ArticleMyADN
                     key={j}
-                    title={`${item.planet.title} ${item.aspect}`}
+                    title={`${item.aspectingPlanet.title} ${item.aspect} ${item.planet.title} `}
                     text={item.planet.text}
                   />
                 );

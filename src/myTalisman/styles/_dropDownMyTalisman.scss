@@ -129,12 +129,15 @@
 
 .dropDownMyTalisman-card-container {
   margin: 0 auto;
+  margin-top: 1vh;
+  margin-bottom: 2vh;
   width: 95%;
   display: flex;
   flex-direction: column;
-  row-gap: 2vh;
+  row-gap: 0vh;
   > h5 {
-    margin-top: 1vh;
+    margin-bottom: 2vh;
+   
     font-size: 2.1rem;
     font-style: normal;
     font-weight: 400;
@@ -145,7 +148,7 @@
     font-size: 1.7rem;
     font-style: normal;
     font-weight: 300;
-    line-height: 2.5rem; /* 142.857% */
+    line-height: 2.6rem; /* 142.857% */
   }
 }
 
