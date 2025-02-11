@@ -84,6 +84,7 @@ function CheckOutAnalogic() {
   }, [buttonFocusPosition]);
 
   useEffect(() => {
+  
     const hasTalismanDigital = shopingCartItems.some(item => {
       return item.model === 'Digital';
     });
@@ -107,11 +108,12 @@ function CheckOutAnalogic() {
 
       return;
     }
+
     if (hasTalismanDigital && !hasTalismanAnalog) {
       setSections(['1. Identificación', '2. Talismán Digital', '3. Pago']);
-      const numberOfTalismans = shopingCartItems.filter(item => {
+      const numberOfTalismans = shopingCartItems.find(item => {
         return item.model === 'Digital';
-      }).length;
+      })?.quantity || 0;
 
       setNumberOfDigitalTalisman(numberOfTalismans);
 
@@ -120,6 +122,7 @@ function CheckOutAnalogic() {
       return;
     }
   }, [shopingCartItems]);
+
 
   const productsPrice = () => {
     return shopingCartItems.reduce((acc, item) => acc + item.price, 0);
@@ -204,7 +207,7 @@ function CheckOutAnalogic() {
   
 
   const singUpForm = useFormik({
-    enableReinitialize: true, 
+    //enableReinitialize: true, 
     initialValues: {
       name: userContextInfo.name,
       lastname: userContextInfo.lastname,
@@ -287,16 +290,16 @@ function CheckOutAnalogic() {
         ? Yup.string().required('Campo requerido')
         : Yup.string(),
 
-      talismanDigitalAcounts:
+        talismanDigitalAcounts: 
         numberOfDigitalTalisman > 0
           ? Yup.array()
               .of(
                 Yup.string()
-                  .email('Email no valido')
-                  .required('Campo requerido'),
+                  .email('Email no válido')
+                  .required('Campo requerido')
               )
-              .min(1, 'Email es requerido')
-          : Yup.array(),
+              .min(numberOfDigitalTalisman, `Debes ingresar al menos ${numberOfDigitalTalisman} email(s).`)
+          : Yup.array().notRequired(),
     }),
 
     onSubmit: async values => {
@@ -451,7 +454,8 @@ function CheckOutAnalogic() {
   console.log('touched', singUpForm.touched);
 
 
- 
+  console.log('errors', singUpForm.errors.talismanDigitalAcounts);
+  console.log('values', singUpForm.values.talismanDigitalAcounts);
 
   if (shopingCartItems.length < 1) {
     return <EmptyCar />;
@@ -510,6 +514,7 @@ function CheckOutAnalogic() {
               setFieldValue={singUpForm.setFieldValue}
               handleTalismanDigitalInput={handleTalismanDigitalInput}
               checkTalismanAcount={() => checkTalismanAcount()}
+              submitCount={singUpForm.submitCount}
             />
           ) : buttonFocusPosition.includes('Envío') ? (
             <ShippingInfoForm

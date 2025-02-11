@@ -6,7 +6,7 @@ import BeatLoader from 'react-spinners/BeatLoader';
 import * as Yup from 'yup';
 import {EyeClose, EyeOpen} from '../../assets/icons/icons';
 import {envs} from '../../config';
-import {ShopingCartContext} from '../../context';
+import {ShopingCartContext, UserContext} from '../../context';
 import {TimerContext} from '../../context/timerContext';
 import {BackgroundVideo} from '../../ui/components';
 import {Button} from '../../ui/components/Button';
@@ -15,6 +15,16 @@ function Register() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const {
+    setEmail,
+    setId,
+    setName,
+    setToken,
+    setLastname,
+    setSuscription,
+    setTalismanActivated,
+  } = useContext(UserContext);
 
   //is loading
 
@@ -119,7 +129,37 @@ function Register() {
             setConfirmedAcount(true);
 
             // If user comes with confirmedAccount = true, we redirect to login but we need to redirect to /checkout/digital
-            localStorage.setItem('checkoutPath', '/checkout/digital');
+
+            axios
+              .post(
+                `${envs.API_DOMAIN}/api/v1/user/login`,
+                {
+                  email: values.email,
+                  password: values.password,
+                },
+                {withCredentials: true},
+              )
+              .then(({data}) => {
+                setEmail(data.email);
+                setId(data.id);
+                setToken(data.token);
+                setName(data.name);
+                setLastname(data.lastname);
+                setSuscription(data.subscription);
+                setTalismanActivated(data.talismanActivated);
+                localStorage.setItem(
+                  'subscriptionActive',
+                  JSON.stringify(data.subscription ? true : false),
+                );
+                localStorage.setItem(
+                  'talismanActivated',
+                  JSON.stringify(data.talismanActivated ? true : false),
+                );
+                navigatge('/checkout/digital'); // Redirigir al usuario
+              })
+              .catch(err => {
+                console.error('Error en login automático:', err);
+              });
           }
 
           handleMessage();

@@ -1,5 +1,7 @@
 import axios from 'axios';
-import {useContext} from 'react';
+import {useContext, useState} from 'react';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {GarbageCan} from '../../assets/icons/icons';
 import {envs} from '../../config';
 import {ShopingCartContext, UserContext} from '../../context';
@@ -14,6 +16,7 @@ interface ShopingCartCardOptions {
   intention?: string;
   price: number;
   quantity: number;
+  product_id: string;
 }
 
 export const ShopingCartCard = ({
@@ -26,6 +29,7 @@ export const ShopingCartCard = ({
   intention,
   price,
   quantity,
+  product_id,
 }: ShopingCartCardOptions) => {
   const {email} = useContext(UserContext);
   const {setShopingCartItems, shopingCartItems} =
@@ -56,6 +60,65 @@ export const ShopingCartCard = ({
       console.log(error);
     }
   };
+
+  const [productQuantity, setProductQuantity] = useState(quantity);
+
+  const updateCartQuantity = async (newQuantity: number) => {
+    const updatedCart = shopingCartItems.map(item =>
+      item.shoppingCartItem_id === shoppingCartItem_id
+        ? { ...item, quantity: newQuantity }
+        : item
+    );
+  
+    
+      try {
+        const response = await axios.put(
+          `${envs.API_DOMAIN}/api/v1/shopping-cart/update-quantity`,
+          { shoppingCartItem_id:email? shoppingCartItem_id:"", quantity: newQuantity,product_id },
+          { withCredentials: true }
+        );
+  
+        if (response.status === 200) {
+          setShopingCartItems(updatedCart);
+          setProductQuantity(newQuantity);
+          localStorage.setItem('shopingCart', JSON.stringify(updatedCart));
+        } 
+      } catch (error: unknown) {
+        if (
+          typeof error === "object" &&
+          error !== null &&
+          "response" in error &&
+          typeof error.response === "object" &&
+          error.response !== null &&
+          "data" in error.response &&
+          typeof error.response.data === "object" &&
+          error.response.data !== null &&
+          "error" in error.response.data &&
+          typeof error.response.data.error === "string"
+        ) {
+          toast.error(error.response.data.error);
+        } else {
+          console.log(error);
+        }
+      }
+
+  };
+  
+  const handleProductQuantity = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    const buttonId = event.currentTarget.id;
+    let newQuantity = productQuantity;
+  
+    if (buttonId === 'next' ) {
+      newQuantity += 1;
+    } else if (buttonId === 'previous' && productQuantity > 1) {
+      newQuantity -= 1;
+    } else {
+      return; // No hacer nada si no se cumple ninguna condición
+    }
+  
+    await updateCartQuantity(newQuantity);
+  };
+
   return (
     <>
       {model === 'Digital' ? (
@@ -89,7 +152,15 @@ export const ShopingCartCard = ({
             </div>
             <div className="card-td">
               <strong>Cantidad:</strong>
-              <p>{quantity}</p>
+              <div className="quantityContainer">
+                <button onClick={e => handleProductQuantity(e)} id="previous">
+                  -
+                </button>
+                <p>{productQuantity}</p>
+                <button onClick={e => handleProductQuantity(e)} id="next">
+                  +
+                </button>
+              </div>
             </div>
 
             <div className="card-td price">
@@ -133,12 +204,21 @@ export const ShopingCartCard = ({
             </div>
             <div className="card-td">
               <strong>Cantidad:</strong>
-              <p>{quantity}</p>
+
+              <div className="quantityContainer">
+                <button onClick={e => handleProductQuantity(e)} id="previous">
+                  -
+                </button>
+                <p>{productQuantity}</p>
+                <button onClick={e => handleProductQuantity(e)} id="next">
+                  +
+                </button>
+              </div>
             </div>
 
             <div className="card-td price">
               <strong>Subtotal:</strong>
-              <span>{`$ ${price * quantity}`}</span>
+              <span>{`$ ${price * productQuantity}`}</span>
             </div>
           </div>
         </div>

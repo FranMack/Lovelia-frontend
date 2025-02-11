@@ -94,14 +94,9 @@ function Login() {
 
           refreshShoppingCart();
 
-          const checkoutPath = localStorage.getItem('checkoutPath');
-          if (checkoutPath && data.subscription && !data.talismanActivated) {
-            navigatge(checkoutPath);
-          } else {
-            navigatge('/profile');
-          }
+          navigatge('/profile');
 
-          localStorage.removeItem('checkoutPath');
+         
         })
         .catch(error => {
           console.log(error);

@@ -1,25 +1,22 @@
 import { FormikErrors, FormikTouched } from 'formik';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { InitialValues } from '../../interfaces/checkoutInterfaces';
 
 interface Props {
   values: {
     talismanDigitalAcounts: string[];
-
-    // Agrega otros campos de Formik aquí según lo necesites
   };
   handleBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
- errors: FormikErrors<InitialValues>;
-  touched:FormikTouched<InitialValues>;
+  errors: FormikErrors<InitialValues>;
+  touched: FormikTouched<InitialValues>;
   section: string[];
-
   handleButtonFocus: (section: string) => void;
   numberOfDigitalTalisman: number;
   talismanAcounts: string[];
   setFieldValue: (a: string, b: string) => void;
   handleTalismanDigitalInput: (a: number, b: string) => void;
   checkTalismanAcount: () => Promise<boolean | undefined>;
-
+  submitCount: number;
 }
 
 export const TalismanAcountsForm = ({
@@ -34,8 +31,10 @@ export const TalismanAcountsForm = ({
   handleTalismanDigitalInput,
   checkTalismanAcount,
   touched,
+  submitCount,
 }: Props) => {
   const [warning, setWarning] = useState(false);
+
   return (
     <div className="checkout-botton-left-container">
       <div className="checkout-title-container">
@@ -45,48 +44,36 @@ export const TalismanAcountsForm = ({
 
       <div className="checkout-form">
         {[...Array(numberOfDigitalTalisman)].map((_, i) => {
+          const isEmpty = !values.talismanDigitalAcounts[i];
+          const hasError = Array.isArray(errors?.talismanDigitalAcounts) && errors.talismanDigitalAcounts[i];
+          const shouldShowError = (isEmpty && (warning || touched[`email${i}`] || submitCount > 0)) || hasError;
+          
           return (
-            <>
-              <label htmlFor="email">Email</label>
+            <React.Fragment key={i}>
+              <label htmlFor={`email${i}`}>Email</label>
               <input
                 value={values.talismanDigitalAcounts[i]}
                 onBlur={handleBlur}
                 onChange={e => {
                   setFieldValue(`talismanDigitalAcounts[${i}]`, e.target.value);
-
                   handleTalismanDigitalInput(i, e.target.value);
                 }}
                 name={`email${i}`}
-                type={`email${i}`}
+                type="email"
                 placeholder="ejemplo@gmail.com"
-                className={
-                  (errors?.talismanDigitalAcounts && touched![`email${i}`]) || !values.talismanDigitalAcounts||
-                  talismanAcounts[i] ||
-                  (warning && !values.talismanDigitalAcounts[i])
-                    ? 'input-error'
-                    : ''
-                }
+                className={shouldShowError || talismanAcounts[i] ? 'input-error' : ''}
               />
-
-              {errors?.talismanDigitalAcounts && touched![`email${i}`] && (
+              
+              {shouldShowError && (
                 <span className="checkOut-helpers-error">
-                  {Array.isArray(errors?.talismanDigitalAcounts)
-                    ? errors?.talismanDigitalAcounts?.[i]
-                    : errors?.talismanDigitalAcounts}
+                  {hasError || 'Campo Requerido'}
                 </span>
               )}
-
+              
               {talismanAcounts[i] && (
-                <span className="checkOut-helpers-error">
-                  Correo ya registrado
-                </span>
+                <span className="checkOut-helpers-error">Correo ya registrado</span>
               )}
-              {warning && !values.talismanDigitalAcounts[i] && !touched![`email${i}`] && (
-                  <span className="checkOut-helpers-error">
-                    Campo Requerido
-                  </span>
-                )}
-            </>
+            </React.Fragment>
           );
         })}
 
@@ -94,25 +81,18 @@ export const TalismanAcountsForm = ({
           type="button"
           onClick={async () => {
             const checkAcounts = await checkTalismanAcount();
+            const touchedOk = !!touched.talismanDigitalAcounts;
+            const validation = !errors?.talismanDigitalAcounts;
+            const { talismanDigitalAcounts } = values;
 
-            const touchedOk=touched!.talismanDigitalAcounts ? true: false
-
-            const validation= !errors?.talismanDigitalAcounts ? true:false
-
-            const {talismanDigitalAcounts}=values
-
-
-            console.log("xxxxxxxxxxxx",talismanDigitalAcounts)
-
-         
-
-            if (checkAcounts && validation && talismanDigitalAcounts.length>0 ) {
+            if (checkAcounts && validation && talismanDigitalAcounts.length > 0) {
               handleButtonFocus(section[section.length - 1]);
             }
             if (!validation || !touchedOk) {
               setWarning(true);
             }
-          }}>
+          }}
+        >
           Continuar
         </button>
       </div>

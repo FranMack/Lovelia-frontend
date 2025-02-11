@@ -111,10 +111,12 @@ function BuyAnalogTalisman() {
         quantity: 1,
       };
 
+      
       const newProduct = email
         ? await addProductToShoppingCartDB(shopingCartNewItem)
         : await addProductToShoppingCart(shopingCartNewItem);
 
+        console.log("xxxxxxxnewProductxxxxxxx",newProduct)
       addItemToCart(newProduct);
 
       // Reset form fields
