@@ -4,9 +4,9 @@ import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {CloseIcon} from '../../assets/icons/icons';
 import {ShopingCartContext} from '../../context/modalShopingCartContext';
+import {numberOfProducts} from '../../utils/numberOfProducts';
 import {Button} from './Button';
 import {ShopingCartCard} from './ShopingCartCard';
-import { numberOfProducts } from '../../utils/numberOfProducts';
 
 export function ShopingCart() {
   const navigate = useNavigate();
@@ -14,7 +14,10 @@ export function ShopingCart() {
   const {toggleMenu, shopingCartItems} = useContext(ShopingCartContext);
 
   const totalPrice = () => {
-    return shopingCartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    return shopingCartItems.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0,
+    );
   };
 
   const linkToCheckOut = () => {
@@ -27,13 +30,19 @@ export function ShopingCart() {
     }
   };
 
+  const linkTo = (path: string) => {
+    navigate(path);
+    toggleMenu();
+  };
+
   return (
     <div className="shoping-cart-conteiner shopingCartReveal">
       <div className="shoping-cart-top-container">
         <div className="shoping-cart-title">
           <h4>
             Carrito de compras
-            {shopingCartItems.length > 0 && ` (${numberOfProducts(shopingCartItems)})`}
+            {shopingCartItems.length > 0 &&
+              ` (${numberOfProducts(shopingCartItems)})`}
           </h4>
           <CloseIcon onClick={toggleMenu} />
         </div>
@@ -46,7 +55,16 @@ export function ShopingCart() {
       </div>
 
       <div className="shoping-cart-button-container">
-        <hr />
+        <div className="termsAndConditions-container">
+          <p>
+            {' '}
+            <span onClick={() => linkTo('/terminos-y-condiciones')}>
+              Términos y condiciones
+            </span>{' '}
+          </p>
+          <hr />
+        </div>
+
         <div className="shoping-cart-button-price-container">
           <p>Total estimado</p>
           <p>${totalPrice()}</p>

@@ -1,8 +1,7 @@
 import {ReactNode, useContext} from 'react';
-import {Navigate, useLocation} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import {UserContext} from '../context';
 import {Loader} from '../ui/pages/Loader';
-
 
 interface PrivateRouteProps {
   children: ReactNode;
@@ -13,13 +12,6 @@ export function PrivateRoute({children}: PrivateRouteProps) {
 
   // Verificar si la cookie con el token existe
   const userSessionCookie = document.cookie.includes('token');
-
-  const location = useLocation();
-
-  // Cuando el usuario viene de un enlace por correo, guardar la ruta de destino
-  if (location.pathname.includes('/checkout/digital')) {
-    localStorage.setItem('checkoutPath', '/checkout/digital');
-  }
 
   // Evitar renderizar el contenido hasta que la información esté cargada
   if (loading) {
