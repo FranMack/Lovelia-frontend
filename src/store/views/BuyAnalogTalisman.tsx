@@ -3,7 +3,7 @@ import {useContext, useEffect, useState} from 'react';
 import {useSearchParams} from 'react-router-dom';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {RightNextIcon} from '../../assets/icons/icons';
+import {LoginIcon, RightNextIcon} from '../../assets/icons/icons';
 import {envs} from '../../config';
 import {ShopingCartContext, UserContext} from '../../context';
 import {TalismanModelContext} from '../../context/talismanModelContext';
@@ -23,6 +23,9 @@ import {
   addProductToShoppingCart,
   addProductToShoppingCartDB,
 } from '../helpers/shoppingCartFunctions';
+
+import { CurrencyModal } from '../components/CurrencyModal';
+import { CurrencyContext } from '../../context/currencyContext';
 
 interface Product {
   model: string;
@@ -50,8 +53,7 @@ function BuyAnalogTalisman() {
   };
 
   const {email} = useContext(UserContext);
-  const {toggleMenu, addItemToCart} =
-    useContext(ShopingCartContext);
+  const {toggleMenu, addItemToCart} = useContext(ShopingCartContext);
 
   const [index, setIndex] = useState<number>(0);
 
@@ -111,12 +113,11 @@ function BuyAnalogTalisman() {
         quantity: 1,
       };
 
-      
       const newProduct = email
         ? await addProductToShoppingCartDB(shopingCartNewItem)
         : await addProductToShoppingCart(shopingCartNewItem);
 
-        console.log("xxxxxxxnewProductxxxxxxx",newProduct)
+      console.log('xxxxxxxnewProductxxxxxxx', newProduct);
       addItemToCart(newProduct);
 
       // Reset form fields
@@ -282,12 +283,15 @@ function BuyAnalogTalisman() {
     }
   }, [searchParams, listOfProducts]);
 
+    const {currency}=useContext(CurrencyContext)
+
   return (
     <main
       className={
         activatedAlarm || shopingCartOpen ? 'viewport-background' : ''
       }>
       <section className="custonTalisman-container efectoReveal">
+     { !currency &&  <CurrencyModal/>}
         <div className="custonTalisman-internal-container left">
           {!hasStock && (
             <div className="sold-out-container efectoReveal">
@@ -332,7 +336,7 @@ function BuyAnalogTalisman() {
             style={{opacity: dropdownIntensiones.openModal ? '0.5' : '1'}}>
             <h2>Inicio /Tienda /Talismán analógico</h2>
 
-            <h3>Talismán Analógico</h3>
+            <h3>Tu Talismán</h3>
             <h5>
               {optionModel && optionRock && optionChain && optionMetal
                 ? `$${product.price.toFixed(2)}`
@@ -385,6 +389,20 @@ function BuyAnalogTalisman() {
             </div>
 
             <div className="buttons-container">
+              <div className="info-container">
+              <div className="icons-container">
+                  <LoginIcon />
+                  <LoginIcon />
+                  <LoginIcon />
+                  <LoginIcon />
+                </div>
+                <ul className="info-container">
+                  <li>Hecho a mano para ti</li>
+                  <li>Metales de Alta calidad</li>
+                  <li>Piedras naturales</li>
+                </ul>
+            
+              </div>
               <Button
                 onClick={addToShopingCart}
                 text="Agregar al carrito de compras"

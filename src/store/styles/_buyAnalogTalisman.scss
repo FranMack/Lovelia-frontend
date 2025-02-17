@@ -153,9 +153,28 @@
   margin: 0 auto;
   width: 100%;
   display: flex;
-  justify-content: end;
-  align-items: end;
+  justify-content: space-between;
+  align-items: center;
   border: none;
+  
+
+  >.info-container{
+    background-color: rgba($color: $color_salmon, $alpha: 0.1);
+    padding: 3%;
+  padding-inline:10%;
+    font-size: 1.4rem;
+    font-family: $font_paragrahp;
+    li{margin-top: 1rem;}
+
+    >.icons-container{
+      margin-bottom: 1.5rem;
+      height: 30px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+  
+  }
 
   button {
     color: $color_primary;

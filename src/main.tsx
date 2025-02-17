@@ -15,6 +15,7 @@ import {ActivationStepsContextProvider} from './context/activationStepsContext.t
 import {CheckoutAddressContextProvider} from './context/checkoutAddressContext.tsx';
 import {TalismanAudioContextProvider} from './context/talismanAudioContext.tsx';
 import {TimerContextProvider} from './context/timerContext.tsx';
+import { CurrencyContextProvider } from './context/currencyContext.tsx';
 import './styles/styles.scss';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -31,7 +32,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                       <ActivationStepsContextProvider>
                         <MobileMenuContextProvider>
                           <CheckoutAddressContextProvider>
+                            <CurrencyContextProvider>
                             <App />
+                            </CurrencyContextProvider>
                           </CheckoutAddressContextProvider>
                         </MobileMenuContextProvider>
                       </ActivationStepsContextProvider>

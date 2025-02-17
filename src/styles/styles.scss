@@ -30,6 +30,7 @@
 @import '../ui/styles/alarmPopUp';
 @import '../ui/styles/errorPage';
 @import '../ui/styles/notFoundPage';
+@import "../ui/styles//currencySelector";
 @import '../talisman/styles//talismanInfo3';
 @import '../talismanDigital/styles/talismanDigital.scss';
 @import '../meditations/styles//meditations2';
@@ -51,6 +52,7 @@
 @import '../store//styles/dropDownInfo';
 @import '../store//styles/buyAnalogTalisman';
 @import '../store//styles/buyDigitalTalisman';
+@import "..//store//styles//currencyModal";
 @import '../blog//styles//blog2';
 @import '../blog//styles//blog3';
 @import '../blog//styles/templateBlog';
@@ -80,6 +82,7 @@
 @import '../talismanAnalogic//styles/activationAnalogic';
 @import '../siteTerms/styles/siteTerms';
 @import '../myTalisman/styles/chatbot';
+
 
 * {
   box-sizing: border-box;
@@ -212,4 +215,23 @@ svg {
     transform: translateY(0px);
     opacity: 1;
   }
+}
+
+
+
+
+
+
+@keyframes efectoRevealTalisman {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.efectoRevealTalisman {
+  animation: efectoRevealTalisman 2s ease-out both;
 }

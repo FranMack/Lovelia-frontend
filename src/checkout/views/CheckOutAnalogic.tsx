@@ -219,7 +219,7 @@ function CheckOutAnalogic() {
       apartmentNumber: initialDataAddress.apartmentNumber,
       state: initialDataAddress.state,
       city: initialDataAddress.city,
-      country: initialDataAddress.city,
+      country: initialDataAddress.country,
       postalCode: initialDataAddress.postalCode,
       billingName: '',
       billingLastname: '',
@@ -451,11 +451,12 @@ function CheckOutAnalogic() {
     }
   }, [singUpForm.errors]);
 
-  console.log('touched', singUpForm.touched);
 
 
-  console.log('errors', singUpForm.errors.talismanDigitalAcounts);
-  console.log('values', singUpForm.values.talismanDigitalAcounts);
+  console.log('values', singUpForm.values);
+
+
+  
 
   if (shopingCartItems.length < 1) {
     return <EmptyCar />;

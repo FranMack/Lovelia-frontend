@@ -1,11 +1,13 @@
 import {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {LoginIcon, ShopingIcon} from '../../assets/icons/icons';
+import {CurrencyContext} from '../../context/currencyContext';
 import {ShopingCartContext} from '../../context/modalShopingCartContext';
 import {UserContext} from '../../context/userContext';
 import {numberOfProducts} from '../../utils/numberOfProducts';
 import logoYellow from '../assets/logo-lovelia-yellow.webp';
 import logo from '../assets/lovelia-logo.webp';
+import {CurrencySelector} from './CurrencySelector';
 import {NavbarDropDown} from './NavbarDropDown';
 
 export function Navbar() {
@@ -117,6 +119,8 @@ export function Navbar() {
     ...Array.from({length: 8}, (_, i) => `activacion/${i + 1}`),
   ];
 
+  const {currency} = useContext(CurrencyContext);
+
   return (
     <nav
       className={`navbar-container ${scrollPosition > 10 && 'navbar-move'} ${
@@ -130,6 +134,12 @@ export function Navbar() {
         />
       </div>
       <ul className="navbar-menu">
+        {currency && (
+          <li className="navbar-menu-icon">
+            <CurrencySelector />
+          </li>
+        )}
+
         {navbarButtons.map((button, i) => (
           <div
             key={i}

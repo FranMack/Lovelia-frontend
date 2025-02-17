@@ -65,7 +65,7 @@ export const ChatBot = ({ astroData }: ChatBotProps) => {
           </div>
         </div>
       ) : (
-        <div className="chat-bubble" onClick={() => setIsOpen(true)}>
+        <div className="chat-bubble efectoRevealTalisman" onClick={() => setIsOpen(true)}>
           💬
         </div>
       )}

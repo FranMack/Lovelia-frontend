@@ -251,7 +251,7 @@
         font-weight: 400;
       }
 
-      input {
+      >input,select {
         margin-top: 0.3vh;
         padding-left: 5%;
         width: 100%;
@@ -266,6 +266,7 @@
         margin-bottom: 1vh;
         font-size: 1.5rem;
       }
+      
     }
 
     .checkout-date-options-container {

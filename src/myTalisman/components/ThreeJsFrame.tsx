@@ -723,6 +723,28 @@ export const ThreeJsFrame = () => {
 
 
 
+  const [modelLoaded,setModelLoaded]=useState<boolean>(false)
+
+
+  
+
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+        console.log("Mensaje recibido:", event.data); // Esto debería mostrar el mensaje en la consola
+
+        if (event.data?.type === "MODEL_LOADED") {
+            setModelLoaded(true);
+        }
+    };
+
+    window.addEventListener("message", handleMessage);
+
+    return () => {
+        window.removeEventListener("message", handleMessage);
+    };
+}, []);
+
+
   
 
 
@@ -732,23 +754,23 @@ export const ThreeJsFrame = () => {
     <>
       {astrologicalInfo ? (
         <>
-          <TalismanBox
+       { modelLoaded &&  <TalismanBox
             numerologySymbol={astrologicalData.numerologySymbol}
             solarSailSymbol={astrologicalData.solarSailSymbol}
             toneSymbol={astrologicalData.toneSymbol}
             phrase={intention}
             chineseSymbol={astrologicalData.chinseseSymbol}
-          />
+          />}
 
-          <ConstelationBox constellation={astrologicalData.constellation} />
+          {modelLoaded &&<ConstelationBox constellation={astrologicalData.constellation} />}
           <iframe
             className="threejs-container"
             title="Modelo 3D"
             src={`https://lovelia.org/public/index.html?userProfile=api/${email}.json`}
           />
           <div className="myTalisman-controls-container">
-            <div className="myTalisman-controls-internal-container left">
-              {buttonsLeft.map(item => {
+          { modelLoaded && <div className="myTalisman-controls-internal-container left efectoRevealTalisman">
+              {  buttonsLeft.map(item => {
                 return (
                   <button
                     key={item.title}
@@ -769,13 +791,13 @@ export const ThreeJsFrame = () => {
                   onChange={handleVolumeChange}
                 />
               )}
-            </div>
+            </div>}
 
             {buttonFocusPosition === 'chronometer' && (
               <Chronometer playTrack={playTrack} />
             )}
 
-            {buttonsVisibility &&
+            {buttonsVisibility && 
               audioType &&
               buttonFocusPosition !== 'chronometer' && (
                 <div className="myTalisman-audio-controls-container">
@@ -805,8 +827,8 @@ export const ThreeJsFrame = () => {
                 </div>
               )}
 
-            {buttonsVisibility && (
-              <div className="myTalisman-controls-internal-container right">
+            {buttonsVisibility && modelLoaded&& (
+              <div className="myTalisman-controls-internal-container right efectoRevealTalisman">
                 {buttonsRight.map((item, i) => {
                   return (
                     <button
@@ -877,7 +899,7 @@ export const ThreeJsFrame = () => {
           )}
           {buttonFocusPosition === 'timer' && <Timer sounds={sounds} />}
 
-          <ChatBot astroData={astrologicalData} />
+         {modelLoaded && <ChatBot astroData={astrologicalData} />}
         </>
       ) : (
         <div className="myTalisman-pre-loading">Loading...</div>
