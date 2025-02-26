@@ -1,4 +1,4 @@
-@import "../../styles//variables.scss";
+@import '../../styles//variables.scss';
 
 .custonTalisman-container {
   width: 100vw;
@@ -39,11 +39,11 @@
     }
   }
 
-  .sold-out-container{
+  .sold-out-container {
     position: absolute;
     width: 70%;
     z-index: 50;
-    img{
+    img {
       object-fit: cover;
       width: 100%;
     }
@@ -82,7 +82,6 @@
   border-radius: 50%;
   overflow: hidden;
   opacity: 1;
-
 
   img {
     height: 100%;
@@ -129,10 +128,11 @@
   }
 
   h5 {
-    font-size: 2.3rem;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    color: $color_primary;
   }
 
   h3 {
@@ -156,24 +156,24 @@
   justify-content: space-between;
   align-items: center;
   border: none;
-  
 
-  >.info-container{
+  > .info-container {
     background-color: rgba($color: $color_salmon, $alpha: 0.1);
     padding: 3%;
-  padding-inline:10%;
+    padding-inline: 10%;
     font-size: 1.4rem;
     font-family: $font_paragrahp;
-    li{margin-top: 1rem;}
+    li {
+      margin-top: 1rem;
+    }
 
-    >.icons-container{
+    > .icons-container {
       margin-bottom: 1.5rem;
       height: 30px;
       width: 100%;
       display: flex;
       justify-content: space-between;
     }
-  
   }
 
   button {
@@ -184,9 +184,6 @@
     line-height: normal;
     border: solid 2px $color_primary;
   }
-
-
-  
 }
 
 @media screen and (max-width: 678px) {
@@ -197,7 +194,21 @@
 
   .custonTalisman-internal-container {
     width: 100%;
-    min-height: 100vh;
+    height: fit-content;
+    padding: 0;
+
+
+  }
+  .custonTalisman-internal-container.left {
+    margin-top: 10vh;
+    width: 100%;
+    height: 35vh;
+    padding: 0;
+  }
+
+  .custonTalisman-internal-container.right {
+    padding: 0;
+    margin-top: 2vh;
   }
 
   .custonTalisman-internal-bullet-container {
@@ -207,31 +218,42 @@
 
     flex-direction: row;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+    column-gap: 7vw;
 
     width: 100%;
-    height: 14%;
-    background-color: $color_background2;
-
+    height: 2rem;
     .bullet {
-      width: 15%;
-      border-radius: 0%;
+      width: 1rem;
+      border-radius: 50%;
+      filter: none;
+      background-color: gray;
+      img {
+        height: 0%;
+       
+      }
     }
   }
 
   .bullet-visible {
-    width: 15%;
-    border-radius: 0%;
+    width: 1rem;
+    background-color: $color_primary;
+    img {
+      height: 0%;
+     
+    }
+  
+   
   }
 
   .custonTalisman-internal-arrow-container {
-    width: 8%;
+    width: 10%;
   }
 
   .custonTalisman-internal-center-container {
     width: 85%;
     height: 90%;
-
+    margin-top: 0;
     > h2 {
       position: absolute;
       top: -90vh;
@@ -250,26 +272,54 @@
     }
 
     h5 {
-      font-size: 3rem;
+      font-size: 1.8rem;
       margin-bottom: 5%;
     }
   }
 
   .buttons-container {
-    flex-direction: column;
+    flex-direction: column-reverse;
+    row-gap: 3vh;
     align-items: center;
     justify-content: center;
     align-items: center;
-    margin-top: 3vh;
+    margin-top: 1vh;
     margin-bottom: 10vh;
+
+    > .info-container {
+      margin-bottom: 5vh;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      padding: 5% 0;
+
+      font-size: 1.7rem;
+
+      > .icons-container {
+        margin: 0 auto;
+        margin-bottom: 3rem;
+        height: 30px;
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+      }
+      > ul {
+        margin: 0 auto;
+        width: 60%;
+
+        li {
+          margin-left: 5%;
+          margin-bottom: 15px;
+        }
+      }
+    }
 
     button {
       font-size: 1.6rem;
-      height: 8vh;
+      height: 6.5vh;
 
       width: 100%;
     }
-    
 
     .auxiliar-buttons-container {
       width: 100%;

@@ -10,7 +10,7 @@ export function RestrictedRoute({children}: Props) {
 
   const userSessionCookie = document.cookie.includes('token');
 
-  let pathToRedirect = '/';
+  let pathToRedirect = '/profile';
 
   // Lógica de redirección
   if (

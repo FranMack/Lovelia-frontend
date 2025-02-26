@@ -18,6 +18,8 @@ import {
 } from '../../context';
 import logo from '../assets/lovelia-logo.webp';
 import {DropDownMobileMenu} from './DropDownMobileMenu';
+import { CurrencyContext } from '../../context/currencyContext';
+import { CurrencySelector } from './CurrencySelector';
 
 const sections = [
   {
@@ -38,21 +40,6 @@ const sections = [
     title: 'Meditaciones',
     path: '/meditations',
     items: [],
-  },
-  {
-    title: 'Intenciones',
-    path: '',
-    items: [
-      {title: 'Intro', path: 'intenciones'},
-      {title: 'Amor incondicional', path: 'intenciones/2'},
-      {title: 'Abundancia', path: 'intenciones/3'},
-      {title: 'Aquí y ahora', path: 'intenciones/4'},
-      {title: 'Potencial infinito', path: 'intenciones/5'},
-      {title: 'Coraje', path: 'intenciones/6'},
-      {title: 'Yo verdadero', path: 'intenciones/7'},
-      {title: 'Gratitud', path: 'intenciones/8'},
-      {title: 'Sabiduría de la insertidumbre', path: 'intenciones/1'},
-    ],
   },
   {
     title: 'Tienda',
@@ -142,6 +129,9 @@ export const MobileMenu = () => {
       });
   };
 
+
+   const {currency} = useContext(CurrencyContext);
+
   return (
     <div ref={menuRef} className="mobile-menu-container">
       <div className="mobile-menu-top-container">
@@ -154,7 +144,12 @@ export const MobileMenu = () => {
           />
         </div>
       </div>
+
+      {currency &&   <CurrencySelector />}
       <ul className="mobile-menu-center-container">
+
+        
+    
         {sections.map((item, i) => {
           return <DropDownMobileMenu key={i} {...item} />;
         })}
@@ -195,6 +190,7 @@ export const MobileMenu = () => {
             </div>
           );
         })}
+     
       </div>
     </div>
   );

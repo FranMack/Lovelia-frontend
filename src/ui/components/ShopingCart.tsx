@@ -3,22 +3,21 @@ import {useNavigate} from 'react-router-dom';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {CloseIcon} from '../../assets/icons/icons';
+import {CurrencyContext} from '../../context/currencyContext';
 import {ShopingCartContext} from '../../context/modalShopingCartContext';
 import {numberOfProducts} from '../../utils/numberOfProducts';
 import {Button} from './Button';
 import {ShopingCartCard} from './ShopingCartCard';
+import { totalPrice } from '../../store/helpers/priceFormater';
 
 export function ShopingCart() {
   const navigate = useNavigate();
 
   const {toggleMenu, shopingCartItems} = useContext(ShopingCartContext);
 
-  const totalPrice = () => {
-    return shopingCartItems.reduce(
-      (acc, item) => acc + item.price * item.quantity,
-      0,
-    );
-  };
+  const {currency} = useContext(CurrencyContext);
+
+
 
   const linkToCheckOut = () => {
     if (shopingCartItems.length > 0) {
@@ -67,7 +66,7 @@ export function ShopingCart() {
 
         <div className="shoping-cart-button-price-container">
           <p>Total estimado</p>
-          <p>${totalPrice()}</p>
+          <p>${totalPrice(currency,shopingCartItems)}</p>
         </div>
         <Button onClick={linkToCheckOut} text="CONTINUAR AL CHECKOUT" />
         <div className="auxiliar-button-container">

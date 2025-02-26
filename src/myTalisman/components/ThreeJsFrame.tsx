@@ -156,7 +156,7 @@ export const ThreeJsFrame = () => {
     }
   };
 
-  const timerSoundRefs = useRef<HTMLAudioElement[]>([]);
+
 
   const {intention, setIntention} = useContext(IntentionContext);
 
@@ -441,9 +441,11 @@ export const ThreeJsFrame = () => {
 
   const soundRefs = useRef<HTMLAudioElement[]>([]);
   const meditationsRefs = useRef<HTMLAudioElement[]>([]);
+  const timerSoundRefs = useRef<HTMLAudioElement[]>([]);
 
   const [meditations, setMeditations] = useState<MeditationsOptions[]>([]);
   const [sounds, setSounds] = useState<MeditationsOptions[]>([]);
+  const [timerSounds, setTimerSounds] = useState<MeditationsOptions[]>([]);
 
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -533,7 +535,7 @@ export const ThreeJsFrame = () => {
       });
 
       setAudioType('timerSound');
-      soundRefs.current.forEach(audio => {
+      timerSoundRefs.current.forEach(audio => {
         audio.pause(), (audio.currentTime = 0), (audio.volume = volume);
 
         /* audio.addEventListener("ended", () => {
@@ -541,9 +543,11 @@ export const ThreeJsFrame = () => {
             });*/
       });
 
+    
+
       if (timerSoundRefs.current[index]) {
         timerSoundRefs.current[index].play();
-        setTrackDuration(soundRefs.current[index].duration);
+        setTrackDuration(timerSoundRefs.current[index].duration);
         setTrackIndex(index);
         handlePlaying(true);
 
@@ -685,7 +689,7 @@ export const ThreeJsFrame = () => {
     const fetchData = async () => {
       try {
         // Tipamos explícitamente la respuesta de axios
-        const [meditationsResponse, soundsResponse] = await Promise.all([
+        const [meditationsResponse, soundsResponse,timerSoundsResponse] = await Promise.all([
           axios.get<MeditationsOptions[]>(
             `${envs.API_DOMAIN}/api/v1/user/meditations`,
             {
@@ -694,6 +698,12 @@ export const ThreeJsFrame = () => {
           ),
           axios.get<MeditationsOptions[]>(
             `${envs.API_DOMAIN}/api/v1/user/sounds`,
+            {
+              withCredentials: true,
+            },
+          ),
+          axios.get<MeditationsOptions[]>(
+            `${envs.API_DOMAIN}/api/v1/user/timer-sounds`,
             {
               withCredentials: true,
             },
@@ -710,9 +720,15 @@ export const ThreeJsFrame = () => {
           soundRefs,
         );
 
+        const timerSoundsWithDuration = await fetchAudioDurations(
+          timerSoundsResponse.data,
+          soundRefs,
+        );
+
         // Actualizamos los estados con los resultados
         setMeditations(meditationsWithDuration);
         setSounds(soundsWithDuration);
+        setTimerSounds(timerSoundsWithDuration)
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -862,7 +878,7 @@ export const ThreeJsFrame = () => {
 
           <audio
             ref={activationSoundRef}
-            src={`https://lovelia.org/public/activation/activationExample.mp4`}
+            src={`https://storage.googleapis.com/threejs-api/public/activation/activacion_talisman.mp3`}
           />
 
           {buttonFocusPosition === 'Mi ADN Energético' && (
@@ -897,7 +913,7 @@ export const ThreeJsFrame = () => {
               playing={playing}
             />
           )}
-          {buttonFocusPosition === 'timer' && <Timer sounds={sounds} />}
+          {buttonFocusPosition === 'timer' && <Timer sounds={timerSounds} />}
 
          {modelLoaded && <ChatBot astroData={astrologicalData} />}
         </>
@@ -922,13 +938,8 @@ export const ThreeJsFrame = () => {
           </audio>
         );
       })}
-      {audioType === 'activation' && (
-        <div className="subtitles-container">
-          <p>{subtitleLine}</p>
-        </div>
-      )}
-      {/*IMPORTANTE: DEBE CAMBIARSE SOUNDS POR LOS SONIDOS CORRESPONDIENTES AL TIMER */}
-      {sounds.map((item, i) => {
+ {/*IMPORTANTE: DEBE CAMBIARSE SOUNDS POR LOS SONIDOS CORRESPONDIENTES AL TIMER */}
+{timerSounds.map((item, i) => {
         return (
           <audio key={i} ref={el => (timerSoundRefs.current[i] = el!)}>
             <source src={`${item.url}`} type="audio/mpeg" />
@@ -936,6 +947,13 @@ export const ThreeJsFrame = () => {
           </audio>
         );
       })}
+      {audioType === 'activation' && (
+        <div className="subtitles-container">
+          <p>{subtitleLine}</p>
+        </div>
+      )}
+     
+  
     </>
   );
 };

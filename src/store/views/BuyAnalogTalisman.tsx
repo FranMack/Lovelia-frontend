@@ -10,6 +10,7 @@ import {TalismanModelContext} from '../../context/talismanModelContext';
 import {TimerContext} from '../../context/timerContext';
 import {useOpenModal} from '../../hooks/useOpenModal';
 import {Button} from '../../ui/components/Button';
+import { IntentionModal } from '../components/IntentionModal';
 import {
   chainOptions,
   intencionOptions,
@@ -26,13 +27,16 @@ import {
 
 import { CurrencyModal } from '../components/CurrencyModal';
 import { CurrencyContext } from '../../context/currencyContext';
+import { formatPrice } from '../helpers/priceFormater';
 
 interface Product {
   model: string;
   metal: string;
   rock: string;
   chain: string;
-  price: number;
+  price_AR: number;
+  price_MX: number;
+  price_RM: number;
   stock: number;
   images: string[]; // Array de URLs como strings
   id: string; // Identificador único (asumimos que es un string)
@@ -46,7 +50,9 @@ function BuyAnalogTalisman() {
     metal: '',
     rock: '',
     chain: '',
-    price: 0,
+    price_AR:0,
+    price_MX:0,
+    price_RM:0,
     stock: 0,
     images: [],
     id: '',
@@ -117,7 +123,6 @@ function BuyAnalogTalisman() {
         ? await addProductToShoppingCartDB(shopingCartNewItem)
         : await addProductToShoppingCart(shopingCartNewItem);
 
-      console.log('xxxxxxxnewProductxxxxxxx', newProduct);
       addItemToCart(newProduct);
 
       // Reset form fields
@@ -290,9 +295,11 @@ function BuyAnalogTalisman() {
       className={
         activatedAlarm || shopingCartOpen ? 'viewport-background' : ''
       }>
+        { !currency &&  <CurrencyModal/>}
       <section className="custonTalisman-container efectoReveal">
-     { !currency &&  <CurrencyModal/>}
+     
         <div className="custonTalisman-internal-container left">
+          {(optionIntention && optionMetal) && <IntentionModal intention={optionIntention} metal={optionMetal}/>}
           {!hasStock && (
             <div className="sold-out-container efectoReveal">
               <img src={soldOuT} alt="sold-out" />
@@ -334,13 +341,13 @@ function BuyAnalogTalisman() {
           <div
             className="custonTalisman-internal-center-container"
             style={{opacity: dropdownIntensiones.openModal ? '0.5' : '1'}}>
-            <h2>Inicio /Tienda /Talismán analógico</h2>
+            <h2>Inicio /Tienda /Talismánes Fisicos</h2>
 
             <h3>Tu Talismán</h3>
             <h5>
               {optionModel && optionRock && optionChain && optionMetal
-                ? `$${product.price.toFixed(2)}`
-                : 'Para ver el precio, arma tu talismán '}
+                ? `Precio: ${formatPrice(currency, product.price_AR, product.price_MX, product.price_RM)}`
+                : 'Elije el modelo, metal, piedra, colgante e intención '}
             </h5>
 
             <div className="options-container">
@@ -396,7 +403,7 @@ function BuyAnalogTalisman() {
                   <LoginIcon />
                   <LoginIcon />
                 </div>
-                <ul className="info-container">
+                <ul >
                   <li>Hecho a mano para ti</li>
                   <li>Metales de Alta calidad</li>
                   <li>Piedras naturales</li>

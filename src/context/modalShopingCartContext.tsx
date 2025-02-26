@@ -11,7 +11,9 @@ export interface ShopingCartItemOptions {
   chain?: string;
   intention?: string;
   image: string;
-  price: number;
+  price_AR: number;
+  price_MX: number;
+  price_RM: number;
   rock?: string;
 }
 

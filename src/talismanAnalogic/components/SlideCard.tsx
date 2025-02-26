@@ -13,7 +13,7 @@ export function SliderCard({ image, title,path}: SliderCardOptions) {
   const linkTo=(path:string)=>{
     navigate(path)
   }
-  console.log("title",path)
+
   return (
     <li onClick={path ? ()=>{linkTo(path)} :()=>{}} className="card">
       <div className="image">

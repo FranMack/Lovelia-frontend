@@ -70,3 +70,84 @@
 .dropdown-item:hover {
   background: #f0f0f0;
 }
+
+
+
+@media screen and (max-width: 678px) {
+
+  .dropdown {
+    margin: 0 auto;
+    position: relative;
+    width:75%;
+  
+  }
+  
+  .dropdown-button {
+ 
+    width: 100%;
+    padding: 0;
+
+    border: none;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  
+  }
+  
+  .dropdown-selected {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    font-size: 1.8rem;
+    color: $color_primary;
+  }
+  
+  .dropdown-flag {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .dropdown-placeholder {
+    color: gray;
+  }
+  
+  .dropdown-chevron {
+    transition: transform 0.2s;
+  }
+  
+  .dropdown-chevron.open {
+    transform: rotate(180deg);
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-height: 150px;
+    overflow-y: auto;
+    margin-top: 2px;
+    font-size: 1.6rem;
+  }
+  
+  .dropdown-item {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+  
+  .dropdown-item:hover {
+    background: #f0f0f0;
+  }
+  
+
+}

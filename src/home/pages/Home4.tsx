@@ -60,7 +60,7 @@ export const Home4 = () => {
                 </div>
                 TALISMÁN
               </h3>
-              <h3>ANALÓGICO</h3>
+              <h3>FISICO</h3>
             </div>
 
             <div

@@ -8,6 +8,7 @@ interface Product {
   chain: string;
   intention: string;
   price: number;
+  currency:string;
   quantity: number;
   delivery_id: string;
   billing_id: string;
@@ -21,6 +22,7 @@ interface DeliveryDetails {
   postal_code: string;
   receiver: string;
   price: number;
+  currency:string;
   __v: number;
 }
 
@@ -61,7 +63,7 @@ export const ShopingHistory = ({shopingHistory}: ShopingHistoryProps) => {
     setIndex(index);
   };
 
-  function totalPrice() {
+  function totalPrice(currency:string) {
     if (shopingHistory.length > 0) {
       const total = shopingHistory[index].products.reduce(
         (acc, product) => acc + product.price,
@@ -72,7 +74,7 @@ export const ShopingHistory = ({shopingHistory}: ShopingHistoryProps) => {
         ? shopingHistory[index].deliveryDetails.price
         : 0;
 
-      return total + deliveryPrice;
+      return `${currency.toLocaleUpperCase().slice(0,3)} $${total + deliveryPrice}`
     }
     return 0;
   }
@@ -145,18 +147,18 @@ export const ShopingHistory = ({shopingHistory}: ShopingHistoryProps) => {
                             <td>{`${item.model} (${item.metal} - ${item.rock} - ${item.chain})`}</td>
                           )}
 
-                          <td>{`$ ${item.price}`}</td>
+                          <td>{`${item.currency.toUpperCase().slice(0,3)} $ ${item.price}`}</td>
                         </tr>
                       ))}
                     {shopingHistory[index].deliveryDetails && (
                       <tr>
                         <td>Envío</td>
-                        <td>{`$ ${shopingHistory[index].deliveryDetails.price}`}</td>
+                        <td>{`${shopingHistory[index].deliveryDetails.currency.toUpperCase().slice(0,3)} $ ${shopingHistory[index].deliveryDetails.price}`}</td>
                       </tr>
                     )}
                     <tr>
                       <td>TOTAL</td>
-                      <td>$ {totalPrice()}</td>
+                      <td> {totalPrice(shopingHistory[index].products[0].currency)}</td>
                     </tr>
                   </tbody>
                 </table>

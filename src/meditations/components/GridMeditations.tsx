@@ -2,12 +2,14 @@ import { useRef, useState } from "react";
 import { PlayIcon,StopIcon } from "../../assets/icons/icons";
 import { LazyImage } from "../../ui/components";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { useNavigate } from "react-router";
 
 interface MeditationOptions {
   color: string;
   title: string;
   meditationURL:string
   image?: string;
+  redirectPath:string
 }
 
 interface Meditations {
@@ -15,6 +17,12 @@ interface Meditations {
 }
 
 export const GridMeditations = ({ meditations }: Meditations) => {
+
+  const navigate=useNavigate();
+
+  const linkTo=(path:string)=>{
+    navigate(path)
+  }
 
   const soundRefs = useRef<HTMLAudioElement[]>([]);
 
@@ -75,7 +83,7 @@ export const GridMeditations = ({ meditations }: Meditations) => {
               </div>
             </div>
                 <audio preload="metadata"  src={item.meditationURL} ref={(audioElement) => (soundRefs.current[i] = audioElement!)} />
-            <p>{item.title}</p>
+            <p title="Ver más" onClick={()=>linkTo(item.redirectPath)}>{item.title}</p>
           </div>
         );
       })}

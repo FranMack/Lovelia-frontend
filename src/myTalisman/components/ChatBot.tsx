@@ -34,6 +34,9 @@ export const ChatBot = ({ astroData }: ChatBotProps) => {
     }
   }, [isOpen]); // Se ejecuta cada vez que el chat se abre
 
+
+  console.log("xxxxxxxxxxxxxxx",astroData)
+
   return (
     <>
       {isOpen ? (

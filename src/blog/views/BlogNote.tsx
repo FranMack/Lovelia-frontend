@@ -8,7 +8,11 @@ import { TimerContext } from "../../context/timerContext";
 import { ShopingCartContext } from "../../context";
 
 const BlogNote = () => {
-  const navigate = useNavigate();
+  const navigate=useNavigate();
+
+  const linkTo=(article_id:number)=>{
+    navigate(`/blog/nota/${article_id}`)
+  }
 
   const { id } = useParams();
   const [index, setIndex] = useState<number>(1);
@@ -57,13 +61,13 @@ const BlogNote = () => {
 
           <div className="text-container">
             {blogNotes[index - 1].paragraphs1.map((item, i) => {
-              return <p key={i}>{item}</p>;
+              return <p key={i} style={{fontWeight: item.length<60 ? "bold":""}}>{item}</p>;
             })}
             <div className="image-container">
               <img src={blogNotes[index - 1].image2} alt="blog image" />
             </div>
             {blogNotes[index - 1].paragraphs2.map((item, i) => {
-              return <p key={i}>{item}</p>;
+              return <p key={i} style={{fontWeight: item.length<60 ? "bold":""}}>{item}</p>;
             })}
           </div>
         </div>
@@ -74,7 +78,7 @@ const BlogNote = () => {
         <div className="blog-historias-container">
           {moreArticles.map((articulo, i) => {
             return (
-              <div className={`blog-historias-card card${i}`} key={i}>
+              <div onClick={()=>{linkTo(articulo.id)}} className={`blog-historias-card card${i}`} key={i}>
                 <LazyImage src={articulo.image} alt={articulo.tittle} />
 
                 <h6>{articulo.author}</h6>

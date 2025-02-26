@@ -27,7 +27,7 @@ export const TalismanDigital4 = () => {
           <h2>
             (3)
             <br />
-            ACTIVACIÓN
+            INTENCIONAR
           </h2>
           <p>
             La activación de tu talismán es un ritual para que puedas{' '}

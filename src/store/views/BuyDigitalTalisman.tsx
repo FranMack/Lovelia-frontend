@@ -79,8 +79,9 @@ function BuyDigitalTalisman() {
       className={
         activatedAlarm || shopingCartOpen ? 'viewport-background' : ''
       }>
-      <section className="buyDigitalTalisman-container efectoReveal">
         { !currency &&  <CurrencyModal/>}
+      <section className="buyDigitalTalisman-container efectoReveal">
+        
         {popUp && (
           <PopUp
             linkTo={linkTo}

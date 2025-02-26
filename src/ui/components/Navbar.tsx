@@ -10,6 +10,21 @@ import logo from '../assets/lovelia-logo.webp';
 import {CurrencySelector} from './CurrencySelector';
 import {NavbarDropDown} from './NavbarDropDown';
 
+//{
+//  title: 'Intenciones',
+//  path: ['intenciones'],
+//  buttonOptions: [
+//    {buttonName: 'Amor incondicional', path: 'intenciones/2'},
+//    {buttonName: 'Abundancia', path: 'intenciones/3'},
+//    {buttonName: 'Aquí y ahora', path: 'intenciones/4'},
+//    {buttonName: 'Potencial infinito', path: 'intenciones/5'},
+//    {buttonName: 'Coraje', path: 'intenciones/6'},
+//    {buttonName: 'Yo verdadero', path: 'intenciones/7'},
+//    {buttonName: 'Gratitud', path: 'intenciones/8'},
+//    {buttonName: 'Sabiduría de la Incertidumbre', path: 'intenciones/1'},
+//  ],
+//},
+
 export function Navbar() {
   const {shopingCartOpen, toggleMenu, shopingCartItems} =
     useContext(ShopingCartContext);
@@ -76,20 +91,7 @@ export function Navbar() {
       ],
     },
     {title: 'Meditaciones', path: ['meditations'], buttonOptions: []},
-    {
-      title: 'Intenciones',
-      path: ['intenciones'],
-      buttonOptions: [
-        {buttonName: 'Amor incondicional', path: 'intenciones/2'},
-        {buttonName: 'Abundancia', path: 'intenciones/3'},
-        {buttonName: 'Aquí y ahora', path: 'intenciones/4'},
-        {buttonName: 'Potencial infinito', path: 'intenciones/5'},
-        {buttonName: 'Coraje', path: 'intenciones/6'},
-        {buttonName: 'Yo verdadero', path: 'intenciones/7'},
-        {buttonName: 'Gratitud', path: 'intenciones/8'},
-        {buttonName: 'Sabiduría de la Incertidumbre', path: 'intenciones/1'},
-      ],
-    },
+
     {
       title: 'Tienda',
       path: [

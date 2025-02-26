@@ -2,12 +2,14 @@ import axios from 'axios';
 import {envs} from '../../config';
 import {ShopingCartItemOptions} from '../../context';
 
+type ShoppingCartProps=Omit<
+ShopingCartItemOptions,
+'price_AR'|'price_MX'| 'price_RM'| 'shoppingCartItem_id' | 'product_id'
+>
+
 //usario logueado => agrega producto al carrito y se guarda en DB
 export const addProductToShoppingCartDB = async (
-  product: Omit<
-    ShopingCartItemOptions,
-    'price' | 'shoppingCartItem_id' | 'product_id'
-  >,
+  product: ShoppingCartProps,
 ) => {
   try {
     const newProduct = await axios.post(
@@ -28,10 +30,7 @@ export const addProductToShoppingCartDB = async (
 //usario NO logueado => agrega producto al carrito, se mantiene en localstorage
 
 export const addProductToShoppingCart = async (
-  product: Omit<
-    ShopingCartItemOptions,
-    'price' | 'shoppingCartItem_id' | 'product_id'
-  >,
+  product:ShoppingCartProps,
 ) => {
   try {
     const newProduct = await axios.post(

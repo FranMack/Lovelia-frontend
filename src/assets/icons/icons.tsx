@@ -274,6 +274,7 @@ export function PlayIcon({onClick}: PlayOptions) {
       height="100%"
       viewBox="0 0 38 47"
       fill="none">
+        <title>Reproducir</title>
       <path d="M0.5 0V47L37.6791 23.5L0.5 0Z" fill="#E0E0E0" />
     </svg>
   );
@@ -835,6 +836,7 @@ export function StopIcon({onClick}: StopIconOptions) {
             height="14"
             rx="1"
             fill="#F2F2F2"></rect>{' '}
+              <title>Pausar</title>
           <rect x="14" y="5" width="4" height="14" rx="1" fill="#F2F2F2"></rect>{' '}
         </g>
       </svg>
@@ -990,7 +992,6 @@ export const WorldIcon = () => {
     <svg
       fill="#6f3289"
       height="100%"
-    
       version="1.1"
       id="Layer_1"
       xmlns="http://www.w3.org/2000/svg"
@@ -1010,3 +1011,17 @@ export const WorldIcon = () => {
     </svg>
   );
 };
+
+export const AddIcon = () => {
+  return (
+    <svg height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M7 12L12 12M12 12L17 12M12 12V7M12 12L12 17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <circle cx="12" cy="12" r="9" stroke="gray" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle> </g></svg>
+  );
+};
+
+
+export const MinusIcon = () => {
+  return (
+    <svg height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M7 11C6.44772 11 6 11.4477 6 12C6 12.5523 6.44772 13 7 13H17C17.5523 13 18 12.5523 18 12C18 11.4477 17.5523 11 17 11H7Z" fill="#000000"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1ZM3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12Z" fill="gray"></path> </g></svg>
+  );
+};
+

@@ -11,8 +11,8 @@ import { ShopingCartContext } from "../../context";
   return (
     <main className={activatedAlarm || shopingCartOpen ? "viewport-background":""}>
 <Meditations1/>
-<Meditations2/>
 <Meditations3/>
+<Meditations2/>
    </main>
   )
 }
