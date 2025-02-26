@@ -1,12 +1,29 @@
 import {useCallback, useContext, useEffect, useRef, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {LoginIcon, ShopingIcon} from '../../assets/icons/icons';
+import {CurrencyContext} from '../../context/currencyContext';
 import {ShopingCartContext} from '../../context/modalShopingCartContext';
 import {UserContext} from '../../context/userContext';
 import {numberOfProducts} from '../../utils/numberOfProducts';
 import logoYellow from '../assets/logo-lovelia-yellow.webp';
 import logo from '../assets/lovelia-logo.webp';
+import {CurrencySelector} from './CurrencySelector';
 import {NavbarDropDown} from './NavbarDropDown';
+
+//{
+//  title: 'Intenciones',
+//  path: ['intenciones'],
+//  buttonOptions: [
+//    {buttonName: 'Amor incondicional', path: 'intenciones/2'},
+//    {buttonName: 'Abundancia', path: 'intenciones/3'},
+//    {buttonName: 'Aquí y ahora', path: 'intenciones/4'},
+//    {buttonName: 'Potencial infinito', path: 'intenciones/5'},
+//    {buttonName: 'Coraje', path: 'intenciones/6'},
+//    {buttonName: 'Yo verdadero', path: 'intenciones/7'},
+//    {buttonName: 'Gratitud', path: 'intenciones/8'},
+//    {buttonName: 'Sabiduría de la Incertidumbre', path: 'intenciones/1'},
+//  ],
+//},
 
 export function Navbar() {
   const {shopingCartOpen, toggleMenu, shopingCartItems} =
@@ -74,20 +91,7 @@ export function Navbar() {
       ],
     },
     {title: 'Meditaciones', path: ['meditations'], buttonOptions: []},
-    {
-      title: 'Intenciones',
-      path: ['intenciones'],
-      buttonOptions: [
-        {buttonName: 'Amor incondicional', path: 'intenciones/2'},
-        {buttonName: 'Abundancia', path: 'intenciones/3'},
-        {buttonName: 'Aquí y ahora', path: 'intenciones/4'},
-        {buttonName: 'Potencial infinito', path: 'intenciones/5'},
-        {buttonName: 'Coraje', path: 'intenciones/6'},
-        {buttonName: 'Yo verdadero', path: 'intenciones/7'},
-        {buttonName: 'Gratitud', path: 'intenciones/8'},
-        {buttonName: 'Sabiduría de la Incertidumbre', path: 'intenciones/1'},
-      ],
-    },
+
     {
       title: 'Tienda',
       path: [
@@ -117,6 +121,8 @@ export function Navbar() {
     ...Array.from({length: 8}, (_, i) => `activacion/${i + 1}`),
   ];
 
+  const {currency} = useContext(CurrencyContext);
+
   return (
     <nav
       className={`navbar-container ${scrollPosition > 10 && 'navbar-move'} ${
@@ -130,6 +136,12 @@ export function Navbar() {
         />
       </div>
       <ul className="navbar-menu">
+        {currency && (
+          <li className="navbar-menu-icon">
+            <CurrencySelector />
+          </li>
+        )}
+
         {navbarButtons.map((button, i) => (
           <div
             key={i}

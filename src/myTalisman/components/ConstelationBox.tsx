@@ -16,7 +16,7 @@ export const ConstelationBox = ({constellation}:ConstellationOptions) => {
 
 
   return (
-    <div className='constelationBox-container'>
+    <div className='constelationBox-container efectoRevealTalisman'>
    { filterConstellation(constellation) && <img src={filterConstellation(constellation)} alt="constelacion" />}
     </div>
   )

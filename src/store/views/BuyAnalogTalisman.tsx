@@ -3,13 +3,14 @@ import {useContext, useEffect, useState} from 'react';
 import {useSearchParams} from 'react-router-dom';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {RightNextIcon} from '../../assets/icons/icons';
+import {LoginIcon, RightNextIcon} from '../../assets/icons/icons';
 import {envs} from '../../config';
 import {ShopingCartContext, UserContext} from '../../context';
 import {TalismanModelContext} from '../../context/talismanModelContext';
 import {TimerContext} from '../../context/timerContext';
 import {useOpenModal} from '../../hooks/useOpenModal';
 import {Button} from '../../ui/components/Button';
+import { IntentionModal } from '../components/IntentionModal';
 import {
   chainOptions,
   intencionOptions,
@@ -24,12 +25,18 @@ import {
   addProductToShoppingCartDB,
 } from '../helpers/shoppingCartFunctions';
 
+import { CurrencyModal } from '../components/CurrencyModal';
+import { CurrencyContext } from '../../context/currencyContext';
+import { formatPrice } from '../helpers/priceFormater';
+
 interface Product {
   model: string;
   metal: string;
   rock: string;
   chain: string;
-  price: number;
+  price_AR: number;
+  price_MX: number;
+  price_RM: number;
   stock: number;
   images: string[]; // Array de URLs como strings
   id: string; // Identificador único (asumimos que es un string)
@@ -43,15 +50,16 @@ function BuyAnalogTalisman() {
     metal: '',
     rock: '',
     chain: '',
-    price: 0,
+    price_AR:0,
+    price_MX:0,
+    price_RM:0,
     stock: 0,
     images: [],
     id: '',
   };
 
   const {email} = useContext(UserContext);
-  const {toggleMenu, addItemToCart} =
-    useContext(ShopingCartContext);
+  const {toggleMenu, addItemToCart} = useContext(ShopingCartContext);
 
   const [index, setIndex] = useState<number>(0);
 
@@ -111,12 +119,10 @@ function BuyAnalogTalisman() {
         quantity: 1,
       };
 
-      
       const newProduct = email
         ? await addProductToShoppingCartDB(shopingCartNewItem)
         : await addProductToShoppingCart(shopingCartNewItem);
 
-        console.log("xxxxxxxnewProductxxxxxxx",newProduct)
       addItemToCart(newProduct);
 
       // Reset form fields
@@ -282,13 +288,18 @@ function BuyAnalogTalisman() {
     }
   }, [searchParams, listOfProducts]);
 
+    const {currency}=useContext(CurrencyContext)
+
   return (
     <main
       className={
         activatedAlarm || shopingCartOpen ? 'viewport-background' : ''
       }>
+        { !currency &&  <CurrencyModal/>}
       <section className="custonTalisman-container efectoReveal">
+     
         <div className="custonTalisman-internal-container left">
+          {(optionIntention && optionMetal) && <IntentionModal intention={optionIntention} metal={optionMetal}/>}
           {!hasStock && (
             <div className="sold-out-container efectoReveal">
               <img src={soldOuT} alt="sold-out" />
@@ -330,13 +341,13 @@ function BuyAnalogTalisman() {
           <div
             className="custonTalisman-internal-center-container"
             style={{opacity: dropdownIntensiones.openModal ? '0.5' : '1'}}>
-            <h2>Inicio /Tienda /Talismán analógico</h2>
+            <h2>Inicio /Tienda /Talismánes Fisicos</h2>
 
-            <h3>Talismán Analógico</h3>
+            <h3>Tu Talismán</h3>
             <h5>
               {optionModel && optionRock && optionChain && optionMetal
-                ? `$${product.price.toFixed(2)}`
-                : 'Para ver el precio, arma tu talismán '}
+                ? `Precio: ${formatPrice(currency, product.price_AR, product.price_MX, product.price_RM)}`
+                : 'Elije el modelo, metal, piedra, colgante e intención '}
             </h5>
 
             <div className="options-container">
@@ -385,6 +396,20 @@ function BuyAnalogTalisman() {
             </div>
 
             <div className="buttons-container">
+              <div className="info-container">
+              <div className="icons-container">
+                  <LoginIcon />
+                  <LoginIcon />
+                  <LoginIcon />
+                  <LoginIcon />
+                </div>
+                <ul >
+                  <li>Hecho a mano para ti</li>
+                  <li>Metales de Alta calidad</li>
+                  <li>Piedras naturales</li>
+                </ul>
+            
+              </div>
               <Button
                 onClick={addToShopingCart}
                 text="Agregar al carrito de compras"

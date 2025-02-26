@@ -46,10 +46,17 @@
       
     }
   }
-  p {
+ > p {
     font-size: 1.7rem;
     font-weight: 600;
     text-align: center;
+    cursor: pointer;
+    transition: color 0.5s, transform 0.5s;
+
+    &:hover{
+      color:$color_primary;
+      transform:scale(1.05)
+    }
   }
 }
 

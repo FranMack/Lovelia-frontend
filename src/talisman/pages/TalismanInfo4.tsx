@@ -37,14 +37,14 @@ export const TalismanInfo4 = () => {
             <div className="icon-container">
               <ObliqueArrow color="#ffff" />
             </div>
-            TALISMÁN
+            TALISMÁNES
           </h2>
-          <h2>ANALÓGICO</h2>
+          <h2>FISICOS</h2>
           <br />
           <br />
 
           <p>
-            Los talismanes analógicos Lovelia son una
+            Los talismanes Lovelia son una
         
             {" "}<strong>manifestación física de nuestras intenciones,</strong> un
             {" "}<strong>reflejo de nuestro poder interior</strong> y de la

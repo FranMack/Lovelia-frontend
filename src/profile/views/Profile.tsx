@@ -53,7 +53,7 @@ function Profile() {
   const {shopingCartOpen} = useContext(ShopingCartContext);
 
 
-
+console.log("xxxxxxxxxxxx",shopingHistory)
   return (
     <main
       className={

@@ -14,6 +14,7 @@ import {CheckOutCard} from '../components/CheckOutCard';
 import {CheckOutNavbar} from '../components/CheckOutNavbar';
 
 import {CheckOutNavbarMobile} from '../components/CheckOutNavbarMobile';
+import { totalPrice } from '../../store/helpers/priceFormater';
 
 import {
   BillingForm,
@@ -22,6 +23,7 @@ import {
   TalismanAcountsForm,
 } from '../components/form';
 import {EmptyCar} from './EmptyCar';
+import { CurrencyContext } from '../../context/currencyContext';
 
 //el precio del envío me lo devería dar la api de correos
 const deliveryPrice = 1;
@@ -30,6 +32,8 @@ function CheckOutAnalogic() {
   //is loading
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const {currency}=useContext(CurrencyContext)
 
   const [buttonFocusPosition, setButttonFocusPosition] =
     useState('1. Identificación');
@@ -124,9 +128,7 @@ function CheckOutAnalogic() {
   }, [shopingCartItems]);
 
 
-  const productsPrice = () => {
-    return shopingCartItems.reduce((acc, item) => acc + item.price, 0);
-  };
+
 
   //FORM
 
@@ -219,7 +221,7 @@ function CheckOutAnalogic() {
       apartmentNumber: initialDataAddress.apartmentNumber,
       state: initialDataAddress.state,
       city: initialDataAddress.city,
-      country: initialDataAddress.city,
+      country: initialDataAddress.country,
       postalCode: initialDataAddress.postalCode,
       billingName: '',
       billingLastname: '',
@@ -404,6 +406,7 @@ function CheckOutAnalogic() {
               buyerInfo,
               deliveryPrice: 1,
               productDetails,
+              currency:currency,
               deliveryDetails: needDelivery ? deliveryDetails : undefined,
               billingDetails: billing ? billingDetails : undefined,
               talismanDigitalOwners: talismanDigitalOwners,
@@ -427,6 +430,7 @@ function CheckOutAnalogic() {
             buyerInfo,
             deliveryPrice: 1,
             productDetails,
+            currency:currency,
             deliveryDetails: needDelivery ? deliveryDetails : undefined,
             billingDetails: billing ? billingDetails : undefined,
             talismanDigitalOwners: talismanDigitalOwners,
@@ -451,11 +455,12 @@ function CheckOutAnalogic() {
     }
   }, [singUpForm.errors]);
 
-  console.log('touched', singUpForm.touched);
 
 
-  console.log('errors', singUpForm.errors.talismanDigitalAcounts);
-  console.log('values', singUpForm.values.talismanDigitalAcounts);
+  console.log('values', singUpForm.values);
+
+
+  
 
   if (shopingCartItems.length < 1) {
     return <EmptyCar />;
@@ -692,7 +697,7 @@ function CheckOutAnalogic() {
             <div className="checkout-botton-right-center-container">
               {shopingCartItems.map(item => {
                 return (
-                  <CheckOutCard key={item.shoppingCartItem_id} {...item} />
+                  <CheckOutCard key={item.shoppingCartItem_id} {...item} currency={currency} />
                 );
               })}
             </div>
@@ -700,7 +705,7 @@ function CheckOutAnalogic() {
             <div className="checkout-price-container">
               <div className="checkout-prince">
                 <p>Total estimado</p>
-                <p>${productsPrice().toFixed(2)}</p>
+                <p>${totalPrice(currency,shopingCartItems).toFixed(2)}</p>
               </div>
               <div className="checkout-prince">
                 <p>Envío express</p>
@@ -708,7 +713,7 @@ function CheckOutAnalogic() {
               </div>
               <div className="checkout-prince">
                 <p>Impuestos</p>
-                <p>${(productsPrice() * 0.21).toFixed(2)}</p>
+                <p>${(totalPrice(currency,shopingCartItems) * 0.21).toFixed(2)}</p>
               </div>
               <hr />
               <div className="checkout-prince">
@@ -717,7 +722,7 @@ function CheckOutAnalogic() {
                 </p>
                 <p>
                   <strong>
-                    ${(productsPrice() * 1.21 + deliveryPrice).toFixed(2)}
+                    ${(totalPrice(currency,shopingCartItems) * 1.21 + deliveryPrice).toFixed(2)}
                   </strong>
                 </p>
               </div>

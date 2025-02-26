@@ -34,6 +34,9 @@ export const ChatBot = ({ astroData }: ChatBotProps) => {
     }
   }, [isOpen]); // Se ejecuta cada vez que el chat se abre
 
+
+  console.log("xxxxxxxxxxxxxxx",astroData)
+
   return (
     <>
       {isOpen ? (
@@ -65,7 +68,7 @@ export const ChatBot = ({ astroData }: ChatBotProps) => {
           </div>
         </div>
       ) : (
-        <div className="chat-bubble" onClick={() => setIsOpen(true)}>
+        <div className="chat-bubble efectoRevealTalisman" onClick={() => setIsOpen(true)}>
           💬
         </div>
       )}

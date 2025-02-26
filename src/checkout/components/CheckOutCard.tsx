@@ -1,4 +1,7 @@
 import {ShopingCartItemOptions} from '../../context';
+import {formatPrice} from '../../store/helpers/priceFormater';
+
+type CheckoutCardProps = ShopingCartItemOptions & {currency: string};
 
 export const CheckOutCard = ({
   shoppingCartItem_id,
@@ -8,9 +11,12 @@ export const CheckOutCard = ({
   rock,
   chain,
   intention,
-  price,
-  quantity
-}: ShopingCartItemOptions) => {
+  price_AR,
+  price_MX,
+  price_RM,
+  quantity,
+  currency,
+}: CheckoutCardProps) => {
   return (
     <>
       {model === 'Digital' ? (
@@ -23,20 +29,17 @@ export const CheckOutCard = ({
             </div>
 
             <div className="card-td">
-              <strong>Meditación visual</strong>
-              <p>Animación 3D única</p>
+              <strong>Animación 3D única</strong>
+       
             </div>
             <div className="card-td">
-              <strong>Banco de sonidos</strong>
-              <p>Listas con meditaciones</p>
+              <strong>Listas con meditaciones</strong>
             </div>
             <div className="card-td">
               <strong>ADN energetico</strong>
-              <p>Información astrológica</p>
             </div>
             <div className="card-td">
-              <strong>Y más</strong>
-              <p>Timer, alarma, activación, ...</p>
+              <strong>Y más</strong> 
             </div>
             <div className="card-td">
               <strong>Cantidad:</strong>
@@ -45,7 +48,12 @@ export const CheckOutCard = ({
 
             <div className="card-td">
               <strong>Subtotal:</strong>
-              <span>{`$ ${price * quantity}`}</span>
+              <span>{`${formatPrice(
+                currency,
+                price_AR * quantity,
+                price_MX * quantity,
+                price_RM * quantity,
+              )}`}</span>
             </div>
           </div>
         </div>
@@ -72,17 +80,21 @@ export const CheckOutCard = ({
             </div>
             <div className="card-td">
               <strong>Intención:</strong>
-              <p>{intention}</p>
+              <p>{intention?.slice(0,22)}</p>
             </div>
             <div className="card-td">
               <strong>Cantidad:</strong>
               <p>{quantity}</p>
             </div>
-            
 
             <div className="card-td">
-            <strong>Subtotal:</strong>
-            <span>{`$ ${price * quantity}`}</span>
+              <strong>Subtotal:</strong>
+              <span>{` ${formatPrice(
+                currency,
+                price_AR * quantity,
+                price_MX * quantity,
+                price_RM * quantity,
+              )}`}</span>
             </div>
           </div>
         </div>

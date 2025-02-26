@@ -58,6 +58,8 @@ export const Timer = ({ sounds = [] }: TimerOptions) => {
     }
 
     handleButtonFocus("chronometer");
+
+    console.log("sounds",sounds)
     return;
   };
 

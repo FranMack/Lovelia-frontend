@@ -26,7 +26,7 @@ function years() {
 
 function minutes() {
   const minutes = [0];
-  for (let i = 0; i < 60; i++) {
+  for (let i = 0; i < 59; i++) {
     minutes.push(minutes[minutes.length - 1] + 1);
   }
   return minutes;

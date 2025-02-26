@@ -10,6 +10,8 @@ import {
   addProductToShoppingCart,
   addProductToShoppingCartDB,
 } from '../helpers/shoppingCartFunctions';
+import { CurrencyModal } from '../components/CurrencyModal';
+import { CurrencyContext } from '../../context/currencyContext';
 
 const precio = '10,00';
 
@@ -43,19 +45,18 @@ function BuyDigitalTalisman() {
     navigate('/portal-usuario');
   };
 
-  const {shopingCartOpen, toggleMenu,addItemToCart} =
+  const {shopingCartOpen, toggleMenu, addItemToCart} =
     useContext(ShopingCartContext);
 
   const {email} = useContext(UserContext);
 
   const handleBuyTalisman = async () => {
-    
     const shopingCartNewItem = {
       model: 'Digital',
-      metal:"Digital",
-      rock:"Digital",
-      chain:"Digital",
-      intention:"Digital",
+      metal: 'Digital',
+      rock: 'Digital',
+      chain: 'Digital',
+      intention: 'Digital',
       image: ejDigitalTalisman[0].image,
       quantity: 1,
     };
@@ -64,9 +65,7 @@ function BuyDigitalTalisman() {
       ? await addProductToShoppingCartDB(shopingCartNewItem)
       : await addProductToShoppingCart(shopingCartNewItem);
 
-
-
-    addItemToCart(newProduct)
+    addItemToCart(newProduct);
 
     toggleMenu();
 
@@ -74,13 +73,15 @@ function BuyDigitalTalisman() {
   };
 
   const {activatedAlarm} = useContext(TimerContext);
-
+  const {currency}=useContext(CurrencyContext)
   return (
     <main
       className={
         activatedAlarm || shopingCartOpen ? 'viewport-background' : ''
       }>
+        { !currency &&  <CurrencyModal/>}
       <section className="buyDigitalTalisman-container efectoReveal">
+        
         {popUp && (
           <PopUp
             linkTo={linkTo}

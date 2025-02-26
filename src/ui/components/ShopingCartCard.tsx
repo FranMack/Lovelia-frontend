@@ -5,6 +5,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import {GarbageCan} from '../../assets/icons/icons';
 import {envs} from '../../config';
 import {ShopingCartContext, UserContext} from '../../context';
+import {CurrencyContext} from '../../context/currencyContext';
+import {formatPrice} from '../../store/helpers/priceFormater';
+import { AddIcon,MinusIcon } from '../../assets/icons/icons';
 
 interface ShopingCartCardOptions {
   shoppingCartItem_id: number | string;
@@ -14,7 +17,9 @@ interface ShopingCartCardOptions {
   rock?: string;
   chain?: string;
   intention?: string;
-  price: number;
+  price_AR: number;
+  price_MX: number;
+  price_RM: number;
   quantity: number;
   product_id: string;
 }
@@ -27,11 +32,15 @@ export const ShopingCartCard = ({
   rock,
   chain,
   intention,
-  price,
+  price_AR,
+  price_MX,
+  price_RM,
   quantity,
   product_id,
 }: ShopingCartCardOptions) => {
   const {email} = useContext(UserContext);
+  const {currency} = useContext(CurrencyContext);
+
   const {setShopingCartItems, shopingCartItems} =
     useContext(ShopingCartContext);
 
@@ -66,56 +75,60 @@ export const ShopingCartCard = ({
   const updateCartQuantity = async (newQuantity: number) => {
     const updatedCart = shopingCartItems.map(item =>
       item.shoppingCartItem_id === shoppingCartItem_id
-        ? { ...item, quantity: newQuantity }
-        : item
+        ? {...item, quantity: newQuantity}
+        : item,
     );
-  
-    
-      try {
-        const response = await axios.put(
-          `${envs.API_DOMAIN}/api/v1/shopping-cart/update-quantity`,
-          { shoppingCartItem_id:email? shoppingCartItem_id:"", quantity: newQuantity,product_id },
-          { withCredentials: true }
-        );
-  
-        if (response.status === 200) {
-          setShopingCartItems(updatedCart);
-          setProductQuantity(newQuantity);
-          localStorage.setItem('shopingCart', JSON.stringify(updatedCart));
-        } 
-      } catch (error: unknown) {
-        if (
-          typeof error === "object" &&
-          error !== null &&
-          "response" in error &&
-          typeof error.response === "object" &&
-          error.response !== null &&
-          "data" in error.response &&
-          typeof error.response.data === "object" &&
-          error.response.data !== null &&
-          "error" in error.response.data &&
-          typeof error.response.data.error === "string"
-        ) {
-          toast.error(error.response.data.error);
-        } else {
-          console.log(error);
-        }
-      }
 
+    try {
+      const response = await axios.put(
+        `${envs.API_DOMAIN}/api/v1/shopping-cart/update-quantity`,
+        {
+          shoppingCartItem_id: email ? shoppingCartItem_id : '',
+          quantity: newQuantity,
+          product_id,
+        },
+        {withCredentials: true},
+      );
+
+      if (response.status === 200) {
+        setShopingCartItems(updatedCart);
+        setProductQuantity(newQuantity);
+        localStorage.setItem('shopingCart', JSON.stringify(updatedCart));
+      }
+    } catch (error: unknown) {
+      if (
+        typeof error === 'object' &&
+        error !== null &&
+        'response' in error &&
+        typeof error.response === 'object' &&
+        error.response !== null &&
+        'data' in error.response &&
+        typeof error.response.data === 'object' &&
+        error.response.data !== null &&
+        'error' in error.response.data &&
+        typeof error.response.data.error === 'string'
+      ) {
+        toast.error(error.response.data.error);
+      } else {
+        console.log(error);
+      }
+    }
   };
-  
-  const handleProductQuantity = async (event: React.MouseEvent<HTMLButtonElement>) => {
+
+  const handleProductQuantity = async (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
     const buttonId = event.currentTarget.id;
     let newQuantity = productQuantity;
-  
-    if (buttonId === 'next' ) {
+
+    if (buttonId === 'next') {
       newQuantity += 1;
     } else if (buttonId === 'previous' && productQuantity > 1) {
       newQuantity -= 1;
     } else {
       return; // No hacer nada si no se cumple ninguna condición
     }
-  
+
     await updateCartQuantity(newQuantity);
   };
 
@@ -135,37 +148,39 @@ export const ShopingCartCard = ({
             </div>
 
             <div className="card-td">
-              <strong>Meditación visual</strong>
-              <p>Animación 3D única</p>
+              <strong>Animación 3D única</strong>
+         
             </div>
             <div className="card-td">
-              <strong>Banco de sonidos</strong>
-              <p>Listas con meditaciones</p>
+              <strong>Listas con meditaciones</strong>
             </div>
             <div className="card-td">
               <strong>ADN energetico</strong>
-              <p>Información astrológica</p>
             </div>
             <div className="card-td">
               <strong>Y más</strong>
-              <p>Timer, alarma, activación, ...</p>
             </div>
             <div className="card-td">
               <strong>Cantidad:</strong>
               <div className="quantityContainer">
                 <button onClick={e => handleProductQuantity(e)} id="previous">
-                  -
+                  <MinusIcon/>
                 </button>
                 <p>{productQuantity}</p>
                 <button onClick={e => handleProductQuantity(e)} id="next">
-                  +
+                  <AddIcon/>
                 </button>
               </div>
             </div>
 
             <div className="card-td price">
               <strong>Subtotal:</strong>
-              <span>{`$ ${price * quantity}`}</span>
+              <span>{` ${
+                formatPrice(currency, price_AR*
+                  productQuantity, price_MX*
+                  productQuantity, price_RM*
+                  productQuantity) 
+              }`}</span>
             </div>
           </div>
         </div>
@@ -200,25 +215,30 @@ export const ShopingCartCard = ({
             )}
             <div className="card-td">
               <strong>Intención:</strong>
-              <p>{intention}</p>
+              <p>{intention?.slice(0,22)}</p>
             </div>
             <div className="card-td">
               <strong>Cantidad:</strong>
 
               <div className="quantityContainer">
                 <button onClick={e => handleProductQuantity(e)} id="previous">
-                  -
+                  <MinusIcon/>
                 </button>
                 <p>{productQuantity}</p>
                 <button onClick={e => handleProductQuantity(e)} id="next">
-                  +
+                  <AddIcon/>
                 </button>
               </div>
             </div>
 
             <div className="card-td price">
               <strong>Subtotal:</strong>
-              <span>{`$ ${price * productQuantity}`}</span>
+              <span>{` ${
+                formatPrice(currency, price_AR*
+                  productQuantity, price_MX*
+                  productQuantity, price_RM*
+                  productQuantity) 
+              }`}</span>
             </div>
           </div>
         </div>

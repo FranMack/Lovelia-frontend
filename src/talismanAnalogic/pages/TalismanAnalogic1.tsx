@@ -3,7 +3,7 @@ import background from '../assets/portada_talisman_analogico.webp';
 
 const frontPageInfo: FrontPage2Options = {
   image: background,
-  title: 'TALISMÁN ANALÓGICO',
+  title: 'TALISMÁNES FISICOS',
   secundaryTitle: '',
   color: '#EDC7B9',
 };

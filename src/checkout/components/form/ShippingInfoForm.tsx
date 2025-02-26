@@ -17,7 +17,9 @@ interface Props {
   };
   validation: boolean;
   deliveryPrice: number;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => void;
   handleBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
  errors: FormikErrors<InitialValues>;
   touched:FormikTouched<InitialValues>;
@@ -48,6 +50,8 @@ export const ShippingInfoForm = ({
     localStorage.setItem("checkout-address",JSON.stringify(values))
     handleButtonFocus(section[2])
   }
+
+  
 
   return (
     <div className="checkout-botton-left-container">
@@ -200,20 +204,12 @@ export const ShippingInfoForm = ({
         <div className="checkout-form-names-container">
           <div className="checkout-form-names-internal-container">
             <label htmlFor="country">País</label>
-            <input
-              value={values.country}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              name="country"
-              type="text"
-              placeholder="Ej. Argentina"
-              className={
-                (touched.country && errors.country) ||
-                (warning && !values.country)
-                  ? 'input-error'
-                  : ''
-              }
-            />
+         
+         <select  name="country"  value={values.country} onChange={handleChange}>
+         <option>Pais</option>
+          <option value="Argentina">Argentina</option>
+          <option value="Mexico">Mexico</option>
+         </select>
             {touched.country && errors.country && (
               <span className="checkOut-helpers-error">{errors.country}</span>
             )}

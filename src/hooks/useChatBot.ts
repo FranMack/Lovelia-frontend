@@ -67,7 +67,24 @@ export const useChatBot = (astroData: MyAdnProps) => {
             3. Cerrar con un mensaje positivo y empoderador.
             
             Aquí tienes información sobre el ADN energético de la persona que te consulta:
-            ${astroData}
+
+   - Ascendente: ${astroData.ascendantUserInfo?.title}
+   -Aspectos:${astroData.aspectsAndPlanetsUserInfo.userAspects
+     .map(item => {
+       return `Aspecto:${item.aspect} Planeta aspectante: ${item.aspectingPlanet.title}  Planeta Aspectado: ${item.planet.title}`;
+     })
+     .join(',')}
+  - Signo Solar: ${astroData.sunUserInfo?.title}
+  - Signo Lunar: ${astroData.moonUserInfo?.title}
+  -Casa Solar:${astroData.sunHouseUserInfo.title}
+  -Casa Lunar:${astroData.moonHouseUserInfo.title}
+  - Numerología: ${astroData.numberUserInfo?.title}
+  - Horozcopo chino: ${astroData.chineseUserInfo.commonInfo.title}
+  - Horozcopo chino: ${astroData.chineseUserInfo.particularInfo.title}
+  - Kin maya Símbolo Solar: ${astroData.kingMayaUserInfo.title}
+  - Kin maya Tono: ${astroData.tonesUserInfo.title}
+  
+
             
             Usa esta información para responder preguntas relacionadas con astrología, ascendente, signos y cualquier consulta sobre la energía personal del usuario. No pidas nuevamente datos si ya están en ${astroData}.
             Si falta información específica para calcular algo, pídele amablemente al usuario los datos que faltan.`,

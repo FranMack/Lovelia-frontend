@@ -70,7 +70,7 @@ export const TalismanBox = ({
   }, [solarSailSymbol, toneSymbol, numerologySymbol,chineseSymbol]); // Re-run the effect if any of these change
 
   return (
-    <div className="talismanBox-container">
+    <div className="talismanBox-container efectoRevealTalisman">
       <div className="talismanBox-top-container">
         {dotFunction(path.numerologyPath).map((_, i) => (
           <img key={i} src={dot} alt="dot" />

@@ -9,7 +9,7 @@
   right: 0;
   /* Estilo para la barra de desplazamiento */
   ::-webkit-scrollbar {
-    width: 10px; /* Ancho de la barra de desplazamiento */
+    width:0px; /* Ancho de la barra de desplazamiento */
   }
 
   /* Estilo para el thumb (el botón que puedes arrastrar) de la barra de desplazamiento */
@@ -64,18 +64,18 @@
   margin-bottom: 4%;
   display: flex;
   flex-direction: column;
-  row-gap: 2%;
+  row-gap: 3%;
   overflow-y: scroll;
 }
 
 .shoping-cart-card-container {
   width: 90%;
-  height: 38%;
+  min-height: 40%;
   margin: 0 auto;
   display: flex;
   background-color: $color_background2;
   img {
-    height: 100%;
+    width: 35%;
     aspect-ratio: 1;
   }
 
@@ -113,11 +113,16 @@
       align-items: center;
       column-gap: 20px;
       font-size: 1.5rem;
+
       >button{
-       
-       font-weight: bold;
-       font-size: 1.8rem;
+        display: flex;
+        align-items: center;
+    }
+      >p{
+        font-size: 1.5rem;
+        font-weight: bolder;
       }
+    
     }
     p {
       font-size: 1.2rem;
@@ -262,14 +267,15 @@
 
     .shoping-cart-card-container {
       width: 95%;
-      height: 42%;
+      height: auto;
       margin: 0 auto;
       display: flex;
       align-items: center;
-      background-color: $color_background2;
+    
       padding-bottom: 1%;
       img {
-        height: 60%;
+        width: 35%;
+        height: auto;
         aspect-ratio: 1;
       }
 
@@ -284,12 +290,12 @@
       flex-direction: column;
       align-items: start;
       justify-content: center;
+      row-gap: 10px;
 
    
 
       > .card-td {
         display: flex;
-        flex-direction: column;
         align-items: start;
         justify-content: space-between;
         width: 95%;
@@ -304,9 +310,9 @@
       }
 
       >.card-td.price{
-        position: absolute;
+        position: relative;
         width: 92%;
-        bottom: 0%;
+    
         flex-direction: row;
         p {
           font-size: 1.2rem;
@@ -318,10 +324,12 @@
       }
 
       .card-title {
-        width: 92%;
-        margin-top: 2%;
+        width: 100%;
+        position: relative;
+        margin-bottom: 5px;
         display: flex;
         justify-content: space-between;
+ 
         h4 {
           font-size: 1.6rem;
           font-weight: 700;
