@@ -40,7 +40,7 @@ export const TalismanAcountsForm = ({
       <div className="checkout-title-container">
         <h3>Talismán digital</h3>
         <h6>
-       Ingresa el correo del destinatario del Talismán Digital, este será necesario para su activación.
+       Ingresa el correo del destinatario del Talismán Digital, este será necesario para su configuración.
         
         </h6>
       </div>

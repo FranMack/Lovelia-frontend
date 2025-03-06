@@ -1,4 +1,3 @@
-
 import sabiduría from '../../intentions/assets/imagen-intensiones1.webp';
 import amorIncondicional from '../../intentions/assets/imagen-intensiones2.webp';
 import abundancia from '../../intentions/assets/imagen-intensiones3.webp';
@@ -19,34 +18,7 @@ export const blogNotes = [
     date: '03 de Septiembre del 2024',
     image1: elPoderDeLaIntencionImage1,
     image2: elPoderDeLaIntencionImage2,
-    paragraphs1: [
-      'Meditación: El Arte de Conectar con tu Ser Interior',
-      'La meditación es una práctica ancestral que nos invita a cultivar una conexión más profunda con nuestro ser. Su significado en sánscrito remite al acto de “cultivar”, haciendo referencia a la transformación interna que se genera al desarrollar el hábito de estar presentes. Este ejercicio de atención plena nos abre la puerta a un mayor equilibrio y bienestar en todos los niveles: físico, mental y emocional.',
-      'Desde este estado de presencia, accedemos a una percepción más amplia de la realidad, trascendiendo la inercia del pensamiento automático y permitiéndonos vivir con mayor claridad y autenticidad. A través de la meditación, logramos una conexión más profunda con nosotros mismos, con los demás y con el mundo que nos rodea.',
-      'Un Puente hacia la Conciencia Expandida',
-      'Uno de los efectos más transformadores de la meditación es su capacidad para llevarnos a estados de conciencia más elevados. Durante la práctica, la actividad cerebral cambia y las ondas mentales se ralentizan, generando un estado de relajación consciente. Esto nos permite reducir el ruido mental y fortalecer la intuición, accediendo a una mayor claridad interior.',
-      '¿Para qué meditamos?',
-      'La ciencia ha demostrado ampliamente los beneficios de la meditación en la salud y el bienestar. Su impacto en el cerebro es notable, ya que fortalece la actividad en la corteza prefrontal izquierda, una región asociada con emociones positivas y equilibrio emocional. Al reforzar estas conexiones neuronales, la meditación nos ayuda a sostener y disfrutar por más tiempo las experiencias placenteras.',
-      'Esta práctica también mejora nuestra capacidad de enfoque y nos permite vivir con mayor conciencia en el presente. También logramos que el peso del pasado influya menos en nuestra experiencia presente, y además la mente deja de proyectarse en escenarios imaginarios y se arraiga en el ahora, lo que reduce la ansiedad y la preocupación por el futuro.',
-      'Al desarrollar una atención más estable, aprendemos a disfrutar momentos simples de la vida cotidiana, como compartir una charla, beber una infusión o simplemente observar nuestro entorno sin prisas. Con el tiempo, cultivamos una actitud más serena y menos reactiva, lo que nos permite afrontar la vida con mayor equilibrio y claridad.',
-    ],
-    paragraphs2: [
-      'El Poder de la Atención Plena',
-      'Meditar no implica eliminar pensamientos, sino entrenar la mente para regresar al presente con mayor rapidez cuando nos distraemos. Podemos utilizar distintos puntos de enfoque, como la respiración, una vela o un objeto específico. Este hábito fortalece las áreas del cerebro responsables de la concentración, facilitando una mayor estabilidad mental y emocional.',
-      'Cerrar los ojos ayuda a reducir distracciones externas, lo que potencia la conexión con nuestro mundo interno. La respiración, en particular, es un recurso muy efectivo para anclar nuestra atención. Al sentir el aire entrando y saliendo del cuerpo, la mente se calma y nos ayuda a permanecer en el momento presente.',
-      'Lleva la Meditación a Tu Día a Día',
-      'Incorporar la meditación en nuestra rutina es más sencillo de lo que parece. Basta con empezar con 3 o 5 minutos al día e ir aumentando gradualmente hasta llegar a 10 minutos diarios, tiempo suficiente para generar cambios positivos en el cuerpo y la mente.',
-      'En Lovelia, creemos que la meditación es una poderosa herramienta de transformación. Al cultivar la presencia, nos alineamos con nuestra esencia y nuestro propósito, abriendo el camino hacia una vida más consciente y equilibrada.',
-      'Te invitamos a explorar esta práctica con nuestras meditaciones gratuitas, diseñadas para acompañarte en este viaje de autoconocimiento y bienestar.',
-    ],
-  },
 
-  {
-    title: '¿Para qué meditamos?',
-    author: 'Lovelia',
-    date: '03 de Septiembre del 2024',
-    image1: paraQueMeditamos1,
-    image2: paraQueMeditamos2,
     paragraphs1: [
       'Existe el poder de transformar los pensamientos en realidades durante el proceso de búsqueda de la plenitud y la realización personal. Es el poder de la intención, la semilla de toda transformación y creación en nuestras vidas.',
       'La intención es el punto de partida para todo cambio y creación, ya que se trata de la energía que dirige nuestros pensamientos, nuestras palabras y nuestras acciones hacia la manifestación de nuestros deseos más profundos, esos que están en conexión íntima con nuestra esencia, nuestros valores y nuestra visión del mundo.',
@@ -60,6 +32,35 @@ export const blogNotes = [
       'Se trata de andar ese camino de autodescubrimiento, que nos invita a asumir la responsabilidad de nuestra felicidad y nos recuerda que somos arquitectos de nuestro destino. Es importante tener en cuenta que cada pensamiento positivo y acción consciente nos acerca a la realización de nuestros sueños.',
       'Las intenciones más poderosas trascienden el ego y la individualidad, generando armonía y beneficios universales. Son manifestaciones del universo total, conteniendo en sí mismas lo necesario para su cumplimiento.',
       'Ajustar nuestras intenciones con la intención cósmica crea armonía y promueve la sincronicidad en nuestras vidas. La gratitud y el abandono de sacrificios son clave para crear intenciones puras y alineadas con el universo.',
+    ],
+  },
+
+  {
+    title: '¿Para qué meditamos?',
+    author: 'Lovelia',
+    date: '03 de Septiembre del 2024',
+    image1: paraQueMeditamos1,
+    image2: paraQueMeditamos2,
+    paragraphs1: [
+      'Meditación: El Arte de Conectar con tu Ser Interior',
+      'La meditación es una práctica ancestral que nos invita a cultivar una conexión más profunda con nuestro ser. Su significado en sánscrito remite al acto de “cultivar”, haciendo referencia a la transformación interna que se genera al desarrollar el hábito de estar presentes. Este ejercicio de atención plena nos abre la puerta a un mayor equilibrio y bienestar en todos los niveles: físico, mental y emocional.',
+      'Desde este estado de presencia, accedemos a una percepción más amplia de la realidad, trascendiendo la inercia del pensamiento automático y permitiéndonos vivir con mayor claridad y autenticidad. A través de la meditación, logramos una conexión más profunda con nosotros mismos, con los demás y con el mundo que nos rodea.',
+      'Un Puente hacia la Conciencia Expandida',
+      'Uno de los efectos más transformadores de la meditación es su capacidad para llevarnos a estados de conciencia más elevados. Durante la práctica, la actividad cerebral cambia y las ondas mentales se ralentizan, generando un estado de relajación consciente. Esto nos permite reducir el ruido mental y fortalecer la intuición, accediendo a una mayor claridad interior.',
+      '¿Para qué meditamos?',
+      'La ciencia ha demostrado ampliamente los beneficios de la meditación en la salud y el bienestar. Su impacto en el cerebro es notable, ya que fortalece la actividad en la corteza prefrontal izquierda, una región asociada con emociones positivas y equilibrio emocional. Al reforzar estas conexiones neuronales, la meditación nos ayuda a sostener y disfrutar por más tiempo las experiencias placenteras.',
+      'Esta práctica también mejora nuestra capacidad de enfoque y nos permite vivir con mayor conciencia en el presente. También logramos que el peso del pasado influya menos en nuestra experiencia presente, y además la mente deja de proyectarse en escenarios imaginarios y se arraiga en el ahora, lo que reduce la ansiedad y la preocupación por el futuro.',
+      'Al desarrollar una atención más estable, aprendemos a disfrutar momentos simples de la vida cotidiana, como compartir una charla, beber una infusión o simplemente observar nuestro entorno sin prisas. Con el tiempo, cultivamos una actitud más serena y menos reactiva, lo que nos permite afrontar la vida con mayor equilibrio y claridad.',
+    ],
+
+    paragraphs2: [
+      'El Poder de la Atención Plena',
+      'Meditar no implica eliminar pensamientos, sino entrenar la mente para regresar al presente con mayor rapidez cuando nos distraemos. Podemos utilizar distintos puntos de enfoque, como la respiración, una vela o un objeto específico. Este hábito fortalece las áreas del cerebro responsables de la concentración, facilitando una mayor estabilidad mental y emocional.',
+      'Cerrar los ojos ayuda a reducir distracciones externas, lo que potencia la conexión con nuestro mundo interno. La respiración, en particular, es un recurso muy efectivo para anclar nuestra atención. Al sentir el aire entrando y saliendo del cuerpo, la mente se calma y nos ayuda a permanecer en el momento presente.',
+      'Lleva la Meditación a Tu Día a Día',
+      'Incorporar la meditación en nuestra rutina es más sencillo de lo que parece. Basta con empezar con 3 o 5 minutos al día e ir aumentando gradualmente hasta llegar a 10 minutos diarios, tiempo suficiente para generar cambios positivos en el cuerpo y la mente.',
+      'En Lovelia, creemos que la meditación es una poderosa herramienta de transformación. Al cultivar la presencia, nos alineamos con nuestra esencia y nuestro propósito, abriendo el camino hacia una vida más consciente y equilibrada.',
+      'Te invitamos a explorar esta práctica con nuestras meditaciones gratuitas, diseñadas para acompañarte en este viaje de autoconocimiento y bienestar.',
     ],
   },
 
@@ -204,7 +205,7 @@ export const blogNotes = [
       `Cuando abrazamos el coraje, no solo estamos dispuestos a desafiar obstáculos, sino que también estamos comprometidos con una causa mayor. El propósito que guía nuestro coraje le confiere significado a nuestras acciones, convirtiéndolas en expresiones auténticas de nuestra esencia más profunda. Así, se manifiesta en nuestra vida como una poderosa fuerza al servicio del amor y la consciencia que nos impulsa cuando creemos fervientemente en la importancia de lo que queremos crear, cambiar y construir.`,
     ],
   },
-  
+
   {
     title: 'Sabiduría de la incertidumbre',
     author: 'Lovelia',
@@ -217,10 +218,9 @@ export const blogNotes = [
       'Creemos que saber lo que ocurrirá nos permitirá controlarlo y por eso a nuestra mente le disgusta la incertidumbre.',
       'La búsqueda de certidumbre se vuelve, así, uno de los mayores condicionantes de nuestra experiencia. Las personas construimos infinitas creencias sobre el mundo, las personas y nosotros mismos. Aunque estas construcciones tienen una muy buena intención ( tratar de predecir lo va a ocurrir) a veces pueden resultar limitantes.',
       'Es allí, en el océano de lo desconocido, donde habitan todas las oportunidades con las que aún no has soñado, todas las personas que no sabías que ibas a amar y todas las potencialidades que desconocías ibas a desplegar.',
-      
     ],
     paragraphs2: [
-    'Aprender a navegar las aguas de la incertidumbre, de lo desconocido, de lo que no tiene garantías, nos permite ampliar nuestra mente y entrar en el mundo de todas las posibilidades, donde podemos vivenciar la intuición, la libertad, la creatividad y verdaderamente Ser quien eres.',
+      'Aprender a navegar las aguas de la incertidumbre, de lo desconocido, de lo que no tiene garantías, nos permite ampliar nuestra mente y entrar en el mundo de todas las posibilidades, donde podemos vivenciar la intuición, la libertad, la creatividad y verdaderamente Ser quien eres.',
       'Sin la incertidumbre nuestra vida se vuelve una repetición de recuerdos gastados, pensamientos recurrentes y estancamiento emocional.',
       'Saber que no sabemos cómo serán las cosas porque no sabemos cuánto podemos llegar a transformarnos, es una invitación a fluir con la vida, a dejarnos llevar por su marea, a aceptar y agradecer con amor el aprendizaje que nos depara nuestro camino.',
       'La incertidumbre nos invita a la experiencia de vivir, abriendo nuestro corazón a la emoción, a la aventura, al misterio.  Relajar nuestra mente de este modo nos permite regocijarnos ante nuestra propia transformación.',
@@ -242,8 +242,6 @@ export const blogNotes = [
       'Cuando llevamos nuestra atención al presente nos conectamos con la experiencia y ese es el primer paso para disfrutarla. Solo en el presente podemos experimentar el placer de un té caliente por la mañana, sentir la brisa en el rostro durante un paseo por la montaña, escuchar a una persona querida con todos nuestros sentidos, apreciar la música que está sonando o la comida que estamos preparando.',
       'Ese presente se encuentra al alcance de nuestros sentidos, fuera de la Ilusión del Tiempo y más allá de nuestra mente. Ese pasado que ya no es y ese futuro incierto solo existen sostenidos por el pensamiento.',
       'Cuando nuestra atención queda atrapada en la Ilusión del Tiempo, dando vueltas a este o aquel pensamiento sin cesar, podemos olvidar quién estamos siendo ahora. Identificarnos con los pensamientos, confunde nuestra identidad y nos desconecta de las emociones, intenciones y recursos que se encuentran fuera de la mente y en nuestra experiencia presente.',
-     
-      
     ],
     paragraphs2: [
       'Aprender a estar presente no significa, sin embargo, que nunca más haya que pensar. En nuestra vida diaria hay personas queridas y tareas importantes que requieren que nuestra atención esté puesta en el presente, así como situaciones en las que es necesario dar un paseo por nuestra mente o una vuelta por la Ilusión del Tiempo.',
@@ -253,5 +251,4 @@ export const blogNotes = [
       'Es allí, en el océano de lo desconocido, donde habitan todas las oportunidades con las que aún no has soñado, todas las personas que no sabías que ibas a amar y todas las potencialidades que desconocías ibas a desplegar.',
     ],
   },
-  
 ];
