@@ -1,6 +1,6 @@
-import axios from 'axios';
 import {ChangeEvent, useContext, useEffect, useRef, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import axiosAPI from '../../api/axiosAPI';
 import {
   ActivationIcon,
   ClockIcon,
@@ -18,7 +18,6 @@ import {
   StopIcon,
   TalismanSoundIcon,
 } from '../../assets/icons/icons';
-import {envs} from '../../config/envs';
 import {IntentionContext} from '../../context';
 import {ActivationStepsContex} from '../../context/activationStepsContext';
 import {TalismanAudioContext} from '../../context/talismanAudioContext';
@@ -156,8 +155,6 @@ export const ThreeJsFrame = () => {
     }
   };
 
-
-
   const {intention, setIntention} = useContext(IntentionContext);
 
   const buttonsLeft = [
@@ -213,12 +210,10 @@ export const ThreeJsFrame = () => {
 
         if (audioType === 'activation') {
           const index = 0;
-          console.log({index, audioType})
-            restartTrack(index, audioType);
+          console.log({index, audioType});
+          restartTrack(index, audioType);
           return;
         }
-        
-
       },
     },
     {
@@ -370,8 +365,8 @@ export const ThreeJsFrame = () => {
             title: '',
             text: [],
           },
-          aspectingPlanet:{
-            title:''
+          aspectingPlanet: {
+            title: '',
           },
         },
       ],
@@ -392,14 +387,12 @@ export const ThreeJsFrame = () => {
     async function getUserInfo(email: string) {
       try {
         if (email) {
-          const userInfo = await axios.get(
-            `${envs.API_DOMAIN}/api/v1/user/astrological-info?email=${email}`,
-            {withCredentials: true},
+          const userInfo = await axiosAPI.get(
+            `/api/v1/user/astrological-info?email=${email}`,
           );
 
-          const userIntention = await axios.get(
-            `${envs.API_DOMAIN}/api/v1/user/my-intention/${email}`,
-            {withCredentials: true},
+          const userIntention = await axiosAPI.get(
+            `/api/v1/user/my-intention/${email}`,
           );
 
           if (userInfo.data) {
@@ -422,7 +415,7 @@ export const ThreeJsFrame = () => {
           }
 
           /*setTimeout(() => {
-            axios.post(
+            axiosAPI.post(
               `${envs.API_DOMAIN}/api/v1/user/cleanUserJSON`,
               {email},
               {withCredentials: true},
@@ -552,8 +545,6 @@ export const ThreeJsFrame = () => {
             });*/
       });
 
-    
-
       if (timerSoundRefs.current[index]) {
         timerSoundRefs.current[index].play();
         setTrackDuration(timerSoundRefs.current[index].duration);
@@ -629,21 +620,16 @@ export const ThreeJsFrame = () => {
       playTrack(index, 'sound');
       handlePlaying(true);
       return;
-    } 
-
-    else if(type === 'activation'){
+    } else if (type === 'activation') {
       if (activationSoundRef.current) {
         activationSoundRef.current.pause();
-        activationSoundRef.current.currentTime=0;
+        activationSoundRef.current.currentTime = 0;
         setAudioType('activation');
         playTrack(index, 'activation');
         handlePlaying(true);
-        return
-  
+        return;
       }
-    }
-    
-    else {
+    } else {
       meditationsRefs.current.forEach(audio => {
         audio.pause(), (audio.currentTime = 0);
       });
@@ -712,26 +698,12 @@ export const ThreeJsFrame = () => {
     const fetchData = async () => {
       try {
         // Tipamos explícitamente la respuesta de axios
-        const [meditationsResponse, soundsResponse,timerSoundsResponse] = await Promise.all([
-          axios.get<MeditationsOptions[]>(
-            `${envs.API_DOMAIN}/api/v1/user/meditations`,
-            {
-              withCredentials: true,
-            },
-          ),
-          axios.get<MeditationsOptions[]>(
-            `${envs.API_DOMAIN}/api/v1/user/sounds`,
-            {
-              withCredentials: true,
-            },
-          ),
-          axios.get<MeditationsOptions[]>(
-            `${envs.API_DOMAIN}/api/v1/user/timer-sounds`,
-            {
-              withCredentials: true,
-            },
-          ),
-        ]);
+        const [meditationsResponse, soundsResponse, timerSoundsResponse] =
+          await Promise.all([
+            axiosAPI.get<MeditationsOptions[]>('/api/v1/user/meditations'),
+            axiosAPI.get<MeditationsOptions[]>('/api/v1/user/sounds'),
+            axiosAPI.get<MeditationsOptions[]>('/api/v1/user/timer-sounds'),
+          ]);
 
         // Obtenemos duraciones para meditaciones y sonidos
         const meditationsWithDuration = await fetchAudioDurations(
@@ -751,7 +723,7 @@ export const ThreeJsFrame = () => {
         // Actualizamos los estados con los resultados
         setMeditations(meditationsWithDuration);
         setSounds(soundsWithDuration);
-        setTimerSounds(timerSoundsWithDuration)
+        setTimerSounds(timerSoundsWithDuration);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -760,83 +732,83 @@ export const ThreeJsFrame = () => {
     fetchData();
   }, []);
 
-
-
-  const [modelLoaded,setModelLoaded]=useState<boolean>(false)
-
-
-  
+  const [modelLoaded, setModelLoaded] = useState<boolean>(false);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
-        console.log("Mensaje recibido:", event.data); // Esto debería mostrar el mensaje en la consola
+      console.log('Mensaje recibido:', event.data); // Esto debería mostrar el mensaje en la consola
 
-        if (event.data?.type === "MODEL_LOADED") {
-            setModelLoaded(true);
-        }
+      if (event.data?.type === 'MODEL_LOADED') {
+        setModelLoaded(true);
+      }
     };
 
-    window.addEventListener("message", handleMessage);
+    window.addEventListener('message', handleMessage);
 
     return () => {
-        window.removeEventListener("message", handleMessage);
+      window.removeEventListener('message', handleMessage);
     };
-}, []);
+  }, []);
 
-
-  
-
-
-//console.log("astrodata-Chat",astrologicalData)
+  //console.log("astrodata-Chat",astrologicalData)
 
   return (
     <>
       {astrologicalInfo ? (
         <>
-       { modelLoaded &&  <TalismanBox
-            numerologySymbol={astrologicalData.numerologySymbol}
-            solarSailSymbol={astrologicalData.solarSailSymbol}
-            toneSymbol={astrologicalData.toneSymbol}
-            phrase={intention}
-            chineseSymbol={astrologicalData.chinseseSymbol}
-          />}
+          {modelLoaded && (
+            <TalismanBox
+              numerologySymbol={astrologicalData.numerologySymbol}
+              solarSailSymbol={astrologicalData.solarSailSymbol}
+              toneSymbol={astrologicalData.toneSymbol}
+              phrase={intention}
+              chineseSymbol={astrologicalData.chinseseSymbol}
+            />
+          )}
 
-          {modelLoaded &&<ConstelationBox constellation={astrologicalData.constellation} />}
+          {modelLoaded && (
+            <ConstelationBox constellation={astrologicalData.constellation} />
+          )}
           <iframe
             className="threejs-container"
             title="Modelo 3D"
             src={`https://lovelia.org/public/index.html?userProfile=api/${email}.json`}
           />
           <div className="myTalisman-controls-container">
-          { modelLoaded && <div className={`${audioType==="activation"?"hidden-buttons":""} myTalisman-controls-internal-container left efectoRevealTalisman`}>
-              {  buttonsLeft.map(item => {
-                return (
-                  <button
-                    key={item.title}
-                    title={item.title}
-                    onClick={item.function}>
-                    {<item.icon color="#ffff" />}
-                  </button>
-                );
-              })}
-              {volumeBarVisibility && (
-                <input
-                  id="volume-range"
-                  type="range"
-                  min="0"
-                  max="1"
-                  step="0.01"
-                  defaultValue={volume}
-                  onChange={handleVolumeChange}
-                />
-              )}
-            </div>}
+            {modelLoaded && (
+              <div
+                className={`${
+                  audioType === 'activation' ? 'hidden-buttons' : ''
+                } myTalisman-controls-internal-container left efectoRevealTalisman`}>
+                {buttonsLeft.map(item => {
+                  return (
+                    <button
+                      key={item.title}
+                      title={item.title}
+                      onClick={item.function}>
+                      {<item.icon color="#ffff" />}
+                    </button>
+                  );
+                })}
+                {volumeBarVisibility && (
+                  <input
+                    id="volume-range"
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    defaultValue={volume}
+                    onChange={handleVolumeChange}
+                  />
+                )}
+              </div>
+            )}
 
             {buttonFocusPosition === 'chronometer' && (
               <Chronometer playTrack={playTrack} />
             )}
 
-            {buttonsVisibility && 
+            {buttonsVisibility &&
               audioType &&
               buttonFocusPosition !== 'chronometer' && (
                 <div className="myTalisman-audio-controls-container">
@@ -866,7 +838,7 @@ export const ThreeJsFrame = () => {
                 </div>
               )}
 
-            {buttonsVisibility && modelLoaded&& (
+            {buttonsVisibility && modelLoaded && (
               <div className="myTalisman-controls-internal-container right efectoRevealTalisman">
                 {buttonsRight.map((item, i) => {
                   return (
@@ -938,7 +910,7 @@ export const ThreeJsFrame = () => {
           )}
           {buttonFocusPosition === 'timer' && <Timer sounds={timerSounds} />}
 
-         {modelLoaded && <ChatBot astroData={astrologicalData} />}
+          {modelLoaded && <ChatBot astroData={astrologicalData} />}
         </>
       ) : (
         <div className="myTalisman-pre-loading">Loading...</div>
@@ -961,8 +933,8 @@ export const ThreeJsFrame = () => {
           </audio>
         );
       })}
- {/*IMPORTANTE: DEBE CAMBIARSE SOUNDS POR LOS SONIDOS CORRESPONDIENTES AL TIMER */}
-{timerSounds.map((item, i) => {
+      {/*IMPORTANTE: DEBE CAMBIARSE SOUNDS POR LOS SONIDOS CORRESPONDIENTES AL TIMER */}
+      {timerSounds.map((item, i) => {
         return (
           <audio key={i} ref={el => (timerSoundRefs.current[i] = el!)}>
             <source src={`${item.url}`} type="audio/mpeg" />
@@ -975,8 +947,6 @@ export const ThreeJsFrame = () => {
           <p>{subtitleLine}</p>
         </div>
       )}
-     
-  
     </>
   );
 };

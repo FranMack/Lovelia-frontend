@@ -9,8 +9,8 @@ const FIREBASE_APP_ID = import.meta.env.FIREBASE_APP_ID;
 console.log('FIREBASE_API_KEY: ', FIREBASE_API_KEY);
 
 export const envs = {
-  API_DOMAIN: 'http://localhost:3000',
-  API_DOMAIN_2: 'https://api.lovelia.me',
+  //API_DOMAIN: 'http://localhost:3000',
+  API_DOMAIN: 'https://api.lovelia.me',
 
   // Firebase credentials
   FIREBASE_API_KEY,
