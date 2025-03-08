@@ -87,7 +87,7 @@ export function Navbar() {
       path: ['talisman-landing', 'talisman-digital', 'talisman-analogico'],
       buttonOptions: [
         {buttonName: 'Talismán Digital', path: 'talisman-digital'},
-        {buttonName: 'Talismán Analógico', path: 'talisman-analogico'},
+        {buttonName: 'Talismanes Físicos', path: 'talisman-analogico'},
       ],
     },
     {title: 'Meditaciones', path: ['meditations'], buttonOptions: []},
@@ -101,7 +101,7 @@ export function Navbar() {
       ],
       buttonOptions: [
         {buttonName: 'Talismán Digital', path: 'buy-digital'},
-        {buttonName: 'Talismán Analógico', path: 'buy-analogic'},
+        {buttonName: 'Talismanes Físicos', path: 'buy-analogic'},
       ],
     },
     {title: 'Blog', path: ['blog'], buttonOptions: []},

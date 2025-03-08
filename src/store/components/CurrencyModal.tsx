@@ -15,7 +15,7 @@ export const CurrencyModal = () => {
   return (
     <div className="currencyModal-container">
       <div className="currencyModal-centar-container">
-        <h6>¿ Desde donde estas comprando ?</h6>
+        <h6>¿ Desde dónde estás comprando ?</h6>
 
         <select value={selectedCurrency} onChange={handleSelectedCurrency}>
           <option value="">País</option>

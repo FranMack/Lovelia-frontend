@@ -32,7 +32,7 @@ const sections = [
     path: '',
     items: [
       {title: 'Intro', path: 'talisman-landing'},
-      {title: 'Talismán analógico', path: 'talisman-analogico'},
+      {title: 'Talismanes Físicos', path: 'talisman-analogico'},
       {title: 'Talismán digital', path: 'talisman-digital'},
     ],
   },

@@ -202,7 +202,7 @@ export const ThreeJsFrame = () => {
         }
         if (audioType === 'meditation') {
           if (trackIndex === 0) {
-            const index = sounds.length - 1;
+            const index = meditations.length - 1;
             restartTrack(index, audioType);
           } else {
             const index = trackIndex! - 1;
@@ -210,6 +210,15 @@ export const ThreeJsFrame = () => {
           }
           return;
         }
+
+        if (audioType === 'activation') {
+          const index = 0;
+          console.log({index, audioType})
+            restartTrack(index, audioType);
+          return;
+        }
+        
+
       },
     },
     {
@@ -620,7 +629,21 @@ export const ThreeJsFrame = () => {
       playTrack(index, 'sound');
       handlePlaying(true);
       return;
-    } else {
+    } 
+
+    else if(type === 'activation'){
+      if (activationSoundRef.current) {
+        activationSoundRef.current.pause();
+        activationSoundRef.current.currentTime=0;
+        setAudioType('activation');
+        playTrack(index, 'activation');
+        handlePlaying(true);
+        return
+  
+      }
+    }
+    
+    else {
       meditationsRefs.current.forEach(audio => {
         audio.pause(), (audio.currentTime = 0);
       });
@@ -785,7 +808,7 @@ export const ThreeJsFrame = () => {
             src={`https://lovelia.org/public/index.html?userProfile=api/${email}.json`}
           />
           <div className="myTalisman-controls-container">
-          { modelLoaded && <div className="myTalisman-controls-internal-container left efectoRevealTalisman">
+          { modelLoaded && <div className={`${audioType==="activation"?"hidden-buttons":""} myTalisman-controls-internal-container left efectoRevealTalisman`}>
               {  buttonsLeft.map(item => {
                 return (
                   <button

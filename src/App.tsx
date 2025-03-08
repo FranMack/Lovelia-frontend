@@ -2,7 +2,7 @@ import {onMessage} from 'firebase/messaging';
 import {Route, Routes, useLocation} from 'react-router-dom';
 import {messaging} from './config/firebase.ts'; // Import the messaging object
 import {AlarmPopUp} from './ui/components/AlarmPopUp.tsx';
-
+import { Suspense } from 'react';
 import {
   Footer,
   MobileFooter,
@@ -25,6 +25,8 @@ import {
 } from './router';
 import {ShopingCart} from './ui/components/ShopingCart.tsx';
 import {NotFoundPage} from './ui/pages/NotFound.tsx';
+import { Loader } from './ui/pages/Loader.tsx';
+import ErrorBoundary from './router/ErrorBoundary.tsx';
 
 function App() {
   const {email} = useContext(UserContext);
@@ -106,7 +108,8 @@ function App() {
       {shopingCartOpen && <ShopingCart />}
       <MobileMenu />
       {activatedAlarm && <AlarmPopUp alarmUrl={alarmUrl} />}
-
+      <ErrorBoundary>
+<Suspense fallback={<Loader />}>
       <Routes>
         {/*RUTAS PÚBLICAS*/}
         {PublicRoutesCollection()}
@@ -118,6 +121,8 @@ function App() {
         {PrivatesRoutesCollection()}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      </Suspense>
+      </ErrorBoundary>
 
       {location !== '/myTalisman' && windowSize >= 1024 && <Footer />}
       {location !== '/myTalisman' && windowSize < 1024 && <MobileFooter />}

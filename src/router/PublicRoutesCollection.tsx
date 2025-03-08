@@ -1,7 +1,5 @@
-import {Suspense, lazy} from 'react';
+import {lazy} from 'react';
 import {Route} from 'react-router-dom';
-import {Loader} from '../ui/pages/Loader.tsx';
-import ErrorBoundary from './ErrorBoundary.tsx';
 
 const Home = lazy(() => import('../home/views/Home'));
 const TalismanInfo = lazy(() => import('../talisman/views/TalismanInfo.tsx'));
@@ -81,16 +79,10 @@ const publicRoutes = [
 ];
 
 export const PublicRoutesCollection = () =>
- 
   publicRoutes.map(item => (
-   
     <Route
       key={item.path} // Agrega una key para evitar advertencias de React
       path={item.path}
-      element={
-        <ErrorBoundary>
-          <Suspense fallback={<Loader />}>{item.component}</Suspense>
-        </ErrorBoundary>
-      }
+      element={item.component}
     />
   ));

@@ -10,7 +10,7 @@ import {ShopingCartContext} from '../../context/modalShopingCartContext';
 import {BackgroundVideo} from '../../ui/components';
 
 const days = [
-  1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
+  1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
   23, 24, 25, 26, 27, 28, 29, 30, 31,
 ];
 const month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -203,7 +203,7 @@ function CheckOutDigital() {
 
         <div className="checkoutDigital-botton-left-container">
           <div className="checkoutDigital-title-container">
-            <h3>Activa tu Talismán Digital</h3>
+            <h3>Configuración de tu Talismán Digital</h3>
             <h6>
               Los siguientes datos son necesarios para la creación de tu
               talismán.

@@ -26,7 +26,7 @@ export function TemplateBlog({
   return (
     <div ref={direction==="left"?animationRefLeft:animationRefRight } className="templateBlog-container">
       <div className="templateBlog-image-container">
-        <LazyImage src={image} alt="Tallisman-fisico" />
+        <LazyImage src={image} alt="Tallisman-fÍsico" />
       </div>
       <div className="templateBlog-info-container">
         <h4>{title}</h4>

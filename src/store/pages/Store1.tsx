@@ -28,7 +28,7 @@ export const Store1 = () => {
           <div className="icon-container">
           <ObliqueArrow color="#662A80" />
           </div>
-          <h2 onClick={linkToBuyAnalogic}>TALISMÁNES FISICOS</h2>
+          <h2 onClick={linkToBuyAnalogic}>TALISMANES FÍSICOS</h2>
         </div>
       </div>
     </section>

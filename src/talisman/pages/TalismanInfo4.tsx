@@ -37,9 +37,9 @@ export const TalismanInfo4 = () => {
             <div className="icon-container">
               <ObliqueArrow color="#ffff" />
             </div>
-            TALISMÁNES
+            TALISMANES
           </h2>
-          <h2>FISICOS</h2>
+          <h2>FÍSICOS</h2>
           <br />
           <br />
 

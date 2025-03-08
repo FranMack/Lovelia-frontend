@@ -341,7 +341,7 @@ function BuyAnalogTalisman() {
           <div
             className="custonTalisman-internal-center-container"
             style={{opacity: dropdownIntensiones.openModal ? '0.5' : '1'}}>
-            <h2>Inicio /Tienda /Talismánes Fisicos</h2>
+            <h2>Inicio /Tienda /Talismanes Físicos</h2>
 
             <h3>Tu Talismán</h3>
             <h5>

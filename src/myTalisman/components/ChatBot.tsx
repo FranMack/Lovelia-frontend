@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { useChatBot } from '../../hooks/useChatBot';
 import { MyAdnProps } from '../interface/myAdn.interface';
+import { TalismanAudioContext } from '../../context/talismanAudioContext';
 
 interface ChatBotProps {
   astroData: MyAdnProps;
@@ -35,8 +36,8 @@ export const ChatBot = ({ astroData }: ChatBotProps) => {
   }, [isOpen]); // Se ejecuta cada vez que el chat se abre
 
 
-  console.log("xxxxxxxxxxxxxxx",astroData)
 
+const {audioType}=useContext(TalismanAudioContext)
   return (
     <>
       {isOpen ? (
@@ -68,7 +69,7 @@ export const ChatBot = ({ astroData }: ChatBotProps) => {
           </div>
         </div>
       ) : (
-        <div className="chat-bubble efectoRevealTalisman" onClick={() => setIsOpen(true)}>
+        <div className={`${audioType==="activation" ? "hidden-buttons":"chat-bubble efectoRevealTalisman"}`} onClick={() => setIsOpen(true)}>
           💬
         </div>
       )}
